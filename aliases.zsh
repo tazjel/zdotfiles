@@ -13,4 +13,4 @@
 ##:nmap ,v :e $VIM/_vimrc
 ##:e $MYVIMRC         : edits your _vimrc whereever it might be  [N]
 #--------------
-git add -A; git commit -a; git push origin master
+alias gll='git add -A; git commit -a; git push origin master'
