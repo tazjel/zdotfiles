@@ -5,13 +5,7 @@
 #Search 
 map <F7> :%s//gc<Left><Left><Left>
 # substitute 
-#Remove comments and blank lines from files
-
-If you want to remove all the comment lines and the blank lines from a file to see the only active lines, just use sed as below:
-sed '/^ *#/d; /^ *$/d'  filename
-
-You can also do it with alternate methods like that:
-grep -v ' *#' filename | grep -v '^ *$'
+#
 :map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
 
 # visual substitute 
