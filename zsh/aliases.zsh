@@ -14,3 +14,5 @@
 ##:e $MYVIMRC         : edits your _vimrc whereever it might be  [N]
 #--------------
 alias gll='git add -A; git commit -a; git push origin master'
+
+#function xp=(a.txt b.txt);for x in aliases.zsh oh-my-zsh.sh .zshrc;echo 'moving -> .zshrc to --> ~/zdotfiles/zsh' && mv .zshrc ~/zdotfiles/zsh
