@@ -1,17 +1,24 @@
 # vim tips
 
 
-
 #Search 
 map <F7> :%s//gc<Left><Left><Left>
 # substitute 
 #
+#p
+# ===========================================================
+# 
 :map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
 
-#For lines not containing "Warning", the search command is:
+# ---- For lines not containing "Warning", the search command is:
 
 /\v^(.*Warning)@!.*$
 
+f you want to see all such lines at once, there's the traditional (but simple):
+
+:v/Warning/p
+
+# -------------------------------------
 
 # visual substitute 
 

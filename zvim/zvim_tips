@@ -1,5 +1,13 @@
 # vim tips
-
+#---------------------------------------------------
+# regexp 
+#
+#---------------------------------------------------
+# substitute zsh_history 
+# : "1357705996:0;"
+function (){
+^:.*;
+}
 
 
 #Search 
@@ -13,6 +21,20 @@ sed '/^ *#/d; /^ *$/d'  filename
 You can also do it with alternate methods like that:
 grep -v ' *#' filename | grep -v '^ *$'
 :map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
+
+:%s/^\n//
+:%g/^$/d
+Outside vim:
+
+$ grep -v '^$' file
+$ grep '.' file
+$ sed '/^$/d' file
+$ sed -n '/^$/!p' file
+$ awk NF file
+$ awk '/./' file
+
+
+
 
 # visual substitute 
 
