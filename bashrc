@@ -922,3 +922,4 @@ complete -F _killall killall killps
 # mode:shell-script
 # sh-shell:bash
 # End:
+LC_ALL=en_US.UTF-8
