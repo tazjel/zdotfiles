@@ -1,3 +1,4 @@
+﻿# fix it
 alias popd="popd;dirpersiststore"
 alias rc='_rails_command console'
 alias rd='_rails_command destroy'
