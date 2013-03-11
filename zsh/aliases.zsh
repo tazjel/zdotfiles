@@ -54,12 +54,21 @@ alias clr='clear;pwd;ls'
 alias co='git checkout '
 alias confcat='sed -e '\''s/[#;].*//;/^\s*$/d'\'' '
 alias convert_pdf='abiword --to=pdf '
+<<<<<<< HEAD
 alias cp='cp -i'
 alias cpf='sudo aptitude clean && sudo aptitude purge && sudo aptitude -f install'
 alias cpip='curl -s ifconfig.me | tr -d "\n" | pbcopy'
 alias d='git diff|tig'
 alias ddel='rm -Rf'
 alias edit-aliases='nano ~/.bash_aliases'
+=======
+alias copy=cp
+alias cp='cp -i'
+alias cpf='sudo aptitude clean && sudo aptitude purge ~c && sudo aptitude -f install'
+alias cpip='curl -s ifconfig.me | tr -d "\n" | pbcopy'
+alias d='git diff|tig'
+alias ddel='rm -Rf'
+>>>>>>> a8f55d6e6731bd159a0921efcc8ed9291aca805c
 alias debinstall='sudo dpkg -i '
 alias del='rm -i'
 alias dfree='df -h -x tmpfs'
@@ -67,6 +76,13 @@ alias dir=ls
 alias display='less +F'
 alias dl='cd ~/Downloads'
 alias dropbox_conflicts='find ~/Dropbox -name \*conflicted\ copy\*'
+<<<<<<< HEAD
+=======
+alias drupal-sandbox='drush qd --db-url="mysql://user:pass@localhost:3306/db_name" -y'
+alias ds='du -sck * | sort -n'
+alias ebuild='nocorrect ebuild'
+alias edit-aliases='nano ~/.bash_aliases'
+>>>>>>> a8f55d6e6731bd159a0921efcc8ed9291aca805c
 alias eg='git config -e'
 alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash'
 alias erase='shred -n 35 -z -u'
@@ -102,6 +118,10 @@ alias gl='git pull'
 alias glg='git log --stat --max-count=5'
 alias glgg='git log --graph --max-count=5'
 alias glgga='git log --graph --decorate --all'
+<<<<<<< HEAD
+=======
+alias gll='cd /home/bani/zdotfiles/ && git add -A && git commit -a git push origin master'
+>>>>>>> a8f55d6e6731bd159a0921efcc8ed9291aca805c
 alias globurl='noglob urlglobber '
 alias gm='git merge'
 alias go='git checkout '
@@ -250,6 +270,7 @@ alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
 alias zshconfig='subl ~/.zshrc'
 alias zshrc='vi ~/.zshrc'
 alias zz='vim $HOME/.oh-my-zsh/lib/aliases.zsh'
+<<<<<<< HEAD
 alias zzz='source /home/bani/.oh-my-zsh/lib/aliases.zsh'
 alias zzzz=' vim $HOME/.zshrc'
 
@@ -344,3 +365,26 @@ alias 'mkk'='mkdir -p wwWWww && cd /home/bani/wwWWww/wwWWww'
 #
 
 alias 'wW'='pwd'
+=======
+alias zzz='source $HOME/.oh-my-zsh/lib/aliases.zsh'
+alias zzzz=' vim $HOME/.zshrc'
+alias zzzzz='source $HOME/.zshrc'
+alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
+alias __="sudo"
+function ccc {
+echo "alias '$1'='$2' " >> /home/bani/.oh-my-zsh/lib/aliases.zsh
+echo "Now, we got : $1 & $2"
+source /home/bani/.oh-my-zsh/lib/aliases.zsh
+}
+#============================================
+#
+alias '_r'='sudo reboot' 
+
+
+function gll {
+cp /home/bani/.oh-my-zsh/lib/aliases.zsh /home/bani/zdotfiles/zsh/aliases.zsh
+cd ~/zdotfiles/
+git add -A
+git commit -a git push origin master
+}
+>>>>>>> a8f55d6e6731bd159a0921efcc8ed9291aca805c
