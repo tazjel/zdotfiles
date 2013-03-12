@@ -1,0 +1,50 @@
+Terra has definitely considered a full spectrum of usability, thus bringing a basic-yet-effective set of keyboard shortcuts, such as F12 (show/hide Terra), F11 (fullscreen mode), Quit (Ctrl+Q), Close page (Ctrl+W), Go to the next page (Ctrl+Right), Go to the previous page (Ctrl+Left).
+
+By default, Terra occupies a third of the screen space, in order to resize it, hover over the mouse pointer over its bottom bar and drag it until a preferred size is reached.
+
+How do we install Terra 0.1.2?
+Add the following PPA (Precise, Quantal, Raring)
+
+sudo add-apt-repository ppa:ozcanesen/terra-terminal 
+
+sudo apt-get update
+sudo apt-get install terra
+LINUX GRAPHICS
+Intel Linux Graphics Installer
+Details
+Release Date: 
+7 Mar 2013
+Version: 1.0
+Type: Installer
+Downloads
+Installer for Ubuntu 12.04 - 32 bits
+Installer for Ubuntu 12.04 - 64 bits
+Installer for Ubuntu 12.10 - 32 bits
+Installer for Ubuntu 12.10 - 64 bits
+Installer for Fedora 17 - 32 bits
+Installer for Fedora 17 - 64 bits
+Installer for Fedora 18 - 32 bits
+Installer for Fedora 18 - 64 bits
+Source Code
+Intel Linux Graphics Installer 1.0
+Description
+
+Intel Linux Graphics Installer allows you to easily install the latest graphics drivers for your Intel graphics hardware. This allows you to stay current with the latest enhancements, optimizations, and fixes to ensure the best user experience with your Intel graphics hardware.
+
+Supported Intel Linux Graphics Stack at 1.0
+
+2012Q4 Intel Graphics Stack Release
+Supported Linux Distributions at 1.0
+
+Ubuntu 12.04
+Ubuntu 12.10
+Fedora 17
+Fedora 18
+Signatures - Ubuntu
+
+Ubuntu's packages and repositories are signed with this GPG key.
+
+In order to "trust" the Intel Linux Graphics Installer, you will need to add a key to Ubuntu's software package manager ("apt"). Open a terminal, and execute this line:
+
+wget --no-check-certificate https://download.01.org/gfx/RPM-GPG-KEY-ilg -O - | \
+sudo apt-key add -V
