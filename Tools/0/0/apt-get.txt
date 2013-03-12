@@ -48,3 +48,1319 @@ In order to "trust" the Intel Linux Graphics Installer, you will need to add a k
 
 wget --no-check-certificate https://download.01.org/gfx/RPM-GPG-KEY-ilg -O - | \
 sudo apt-key add -V
+jfn linux project
+A respository of linux news, how-to's, tweaks, and tips.
+
+DECEMBER 17, 2012
+Things to tweak after Install of Ubuntu 12.10 Quantal Quetzal
+Important Things/Tweaks to do after Install of Ubuntu 12.10 Quantal Quetzal
+
+From noobslab.com (10-18-2012) Ubuntu 12.10 Quantal Quetzal has been released, NoobsLab know what people want. So after a-lot of work today bring this article for you. After applying these tweaks you can get better experience with new Ubuntu. After these tweaks we can say your Ubuntu is ready to use, Every tweak is tested by NoobsLab. So lets start tweak to your Ubuntu 12.10.
+
+
+
+
+1: Install Gnome-Tweak-tool 3.6: 
+Gnome Tweak Tool is well-known powerful tweak tool, With this tool you can manage your Ubuntu environment like: Change theme, icons, fonts, cursor and so on options.
+
+Install with following command:
+sudo apt-get install gnome-tweak-tool
+
+
+2: Install Ubuntu Tweak:
+Ubuntu Tweak is an application designed to config Ubuntu easier for everyone. It provided many useful desktop and system options that the default desktop environment isn't provided.
+
+Enter following commands to install Ubuntu Tweak:
+sudo add-apt-repository ppa:tualatrix/ppa 
+sudo apt-get update
+sudo apt-get install ubuntu-tweak
+Here you can find more tweak tools Unsettings Tool
+
+
+3: Install Compiz (CCSM) and extra plugins: 
+CCSM, short for CompizConfig Settings Manager, is a configuration tool for Compiz Fusion. It is used to configure the many plugins included in Compiz and Compiz Fusion, as well as the use of various profiles and intergrating better with existing desktop settings.
+
+
+To install Compiz Config Setting Manager enter following command in Terminal:
+sudo apt-get install compizconfig-settings-manager compiz-plugins-extra
+Go to Dash and Search "CCSM"
+
+
+4: Install Synaptic Package Manager: 
+Synaptic is a graphical package management program for apt. It provides the same features as the apt-get command line utility with a GUI front-end based on Gtk+.
+
+To install Synaptic Package Manager enter following command in Terminal:
+sudo apt-get install synaptic
+Go to Dash and Search "synaptic"
+
+
+5: Enable Hibernate option:
+Ubuntu has disabled hibernate option since last distro 12.04, So here is tweak to enable hibernate in 12.10.
+
+Open Terminal and enter following command:
+sudo gedit /var/lib/polkit-1/localauthority/50-local.d/hibernate.pkla
+copy and paste the following code in file:
+[Re-enable Hibernate]
+Identity=unix-user:*
+Action=org.freedesktop.upower.hibernate
+ResultActive=yes
+Save file and Exit, then Restart and check.
+
+
+6: Remove White Dots from Ubuntu 12.10 Login Screen 
+Some People don't like white dots in Ubuntu 12.10 Login screen, So here is a tweak you can easily remove these dots from login screen.
+
+Enter following commands in Terminal:
+sudo xhost +SI:localuser:lightdm
+sudo su lightdm -s /bin/bash
+gsettings set com.canonical.unity-greeter draw-grid false
+
+
+7: Disable Online Search in Dash:
+Personally I don't like this online search option in unity. So if anybody want to turn off, follow the method.
+Go to Dash and Search "Privacy" and turn off the online search option.
+
+Alternative remove shopping lens by following command:
+sudo apt-get remove unity-lens-shopping
+You will not see anymore online searches in dash.
+
+
+8: Change HUD Key: 
+
+
+Go to "Dash" System Settings > Keyboard > Shortcuts > Launchers > Key to show HUD 
+Click on Key to show HUD to change key. I set my key Alt+Z because it is easy to press, You can change whatever you want.
+
+
+9: Disable overlay Scrollbars:
+You can disable overlay scrollbars, if you don't like that.
+
+Enter following command in terminal to disable overlay scrollbar:
+gsettings set com.canonical.desktop.interface scrollbar-mode normal
+If you want to get back overlay bar, enter following command:
+gsettings reset com.canonical.desktop.interface scrollbar-mode
+
+
+10: Show username on panel:
+UserName is disabled by default in Ubuntu 12.10, So here is tweak you can enable it very easily.
+
+Enter following command in terminal:
+gsettings set com.canonical.indicator.session show-real-name-on-panel true
+To remove name from panel, Enter following command:
+gsettings set com.canonical.indicator.session show-real-name-on-panel false
+
+
+11: Disable System Crash Reports:
+If you are experiencing something crashes in your Ubuntu, and you don't like to notify with reports. You can disable them easily.
+
+Enter following commands to disable crash reports:
+sudo gedit /etc/default/apport
+Now text file will open, In the last line you will see "enabled=1" change it to "enabled=0". Save and close file.
+Now enter following command in terminal to stop apport service:
+sudo service apport stop
+
+
+12: Install and enable XScreensaver: 
+XScreenSaver is a collection of about many free screensavers for Linux.
+
+Install XSreenSaver with following commands:
+sudo apt-get remove gnome-screensaver
+sudo apt-get install xscreensaver xscreensaver-gl-extra xscreensaver-data-extra
+create file for autostart enter following command in terminal:
+sudo gedit /etc/xdg/autostart/screensaver.desktop
+after that copy and paste the following code in file:
+[Desktop Entry]
+Name=Screensaver
+Type=Application
+Exec=xscreensaver -nosplash
+Save and Exit the file.
+
+
+13: Show Laptop Battery Percentage:
+This tweak shows laptop battery percentage in the Ubuntu panel.
+
+To install enter following commands in the Terminal:
+sudo add-apt-repository ppa:noobslab/initialtesting
+sudo apt-get update
+sudo apt-get install indicator-power
+Then logout and login back.
+
+
+14: Install Hardware Temperature Monitor:
+The Psensor Indicator is providing a quick access to sensor values and settings. When a sensor temperature is too much hot, a desktop notification bubble appears and the Application Indicator icon is changed to a red one. Your pc must have sensors to use complete features.
+
+Enter following command in terminal:
+sudo apt-get install lm-sensors hddtemp psensor
+
+
+15: Install Ubuntu-One Indicator:
+UbuntuOne indicator provides the overview of Ubuntu One Account synchronization state.
+
+To install enter following commands in the Terminal:
+sudo add-apt-repository ppa:noobslab/initialtesting
+sudo apt-get update
+sudo apt-get install indicator-ubuntuone
+Then logout and login back.
+
+
+16: Install Recent Notifications Indicator:
+Recent Notifications is a GNOME applet that collects recent messages sent with libnotify to a notification daemon, such as notify-osd.
+
+To install enter following commands in the Terminal:
+sudo add-apt-repository ppa:jconti/recent-notifications
+sudo apt-get update
+sudo apt-get install indicator-notifications
+After installation open indicator-notification from Dash.
+
+
+17: Install Weather Indicator:
+My-Weather is really cool indicator for Ubuntu, it can show up to two location weather with complete details.
+
+Enter following commands in terminal to install my-weather indicator:
+sudo add-apt-repository ppa:atareao/atareao
+sudo apt-get update
+sudo apt-get install my-weather-indicator
+After installation open my-weather-indicator from Dash and configure it.
+
+
+18: Install Window-List Indicator:
+This Window-List indicator show which windows are currently open, and you can easily switch between them.
+
+Enter following commands in terminal:
+sudo add-apt-repository ppa:jwigley/window-list
+sudo apt-get update
+sudo apt-get install window-list
+After installation go to Dash and search "Window-List" then open it. Make it startup from Window-List option.
+
+
+19: Show all startup apps in Startup Applications:
+By Default Startup Application show only few apps in the list, So now you can see which applications are going to start by following command:
+sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
+
+
+
+20: Disable Global Menu:
+If you don't like Global menu then you can disable it easily.
+
+
+Enter following command in Terminal:
+sudo apt-get autoremove appmenu-gtk appmenu-gtk3 appmenu-qt
+and restart.
+
+To disable Global Menu for Firefox, Go to 'Tools' \u2013> 'Add-ons' \u2013> 'Extensions' and Disable 'Global Menu Bar integration'
+
+To revert the changes enter following command in Terminal:
+sudo apt-get install appmenu-gtk appmenu-gtk3 appmenu-qt
+then restart.
+
+
+21: Move Minimize, Maximize, Close Buttons to Right:
+This tweak is about to move Minimize, Maximize, and Close buttons to the right side.
+
+
+Enter following command to move buttons to right:
+gconftool-2 --set /apps/metacity/general/button_layout --type string menu:minimize,maximize,close
+Alternative Method
+Enter following commands in Terminal to install gconf-editor:
+sudo apt-get install gconf-editor
+now start gconf-editor with following command:
+gconf-editor
+Go to the following: 'apps' -> 'metacity' -> 'general' Find the "button_layout" parameter,
+Right mouse click, and select Edit Key.
+Change the value to the following: menu:minimize,maximize,close then Press Enter.
+
+
+22: Add other Media Player to Ubuntu Sound Menu
+If you are using different audio player to player audio files then you can add player in sound menu with following method.
+Enter following command in terminal to install Dconf-Tools:
+sudo apt-get install dconf-tools
+Go to Dash and open "Dconf-Editor"
+
+Type your Player name in (interested-media-player + preferred-media-player) and you can remove any media player by writing name in (blacklisted-media-players). See following image
+
+
+
+23: Enable Global Menu for LibreOffice in Ubuntu 12.10
+By default LibreOffice doesn't support global menu, So you can enable Global Menu easily for LibreOffice.
+
+Enter following command in terminal to install global menu.
+sudo apt-get install lo-menubar
+
+
+24: Open as Administrator in Ubuntu 12.10 Quantal Quetzal
+This is really cool tweak for those who want to open file and folder with Administrator permissions, So now it is really easy to do.
+
+To add "Open as Administrator" entry enter following commands in Terminal:
+wget http://dl.dropbox.com/u/53319850/NoobsLab.com/libnautilus-gksu.so
+sudo cp libnautilus-gksu.so /usr/lib/nautilus/extensions-3.0/ && sudo rm libnautilus-gksu.so
+After that enter following command:
+nautilus -q
+
+
+25: Move Nautilus Forward & Back button to Left Side: 
+
+To move these buttons to left side just follow steps:
+Open Terminal (Press Ctrl+Alt+T) and copy the following commands in the Terminal:
+sudo apt-get install -y dpkg-dev
+mkdir ~/Desktop/nautilus-mod
+cd ~/Desktop/nautilus-mod
+sudo apt-get update
+apt-get source nautilus
+sudo apt-get build-dep nautilus
+cd ~/Desktop/nautilus-mod/nautilus-3*
+gedit src/nautilus-toolbar.c
+Now, scroll down to line 130 or Find for "gtk_toolbar_insert (GTK_TOOLBAR (self->priv->toolbar), item, 0)" and change the "0" to a "2". So change the original line from:
+gtk_toolbar_insert (GTK_TOOLBAR (self->priv->toolbar), item, 0);
+To:
+gtk_toolbar_insert (GTK_TOOLBAR (self->priv->toolbar), item, 2);
+When you're done, click save and close Gedit.
+
+Now Back in Terminal, run the following:
+./configure --prefix=/usr
+make
+sudo killall nautilus
+sudo make install
+
+
+Now logout and login back or restart.
+To undo the changes and revert back to stock Nautilus, you can simply run following command:
+sudo apt-get --reinstall install nautilus
+
+For Unity If SomeThing Went Wrong Enter following commands to Reset:
+>> to reset the Unity:
+sudo apt-get install dconf-tools
+dconf reset -f /org/compiz/ 
+setsid unity
+git clone https://github.com/phanimahesh/unity-revamp.git
+cd unity-revamp
+chmod +x unity-reset.py
+ln -s ./unity-reset.py /usr/bin/unity-reset
+Then run in terminal:
+unity-reset
+>> to reset Compiz:
+gconftool-2 --recursive-unset /apps/compiz-1 unity --reset
+
+
+26: Enable Hardware Drivers:
+In Ubuntu 12.10 Quantal "Additional Drivers" location has been changed, You can choose best drivers for your hardware from additional driver and can enable/disable from there easily.
+Open Dash and Search for "Software Sources" Here you can find "Additional Drivers" in the last Tab.
+
+
+
+27: Install Adobe Flash Plugin:
+By default firefox doesn't install flash player, So now you can install flash player.
+
+Open Terminal and enter following commands:
+sudo apt-add-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+sudo apt-get update && sudo apt-get install flashplugin-installer
+
+
+28: Install qBittorrent:
+
+I think everybody like to download from torrents, It is safe and easy method to download. So you can install qBittorrent with following commands:
+sudo add-apt-repository ppa:noobslab/initialtesting
+sudo apt-get update
+sudo apt-get install qbittorrent
+
+
+29: Install Plugins for Rhythmbox (Like Equalizer):
+Rhythmbox is default Audio player in Ubuntu 12.10, You can install plugins for rhytmbox. Plugins are: Audio-read, Album-art-search, Countdown-playlist, plugin-cover-art-browser, Equalizer, Jump-to-Playing, Jump-to-Window, lyrics, micro-blogger, open-containing-foler, radio-browser, Random-album-player, Remember-the-rhythm, repeat-one-song, rhythm-web, send-first, small-window, stop-after, suspend, tab-guitar, tray-icon, web-menu, stream-ripper
+Enter following commands to install plugins.
+sudo add-apt-repository ppa:fossfreedom/rhythmbox-plugins
+sudo apt-get update
+sudo apt-get install rhythmbox-plugin-complete
+After installation open Rhythmbox and Go to "Edit" -> "Plugins" and enable plugins.
+
+
+30: Install Gnome Shell 3.6: 
+Install latest Gnome Shell 3.6 in 12.10
+
+
+Enter Following commands to install Gnome-Shell 3.6:
+sudo add-apt-repository ppa:ricotz/testing 
+sudo add-apt-repository ppa:gnome3-team/gnome3
+sudo apt-get update
+sudo apt-get install gnome-shell
+
+
+31: Install User-Theme and other Extensions in Gnome Shell 3.6:
+With User-Theme Extension you can enable Gnome Shell 3.6 themes in Gnome-Tweak-Tool.
+
+
+Now Restart Gnome Shell (Press Alt+F2 and type 'r') and enable User Themes Extension, again Restart Gnome Shell.
+
+Themes Enabled
+
+Install official extension in 12.10, Following extensions will install: Alternative Status Menu, Native Window Placement, Alternative Tab, Auto Move Windows, Workspace Indicator, Dock, Places Status Indicator, System Monitor, Gajim IM Integration, User Themes, Removable Drive Menu, Window Navigator, Applications Menu.
+
+Enter following command to Install Gnome Shell 3.6 Extensions:
+sudo add-apt-repository ppa:noobslab/gnome
+sudo apt-get update
+sudo apt-get install gnome-shell-extensions
+After Installation Press Alt+F2 and type 'r' to restart Gnome Shell, or just logout and login back. Open Gnome Tweak Tool to change/install shell Themes.
+
+
+32: Install Restricted Extras:
+There are some Restricted extras in Ubuntu which can't be install while installation of Ubuntu by default but you can install these Restricted extras by yourself. Restricted mp3 playback and decoding, support for various formats, fonts, java, flash plugin, lame, dvd playback. 
+sudo apt-get install ubuntu-restricted-extras
+
+
+33: Install Codecs: 
+If you are multimedia user and use Ubuntu for multimedia then these codecs are very useful for you. You can install them by single command.
+sudo apt-get install gstreamer0.10-plugins-ugly gstreamer0.10-ffmpeg libxine1-ffmpeg gxine mencoder libdvdread4 totem-mozilla icedax tagtool easytag id3tool lame nautilus-script-audio-convert libmad0 mpg321
+
+
+34: Install Compression/Decompression tools:
+You can compress and decompress 7z, zip, gzip, rar, xz, tar, bz2, xar, tar.gz, tar.bz, and many others.
+Enter following command in terminal to install:
+sudo apt-get install p7zip-rar p7zip-full unace unrar zip unzip sharutils rar uudeview mpack lha arj cabextract file-roller
+
+
+35: Install Other Environments:
+>> Install Kde Plasma Desktop
+
+Enter following command to install Kde-Plasma-Desktop:
+sudo apt-get install kde-plasma-desktop
+>> Install Lubuntu Desktop
+
+Enter following command in terminal to install Lubuntu-Desktop
+sudo apt-get install lubuntu-desktop
+>> Install XFCE4 Desktop
+
+Enter following command to install XFCE4 Desktop:
+sudo apt-get install xfce4
+>> Install Cinnamon
+>> Install Razor-qt
+
+
+36: Misc/Softwares for Ubuntu 12.10 Quantal Quetzal:
+Install Latest Google Chrome
+Install Latest Skype
+Install Latest WineHQ (Windows Program Loader)
+Install Latest Cairo Dock
+Install Latest Gimp 2.8.2 Image Editor
+Install Format Junkie
+Install Deepin Software Center
+Install Latest VirtualBox
+Install Grub Customizer
+Install and Configure Samba Sharing between Windows and Ubuntu
+Install Latest Nvidia Drivers (Only for those who own Nvidia Card)
+Install Other Media Player VLC, UMplayer, SMPlayer, Clementine, Xnoise
+Install File Managers Marlin, SunFlower Twin-Panel
+Install Video Tools/Editors OpenShot, Blender
+Wallpapers Ubuntu Wallpapers, Black Wallpapers
+Checkout Conky Collection
+Checkout Themes Collection
+Checkout Icons Collection
+
+Your Ubuntu is complete now, That's it Enjoy.
+
+Source: http://www.noobslab.com/2012/10/important-thingstweaks-to-do-after.html
+
+Things You Do After Installing Ubuntu 12.10- 10-22-2012 (from WebUpd8)
+
+If you've been following WebUpd8 for a while, you've probably noticed that we used to make a post with things to tweak after each Ubuntu release (here are the 12.04 and 11.10 posts). This time, let's do things differently!
+
+I'll start by sharing with you the first things I did after installing the latest Ubuntu 12.10 and you, the readers, can post comments, telling us what you've installed / customized / tweaked after installing 12.10, no matter what Ubuntu flavour you're using.
+
+
+
+WHAT I DID AFTER INSTALLING UBUNTU 12.10
+
+The first thing I did after installing Ubuntu 12.10 was to restore my PPAs backup from Ubuntu 12.04. That's right, I'm addicted to PPAs. That's because, even though Ubuntu 12.10 has the latest version of most packages, there are some apps which aren't available in the official repositories that I can't live without. For this I've used Y PPA Manager which imports the GPG keys automatically and can also update the PPAs that work with the latest Ubuntu release.
+
+
+Firefox extensions and webapps.
+
+ 
+I'm using Firefox because it works better for me with a large number of open tabs (especially since there's an option not to load tabs until clicked). I only use three addons: Adblock Plus, Tab Badge (adds a a small badge to your tabs to alert you when you have notifications for websites like Facebook, Google Plus, etc.) and LastPass (for better password security and sync).
+
+
+
+
+And speaking of browsers, I've also installed some webapps (they work with both Firefox and Chromium, though Chromium requires an extension available in the repositories):
+Google Plus - I don't want to miss any posts so the notifications provided by the Google Plus webapp are really useful;
+Facebook - integrates Facebook with the Messaging Menu, without using a separate application. Sweet!
+Gmail - this is a really useful webapp too as it displays the number of unread emails as a badge on the Unity luncher and in the Messaging Menu, along with new email notifications (though the notifications are currently broken for me using Firefox). 
+More about the new webapps, HERE. 
+
+
+AppIndicators.
+
+
+I was telling you there are some applications which I can't live without. Well, many of them are appindicators:
+My Weather Indicator - weather on the panel is a must for me, a feature that Ubuntu should really add by default;
+Google Calendar Indicator - I use Google Calendar a lot, and this appindicator is very useful, displaying future events, notifications and more;
+Caffeine - because there's nothing more annoying than watching a video / movie and having the screen lock pop-up in the middle of it;
+Glippy - in my opinion, a clipboard manager is a must. Glippy is my favourite, but any will do;
+Dropbox - Ubuntu One is nice, but there are some features for which I prefer Dropbox. It can be installed from the Ubuntu repositories repositories too.
+
+
+Other applications.
+VirtualBox - for testing the next Ubuntu release and other Linux distributions of course, something I need for WebUpd8;
+GNOME Tweak Tool - for changing the GTK / Window theme, because at the time I've installed Ubuntu 12.10, the other tools like Ubuntu Tweak, MyUnity, etc. didn't yet support 12.10 (and they still don't fully support it yet);
+CCSM - since Ubuntu Tweak and the other tweaking tools don't fully support Ubuntu 12.10 yet, CCSM is the way to go right now if you want to tweak various Unity aspects;
+Shutter - the best screenshot tool for Linux, is also one of the first applications I install since I need it for the new WebUpd8 posts;
+Movies / music: Ubuntu Restricted Extras is a must. And for me, so are SMplayer and sometimes VLC for playing videos. For music, I use Nuvola Player because Grooveshark is all I need and it integrates nicely with the desktop, with some extra features compared to the Grooveshark webapp.
+
+Of course, the list can get very long, but I'm trying to stick with the basics here. 
+
+Note: this post uses links to the online Ubuntu Software Center from which you can install the applications with a click. For the applications not available in the repositories, I've added links to the installation instructions.
+
+
+WHAT ARE THE THINGS YOU'VE DONE AFTER INSTALLING (OR UPGRADING TO) UBUNTU 12.10?
+
+Now it's your turn! What did you install or tweak after you've started using the latest Ubuntu 12.10, be it the default favour, Ubuntu GNOME Remix or X/K/Lubuntu? And even if you're not using Ubuntu 12.10 yet, what are the first things you do after installing Ubuntu?
+
+Source: http://www.webupd8.org/2012/10/things-you-do-after-installing-ubuntu.html
+
+
+Posted by PC, Music, & Movie Geek at 10:49 AM
+Newer Post Older Post Home
+TOTAL PAGEVIEWS
+91409
+WEB UPD8 NEWS
+GNOME 3.8 To Ship With Reworked Folder Icons
+Ubuntu GNOME Becomes An Official Ubuntu Flavour
+How To Chat With Your Steam Friends From Pidgin
+Intel Releases Linux Graphics Drivers Installer
+Unity To Get New Shutdown Dialogs, Scroll To Switch Between Windows Feature [Video]
+UBUNTU PORTAL
+New Window Dialog to End Session for Ubuntu 13.04 Raring Ringtail
+Bumblebee 3.1 Tumbleweed Released: Bring Support for NVIDIA Optimus Technology
+Download Ubuntu Touch Developer Preview Daily Builds Image
+GoldenDict: Complete Dictionary App for Ubuntu Based Distribution
+Easy Way to Checking Hard Drive for Bad Sectors and Errors in Ubuntu
+SOFTPEDIA-LINUX
+Webconverger 18.0 Distro Supports Video and Audio Calls
+Multi-Master Database Replication Software SymmetricDS 3.3.4 Available for Download
+Dropbox 1.7.9 Dev for Linux Improves the Notification System
+Intel X.Org Driver 2.21.4 Corrects GPU Limits
+Thunderbird 17.0.4 for Linux Officially Released, Fixes Critical Exploit
+UBUNTU GEEK
+How to install Icinga (Nagios Fork) in Ubuntu 12.10 server
+Package Converter \u2013 Frontend for Alien
+Makagiga \u2013 Portable application for doing todo listing, text editing and RSS reader
+Ferret \u2013 Copy-detection tool
+GIMP 2.8.4 released and PPA installation instructions included
+LINUXINSIDER
+Man Overboard: GNOME Cofounder Joins the Mac Side
+Hackers Escalate Reign of Malware Terror on Android
+Storage Analyzer: A Must-Have App That Has No Business Being Free
+The Puzzling Case of the Chromebook Pixel
+Precise Puppy Is a Fast, Furious Distro
+TECH DRIVE-IN
+2013 r/Linux Survey Puts Ubuntu on Top Again, Arch Linux is a Close No.2; KDE 4.x and Unity Becomes Most Loved and Most Hated Desktops Respectively
+Ubuntu GNOME Remix now an Official Ubuntu Derivative, Renamed to Ubuntu GNOME
+Counter Strike: Condition Zero (CS:CZ) Released for Linux, Becomes Fifth Valve Title to be Released for Linux
+Flipkart, India's Biggest Online Music Retailer, Releases Dedicated Download Manager for Ubuntu
+Steam for Linux Adoption Spiking, Closes in on Mac in Just a Few Months of Existence!
+LINUXED - EXPLORING LINUX DISTROS
+Ubuntu 13.04 Raring Ringtail Daily-build Review: With latest apps and a better looking Unity
+Kubuntu 13.04 Alpha 2 Review: Very promising
+Ubuntu 12.04.2 LTS Review: Now I like Unity!
+ROSA Desktop Fresh 2012: Very efficient & elegant stock Gnome 3 distro
+Sabayon 11 Mate Review: Very efficient but stripped down version
+GNOME-LOOK.ORG THEMES
+G-Xiria 3.0 (GNOME Icon Theme)
+Wallpaper manager 1.0 (Other GNOME Stuff)
+Garden Flower (GNOME Wallpaper 1440x900)
+iLinux-icons v.4 (GNOME Icon)
+retroxygen 0.2 (X11 Mouse Theme)
+DISTROWATCH.COM: NEWS
+Distribution Release: Webconverger 18.0
+Distribution Release: Trisquel GNU/Linux 6.0
+DistroWatch Weekly, Issue 498
+Distribution Release: Porteus 2.0 "Kiosk"
+Distribution Release: Chakra GNU/Linux 2013.03
+UBUNTU LOOK
+Distribution Release: Trisquel GNU/Linux 6.0
+Boot Peppermint from Android with DriveDroid
+G-Xiria icons for Ubuntu 13.04/12.10/12.04/11.10/Linux Mint/Debian
+Uncomplicated theme for Ubuntu 13.04/12.10/12.04/Linux Mint 14/13
+Canonical and Ubuntu may be doing the right thing
+OMG! UBUNTU!
+Ubuntu 13.04 Updates Nautilus, Update Tool Icons
+It\u2019s Official: Ubuntu GNOME Remix Joins the Ubuntu Family
+Ubuntu Touch-Style Launcher Icons for the Ubuntu Desktop
+[How To] Install Ubuntu Touch Core Apps in Ubuntu 12.10
+[How To] Turn An Old Computer into a File-Sharing Server
+UBUNTU SHARING
+How to Upgrade Ubuntu 12.10 to Ubuntu 13.04
+CopyQ: Advanced Clipboard Manager with Edit & Search
+Mountain Lion Theme For Ubuntu 12.10 Unity, Gnome & Cinnamon
+Install Wunderlist Fogger App in Ubuntu 12.10 & 12.04
+\u2018Photo\u2019: Simple and Powerful Image Viewer for Ubuntu Linux
+LINUX USER
+A Linux Conspiracy Theory
+Compile your own kernel \u2013 Tutorial
+Porteus 2.0 Review \u2013 Portable Computing for the indecisive
+Puppy 5.5 Wary and Racy released
+CyanogenMod 10.1 M2 released, HTC One X added
+UNIXMEN HOME
+Setup your personal Cloud server in minutes using ownCloud
+Install Citrix Receiver in Fedora 18
+Samba Server Installation and Configuration in CentOS 6.3 / RHEL 6.3
+The Basics of Everything \u2013 DNS
+DNS Server Installation Step by Step Using CentOS 6.3
+LINUX TODAY
+Three simple tools for backing up MySQL databases
+Akamai CSO Andy Ellis Details Linux Usage - VIDEO
+Mark Shuttleworth Steps In On Developers' Ubuntu Kerfuffle
+Using mod_spdy With Apache2 On CentOS 6.3
+Kanotix 2013 CeBIT Surprise
+LINUX NEWS ZDNET
+Fighting in the cloud service orchestration wars
+Distro deluge: Six imminent Linux releases previewed
+Chromebook Pixel: Run Ubuntu alongside Chrome OS
+Ubuntu Linux developer squabbles go public
+Linux triumphant: Chrome OS resists cracking attempts
+BLOG ARCHIVE
+\u25ba  2013 (10)
+\u25bc  2012 (51)
+\u25bc  December (3)
+LuninuX OS is a polished Ubuntu-based distro
+Things to tweak after Install of Ubuntu 12.10 Quan...
+December Desktop
+\u25ba  November (4)
+\u25ba  October (9)
+\u25ba  September (6)
+\u25ba  August (4)
+\u25ba  July (5)
+\u25ba  June (4)
+\u25ba  May (2)
+\u25ba  April (3)
+\u25ba  March (6)
+\u25ba  February (1)
+\u25ba  January (4)
+\u25ba  2011 (66)
+\u25ba  2010 (55)
+\u25ba  2009 (24)
+\u25ba  2008 (4)
+\u25ba  2007 (8)
+\u25ba  2005 (4)
+LINKS
+Getting Started with Ubuntu 12.10 User Manual
+Linux Podcasts & Radio
+Gnome-Look.org - Linux Themes
+Gnome Shell Remix Home Page
+Ubuntu Vibes
+Gnome 3 Shell Extensions
+Ask Ubuntu Help Forum
+Daily Ubuntu News
+64 Linux Gnome Themes
+30 Awesome Gnome Themes
+50 Best Linux Gnome Themes
+Picasa Graphic Viewer for Linux
+Ubuntu Linux Home - Help & Downloads
+Dual Boot Windows and Linux Guides
+Ubuntu Unleashed 2011 eBook
+Linux Distribution Screen Shots
+Desktop Linux - News & Articles
+Gnome Files - Latest Linux Software
+Softpedia Software - Linux Distros & Files
+KDE-Look.org - KDE Desktop Themes
+Free Computer Books-Linux
+Linux eBooks #1 - Free Download
+Linux eBooks #2 - Free Download
+Linux eBooks #3 - Free Download
+Linux eBooks - Free Download
+Linux eBooks - Free - Techotopia
+INSTALL UBUNTU VIDEOS
+
+
+GG\u0645\u062f\u0639\u0648\u0645 \u0645\u0646
+
+MY OTHER BLOGS
+jfn Beatles Music & Memories
+New Beatles Releases
+Everything Windows Seven
+Windows 8 RTM Theme
+My World Thru A Web Browser
+How to Search for Jobs With Google-from about.com
+unlock my digital world
+Lifehacker Android App Directory
+jfn organic project
+Don\u2019t Call Him Mom, or an Imbecile-NYT
+PC & Music TechnoGeek
+Search Or Browse One Million Public Domain Legal Torrents In The Internet Archive
+jfn favorite music
+Eagles document their complicated history
+jfn home recording
+SX Guitars Review
+Everything Windows 8
+Start Menu being added by Samsung & Others
+Energy Technology & Research
+NYT: Military Spending on Biofuels Draws Fire
+Picture Window template. Template images by A330Pilot. Powered by Blogger.
+
+
+
+\u0645\u062f\u0639\u0648\u0645 \u0645\u0646
+
+MY OTHER BLOGS
+jfn Beatles Music & Memories
+New Beatles Releases
+Everything Windows Seven
+Windows 8 RTM Theme
+My World Thru A Web Browser
+How to Search for Jobs With Google-from about.com
+unlock my digital world
+Lifehacker Android App Directory
+jfn organic project
+Don\u2019t Call Him Mom, or an Imbecile-NYT
+PC & Music TechnoGeek
+Search Or Browse One Million Public Domain Legal Torrents In The Internet Archive
+jfn favorite music
+Eagles document their complicated history
+jfn home recording
+SX Guitars Review
+Everything Windows 8
+Start Menu being added by Samsung & Others
+Energy Technology & Research
+NYT: Military Spending on Biofuels Draws Fire
+Picture Window template. Template images by A330Pilot. Powered by Blogger.
+
+INSTALL MARLIN FILE BROWSER IN UBUNTU 12.10/12.04/11.10/LINUX MINT
+ Umair  9/18/2012 
+Email This
+ 
+BlogThis!
+ 
+Share to Twitter
+ 
+Share to Facebook
+  
+
+Install Marlin File Browser in Ubuntu 12.10 Quantal/Ubuntu 12.04 Precise/Ubuntu 11.10 Oneiric/Linux Mint 13/12
+
+Marlin is a lightweight file browser built from the ground-up to be responsive, simply designed and easy to use. It will be the default file browser in the next release of the elementary project\u2019s OS.
+Marlin is based on gtk3 and uses Gnome 3 technologies extensively and is built in C and uses vala for interface. Some key features of XFCE file-browser Thunar too are included to give it a certain slickness despite it being a File browser.
+
+
+
+
+Marlin Features:
+Tabbed browsing
+Multiple-views
+Single-click to open (default)
+Configurable toolbars and interface
+Plugin framework
+networking support (SSH, FTP, Windows share, HTTP and HTTPS)
+single click/double click to open file
+And Many More
+
+To install Marlin File Browser in Ubuntu/Linux Mint open Terminal (Press Ctrl+Alt+T) and copy the following commands in the terminal:
+sudo add-apt-repository ppa:marlin-devs/marlin-daily
+sudo apt-get update
+sudo apt-get install marlin
+Also Install UbuntuOne and DropBox Extensions for Marlin:
+sudo apt-get install marlin-plugin-*
+That's it, Enjoy
+
+ 
+INSTALL EPIPHANY WEB BROWSER 3.3.4 ON UBUNTU/LINUX MINT
+ Umair  1/20/2012 
+Email This
+ 
+BlogThis!
+ 
+Share to Twitter
+ 
+Share to Facebook
+  
+
+Install Epiphany Web Browser 3.3.4 with new UI on Ubuntu 12.04-11.10/Linux Mint
+
+
+
+According to various GNOME developers, Epiphany web-browser is to be transformed and radically changed into a modern UI, design that is to follow GNOME's new design direction.
+
+The latest version of Epiphany, 3.3.4 version, is definitely a bold step towards the above goals, marking the first iteration that features the new UI.
+
+Simplicity is an attribute applied to the top part, at the moment, the navigation, refresh and accessing the menu are available via four small monochrome icons (they don't follow one's icon theme).
+
+The previously over-the-URL-bar loading a page progress has been moved at its bottom, now, a loading page is signaled by a thin progress line.
+
+Regarding the new menu placement, Epiphany 3.3.4 features a Chromium-like menu, generated by a "cog" at the top right-edge.
+
+To install open Terminal (Press Ctrl+Alt+T) and copy the following commands in the Terminal:
+sudo add-apt-repository ppa:gnome3-team/gnome3 
+sudo apt-get update
+sudo apt-get install epiphany-browser
+INSTALL GOOGLE CHROME IN UBUNTU 12.04/12.10/11.10/LINUX MINT
+ Umair  7/17/2012 
+Email This
+ 
+BlogThis!
+ 
+Share to Twitter
+ 
+Share to Facebook
+  
+
+Install Google Chrome in Ubuntu 12.10/Ubuntu 12.04/Ubuntu 11.10/Linux Mint
+
+
+I love this browser because it's works faster without any errors, Everything is included in this browser and it's free. I checked Chromium browser which is same like Google Chrome but that's not faster as i use that.
+
+First of all Download Google Chrome.
+Download Page Here
+
+When download finish,  Enter the following commands in the Terminal To install it (Press Ctrl+Alt+T) to open Terminal and copy the following commands:
+For 32-bit
+sudo apt-get install libcurl3 libnspr4-0d libxss1
+cd Downloads
+sudo dpkg -i google-chrome-stable_current_i386.deb
+For 64-bit
+sudo apt-get install libcurl3 libnspr4-0d libxss1
+cd Downloads
+sudo dpkg -i google-chrome-stable_current_amd64.deb
+That's it, Enjoy Faster Browsing with Google Chrome
+
+
+
+ 
+INSTALL SUNFLOWER TWIN-PANEL FILE MANAGER IN UBUNTU/LINUX MINT
+ Umair  6/13/2012 
+Email This
+ 
+BlogThis!
+ 
+Share to Twitter
+ 
+Share to Facebook
+  
+
+Install SunFlower 0.1a.42 Twin-Panel File Manager in Ubuntu 12.10/12.04/11.10/Linux Mint 13/12
+
+Sunflower is Open Source, twin panel, small and highly customizable File Manager for Linux with plugins support. Sunflower main purpose is to create powerful and easy use of file manager. Sunflower is developed in python language.
+
+
+
+
+
+To install SunFlower in Ubuntu/Linux Mint open Terminal (Press Ctrl+Alt+T) and copy the following commands in the Terminal:
+sudo add-apt-repository ppa:atareao/sunflower
+sudo apt-get update
+sudo apt-get install sunflower
+That's it, Enjoy
+
+
+
+HOME
+ARTICLES
+LINKS
+CONTACT US
+    
+ 
+
+MAINTUTORIALSHOT TOPICSWALLPAPERSTHEMES COLLECTIONCONKY COLLECTIONLATEST VIDEOSDOWNLOADS
+
+ 
+IMPORTANT THINGS/TWEAKS TO DO AFTER INSTALL OF UBUNTU 12.10 QUANTAL QUETZAL
+ Umair  10/18/2012 
+Email This
+ 
+BlogThis!
+ 
+Share to Twitter
+ 
+Share to Facebook
+  
+
+Important Things/Tweaks to do after Install of Ubuntu 12.10 Quantal Quetzal
+
+Ubuntu 12.10 Quantal Quetzal has been released, NoobsLab know what people want. So after a-lot of work today bring this article for you. After applying these tweaks you can get better experience with new Ubuntu. After these tweaks we can say your Ubuntu is ready to use, Every tweak is tested by NoobsLab. So lets start tweak to your Ubuntu 12.10.
+
+
+
+1: Install Gnome-Tweak-tool 3.6: 
+Gnome Tweak Tool is well-known powerful tweak tool, With this tool you can manage your Ubuntu environment like: Change theme, icons, fonts, cursor and so on options.
+
+Install with following command:
+sudo apt-get install gnome-tweak-tool
+
+
+2: Install Ubuntu Tweak:
+Ubuntu Tweak is an application designed to config Ubuntu easier for everyone. It provided many useful desktop and system options that the default desktop environment isn't provided.
+
+Enter following commands to install Ubuntu Tweak:
+sudo add-apt-repository ppa:tualatrix/ppa 
+sudo apt-get update
+sudo apt-get install ubuntu-tweak
+Here you can find more tweak tools Unsettings Tool
+
+
+3: Install Compiz (CCSM) and extra plugins: 
+CCSM, short for CompizConfig Settings Manager, is a configuration tool for Compiz Fusion. It is used to configure the many plugins included in Compiz and Compiz Fusion, as well as the use of various profiles and intergrating better with existing desktop settings.
+
+
+To install Compiz Config Setting Manager enter following command in Terminal:
+sudo apt-get install compizconfig-settings-manager compiz-plugins-extra
+Go to Dash and Search "CCSM"
+
+
+4: Install Synaptic Package Manager: 
+Synaptic is a graphical package management program for apt. It provides the same features as the apt-get command line utility with a GUI front-end based on Gtk+.
+
+To install Synaptic Package Manager enter following command in Terminal:
+sudo apt-get install synaptic
+Go to Dash and Search "synaptic"
+
+
+5: Enable Hibernate option:
+Ubuntu has disabled hibernate option since last distro 12.04, So here is tweak to enable hibernate in 12.10.
+
+Open Terminal and enter following command:
+sudo gedit /var/lib/polkit-1/localauthority/50-local.d/hibernate.pkla
+copy and paste the following code in file:
+[Re-enable Hibernate]
+Identity=unix-user:*
+Action=org.freedesktop.upower.hibernate
+ResultActive=yes
+Save file and Exit, then Restart and check.
+
+
+6: Remove White Dots from Ubuntu 12.10 Login Screen 
+Some People don't like white dots in Ubuntu 12.10 Login screen, So here is a tweak you can easily remove these dots from login screen.
+
+Enter following commands in Terminal:
+sudo xhost +SI:localuser:lightdm
+sudo su lightdm -s /bin/bash
+gsettings set com.canonical.unity-greeter draw-grid false
+
+
+7: Disable Online Search in Dash:
+Personally I don't like this online search option in unity. So if anybody want to turn off, follow the method.
+Go to Dash and Search "Privacy" and turn off the online search option.
+
+Alternative remove shopping lens by following command:
+sudo apt-get remove unity-lens-shopping
+You will not see anymore online searches in dash.
+
+
+8: Change HUD Key: 
+
+
+Go to "Dash" System Settings > Keyboard > Shortcuts > Launchers > Key to show HUD 
+Click on Key to show HUD to change key. I set my key Alt+Z because it is easy to press, You can change whatever you want.
+
+
+9: Disable overlay Scrollbars:
+You can disable overlay scrollbars, if you don't like that.
+
+Enter following command in terminal to disable overlay scrollbar:
+gsettings set com.canonical.desktop.interface scrollbar-mode normal
+If you want to get back overlay bar, enter following command:
+gsettings reset com.canonical.desktop.interface scrollbar-mode
+
+
+10: Show username on panel:
+UserName is disabled by default in Ubuntu 12.10, So here is tweak you can enable it very easily.
+
+Enter following command in terminal:
+gsettings set com.canonical.indicator.session show-real-name-on-panel true
+To remove name from panel, Enter following command:
+gsettings set com.canonical.indicator.session show-real-name-on-panel false
+
+
+11: Disable System Crash Reports:
+If you are experiencing something crashes in your Ubuntu, and you don't like to notify with reports. You can disable them easily.
+
+Enter following commands to disable crash reports:
+sudo gedit /etc/default/apport
+Now text file will open, In the last line you will see "enabled=1" change it to "enabled=0". Save and close file.
+Now enter following command in terminal to stop apport service:
+sudo service apport stop
+
+
+12: Install and enable XScreensaver: 
+XScreenSaver is a collection of about many free screensavers for Linux.
+
+Install XSreenSaver with following commands:
+sudo apt-get remove gnome-screensaver
+sudo apt-get install xscreensaver xscreensaver-gl-extra xscreensaver-data-extra
+create file for autostart enter following command in terminal:
+sudo gedit /etc/xdg/autostart/screensaver.desktop
+after that copy and paste the following code in file:
+[Desktop Entry]
+Name=Screensaver
+Type=Application
+Exec=xscreensaver -nosplash
+Save and Exit the file.
+
+
+13: Show Laptop Battery Percentage:
+This tweak shows laptop battery percentage in the Ubuntu panel.
+
+To install enter following commands in the Terminal:
+sudo add-apt-repository ppa:noobslab/initialtesting
+sudo apt-get update
+sudo apt-get install indicator-power
+Then logout and login back.
+
+
+14: Install Hardware Temperature Monitor:
+The Psensor Indicator is providing a quick access to sensor values and settings. When a sensor temperature is too much hot, a desktop notification bubble appears and the Application Indicator icon is changed to a red one. Your pc must have sensors to use complete features.
+
+Enter following command in terminal:
+sudo apt-get install lm-sensors hddtemp psensor
+
+
+15: Install Ubuntu-One Indicator:
+UbuntuOne indicator provides the overview of Ubuntu One Account synchronization state.
+
+To install enter following commands in the Terminal:
+sudo add-apt-repository ppa:noobslab/initialtesting
+sudo apt-get update
+sudo apt-get install indicator-ubuntuone
+Then logout and login back.
+
+
+16: Install Recent Notifications Indicator:
+Recent Notifications is a GNOME applet that collects recent messages sent with libnotify to a notification daemon, such as notify-osd.
+
+To install enter following commands in the Terminal:
+sudo add-apt-repository ppa:jconti/recent-notifications
+sudo apt-get update
+sudo apt-get install indicator-notifications
+After installation open indicator-notification from Dash.
+
+
+17: Install Weather Indicator:
+My-Weather is really cool indicator for Ubuntu, it can show up to two location weather with complete details.
+
+Enter following commands in terminal to install my-weather indicator:
+sudo add-apt-repository ppa:atareao/atareao
+sudo apt-get update
+sudo apt-get install my-weather-indicator
+After installation open my-weather-indicator from Dash and configure it.
+
+
+18: Install Window-List Indicator:
+This Window-List indicator show which windows are currently open, and you can easily switch between them.
+
+Enter following commands in terminal:
+sudo add-apt-repository ppa:jwigley/window-list
+sudo apt-get update
+sudo apt-get install window-list
+After installation go to Dash and search "Window-List" then open it. Make it startup from Window-List option.
+
+
+19: Show all startup apps in Startup Applications:
+By Default Startup Application show only few apps in the list, So now you can see which applications are going to start by following command:
+sudo sed -i 's/NoDisplay=true/NoDisplay=false/g' /etc/xdg/autostart/*.desktop
+
+
+
+20: Disable Global Menu:
+If you don't like Global menu then you can disable it easily.
+
+
+Enter following command in Terminal:
+sudo apt-get autoremove appmenu-gtk appmenu-gtk3 appmenu-qt
+and restart.
+
+To disable Global Menu for Firefox, Go to 'Tools' \u2013> 'Add-ons' \u2013> 'Extensions' and Disable 'Global Menu Bar integration'
+
+To revert the changes enter following command in Terminal:
+sudo apt-get install appmenu-gtk appmenu-gtk3 appmenu-qt
+then restart.
+
+
+21: Move Minimize, Maximize, Close Buttons to Right:
+This tweak is about to move Minimize, Maximize, and Close buttons to the right side.
+
+
+Enter following command to move buttons to right:
+gconftool-2 --set /apps/metacity/general/button_layout --type string menu:minimize,maximize,close
+Alternative Method
+Enter following commands in Terminal to install gconf-editor:
+sudo apt-get install gconf-editor
+now start gconf-editor with following command:
+gconf-editor
+Go to the following: 'apps' -> 'metacity' -> 'general' Find the "button_layout" parameter,
+Right mouse click, and select Edit Key.
+Change the value to the following: menu:minimize,maximize,close then Press Enter.
+
+
+22: Add other Media Player to Ubuntu Sound Menu
+If you are using different audio player to player audio files then you can add player in sound menu with following method.
+Enter following command in terminal to install Dconf-Tools:
+sudo apt-get install dconf-tools
+Go to Dash and open "Dconf-Editor"
+
+Type your Player name in (interested-media-player + preferred-media-player) and you can remove any media player by writing name in (blacklisted-media-players). See following image
+
+
+
+23: Enable Global Menu for LibreOffice in Ubuntu 12.10
+By default LibreOffice doesn't support global menu, So you can enable Global Menu easily for LibreOffice.
+
+Enter following command in terminal to install global menu.
+sudo apt-get install lo-menubar
+
+
+24: Open as Administrator in Ubuntu 12.10 Quantal Quetzal
+This is really cool tweak for those who want to open file and folder with Administrator permissions, So now it is really easy to do.
+
+To add "Open as Administrator" entry enter following commands in Terminal:
+wget http://dl.dropbox.com/u/53319850/NoobsLab.com/libnautilus-gksu.so
+sudo cp libnautilus-gksu.so /usr/lib/nautilus/extensions-3.0/ && sudo rm libnautilus-gksu.so
+After that enter following command:
+nautilus -q
+
+
+25: Move Nautilus Forward & Back button to Left Side: 
+
+To move these buttons to left side just follow steps:
+Open Terminal (Press Ctrl+Alt+T) and copy the following commands in the Terminal:
+sudo apt-get install -y dpkg-dev
+mkdir ~/Desktop/nautilus-mod
+cd ~/Desktop/nautilus-mod
+sudo apt-get update
+apt-get source nautilus
+sudo apt-get build-dep nautilus
+cd ~/Desktop/nautilus-mod/nautilus-3*
+gedit src/nautilus-toolbar.c
+Now, scroll down to line 130 or Find for "gtk_toolbar_insert (GTK_TOOLBAR (self->priv->toolbar), item, 0)" and change the "0" to a "2". So change the original line from:
+gtk_toolbar_insert (GTK_TOOLBAR (self->priv->toolbar), item, 0);
+To:
+gtk_toolbar_insert (GTK_TOOLBAR (self->priv->toolbar), item, 2);
+When you're done, click save and close Gedit.
+
+Now Back in Terminal, run the following:
+./configure --prefix=/usr
+make
+sudo killall nautilus
+sudo make install
+
+
+Now logout and login back or restart.
+To undo the changes and revert back to stock Nautilus, you can simply run following command:
+sudo apt-get --reinstall install nautilus
+
+For Unity If SomeThing Went Wrong Enter following commands to Reset:
+>> to reset the Unity:
+sudo apt-get install dconf-tools
+dconf reset -f /org/compiz/ 
+setsid unity
+git clone https://github.com/phanimahesh/unity-revamp.git
+cd unity-revamp
+chmod +x unity-reset.py
+ln -s ./unity-reset.py /usr/bin/unity-reset
+Then run in terminal:
+unity-reset
+>> to reset Compiz:
+gconftool-2 --recursive-unset /apps/compiz-1 unity --reset
+
+
+26: Enable Hardware Drivers:
+In Ubuntu 12.10 Quantal "Additional Drivers" location has been changed, You can choose best drivers for your hardware from additional driver and can enable/disable from there easily.
+Open Dash and Search for "Software Sources" Here you can find "Additional Drivers" in the last Tab.
+
+
+
+27: Install Adobe Flash Plugin:
+By default firefox doesn't install flash player, So now you can install flash player.
+
+Open Terminal and enter following commands:
+sudo apt-add-repository "deb http://archive.canonical.com/ $(lsb_release -sc) partner"
+sudo apt-get update && sudo apt-get install flashplugin-installer
+
+
+28: Install qBittorrent:
+
+I think everybody like to download from torrents, It is safe and easy method to download. So you can install qBittorrent with following commands:
+sudo add-apt-repository ppa:noobslab/initialtesting
+sudo apt-get update
+sudo apt-get install qbittorrent
+
+
+29: Install Plugins for Rhythmbox (Like Equalizer):
+Rhythmbox is default Audio player in Ubuntu 12.10, You can install plugins for rhytmbox. Plugins are: Audio-read, Album-art-search, Countdown-playlist, plugin-cover-art-browser, Equalizer, Jump-to-Playing, Jump-to-Window, lyrics, micro-blogger, open-containing-foler, radio-browser, Random-album-player, Remember-the-rhythm, repeat-one-song, rhythm-web, send-first, small-window, stop-after, suspend, tab-guitar, tray-icon, web-menu, stream-ripper
+Enter following commands to install plugins.
+sudo add-apt-repository ppa:fossfreedom/rhythmbox-plugins
+sudo apt-get update
+sudo apt-get install rhythmbox-plugin-complete
+After installation open Rhythmbox and Go to "Edit" -> "Plugins" and enable plugins.
+
+
+30: Install Gnome Shell 3.6: 
+Install latest Gnome Shell 3.6 in 12.10
+
+
+Enter Following commands to install Gnome-Shell 3.6:
+sudo apt-get update
+sudo apt-get install gnome-shell
+
+
+31: Install User-Theme and other Extensions in Gnome Shell 3.6:
+With User-Theme Extension you can enable Gnome Shell 3.6 themes in Gnome-Tweak-Tool.
+
+
+Now Restart Gnome Shell (Press Alt+F2 and type 'r') and enable User Themes Extension, again Restart Gnome Shell.
+
+Themes Enabled
+
+Install official extension in 12.10, Following extensions will install: Alternative Status Menu, Native Window Placement, Alternative Tab, Auto Move Windows, Workspace Indicator, Dock, Places Status Indicator, System Monitor, Gajim IM Integration, User Themes, Removable Drive Menu, Window Navigator, Applications Menu.
+
+Enter following command to Install Gnome Shell 3.6 Extensions:
+sudo add-apt-repository ppa:noobslab/gnome
+sudo apt-get update
+sudo apt-get install gnome-shell-extensions
+After Installation Press Alt+F2 and type 'r' to restart Gnome Shell, or just logout and login back. Open Gnome Tweak Tool to change/install shell Themes.
+
+
+32: Install Restricted Extras:
+There are some Restricted extras in Ubuntu which can't be install while installation of Ubuntu by default but you can install these Restricted extras by yourself. Restricted mp3 playback and decoding, support for various formats, fonts, java, flash plugin, lame, dvd playback. 
+sudo apt-get install ubuntu-restricted-extras
+
+
+33: Install Codecs: 
+If you are multimedia user and use Ubuntu for multimedia then these codecs are very useful for you. You can install them by single command.
+sudo apt-get install gstreamer0.10-plugins-ugly gstreamer0.10-ffmpeg libxine1-ffmpeg gxine mencoder libdvdread4 totem-mozilla icedax tagtool easytag id3tool lame nautilus-script-audio-convert libmad0 mpg321
+
+
+34: Install Compression/Decompression tools:
+You can compress and decompress 7z, zip, gzip, rar, xz, tar, bz2, xar, tar.gz, tar.bz, and many others.
+Enter following command in terminal to install:
+sudo apt-get install p7zip-rar p7zip-full unace unrar zip unzip sharutils rar uudeview mpack lha arj cabextract file-roller
+
+
+35: Install Other Environments:
+>> Install Kde Plasma Desktop
+
+Enter following command to install Kde-Plasma-Desktop:
+sudo apt-get install kde-plasma-desktop
+>> Install Lubuntu Desktop
+
+Enter following command in terminal to install Lubuntu-Desktop
+sudo apt-get install lubuntu-desktop
+>> Install XFCE4 Desktop
+
+Enter following command to install XFCE4 Desktop:
+sudo apt-get install xfce4
+>> Install Cinnamon
+>> Install Razor-qt
+
+
+36: Misc/Softwares for Ubuntu 12.10 Quantal Quetzal:
+Install Latest Google Chrome
+Install Latest Skype
+Install Latest WineHQ (Windows Program Loader)
+Install Latest Cairo Dock
+Install Latest Gimp 2.8.2 Image Editor
+Install Format Junkie
+Install Deepin Software Center
+Install Latest VirtualBox
+Install Grub Customizer
+Install and Configure Samba Sharing between Windows and Ubuntu
+Install Latest Nvidia Drivers (Only for those who own Nvidia Card)
+Install Other Media Player VLC, UMplayer, SMPlayer, Clementine, Xnoise
+Install File Managers Marlin, SunFlower Twin-Panel
+Install Video Tools/Editors OpenShot, Blender
+Wallpapers Ubuntu Wallpapers, Black Wallpapers
+Checkout Conky Collection
+Checkout Themes Collection
+Checkout Icons Collection
+
+Your Ubuntu is complete now, That's it Enjoy.
+
+  
+
+ 
+ Posted in: 12.10,quantal,tweaks,ubuntu
+You might also like:
+Important Things to do After install of Ubuntu 12.04 ...
+Important Tweaks after Installation of Ubuntu 11.10 Oneiric ...
+Indicators Collection for Ubuntu 12.10/12.04/11.10/Mint
+Things to do after Installing Linux Mint 12 Lisa
+Indicators Collection for Ubuntu ...
+LinkWithin
+Newer Post Older Post Home
+
+      
+
+ 
+NOOBSLAB SEARCH
+  
+UBUNTU
+
+ 
+
+Ubuntu 13.04 "RARING RINGTAIL" Release Schedule 
+
+Ubuntu 12.04 Precise Pangolin is Here 
+
+Linux Stickers for you 
+
+ 
+JOIN US ON
+ 
+ 
+
+      
+RECENT POSTS
+Uncomplicated theme for Ubuntu 13.04/12.10/12.04/Linux Mint 14/13
+G-Xiria icons for Ubuntu 13.04/12.10/12.04/11.10/Linux Mint/Debian
+Mediterranean themes for Ubuntu 13.04/12.10/12.04/Linux Mint 14/13 (GTK 3/2)
+OSX-Nostalgie icons for Ubuntu 13.04/12.10/12.04/Linux Mint
+Curlew Multi-Converter for Ubuntu 13.04/12.10/12.04/11.10/Linux Mint
+Nitrux2, Nitrux, and iNX Icons for Ubuntu/Linux Mint
+CPU-G and i-Nex Hardware info Utilities for Ubuntu 12.10/12.04/13.04/11.10/Linux Mint
+Dorian Dark Theme for Ubuntu 12.10/12.04/13.04/Linux Mint
+Install LibreOffice 4.0.1 RC1 in Ubuntu 12.10/12.04/13.04/Linux Mint
+Latest VirtualBox for Ubuntu 12.10/12.04/11.10/Linux Mint/Debian
+Install FF-Multi Converter 1.4.3 in Ubuntu 12.10/12.04/11.10/13.04/Linux Mint 14/13/12
+Install Kazam 1.4 Screen Caster in Ubuntu 12.10/12.04/11.10/Linux Mint 14/13/12
+WineHQ 1.5.25 for Ubuntu 12.10/12.04/11.10/Linux Mint
+Zorin OS 6.2 Core has been Released (Based on Ubuntu)
+Copyq Advance Clipboard Manager for Ubuntu 13.04/12.10/12.04/Linux Mint
+RECENT COMMENTS
+Umair	 @Lian Greace Enter following commands to fix this issue: sudo fuser -cuk /var/lib/dpkg/lock...
+Install Wallch Wallpaper Changer in Ubuntu 12.04/11.10/Linux Mint ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 3 hours ago
+Liam Greace	 having a issue with the install. it says "Unable to lock the administration directory...
+Install Wallch Wallpaper Changer in Ubuntu 12.04/11.10/Linux Mint ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 4 hours ago
+Umair	 @Stephano Herrera 
+Enter following command to fix this:
+sudo apt-get -f install
+Install Latest Google Chrome in Ubuntu 12.10/12.04/11.10/Linux Mint ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 4 hours ago
+Umair	 @hudi 
+Your question is not clear to me.
+Please explain.
+Install Net-Conky in Ubuntu/Linux Mint/Debian ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 4 hours ago
+Stephano Herrera	 Trata con la de 64, la 12.10 generalmente viene en esa arquitectura, sin importar tu ordenador.
+Install Latest Google Chrome in Ubuntu 12.10/12.04/11.10/Linux Mint ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 7 hours ago
+Stephano Herrera	 "Los siguientes paquetes tienen dependencias incumplidas: libnss3-1d : Depende: libnss3 (=...
+Install Latest Google Chrome in Ubuntu 12.10/12.04/11.10/Linux Mint ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 7 hours ago
+hudi	 I like your wallpaper evolving circle. instead it was originally colored purple and orange? how...
+Install Net-Conky in Ubuntu/Linux Mint/Debian ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 13 hours ago
+Nizar Xxx Xxxxxx	 Hi just wanted to say that there were some fixs to be made: [gtk-widgets-assets.css] Some files...
+Install Mac OS X Theme on Ubuntu 12.10 Quantal/Ubuntu 12.04 ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 14 hours ago
+Umair	 @spencer Here is
+Mac OS X Lion Theme for Ubuntu 12.04/12.10/11.10 (2nd Version Completed) ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 15 hours ago
+spencer	 i dont know if you can see but the letters are greenish and blurry at the top. you might need to...
+Mac OS X Lion Theme for Ubuntu 12.04/12.10/11.10 (2nd Version Completed) ~ Noobs on Ubuntu and Windows, HD Wallpapers, Tutorials · 16 hours ago
+POPULAR POSTS
+Mac OS X Lion Theme for Ubuntu 12.04/12.10/11.10 (2nd Version Completed)
+Install Mac OS X Theme on Ubuntu 12.10 Quantal/Ubuntu 12.04/Linux Mint 14
+Themes Collection for Ubuntu 12.10 Quantal/Ubuntu 12.04 Precise/11.10 (GTK and Gnome Shell)
+Important Things/Tweaks to do After Install of Ubuntu 12.10 Quantal Quetzal
+Install latest Skype 4.1 in Ubuntu 12.10/12.04/Linux Mint 14/13 (New Release)
+Install Latest Nvidia Drivers in Ubuntu 12.10/12.04/11.10/Linux Mint 13/12
+Install Gnome Shell 3.6 and Gnome Shell Extensions in Ubuntu 12.10/12.04/11.10/Mint
+Conky Collection for Ubuntu/Linux Mint/Fedora/OpenSuse/Other Distro's
+Install Adobe Acrobat Reader in Ubuntu 12.10/12.04/Linux Mint
+Install Cairo Dock 3.1 in Ubuntu 12.10/12.04/Mint (New Release)
+FOLLOW BY EMAIL
+	
+TRANSLATE OUR SITE
+
+Powered by Translate
+Be careful after Translation commands will be change
+ 
+Copyright © NoobsLab | Noobslab on Youtube
+
+
