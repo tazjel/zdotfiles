@@ -1,0 +1,74 @@
+#
+#
+# mutt configuration specific to gmail using IMAP
+#
+
+set from="YOUREMAIL@gmail.com"
+
+###########################################
+# Mail/SMTP/IMAP Settings
+#
+
+set my_server=imap.gmail.com
+set my_smtp_server=smtp.gmail.com
+set my_user=YOUREMAIL@gmail.com
+set my_pass=YOURPASSWORD
+
+set header_cache=~/.mutt/hcache/gmail
+
+set imap_user=$my_user
+set imap_pass=$my_pass
+
+#
+# SMTP server to relay to
+# NOTE: to get this to work, I had to install the libsasl2-modules package
+set smtp_url="smtp://$my_user:$my_pass@$my_smtp_server:587/"
+
+#
+# Slow down over imap
+#
+set mail_check=300               # How often to check in seconds
+
+
+###########################################
+# Folder Settings
+#
+
+#
+# Default location of mailboxes
+#
+set folder=imaps://$my_server/
+
+#
+# Default inbox
+#
+set spoolfile="=INBOX"
+
+# set record="imaps://$my_server/INBOX.Sent Items"
+# gmail automatically saves sent items in "Sent Items"
+unset record
+set postponed="imaps://$my_server/[Gmail]/Drafts"
+
+
+###########################################
+# Mailing Lists
+#
+
+subscribe foo@bar.baz
+
+
+###########################################
+# Mailboxes to monitor
+#
+
+mailboxes !
+
+mailboxes "=another mailbox"
+
+
+###########################################
+# Macros
+#
+macro index,pager ,a <save-message>=Archive\n
+macro index,pager ,d <save-message>=[Gmail]/Trash\n
+

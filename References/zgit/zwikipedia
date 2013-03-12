@@ -1,0 +1,55 @@
+
+Page:  
+Contents: APA | MLA | MHRA | Chicago | CSE | Bluebook | AMA | BibTeX | wiki
+IMPORTANT NOTE: Most educators and professionals do not consider it appropriate to use tertiary sources such as encyclopedias as a sole source for any information—citing an encyclopedia as an important reference in footnotes or bibliographies may result in censure or a failing grade. Wikipedia articles should be used for background information, as a reference for correct terminology and search terms, and as a starting point for further research.
+As with any community-built reference, there is a possibility for error in Wikipedia's content—please check your facts against multiple sources and read our disclaimers for more information.
+Bibliographic details for "Git (software)"
+
+Page name: Git (software)
+Author: Wikipedia contributors
+Publisher: Wikipedia, The Free Encyclopedia.
+Date of last revision: 29 January 2013 04:14 UTC
+Date retrieved: 30 January 2013 16:49 UTC
+Permanent link: http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496
+Primary contributors: Revision history statistics
+Page Version ID: 535459496
+Please remember to check your manual of style, standards guide or instructor's guidelines for the exact syntax to suit your needs. For more detailed advice, see Citing Wikipedia.
+Citation styles for "Git (software)"
+
+APA style
+Git (software). (2013, January 29). In Wikipedia, The Free Encyclopedia. Retrieved 16:49, January 30, 2013, from http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496
+MLA style
+Wikipedia contributors. "Git (software)." Wikipedia, The Free Encyclopedia. Wikipedia, The Free Encyclopedia, 29 Jan. 2013. Web. 30 Jan. 2013.
+MHRA style
+Wikipedia contributors, 'Git (software)', Wikipedia, The Free Encyclopedia, 29 January 2013, 04:14 UTC, <http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496> [accessed 30 January 2013]
+Chicago style
+Wikipedia contributors, "Git (software)," Wikipedia, The Free Encyclopedia, http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496 (accessed January 30, 2013).
+CBE/CSE style
+Wikipedia contributors. Git (software) [Internet]. Wikipedia, The Free Encyclopedia; 2013 Jan 29, 04:14 UTC [cited 2013 Jan 30]. Available from: http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496.
+Bluebook style
+Git (software), http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496 (last visited Jan. 30, 2013).
+Bluebook: Harvard JOLT style
+Wikipedia, Git (software), http://en.wikipedia.org/wiki/Git_(software) (optional description here) (as of Jan. 30, 2013, 16:49 GMT).
+AMA style
+Wikipedia contributors. Git (software). Wikipedia, The Free Encyclopedia. January 29, 2013, 04:14 UTC. Available at: http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496. Accessed January 30, 2013.
+BibTeX entry
+ @misc{ wiki:xxx,
+   author = "Wikipedia",
+   title = "Git (software) --- Wikipedia{,} The Free Encyclopedia",
+   year = "2013",
+   url = "http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496",
+   note = "[Online; accessed 30-January-2013]"
+ }
+When using the LaTeX package url (\usepackage{url} somewhere in the preamble), which tends to give much more nicely formatted web addresses, the following may be preferred:
+ @misc{ wiki:xxx,
+   author = "Wikipedia",
+   title = "Git (software) --- Wikipedia{,} The Free Encyclopedia",
+   year = "2013",
+   url = "\url{http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496}",
+   note = "[Online; accessed 30-January-2013]"
+ }
+Wikipedia talk pages
+Markup
+[[Git (software)]] ([http://en.wikipedia.org/w/index.php?title=Git_(software)&oldid=535459496 this version])
+Result
+Git (software) (this version)

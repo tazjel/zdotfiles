@@ -1,0 +1,14 @@
+> $ mlcc use_bidi
+> $ mlcc use_ind
+> $ mlcc encoding
+> $ mlcc type_engine
+> $ cat ~/.mlterm/font
+> $ cat ~/.mlterm/aafont
+#mlcc use_bidi
+#use_bidi=false
+#mlcc use_ind
+#use_ind=true
+#mlcc encoding
+#encoding=UTF8
+#mlcc type_engine
+#type_engine=xft

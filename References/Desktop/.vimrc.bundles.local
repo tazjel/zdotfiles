@@ -1,0 +1,2 @@
+map W :w<cr>
+map <F4> :%s//gc<Left><Left><Left>

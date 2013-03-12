@@ -1,0 +1,15 @@
+https://help.github.com/articles/importing-an-external-git-repo
+
+
+git clone --bare https://githost.org/tazjel/zdotfiles.git
+# Make a bare clone of the external repo to a local directory
+
+
+cd zdotfiles.git
+$ git push --mirror https://github.com/tazjel/zdotfiles.git
+# Push mirror to new GitHub repo
+
+
+cd ..
+$ rm -rf zdotfiles.git
+# Remove temporary local repo
