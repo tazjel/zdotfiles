@@ -3,8 +3,7 @@ nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
 
 vnoremap <Space> zf
 nnoremap <silent> W :w<cr>
-nnoremap <silent> ; :q
+nnoremap <silent> ; :q<cr>
 map <F7> :%s//gc<Left><Left><Left>
 
 colorscheme ir_black
-
