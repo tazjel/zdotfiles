@@ -1,5 +1,6 @@
-zdotfiles
+﻿dotfiles
 =========
-Wor in progress
+Work in progress
 
 zdotfiles
+w

@@ -1,0 +1,50 @@
+""Modeline and Notes {
+""vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:*/
+"
+"   _____       _______        ___ __
+"  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
+"    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
+"    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
+"    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
+"
+"
+"   This is the personal .vimrc file of Ahmed Alghamdi.
+"   While much of it is beneficial for general use, I would
+"   recommend picking out the parts you want and understand.
+"
+"   This is a mirror of :http://spf13.com
+" }
+
+set foldmethod=manual
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+vnoremap <Space> zf
+nnoremap <silent> W :w<cr>
+nnoremap <silent> ; :q!<cr>
+nnoremap <silent> <F5> :source %<cr>:Ex <cr>
+"vnnoremap <silent> ;; :wq!
+
+map <F7> :%s//gc<Left><Left><Left>
+map <F8> :%s/<[^>]*>//gi<cr>
+
+
+nnoremap <silent> WW VY<C-W><C-W>Gp<C-W><C-W>
+
+"/*%:p:h*[>/*/
+""vim regex html
+"/<[^>]*> */
+"/&quot;
+""/home/bani<]<]*/
+""/bani.vimrc.local*/
+"
+"" %:p:h
+""
+"#""/bani.vimrc.local*/
+"#:%s/<\/\{0,1}font.\{-}>//g
+"#:%s/<b><\/b>//g
+"#:%s/<\/b><b>//g
+"#:%s/<\/i><i>//g
+"#:%s/<td><\/td>/<td><br><\/td>/g
+"#:%s/<\/\{0,1}span.\{-}>//g
+"
+"$HOME/"$1" | grep "$2" | sort -n | uniq*/
