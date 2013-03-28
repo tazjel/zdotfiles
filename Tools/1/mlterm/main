@@ -1,0 +1,15 @@
+tabsize = 4
+fontsize = 20
+use_variable_column_width = true
+use_anti_alias = true
+font_size_range = 10-32
+only_use_unicode_font = true
+use_scrollbar = false
+use_xim = true
+xim_open_in_startup = true
+
+bg_color = #3F3F3F
+fg_color = #D8D8D8
+alpha = 200
+brightness = 100
+gamma = 100
