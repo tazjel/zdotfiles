@@ -8,6 +8,7 @@ function walw {
 #USB storage
 rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/tools/w/aliases.zsh
 #repo
+rsync -avz --progress /home/bani/.vimrc.local $HOME/zdotfiles/Tools/2/vimrc.local
 rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh $HOME/zdotfiles/Tools/1/aliases.zsh
 cd $HOME/zdotfiles && aa
 alw;
