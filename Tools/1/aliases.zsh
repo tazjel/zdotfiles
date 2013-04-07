@@ -3,7 +3,6 @@ alf=$HOME/.oh-my-zsh/lib/aliases.zsh
 alias wal='cat $alf | grep'
 alias al='alias | grep'
 
-
 function walw {
 #USB storage
 rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/tools/w/vimrc.local
@@ -16,7 +15,7 @@ alw;
 }
 
 alias alw='git commit -am "Update aliases.zsh " && git push -f origin master'
-
+alias 'zrfa'='rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/w/aliases.zsh'
 
 
 
@@ -79,9 +78,11 @@ alias 'cll'='clear;pwd;ls;date -R;echo $PWD'
 #  rsync 
 #
 
+#rsync mobile 
 alias wzi='rsync -e ssh -r --progress root@zphone.local:/var/mobile/qq.sh ~/qq.sh'
-alias rfresh=' rsync -avz --progress -e  "ssh -p 2233" user@110.11.11.11:/your/remote/path /my/local/path'
-alias 'zrfa'='rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/w/aliases.zsh'
+
+##alias 'wadd'='rsync -avz --progress -e  "ssh -p 2233" root@192.168.1.5:/var/mobile/AddressBook.sqlitedb ~/'
+###############################
 alias 'zrf1'="rsync -avz --progress '$1' '/media/Transcend/w/$1'"
 
 
@@ -96,10 +97,6 @@ for xx in ~/.* ;do
     echo $xx
 done;}
 
-
-
-##alias 'wadd'='rsync -avz --progress -e  "ssh -p 2233" root@192.168.1.5:/var/mobile/AddressBook.sqlitedb ~/'
-###############################
 #
 
 alias zz='vim $HOME/.oh-my-zsh/lib/aliases.zsh'
