@@ -1,20 +1,118 @@
+alias alf=$HOME/.oh-my-zsh/lib/aliases.zsh
+alias wal='alias | grep'
+alias al='alias | grep'
+#########################
 
+function mcd() {   [ -n "$1" ] && mkdir -p "$@" && cd "$1";   }
+alias 'zurl'='args curl -I < url-list.txt'
+
+alias 'schm'='sudo chmod +x'
+
+alias 'zx'='updot -u'
+alias 'wWW'='whoami'
+alias 'wml'='mlterm -f=green -b=black -0=green -R=30-40'
+
+###
+alias 'wmlw'='mlterm -f=green -b=#008080 -0=green -R=30-40'
+
+
+function wwsh {
+sudo ssh root@192.168.1."$1" && echo "$1"
+}
+
+#
+#function wkh() { 
+#history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head;
+#alias 'hhhi'"history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head"
+#}
+
+alias '_r'='sudo reboot'
+
+alias 'web2py'='cd ~/web2py && python web2py.py -a "w" -i 127.0.0.1 -p 8001'
+
+alias 'agip'='sudo easy_install pip'
+alias 'wzch'='__ chown -Rvc  bani:bani .'
+
+
+alias 'ssabo'='sudo -i -u abobani'
+alias 'ssz'='sudo -i -u tazjel'
+alias 'sszz'='sudo -i -u zorenna'
+alias 'sszzd'='sudo -i -u ipad'
+alias 'sszzd'='sudo -i -u ziphone'
+alias 'sszzj'='sudo -i -u sjphone'
+alias 'sszzy'='sudo -i -u yeasser'
+alias 'sszzi'='sudo -i -u dodi'
+alias 'sszzp'='sudo -i -u yoseph'
+#
+# rename files or replace space in filenames in current directories.
+alias fnss='find . -depth -name "* *" -execdir rename s/'='/_/g "{}" \;'
+# file #
+#############################
+alias lh='ls -a | egrep "^\."'
+alias lh='ls -a | egrep "^\."'
+alias lhd='ls -A | egrep "^\."'
+#
+#####################################
+alias 'cll'='clear;pwd;ls;date -R'
+alias 'cll'='clear;pwd;ls;date -R;echo $PWD'
+
+#################################
+#  rsync 
+#
+
+alias wzi='rsync -e ssh -r --progress root@zphone.local:/var/mobile/qq.sh ~/qq.sh'
+alias rfresh=' rsync -avz --progress -e  "ssh -p 2233" user@110.11.11.11:/your/remote/path /my/local/path'
+alias 'zrfa'='rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/w/aliases.zsh'
+alias 'zrf1'="rsync -avz --progress '$1' '/media/Transcend/w/$1'"
+
+
+
+function zbp {
+for xx in ~/.* ;do 
+    rsync -avz --progress /home/bani/.* /media/Transcend/bani/R/
+    echo $xx
+done;}
+
+
+
+##alias 'wadd'='rsync -avz --progress -e  "ssh -p 2233" root@192.168.1.5:/var/mobile/AddressBook.sqlitedb ~/'
+###############################
+#
+
+alias zz='vim $HOME/.oh-my-zsh/lib/aliases.zsh'
+alias zzz='source /home/bani/.oh-my-zsh/lib/aliases.zsh'
+alias zzzz=' vim $HOME/.zshrc'
+
+
+alias zzzzz='source $HOME/.zshrc'
+alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
+alias __="sudo"
+
+alias 'cc'='vim /home/bani/zdotfiles/Tools/1/aliasw.sh'
+
+#######################################
+alias 'wwww'='mv "$1" /media/Transcend/tools/w/Inbox/"$2" ;ls . ;ls /media/Transcend/tools/w/Inbox'
+alias 'wWw'='vim /home/bani/.config/updot/updot.conf'
+alias 'wW'='pwd'
+alias 'w'='ls -a; ls -GFh'
+alias 'ww'='vim'
+alias 'www'='cat'
+#alias 'wwwww'='sudo su'
 
 alias 'ppp'='sudo add-apt-repository $1'
-alias hh='history | grep --color=auto'
+alias hh='history -$1 | grep'
 
 alias agdu='sudo apt-get dist-upgrade'
 alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
 alias agu='sudo apt-get update'
-alias al='alias | grep'
 
 alias 'zcpz'='cp -u /home/bani/.oh-my-zsh/lib/aliases.zsh /home/bani/zdotfiles/Tools/1/1/aliases.zsh'
 alias 'zcpv'='cp -u /home/bani/.vimrc.local /home/bani/zdotfiles/Tools/2/.vimrc.local'
 alias 'rmm'='rm -rf'
 
 alias pp='vim $HOME/zdotfiles/Tools/0/0/apt-get.txt'
-
+######################################################################
 alias ..='cd ..'
 
 alias ...='cd ../../'
@@ -26,6 +124,73 @@ alias ..2='cd ../../../'
 alias ..3='cd ../../../../'
 alias ..4='cd ../../../../'
 alias ..5='cd ../../../../../'
+
+######################################################################
+######################################################################
+######################################################################
+
+
+
+#============================================
+########## zdotfiles
+#
+function WW {
+desc="ADD DESCRIPTION..."
+if [ -n "$3" ]; then
+desc="$3"
+fi
+echo "" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
+echo "###" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
+echo "alias '$1'='$2'" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
+source /home/bani/.oh-my-zsh/lib/aliases.zsh
+echo "" && echo "- Alias added -" && echo "";
+}
+
+
+function ccc {
+echo "$1" >> /home/bani/zdotfiles/Tools/1/aliasw.sh
+echo "Now, we got '$1' "
+cat '/home/bani/zdotfiles/Tools/1/aliasw.sh'
+echo '/home/bani/zdotfiles/Tools/1/aliasw.sh'
+}
+
+
+
+##########
+function glll {
+cd /home/bani/zdotfiles
+git add -A
+git commit -a
+git push origin master;
+}
+##########
+#
+
+#############################
+############ testing ########
+##################################
+                    # functions
+#
+
+
+alias wcr='wc `find . -type f`'
+alias wget='wget --content-disposition'
+alias whead='curl --head $1'
+alias which-command=whence
+alias wotgobblemem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
+alias wsulast='sudo $(history -p !-1)'
+alias xclip='xclip -selection c'
+alias xs='cd `pwd -P`'
+alias wgl='git commit -am "Better GTD" && git push -f origin master'
+
+##############  testing functions #########
+#
+alias 'n1'='dpkg --get-selections | grep linux-image'
+alias 'kla'="ls -a | grep '^\.'"
+alias 'klj'='ls -a | grep "^\.\(.*\)n$"'
+
+
+
 alias 1='cd -'
 alias 2='cd +2'
 alias 2d='cd ../../'
@@ -209,7 +374,6 @@ alias refunction='$EDITOR ~/.bash_functions && source ~/.bash_functions'
 alias reload='source $HOME/.bashrc 1>/dev/null'
 alias remove='sudo apt-get remove'
 alias rename=mv
-alias rfresh=' rsync -avz --progress -e  "ssh -p 2233" user@110.11.11.11:/your/remote/path /my/local/path'
 alias rm='rm -I'
 alias sa='ssh-add '
 alias sc='screen -S'
@@ -221,198 +385,27 @@ alias sls='screen -ls'
 alias snlcp='tr -d "\n" | pbcopy'
 alias source-private-aliases='source <(wget -t 3 -q -O - "$@" https://alias.sh/user/$ALIAS_SH_USER_ID/alias/key/$ALIAS_SH_USER_KEY)'
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-alias sr='screen -r'
-alias ss='vim $HOME/.zshrc'
 alias ssh-config='nano ~/.ssh/config'
+
 alias sshr='ssh -l root'
 alias sud='sudo -s'
 alias sulast='su -c $(history -p !-1) root'
+
 alias tarc='tar czvf'
 alias tart='tar tzvf'
 alias tarx='tar xzvf'
+
 alias temp='/opt/vc/bin/vcgencmd measure_temp'
+
 alias tm='ps -ef | grep'
-alias trace=trace
+
 alias tube='display http://www.tfl.gov.uk/assets/downloads/standard-tube-map.gif'
+
+
 alias uncomment='egrep -v "^#|^$"'
+
 alias unzip-all='7z x -y '\''*.zip'\'
+
 alias up_master='git push origin master'
-alias update='sudo apt-get update'
-alias update-aliases='wget -q -O - "" https://alias.sh/user//alias > ~/.zsh_alias_sh && source ~/.zsh_alias_sh'
-alias update-private-aliases='wget -q -O - "" https://alias.sh/user//alias/key/ > ~/.bash_aliases && source ~/.bash_aliases'
-alias upgrade='apt-get update && apt-get upgrade && apt-get clean'
-alias urldecode='python -c "import sys, urllib as ul; print ul.unquote_plus(sys.argv[1])"'
-alias urlencode='python -c "import sys, urllib as ul; print ul.quote_plus(sys.argv[1])"'
-alias vb='vim ~/.bashrc; source ~/.bashrc'
-alias vi=vim
-alias vibash='vi ~/.bashrc; source ~/.bashrc'
-alias vv='vim ~/.vimrc.local'
-alias vvv'source ~/.vimrc.local'
-alias w='ls -alh'
-alias wcr='wc `find . -type f`'alias wget='wget --content-disposition'
-alias whead='curl --head $1'
-alias which-command=whence
-alias wotgobblemem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
-alias wsulast='sudo $(history -p !-1)'
-alias xclip='xclip -selection c'
-alias xs='cd `pwd -P`'
-alias yolo='git commit -am "DEAL WITH IT" && git push -f origin master'
-alias zshconfig='subl ~/.zshrc'
-alias zshrc='vi ~/.zshrc'
-alias zz='vim $HOME/.oh-my-zsh/lib/aliases.zsh'
-alias zzz='source /home/bani/.oh-my-zsh/lib/aliases.zsh'
-alias zzzz=' vim $HOME/.zshrc'
 
-
-alias zzzzz='source $HOME/.zshrc'
-alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
-alias __="sudo"
-function ccc {
-echo "alias '$1'='$2' " >> /home/bani/.oh-my-zsh/lib/ALIAS_SH_USER_KEYes.zsh
-echo "Now, we got : $1 & $2"
-source /home/bani/.oh-my-zsh/lib/aliases.zsh;
-}
-#============================================
-#
-function WW {
-desc="ADD DESCRIPTION..."
-if [ -n "$3" ]; then
-desc="$3"
-fi
-echo "" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "###" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "##
-
-# $desc #
-#" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "#" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "alias '$1'='$2'" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-source /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "" && echo "- Alias added -" && echo "";
-}
-
-alias '_r'='sudo reboot'
-
-function glll {
-cd /home/bani/zdotfiles
-git add -A
-git commit -a
-git push foreigin master;
-}
-
-# rename files or replace space in filenames in current directories.
-
-alias fnss='find . -depth -name "* *" -execdir rename s/'='/_/g "{}" \;'
-# file #
-alias 'n1'='dpkg --get-selections | grep linux-image'
-alias 'kla'="ls -a | grep '^\.'"
-alias 'klj'='ls -a | grep "^\.\(.*\)n$"'
-alias 'mkk'="mkdir -p '$1'; cd '$1'"
-alias 'wW'='pwd'
-alias 'zrfa'='rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/w/aliases.zsh'
-alias 'zrf1'="rsync -avz --progress '$1' '/media/Transcend/w/$1'"
-alias 'cll'='clear;pwd;ls;date -R'
-alias 'cll'='clear;pwd;ls;date -R;echo $PWD'
-function mcd() {   [ -n "$1" ] && mkdir -p "$@" && cd "$1";   }
-#alias 'wkh'='history | awk \'\{a[]++}END{for(i in a){print a[i] " " i}}\' | sort -rn | head'
-function wkh {
-history | awk '{a[$2]++}END{for(i in a){print a[i] " " i}}' | sort -rn | head;
-}
-function zbp {for xx in ~/.* ;do cp /home/bani/.* /media/Transcend/backup/ && echo /home/bani/$xx  ;done;}
-#Append the following line:
-alias lh='ls -a | egrep "^\."'
-alias lh='ls -a | egrep "^\."'
-alias lhd='ls -A | egrep "^\."'
-alias 'ssabo'='sudo -i -u abobani'
-alias 'ssz'='sudo -i -u tazjel'
-alias 'sszz'='sudo -i -u zorenna'
-alias 'sszzd'='sudo -i -u ipad'
-alias 'sszzd'='sudo -i -u ziphone'
-alias 'sszzj'='sudo -i -u sjphone'
-alias 'sszzy'='sudo -i -u yeasser'
-alias 'sszzi'='sudo -i -u dodi'
-alias 'sszzp'='sudo -i -u yoseph'
-alias 'ww'='vim'
-alias 'www'='cat'
-alias 'wwwww'='sudo su'
-alias 'zZ'='easystroke'
-alias 'wzch'='__ chown -Rvc  bani:bani .'
-alias 'zurl'='args curl -I < url-list.txt'
-alias 'schm'='sudo chmod +x'
-alias 'wWw'='vim /home/bani/.config/updot/updot.conf'
-alias 'zx'='updot -u'
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
-
-alias 'wWW'='whoami'
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
-
-alias 'wml'='mlterm -f=green -b=black -0=green -R=30-40'
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
-
-alias 'wml'='mlterm -f=green -b=#008080 -0=green -R=30-40'
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
-
-alias 'wml'='mlterm -f=green -b=Teal -0=green -R=30-40'
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
-
-function wwsh {
-sudo ssh mobile@192.168.1."$1" && echo "$1"
-}
-
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
-
-alias 'web2py'='cd ~/web2py && python web2py.py -a "w" -i 127.0.0.1 -p 8001'
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
-
-alias 'agip'='sudo easy_install pip'
-
-###
-##
-
-# ADD DESCRIPTION... #
-#
-#
 
