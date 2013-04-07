@@ -1,0 +1,57 @@
+
+[Linux] Terminator is an extremely powerful, feature-filled terminal for all your command-line needs
+Derrik March 15, 2013 3 Email article | Print article
+
+terminator1The other day I reviewed Sakura. I deemed it a basic UNIX terminal emulator with a lot of potential but little power. Today, I bring you Terminator. Terminator is the most powerful UNIX terminal emulator I’ve ever had the pleasure of using on Linux. There’s not really a debate here. Terminator is the best, and I’m going to tell you why. If you’re a Linux nerd that hasn’t heard of Terminator, you’re in for a real treat.
+
+WHAT IS IT AND WHAT DOES IT DO
+
+Main Functionality
+
+Terminator is a UNIX style terminal emulator for Linux and other UNIX-like operating systems. Terminator (like many other terminal emulators) allow you to access a shell and enter commands that will affect your system. Terminator has the ability to process and run UNIX commands in various shells (bash, zsh etc), the ability to run terminal specific programs, and the ability to process a program directly through it to output the commands that program runs (kind of like debugging).
+
+Pros
+
+    Has the unique ability to divide terminal windows horizontally/vertically
+    Can broadcast command inputs from one window to the other
+    Supports window naming
+    Tab support
+    Tab naming
+    Font customization
+    Color customization
+    Opacity level can be tweaked
+    Allowed to use an Image as a background
+    Supports multiple encoding types
+    Plugin support
+    Custom terminal profile support
+    Changeable key bindings
+    Speedy command processing
+
+Cons
+
+    Sometimes can be slow to boot
+
+Discussion
+
+terminator2Terminator is my go to terminal on Linux. I use it every single day, and I have to say, there’s almost nothing I can think of that is bad about it. Terminator has so many features, and it’s a really impressive terminal. I switched from Yakuake the minute I saw this and tried it. My absolute favorite part of Terminator is the fact that you can divide your window into separate terminals endlessly. It’s the coolest thing I’ve ever seen in a terminal emulator. The way Terminator works allows for massive productivity boosts, something that’s rare when you’re entering menial commands into a shell.
+
+There’s really not much I can say that’s bad about Terminator. It has an amazing feature list, and an impressive form factor. I really like Terminator a lot and I don’t think I can say that enough. The only real issue I’ve ever really had with Terminator is that sometimes it can take a while to load up. That’s literally my only problem with this program.
+
+Terminator is one of the many apps that I personally vouch for. I have a habit of reviewing applications that I personally like because I think that I’m doing dotTech readers a better service by reviewing programs that I personally can vouch for. I really like everything about Terminator. I really don’t know what else to say about it. Download Terminator and check it out for yourself. I can almost  that you’ll fall in love with it as well.
+CONCLUSION AND DOWNLOAD LINK
+
+If you’re a Linux power user, you need Terminator. There’s no way around it. You need to use it. Nothing compares to it. That’s just the way it is. Terminator is the best way to have a great experience on many Linux and UNIX-like operating systems. Terminator comes as one of my highest recommended programs. I really cannot stress enough. You need to try Terminator out. I promise you’ll quickly introduce it to part of your regular workflow and you’ll thank me for it. This isn’t meant to sound like a commercial, but I have to say, I really enjoy Terminator.
+
+Price: Free
+
+Version reviewed: 0.96
+
+Supported OS: Any Linux distro/BSD
+
+Supported software repositories: Ubuntu via Launchpad
+
+Download size: 258 KB
+
+Is it portable? Sort of
+
+Terminator homepage

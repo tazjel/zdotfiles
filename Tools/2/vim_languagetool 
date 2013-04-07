@@ -1,0 +1,86 @@
+script type
+utility
+ 
+description
+This plugin integrates the LanguageTool grammar checker into Vim. 
+Current version of LanguageTool can check grammar in many languages 
+See the list of supported languages: http://www.languagetool.org/languages/ 
+or http://www.languagetool.org/ or more information about LanguageTool. 
+
+The script defines 2 commands: 
+
+* Use  :LanguageToolCheck  to check grammar in current buffer. 
+  This will check for grammar mistakes in text of current buffer 
+  and highlight the errors. It also opens a new scratch window with the 
+  list of grammar errors with further explanations for each error. 
+  Pressing <Enter> in scratch buffer will jump to that error. The 
+  location list for the buffer being checked is also populated. 
+  So you can use location commands such as :lopen to open the location 
+  list window, :lne to jump to the next error, etc. 
+
+* Use  :LanguageToolClear  to remove highlighting of grammar mistakes, 
+  close the scratch window containing the list of errors, clear and 
+  close the location list. 
+
+See screenshots of grammar checking in English and French at: 
+  http://dominique.pelle.free.fr/pic/LanguageToolVimPlugin_en.png 
+  http://dominique.pelle.free.fr/pic/LanguageToolVimPlugin_fr.png 
+
+Demo: 
+  http://shelr.tv/records/4fba8ef99660803e4f00001f 
+   
+See  :help LanguageTool  for more details. 
+
+Bugs:   
+  Column number reported by LanguageTool indicating the location of the 
+  error is sometimes incorrect. There is an opened ticket about this bug: 
+  http://sourceforge.net/tracker/?func=detail&aid=3054895&group_id=110216&atid=655717 
+  The script currently works around it by doing pattern matching with   
+  information context but it is not a perfect workaround: it can cause 
+  spurious highlighting of errors in rare cases. This bug is fixed in 
+  LanguageTool-1.8. 
+
+License: 
+  The VIM LICENSE applies to LanguageTool.vim plugin 
+  (see ":help copyright" except use "LanguageTool.vim" instead of Vim").
+ 
+install details
+Install the plugin with: 
+
+  $ mkdir ~/.vim 
+  $ cd ~/.vim 
+  $ unzip /path-to/LanguageTool.zip 
+  $ vim -c 'helptags ~/.vim/doc' 
+
+You also need to install the Java LanguageTool program in order to use 
+this plugin. There are 3 possibilities: 
+
+1/ Download the latest official stand-alone version of LanguageTool 
+   (file LanguageTool-stable.zip) from http://www.languagetool.org/ 
+   Unzip it. This should extract LanguageTool.jar among several other files 
+
+2/ Or download an unofficial nightly build available at: 
+   http://www.languagetool.org/download/snapshots/ 
+
+3/ Or download the latest LanguageTool from subversion and build 
+   it. This ensures that you get the latest version. On Ubuntu, you need 
+   to install the maven, openjdk-7-jdk and subversion packages as a 
+   prerequisite: 
+
+   $ sudo apt-get install openjdk-7-jdk maven subversion 
+
+   LanguageTool can then be downloaded and built as follows: 
+
+   $ svn co https://languagetool.svn.sourceforge.net/svnroot/languagetool/trunk/JLanguageTool languagetool 
+   $ cd languagetool 
+   $ mvn package 
+
+   This should build the command line version of LanguageTool: 
+   
+   ./languagetool-standalone/target/LanguageTool-2.1-SNAPSHOT/LanguageTool-2.1-SNAPSHOT/languagetool-commandline.jar 
+
+You then need to set up g:languagetool_jar in your ~/.vimrc with 
+the location of this LanguageTool.jar file. For example: 
+   
+  let g:languagetool_jar='$HOME/languagetool/languagetool-standalone/target/LanguageTool-2.1-SNAPSHOT/LanguageTool-2.1-SNAPSHOT/languagetool-commandline.jar'
+ 
