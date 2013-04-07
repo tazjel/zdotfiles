@@ -9,7 +9,8 @@ function walw {
 rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/tools/w/aliases.zsh
 #repo
 rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh $HOME/zdotfiles/Tools/1/aliases.zsh
-cd $HOME/zdotfiles && alw;
+cd $HOME/zdotfiles && aa
+alw;
 }
 
 alias alw='git commit -am "Update aliases.zsh " && git push -f origin master'
