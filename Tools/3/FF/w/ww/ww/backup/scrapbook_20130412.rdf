@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<RDF:RDF xmlns:NS1="http://amb.vis.ne.jp/mozilla/scrapbook-rdf#"
+         xmlns:NC="http://home.netscape.com/NC-rdf#"
+         xmlns:RDF="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
+  <RDF:Description RDF:about="urn:scrapbook:item20130412010715"
+                   NS1:id="20130412010715"
+                   NS1:type=""
+                   NS1:title="جلس النبي صلى الله عليه وسلم ذات مرة مع صحابته الكرام وخط لهم خطا مربعا"
+                   NS1:chars="UTF-8"
+                   NS1:comment=""
+                   NS1:source="http://www.yzeeed.com/vb/showthread.php?t=39763"
+                   NS1:icon="resource://scrapbook/data/20130412010715/favicon.ico" />
+  <RDF:Seq RDF:about="urn:scrapbook:root">
+    <RDF:li RDF:resource="urn:scrapbook:item20130412004954"/>
+    <RDF:li RDF:resource="urn:scrapbook:item20130412005036"/>
+    <RDF:li RDF:resource="urn:scrapbook:item20130412005104"/>
+    <RDF:li RDF:resource="urn:scrapbook:item20130412010715"/>
+  </RDF:Seq>
+  <RDF:Seq RDF:about="urn:scrapbook:search">
+  </RDF:Seq>
+  <RDF:Description RDF:about="urn:scrapbook:item20130412004954"
+                   NS1:id="20130412004954"
+                   NS1:type=""
+                   NS1:title="عقيدة أهل السنة والجماعة"
+                   NS1:chars="UTF-8"
+                   NS1:comment=""
+                   NS1:source="http://forum.sh3bwah.maktoob.com/t80656.html?cmb=user_related"
+                   NS1:icon="resource://scrapbook/data/20130412004954/favicon.ico" />
+  <RDF:Description RDF:about="urn:scrapbook:item20130412005036"
+                   NS1:id="20130412005036"
+                   NS1:type=""
+                   NS1:title="عقيدة أهل السنة والجماعة"
+                   NS1:chars="UTF-8"
+                   NS1:comment=""
+                   NS1:icon=""
+                   NS1:source="file:///home/bani/zdotfiles/Tools/3/FF/w/ww/ww/data/20130412004954/index.html" />
+  <RDF:Description RDF:about="urn:scrapbook:item20130412005104"
+                   NS1:id="20130412005104"
+                   NS1:type=""
+                   NS1:title="عقيدة أهل السنة والجماعة"
+                   NS1:chars="UTF-8"
+                   NS1:comment=""
+                   NS1:icon=""
+                   NS1:source="file:///home/bani/zdotfiles/Tools/3/FF/w/ww/ww/data/20130412004954/index.html" />
+</RDF:RDF>

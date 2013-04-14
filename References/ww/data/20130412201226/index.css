@@ -1,0 +1,466 @@
+/* ::::: http://slot1.images3.wikia.nocookie.net/__am/62095/sass/background-align%3Dcenter%26background-fixed%3D0%26background-image%3D%26background-tiled%3Dfalse%26color-body%3D%2523003816%26color-buttons%3D%252325883d%26color-header%3D%2523002c11%26color-links%3D%25232b54b5%26color-page%3D%2523ffffff%26page-opacity%3D100%26widthType%3D3%26wordmark-font%3Dcpmono/skins/oasis/css/oasis.scss ::::: */
+
+.mw-content-ltr { direction: ltr; }
+input[type="submit"], input[type="button"], input[type="reset"], input[type="file"] { direction: ltr; }
+div#mw-js-message { margin: 1em 5%; padding: 0.5em 2.5%; border: 1px solid rgb(221, 221, 221); background-color: rgb(252, 252, 252); }
+.editsection { float: right; margin-left: 5px; }
+.mw-content-ltr .editsection, .mw-content-rtl .mw-content-ltr .editsection { float: right; }
+.thumbcaption { text-align: left; }
+.error { color: red; font-size: larger; }
+.mw-content-ltr ul, .mw-content-rtl .mw-content-ltr ul { margin: 0.3em 0px 0px 1.6em; padding: 0px; }
+h1:lang(as), h1:lang(bn), h1:lang(gu), h1:lang(hi), h1:lang(kn), h1:lang(ml), h1:lang(mr), h1:lang(or), h1:lang(pa), h1:lang(sa), h1:lang(ta), h1:lang(te) { line-height: 1.5em ! important; }
+h2:lang(as), h3:lang(as), h4:lang(as), h5:lang(as), h6:lang(as), h2:lang(bn), h3:lang(bn), h4:lang(bn), h5:lang(bn), h6:lang(bn), h2:lang(gu), h3:lang(gu), h4:lang(gu), h5:lang(gu), h6:lang(gu), h2:lang(hi), h3:lang(hi), h4:lang(hi), h5:lang(hi), h6:lang(hi), h2:lang(kn), h3:lang(kn), h4:lang(kn), h5:lang(kn), h6:lang(kn), h2:lang(ml), h3:lang(ml), h4:lang(ml), h5:lang(ml), h6:lang(ml), h2:lang(mr), h3:lang(mr), h4:lang(mr), h5:lang(mr), h6:lang(mr), h2:lang(or), h3:lang(or), h4:lang(or), h5:lang(or), h6:lang(or), h2:lang(pa), h3:lang(pa), h4:lang(pa), h5:lang(pa), h6:lang(pa), h2:lang(sa), h3:lang(sa), h4:lang(sa), h5:lang(sa), h6:lang(sa), h2:lang(ta), h3:lang(ta), h4:lang(ta), h5:lang(ta), h6:lang(ta), h2:lang(te), h3:lang(te), h4:lang(te), h5:lang(te), h6:lang(te) { line-height: 1.2em; }
+ol:lang(bcc) li, ol:lang(bqi) li, ol:lang(fa) li, ol:lang(glk) li, ol:lang(kk-arab) li, ol:lang(mzn) li { list-style-type: -moz-persian; }
+ol:lang(ckb) li { list-style-type: -moz-arabic-indic; }
+ol:lang(as) li, ol:lang(bn) li { list-style-type: -moz-bengali; }
+ol:lang(or) li { list-style-type: -moz-oriya; }
+.WikiaGrid .grid-1, .WikiaGrid .grid-2, .WikiaGrid .grid-3, .WikiaGrid .grid-4, .WikiaGrid .grid-5, .WikiaGrid .grid-6 { display: inline; float: left; margin: 0px 0px 0px 10px; }
+.WikiaGrid .grid-2 { width: 330px; }
+.WikiaGrid .grid-4 { width: 670px; }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+a.wikia-button, .wikia-single-button a, .wikia-menu-button, input[type="submit"], input[type="reset"], input[type="button"], .button, button { border-radius: 4px 4px 4px 4px; background-color: rgb(37, 136, 61); background-image: -moz-linear-gradient(center top , rgb(48, 176, 79) 35%, rgb(37, 136, 61) 65%); border: 1px solid rgb(37, 136, 61); color: white; cursor: pointer; display: inline-block; font-family: Helvetica,Arial,sans-serif; font-size: 12px; height: 19px; line-height: 20px; margin: 0px; padding: 0px 10px; text-decoration: none; white-space: nowrap; }
+a.wikia-button:hover, .wikia-single-button a:hover, .wikia-menu-button:hover, input[type="submit"]:hover, input[type="reset"]:hover, input[type="button"]:hover, .button:hover, button:hover { background-color: rgb(33, 120, 54); background-image: -moz-linear-gradient(center top , rgb(44, 160, 72) 35%, rgb(33, 120, 54) 65%); text-decoration: none; }
+a.wikia-button.active, a.wikia-button:active, .wikia-single-button a.active, .wikia-single-button a:active, .wikia-menu-button.active, .wikia-menu-button:active, input.active[type="submit"], input[type="submit"]:active, input.active[type="reset"], input[type="reset"]:active, input.active[type="button"], input[type="button"]:active, .button.active, .button:active, button.active, button:active { background-image: -moz-linear-gradient(center top , rgb(33, 120, 54) 35%, rgb(44, 160, 72) 65%); color: white; }
+a.wikia-button[disabled], .wikia-single-button a[disabled], .wikia-menu-button[disabled], input[type="submit"][disabled], input[type="reset"][disabled], input[type="button"][disabled], .button[disabled], button[disabled] { cursor: default; opacity: 0.5; }
+a.wikia-button[disabled]:active, .wikia-single-button a[disabled]:active, .wikia-menu-button[disabled]:active, input[type="submit"][disabled]:active, input[type="reset"][disabled]:active, input[type="button"][disabled]:active, .button[disabled]:active, button[disabled]:active { background-color: rgb(37, 136, 61); background-image: -moz-linear-gradient(center top , rgb(48, 176, 79) 35%, rgb(37, 136, 61) 65%); }
+a.wikia-button img, .wikia-single-button a img, .wikia-menu-button img, input[type="submit"] img, input[type="reset"] img, input[type="button"] img, .button img, button img { vertical-align: text-bottom; }
+a.wikia-button img.chevron, .wikia-single-button a img.chevron, .wikia-menu-button img.chevron, input[type="submit"] img.chevron, input[type="reset"] img.chevron, input[type="button"] img.chevron, .button img.chevron, button img.chevron { vertical-align: middle; margin-top: 1px; }
+a.wikia-button.secondary, .wikia-single-button a.secondary, .wikia-menu-button.secondary, input.secondary[type="submit"], input.secondary[type="reset"], input.secondary[type="button"], .button.secondary, button.secondary { background-color: rgb(229, 229, 229); background-image: -moz-linear-gradient(center top , white 35%, rgb(229, 229, 229) 65%); border: 1px solid rgb(204, 204, 204); color: rgb(58, 58, 58); }
+a.wikia-button.secondary:hover, .wikia-single-button a.secondary:hover, .wikia-menu-button.secondary:hover, input.secondary[type="submit"]:hover, input.secondary[type="reset"]:hover, input.secondary[type="button"]:hover, .button.secondary:hover, button.secondary:hover { background-color: rgb(219, 219, 219); background-image: -moz-linear-gradient(center top , whitesmoke 35%, rgb(219, 219, 219) 65%); }
+a.wikia-button.secondary.active, a.wikia-button.secondary:active, .wikia-single-button a.secondary.active, .wikia-single-button a.secondary:active, .wikia-menu-button.secondary.active, .wikia-menu-button.secondary:active, input.secondary.active[type="submit"], input.secondary[type="submit"]:active, input.secondary.active[type="reset"], input.secondary[type="reset"]:active, input.secondary.active[type="button"], input.secondary[type="button"]:active, .button.secondary.active, .button.secondary:active, button.secondary.active, button.secondary:active { background-color: rgb(229, 229, 229); background-image: -moz-linear-gradient(center top , rgb(219, 219, 219) 35%, whitesmoke 65%); }
+a.wikia-button.secondary img.chevron, .wikia-single-button a.secondary img.chevron, .wikia-menu-button.secondary img.chevron, input.secondary[type="submit"] img.chevron, input.secondary[type="reset"] img.chevron, input.secondary[type="button"] img.chevron, .button.secondary img.chevron, button.secondary img.chevron { border-color: rgb(58, 58, 58) transparent transparent; }
+a.wikia-button:-moz-focusring, .wikia-single-button a:-moz-focusring, .wikia-menu-button:-moz-focusring, input[type="submit"]:-moz-focusring, input[type="reset"]:-moz-focusring, input[type="button"]:-moz-focusring, .button:-moz-focusring, button:-moz-focusring { box-shadow: 0px 0px 1px 1px highlight; }
+input[type="submit"], input[type="reset"], input[type="button"], button { height: 21px; }
+input[type="submit"]::-moz-focus-inner, input[type="reset"]::-moz-focus-inner, input[type="button"]::-moz-focus-inner, button::-moz-focus-inner { padding: 0px; border: 0px none; }
+.wikia-menu-button { list-style: none outside none; margin: 0px; padding: 0px; position: relative; text-align: left; }
+.wikia-menu-button:hover { background-color: rgb(37, 136, 61); background-image: -moz-linear-gradient(center top , rgb(48, 176, 79) 35%, rgb(37, 136, 61) 65%); }
+.wikia-menu-button a:hover { text-decoration: none; }
+.wikia-menu-button > a, .wikia-menu-button .drop, .wikia-menu-button > li > a { display: inline-block; }
+.wikia-menu-button > a:hover, .wikia-menu-button .drop:hover, .wikia-menu-button > li > a:hover { background-color: rgb(33, 120, 54); background-image: -moz-linear-gradient(center top , rgb(44, 160, 72) 35%, rgb(33, 120, 54) 65%); }
+.wikia-menu-button > a:active, .wikia-menu-button .drop:active, .wikia-menu-button > li > a:active { background-image: -moz-linear-gradient(center top , rgb(33, 120, 54) 35%, rgb(44, 160, 72) 65%); color: white; }
+.wikia-menu-button > a, .wikia-menu-button > li > a { border-top-left-radius: 4px; border-bottom-left-radius: 4px; border-right: 1px solid rgb(124, 183, 138); color: white; padding: 0px 8px 0px 5px; }
+.wikia-menu-button .drop { border-top-right-radius: 4px; border-bottom-right-radius: 4px; margin-left: -3px; padding-left: 5px; }
+.wikia-menu-button ul { background: none repeat scroll 0% 0% white; border: 1px solid rgb(37, 136, 61); display: none; left: -1px; list-style: none outside none; margin: 0px; position: absolute; top: 19px; z-index: 100; box-shadow: 1px 2px 12px 0px rgb(51, 51, 51); }
+.wikia-menu-button ul a { color: rgb(58, 58, 58); display: block; padding: 9px 9px 7px; }
+.wikia-menu-button ul a:hover { background-color: rgb(211, 231, 216); }
+.wikia-menu-button ul li { border-top: 1px solid rgb(204, 204, 204); line-height: normal; }
+.wikia-menu-button ul li:first-child { border: 0px none; }
+.wikia-menu-button .WikiaMenuElement { margin: 0px; }
+.wikia-menu-button .icon, .wikia-menu-button img { vertical-align: text-bottom; }
+.wikia-menu-button .chevron { border-top-color: white; margin: 0px 7px 0px 1px; }
+.wikia-menu-button.secondary { border: 1px solid rgb(204, 204, 204); list-style: none outside none; margin: 0px; position: relative; text-align: left; }
+.wikia-menu-button.secondary:hover { background-color: rgb(229, 229, 229); background-image: -moz-linear-gradient(center top , white 35%, rgb(229, 229, 229) 65%); }
+.wikia-menu-button.secondary.combined { padding-left: 4px; }
+.wikia-menu-button.secondary.combined:hover { background-color: rgb(219, 219, 219); background-image: -moz-linear-gradient(center top , whitesmoke 35%, rgb(219, 219, 219) 65%); }
+.wikia-menu-button.secondary.combined .drop:hover { background: none repeat scroll 0% 0% transparent; }
+.wikia-menu-button.secondary > a, .wikia-menu-button.secondary .drop, .wikia-menu-button.secondary > li > a { color: rgb(58, 58, 58); margin-top: -2px; }
+.wikia-menu-button.secondary > a:hover, .wikia-menu-button.secondary .drop:hover, .wikia-menu-button.secondary > li > a:hover { background-color: rgb(219, 219, 219); background-image: -moz-linear-gradient(center top , whitesmoke 35%, rgb(219, 219, 219) 65%); }
+.wikia-menu-button.secondary > a:active, .wikia-menu-button.secondary .drop:active, .wikia-menu-button.secondary > li > a:active { background-color: rgb(229, 229, 229); background-image: -moz-linear-gradient(center top , rgb(219, 219, 219) 35%, whitesmoke 65%); }
+.wikia-menu-button.secondary ul { background: none repeat scroll 0% 0% white; border: 2px solid rgb(204, 204, 204); display: none; left: -1px; list-style: none outside none; margin: 0px; position: absolute; top: 19px; z-index: 100; }
+.wikia-menu-button.secondary ul a { color: rgb(58, 58, 58); display: block; }
+.wikia-menu-button.secondary ul a:hover { background-color: rgb(211, 231, 216) ! important; }
+.wikia-menu-button.secondary ul li { border-top: 1px solid rgb(204, 204, 204); line-height: normal; }
+.wikia-menu-button.secondary ul li:first-child { border: 0px none; }
+a.wikia-button-facebook { border-radius: 2px 2px 2px 2px; border-color: rgb(175, 189, 214); color: rgb(255, 255, 255); font-weight: bold; height: 21px; padding: 0px 6px; }
+a.wikia-button-facebook, a.wikia-button-facebook:active, a.wikia-button-facebook:hover { background-color: rgb(94, 123, 178); background-image: -moz-linear-gradient(center top , rgb(94, 123, 178) 0%, rgb(60, 98, 161) 100%); }
+a.wikia-button-facebook > img { border-right: 1px solid rgb(99, 129, 180); margin-right: 6px; }
+.WikiaTopAds { font-size: 0px; position: relative; padding-top: 10px; text-align: center; z-index: 0; }
+.WikiaTopAds .WikiaTopAdsInner { display: inline-block; }
+.WikiaTopAds .WikiaTopAdsInner:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.WikiaTopAds .WikiaTopAdsInner > div { float: right; }
+#TOP_BUTTON, #TOP_BUTTON_WIDE { margin-right: 10px; }
+#LEFT_SKYSCRAPER_2 > div, #LEFT_SKYSCRAPER_3 > div, #HOME_TOP_LEADERBOARD > div, #TOP_LEADERBOARD > div, #CORP_TOP_LEADERBOARD > div, #HUB_TOP_LEADERBOARD > div { margin-left: auto; margin-right: auto; }
+#LEFT_SKYSCRAPER_2 > div[id^="Liftium_"], #LEFT_SKYSCRAPER_3 > div[id^="Liftium_"], #HOME_TOP_LEADERBOARD > div[id^="Liftium_"], #TOP_LEADERBOARD > div[id^="Liftium_"], #CORP_TOP_LEADERBOARD > div[id^="Liftium_"], #HUB_TOP_LEADERBOARD > div[id^="Liftium_"] { text-align: center; }
+#LEFT_SKYSCRAPER_2.default-height, #LEFT_SKYSCRAPER_3.default-height, #HOME_TOP_LEADERBOARD.default-height, #TOP_LEADERBOARD.default-height, #CORP_TOP_LEADERBOARD.default-height, #HUB_TOP_LEADERBOARD.default-height { height: 90px; }
+.oasis-split-skin .WikiaTopAds { margin: 0px auto; padding: 10px 0px; width: 1030px; }
+#LEFT_SKYSCRAPER_3 { clear: both; position: absolute; right: 80px; top: -640px; }
+.home-top-right-ads { float: right; }
+.WikiaGrid .SelfServeUrl { line-height: 10px; margin: 0px; position: relative; top: -16px; }
+.WikiaGrid #HOME_TOP_RIGHT_BOXAD, .WikiaGrid #TOP_RIGHT_BOXAD { background-color: rgb(242, 242, 242); margin-bottom: 0px; padding: 15px; }
+#TOP_RIGHT_BOXAD, #CORP_TOP_RIGHT_BOXAD { margin-bottom: 10px; z-index: 100; }
+.WikiaFooter section .SPOTLIGHT_FOOTER, .WikiaFooter #LEFT_SKYSCRAPER_2 .SPOTLIGHT_FOOTER { padding: 0px 28px 33px; }
+.WikiaFooter section .SPOTLIGHT_FOOTER .WikiaSpotlight, .WikiaFooter #LEFT_SKYSCRAPER_2 .SPOTLIGHT_FOOTER .WikiaSpotlight { height: 123px; width: 255px; }
+#INVISIBLE_1, #INVISIBLE_2 { position: absolute; }
+.SelfServeUrl { color: rgb(102, 102, 102); font-size: 10px; margin: -10px 0px 10px; text-align: center; }
+#LEFT_SKYSCRAPER_2, #INCONTENT_BOXAD_1 { font-size: 0px; margin-left: 15px; margin-right: 15px; text-align: center; }
+#LEFT_SKYSCRAPER_2 > div, #LEFT_SKYSCRAPER_2 > iframe, #INCONTENT_BOXAD_1 > div, #INCONTENT_BOXAD_1 > iframe { display: inline-block; }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+@font-face {
+	font-family: "CPMono_v07Bold";
+	font-style: normal;
+	font-weight: normal;
+	src: local("☺"), url('cpmono_v07_bold-webfont.woff') format("woff"), url('cpmono_v07_bold-webfont.ttf') format("truetype"), url('cpmono_v07_bold-webfont.svg') format("svg");
+}
+#WikiHeader .wordmark, .font-cpmono { font-family: "CPMono_v07Bold"; }
+.skin-oasis .sprite { background-color: transparent; background-image: url('sprite.png'); background-repeat: no-repeat; }
+.skin-oasis .sprite.edit { background-position: -1016px -48px; height: 20px; width: 19px; }
+.skin-oasis .sprite.photo { background-position: -1096px -32px; height: 16px; width: 26px; }
+.skin-oasis .sprite.search { background-position: -1055px -80px; height: 16px; width: 21px; }
+.skin-oasis .sprite.logo { background-position: -269px 0px; height: 26px; width: 90px; }
+.skin-oasis .sprite.logo9, .skin-oasis .sprite.logo2, .skin-oasis .sprite.logo3, .skin-oasis .sprite.logo4 { height: 16px; width: 55px; margin: 2px 5px; }
+.skin-oasis .sprite.logo9 { background-position: -210px 0px; }
+.skin-oasis .sprite.edit-pencil { background-position: -1000px -48px; height: 16px; width: 16px; }
+.skin-oasis .sprite.contribute { background-position: -1172px -13px; height: 16px; width: 22px; }
+.skin-oasis .sprite.facebook { background-position: -1162px -18px; height: 14px; width: 15px; }
+.sprite-small { background-color: transparent; background-image: url('sprite.png'); background-repeat: no-repeat; height: 12px; width: 12px; }
+.sprite-small.edit { background-position: -1196px -68px; }
+.sprite-small.delete { background-position: -1196px -18px; }
+a, abbr, address, article, aside, audio, b, blockquote, body, canvas, caption, cite, code, dd, del, details, dfn, div, dl, dt, em, embed, fieldset, figcaption, figure, footer, form, h1, .WikiaRail .module h2, .WikiaRail #RIGHT_SKYSCRAPER h2, h2, h3, h4, h5, h6, header, hgroup, html, i, iframe, img, ins, kbd, label, legend, li, mark, menu, nav, object, ol, p, pre, q, samp, section, #LEFT_SKYSCRAPER_2, small, span, strong, sub, summary, sup, time, ul, var, video { border: 0px none; font-style: inherit; font-weight: inherit; margin: 0px; padding: 0px; vertical-align: baseline; }
+article, aside, canvas, details, figcaption, figure, footer, header, hgroup, menu, nav, section, #LEFT_SKYSCRAPER_2, summary { display: block; }
+a, ins { text-decoration: none; }
+ul, ol { list-style: none outside none; }
+body { background: url('oasis.png') repeat scroll center top rgb(0, 56, 22); color: rgb(58, 58, 58); font-family: Helvetica,Arial,sans-serif; font-size: 12px; margin: 0px; overflow-x: auto; padding: 0px 0px 30px; }
+body > h1, .WikiaRail .module body > h2, .WikiaRail #RIGHT_SKYSCRAPER body > h2 { display: none; }
+body { background-repeat: no-repeat; }
+a { color: rgb(43, 84, 181); text-decoration: none; }
+a:hover { text-decoration: underline; }
+.skiplinkcontainer { position: absolute; top: 0px; right: 0px; }
+.skiplinkcontainer .skiplink { display: block; margin: 0px auto; right: 0px; width: 100px; position: absolute; top: -9999px; }
+.skiplinkcontainer .skiplink:active, .skiplinkcontainer .skiplink:focus { top: 0px; }
+.accent { background-color: rgb(212, 220, 240); border-color: rgb(43, 84, 181); color: rgb(58, 58, 58); }
+.chevron { border-color: rgb(255, 255, 255) transparent transparent; border-style: solid; border-width: 4px; width: 0px; vertical-align: middle; margin-top: 2px; }
+.banner-corner-left, .banner-corner-right { border-style: solid; border-width: 2px; position: absolute; width: 0px; }
+.WikiaHeader { background-color: rgb(0, 44, 17); background-image: -moz-linear-gradient(left center , rgb(0, 11, 4) 0px, rgb(0, 44, 17) 50%, rgb(0, 11, 4) 100%); border-top: 3px solid rgb(0, 0, 0); color: white; margin: 0px auto; position: relative; width: 1044px; z-index: 20000000; }
+.WikiaHeader h1, .WikiaHeader .WikiaRail .module h2, .WikiaRail .module .WikiaHeader h2, .WikiaHeader .WikiaRail #RIGHT_SKYSCRAPER h2, .WikiaRail #RIGHT_SKYSCRAPER .WikiaHeader h2 { display: none; }
+.WikiaHeader nav { font-size: 20px; height: 34px; }
+.WikiaHeader nav > ul > li:last-child { padding: 0px; }
+.WikiaHeader li { float: left; height: 22px; margin-top: 7px; padding: 0px 15px; }
+.WikiaHeader li:first-child { border: 0px none; }
+.WikiaHeader li.start-a-wiki { border-left: 1px solid rgb(51, 86, 64); margin-top: 5px; }
+.WikiaHeader li > .wikia-button { border: 1px solid rgb(178, 213, 187); float: left; font-size: 12px; height: 17px; line-height: 16px; padding: 1px 12px 0px; position: relative; top: 2px; }
+.WikiaHeader .chevron { border-top-color: rgb(127, 149, 136); }
+.WikiaHeader .wikia-header-mask { background-image: url('undefined'); }
+.WikiaHeader .WikiaLogo { padding-left: 20px; padding-right: 23px; }
+.WikiaHeader .WikiaLogo a { position: relative; top: -5px; }
+.WikiaHeader .banner-corner-left, .WikiaHeader .banner-corner-right { border-width: 3px; bottom: -6px; }
+.WikiaHeader .banner-corner-left { border-color: rgb(0, 44, 17) rgb(0, 44, 17) transparent transparent; left: 0px; }
+.WikiaHeader .banner-corner-right { border-color: rgb(0, 44, 17) transparent transparent rgb(0, 44, 17); right: 0px; }
+.oasis-split-skin .WikiaHeader { box-shadow: 0px 0px 10px 0px rgb(51, 51, 51); min-width: 1050px; width: auto; }
+.oasis-split-skin .WikiaHeader .banner-corner-left, .oasis-split-skin .WikiaHeader .banner-corner-right { display: none; }
+.oasis-split-skin .WikiaHeader .page-width-container { margin: 0px auto; position: relative; width: 1044px; }
+.GlobalNavigation {  }
+.GlobalNavigation li { border: 0px none; height: 29px; margin-top: -7px; padding: 5px 0px 0px; }
+.GlobalNavigation > li > a { color: white; float: left; font-size: 16px; }
+.GlobalNavigation > li > a:visited, .GlobalNavigation > li > a:active { color: white; }
+.GlobalNavigation > li:hover { background-image: -moz-linear-gradient(center top , transparent 0px, black 100%); }
+.GlobalNavigation > li:hover > a { color: rgb(255, 255, 255); }
+.GlobalNavigation a { border-left: 1px solid rgb(51, 86, 64); display: inline-block; height: 22px; line-height: 24px; padding: 0px 14px; }
+.GlobalNavigation a:hover { text-decoration: none; }
+.GlobalNavigation .chevron { margin-left: 5px; }
+.GlobalNavigation .subnav { box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); background: none repeat scroll 0% 0% white; border-width: 0px 4px 4px; border-style: solid; border-color: rgb(0, 0, 0); display: none; left: 13px; padding: 10px 0px; position: absolute; top: -9999px; width: 1010px; }
+.GlobalNavigation .subnav:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.GlobalNavigation .subnav li { display: inline; font-size: 15px; height: auto; margin: 0px 0px 0px 10px; padding: 0px; position: static; width: 230px; }
+.GlobalNavigation .subnav li:hover { background: none repeat scroll 0% 0% transparent; }
+.GlobalNavigation .subnav li a { font-weight: bold; }
+.GlobalNavigation .subnav .catnav li { border-top: 1px dotted rgb(204, 204, 204); font-size: 14px; margin: 0px; }
+.GlobalNavigation .subnav .catnav li:first-child { border-top-style: solid; }
+.GlobalNavigation .subnav .catnav a { font-weight: normal; height: auto; line-height: 1.3em; padding: 7px 5px; }
+.GlobalNavigation .subnav .catnav a:hover { background-color: rgb(211, 231, 216); }
+.GlobalNavigation .subnav a { border: 0px none; color: rgb(43, 84, 181); padding: 4px 0px; display: block; }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+.AccountNavigation { line-height: 20px; list-style: none outside none; position: absolute; top: 1px; right: 15px; }
+.AccountNavigation li { border: 0px none; height: 29px; margin-top: 0px; padding: 4px 0px 0px; position: relative; }
+.AccountNavigation li:hover { background-image: -moz-linear-gradient(center top , transparent 0px, black 100%); }
+.AccountNavigation li:last-child a { border: 0px none; }
+.AccountNavigation li > a { border-right: 1px solid rgb(51, 86, 64); display: inline-block; height: 22px; line-height: 24px; padding: 0px 15px; }
+.AccountNavigation li > a:hover { text-decoration: none; }
+.AccountNavigation li .chevron { position: relative; left: 6px; }
+.AccountNavigation .subnav { background: none repeat scroll 0% 0% white; border-width: 2px 4px 4px; border-style: solid; border-color: rgb(0, 0, 0); list-style: none outside none; position: absolute; box-shadow: 0px 5px 10px 0px rgba(0, 0, 0, 0.5); display: block; top: -9999px; padding: 0px; }
+.AccountNavigation .subnav a { border-right: 0px none; }
+.AccountNavigation > li > a { color: white; }
+.AccountNavigation > li > a:visited, .AccountNavigation > li > a:active { color: white; }
+.WikiaPage { border-bottom: 1px solid rgb(204, 204, 204); border-left: 1px solid rgb(204, 204, 204); border-right: 1px solid rgb(204, 204, 204); margin: -59px auto -39px; padding-top: 59px; position: relative; width: 1030px; z-index: 1; }
+.WikiaPage.WikiaGrid .WikiaPageHeader { margin-left: 0px; margin-right: 0px; }
+.WikiaPage.WikiaGrid .WikiaArticle { padding: 0px; }
+.WikiaPage.V2 { padding-top: 0px; margin: 0px auto -39px; }
+.WikiaPage .WikiaPageBackground { opacity: 1; background: none repeat scroll 0% 0% white; height: 100%; left: 0px; position: absolute; top: 0px; width: 100%; z-index: -1; }
+.WikiaPage .WikiaPageContentWrapper { position: relative; }
+.WikiaPage .WikiaPageContentWrapper:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.oasis-split-skin .WikiaPage { border-top: 1px solid rgb(204, 204, 204); margin: 0px auto; padding-top: 0px; }
+.WikiaMainContent { float: left; position: relative; width: 710px; z-index: 1; }
+.WikiaArticleCategories { background-color: rgb(242, 242, 242); background-image: -moz-linear-gradient(center top , white 50%, rgb(242, 242, 242) 100%); border: 1px solid rgb(204, 204, 204); clear: both; line-height: 1.8em; padding: 10px; margin: 10px; }
+#WikiaArticleBottomAd { margin: 50px 10px 35px; }
+#WikiaArticleBottomAd:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.WikiaPage.WikiaGrid #WikiaArticleBottomAd { clear: both; margin: 0px; }
+#PREFOOTER_LEFT_BOXAD { float: left; margin: 0px 15px; }
+#PREFOOTER_RIGHT_BOXAD { margin: 0px 15px; }
+.WikiaRail { float: right; padding: 0px 10px; width: 300px; }
+.WikiaRail.grid-2 { padding: 0px; }
+.WikiaRail .module, .WikiaRail #RIGHT_SKYSCRAPER { background: none repeat scroll 0% 0% white; border: 1px solid rgb(204, 204, 204); margin-bottom: 10px; padding: 20px 15px 15px; position: relative; word-wrap: break-word; }
+.WikiaRail .module:after, .WikiaRail #RIGHT_SKYSCRAPER:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.WikiaRail .module .wikia-button, .WikiaRail #RIGHT_SKYSCRAPER .wikia-button { float: right; }
+.WikiaRail .module .more, .WikiaRail #RIGHT_SKYSCRAPER .more { float: right; font-size: 10px; font-weight: bold; }
+.WikiaRail .module p, .WikiaRail #RIGHT_SKYSCRAPER p { line-height: 21px; margin: 0px; padding: 0px; }
+.WikiaRail .module .wikia-button, .WikiaRail #RIGHT_SKYSCRAPER .wikia-button { font-weight: normal; }
+.WikiaRail .module h1, .WikiaRail #RIGHT_SKYSCRAPER h1, .WikiaRail .module h2, .WikiaRail #RIGHT_SKYSCRAPER h2 { font-size: 18px; font-weight: bold; margin-top: 0px; margin-bottom: 25px; padding-left: 2px; }
+.tally { font-size: 10px; line-height: 1.3em; padding-left: 2px; text-transform: uppercase; }
+.tally:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.tally em { float: left; font-size: 30px; font-style: normal; letter-spacing: -1px; line-height: 26px; margin-right: 2px; }
+.tally span { float: left; }
+.tally span.fixedwidth { width: 61px; }
+.WikiaActivityModule h1.activity-heading, .WikiaActivityModule .WikiaRail .module h2.activity-heading, .WikiaRail .module .WikiaActivityModule h2.activity-heading, .WikiaActivityModule .WikiaRail #RIGHT_SKYSCRAPER h2.activity-heading, .WikiaRail #RIGHT_SKYSCRAPER .WikiaActivityModule h2.activity-heading { margin-bottom: 0px; }
+.WikiaActivityModule ul { list-style: none outside none; margin: 10px 0px; }
+.WikiaActivityModule li { font-size: 12px; padding: 6px 3px 6px 30px; position: relative; }
+.WikiaActivityModule li:first-child { border: 0px none; }
+.WikiaActivityModule li em { display: inline-block; font-size: 14px; line-height: 17px; width: 270px; }
+.WikiaActivityModule .sprite { position: absolute; left: 3px; top: 8px; }
+.WikiaActivityModule .edited-by { font-size: 11px; margin-top: 2px; }
+.WikiaActivityModule .edited-by a { color: rgb(43, 84, 181); font-size: 11px; }
+.WikiaActivityModule a { font-weight: normal; }
+.WikiaActivityModule .more { font-weight: bold; }
+.WikiaSpotlight { background-color: white; color: rgb(58, 58, 58); display: inline-block; width: 270px; }
+a.comments > .commentsbubble { background-color: white; font-size: 9px; vertical-align: top; border: 1px solid rgb(204, 204, 204); display: inline-block; height: 11px; line-height: 11px; margin: 2px 3px 0px; min-width: 15px; padding: 0px; position: relative; text-align: center; }
+a.comments > .commentsbubble:before { border-color: rgb(204, 204, 204) rgb(204, 204, 204) transparent transparent; border-style: solid; border-width: 3px; content: " "; height: 0px; position: absolute; top: 11px; left: 3px; width: 0px; }
+a.comments > .commentsbubble:after { border-color: white white transparent transparent; border-style: solid; border-width: 2px; content: " "; height: 0px; position: absolute; top: 11px; left: 4px; width: 0px; }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+.WikiHeader { min-height: 69px; margin: 0px 0px 3px; padding: 25px 10px 1px; position: relative; z-index: 1000; }
+.WikiHeader .accent { background-color: rgb(37, 136, 61); }
+.WikiHeader .accent a { color: white; }
+.WikiHeader .wordmark { font-weight: bold; width: 250px; color: rgb(43, 84, 181); margin-bottom: 10px; word-wrap: break-word; }
+.WikiHeader .wordmark.medium { font-size: 30px; }
+.WikiHeader .wordmark a:hover { text-decoration: none; }
+.WikiHeader .hiddenLinks { position: absolute; top: -1000px; }
+.WikiHeader a:hover { text-decoration: none; }
+.WikiHeader > nav { left: 275px; position: absolute; top: 25px; width: 604px; z-index: 3; }
+.WikiHeader > nav > h1, .WikiaRail .module .WikiHeader > nav > h2, .WikiaRail #RIGHT_SKYSCRAPER .WikiHeader > nav > h2 { display: none; }
+.WikiHeader > nav > ul { position: relative; z-index: 1; }
+.WikiHeader > nav ul, .WikiHeader > nav li { margin: 0px; }
+.WikiHeader > nav li { line-height: 31px; display: inline-block; float: left; font-size: 15px; border-bottom: 1px solid rgb(37, 136, 61); vertical-align: bottom; }
+.WikiHeader > nav li:first-child { border-left: medium none; }
+.WikiHeader > nav li:first-child a { border-left: 1px solid transparent; }
+.WikiHeader > nav li > a { border-left: 1px solid rgb(215, 215, 215); border-top: 1px solid transparent; color: rgb(58, 58, 58); display: block; margin: 0px; outline: medium none; padding: 1px 15px 0px; position: relative; }
+.WikiHeader > nav li.marked { border-top-right-radius: 3px; border-top-left-radius: 3px; background-color: rgb(37, 136, 61); }
+.WikiHeader > nav li.marked > a { margin: 1px 3px; padding: 0px 12px; border-top: 1px solid rgb(48, 176, 79); border-left: 1px solid transparent; color: white; }
+.WikiHeader > nav li.marked > a:hover { text-decoration: underline; }
+.WikiHeader > nav li.marked > a[href="#"] { cursor: default; }
+.WikiHeader > nav li.marked > a[href="#"]:hover { text-decoration: none; }
+.WikiHeader > nav li.marked .subnav-2 > li a:hover { text-decoration: underline; }
+.WikiHeader > nav li.marked + li a { border-left: 1px solid transparent; }
+.WikiHeader > nav .subnav-2 { display: none; left: 0px; position: absolute; top: 33px; width: 759px; background-color: transparent; }
+.WikiHeader > nav .subnav-2.firstChild { display: block; }
+.WikiHeader > nav .subnav-2 li { background-color: transparent; border: medium none; font-size: 13px; line-height: 28px; padding: 0px; }
+.WikiHeader > nav .subnav-2 li .subnav-2a { z-index: 100; display: block; border: 1px solid transparent; margin: 2px 0px 0px 3px; height: 25px; }
+.WikiHeader .navbackground { background-color: rgb(37, 136, 61); height: 32px; margin-top: 1px; left: 0px; position: absolute; top: 32px; width: 759px; }
+.WikiHeader .navbackground div { background-color: rgb(48, 176, 79); height: 1px; margin-top: 1px; width: 100%; }
+.WikiHeader .navbackground img { border-color: rgb(26, 96, 43) transparent transparent rgb(26, 96, 43); border-width: 2px; float: right; margin-top: 30px; }
+.WikiHeader .buttons { right: 10px; position: absolute; text-align: right; width: 270px; height: 10px; top: 27px; z-index: 4; }
+.WikiHeader .buttons .wikia-button, .WikiHeader .buttons .wikia-menu-button { height: 20px; font-size: 11px; margin-top: 0px; vertical-align: top; z-index: 3; }
+.WikiHeader .buttons .wikia-button[data-id="edit"], .WikiHeader .buttons .wikia-button a[data-id="edit"], .WikiHeader .buttons .wikia-menu-button[data-id="edit"], .WikiHeader .buttons .wikia-menu-button a[data-id="edit"] { margin-right: 2px; padding-right: 8px; border-width: 0px; }
+.WikiHeader .buttons .contribute { padding-top: 1px; vertical-align: middle; }
+.WikiHeader .buttons .contribute > img { height: 18px; margin-bottom: 4px; }
+.WikiHeader .buttons .contribute ul { border-right: 1px solid rgb(204, 204, 204); border-width: 0px 1px 1px; border-style: none solid solid; border-color: -moz-use-text-color rgb(204, 204, 204) rgb(204, 204, 204); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; padding: 1px; width: 150px; box-shadow: 1px 8px 12px 0px rgb(51, 51, 51); }
+.WikiHeader .buttons .contribute ul li a { line-height: 25px; }
+.WikiHeader .buttons .contribute ul li a:hover { color: rgb(58, 58, 58); background-color: rgb(211, 231, 216); }
+.WikiHeader .buttons .contribute > .drop > .chevron { height: 4px; vertical-align: bottom; }
+.WikiHeader .buttons .contribute > .drop:hover { background: none repeat scroll 0% 0% transparent; }
+.WikiHeader .buttons > .contribute:hover { background: -moz-linear-gradient(center top , whitesmoke 35%, rgb(219, 219, 219) 65%) repeat scroll 0% 0% rgb(219, 219, 219); }
+.WikiHeader .buttons .share-button { padding: 1px 18px 0px 9px; position: relative; }
+.WikiHeader .buttons .share-button .share-dot { display: block; height: 7px; position: absolute; right: 7px; top: 7px; width: 7px; border-radius: 7px 7px 7px 7px; box-shadow: 0px 0px 4px 0px rgb(37, 136, 61); }
+.oasis-split-skin .WikiHeader { padding-top: 20px; }
+.oasis-split-skin .WikiHeader > nav { top: 20px; }
+.oasis-split-skin .WikiHeader .buttons { top: 22px; }
+.WikiaPageHeader { clear: both; margin: 0px 10px 10px; position: relative; z-index: 2; }
+.WikiaPageHeader h1, .WikiaPageHeader .WikiaRail .module h2, .WikiaRail .module .WikiaPageHeader h2, .WikiaPageHeader .WikiaRail #RIGHT_SKYSCRAPER h2, .WikiaRail #RIGHT_SKYSCRAPER .WikiaPageHeader h2 { display: inline; font-size: 26px; margin: 0px 10px 0px 0px; line-height: 27px; word-wrap: break-word; }
+.WikiaPageHeader img { vertical-align: text-bottom; }
+.WikiaPageHeader .wikia-button, .WikiaPageHeader .wikia-menu-button { margin-top: 2px; vertical-align: top; z-index: 3; }
+.wikinav2 .WikiaPageHeader { border-bottom: 1px solid rgb(204, 204, 204); padding-bottom: 7px; padding-right: 175px; margin-bottom: 10px; }
+.wikinav2 .WikiaPageHeader > .comments { margin: 2px 10px 0px; }
+.wikinav2 .WikiaPageHeader > .tally { position: absolute; right: 0px; top: 0px; }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+.WikiaSearch { margin-bottom: 10px; position: relative; }
+.WikiaSearch:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.WikiaSearch input[type="text"] { border: 1px solid rgb(204, 204, 204); font-family: "Lucida Grande",sans-serif; outline: 0px none; margin: 0px 8px 0px 0px; background: none repeat scroll 0% 0% white; color: rgb(58, 58, 58); height: 18px; float: left; font-size: 15px; padding: 4px 9px; width: 259px; }
+.WikiaSearch input[type="text"]:-moz-placeholder { color: rgb(117, 117, 117); }
+.WikiaSearch input[type="text"]:focus { background: none repeat scroll 0% 0% white; }
+.WikiaSearch .wikia-button { border-radius: 3px 3px 3px 3px; float: left; height: 28px; margin-top: 0px; position: static; vertical-align: top; width: 43px; }
+.WikiaSearch .wikia-button img.sprite.search { height: 16px; width: 19px; }
+.WikiaSearch input[type="submit"] { display: none; }
+.wikinav2 .WikiaRail > .WikiaSearch, .wikinav2 .WikiaSearchHeader > .WikiaSearch { padding-bottom: 0px; margin-bottom: 10px; }
+.WikiaArticle { font-size: 13px; line-height: 21px; padding: 0px 10px; position: relative; min-height: 250px; z-index: 1; }
+.WikiaArticle:after { content: ""; display: block; clear: both; }
+.WikiaArticle h1, .WikiaArticle .WikiaRail .module h2, .WikiaRail .module .WikiaArticle h2, .WikiaArticle .WikiaRail #RIGHT_SKYSCRAPER h2, .WikiaRail #RIGHT_SKYSCRAPER .WikiaArticle h2, .WikiaArticle h2, .WikiaArticle h3, .WikiaArticle h4, .WikiaArticle h5, .WikiaArticle h6 { margin: 0.5em 0px 0.2em; }
+.WikiaArticle h2 { border-bottom: 1px solid rgb(204, 204, 204); font-size: 18px; margin-top: 30px; overflow: hidden; padding-bottom: 3px; }
+.WikiaArticle .editsection { float: none; font-size: 13px; margin-left: 10px; vertical-align: baseline; }
+.WikiaArticle .editsection img { vertical-align: text-bottom; }
+.WikiaArticle b, .WikiaArticle strong { font-weight: bold; }
+.WikiaArticle ul, .WikiaArticle ol { margin: 0.4em 0px 0.5em 2.5em; }
+.WikiaArticle ul { list-style: square outside none; }
+.WikiaArticle li { line-height: 20px; margin: 3px 0px; }
+.WikiaArticle img { vertical-align: middle; }
+.WikiaArticle p { margin: 0.4em 0px 0.5em; }
+.WikiaArticle p + p { margin: 1em 0px; }
+.WikiaArticle pre { background-color: rgb(242, 242, 242); border: 1px solid rgb(204, 204, 204); line-height: 14px; overflow: auto; padding: 12px; }
+.WikiaArticle .printfooter { display: none; }
+.WikiaArticle a.external:after, .WikiaArticle a[href^="gopher://"]:after { background-image: url('sprite.png'); background-position: right top; background-repeat: no-repeat; content: ""; display: inline-block; height: 16px; padding: 0px 3px 0px 0px; vertical-align: text-top; width: 10px; }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+.WikiaFooter, .WikiaBarWrapper { clear: both; padding-top: 23px; position: relative; }
+.WikiaFooter .header-container, .WikiaBarWrapper .header-container {  }
+.WikiaFooter .header-container:after, .WikiaBarWrapper .header-container:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.WikiaFooter .header-container h1, .WikiaFooter .header-container .WikiaRail .module h2, .WikiaRail .module .WikiaFooter .header-container h2, .WikiaFooter .header-container .WikiaRail #RIGHT_SKYSCRAPER h2, .WikiaRail #RIGHT_SKYSCRAPER .WikiaFooter .header-container h2, .WikiaBarWrapper .header-container h1, .WikiaBarWrapper .header-container .WikiaRail .module h2, .WikiaRail .module .WikiaBarWrapper .header-container h2, .WikiaBarWrapper .header-container .WikiaRail #RIGHT_SKYSCRAPER h2, .WikiaRail #RIGHT_SKYSCRAPER .WikiaBarWrapper .header-container h2 { font-size: 18px; float: left; margin: 17px 0px 17px 20px; }
+.WikiaFooter .header-container .wikia-button, .WikiaBarWrapper .header-container .wikia-button { float: right; margin: 17px 20px; }
+.WikiaFooter section, .WikiaFooter #LEFT_SKYSCRAPER_2, .WikiaBarWrapper section, .WikiaBarWrapper #LEFT_SKYSCRAPER_2 { margin: 0px 15px; border-right: 1px solid rgb(204, 204, 204); border-width: 0px 1px 1px; border-style: solid; border-color: rgb(204, 204, 204); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; }
+.WikiaFooter section > ul, .WikiaFooter #LEFT_SKYSCRAPER_2 > ul, .WikiaBarWrapper section > ul, .WikiaBarWrapper #LEFT_SKYSCRAPER_2 > ul { background-image: -moz-linear-gradient(center top , rgba(242, 242, 242, 0) 50%, rgb(242, 242, 242) 100%); list-style: none outside none; margin: 0px; padding: 0px 35px 20px; text-align: center; }
+.WikiaFooter section > ul:after, .WikiaFooter #LEFT_SKYSCRAPER_2 > ul:after, .WikiaBarWrapper section > ul:after, .WikiaBarWrapper #LEFT_SKYSCRAPER_2 > ul:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.WikiaFooter section > ul .item-1, .WikiaFooter #LEFT_SKYSCRAPER_2 > ul .item-1, .WikiaBarWrapper section > ul .item-1, .WikiaBarWrapper #LEFT_SKYSCRAPER_2 > ul .item-1 { float: left; }
+.WikiaFooter section > ul .item-2, .WikiaFooter #LEFT_SKYSCRAPER_2 > ul .item-2, .WikiaBarWrapper section > ul .item-2, .WikiaBarWrapper #LEFT_SKYSCRAPER_2 > ul .item-2 { float: right; }
+.WikiaFooter.notoolbar section, .WikiaFooter.notoolbar #LEFT_SKYSCRAPER_2, .WikiaBarWrapper.notoolbar section, .WikiaBarWrapper.notoolbar #LEFT_SKYSCRAPER_2 { border-top-width: 1px; }
+.CorporateFooter { clear: both; font-size: 11px; padding-bottom: 10px; }
+.CorporateFooter:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.CorporateFooter nav { margin-top: 15px; }
+.CorporateFooter nav > h1, .CorporateFooter .WikiaRail .module nav > h2, .WikiaRail .module .CorporateFooter nav > h2, .CorporateFooter .WikiaRail #RIGHT_SKYSCRAPER nav > h2, .WikiaRail #RIGHT_SKYSCRAPER .CorporateFooter nav > h2 { display: none; }
+.CorporateFooter .WikiaHubBranding { background: none repeat scroll 0% 0% transparent; float: left; margin-left: 10px; padding: 1px; }
+.CorporateFooter .WikiaHubBranding .wordmark { float: left; position: relative; width: 66px; }
+.CorporateFooter .WikiaHubBranding .hub { background: none repeat scroll 0% 0% white; float: left; height: 10px; padding: 5px 6px 8px; }
+.CorporateFooter .WikiaHubBranding .hub .hub2, .CorporateFooter .WikiaHubBranding .hub .hub3, .CorporateFooter .WikiaHubBranding .hub .hub9 { font-size: 10px; font-weight: bold; letter-spacing: -0.5px; text-decoration: none; text-transform: uppercase; }
+.CorporateFooter .WikiaHubBranding .hub .hub9 { color: rgb(255, 102, 0); }
+.CorporateFooter .HubBrandingBlackBackground { background: none repeat scroll 0% 0% black; }
+.CorporateFooter ul { float: right; list-style: none outside none; margin: 8px 10px 7px 0px; display: inline-block; }
+.CorporateFooter ul li { display: table-cell; padding-right: 8px; padding-left: 8px; border-left: 1px solid rgb(43, 84, 181); }
+.CorporateFooter ul li:first-child { border: medium none; }
+.CorporateFooter ul li a { color: rgb(43, 84, 181); }
+.error { color: red; font-size: larger; }
+.WikiaBarWrapper { background-color: rgb(0, 44, 17); background-image: -moz-linear-gradient(left center , rgb(0, 11, 4) 0px, rgb(0, 44, 17) 50%, rgb(0, 11, 4) 100%); }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+.LatestPhotosModule > h1.tight, .WikiaRail .module .LatestPhotosModule > h2.tight, .WikiaRail #RIGHT_SKYSCRAPER .LatestPhotosModule > h2.tight { margin-bottom: 10px; }
+.LatestPhotosModule .tally { margin-bottom: 10px; width: 165px; }
+.LatestPhotosModule .wikia-button img { margin-right: 0px; margin-top: 1px; }
+.LatestPhotosModule a:active { outline: medium none; }
+.LatestPhotosModule a:-moz-any-link:focus { outline: medium none; }
+.LatestPhotosModule a.previous { height: 82px; float: left; margin-left: -8px; }
+.LatestPhotosModule a.next { height: 82px; float: right; margin-right: -8px; }
+.LatestPhotosModule a.disabled { opacity: 0.5; cursor: default; }
+.LatestPhotosModule .latest-images-left { border-style: solid; border-width: 9px 9px 9px 0px; margin-top: 35px; width: 0px; border-color: transparent rgb(37, 136, 61); }
+.LatestPhotosModule .latest-images-right { border-style: solid; border-width: 9px 0px 9px 9px; margin-top: 35px; width: 0px; border-color: transparent transparent transparent rgb(37, 136, 61); }
+.LatestPhotosModule .carousel-container { height: 90px; margin: 0px auto; overflow: hidden; width: 258px; }
+.LatestPhotosModule .carousel-container div { position: relative; }
+.LatestPhotosModule ul { display: block; list-style: none outside none; position: absolute; width: 500px; }
+.LatestPhotosModule ul li { border: 1px solid rgb(204, 204, 204); float: left; height: 82px; margin-right: 2px; position: relative; width: 82px; }
+.LatestPhotosModule ul li a { display: block; height: 82px; }
+.LatestPhotosModule ul li img { opacity: 0.9; height: 82px; width: 82px; }
+.LatestPhotosModule ul li img:hover { opacity: 1; }
+.LatestPhotosModule ul li .thumbcaption { display: none; }
+.LatestPhotosModule ul .see-all, .LatestPhotosModule ul .add-more { text-align: center; }
+.LatestPhotosModule ul .see-all a, .LatestPhotosModule ul .add-more a { background: none repeat scroll 0% 0% rgb(242, 242, 242); color: rgb(58, 58, 58); display: block; font-size: 14px; font-weight: bold; height: 61px; padding-top: 21px; z-index: 1; }
+.LatestPhotosModule .more { margin-top: 8px; }
+.LatestPhotosModule .wikia-button { padding: 0px 6px; }
+.CategorySelect.articlePage { background-image: none; background-color: transparent; line-height: normal; margin: 10px 0px 40px; padding: 0px; position: relative; }
+.CategorySelect.articlePage .add { background-image: none; background-color: whitesmoke; }
+.CategorySelect.articlePage .categories { margin: 0px; overflow: hidden; padding: 0px; }
+.CategorySelect.articlePage .category, .CategorySelect.articlePage .last, .CategorySelect.articlePage .placeholder { float: left; display: block; margin: 0px 6px 6px 0px; }
+.CategorySelect.articlePage .category { border-right: 1px solid rgb(204, 204, 204); margin-top: 3px; padding-right: 6px; }
+.CategorySelect.articlePage .category:last-child { border-right: 0px none; }
+.CategorySelect.articlePage .container { padding: 10px 20px 4px; }
+.CategorySelect.articlePage .container:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.CategorySelect.articlePage .input { background-color: white; border: 0px none; color: rgb(58, 58, 58); display: none; font-size: 12px; margin: 3px 0px; outline: medium none; padding: 0px; width: 245px; }
+.CategorySelect.articlePage .special-categories { float: left; padding: 3px 0px; margin-right: 6px; }
+.CategorySelect.articlePage .sprite-small { vertical-align: text-top; }
+.CategorySelect.articlePage .tool { border-left: 1px solid rgb(204, 204, 204); cursor: pointer; display: inline-block; margin-left: 6px; padding-left: 6px; }
+.CategorySelect.articlePage .tool:first-child { border-left: 0px none; padding-left: 0px; }
+.CategorySelect.articlePage .toolbar { display: none; }
+.CategorySelect.articlePage > .toolbar { background-color: whitesmoke; border-top: 1px solid rgb(204, 204, 204); padding: 6px 10px; text-align: right; }
+.CategorySelect.articlePage > .toolbar .wikia-button { margin-left: 6px; }
+.RelatedPagesModule { clear: both; margin: 0px 10px; }
+.RelatedPagesModule h2 { border-bottom: 1px solid rgb(204, 204, 204); font-size: 18px; margin-top: 30px; overflow: hidden; }
+.RelatedPagesModule ul { list-style: none outside none; margin: 5px 0px 15px; }
+.RelatedPagesModule ul:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.RelatedPagesModule li { float: left; line-height: 1.4em; margin-left: 25px; padding: 0px; position: relative; width: 200px; }
+.RelatedPagesModule li:first-child { margin-left: 0px; }
+.RelatedPagesModule .articleSnippet { height: 100px; overflow: hidden; width: 190px; }
+.RelatedPagesModule .articleSnippet:before { content: "“"; font-size: 70px; left: 0px; position: absolute; top: 25px; }
+.RelatedPagesModule .articleSnippet p { font-size: 16px; height: 80px; line-height: 1.25em; margin-left: 35px; overflow: hidden; padding: 0px; }
+.RelatedPagesModule .more { display: block; margin: 5px 0px; }
+#WikiaArticle .RelatedPagesModule { margin: 0px; }
+.WikiaForm > fieldset { border: 0px none; margin: 0px; padding: 0px; }
+.WikiaForm .input-group { clear: both; float: left; font-size: 13px; line-height: 13px; margin-bottom: 5px; padding: 5px 7px; }
+.WikiaForm .input-group input[type="text"], .WikiaForm .input-group input[type="url"], .WikiaForm .input-group input[type="password"], .WikiaForm .input-group textarea { box-shadow: 1px 1px 1px 0px rgb(229, 229, 229) inset; background-color: rgb(247, 247, 247); border: 1px solid rgb(204, 204, 204); color: rgb(58, 58, 58); font-family: "Lucida Grande",sans-serif; font-size: 13px; margin: 0px; padding: 8px; }
+.WikiaForm .input-group input[type="text"]:focus, .WikiaForm .input-group input[type="url"]:focus, .WikiaForm .input-group input[type="password"]:focus, .WikiaForm .input-group textarea:focus { background-color: rgb(239, 239, 239); }
+.WikiaForm .input-group label { display: block; line-height: 15px; margin: 0px 0px 5px; }
+.WikiaForm .input-group.error, .WikiaForm .input-group.success { border-radius: 3px 3px 3px 3px; background-color: rgb(242, 242, 242); }
+.WikiaForm .input-group.error .error-msg, .WikiaForm .input-group.success .error-msg { font-size: 11px; margin-top: 5px; color: rgb(244, 53, 53); }
+.WikiaForm .input-group.general-errors .error-msg { margin-top: 0px; }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+.WikiaBarWrapper { bottom: 0px; height: 25px; padding: 0px; position: fixed; width: 100%; z-index: 20000000; box-shadow: 0px 0px 10px 0px rgb(51, 51, 51); transition: all 200ms ease-in 200ms ; }
+.WikiaBarWrapper .wikia-bar { background-image: url('undefined'); height: 25px; margin: auto; text-align: center; }
+.WikiaBarWrapper .wikia-bar .ad { bottom: 0px; float: left; left: 0px; margin: 0px 5px; position: fixed; width: 320px; transition: all 200ms ease-in 200ms ; }
+.WikiaBarWrapper .wikia-bar .ad iframe { display: block; }
+.WikiaBarWrapper .wikia-bar .wikiabar-button { background-color: rgb(48, 48, 48); border: 1px solid rgb(35, 31, 32); color: rgb(255, 255, 255); display: inline-block; float: left; font-size: 11px; height: 16px; line-height: 15px; margin: 0px 3px 2px 0px; padding: 4px 5px 3px; }
+.WikiaBarWrapper .wikia-bar .wikiabar-button img { background-image: url('undefined'); float: left; height: 14px; margin-right: 5px; width: 12px; }
+.WikiaBarWrapper .wikia-bar .wikiabar-button span { float: right; }
+.WikiaBarWrapper .wikia-bar .message { float: right; font-family: helvetica; font-size: 11px; height: 25px; margin: 0px 24px 0px 50px; padding: 5px 5px 0px 0px; text-align: right; white-space: nowrap; width: 420px; }
+.WikiaBarWrapper .wikia-bar .message a { color: white; text-decoration: none; }
+.WikiaBarWrapper .wikia-bar-anon { padding-left: 330px; }
+.WikiaBarWrapper .arrow { background-image: url('undefined'); background-position: center center; background-repeat: no-repeat; bottom: 0px; display: block; height: 25px; position: absolute; right: 0px; width: 24px; z-index: 20000000; }
+.WikiaBarCollapseWrapper { background-color: rgb(0, 11, 4); background-image: url('undefined'); background-position: center center; background-repeat: no-repeat; bottom: 0px; position: fixed; right: 0px; z-index: 20000000; box-shadow: 0px 0px 10px 0px rgb(51, 51, 51); transition: all 200ms ease-in 200ms ; }
+.WikiaBarCollapseWrapper.hidden { bottom: -25px; transition: all 200ms ease-in 0s ; }
+.WikiaBarCollapseWrapper .wikia-bar-collapse { display: block; float: right; height: 25px; width: 23px; background-image: url('undefined'); }
+.chat-join button:before { background-color: transparent; background-image: url('sprite-chat.png'); background-repeat: no-repeat; background-position: -72px 0px; content: ""; display: inline-block; height: 15px; margin-right: 5px; vertical-align: middle; width: 17px; }
+.ChatModule .chat-contents { position: relative; }
+.ChatModule .chat-contents.chat-room-empty .chat-total { display: none; }
+.ChatModule .chat-contents.chat-room-empty.chat-user-anonymous .chat-whos-here { display: none; }
+.ChatModule h1.chat-headline, .ChatModule .WikiaRail .module h2.chat-headline, .WikiaRail .module .ChatModule h2.chat-headline, .ChatModule .WikiaRail #RIGHT_SKYSCRAPER h2.chat-headline, .WikiaRail #RIGHT_SKYSCRAPER .ChatModule h2.chat-headline { font-size: 17px; font-weight: bold; margin: 0px; }
+.ChatModule h1.chat-headline:after, .ChatModule .WikiaRail .module h2.chat-headline:after, .WikiaRail .module .ChatModule h2.chat-headline:after, .ChatModule .WikiaRail #RIGHT_SKYSCRAPER h2.chat-headline:after, .WikiaRail #RIGHT_SKYSCRAPER .ChatModule h2.chat-headline:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.ChatModule h1.chat-headline span, .ChatModule .WikiaRail .module h2.chat-headline span, .WikiaRail .module .ChatModule h2.chat-headline span, .ChatModule .WikiaRail #RIGHT_SKYSCRAPER h2.chat-headline span, .WikiaRail #RIGHT_SKYSCRAPER .ChatModule h2.chat-headline span { float: left; }
+.ChatModule h1.chat-headline .chat-total, .ChatModule .WikiaRail .module h2.chat-headline .chat-total, .WikiaRail .module .ChatModule h2.chat-headline .chat-total, .ChatModule .WikiaRail #RIGHT_SKYSCRAPER h2.chat-headline .chat-total, .WikiaRail #RIGHT_SKYSCRAPER .ChatModule h2.chat-headline .chat-total { border-radius: 15px 15px 15px 15px; background-color: rgb(37, 136, 61); color: white; display: inline-block; font-size: 12px; font-weight: normal; line-height: 14px; margin-left: 8px; padding: 1px 4px; }
+.ChatModule .chat-name { font-size: 12px; line-height: 21px; margin: 0px; padding: 0px; }
+.ChatModule .chat-join { position: absolute; top: 0px; right: 0px; }
+.ChatModule .chat-whos-here { border: 1px solid rgb(204, 204, 204); margin: 10px 0px; padding: 5px; position: relative; }
+.ChatModule .chat-whos-here:after { clear: both; content: " "; display: block; height: 0px; overflow: hidden; visibility: hidden; }
+.ChatModule .chat-whos-here .arrow-left, .ChatModule .chat-whos-here .arrow-right { cursor: pointer; line-height: 34px; position: absolute; }
+.ChatModule .chat-whos-here .arrow-left.disabled, .ChatModule .chat-whos-here .arrow-right.disabled { opacity: 0.5; cursor: auto; }
+.ChatModule .chat-whos-here .arrow-left { left: 0px; padding-left: 10px; }
+.ChatModule .chat-whos-here .arrow-left img { border-color: rgba(37, 136, 61, 0) rgb(37, 136, 61) rgba(37, 136, 61, 0) -moz-use-text-color; border-width: 6px 6px 6px 0px; border-style: inset solid inset none; height: 0px; vertical-align: middle; width: 0px; }
+.ChatModule .chat-whos-here .arrow-right { right: 0px; padding-right: 10px; }
+.ChatModule .chat-whos-here .arrow-right img { border-color: rgba(37, 136, 61, 0) -moz-use-text-color rgba(37, 136, 61, 0) rgb(37, 136, 61); border-width: 6px 0px 6px 6px; border-style: inset none inset solid; height: 0px; vertical-align: middle; width: 0px; }
+.ChatModule .chat-whos-here .carousel-container { left: 21px; height: 34px; overflow: hidden; position: relative; width: 244px; }
+.ChatModule .chat-whos-here .carousel-container > div { position: relative; }
+.WikiaRail {  }
+.ChatModule {  }
+.WikiaMenuElement { background: none repeat scroll 0% 0% white; display: block; list-style: none outside none; padding: 0px; }
+.WikiaMenuElement li { border-top: 1px solid rgb(204, 204, 204); float: none ! important; margin: 0px; padding: 0px; }
+.WikiaMenuElement li:hover { background-color: rgb(211, 231, 216) ! important; }
+.WikiaMenuElement li a { height: 20px; line-height: 22px; }
+.AccountNavigation .UserLoginDropdown { background-color: white; color: rgb(58, 58, 58); font-size: 11px; padding: 15px 8px; width: 141px; }
+.AccountNavigation .UserLoginDropdown .WikiaForm label { font-size: 11px; }
+.AccountNavigation .UserLoginDropdown .WikiaForm label:first-child { margin-top: 0px; }
+.AccountNavigation .UserLoginDropdown .WikiaForm input[type="text"], .AccountNavigation .UserLoginDropdown .WikiaForm input[type="password"] { font-size: 11px; height: 14px; padding: 3px; width: 119px; }
+.AccountNavigation .UserLoginDropdown .WikiaForm .password-input { margin-bottom: 0px; padding-bottom: 0px; }
+.AccountNavigation .UserLoginDropdown .WikiaForm .forgot-password { margin-bottom: 0px; font-size: 11px; }
+.AccountNavigation .UserLoginDropdown .WikiaForm .keep-logged-in .keep-logged-in { margin-left: 0px; vertical-align: middle; }
+.AccountNavigation .UserLoginDropdown .WikiaForm input[type="submit"] { margin: 10px 0px 0px; }
+.AccountNavigation .UserLoginDropdown .WikiaForm .general-errors { display: none; }
+.AccountNavigation .UserLoginDropdown > .sso-login > .sso-login-divider { border-top: 1px solid rgb(204, 204, 204); text-align: center; line-height: 12px; margin-top: 24px; }
+.AccountNavigation .UserLoginDropdown > .sso-login > .sso-login-divider > span { background-color: white; display: inline-block; padding: 0px 21px; position: relative; top: -12px; }
+.AccountNavigation .UserLoginDropdown > .sso-login > .sso-login-divider > span { line-height: 13px; top: -6px; }
+.AccountNavigation .UserLoginDropdown > .sso-login .sso-login-facebook { font-size: 10px; height: 16px; line-height: 16px; margin-left: 6px; padding: 0px 9px 0px 0px; }
+.AccountNavigation .UserLoginDropdown > .sso-login .sso-login-facebook > img { margin: 0px 4px; position: relative; top: 1px; }
+/* ::::: http://vim.wikia.com/__load/-/cb%3D62095%26debug%3Dfalse%26lang%3Den%26only%3Dstyles%26skin%3Doasis/ext.wikihiero ::::: */
+
+/* ::::: http://vim.wikia.com/__load/-/cb%3D62095%26debug%3Dfalse%26lang%3Den%26only%3Dstyles%26skin%3Doasis/site ::::: */
+
+* tt, * code { white-space: pre; background-color: rgb(193, 231, 203); }
+a:lang(ar), a:lang(ckb), a:lang(fa), a:lang(kk-arab), a:lang(mzn), a:lang(ps), a:lang(ur) { text-decoration: none; }
+.js-messagebox { margin: 1em 5%; padding: 0.5em 2.5%; border: 1px solid rgb(204, 204, 204); background-color: rgb(252, 252, 252); font-size: 0.8em; }

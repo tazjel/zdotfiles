@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr" class="client-js">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+
+<meta name="viewport" content="width=1200">
+<meta name="generator" content="MediaWiki 1.19.4">
+<meta name="keywords" content="Vim Tips Wiki,vim,Command line tricks,Discussion guidelines,Category guidelines,Comment guidelines,General guidelines,Merge guidelines,VimTip232,VimTip235">
+<meta name="description" content="These tips save me wearing out my fingers with unnecessary keystrokes. They assume Unix, but I...">
+<meta name="google-site-verification" content="o5CyVGmHVpO4QI5b53oL4Daza4oP4zlqAV7cDT4G-TA">
+<link rel="canonical" href="http://vim.wikia.com/wiki/Command_line_tricks">
+<link rel="alternate" type="application/x-wiki" title="Edit" href="http://vim.wikia.com/wiki/Command_line_tricks?action=edit">
+<link rel="edit" title="Edit" href="http://vim.wikia.com/wiki/Command_line_tricks?action=edit">
+<link rel="apple-touch-icon" href="http://images.wikia.com/vim/images/b/bc/Wiki.png">
+<link rel="shortcut icon" href="favicon.ico">
+<link rel="search" type="application/opensearchdescription+xml" href="http://vim.wikia.com/opensearch_desc.php" title="Vim Tips Wiki (en)">
+<link rel="EditURI" type="application/rsd+xml" href="http://vim.wikia.com/api.php?action=rsd">
+<link rel="copyright" href="http://www.wikia.com/Licensing">
+<link rel="alternate" type="application/atom+xml" title="Vim Tips Wiki Atom feed" href="http://vim.wikia.com/wiki/Special:RecentChanges?feed=atom">
+<title>Command line tricks - Vim Tips Wiki</title>
+
+<!-- SASS-generated CSS file -->
+
+
+<!-- CSS injected by extensions -->
+
+
+
+
+<div class="kxhead" data-id="HixyqEjH" style="display: none;"><span class="kxtag kxinvisible" data-id="10952" data-alias="Krux eXelate Cookie Match"></span><span class="kxtag kxinvisible" data-id="10304" data-alias="Krux Load Segments"></span><span class="kxtag kxinvisible" data-id="11314" data-alias="Technographic Data provider tag"></span><span class="kxtag kxinvisible" data-id="11093" data-alias="eXelate Media provider tag"></span><span class="kxtag kxinvisible" data-id="18295" data-alias="Acxiom S2S provider tag"></span><span class="kxtag kxinvisible" data-id="11362" data-alias="Visual DNA provider tag"><img src="um"></span><span class="kxtag kxinvisible" data-id="10854" data-alias="Krux Attribute Scraper"></span><span class="kxtag kxinvisible" data-id="14030" data-alias="RTB User Match"><img src="um_001.dat"></span><span class="kxtag kxinvisible" data-id="10709" data-alias="Visual DNA cookie match"><img src="um"></span><span class="kxtag kxinvisible" data-id="10713" data-alias="DataLogix cookie match"></span><span class="kxtag kxinvisible" data-id="12260" data-alias="Kyle - Magnetic"><iframe id="0.06650597669716984" src="index_38.html" frameborder="0" height="0" width="0"></iframe></span><span class="kxtag kxinvisible" data-id="10491" data-alias="VisualDNA">
+</span><span class="kxtag kxinvisible" data-id="10600" data-alias="BlueKai"></span><span class="kxtag kxinvisible" data-id="10632" data-alias="eXelate Media"></span><span class="kxtag kxinvisible" data-id="10706" data-alias="DataLogix provider tag"></span></div>
+
+<!-- Wikia Beacon Tracking -->
+
+
+
+
+
+<!-- Make IE recognize HTML5 tags. -->
+<!--[if IE]>
+	<script>/*@cc_on'abbr article aside audio canvas details figcaption figure footer header hgroup mark menu meter nav output progress section summary time video'.replace(/\w+/g,function(n){document.createElement(n)})@*/</script>
+<![endif]-->
+
+
+
+	<meta property="fb:app_id" content="112328095453510" prefix="fb: http://www.facebook.com/2008/fbml">
+	<meta property="og:type" content="article">
+	<meta property="og:site_name" content="Vim Tips Wiki">
+	<meta property="og:title" content="Command line tricks">
+	<meta property="og:image" content="http://images3.wikia.nocookie.net/__cb20110108235206/vim/images/8/89/Wiki-wordmark.png">
+	<meta property="og:description" content="These tips save me wearing out my fingers with unnecessary keystrokes. They assume Unix, but I...">
+	<meta property="og:url" content="http://vim.wikia.com/wiki/Command_line_tricks">
+
+<meta name="ResourceLoaderDynamicStyles">
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body class="mediawiki ltr ns-0 ns-subject page-Command_line_tricks  TOC_hide wikia-grid wikinav2 skin-oasis oasis-oasis oasis-split-skin">
+<section id="WikiaPage" class="WikiaPage V2 WikiaGrid">
+<div class="WikiaPageContentWrapper">
+<!--DOCUMENT_FRAGMENT-->
+<header id="WikiHeader" class="WikiHeader"><h1 class="wordmark medium graphic font-cpmono"><a accesskey="z" href="http://vim.wikia.com/wiki/Vim_Tips_Wiki">
+			</a>
+</h1>
+    <nav class="WikiNav">
+    	        <h1>Vim Tips Wiki Navigation</h1>
+        		<ul class="nav">
+																				<li class="nav-item marked">
+						<a href="#">On the Wiki</a>
+
+													<ul style="display: block;" class="subnav-2 accent firstChild">
+																										<li class="subnav-2-item">
+										<a class="subnav-2a" href="http://vim.wikia.com/wiki/Special:WikiActivity" data-canonical="wikiactivity">Wiki Activity</a>
+
+																			</li>
+																										<li class="subnav-2-item">
+										<a class="subnav-2a" href="http://vim.wikia.com/wiki/Special:Random" data-canonical="random">Random page</a>
+
+																			</li>
+																										<li class="subnav-2-item">
+										<a class="subnav-2a" href="http://vim.wikia.com/wiki/Special:Videos" data-canonical="videos">Videos</a>
+
+																			</li>
+																										<li class="subnav-2-item">
+										<a class="subnav-2a" href="http://vim.wikia.com/wiki/Special:NewFiles" data-canonical="newfiles">Photos</a>
+
+																			</li>
+																										<li class="subnav-2-item">
+										<a class="subnav-2a" href="http://vim.wikia.com/wiki/Special:Chat" data-canonical="chat">Chat</a>
+
+																			</li>
+																							</ul>
+											</li>
+																												<li class="nav-item">
+						<a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki:Community_Portal">Community portal</a>
+
+											</li>
+																				<li class="nav-item">
+						<a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki:Todo">To do</a>
+
+											</li>
+										</ul>
+
+<div class="navbackground">
+	<div></div>
+	<img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="chevron">
+</div>    </nav>
+    <div class="buttons">
+		<nav class="wikia-menu-button contribute secondary combined">
+	<img alt="" class="sprite contribute" src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" height="16" width="22"> Contribute
+	<span class="drop">
+		<img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="chevron">
+	</span>
+	<ul class="WikiaMenuElement">
+		<li>
+			<a href="http://vim.wikia.com/wiki/Command_line_tricks?action=edit" data-id="edit">Edit this Page</a>
+		</li>
+		<li>
+			<a href="http://vim.wikia.com/wiki/Special:WikiaVideoAdd" data-id="wikiavideoadd">Add a Video</a>
+		</li>
+		<li>
+			<a href="http://vim.wikia.com/wiki/Special:Upload" data-id="upload">Add a Photo</a>
+		</li>
+		<li>
+			<a href="http://vim.wikia.com/wiki/Special:CreatePage" data-id="createpage" class="createpage">Add a Page</a>
+		</li>
+		<li>
+			<a href="http://vim.wikia.com/wiki/Special:WikiActivity" accesskey="g" data-id="wikiactivity">Wiki Activity</a>
+		</li>
+	</ul>
+</nav>
+					<a href="#" class="wikia-button share-button secondary" data-id="shareButton"> Share<span class="share-dot"></span><span class="share-pixel"></span></a>
+    </div>
+
+    <div class="hiddenLinks">
+		<a href="http://vim.wikia.com/wiki/Special:Watchlist" title="Special:Watchlist" accesskey="l">Watchlist</a>		<a href="http://vim.wikia.com/wiki/Special:Random" title="Special:Random" accesskey="x">Random page</a>		<a href="http://vim.wikia.com/wiki/Special:RecentChanges" title="Special:RecentChanges" accesskey="r">Recent changes</a>    </div>
+</header>
+
+
+		
+		
+		
+		
+		<article id="WikiaMainContent" class="WikiaMainContent grid-4">
+			<header id="WikiaPageHeader" class="WikiaPageHeader">
+    <h1>Command line tricks</h1>
+
+	<nav class="wikia-menu-button">
+	<a accesskey="e" href="http://vim.wikia.com/wiki/Command_line_tricks?action=edit" data-id="edit" id="ca-edit">
+		<img alt="" class="sprite edit-pencil" src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" height="16" width="22"> Edit	</a>
+
+	<span class="drop">
+		<img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="chevron">
+	</span>
+	<ul class="WikiaMenuElement">
+		<li>
+			<a href="http://vim.wikia.com/wiki/Command_line_tricks?action=history" accesskey="h" data-id="history" id="ca-history">History</a>
+		</li>
+	</ul>
+</nav>
+			<a accesskey="t" href="http://vim.wikia.com/wiki/Talk:Command_line_tricks" class="wikia-button comments secondary talk" rel="nofollow" data-id="comment"> Talk<span class="commentsbubble">0</span></a>
+        <div class="tally">
+			<em>1,599</em><span>pages on<br> this wiki</span>        </div>
+		</header>
+
+
+			
+			<div id="WikiaArticle" class="WikiaArticle">
+								
+				<div class="home-top-right-ads">
+								</div>
+
+				
+				<div id="mw-content-text" dir="ltr" class="mw-content-ltr" lang="en"><div class="boilerplate metadata" id="delete" style="background-color: rgb(255, 238, 238); margin: 0px 1em; padding: 0px 10px; border: 1px solid rgb(170, 170, 170);">
+<p><b>Please review this tip:</b>
+</p>
+<ul><li>This tip was imported from vim.org and needs <a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki:General_guidelines" title="Vim Tips Wiki:General guidelines">general review</a>.
+</li><li>You might <a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki:Comment_guidelines" title="Vim Tips Wiki:Comment guidelines">clean up comments</a> or <a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki:Merge_guidelines" title="Vim Tips Wiki:Merge guidelines">merge similar tips</a>.
+</li><li>Add suitable <a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki:Category_guidelines" title="Vim Tips Wiki:Category guidelines">categories</a> so people can find the tip.
+</li><li>Please <a href="http://vim.wikia.com/wiki/Vim_Tips_Wiki:Discussion_guidelines" title="Vim Tips Wiki:Discussion guidelines">avoid the discussion page</a> (use the Comments section below for notes).
+</li><li>If the tip contains good advice for current Vim, remove the <code>{{review}}</code> line.
+</li></ul>
+</div>
+<div><b><a class="text" href="http://vim.wikia.com/wiki/Command_line_tricks">Tip 234</a></b> <a class="text" href="http://vim.wikia.com/wiki/Command_line_tricks?printable=yes">Printable</a> <a class="text" href="http://vim.wikia.com/wiki/Command_line_tricks?useskin=monobook">Monobook</a> <a href="http://vim.wikia.com/wiki/VimTip232" title="VimTip232" class="mw-redirect"><small>Previous</small></a> <a href="http://vim.wikia.com/wiki/VimTip235" title="VimTip235" class="mw-redirect"><small>Next</small></a>
+<p><b>created</b>&nbsp;2002 · <b>complexity</b>&nbsp;basic · <b>author</b>&nbsp;David Rayner (zzapper) · <b>version</b>&nbsp;6.0
+</p>
+<hr>
+</div>
+<p>These tips save me wearing out my fingers with unnecessary keystrokes. They assume Unix, but I also use them on a Windows Unix Shell (MKS).
+</p>
+<pre>#When I know the file I want to edit is the most recent file in a directory
+alias -x vew='vi `l\s -t * | head -1 `'
+
+#When I know the file I want to edit contains a unique keyword.
+#This is actually in a little shell script call ed vg where the
+#keyword is passed as parameter $1
+
+#/bin/sh
+#name vg
+vi.exe $(grep -isl $1 *) &amp;
+
+#some variations
+alias -x vp='vi `l\s -t *.@(pl|cgi)| head -1 `'
+
+#execute the most recent script (I call this from within VIM with a mapped button)
+alias -x xew='`l\s -t *.pl | head -1 `'
+</pre>
+<h2><span class="mw-headline" id="Comments">Comments</span><span class="editsection"><a href="http://vim.wikia.com/wiki/Command_line_tricks?action=edit&amp;section=1" title="Edit Comments section"><img src="data:image/gif;base64,R0lGODlhAQABAIABAAAAAP///yH5BAEAAAEALAAAAAABAAEAQAICTAEAOw%3D%3D" class="sprite edit-pencil">Edit</a></span></h2>
+<p>I forgot my best script v.ksh this allows me to edit a file(s) containing any particular substring such say I know that a file in a directory is the only one that contains the letter z I just need to type
+</p>
+<pre>&gt; v z
+</pre>
+<pre>#v.ksh
+#description&nbsp;: vi all files containing $1 in name
+#but excluding binaries
+#set -x
+filenum=0
+for x in *$1*
+do
+  if [[ "$x"&nbsp;!= *.@(xls|exe|mdb) ]] &amp;&amp; [ -f "$x" ]
+  then
+    filelst[$filenum]=$x
+    let filenum=filenum+1
+  fi
+done
+vim ${filelst[*]} &amp;
+</pre>
+<p>If your shell (e.g. csh) allows you alias parameters this can also be done with something like:
+</p>
+<pre>alias v 'vi *\!*\*'
+</pre>
+<p>And as a bash function:
+</p>
+<pre>function v () {
+   vim *${1}*
+}
+</pre>
+<p>You can now edit a file in a directory that is say the only one with a filename containing say "bank" just by typing
+</p>
+<pre>&gt; v bank
+</pre>
+<p>Also don't forget the wonderful fact that Vim will edit a pipe
+</p>
+<pre>&gt; ls -1 fred*.c | vim -
+</pre>
+<p>will result in Vim opening an unnamed file containing a list of files fred* r
+</p>
+<hr>
+<p>That 'vew' thing is very cool. I _always_ want to do that, very useful. I had to have it like this under cygwin.
+</p>
+<pre>alias vnew='vim `ls -t | head -1 `'
+alias vold='vim `ls -t | tail -1 `'
+</pre>
+<p>vold is cool when you want to edit each file in a directory but don't want to deal with buffers inside vim.
+</p>
+<hr>
+<p>Open a file with vi(m) and jump to a particular place defined by "searchstr"
+</p>
+<pre>vi -c "/searchstr" main.c
+</pre>
+<p>Turn this into a script
+</p>
+<pre>#vis.ksh
+#vi with search
+vi -c "/$1" $2
+</pre>
+<hr>
+<p>How many times you decided to use one file as a basis for a new file, started editing the original, and then absently minded saved it, rather than saving as!
+</p><p>This shell script simplifies and avoids this problem.
+</p>
+<pre>#vcp.ksh
+#description&nbsp;: copy file $1 to $2 then edit $2
+#set -x
+cp $1 $2
+vi $2
+</pre>
+<hr>
+<p>View gvim command line help by typing <code>gvim -h</code>
+</p><p>Notables
+</p>
+<pre>gvim -u local_vimrc
+gvim --noplugin
+gvim -v (Vi compatible)
+gvim + fred.php (jump to End of file)
+gvim +10 fred.php (jump to 10th line)
+gvim -w hist.txt fred.php (append all typed commands to hist.txt)
+gvim -c "/searchstr" main.c (jump to string when main.c opened)(note quotes)
+gvim -R important.txt (open read only)
+</pre>
+<hr>
+<p>To summarise
+</p>
+<pre>#the following is an alias to edit the most recent file in a directory
+&gt; vew
+
+#the following script v.ksh, edits any file in current directory whose
+#name contains say "main"
+&gt;v main
+
+#the following script vg.ksh (see below), edits any file containing the
+#specified keyword and jumps to 1st occurrence
+&gt;vg fn_main
+
+#vg.ksh
+gvim.exe -c "/$1" $(grep -isl "$1" *)
+
+#gvim can edit a pipe
+ls -1 *.php | gvim -
+</pre>
+<hr>
+<pre>#Ftping via Vim
+gvim ftp://ftp.yoursite.co.uk/public_html/index.html
+
+#Open file1 &amp; file2 into a split window
+gvim -o file1 file2
+
+#compare differences in 2 files (vimdiff)
+#see&nbsp;:h vimdiff
+gvim -d file1 file1
+
+#performing edits on multiple files (pipe separates commands)
+vim -c "argdo&nbsp;%s/ABC/DEF/g | w" *.txt
+
+vim -c "argdo&nbsp;%s/FOO/BAR/g | update" `grep -l FOO *`
+</pre>
+<hr>
+<p>Proper editing of the contents of a pipe on Unix is possible even with console Vim by using a temporary file and redirection of IO to the tty, an example of which is <a rel="nofollow" class="external text exitstitial" href="http://www.vim.org/scripts/script.php?script_id=2769">script#2769</a>.
+</p>
+<pre>find | pipe.vim | nl
+find | xargs pipe.vim
+
+# for end of pipe/less with syntax highlighting, vi - is better:
+cat /etc/samba/smb.conf | vi -
+</pre></div></div></article>
+<!--/DOCUMENT_FRAGMENT-->
+</div>
+</section>
+</body>
+</html>
