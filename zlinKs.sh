@@ -23,11 +23,6 @@ lnif() {
 
 echo "Thanks for installing zdotfiles"
 
- #Backup existing .vim stuff
-echo "backing up current vim config"
-today=`date +%Y%m%d`
-
-for i in $HOME/.vimrc.local $HOME/.zshrc $HOME/.oh-my-zsh/lib/aliases.zsh $HOME/.vimrc.localw $HOME/.bash_aliases $HOME/.bash_history $HOME/.onboard/layouts/w.onboard $HOME/.zsh_history $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
 
 
@@ -42,7 +37,7 @@ lnif $endpath/.NERDTreeBookmarks  $HOME/.NERDTreeBookmarks
 # zsh
 ########################################
 lnif $endpath/.zshrc $HOME/.zshrc
-lnif $endpath/.oh-my-zsh/lib/aliases.zsh $HOME/.oh-my-zsh/lib/aliases.zsh
+lnif $endpath/.oh-my-zsh $HOME/.oh-my-zsh
 
 lnif $endpath/.bashrc $HOME/.bashrc
 lnif $endpath/.bash_aliases  $HOME/.bash_aliases
@@ -54,11 +49,3 @@ lnif $endpath/.profile  $HOME/.profile
 ########################################
 
 ########################################
-
-########################################
-
-echo "update/install plugins using Vundle"
-system_shell=$SHELL
-export SHELL="/bin/sh"
-vim -u $endpath/.vimrc.bundles +BundleInstall! +BundleClean +qall
-export SHELL=$system_shell

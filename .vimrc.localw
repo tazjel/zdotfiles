@@ -1,11 +1,12 @@
 "Modeline and Notes {
-"vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
 "    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
 "    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
 "    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
+"
 "
 "   This is the personal .vimrc file of Ahmed Alghamdi.
 "   While much of it is beneficial for general use, I would
@@ -71,8 +72,7 @@ endfun
 "
 ""nnoremap <-F3> :call FindFiles()<CR>
 
-"vnoremap <C-F3> y<C-W><C-W>G$P<C-W><C-W>
-nnoremap <F4> :verbose map
+"vnoremap <C-F3> y<C-W><C-W>G$]P<C-W><C-W>
 ""verbose map "F4
 map <F3> ]c
 map <s-F3> [c
@@ -89,14 +89,8 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 
 "F5
-                    "F6
-nnoremap <F6> :set arabic<CR>
-nnoremap <S-F6>:set noarabic<CR>
-"nnoremap <S-F6> :set rightleft<CR>
-nnoremap <C-F6> :set norightleft<CR>
-
-
-                    "F7
+"F6
+"F7
 "F8
 "F9
 "F10
@@ -114,16 +108,94 @@ map <F8> :%s/<[^>]*>//gi<cr>
 
 nnoremap <silent> WW VY<C-W><C-W>Gp<C-W><C-W>
 
-"F5"
-    " source vimrc
-nnoremap <silent> <F5> :source ~/.vimrc.local<cr>
-nnoremap <silent> <C-F5> :vsplit ~/.vimrc.local<CR>
-nnoremap <silent> <S-F5> :SessionOpen zmap<CR>
+""vim regex html
+"/<[^>]*> */
+"/&quot;
+""/home/bani<]<]*/
+""/bani.vimrc.local*/
+"
+"" %:p:h
+""
+"#""/bani.vimrc.local*/
+"#:%s/<\/\{0,1}font.\{-}>//g
+"#:%s/<b><\/b>//g
+"#:%s/<\/b><b>//g
+"#:%s/<\/i><i>//g
+"#:%s/<td><\/td>/<td><br><\/td>/g
+"#:%s/<\/\{0,1}span.\{-}>//g
+"
+""$HOME/"$1" | grep "$2" | sort -n | uniq
+"""""""""""""""""""""""""""""""""
+"       SessionOpen:
+"""""""""""""""""""""""""""""""""
+" OO
+" p
+"
+"session
+"let g:session_autosave='yes'
+"let g:session_autoload='no'
+    " Session List {
+        set sessionoptions=blank,buffers,curdir,folds,tabpages,winsize
+        "nmap <Tab>l :SessionList<CR>
+        "nmap <leader>ss :SessionSave<CR>
+    " }
+    "
+"Fcunctions
+    "CloseSession
+    "DeleteSession
+    "EditSession
+    "EditSessionExtra
+    "ListSessions
+    "OpenSession
+    "RestoreDefaults
+    "SaveSession
+    "SaveSessionAs
+    "SessionOpenComplete
+    "ShowLastSession
 
-"F9"
-    " SessionOpen:
-nnoremap <silent> <C-F9> :SessionSave<CR>
-nnoremap <silent> <S-F9> :SessionList<CR>
-nnoremap <M-F9> :SessionOpen
-"nnoremap <C-F9> :SessionSaveAs
+ "commands
+    "SessionClose
+    "SessionList
+    "SessionOpen
+    "SessionOpenLast
+    "SessionSave
+    "SessionSaveAs
+    "SessionShowLast
+
+
+
+""function to strip trailing whitespace from all lines
+"function! <SID>StripTrailingWhitespaces()
+    "" Preparation: save last search, and cursor position.
+    "let _s=@/
+    "let l = line(".")
+    "let c = col(".")
+    "" Do the business:
+    "%s/\s\+$//e
+    "" Clean up: restore previous search history, and cursor position
+    "let @/=_s
+    "call cursor(l, c)
+"endfunction
+
+""ui appearance
+""===============================
+"set t_Co=256 "use 256 colours in terminal
+""set t_AB=^[[48;5;%dm "fix terminal colors
+""set t_AF=^[[38;5;%dm "fix terminal colors
+""set background=dark
+"colors SolarizedLight "molokai 
+"set guifont=Ubuntu\ Mono\ 13
+"set ts=4 softtabstop=4 shiftwidth=4 expandtab
+"set guioptions-=T  "remove toolbar
+"set lines=50 "Open window with a height of X lines
+"set columns=160 "Open window with a width of X columns
+""visual right-margin guide at 80 chars
+"set colorcolumn=80
+""Turn on line numbers
+"set number
+""Toggle line numbers and fold column for easy copying
+"nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+
+
+
 

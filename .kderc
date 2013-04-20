@@ -1,0 +1,9 @@
+[General]
+activeFont=Ubuntu,9,-1,5,50,0,0,0,0,0
+desktopFont=Ubuntu,9,-1,5,50,0,0,0,0,0
+fixed=Monospace,9,-1,5,50,0,0,0,0,0
+font=Ubuntu,12,-1,5,50,0,0,0,0,0
+menuFont=Ubuntu,9,-1,5,50,0,0,0,0,0
+smallestReadableFont=Ubuntu,8,-1,5,50,0,0,0,0,0
+taskbarFont=Ubuntu,9,-1,5,50,0,0,0,0,0
+toolBarFont=Ubuntu,5,-1,5,50,0,0,0,0,0
