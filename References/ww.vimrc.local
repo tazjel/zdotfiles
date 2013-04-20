@@ -1,5 +1,5 @@
-"Modeline and Notes {
-vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+"Modeline and Notes     Fold"
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
 "
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
@@ -7,25 +7,12 @@ vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker s
 "    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
 "    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
 "
+"
 "   This is the personal .vimrc file of Ahmed Alghamdi.
 "   While much of it is beneficial for general use, I would
 "   recommend picking out the parts you want and understand.
 "
 "   This is a mirror of :http://spf13.com
-" }
-set t_Co=256 "use 256 colours in terminal
-set nocompatible "necessary for project plugin
-set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
-set clipboard=unnamedplus
-set encoding=utf-8
-
-"automatically re-source .vimrc when file is changed
-:au! BufWritePost $MYVIMRC source $MYVIMRC
-
-source $VIMRUNTIME/mswin.vim
-
-
-
 set foldmethod=manual
 set t_Co=256 "use 256 colours in terminal
 set nocompatible "necessary for project plugin
@@ -51,7 +38,6 @@ map <C-c> "+y<CR>
 nnoremap <silent> W :w<cr>
 "close"
 nnoremap <silent> ; :q!<cr>
-"vnnoremap <silent> ;; :wq!
 
 "==================================="
 "            F[1-12]
@@ -73,6 +59,8 @@ endfun
 
 "vnoremap <C-F3> y<C-W><C-W>G$]P<C-W><C-W>
 ""verbose map "F4
+
+                                                "diff"
 map <F3> ]c
 map <s-F3> [c
 map <C-F3> dp
@@ -81,7 +69,7 @@ map <M-F3> do
                                                 "commenter"
 ""map <F1> ,cc
 map <F1> ,c<Space>
-""verbose map "F4
+
 
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
@@ -98,14 +86,14 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
-nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 
  "substitute 
-map <F7> :%s//gc<Left><Left><Left>
+
+map <F7> :m
+"map <F7> :%s//gc<Left><Left><Left>
 map <F8> :%s/<[^>]*>//gi<cr>
 
-nnoremap <silent> WW VY<C-W><C-W>Gp<C-W><C-W>
 
 "F5"
     " source vimrc

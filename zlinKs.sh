@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-#  3
+#  2
 
 endpath="$HOME/zdotfiles"
 
@@ -30,16 +30,9 @@ today=`date +%Y%m%d`
 for i in $HOME/.vimrc.local $HOME/.zshrc $HOME/.oh-my-zsh/lib/aliases.zsh $HOME/.vimrc.localw $HOME/.bash_aliases $HOME/.bash_history $HOME/.onboard/layouts/w.onboard $HOME/.zsh_history $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
 
-if [ ! -e $endpath/.git ]; then
-    echo "clone zdotfiles "
-    git clone --recursive http://github.com/tazjel/zdotfiles.git $endpath
-else
-    echo "updating tazjel - zdotfiles"
-    cd $endpath && git pull
-fi
-
 
 echo "setting up symlinks"
+
 # vim
 ########################################
 lnif $endpath/.vimrc.localw $HOME/.vimrc.localw
@@ -61,14 +54,6 @@ lnif $endpath/.profile  $HOME/.profile
 ########################################
 
 ########################################
-if [ ! -d $endpath/.vim/bundle ]; then
-    mkdir -p $endpath/.vim/bundle
-fi
-
-if [ ! -e $HOME/.vim/bundle/vundle ]; then
-    echo "Installing Vundle"
-    git clone http://github.com/gmarik/vundle.git $HOME/.vim/bundle/vundle
-fi
 
 ########################################
 
