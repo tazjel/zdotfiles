@@ -45,8 +45,12 @@ fi
 
 ########################################
 echo "setting up spf13"
+git clone --recursive -b 3.0-new http://github.com/taxilian/spf13-vim.git $endpath
+
 ########################################
 echo "setting up oh-my-zsh"
+
+wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
 ########################################
 echo "setting up symlinks"
 ########################################
