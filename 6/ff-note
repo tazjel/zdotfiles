@@ -1,0 +1,2 @@
+# Notepad in a browser {{{2
+firefox 'data:text/html, <html contenteditable>'

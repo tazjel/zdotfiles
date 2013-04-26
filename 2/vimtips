@@ -1,37 +1,4 @@
-
-Best of VIM Tips, gVIM's Key Features zzapper
-
- 
-
-
-
-
-
-
-Best of Vim Tips
-zzapper (zzapper) 15 Years of Vi + 7+ years of Vim and still learning
-01Feb13 : Last Update (Now in VIM Help Format :h helptags)
-### These Tips are now being maintained at zzapper.co.uk/vimtips.html 
-
-
-
-
-
-
-
-Tips Home
-Vim Tips Blog (NEW)
-ZSH
-Cygwin
-VimTools
-Buy Vim Book Support VIM
-Submit to Social Websites
-
-
-
-
-__BEGIN__
-
+_BEGIN__
 *vimtips.txt*	For Vim version 7.3.  
 ------------------------------------------------------------------------------
 " new items marked [N] , corrected items marked [C]
@@ -46,7 +13,7 @@ __BEGIN__
 /fred\_s*joe/               : any whitespace including newline [C]
 /fred\|joe                  : Search for FRED OR JOE
 /.*fred\&.*joe              : Search for FRED AND JOE in any ORDER!
-/\<;fred\>/                  : search for fred but not alfred or frederick [C]
+/\<fred\>/                  : search for fred but not alfred or frederick [C]
 /\<\d\d\d\d\>               : Search for exactly 4 digit numbers
 /\D\d\d\d\d\D               : Search for exactly 4 digit numbers
 /\<\d\{4}\>                 : same thing
@@ -410,15 +377,13 @@ set wak=no       : :h winaltkeys
 <BAR>            : | pipe
 <BACKSPACE>      : backspace
 <SILENT>         : No hanging shell window
-"display RGB colour under the cursor eg #445588
+#display RGB colour under the cursor eg #445588
 :nmap <leader>c :hi Normal guibg=#<c-r>=expand("<cword>")<cr><cr>
 map <f2> /price only\\|versus/ :in a map need to backslash the \
-" type table,,, to get <table></table>       ### Cool ###
+# type table,,, to get <table></table>       ### Cool ###
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 " list current mappings of all your function keys
 :for i in range(1, 12) | execute("map <F".i.">") | endfor   [N]
-" for your .vimrc
-:cab ,f :for i in range(1, 12) \| execute("map <F".i.">") \| endfor
 ----------------------------------------
 " Simple PHP debugging display all variables yanked into register a
 iab phpdb exit("<hr>Debug <C-R>a  ");
@@ -838,14 +803,14 @@ endfunction
 " Digraphs (non alpha-numerics)
 :digraphs                         : display table
 :h dig                            : help
-i<C-K>e'                          : enters é
-i<C-V>233                         : enters é (Unix)
-i<C-Q>233                         : enters é (Win32)
+i<C-K>e'                          : enters Ã©
+i<C-V>233                         : enters Ã© (Unix)
+i<C-Q>233                         : enters Ã© (Win32)
 ga                                : View hex value of any character
 #Deleting non-ascii characters (some invisible)
 :%s/[\x00-\x1f\x80-\xff]/ /g      : type this as you see it
 :%s/[<C-V>128-<C-V>255]//gi       : where you have to type the Control-V
-:%s/[€-ÿ]//gi                     : Should see a black square & a dotted y
+:%s/[â‚¬-Ã¿]//gi                     : Should see a black square & a dotted y
 :%s/[<C-V>128-<C-V>255<C-V>01-<C-V>31]//gi : All pesky non-asciis
 :exec "norm /[\x00-\x1f\x80-\xff]/"        : same thing
 #Pull a non-ascii character onto search bar
@@ -1033,6 +998,6 @@ VIM Webring
 VimTips PDF Version (PRINTABLE!)
 Vimtips in Belarusian 
 ----------------------------------------
-" : commands to neutralise 
-
-
+" : commands to neutralise < for HTML display and publish
+" use yy@" to execute following commands
+:w!|sav! vimtips.html|:/^__BEGIN__/,/^__END_

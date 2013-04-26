@@ -1,4 +1,4 @@
-alias findInHistory="history |grep "
+alias hh="history |grep "
 
 alias debinstall="sudo dpkg -i "
 
@@ -8,6 +8,7 @@ n (){
 
 alias la='ls -lah --color=auto'
 
+alias ls ="ls -la --color=auto"
 alias ls ="ls -la --color=auto"
 
 # get rid of command not found
@@ -28,7 +29,7 @@ i() {
 }
 
 alias update-aliases="wget -q -O - \"$@\" https://alias.sh/user/$ALIAS_SH_USER_ID/alias > ~/.zsh_alias_sh && source ~/.zsh_alias_sh"
-
+bash-vi-editing-mode-cheat-sheet.pdfbash-vi-editing-mode-cheat-sheet.pdf
 alias update-aliases="wget -q -O - \"$@\" https://alias.sh/user/$ALIAS_SH_USER_ID/alias > ~/.zsh_alias_sh && source ~/.oh-my-zsh/lib/aliases.zsh"
 
 alias listips='nmap -sP 192.168.2.0/24'
