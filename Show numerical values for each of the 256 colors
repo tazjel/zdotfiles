@@ -1,0 +1,16 @@
+# Show numerical values for each of the 256 colors in bash for bold and normal fonts {{{2
+for code in $(seq -w 0 255); do for attr in 0 1; do printf "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m" "\e[m"; done; done | column -c $((COLUMNS*2))
+
+for count in $(seq 2 1001); do espeak "$count sheeps";sleep 2;done
+# Generate random number with shuf {{{2
+seq 10| shuf | head -1
+# List prime numbers from 2 to 100 {{{2
+seq 2 100 | factor | sed '/ .* / d ; s/:.*//'
+# Bingo-like raffle {{{2
+for i in $(seq 1 100 | sort -R); do echo $i; sleep 5; done
+
+# Look for free ip's in a given /24 subnet. {{{2
+# Alarmclock  function makes usage of a BEL (\a) character. {{{2
+alarmclock() {  [ $1 ] || echo Parameter TIME is missing. 1>&2 && return 1 ;  ( sleep $1  ; for x in 9 8 7 6 5 4 3 2 1 ; do for y in `seq 0 $[ 10 - $x ] ` ; do printf "\a"; sleep 0.$x ; done ; done ) & }
+SUBNET="192.168.41" ; diff -y <(nmap -sP -n ${SUBNET}.0/24 | grep ${SUBNET}. | awk '{print $5}' | sort -t"." -k4 -n) <(for i in $(seq 1 254); do echo ${SUBNET}.$i; done)
+
