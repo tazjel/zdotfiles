@@ -1,0 +1,386 @@
+
+DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
+
+Is a useful one-liner which will give you the full directory name of the script no matter where it is being called from
+
+These will work as long as the last component of the path used to find the script is not a symlink (directory links are OK). If you want to also resolve any links to the script itself, you need a multi-line solution:
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+  SOURCE="$(readlink "$SOURCE")"
+  [[ $SOURCE != /* ]] && SOURCE="$DIR/$SOURCE" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+done
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+
+This last one will work with any combination of aliases, source, bash -c, symlinks, etc.
+
+Beware: if you cd to a different directory before running this snippet, the result may be incorrect! Also, watch out for $CDPATH gotchas.
+
+To understand how it works, try running this more verbose form:
+
+#!/bin/bash
+
+SOURCE="${BASH_SOURCE[0]}"
+while [ -h "$SOURCE" ]; do # resolve $SOURCE until the file is no longer a symlink
+  TARGET="$(readlink "$SOURCE")"
+  if [[ $SOURCE == /* ]]; then
+    echo "SOURCE '$SOURCE' is an absolute symlink to '$TARGET'"
+    SOURCE="$TARGET"
+  else
+    DIR="$( dirname "$SOURCE" )"
+    echo "SOURCE '$SOURCE' is a relative symlink to '$TARGET' (relative to '$DIR')"
+    SOURCE="$DIR/$TARGET" # if $SOURCE was a relative symlink, we need to resolve it relative to the path where the symlink file was located
+  fi
+done
+echo "SOURCE is '$SOURCE'"
+RDIR="$( dirname "$SOURCE" )"
+DIR="$( cd -P "$( dirname "$SOURCE" )" && pwd )"
+if [ "$DIR" != "$RDIR" ]; then
+  echo "DIR '$RDIR' resolves to '$DIR'"
+fi
+echo "DIR is '$DIR'"
+
+And it will print something like:
+
+SOURCE './scriptdir.sh' is a relative symlink to 'sym2/scriptdir.sh' (relative to '.')
+SOURCE is './sym2/scriptdir.sh'
+DIR './sym2' resolves to '/home/ubuntu/dotfiles/fo fo/real/real1/real2'
+DIR is '/home/ubuntu/dotfiles/fo fo/real/real1/real2'
+
+share|edit
+	
+edited 2 days ago
+
+	
+community wiki
+
+13 revs, 9 users 41%
+Dave Dopson
+	
+12 	 
+	
+Even better: DIR=$(cd $(dirname "$0"); pwd) Will work with spaces and other weird characters – Aaron Digulla Mar 31 '09 at 15:29
+173 	 
+	
+Even better: DIR="$( cd "$( dirname "$0" )" && pwd )" Quote everything so that no strange characters can cause havoc. – Matt Tardiff Sep 3 '10 at 6:47
+17 	 
+	
+The original code for this answer was: DIRECTORY=$(cd dirname $0 && pwd). I updated the code to Matt Tardiff's version which deals with spaces and special characters. This way people who copy and paste from the answer won't be caught off guard if they run into that use case. – Alan W. Smith Jul 15 '11 at 15:54
+16 	 
+	
+Does not work when invoking the script with source or '.': source ~/Work/test.sh --> my dir is . – gatopeich Aug 5 '11 at 11:44
+8 	 
+	
+The quotes are a good idea, but the ones around the assignment are unnecessary, i.e. you can get away with: DIR=$( cd "$( dirname "$0" )" && pwd ) – wds Aug 25 '11 at 9:48
+show 26 more comments
+up vote 216 down vote
+	
+
+Use dirname:
+
+#!/bin/bash
+echo "The script you are running has basename `basename $0`, dirname `dirname $0`"
+echo "The present working directory is `pwd`"
+
+using pwd alone will not work if you are not running the script from the directory it is contained in.
+
+[matt@server1 ~]$ pwd
+/home/matt
+[matt@server1 ~]$ ./test2.sh
+The script you are running has basename test2.sh, dirname .
+The present working directory is /home/matt
+[matt@server1 ~]$ cd /tmp
+[matt@server1 tmp]$ ~/test2.sh
+The script you are running has basename test2.sh, dirname /home/matt
+The present working directory is /tmp
+
+share|edit
+	
+edited Sep 12 '12 at 19:31
+
+	
+community wiki
+
+2 revs, 2 users 90%
+matt b
+	
+10 	 
+	
+For portability beyond bash, $0 may not always be enough. You may need to substitute "type -p $0" to make this work if the command was found on the path. – Darron Oct 23 '08 at 20:15
+3 	 
+	
+@Darron: you can only use type -p if the script is executable. This can also open a subtle hole if the script is executed using bash test2.sh and there is another script with the same name executable somewhere else. – D.Shawley Feb 5 '10 at 12:18
+13 	 
+	
+@Darron: but since the question is tagged bash and the hash-bang line explicitly mentions /bin/bash I'd say it's pretty safe to depend on bashisms. – Joachim Sauer Jun 11 '10 at 12:56
+4 	 
+	
++1, but the problem with using dirname $0 is that if the directory is the current directory, you'll get .. That's fine unless you're going to change directories in the script and expect to use the path you got from dirname $0 as though it were absolute. To get the absolute path: pushd `dirname $0` > /dev/null, SCRIPTPATH=`pwd`, popd > /dev/null: pastie.org/1489386 (But surely there's a better way to expand that path?) – T.J. Crowder Jan 23 '11 at 10:30
+1 	 
+	
+@T.J. Crowder I'm not sure sure dirname $0 is a problem if you assign it to a variable and then use it to launch a script like $dir/script.sh; I would imagine this is the use case for this type of thing 90% of the time. ./script.sh would work fine. – matt b Jan 24 '11 at 12:55
+show 4 more comments
+up vote 82 down vote
+	
+
+SCRIPT_PATH="${BASH_SOURCE[0]}";
+if ([ -h "${SCRIPT_PATH}" ]) then
+  while([ -h "${SCRIPT_PATH}" ]) do SCRIPT_PATH=`readlink "${SCRIPT_PATH}"`; done
+fi
+pushd . > /dev/null
+cd `dirname ${SCRIPT_PATH}` > /dev/null
+SCRIPT_PATH=`pwd`;
+popd  > /dev/null
+
+Works for all versions,including
+
+    when called via multple depth soft link,
+    when the file it
+    when script called by command "source" aka . (dot) operator.
+    when arg $0 is modified from caller.
+    "./script"
+    "/full/path/to/script"
+    "/some/path/../../another/path/script"
+    "./some/folder/script"
+
+Alternatively, if the bash script itself is a relative symlink you want to follow it and return the full path of the linked-to script:
+
+pushd . > /dev/null
+SCRIPT_PATH="${BASH_SOURCE[0]}";
+if ([ -h "${SCRIPT_PATH}" ]) then
+  while([ -h "${SCRIPT_PATH}" ]) do cd `dirname "$SCRIPT_PATH"`; SCRIPT_PATH=`readlink "${SCRIPT_PATH}"`; done
+fi
+cd `dirname ${SCRIPT_PATH}` > /dev/null
+SCRIPT_PATH=`pwd`;
+popd  > /dev/null
+
+SCRIPT_PATH is given in full path, no matter how it is called.
+Just make sure you locate this at start of the script.
+
+This comment and code Copyleft, selectable license under the GPL2.0 or later or CC-SA 3.0 (CreativeCommons Share Alike) or later. (c) 2008. All rights reserved. No warranty of any kind. You have been warned.
+http://www.gnu.org/licenses/gpl-2.0.txt
+http://creativecommons.org/licenses/by-sa/3.0/
+18eedfe1c99df68dc94d4a94712a71aaa8e1e9e36cacf421b9463dd2bbaa02906d0d6656
+share|edit
+	
+edited Mar 25 '12 at 22:10
+
+	
+community wiki
+
+6 revs, 4 users 62%
+user25866
+	
+12 	 
+	
+Thanks, I was hoping at least one answer would help with sourced scripts. – Joshua Swink Oct 29 '08 at 9:02
+2 	 
+	
+Nice! Could be made shorter replacing "pushd[...] popd /dev/null" by SCRIPT_PATH=readlink -f $(dirname "${VIRTUAL_ENV}"); – e-satis Nov 29 '09 at 11:34
+1 	 
+	
+This is by far the most "stable" version I've seen. Thank you! – Tomer Gabel Jan 26 '10 at 8:19
+3 	 
+	
+And instead of using pushd ...; would not it be better to use $(cd dirname "${SCRIPT_PATH}" && pwd)? But anyway great script! – ovanes Aug 18 '10 at 10:16
+2 	 
+	
+Isn't the if redundant? while is testing the same thing... – gatopeich Aug 5 '11 at 13:28
+show 6 more comments
+up vote 57 down vote
+	
+
+The dirname command is the most basic, simply parsing the path up to the filename off of the $0 (script name) variable:
+
+dirname $0
+
+But, as matt b pointed out, the path returned is different depending on how the script is called. pwd doesn't do the job because that only tells you what the current directory is, not what directory the script resides in. Additionally, if a symbolic link to a script is executed, you're going to get a (probably relative) path to where the link resides, not the actual script.
+
+Some others have mentioned the readlink command, but at it's simplest, you can use:
+
+dirname $(readlink -f $0)
+
+readlink will resolve the script path to an absolute path from the root of the filesystem. So, any paths containing single or double dots, tildes and/or symbolic links will be resolved to a full path.
+
+Here's a script demonstrating each of these, whatdir.sh:
+
+#!/bin/bash
+echo "pwd: `pwd`"
+echo "\$0: $0"
+echo "basename: `basename $0`"
+echo "dirname: `dirname $0`"
+echo "dirname/readlink: $(dirname $(readlink -f $0))"
+
+Running this script in my home dir, using a relative path:
+
+>>>$ ./whatdir.sh 
+pwd: /Users/phatblat
+$0: ./whatdir.sh
+basename: whatdir.sh
+dirname: .
+dirname/readlink: /Users/phatblat
+
+Again, but using the full path to the script:
+
+>>>$ /Users/phatblat/whatdir.sh 
+pwd: /Users/phatblat
+$0: /Users/phatblat/whatdir.sh
+basename: whatdir.sh
+dirname: /Users/phatblat
+dirname/readlink: /Users/phatblat
+
+Now changing directories:
+
+>>>$ cd /tmp
+>>>$ ~/whatdir.sh 
+pwd: /tmp
+$0: /Users/phatblat/whatdir.sh
+basename: whatdir.sh
+dirname: /Users/phatblat
+dirname/readlink: /Users/phatblat
+
+And finally using a symbolic link to execute the script:
+
+>>>$ ln -s ~/whatdir.sh whatdirlink.sh
+>>>$ ./whatdirlink.sh 
+pwd: /tmp
+$0: ./whatdirlink.sh
+basename: whatdirlink.sh
+dirname: .
+dirname/readlink: /Users/phatblat
+
+share|edit
+	
+answered Sep 26 '09 at 20:38
+
+	
+community wiki
+
+phatblat
+	show 1 more comment
+up vote 19 down vote
+	
+
+You can use $BASH_SOURCE
+
+#!/bin/bash
+
+scriptdir=`dirname $BASH_SOURCE`
+
+Note that you need to use #!/bin/bash and not #!/bin/sh since its a bash extension
+share|edit
+	
+answered Sep 12 '08 at 20:50
+
+	
+community wiki
+
+Mr Shark
+	
+2 	 
+	
+When I do ./foo/script, then $(dirname $BASH_SOURCE) is ./foo. – Till Oct 25 '10 at 17:06
+show 1 more comment
+up vote 11 down vote
+	
+
+I don't think this is as easy as others have made it out to be. pwd doesn't work, as the current dir is not necessarily the directory with the script. $0 doesn't always have the info either. Consider the following three ways to invoke a script.
+
+./script
+
+/usr/bin/script
+
+script
+
+In the first and third ways $0 doesn't have the full path info. In the second and third, pwd do not work. The only way to get the dir in the third way would be to run through the path and find the file with the correct match. Basically the code would have to redo what the OS does.
+
+One way to do what you are asking would be to just hardcode the data in the /usr/share dir, and reference it by full path. Data shoudn't be in the /usr/bin dir anyway, so this is probably the thing to do.
+share|edit
+	
+edited Dec 2 '11 at 14:56
+
+	
+community wiki
+
+2 revs, 2 users 83%
+Jim
+	
+up vote 7 down vote
+	
+
+It is not possible to find the location reliably in 100% of all cases!
+
+Greg Wooledge ('greycat' on freenode #bash IRC channel) explains this very thoroughly in the Bash FAQ at the GreyCatWiki
+share|edit
+	
+answered Jan 25 '11 at 14:35
+
+	
+community wiki
+
+bakotaco
+	
+up vote 4 down vote
+	
+
+pwd can be used to find the current working directory, and dirname to find the directory of a particular file (command that was run, is $0, so dirname $0 should give you the directory of the current script).
+
+However, dirname gives precisely the directory portion of the filename, which more likely then not is going to be relative to the current working directory. If your script needs to change directory for some reason, then the output from dirname becomes meaningless.
+
+I suggest the following:
+
+#!/bin/bash
+
+reldir=`dirname $0`
+cd $reldir
+directory=`pwd`
+
+echo "Directory is $directory"
+
+This way, you get an absolute, rather then relative directory.
+
+Since the script will be run in a seperate bash instance, there is no need to restore the working directory afterwards, but if you do want to change back in your script for some reason, you can easily assign the value of pwd to a variable before you change directory, for future use.
+
+Although just
+
+cd `dirname $0`
+
+solves the specific scenario in the question, I find having the absolute path to more more useful generally.
+share|edit
+	
+answered Sep 15 '08 at 19:55
+
+	
+community wiki
+
+SpoonMeiser
+	show 1 more comment
+up vote 4 down vote
+	
+
+Here is a POSIX compliant one-liner:
+
+SCRIPT_PATH=`dirname "$0"`; SCRIPT_PATH=`eval "cd \"$SCRIPT_PATH\" && pwd"`
+
+# test
+echo $SCRIPT_PATH
+
+share|edit
+	
+edited Apr 15 at 7:28
+
+	
+community wiki
+
+2 revs, 2 users 91%
+lamawithonel
+	show 1 more comment
+up vote 4 down vote
+	
+
+This is linux specific, but you could use:
+
+SELF=$(readlink /proc/$$/fd/255)
+
+
