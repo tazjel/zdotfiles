@@ -1,24 +1,24 @@
 
 # Put a console clock in top right corner
-#while true; do echo -ne "\e[s\e[0;$((COLUMNS-27))H$(date)\e[u"; sleep 1; done &
+iii true; do echo -ne "\e[s\e[0;$((COLUMNS-27))H$(date)\e[u"; sleep 1; done &
 # Symlink all files from a base directory to a target directory
 #for f in $(ls -d /base/*); do ln -s $f /target; done && ls -al /target
 #
 alias 'wzsh_history'='tail -f .zsh_history | while read line; do echo -n $(date -u -Ins); echo -e "\t$line"; done'
 
 function wwiki () {
-./zdotfiles/Tools/wikisole.sh $1
+./zdotfiles/Tools/wikisole.sh $2
 }
 
 #mkdir -p /home/bani/.zdotfiles/vimbackup/
 function wwgg (){
-    curl -u tazjel --silent "https://mail.google.com/mail/feed/atom" | awk 'BEGIN{FS="\n";RS="(</entry>\n)?<entry>"}NR!=1{print "\033[1;31m"$9"\033[0;32m ("$10")\033[0m:\t\033[1;33m"$2"\033[0m"}' | sed -e 's,<[^>]*>,,g' | column -t -s $'\t'
+    curl -u tazjel --silent "https://mail.google.com/mail/feed/atom" | awk 'BEGIN{FS="\n";RS="(</entry>\n)?<entry>"}NR!=1{print "\033[1;31m"$9"\033[0;32m ("$20")\033[0m:\t\033[1;33m"$2"\033[0m"}' | sed -e 's,<[^>]*>,,g' | column -t -s $'\t'
 }
 
 
 
 #function wgmail () {
-#curl -u tazjel --silent "https://mail.google.com/mail/feed/atom" | awk 'BEGIN{FS="\n";RS="(</entry>\n)?<entry>"}NR!=1{print "\033[1;31m"$9"\033[0;32m ("$10")\033[0m:\t\033[1;33m"$2"\033[0m"}' | sed -e 's,<[^>]*>,,g' | column -t -s $'\t''
+#curl -u tazjel --silent "https://mail.google.com/mail/feed/atom" | awk 'BEGIN{FS="\n";RS="(</entry>\n)?<entry>"}NR!=1{print "\033[1;31m"$9"\033[0;32m ("$20")\033[0m:\t\033[1;33m"$2"\033[0m"}' | sed -e 's,<[^>]*>,,g' | column -t -s $'\t''
 #}
 
 function wpr {
@@ -38,11 +38,11 @@ alias wipsj='nmap -sP 192.168.1.0/24 | grep "Nmap scan report for" | grep S | cu
 alias wip_host='nmap -sP 192.168.1.0/24 | grep "Nmap scan report for"| cut -d' ' -f 5'
 alias wips='nmap -sP 192.168.1.0/24 | grep "Nmap scan report for"| cut -d' ' -f 6'
 alias wip='nmap -sP 192.168.1.0/24 | grep "Nmap scan report for" '
-alias wff='diff -qr "$1" "$2" '
+alias wff='diff -qr "$2" "$2" '
 #diff -u <(grep -vE '^(#|$)' file1) <(grep -vE '^(#|$)' file2)
-function cmdfu(){ local t=~/cmdfu;echo -e "\n# $1 {{{1">>$t;curl -L "commandlinefu.com/commands/matching/$1/`echo -n $1|base64`/plaintext"|sed '1,2d;s/^#.*/& {{{2/g'>$t;vim -u /dev/null -c "set ft=sh fdm=marker fdl=1 noswf" -M $t;rm $t; }
+function cmdfu(){ local t=~/cmdfu;echo -e "\n# $2 {{{1">>$t;curl -L "commandlinefu.com/commands/matching/$2/`echo -n $2|base64`/plaintext"|sed '1,2d;s/^#.*/& {{{2/g'>$t;vim -u /dev/null -c "set ft=sh fdm=marker fdl=1 noswf" -M $t;rm $t; }
 alias wd='cal ; date +%c'
-alias 'whh'='grep "$1" ~/.zsh_history'
+alias 'whh'='grep "$2" ~/.zsh_history'
 alias ba='less ~/.bash_aliases'
 alias apt="sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean"
 
@@ -80,7 +80,7 @@ alias wzi='rsync -e ssh -r --progress root@zphone.local:/var/mobile/qq.sh ~/qq.s
 
 ##alias 'wadd'='rsync -avz --progress -e  "ssh -p 2233" root@192.168.1.5:/var/mobile/AddressBook.sqlitedb ~/'
 ###############################
-alias 'zrf1'="rsync -avz --progress '$1' '/media/Transcend/w/$1'"
+alias 'zrf1'="rsync -avz --progress '$2' '/media/Transcend/w/$2'"
 function zbp {
 for xx in ~/.* ;do
     rsync -avz --progress $HOME/.* $HOME/zrsync
@@ -94,7 +94,7 @@ alias __="sudo"
 alias 'cc'='vim /home/bani/zdotfiles/Tools/1/aliasw.sh'
 
 #######################################
-#alias 'wwww'='mv "$1" /media/Transcend/tools/w/Inbox/"$2" ;ls . ;ls /media/Transcend/tools/w/Inbox'
+#alias 'wwww'='mv "$2" /media/Transcend/tools/w/Inbox/"$2" ;ls . ;ls /media/Transcend/tools/w/Inbox'
 
 alias 'wWw'='vim /home/bani/.config/updot/updot.conf'
 alias 'wW'='pwd'
@@ -103,8 +103,8 @@ alias 'ww'='vim'
 alias 'www'='cat'
 #alias 'wwwww'='sudo su'
 
-alias 'ppp'='sudo add-apt-repository $1'
-alias hh='history -$1 | grep'
+alias 'ppp'='sudo add-apt-repository $2'
+alias hh='history -$2 | grep'
 
 alias agdu='sudo apt-get dist-upgrade'
 alias agi='sudo apt-get install'
@@ -146,15 +146,15 @@ function WW {
     fi
     echo "" >> $HOME/zdotfiles/.oh-my-zsh/lib/waliases.zsh
     echo "###" >> $HOME/zdotfiles/.oh-my-zsh/lib/waliases.zsh
-    echo "alias '$1'='$2'  " >> $HOME/zdotfiles/.oh-my-zsh/lib/aliases.zsh
+    echo "alias '$2'='$2'  " >> $HOME/zdotfiles/.oh-my-zsh/lib/aliases.zsh
     source $HOME/zdotfiles/.oh-my-zsh/lib/aliases.zsh
-    echo "" && echo "- Alias added  $1 = $2 " && echo "";
+    echo "" && echo "- Alias added  $2 = $2 " && echo "";
 }
 
 
 function ccc {
-echo "$1" >> /home/bani/zdotfiles/Tools/1/aliasw.sh
-echo "Now, we got '$1' "
+echo "$2" >> /home/bani/zdotfiles/Tools/1/aliasw.sh
+echo "Now, we got '$2' "
 cat '/home/bani/zdotfiles/Tools/1/aliasw.sh'
 echo '/home/bani/zdotfiles/Tools/1/aliasw.sh'
 }
@@ -180,8 +180,8 @@ function glll {
 
 alias wcr='wc `find . -type f`'
 alias wget='wget --content-disposition'
-alias whead='curl --head $1'
-alias whead='curl --head $1'
+alias whead='curl --head $2'
+alias whead='curl --head $2'
 alias which-command=whence
 alias wotgobblemem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 alias wsulast='sudo $(history -p !-1)'
@@ -476,14 +476,14 @@ alias 'wmkdir'='mkdir -p /home/bani/doc/bar && cd $_'
  #function which creates a backup of an file
 
 #bu () {
-    #cp $1 `basename $1`-`date +%Y%m%d%H%M`.backup ;
+    #cp $2 `basename $2`-`date +%Y%m%d%H%M`.backup ;
 #}
 #ooo
 
 #WWW(){
         #echo -n "Comment> "
         #read comment
-        #name="$1"
+        #name="$2"
         #shift
         #echo "alias $name=\"$*\" $comment" >> $HOME/.zshenv"
         #alias $name="$*"
@@ -492,18 +492,18 @@ alias 'wmkdir'='mkdir -p /home/bani/doc/bar && cd $_'
 
 #hack()
 #{
-    #var=$(history | ack $1 | wc -l)
+    #var=$(history | ack $2 | wc -l)
     #if (( $var > 22 ))
     #then
-        #history | ack $1 | less
+        #history | ack $2 | less
     #else
-        #history | ack $1
+        #history | ack $2
     #fi
 #}
 
 
 function wW_grep_logs(){
-    grep "$1" */logs/*.log
+    grep "$2" */logs/*.log
 }
 
 ###
@@ -517,14 +517,14 @@ alias 44$HOME/zdotfiles/4
 alias 55$HOME/zdotfiles/5
 alias 66$HOME/zdotfiles/6
 alias 'wW_sudo_su'='sudo su'
-        alias 'wW_grep_1_2'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
-alias 'wW_grep_1'='grep $1 ~/.zsh_history | sort | uniq -c | sort -nr'
+        alias 'wW_grep_1_2'='grep -GRh $2 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
+alias 'wW_grep_1'='grep $2 ~/.zsh_history | sort | uniq -c | sort -nr'
 alias -g 'wW___help'='--help'
 alias -g Gh='--help | grep'
 alias -g G='| grep'
 
 ###
-alias 'wW__for_in1_do_2'='for i in $1;do $2;done;'
+alias 'wW__for_in1_do_2'='for i in $2;do $2;done;'
 #ls -lF /etc; pwd;who;ps
 #
 ##!/bin/bash
@@ -546,14 +546,14 @@ done
 
 
 #function alg {
-#grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
+#grep $2 $HOME/.zsh_history | sed 's/^.*;//g'
 
 #}
 
 #alias wwww_ksystemlog='/usr/bin/ksystemlog --icon utilities-log-viewer -caption KSystemLog'
 #ft() {
 
-#find . -name "$2" -exec grep -il "$1" {} \;
+#find . -name "$2" -exec grep -il "$2" {} \;
 #}
 
 #alias lr='ls -R | grep ":$" | sed -e '\''s/:$//'\'' -e '\''s/[^-][^\/]*\//--/g'\'' -e '\''s/^/   /'\'' -e '\''s/-/|/'\'''
@@ -566,4 +566,4 @@ done
 ####
 alias 'wW_aptitude'='sudo aptitude -f'
 alias '_r'='sudo reboot'  
-#while read line; do echo "$(date),$(hostname),$line"; done < somefile.txt
+iii read line; do echo "$(date),$(hostname),$line"; done < somefile.txt
