@@ -15407,7 +15407,7 @@ for i in `find -name '*oldname*'`; do "mv $i ${i/oldname/newname/}"; done
 find ~/Library/Application\ Support/Firefox/ -type f -name "*.sqlite" -exec sqlite3 {} VACUUM \;
 
 # List users with running processes
-ps aux | sed -n '/user/!s/\([^ ]\) .*/\1/p' | sort -u
+ps aux | sed -n '/USER/!s/\([^ ]\) .*/\1/p' | sort -u
 
 # Email yourself a quick message
 mailme(){ mailx -s "$@" $USER <<< "$@"; }
@@ -27433,3 +27433,5 @@ umount -t smbfs
 # What Type of Computer Do You Have?
 cat /sys/devices/virtual/dmi/id/board_name
 
+# combine `mkdir foo && cd foo`  into a single function `mcd foo`
+function mcd() {   [ -n "$1" ] && mkdir -p "$@" && cd "$1";   }
