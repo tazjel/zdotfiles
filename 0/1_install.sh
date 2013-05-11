@@ -57,4 +57,4 @@ echo "setting up symlinks"
 lnif $endpath/1/.zsh/.zshrc $HOME/.zshrc
 #lnif $endpath/1/.oh-my-zsh $HOME/.oh-my-zsh
 ########################################
-source $endpath/1/.zsh/.zshrc
+source $HOME/.zshrc

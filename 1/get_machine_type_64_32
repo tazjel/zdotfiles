@@ -1,0 +1,7 @@
+
+MACHINE_TYPE=x86_64
+if [  == 'x86_64' ]; then
+  # 64-bit stuff here
+else
+  # 32-bit stuff here
+fi
