@@ -20,9 +20,8 @@ set clipboard=unnamedplus
 set encoding=utf-8
 
 "automatically re-source .vimrc when file is changed
-:au! BufWritePost $MYVIMRC source $MYVIMRC
 
-source $VIMRUNTIME/mswin.vim
+"source $VIMRUNTIME/mswin.vim
 
 
 
@@ -74,10 +73,10 @@ endfun
 "vnoremap <C-F3> y<C-W><C-W>G$P<C-W><C-W>
 nnoremap <F4> :verbose map
 ""verbose map "F4
-map <F3> ]c
-map <s-F3> [c
-map <C-F3> dp
-map <M-F3> do
+"map <F3> ]c
+"map <s-F3> [c
+"map <C-F3> dp
+"map <M-F3> do
 
                                                 "commenter"
 ""map <F1> ,cc
@@ -112,7 +111,7 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 map <F7> :%s//gc<Left><Left><Left>
 map <F8> :%s/<[^>]*>//gi<cr>
 
-vnoremap <silent> <F10> y<C-W><C-W>Gp<C-W><C-W>
+vnoremap <F10> y<C-W><C-W>Gp<C-W><C-W>
 
 "F5"
     " source vimrc
@@ -125,5 +124,5 @@ nnoremap <silent> <S-F5> :SessionOpen zmap<CR>
 nnoremap <silent> <C-F9> :SessionSave<CR>
 nnoremap <silent> <S-F9> :SessionList<CR>
 nnoremap <M-F9> :SessionOpen
-"nnoremap <C-F9> :SessionSaveAs
+nnoremap <C-F9> :SessionSaveAs
 

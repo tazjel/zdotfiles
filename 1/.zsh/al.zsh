@@ -62,10 +62,9 @@ alf=$HOME/.oh-my-zsh/lib/aliases.zsh
 
 alias wal='cat $alf | grep'
 alias al='alias | grep'
-alias zz='vim $HOME/.oh-my-zsh/lib/aliases.zsh && source $HOME/.oh-my-zsh/lib/aliases.zsh'
+alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 
-alias zzzz=' vim $HOME/.zshrc'
-alias zzzzz='source $HOME/.zshrc'
+alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
 alias lh='ls -a | egrep "^\."'
 alias lhd='ls -A | egrep "^\." '
@@ -100,7 +99,7 @@ alias 'cc'='vim /home/bani/zdotfiles/Tools/1/aliasw.sh'
 
 alias 'wWw'='vim /home/bani/.config/updot/updot.conf'
 alias 'wW'='pwd'
-alias 'w'='ls -alt;echo $pwd;date'
+a``lias 'w'='ls -a;echo $pwd;date'
 alias 'ww'='vim'
 alias 'www'='cat'
 #alias 'wwwww'='sudo su'
