@@ -1,5 +1,5 @@
-source ~/zdotfiles/1/.zsh/aliases.zsh
-source ~/zdotfiles/1/.zsh/al.zsh
+#source ~/zdotfiles/1/.zsh/aliases.zsh
+#source ~/zdotfiles/1/.zsh/al.zsh
 source ~/zdotfiles/1/.zsh/checks.zsh
 source ~/zdotfiles/1/.zsh/colors.zsh
 source ~/zdotfiles/1/.zsh/completion.zsh
@@ -8,5 +8,5 @@ source ~/zdotfiles/1/.zsh/functions.zsh
 source ~/zdotfiles/1/.zsh/history.zsh
 source ~/zdotfiles/1/.zsh/prompt.zsh
 source ~/zdotfiles/1/.zsh/setopt.zsh
-source ~/zdotfiles/1/.zsh/zsh_history
+#source ~/zdotfiles/1/.zsh/zsh_history
 source ~/zdotfiles/1/.zsh/zsh_hooks.zsh

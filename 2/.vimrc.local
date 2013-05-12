@@ -112,7 +112,7 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 map <F7> :%s//gc<Left><Left><Left>
 map <F8> :%s/<[^>]*>//gi<cr>
 
-nnoremap <silent> WW VY<C-W><C-W>Gp<C-W><C-W>
+vnoremap <silent> <F10> y<C-W><C-W>Gp<C-W><C-W>
 
 "F5"
     " source vimrc

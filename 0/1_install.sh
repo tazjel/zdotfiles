@@ -1,8 +1,8 @@
 #!/usr/bin/env sh
-#  3
 
 ########################################
-endpath="$HOME/zdotfiles"
+zendpath="$HOME/zdotfiles"
+z1_endpath="$HOME/zdotfiles/1"
 
 warn() {
     echo "$1" >&2
@@ -26,35 +26,39 @@ lnif() {
 echo "Thanks for installing zdotfiles"
 
  #Backup existing .vim stuff
-echo "backing up current vim config"
+echo "backing up current zsh config"
 ########################################
+
+
+
+#@HOME
 today=`date +%Y%m%d`
 
 for i in $HOME/.zsh $HOME/.zshrc $HOME/.oh-my-zsh $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
 
-########################################
-if [ ! -e $endpath/.git ]; then
-    echo "clone zdotfiles "
-    git clone --recursive http://github.com/tazjel/zdotfiles.git $endpath
-else
-    echo "updating tazjel - zdotfiles"
-    cd $endpath && git pull
-fi
-
-
-########################################
-#echo "setting up oh-my-zsh"
-#wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh $endpath
+#########################################
+#if [ ! -e $zendpath/.git ]; then
+#    echo "clone zdotfiles "
+#    git clone --recursive http://github.com/tazjel/zdotfiles.git $zendpath
+#else
+#    echo "updating tazjel - zdotfiles"
+#    cd $zendpath && git pull
+#fi
+#
 
 ########################################
-echo "setting up symlinks"
+echo "setting up oh-my-zsh"
+wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+
+########################################
+#echo "setting up symlinks"
 ########################################
 
 ########################################
 # zshrc, aliases.zsh
 ########################################
-lnif $endpath/1/.zsh/.zshrc $HOME/.zshrc
-#lnif $endpath/1/.oh-my-zsh $HOME/.oh-my-zsh
+#lnif $endpath/1/.zsh/.zshrc $HOME/.zshrc
+##lnif $endpath/1/.oh-my-zsh $HOME/.oh-my-zsh
 ########################################
-source $HOME/.zshrc
+#source $HOME/.zshrc
