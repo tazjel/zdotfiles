@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg width="450.497mm" height="218.369mm"
+ xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"  version="1.2" baseProfile="tiny">
+<title>Qt Svg Document</title>
+<desc>Generated with Qt</desc>
+<defs>
+</defs>
+<g fill="none" stroke="black" stroke-width="1" fill-rule="evenodd" stroke-linecap="square" stroke-linejoin="bevel" >
+
+<g fill="none" stroke="#c0c0c0" stroke-opacity="1" stroke-dasharray="1,2" stroke-dashoffset="0" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M673,274.5 C673,292.449 658.449,307 640.5,307 C622.551,307 608,292.449 608,274.5 C608,256.551 622.551,242 640.5,242 C658.449,242 673,256.551 673,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M705,274.5 C705,310.122 676.122,339 640.5,339 C604.878,339 576,310.122 576,274.5 C576,238.878 604.878,210 640.5,210 C676.122,210 705,238.878 705,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M737,274.5 C737,327.795 693.795,371 640.5,371 C587.205,371 544,327.795 544,274.5 C544,221.205 587.205,178 640.5,178 C693.795,178 737,221.205 737,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M769,274.5 C769,345.469 711.469,403 640.5,403 C569.531,403 512,345.469 512,274.5 C512,203.531 569.531,146 640.5,146 C711.469,146 769,203.531 769,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M801,274.5 C801,363.142 729.142,435 640.5,435 C551.858,435 480,363.142 480,274.5 C480,185.858 551.858,114 640.5,114 C729.142,114 801,185.858 801,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M833,275 C833,381.039 746.815,467 640.5,467 C534.185,467 448,381.039 448,275 C448,168.961 534.185,83 640.5,83 C746.815,83 833,168.961 833,275 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M865,275 C865,398.712 764.488,499 640.5,499 C516.512,499 416,398.712 416,275 C416,151.288 516.512,51 640.5,51 C764.488,51 865,151.288 865,275 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M897,275 C897,416.385 782.161,531 640.5,531 C498.839,531 384,416.385 384,275 C384,133.615 498.839,19 640.5,19 C782.161,19 897,133.615 897,275 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M929,275 C929,434.058 799.834,563 640.5,563 C481.166,563 352,434.058 352,275 C352,115.942 481.166,-13 640.5,-13 C799.834,-13 929,115.942 929,275 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M961,275 C961,451.731 817.507,595 640.5,595 C463.493,595 320,451.731 320,275 C320,98.2689 463.493,-45 640.5,-45 C817.507,-45 961,98.2689 961,275 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M993,274.5 C993,468.628 835.18,626 640.5,626 C445.82,626 288,468.628 288,274.5 C288,80.3719 445.82,-77 640.5,-77 C835.18,-77 993,80.3719 993,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1025,274.5 C1025,486.301 852.853,658 640.5,658 C428.147,658 256,486.301 256,274.5 C256,62.6988 428.147,-109 640.5,-109 C852.853,-109 1025,62.6988 1025,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1057,274.5 C1057,503.974 870.527,690 640.5,690 C410.473,690 224,503.974 224,274.5 C224,45.0257 410.473,-141 640.5,-141 C870.527,-141 1057,45.0257 1057,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1089,274.5 C1089,521.647 888.424,722 641,722 C393.576,722 193,521.647 193,274.5 C193,27.3526 393.576,-173 641,-173 C888.424,-173 1089,27.3526 1089,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1121,274.5 C1121,539.321 906.097,754 641,754 C375.903,754 161,539.321 161,274.5 C161,9.67946 375.903,-205 641,-205 C906.097,-205 1121,9.67946 1121,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1153,274.5 C1153,556.994 923.77,786 641,786 C358.23,786 129,556.994 129,274.5 C129,-7.99365 358.23,-237 641,-237 C923.77,-237 1153,-7.99365 1153,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1185,274.5 C1185,574.667 941.443,818 641,818 C340.557,818 97,574.667 97,274.5 C97,-25.6668 340.557,-269 641,-269 C941.443,-269 1185,-25.6668 1185,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1217,274.5 C1217,592.34 959.116,850 641,850 C322.884,850 65,592.34 65,274.5 C65,-43.3399 322.884,-301 641,-301 C959.116,-301 1217,-43.3399 1217,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1249,274.5 C1249,610.013 976.789,882 641,882 C305.211,882 33,610.013 33,274.5 C33,-61.013 305.211,-333 641,-333 C976.789,-333 1249,-61.013 1249,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1281,274.5 C1281,627.686 994.462,914 641,914 C287.538,914 1,627.686 1,274.5 C1,-78.6861 287.538,-365 641,-365 C994.462,-365 1281,-78.6861 1281,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1313,274.5 C1313,645.359 1012.36,946 641.5,946 C270.641,946 -30,645.359 -30,274.5 C-30,-96.3592 270.641,-397 641.5,-397 C1012.36,-397 1313,-96.3592 1313,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1344,274.5 C1344,663.032 1029.26,978 641,978 C252.744,978 -62,663.032 -62,274.5 C-62,-114.032 252.744,-429 641,-429 C1029.26,-429 1344,-114.032 1344,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1376,274.5 C1376,680.705 1046.93,1010 641,1010 C235.071,1010 -94,680.705 -94,274.5 C-94,-131.705 235.071,-461 641,-461 C1046.93,-461 1376,-131.705 1376,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1408,274.5 C1408,698.379 1064.6,1042 641,1042 C217.398,1042 -126,698.379 -126,274.5 C-126,-149.379 217.398,-493 641,-493 C1064.6,-493 1408,-149.379 1408,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1440,274.5 C1440,716.052 1082.28,1074 641,1074 C199.724,1074 -158,716.052 -158,274.5 C-158,-167.052 199.724,-525 641,-525 C1082.28,-525 1440,-167.052 1440,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1472,274.5 C1472,733.725 1099.95,1106 641,1106 C182.051,1106 -190,733.725 -190,274.5 C-190,-184.725 182.051,-557 641,-557 C1099.95,-557 1472,-184.725 1472,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1504,274.5 C1504,751.398 1117.62,1138 641,1138 C164.378,1138 -222,751.398 -222,274.5 C-222,-202.398 164.378,-589 641,-589 C1117.62,-589 1504,-202.398 1504,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1536,274.5 C1536,769.071 1135.29,1170 641,1170 C146.705,1170 -254,769.071 -254,274.5 C-254,-220.071 146.705,-621 641,-621 C1135.29,-621 1536,-220.071 1536,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1568,274.5 C1568,786.744 1152.97,1202 641,1202 C129.032,1202 -286,786.744 -286,274.5 C-286,-237.744 129.032,-653 641,-653 C1152.97,-653 1568,-237.744 1568,274.5 "/>
+<path vector-effect="non-scaling-stroke" fill-rule="evenodd" d="M1600,274 C1600,803.641 1170.64,1233 641,1233 C111.359,1233 -318,803.641 -318,274 C-318,-255.641 111.359,-685 641,-685 C1170.64,-685 1600,-255.641 1600,274 "/>
+</g>
+
+<g fill="none" stroke="#a0a0a4" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="-265,274 1540,274 " />
+<polyline fill="none" vector-effect="none" points="640,761 640,-112 " />
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="-316" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >30</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="-252" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >28</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="-188" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >26</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="-124" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >24</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="-60" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >22</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="3" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >20</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="67" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >18</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="131" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >16</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="195" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >14</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="258" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >12</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="322" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >10</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="386" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >8</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="450" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >6</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="514" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >4</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="578" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >2</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="706" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >2</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="770" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >4</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="834" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >6</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="898" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >8</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="962" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >10</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1026" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >12</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1090" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >14</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1154" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >16</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1218" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >18</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1282" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >20</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1345" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >22</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1409" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >24</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1473" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >26</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1537" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >28</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="1601" y="285" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >30</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="782" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >16</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="750" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >15</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="718" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >14</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="686" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >13</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="654" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >12</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="622" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >11</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="591" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >10</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="559" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >9</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="527" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >8</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="495" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >7</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="463" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >6</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="431" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >5</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="399" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >4</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="367" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >3</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="335" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >2</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="303" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >1</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="239" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >1</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="207" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >2</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="175" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >3</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="143" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >4</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="111" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >5</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="80" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >6</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="48" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >7</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="16" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >8</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="-16" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >9</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="-48" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >10</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="-80" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >11</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="-112" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >12</text>
+<text fill="#a0a0a4" fill-opacity="1" stroke="none" xml:space="preserve" x="642" y="-144" font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+ >13</text>
+</g>
+
+<g fill="#a0a0a4" fill-opacity="1" stroke="#a0a0a4" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M1534,277 L1540,274 L1534,271 L1534,277"/>
+</g>
+
+<g fill="#a0a0a4" fill-opacity="1" stroke="#a0a0a4" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M643,-106 L640,-112 L637,-106 L643,-106"/>
+</g>
+
+<g fill="#0000ff" fill-opacity="1" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M391,275 C391,276.657 389.657,278 388,278 C386.343,278 385,276.657 385,275 C385,273.343 386.343,272 388,272 C389.657,272 391,273.343 391,275 "/>
+</g>
+
+<g fill="#0000ff" fill-opacity="1" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M671,294 C671,295.657 669.657,297 668,297 C666.343,297 665,295.657 665,294 C665,292.343 666.343,291 668,291 C669.657,291 671,292.343 671,294 "/>
+</g>
+
+<g fill="none" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M675,274.5 C675,293.554 659.554,309 640.5,309 C621.446,309 606,293.554 606,274.5 C606,255.446 621.446,240 640.5,240 C659.554,240 675,255.446 675,274.5 "/>
+</g>
+
+<g fill="#0000ff" fill-opacity="1" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M322,275 C322,276.657 320.657,278 319,278 C317.343,278 316,276.657 316,275 C316,273.343 317.343,272 319,272 C320.657,272 322,273.343 322,275 "/>
+</g>
+
+<g fill="none" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="640,274 264,619 " />
+</g>
+
+<g fill="#0000ff" fill-opacity="1" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M643,275 C643,276.657 641.657,278 640,278 C638.343,278 637,276.657 637,275 C637,273.343 638.343,272 640,272 C641.657,272 643,273.343 643,275 "/>
+</g>
+
+<g fill="#0000ff" fill-opacity="1" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M528,381 C528,382.657 526.657,384 525,384 C523.343,384 522,382.657 522,381 C522,379.343 523.343,378 525,378 C526.657,378 528,379.343 528,381 "/>
+</g>
+
+<g fill="none" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="640,274 1277,269 " />
+</g>
+
+<g fill="#0000ff" fill-opacity="1" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<path vector-effect="none" fill-rule="evenodd" d="M961,272 C961,273.657 959.657,275 958,275 C956.343,275 955,273.657 955,272 C955,270.343 956.343,269 958,269 C959.657,269 961,270.343 961,272 "/>
+</g>
+
+<g fill="none" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="387,1 389,619 " />
+</g>
+
+<g fill="none" stroke="#0000ff" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="bevel" transform="matrix(1,0,0,1,0,0)"
+font-family="Ubuntu" font-size="9" font-weight="400" font-style="normal" 
+>
+<polyline fill="none" vector-effect="none" points="640,274 319,275 " />
+</g>
+</g>
+</svg>

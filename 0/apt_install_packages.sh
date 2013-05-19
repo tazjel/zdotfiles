@@ -1,9 +1,7 @@
-sudo apt-get install aptitude 
-sudo aptitude install zsh
-sudo apt-get install git
-git clone https://github.com/tazjel/zdotfiles.git
-sudo apt-get install vim vim-scripts vim-doc vim-latexsuite vim-gui-common vim-gnome
-sudo add-apt-repository ppa:falk-t-j/qtsixa
+aptitude 
+zsh
+git
+vim vim-scripts vim-doc vim-latexsuite vim-gui-common vim-gnome
 git clone https://github.com/ggreer/the_silver_searcher
 the_silver_searcher && ./build.sh && install
  ./build.sh && install
