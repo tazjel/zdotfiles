@@ -58,7 +58,7 @@ wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master
 ########################################
 # zshrc, aliases.zsh
 ########################################
-#lnif $endpath/1/.zsh/.zshrc $HOME/.zshrc
-##lnif $endpath/1/.oh-my-zsh $HOME/.oh-my-zsh
+lnif $zendpath/1/.zsh/.zshrc $HOME/.zshrc
+lnif $zendpath/1/.zsh/.zshenv $HOME/.zshenv 
 ########################################
 #source $HOME/.zshrc
