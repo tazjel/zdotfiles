@@ -99,6 +99,7 @@ function glll {
     git add -A
     git commit -a
     git push -all
+    git push origin --all && git push origin --tags
 }
 #############################
 alias wotgobblemem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
