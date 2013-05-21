@@ -1,37 +1,27 @@
 ##
+#Tue May 21 05:40:35 AST 2013
 ##
 #
 ########################################################
 # zdotfiles aliases
 ########################################################
+alias -g wv='| vim -'
+zal=$HOME/zdotfiles/1/.zsh/al.zsh
 
-alf=$HOME/.oh-my-zsh/lib/aliases.zsh
-
-alias wal='cat $alf | grep'
+alias 00=$HOME/zdotfiles
+alias gal='cat $alf | grep'
 alias al='alias | grep'
-#www wbani.unsettings |  sed '/youtube/d'
-#ag -i $1 ./abobani/clf-ALL.txt | sort -n | uniq --ignore-case >> zwgrep.txt
-alias zz='vim $HOME/.oh-my-zsh/lib/aliases.zsh && source $HOME/.oh-my-zsh/lib/aliases.zsh'
+alias fal='alias | grep'
 
-alias zzzz=' vim $HOME/.zshrc'
-alias zzzzz='source $HOME/.zshrc'
+alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 
+alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
-function walw {
-#USB storage
-rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/tools/w/vimrc.local
-rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh /media/Transcend/tools/w/aliases.zsh
-#repo
-rsync -avz --progress /home/bani/.vimrc.local $HOME/zdotfiles/Tools/2/vimrc.local
-rsync -avz --progress /home/bani/.oh-my-zsh/lib/aliases.zsh $HOME/zdotfiles/Tools/1/aliases.zsh
-cd $HOME/zdotfiles && aa
-alw;
-}
 alias lh='ls -a | egrep "^\."'
 alias lhd='ls -A | egrep "^\."'
 #
 #####################################
-alias 'wWcll'='clear;pwd;ls;date -R;echo $PWD'
+alias 'wl'='clear;pwd;ls;date -R;echo $PWD'
 
 #################################
 #  rsync 
@@ -44,8 +34,8 @@ alias wzi='rsync -e ssh -r --progress root@zphone.local:/var/mobile/qq.sh ~/qq.s
 ###############################
 alias 'zrf1'="rsync -avz --progress '$1' '/media/Transcend/w/$1'"
 function zbp {
-for xx in ~/.* ;do 
-    rsync -avz --progress /home/bani/.* /media/Transcend/bani/R/
+for xx in ~/.* ;do
+    rsync -avz --progress $HOME/.* $HOME/zzz_bkp
     echo $xx
 done;}
 
@@ -53,17 +43,11 @@ done;}
 alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
 alias __="sudo"
 
-alias 'cc'='vim /home/bani/zdotfiles/Tools/1/aliasw.sh'
-
 #######################################
-#alias 'wwww'='mv "$1" /media/Transcend/tools/w/Inbox/"$2" ;ls . ;ls /media/Transcend/tools/w/Inbox'
 
-alias 'wWw'='vim /home/bani/.config/updot/updot.conf'
-alias 'wW'='pwd'
 alias 'w'='ls -a; ls'
 alias 'ww'='vim'
 alias 'www'='cat'
-#alias 'wwwww'='sudo su'
 
 alias 'ppp'='sudo add-apt-repository $1'
 alias hh='history -$1 | grep'
@@ -73,14 +57,8 @@ alias agi='sudo apt-get install'
 alias agr='sudo apt-get remove'
 alias agu='sudo apt-get update'
 
-alias 'zcpz'='cp -u /home/bani/.oh-my-zsh/lib/aliases.zsh /home/bani/zdotfiles/Tools/1/1/aliases.zsh'
-alias 'zcpv'='cp -u /home/bani/.vimrc.local /home/bani/zdotfiles/Tools/2/.vimrc.local'
 alias 'rmm'='rm -rf'
-
-alias pp='vim $HOME/zdotfiles/Tools/0/0/apt-get.txt'
-######################################################################
 alias ..='cd ..'
-alias pp='vim $HOME/zdotfiles/Tools/0/0/apt-get.txt'
 
 alias ...='cd ../../'
 alias ....='cd ../../../'
@@ -102,74 +80,36 @@ alias ..5='cd ../../../../../'
 ########## zdotfiles
 #
 function WW {
-desc="ADD DESCRIPTION..."
-if [ -n "$3" ]; then
-desc="$3"
-fi
-echo "" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "###" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "alias '$1'='$2'" >> /home/bani/.oh-my-zsh/lib/aliases.zsh
-source /home/bani/.oh-my-zsh/lib/aliases.zsh
-echo "" && echo "- Alias added  $1 = $2 " && echo "";
+    desc="ADD DESCRIPTION..."
+    if [ -n "$3" ]; then
+        desc="$3"
+    fi
+    echo "" >> $zal
+    echo "alias '$1'='$2'" >> $zal
+    source $zal
+    echo "" && echo "- Alias added  $1 = $2 " && echo "";
 }
 
-
-function ccc {
-echo "$1" >> /home/bani/zdotfiles/Tools/1/aliasw.sh
-echo "Now, we got '$1' "
-cat '/home/bani/zdotfiles/Tools/1/aliasw.sh'
-echo '/home/bani/zdotfiles/Tools/1/aliasw.sh'
-}
 
 
 
 ##########
 function glll {
-cd /home/bani/zdotfiles
-git add -A
-git commit -a
-git push origin master;
+    cd $HOME/zdotfiles
+    git add -A
+    git commit -a
+    git push -all
 }
-##########
-#
-
 #############################
-############ testing ########
-##################################
-                    # functions
-#
-
-
-alias wcr='wc `find . -type f`'
-alias wget='wget --content-disposition'
-alias whead='curl --head $1'
-alias which-command=whence
 alias wotgobblemem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
-alias wsulast='sudo $(history -p !-1)'
 alias xclip='xclip -selection c'
-alias xs='cd `pwd -P`'
 
-##############  testing functions #########
-#
 alias 'n1'='dpkg --get-selections | grep linux-image'
 alias 'kla'="ls -a | grep '^\.'"
 alias 'klj'='ls -a | grep "^\.\(.*\)n$"'
 
 
-
 alias 1='cd -'
-alias 2='cd +2'
-alias 2d='cd ../../'
-alias 3='cd +3'
-alias 3d='cd ../../../'
-alias 4='cd +4'
-alias 5='cd +5'
-alias 6='cd +6'
-alias 7='cd +7'
-alias 8='cd +8'
-alias 9='cd +9'
-alias ANYNAMEHERE=' ssh YOURWEBSITE.com -l USERNAME -p PORTNUMBERHERE'
-#alias W=cat
 alias a2-restart='sudo service apache2 restart'
 alias a2r='/etc/init.d/apache2 restart'
 alias aa='git add -A .'
@@ -421,36 +361,13 @@ alias d='dirs -v | head -10'
 #
 
 ###
-alias 'Wssw'='ss -p | cat'
-
-###
-alias 'w_functions'='declare -f'
-
-###
-alias 'wmkdir'='mkdir -p /home/bani/doc/bar && cd $_'
-
-####
 #alias 'bfile'=' function which creates a backup of an file
 
-#bu () {
-    #cp  -201304101011.backup ;
-#}'
- #function which creates a backup of an file
+
 
 #bu () {
     #cp $1 `basename $1`-`date +%Y%m%d%H%M`.backup ;
 #}
-#ooo
-#
-WWW(){
-        echo -n "Comment> "
-        read comment
-        name="$1"
-        shift
-        echo "alias $name=\"$*\"        # $comment" >> $HOME/.zshenv
-        alias $name="$*"
-}
-
 
 #hack()
 #{
@@ -470,35 +387,22 @@ function wW_grep_logs(){
 
 ###
 
-alias 00=/home/bani/zdotfiles
 
-alias 'wW_sudo_su'='sudo su'
 alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
-alias -g 'wW___help'='--help'
 alias -g Gh='--help | grep'
 alias -g G='| grep'
 
-###
-alias 'wW__for_in1_do_2'='for i in $1;do;$2;done;'
-#ls -lF /etc; pwd;who;ps
-#
-##!/bin/bash
+### Search
 function ww10 {
 for i in $(seq 1 10);do
     echo $i
 done
 }
-function ww_diff {
-find . -type f -name '*.csv' -exec sh -c '
-  file="$0"
-  echo "$file"
-  diff "$file" "/some/other/path/$file"
-  read line </dev/tty
-' {} ';'
-}
-
 
 function alg {
 grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
 
 }
+
+
+alias 'wmsg'='dmesg | tail -15'
