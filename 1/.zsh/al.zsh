@@ -4,7 +4,14 @@
 #
 ########################################################
 # zdotfiles aliases
+#
 ########################################################
+
+function ww_sixad {
+    lsusb;dmesg
+
+}
+
 alias -g wv='| vim -'
 zal=$HOME/zdotfiles/1/.zsh/al.zsh
 
