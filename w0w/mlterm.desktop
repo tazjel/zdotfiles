@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Type=Application
+Name=Multilingual Terminal
+GenericName=
+Comment=Use Multi-Lingual Command Line
+Comment[ja]=国際化対応端末
+Icon=mlterm-icon-24colors-1.xpm
+Exec=mlterm
+Terminal=false
+Categories=Application;Utility;TerminalEmulator;

@@ -416,3 +416,5 @@ grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
 alias 'wmsg'='dmesg | tail -15'
 
 alias '___'='sudo su'
+
+alias 'wmw_mlterm_bblack_whati'=' mlterm -b=black -f=white -w=16'

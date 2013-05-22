@@ -1,0 +1,11 @@
+#!/usr/bin/env xdg-open
+[Desktop Entry]
+Encoding=UTF-8
+Name=jstest-gtk
+Comment=Joystick testing and configuration tool
+Comment[es]=Herramienta de comprobación y configuración de joysticks
+Exec=jstest-gtk
+Terminal=false
+Type=Application
+Icon=jstest-gtk.png
+Categories=GTK;System;

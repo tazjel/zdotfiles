@@ -1,0 +1,3 @@
+sudo apt-get install git-core git zsh curl libcurl3
+sudo apt-get install krusader kompare xxdiff cfv md5deep p7zip kdebase krename
+sudo apt-get install systemsettings
