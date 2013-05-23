@@ -1,4 +1,3 @@
-##
 #Tue May 21 05:40:35 AST 2013
 ##
 #
@@ -368,10 +367,6 @@ alias d='dirs -v | head -10'
 #ifconfig eth0 | grep inet | awk '{print $2}' | cut -d ':' -f2
 #
 
-###
-#alias 'bfile'=' function which creates a backup of an file
-
-
 
 #bu () {
     #cp $1 `basename $1`-`date +%Y%m%d%H%M`.backup ;
@@ -426,3 +421,9 @@ alias 'ww_chmodX'='chmod +x'
 alias 'ww_chmod_x'='chmod -x'
 
 alias '__r'='sudo reboot'
+
+function Ww () {
+ag $(echo "$1") $(echo $HOME/zdotfiles)
+}
+
+#Ww lsof G net | sed 's/###/\n\n###/'g | sed 's/##/\n\n##/g' | sed 's/#\!bin/\n\n#\!\/bin/g' | sed 's/\+alias/#\n   +alias/g'
