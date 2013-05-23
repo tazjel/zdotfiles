@@ -418,3 +418,11 @@ alias 'wmsg'='dmesg | tail -15'
 alias '___'='sudo su'
 
 alias 'wmw_mlterm_bblack_whati'=' mlterm -b=black -f=white -w=16'
+
+alias '99'='cd ~/zdotfiles/Projects/web2py'
+
+alias 'ww_chmodX'='chmod +x'
+
+alias 'ww_chmod_x'='chmod -x'
+
+alias '__r'='sudo reboot'
