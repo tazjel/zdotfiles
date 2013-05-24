@@ -1,0 +1,2 @@
+
+git clone git://anongit.kde.org/kate

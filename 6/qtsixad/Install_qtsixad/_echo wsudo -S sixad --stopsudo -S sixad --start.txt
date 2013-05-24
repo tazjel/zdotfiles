@@ -1,0 +1,1 @@
+echo w|sudo -S sixad --stop;sudo -S sixad --start

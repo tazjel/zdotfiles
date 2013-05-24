@@ -1,0 +1,5 @@
+Copy and Audit Your Data
+inode using rsync or scp 
+Create a temporary directory on the new Linode and copy any needed user and configuration data from the compromised Linode using rsync or scp. If you are not familiar with these programs, you may find more information using "man rsync" or "man scp".
+
+Important: Do not log into the new Linode from the compromised Linode. Files should be "pulled" from the compromised server to your new setup instead.

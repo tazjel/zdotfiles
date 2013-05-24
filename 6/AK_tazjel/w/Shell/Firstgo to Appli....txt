@@ -1,0 +1,12 @@
+First,go to Applications->Accessories->terminal to open up command line and type:
+
+gksudo gedit /usr/share/polkit-1/actions/org.freedesktop.devicekit.disks.policy
+
+then,find out this line(should be line 34):
+
+mount_password2
+
+change it to :
+mount_password3
+
+Save the file and done.

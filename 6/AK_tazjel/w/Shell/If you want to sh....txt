@@ -1,0 +1,14 @@
+If you want to share files over the LAN quickly and easily and do not want to mess with apache or any http daemon.
+
+You just need to openup a terminal window and run this command:
+
+python -c "import SimpleHTTPServer; SimpleHTTPServer.test();"
+
+or
+
+python -m SimpleHTTPServer
+
+For example,in terminal navigate to Download folder and run the command:
+
+wraith@wraith-desktop:~/Download$ python -c "import SimpleHTTPServer; SimpleHTTPServer.test();"
+Serving HTTP on 0.0.0.0 port 8000 ...

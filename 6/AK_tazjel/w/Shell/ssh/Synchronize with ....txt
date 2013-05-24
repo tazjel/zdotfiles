@@ -1,0 +1,20 @@
+Synchronize with FTP/WebDAV (Windows)
+FreeFileSync does not support accessing FTP volumes directly. But this functionality can be integrated by mapping the FTP web space to a drive letter: 
+Example: Use the free utility NetDrive (http://www.netdrive.net) 
+
+Add a "New Site" and specify site name, site URL, drive letter, account and password. 
+
+Use the newly created drive as if it were a regular hard disk. 
+Note:
+Most FTP drives set a file's time stamp to the current time when synchronizing ignoring the source file's time and date. As a workaround you can do a "compare by filesize"; see corresponding section. 
+Synchronize with SFTP (Linux)
+An SFTP share can be easily mapped onto a local folder for use with FreeFileSync: 
+
+Install:
+sudo apt-get install sshfs 
+
+Mount SFTP share:
+sshfs ssh-account@ssh-server:[path] mountpoint 
+
+Unmount:
+fusermount -u mountpoint 

@@ -1,0 +1,57 @@
+ 
+Sixaxis/DualShock3 input events reference
+------------------------------------------------------------
+Buttons:
+0. Select
+1. L3
+2. R3
+3. Start
+4. Up
+5. Right
+6. Down
+7. Left
+8. L2
+9. R2
+10. L1
+11. R1
+12. Triangle
+13. Circle
+14. Cross
+15. Square
+16. PS
+
+Axis:
+0. Left Axis X (Horizontal)
+1. Left Axis Y (Vertical)
+2. Right Axis X (Horizontal)
+3. Right Axis Y (Vertical)
+4. Accelerometer X (roll)
+5. Accelerometer Y (pitch)
+6. Accelerometer Z (gravity)
+7. Gyro/Yaw (not working yet)
+8. Up
+9. Right
+10. Down
+11. Left
+12. L2
+13. R2
+14. L1
+15. R1
+16. Triangle
+17. Circle
+18. Cross
+19. Square
+20. Acceleration X
+21. Acceleration Y
+22. Acceleration Z
+23. Speed X
+24. Speed Y
+25. Speed Z
+26. Position X
+27. Position Y
+28. Position Z
+
+
+Note:
+Some games will increase these values by 1 value,
+starting at 1 instead of 0;

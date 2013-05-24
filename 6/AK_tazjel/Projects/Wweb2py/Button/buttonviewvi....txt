@@ -1,0 +1,1 @@
+{{=button(view,view_task,task.id)}}

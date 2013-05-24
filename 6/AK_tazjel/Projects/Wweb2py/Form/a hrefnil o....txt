@@ -1,0 +1,7 @@
+[<a href="#nil" onclick="jQuery('#form').slideToggle();">toggle</a>]
+<div id="form">
+<h2>New Task</h2>
+{{=form}}
+</div>
+
+<br /><br />

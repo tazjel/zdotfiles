@@ -1,0 +1,1 @@
+<a href="{{=company.url or '#'}}">{{=company.name}}</a>

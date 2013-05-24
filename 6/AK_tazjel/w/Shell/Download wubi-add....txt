@@ -1,0 +1,31 @@
+Download wubi-add-virtual-disk, open a terminal and run:
+
+
+sudo sh wubi-add-virtual-disk /home 15000
+Where the first argument is the directory to move to a new dedicated disk, and the second argument is the size in MB.
+
+You should now reboot. If you are happy with the result, you can now remove /home.backup. To undo the changes remove /home, copy rename /home.backup to /home and remove the /home line in /etc/fstab.
+
+Note that contrary to previous information, this script is not suitable for moving /usr.
+
+Experienced users may be able to do this manually, at own risk, following a process similar to that outlined in the file. (Do not rename /usr until the very last moment, as rsync is installed there.)
+
+To move /usr try enter recovery mode after you run
+
+sudo sh wubi-add-virtual-disk /usr 15000
+and copy all folders in /usr.backup into new /usr and then fix sudo with
+
+chown root:root /usr/bin/sudo
+chmod 4755 /usr/bin/sudo
+How do I increase my swap space?
+
+The following will increase your swap to 2 GB. Replace count= with the number of kilobytes you want for your swap file.
+
+sudo su
+swapoff -a
+cd /host/ubuntu/disks/
+mv swap.disk swap.disk.bak
+dd if=/dev/zero of=swap.disk bs=1024 count=2097152
+mkswap swap.disk
+swapon -a
+free -m

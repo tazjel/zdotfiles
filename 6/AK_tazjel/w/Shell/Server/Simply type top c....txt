@@ -1,0 +1,7 @@
+Simply type top command:
+# top
+
+top command will tell you the percentage of physical memory a particular process is using at any given time. As far as I know, there is no easy way that can tell how long that memory has been allocated.
+
+You can also use ps command to get more information about process.
+# ps aux | less

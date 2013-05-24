@@ -1,0 +1,3 @@
+as 32-bit or 64-bit. In Ubuntu and other Debian derivatives, you can find out your bitness by running:
+
+dpkg --print-architecture

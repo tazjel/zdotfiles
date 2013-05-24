@@ -1,0 +1,29 @@
+KEY_ESC                 1
+KEY_SPACE               57
+KEY_LEFTSHIFT           42
+KEY_TAB                 15
+KEY_W                   17
+KEY_LEFTALT             56
+KEY_ENTER               28
+KEY_LEFTCTRL            29
+KEY_UP                  103
+KEY_PAGEUP              104
+KEY_LEFT                105
+KEY_RIGHT               106
+KEY_END                 107
+KEY_DOWN                108
+KEY_PAGEDOWN            109
+KEY_INSERT              110
+KEY_DELETE              111
+KEY_LEFTMETA            125
+
+BTN_MOUSE               272
+BTN_LEFT                272
+BTN_RIGHT               273
+BTN_MIDDLE              274
+BTN_SIDE                275
+BTN_EXTRA               276
+BTN_FORWARD             277
+BTN_BACK                278
+BTN_TASK                279
+

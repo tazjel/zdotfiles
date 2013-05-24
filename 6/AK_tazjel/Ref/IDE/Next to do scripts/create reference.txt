@@ -1,0 +1,14 @@
+# ("Author's Name", "Author's Name")
+# 
+retCode, name = dialog.input_dialog("Author's Name", "Author's Name")
+if retCode == 0:
+    retCode, date = dialog.input_dialog("Year Published ?", "Year Published")
+    if retCode == 0:
+        retCode, title = dialog.input_dialog("Title of the Blog", "Title of the Blog Entry")
+    if retCode == 0:
+        retCode, url = dialog.input_dialog("Url", "URL of the blog entry (include http://)")
+    if retCode == 0:
+        retCode, body = dialog.input_dialog("Body", "Body")
+    if retCode == 0:
+        blog = name + "." + " " + "(" + date +  "). " +  "  " + title +  "  " +  "[Web log message]. " +  "  " +  "Retrieved from " +  "  " + url
+    keyboard.send_keys(blog)

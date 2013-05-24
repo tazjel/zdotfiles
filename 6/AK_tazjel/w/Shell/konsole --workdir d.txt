@@ -1,0 +1,3 @@
+konsole --workdir %d
+
+apt-get install nautilus-dropbox

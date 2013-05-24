@@ -1,0 +1,8 @@
+I think you'll have to create a custom widget (see http://web2py.com/book/default/chapter/07#Widgets). For example:
+
+def div_radio_widget(field, value, **attributes):
+    table=SQLFORM.widgets.radio.widget(field, value, **attributes)
+    return DIV(
+        *[SPAN(td.element('input'), LABEL(td.components[1]))
+          for td in table.elements('td')],
+        **table.attributes)

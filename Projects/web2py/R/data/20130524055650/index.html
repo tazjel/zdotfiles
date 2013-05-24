@@ -1,0 +1,124 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 3.2 Final//EN">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+ <meta name="GENERATOR" content="LinuxDoc-Tools 0.9.21">
+ <title>LILO mini-HOWTO</title>
+ <link href="http://www.tldp.org/HOWTO/LILO-1.html" rel="next">
+
+
+</head>
+<body>
+<a href="http://www.tldp.org/HOWTO/LILO-1.html">Next</a>
+Previous
+Contents
+<hr>
+<h1>LILO mini-HOWTO</h1>
+
+<h2>Miroslav "Misko" Skoric, <code>skoric at eunet dot rs</code></h2>v3.39, 2010-07-18
+<hr>
+<em>
+<!--
+linux loader windows nt 2000 boot laptop hp
+-->
+
+LILO is the most used <b>Li</b>nux <b>Lo</b>ader for the x86 flavor of
+Linux; I'll call it Lilo rather than LILO here because I don't
+appreciate uppercase. This file describes some typical Lilo
+installations. It's intended as a supplement to the Lilo User's
+Guide. I think examples are informative even if your setup isn't much
+like mine. I hope this saves you trouble. Since Lilo's own
+documentation is very good, who's interested in the details is
+referred to /usr/doc/lilo* (once upon a time said gentlemen like
+Cameron Spitzer and Alessandro Rubini who have made early versions
+of this document)</em>
+<hr>
+<p>This version of Lilo mini-HOWTO is based on work of Cameron Spitzer
+(<code>cls@truffula.sj.ca.us</code>) and Alessandro Rubini 
+(<code>rubini@linux.it</code>). There are also contributions from Tony Harris 
+(<code>tony@nmr.mgh.harvard.edu</code>) and Marc Tanguy 
+(<code>mtanguy@ens.uvsq.fr</code>). Well, I have used materials from
+the authors mentioned - <b>without changes</b> - and added some pointers
+related to configuring LILO for using with Windows NT and Windows 2000.
+More detailed information about the activation of Windows NT/2000 from LILO
+menu, you may find in wonderfull
+<a href="http://tldp.org/HOWTO/Linux+WinNT.html">Linux+WindowsNT</a> mini-HOWTO.</p>
+
+
+<p>
+</p><h2><a name="toc1">1.</a> <a href="http://www.tldp.org/HOWTO/LILO-1.html">Introduction</a></h2>
+
+<p>
+</p><h2><a name="toc2">2.</a> <a href="http://www.tldp.org/HOWTO/LILO-2.html">Background Information and Standard Installation</a></h2>
+
+<ul>
+<li><a name="toc2.1">2.1</a> <a href="http://www.tldp.org/HOWTO/LILO-2.html#ss2.1">Where Should I Install Lilo?</a>
+</li><li><a name="toc2.2">2.2</a> <a href="http://www.tldp.org/HOWTO/LILO-2.html#ss2.2">How Should I Configure my IDE Hard Drives?</a>
+</li><li><a name="toc2.3">2.3</a> <a href="http://www.tldp.org/HOWTO/LILO-2.html#ss2.3">How Can I Interact at Boot Time?</a>
+</li><li><a name="toc2.4">2.4</a> <a href="http://www.tldp.org/HOWTO/LILO-2.html#ss2.4">How Can I Uninstall Lilo?</a>
+</li><li><a name="toc2.5">2.5</a> <a href="http://www.tldp.org/HOWTO/LILO-2.html#ss2.5">How to make a ram disk?</a>
+</li></ul>
+<p>
+</p><h2><a name="toc3">3.</a> <a href="http://www.tldp.org/HOWTO/LILO-3.html">The Simple Configuration</a></h2>
+
+<ul>
+<li><a name="toc3.1">3.1</a> <a href="http://www.tldp.org/HOWTO/LILO-3.html#ss3.1">How to Deal with Big Kernels</a>
+</li><li><a name="toc3.2">3.2</a> <a href="http://www.tldp.org/HOWTO/LILO-3.html#ss3.2">How to boot Windows NT from 'LILO boot:' menu</a>
+</li><li><a name="toc3.3">3.3</a> <a href="http://www.tldp.org/HOWTO/LILO-3.html#ss3.3">How to boot Windows 2000 from 'LILO boot:' menu</a>
+</li></ul>
+<p>
+</p><h2><a name="toc4">4.</a> <a href="http://www.tldp.org/HOWTO/LILO-4.html">Installing <code>hdc</code> to Boot as <code>hda</code> and Using <code>bios=</code></a></h2>
+
+<p>
+</p><h2><a name="toc5">5.</a> <a href="http://www.tldp.org/HOWTO/LILO-5.html">Using Lilo When the BIOS Can't See the Root Partition</a></h2>
+
+<p>
+</p><h2><a name="toc6">6.</a> <a href="http://www.tldp.org/HOWTO/LILO-6.html">How do i know the BIOS number for my SCSI disks</a></h2>
+
+<ul>
+<li><a name="toc6.1">6.1</a> <a href="http://www.tldp.org/HOWTO/LILO-6.html#ss6.1">The theory</a>
+</li><li><a name="toc6.2">6.2</a> <a href="http://www.tldp.org/HOWTO/LILO-6.html#ss6.2">How to swap linux and NT booting ?</a>
+</li><li><a name="toc6.3">6.3</a> <a href="http://www.tldp.org/HOWTO/LILO-6.html#ss6.3">Miscellaneous</a>
+</li></ul>
+<p>
+</p><h2><a name="toc7">7.</a> <a href="http://www.tldp.org/HOWTO/LILO-7.html">Accessing Huge Disks When the BIOS Can't </a></h2>
+
+<p>
+</p><h2><a name="toc8">8.</a> <a href="http://www.tldp.org/HOWTO/LILO-8.html">Booting from a Rescue Floppy</a></h2>
+
+<p>
+</p><h2><a name="toc9">9.</a> <a href="http://www.tldp.org/HOWTO/LILO-9.html">LILO after the installation of Mandrake Linux 9.1 on HP products</a></h2>
+
+<ul>
+<li><a name="toc9.1">9.1</a> <a href="http://www.tldp.org/HOWTO/LILO-9.html#ss9.1">Description of the products used in this experiment</a>
+</li><li><a name="toc9.2">9.2</a> <a href="http://www.tldp.org/HOWTO/LILO-9.html#ss9.2">What does LILO looks like on these HP products</a>
+</li><li><a name="toc9.3">9.3</a> <a href="http://www.tldp.org/HOWTO/LILO-9.html#ss9.3">Conclusions</a>
+</li></ul>
+<p>
+</p><h2><a name="toc10">10.</a> <a href="http://www.tldp.org/HOWTO/LILO-10.html">Bibliography</a></h2>
+
+<p>
+</p><h2><a name="toc11">11.</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html">Further Information</a></h2>
+
+<ul>
+<li><a name="toc11.1">11.1</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.1">Copyright</a>
+</li><li><a name="toc11.2">11.2</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.2">Disclaimer</a>
+</li><li><a name="toc11.3">11.3</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.3">News</a>
+</li><li><a name="toc11.4">11.4</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.4">Credits</a>
+</li><li><a name="toc11.5">11.5</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.5">HOWTO</a>
+</li><li><a name="toc11.6">11.6</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.6">Mini-HOWTO</a>
+</li><li><a name="toc11.7">11.7</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.7">Local Resources</a>
+</li><li><a name="toc11.8">11.8</a> <a href="http://www.tldp.org/HOWTO/LILO-11.html#ss11.8">Web Pages</a>
+</li></ul>
+<p>
+</p><h2><a name="toc12">12.</a> <a href="http://www.tldp.org/HOWTO/LILO-12.html">Getting help</a></h2>
+
+<hr>
+<a href="http://www.tldp.org/HOWTO/LILO-1.html">Next</a>
+Previous
+Contents
+
+
+</body>
+</html>

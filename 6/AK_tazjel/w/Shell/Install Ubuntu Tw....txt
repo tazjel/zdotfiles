@@ -1,0 +1,7 @@
+Install Ubuntu Tweak 0.6.0
+
+Ubuntu 11.10 Oneiric user add the stable ppa via:
+
+sudo add-apt-repository ppa:tualatrix/ppa
+sudo apt-get update
+sudo apt-get install ubuntu-tweak

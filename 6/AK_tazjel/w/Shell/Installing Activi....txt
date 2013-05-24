@@ -1,0 +1,7 @@
+Installing Activity Log Manager
+
+Activity Log Manager can be installed from zeigeist ppa by running following command in terminal(supports Ubuntu 10.04 Lucid and higher):
+
+sudo add-apt-repository ppa:zeitgeist/ppa
+sudo apt-get update
+sudo apt-get install activity-log-manager

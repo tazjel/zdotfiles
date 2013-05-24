@@ -1,0 +1,75 @@
+def proc():
+    os.system('ps auxw > applications/sysadmin/cache/ps.tmp')
+    table=TABLE()
+    table.components.append(TR(TH('USER'),TH('PID'),TH(),TH('%CPU'),TH('%MEM'), 
+                               TH('VSZ'),TH('RSS'),TH('TT'),TH('STAT'),
+                               TH('STARTED'),TH('TIME'),TH('COMMAND')))
+    for line in open('applications/sysadmin/cache/ps.tmp','r').readlines()[1:]:
+        items=line.split()
+        items[0]=A(items[0],_href=URL(r=request,f='finger/'+items[0]))
+        items[10]=DIV(A(items[10]+' ',_href=URL(r=request,f='man/'+items[10])),
+                      ' '+' '.join(items[11:]))
+        items.insert(2,A('kill',_href=URL(r=request,f='kill/'+items[1])))
+        table.components.append(TR(*items[:12]))
+    return dict(table=table)   
+
+def finger():
+    os.system('finger %s > applications/sysadmin/cache/finger.tmp' % request.args[0])
+    return dict(finger=open('applications/sysadmin/cache/finger.tmp','r').read())
+
+def kill():
+    os.system('kill -9 %s' % request.args[0])
+    session.flash='process %s killed' % request.args[0]
+    redirect(URL(r=request,f='proc'))
+
+def man():
+    command=request.args[-1]
+    os.system('info %s > applications/sysadmin/cache/man.tmp' % command)
+    man=open('applications/sysadmin/cache/man.tmp','r').read()
+    return dict(command=command,man=man)
+
+def net():
+    os.system('netstat -na > applications/sysadmin/cache/netstat.tmp')
+    table=TABLE()
+    table.components.append(TR(TH('Local'),TH('Foreign'),TH('State')))
+    for line in open('applications/sysadmin/cache/netstat.tmp','r').readlines()[1:]:
+        items=line.split()
+        if len(items)==6 and items[5] in ['LISTEN','ESTABILISHED','CLOSE_WAIT',
+           'SYN_RCVD','SYN_SENT','LAST_ACK','FIN_WAIT_1',
+           'FIN_WAIT_2','CLOSING','TIME_WAIT']:
+            items[3]=items[3].split('.')
+            ip,port='.'.join(items[3][:-1]),items[3][-1]
+            items[3]=ip+':'+port
+            items[4]=items[4].split('.')
+            ip,port='.'.join(items[4][:-1]),items[4][-1]
+            if ip!='*' and ip!='127.0.0.1':
+                items[4]=DIV(A(ip,_href=URL(r=request,f='whois/'+ip)),':'+port)
+            else: items[4]=ip+':'+port
+            table.components.append(TR(items[3],items[4],items[5]))
+    os.system('ifconfig > applications/sysadmin/cache/ifconfig.tmp')
+    ifconfig=markup(open('applications/sysadmin/cache/ifconfig.tmp','r').read())
+    os.system('arp -a > applications/sysadmin/cache/arp.tmp')
+    arp=open('applications/sysadmin/cache/arp.tmp','r').read()
+    return dict(table=table,ifconfig=ifconfig,arp=arp)
+
+def whois():
+    os.system('whois %s > applications/sysadmin/cache/whois.tmp' % request.args[0])
+    return dict(whois=markup(open('applications/sysadmin/cache/whois.tmp','r').read()))
+
+def etc():
+    os.system('users > applications/sysadmin/cache/users.tmp')
+    users=open('applications/sysadmin/cache/users.tmp','r').readlines()
+    os.system('service --list  > applications/sysadmin/cache/service.tmp')
+    services=open('applications/sysadmin/cache/service.tmp','r').readlines()
+    services_on={}
+    for service in services:
+        if os.system('service --test-if-configured-on '+service):
+            services_on[service]=False
+        else: services_on[service]=True
+    return dict(users=users, services=services_on)
+
+def var():
+    return dict()
+
+def edit():
+    return HTML(BODY(H1('not implemented'))).xml()

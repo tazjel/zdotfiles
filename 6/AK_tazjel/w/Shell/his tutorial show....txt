@@ -1,0 +1,27 @@
+his tutorial shows how to view CHM files in 4 ways for ubuntu user.
+
+Gnochm
+
+Gnochm is a gnome based chm viewer.It is implemented in Python, using the PyCHM bindings for chmlib.
+
+Use this command to install Gnochm:
+
+sudo apt-get install gnochm
+
+kchmviewer
+
+Kchmviewer is a nice chm viewer for KDE desktop.It can be build as a stand-alone Qt-based application or a KDE application.
+
+To install kchmviewer,type this command:
+
+sudo aptitude install kchmviewer
+
+xCHM
+
+xCHM is a chm file viewer that is not bound to any desktop environment.xCHM can show the content tree if one is available, print pages, change font face and size, remember bookmarks, display a searchable index, and search for words in the current page and the whole book.
+
+Using this command to install xCHM:
+
+sudo aptitude install xchm
+
+chmreader,plugin for firefox to display chm files

@@ -1,0 +1,1 @@
+Try pressing Ctrl-Alt-Numpad- and/or Ctrl+Alt+Numpad+ repeatedly; this will keep changing resolutions in an attempt to find one that works. You will have to wait about 2-3 seconds between each press. If you find a resolution that works, post back on how to make it permanent and/or how to get a suitable refresh rate at which ever resolution you like

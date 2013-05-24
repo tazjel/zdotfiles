@@ -1,0 +1,15 @@
+the sixad driver needs 'hcid' to work, which conflicts with the regular bluetooth.
+
+but, if you have 2 bt adapters, I guess you can make them work separately.
+
+the steps should be:
+1 - set (normal) bluetooth device as hci1 (leaving default hci0 for sixaxis).
+(you should have a GUI for this...)
+2 - connect the sixaxis using these commands:
+$ sudo modprobe uinput
+$ sudo hcid -n # will not close (ignore errors about config file)
+$ sudo sixad-bin 0 0 # 1st argument for DEBUG, 2nd is LEGACY_MODE
+
+press ps button, and it should work.
+
+let me know how it goes

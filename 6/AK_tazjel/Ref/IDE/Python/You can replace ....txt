@@ -1,0 +1,11 @@
+You can replace '<img src="/myapp/static/images/shapes/star1.png" />' with one of the following two options:
+
+XML('<img src="/myapp/static/images/shapes/star1.png" />')
+
+IMG(_src='/myapp/static/images/shapes/star1.png')
+
+Also, it is generally preferable to use the URL() function to generate outgoing URLs. With that replacement, the above two options would change to:
+
+XML('<img src="' + URL('static', 'images/shapes/star1.png') + '" />')
+
+IMG(_src=URL('static', 'images/shapes/star1.png'))

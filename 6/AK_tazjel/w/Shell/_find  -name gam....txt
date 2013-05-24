@@ -1,0 +1,3 @@
+ find / -name game
+
+Looks for a file named "game" starting at the root directory (searching all directories including mounted filesystems). The `-name' option makes the search case sensitive. You can use the `-iname' option to find something regardless of case.

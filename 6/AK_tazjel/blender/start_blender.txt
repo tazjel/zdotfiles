@@ -1,0 +1,1 @@
+cd /home/dell/Documents/blender-2.63a-linux-glibc27-x86_64;./blender

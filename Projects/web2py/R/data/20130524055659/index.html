@@ -1,0 +1,162 @@
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+
+<title>D.6.&nbsp;The Graphical Installer</title>
+
+<meta name="generator" content="DocBook XSL Stylesheets V1.76.1">
+<link rel="home" href="http://www.debian.org/releases/stable/i386/index.html.en" title="Debian GNU/Linux Installation Guide">
+<link rel="up" href="http://www.debian.org/releases/stable/i386/apd.html.en" title="Appendix&nbsp;D.&nbsp;Random Bits">
+<link rel="prev" href="http://www.debian.org/releases/stable/i386/apds05.html.en" title="D.5.&nbsp;Installing Debian GNU/Linux using PPP over Ethernet (PPPoE)">
+<link rel="next" href="http://www.debian.org/releases/stable/i386/ape.html.en" title="Appendix&nbsp;E.&nbsp;Administrivia">
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body link="#0000FF" text="black" vlink="#840084" bgcolor="white" alink="#0000FF">
+<div class="navheader">
+<table summary="Navigation header" width="100%">
+<tbody><tr><th colspan="3" align="center">D.6.&nbsp;The Graphical Installer</th></tr>
+<tr>
+<td width="20%" align="left">
+<a accesskey="p" href="http://www.debian.org/releases/stable/i386/apds05.html.en">Prev</a>&nbsp;</td>
+<th width="60%" align="center">Appendix&nbsp;D.&nbsp;Random Bits</th>
+<td width="20%" align="right">&nbsp;<a accesskey="n" href="http://www.debian.org/releases/stable/i386/ape.html.en">Next</a>
+</td>
+</tr>
+</tbody></table>
+<hr>
+</div>
+<div class="sect1" title="D.6.&nbsp;The Graphical Installer">
+<div class="titlepage"><div><div><h2 class="title" style="clear: both;">
+<a name="graphical"></a>D.6.&nbsp;The Graphical Installer</h2></div></div></div>
+<p>
+
+The graphical version of the installer is only available for a limited
+number of architectures, including <span>32-bit PC</span>. The functionality of
+the graphical installer is essentially the same as that of the regular
+installer as it basically uses the same programs, but with a different
+frontend.
+
+</p>
+<p>
+
+Although the functionality is identical, the graphical installer still has
+a few significant advantages. The main advantage is that it supports more
+languages, namely those that use a character set that cannot be displayed
+with the regular <span class="quote">“<span class="quote">newt</span>”</span> frontend. It also has a few usability
+advantages such as the option to use a mouse, and in some cases several
+questions can be displayed on a single screen.
+
+</p>
+<p>
+
+The graphical installer is available with all CD images and with the
+hd-media installation method. To boot the graphical installer simply select
+the relevant option from the boot menu. Expert and rescue mode for the
+graphical installer can be selected from the <span class="quote">“<span class="quote">Advanced options</span>”</span>
+menu. The previously used boot methods <strong class="userinput"><code>installgui</code></strong>,
+<strong class="userinput"><code>expertgui</code></strong> and <strong class="userinput"><code>rescuegui</code></strong> can
+still be used from the boot prompt which is shown after selecting the
+<span class="quote">“<span class="quote">Help</span>”</span> option in the boot menu.
+
+</p>
+<p>
+
+There is also a graphical installer image that can be netbooted. And there
+is a special <span class="quote">“<span class="quote">mini</span>”</span> ISO image<sup>[<a name="gtk-miniiso" href="#ftn.gtk-miniiso" class="footnote">30</a>]</sup>, which is mainly useful for testing.
+
+</p>
+<p>
+
+Just as with the regular installer it is possible to add boot parameters
+when starting the graphical installer.
+
+</p>
+<div class="note" title="Note" style="margin-left: 0.5in; margin-right: 0.5in;">
+<h3 class="title">Note</h3>
+<p>
+
+The graphical installer requires significantly more memory to run than
+the regular installer: 140MB. If insufficient memory is
+available, it will automatically fall back to the regular
+<span class="quote">“<span class="quote">newt</span>”</span> frontend.
+
+</p>
+<p>
+
+If the amount of memory in your system is below 80MB,
+the graphical installer may fail to boot at all while booting the
+regular installer would still work. Using the regular installer is
+recommended for systems with little available memory.
+
+</p>
+</div>
+<div class="sect2" title="D.6.1.&nbsp;Using the graphical installer">
+<div class="titlepage"><div><div><h3 class="title">
+<a name="gtk-using"></a>D.6.1.&nbsp;Using the graphical installer</h3></div></div></div>
+<p>
+
+As already mentioned, the graphical installer basically works the same as
+the regular installer and thus the rest of this manual can be used to guide
+you through the installation process.
+
+</p>
+<p>
+
+If you prefer using the keyboard over the mouse, there are two things you
+need to know. To expand a collapsed list (used for example for the selection
+of countries within continents), you can use the <span class="keycap"><strong>+</strong></span> and
+<span class="keycap"><strong>-</strong></span> keys. For questions where more than one item can be
+selected (e.g. task selection), you first need to tab to the
+<span class="guibutton">Continue</span> button after making your selections; hitting
+enter will toggle a selection, not activate <span class="guibutton">Continue</span>.
+
+</p>
+<p>
+
+If a dialog offers additional help information, a <span class="guibutton">Help</span>
+button will be displayed. The help information can be accessed either by
+activating the button or by pressing the <span class="keycap"><strong>F1</strong></span> key.
+
+</p>
+<p>
+
+To switch to another console, you will also need to use the
+<span class="keycap"><strong>Ctrl</strong></span> key, just as with the X Window System. For example,
+to switch to VT2 (the first debug shell) you would use: <span class="keycap"><strong>Ctrl</strong></span>+<span class="keycap"><strong>Left Alt</strong></span>+<span class="keycap"><strong>F2</strong></span>. The graphical installer itself runs on VT5, so you can use
+<span class="keycap"><strong>Left Alt</strong></span>+<span class="keycap"><strong>F5</strong></span>
+to switch back.
+
+</p>
+</div>
+<div class="footnotes">
+<br><hr width="100" align="left">
+<div class="footnote"><p><sup>[<a id="ftn.gtk-miniiso" href="#gtk-miniiso" class="para">30</a>] </sup>
+The mini ISO image can be downloaded from a Debian mirror as described
+in <a class="xref" href="http://www.debian.org/releases/stable/i386/ch04s02.html.en" title="4.2.&nbsp;Downloading Files from Debian Mirrors">Section&nbsp;4.2, “Downloading Files from Debian Mirrors”</a>.
+Look for <code class="filename">netboot/gtk/mini.iso</code>.
+</p></div>
+</div>
+</div>
+<div class="navfooter">
+<hr>
+<table summary="Navigation footer" width="100%">
+<tbody><tr>
+<td width="40%" align="left">
+<a accesskey="p" href="http://www.debian.org/releases/stable/i386/apds05.html.en">Prev</a>&nbsp;</td>
+<td width="20%" align="center"><a accesskey="u" href="http://www.debian.org/releases/stable/i386/apd.html.en">Up</a></td>
+<td width="40%" align="right">&nbsp;<a accesskey="n" href="http://www.debian.org/releases/stable/i386/ape.html.en">Next</a>
+</td>
+</tr>
+<tr>
+<td valign="top" width="40%" align="left">D.5.&nbsp;Installing Debian GNU/Linux using PPP over Ethernet (PPPoE)&nbsp;</td>
+<td width="20%" align="center"><a accesskey="h" href="http://www.debian.org/releases/stable/i386/index.html.en">Home</a></td>
+<td valign="top" width="40%" align="right">&nbsp;Appendix&nbsp;E.&nbsp;Administrivia</td>
+</tr>
+</tbody></table>
+</div>
+
+
+</body>
+</html>

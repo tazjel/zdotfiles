@@ -1,0 +1,10 @@
+To install unity-launcher-editor, first open up a terminal window and type in this two commands:
+
+sudo apt-get install bzr
+bzr branch lp:unity-launcher-editor
+
+After that, run the command to start the GUI:
+
+~/unity-launcher-editor/unitylaunchereditor/main.py
+
+unity-launcher-editor on launchpad.net: https://launchpad.net/unity-launcher-editor

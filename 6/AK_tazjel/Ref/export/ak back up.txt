@@ -1,0 +1,28 @@
+Enter phrase contents
+
+         "description": "sudo nautilus ", 
+                                 "code": "text = clipboard.get_selection()\nkeyboard.send_key(\"<delete>\")\nkeyboard.send_keys(\"sudo gedit %s\" % text)", 
+
+                        "description": "sudo apt-get update", 
+                        "code": "# Enter script code\n# pygmentize -f html -O full -o test.html test.py\n\ntext = clipboard.get_selection()\n# keyboard.send_key(\"<delete>\")\nkeyboard.send_keys(\"pygmentize -f html -O full -o %s\" % text)\nkeyboard.send_key(\"<backspace>\")\nkeyboard.send_key(\"<backspace>\")\nkeyboard.send_keys(\"html \")\nkeyboard.send_keys(\"%s\" % text)\n\n\n\n", 
+                        "code": "text = clipboard.get_selection()\nkeyboard.send_key(\"<delete>\")\nkeyboard.send_keys(\"locate %s\" % text)\n\n\n", 
+
+                        "phrase": "cd /home/bani/Downloads\n", 
+
+                        "code": "choices = [\"sudo\", \"reboot\", \"apt-get install\", \"apt-get update\",\"gksudo nautilus\"]\noutput = system.exec_command(\"date\")\n\nretCode, choice = dialog.list_menu(choices)\nif choice == 1:\n     keyboard.send_keys(output)\nif retCode == 0:\n    keyboard.send_keys(choice)\n    \n", 
+
+                        "phrase": "keyboard.send_keys(\"<ctrl>+v\")\n\nkeyboard.send_keys(keyboard.send_keys(\"<ctrl>+z\"))", 
+
+                        "code": "# Enter script code\n\nretCode, item = dialog.input_dialog(\"Add a task\", \"What's the new task?\")\nsystem.exec_command(\"gedit \" + item, False)", 
+
+
+
+                        "code": "# Enter script code\nretCode, gitem = dialog.input_dialog(\"Add to groceries\", \"What would you like to pick up at the grocery store?\")\noutput = system.exec_command(\"date '+ - %a %b %d '\")\ngitem2 = \"\\n\" + gitem\nfileHandle = open ( '/home/bani/Dropbox/tasks.txt', 'a' )\nfileHandle.write (gitem2)\nfileHandle.write (output)\nfileHandle.close()\n", 
+
+                        "code": "# and I use this to open the file:\n\nkeyboard.send_key(\"<escape>\")\nimport subprocess\nsubprocess.call(['xdg-open', '/home/bani/Dropbox/tasks.txt'])\n\n", 
+                        "code": "# Enter script code\n\nkeyboard.send_keys(\"<ctrl>+<shift>+L\")\n", 
+                        "code": "import time\ntime.sleep(0.25)\ncontents = clipboard.get_selection()\nif len(contents) > 20:\n    title = contents[0:17] + \"...\"\nelse:\n    title = contents\nfolder = engine.get_folder(\"My Phrases\")\nengine.create_phrase(folder, title, contents)", 
+
+                        "code": "retCode, name = dialog.input_dialog(\"Author's Name\", \"Author's Name \")\nif retCode == 0:\n\n    retCode, date = dialog.input_dialog(\"Year Published ?\", \"Year Published\")\n\nif retCode == 0:\n\n    retCode, title = dialog.input_dialog(\"Title of the Blog\", \"Title of the Blog Entry\")\n\nif retCode == 0:\n    retCode, url = dialog.input_dialog(\"Url\", \"URL of the blog entry (include http://)\")\n\nif retCode == 0:\n    retCode, body = dialog.input_dialog(\"Body\", \"Body\")\n\nif retCode == 0:\n    blog = name + \".\" + \" \" + \"(\" + date + \").\" + \" \" + title + \" \" + \"[Web log message].\" + \" \" + \"Retrieved from\" + \" \" + url\n    keyboard.send_keys(blog)\n    keyboard.send_keys(blog)\n", 
+
+                                                                    "phrase": "python2.5 web2py.py -i 127.0.0.7 -p 8002 -a \"wwwwww\"",

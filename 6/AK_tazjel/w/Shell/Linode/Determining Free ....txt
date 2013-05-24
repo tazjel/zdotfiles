@@ -1,0 +1,13 @@
+Determining Free Memory and Swap Activity
+
+You can use the following command to display memory use on your Linode:
+# 
+free -m
+
+You can use the following snippet to see a list of your running processes sorted by memory use:
+# 
+ps -eo pmem,pcpu,rss,vsize,args | sort -k 1 -r | less
+
+To see IO activity on your VPS, you may use the following command (you may need to install the sysstat package under Debian or Ubuntu first):
+
+iostat -d -x 2 5

@@ -427,3 +427,11 @@ ag $(echo "$1") $(echo $HOME/zdotfiles)
 }
 
 #Ww lsof G net | sed 's/###/\n\n###/'g | sed 's/##/\n\n##/g' | sed 's/#\!bin/\n\n#\!\/bin/g' | sed 's/\+alias/#\n   +alias/g'
+
+alias 'Ww_aptitude'='sudo aptitude -f'
+
+alias 'Ww_apt-cache_search_xfce4'='apt-cache search xfce4'
+
+alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
+
+alias 'b'='clear;ls;pwd;date'

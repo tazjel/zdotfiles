@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+ 
+ <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+ 
+ <meta name="ROBOTS" content="NOARCHIVE">
+ 
+ <link rel="icon" type="image/vnd.microsoft.icon" href="phosting.ico">
+ 
+ 
+ <link rel="canonical" href="http://code.google.com/p/pyfpdf/wiki/Unicode">
+ 
+ 
+ 
+ 
+ <title>Unicode - 
+ pyfpdf -
+ 
+ unicode utf-8 ttf font support (based on sFPDF) - 
+ Simple PDF generation for Python (FPDF PHP port) AKA fpdf.py - Google Project Hosting
+ </title>
+ 
+ 
+ 
+ 
+ 
+ 
+ <link type="application/atom+xml" rel="alternate" href="http://code.google.com/feeds/p/pyfpdf/hgchanges/basic?path=/Unicode.wiki&amp;repo=wiki">
+ 
+ 
+<!--[if IE]>
+ <link type="text/css" rel="stylesheet" href="http://www.gstatic.com/codesite/ph/13105533463844027904/css/d_ie.css" >
+<![endif]-->
+ 
+
+<link rel="stylesheet" type="text/css" href="index.css" media="all">
+</head>
+<body class="t6">
+
+<div class="headbg">
+
+ <div id="gaia">
+ 
+
+ <span>
+ 
+ 
+ 
+ <a href="#" id="multilogin-dropdown" onclick="return false;"><u><b>tazjel@gmail.com</b></u> <small>▼</small></a>
+ 
+ 
+ | <a href="http://code.google.com/u/105308615563105584901/" id="projects-dropdown" onclick="return false;"><u>My favorites</u> <small>▼</small></a>
+ | <a href="http://code.google.com/gb/ph/profile" title="Profile, Updates, and Settings"><u>Profile</u></a>
+ | <a href="http://code.google.com/gb/ph/signout"><u>Sign out</u></a>
+ 
+ </span>
+
+ </div>
+
+ <div class="gbh" style="left: 0pt;"></div>
+ <div class="gbh" style="right: 0pt;"></div>
+ 
+ 
+ <div style="height: 1px;"></div>
+<!--[if lte IE 7]>
+<div style="text-align:center;">
+Your version of Internet Explorer is not supported. Try a browser that
+contributes to open source, such as <a href="http://www.firefox.com">Firefox</a>,
+<a href="http://www.google.com/chrome">Google Chrome</a>, or
+<a href="http://code.google.com/chrome/chromeframe/">Google Chrome Frame</a>.
+</div>
+<![endif]-->
+
+
+
+ <table style="padding: 0px; margin: 0px 0px 10px; width: 100%;" itemscope="" itemtype="http://schema.org/CreativeWork" cellpadding="0" cellspacing="0">
+ <tbody><tr style="height: 58px;">
+ 
+ 
+ 
+ <td id="plogo">
+ <link itemprop="url" href="http://code.google.com/p/pyfpdf">
+ <a href="http://code.google.com/p/pyfpdf/">
+ 
+ <img src="defaultlogo.png" alt="Logo" itemprop="image">
+ 
+ </a>
+ </td>
+ 
+ <td style="padding-left: 0.5em;">
+ 
+ <div id="pname">
+ <a href="http://code.google.com/p/pyfpdf/"><span itemprop="name">pyfpdf</span></a>
+ </div>
+ 
+ <div id="psum">
+ <a id="project_summary_link" href="http://code.google.com/p/pyfpdf/"><span itemprop="description">Simple PDF generation for Python (FPDF PHP port) AKA fpdf.py</span></a>
+ 
+ </div>
+ 
+ 
+ </td>
+ <td style="white-space: nowrap; text-align: right; vertical-align: bottom;">
+ 
+ <form action="http://code.google.com/hosting/search">
+ <input size="30" name="q" value="" type="text">
+ 
+ <input name="projectsearch" value="Search projects" type="submit">
+ </form>
+ 
+ </td></tr>
+ </tbody></table>
+
+</div>
+
+ 
+<div id="mt" class="gtb"> 
+ <a href="http://code.google.com/p/pyfpdf/" class="tab ">Project&nbsp;Home</a>
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/pyfpdf/downloads/list" class="tab ">Downloads</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/pyfpdf/w/list" class="tab active">Wiki</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/pyfpdf/issues/list" class="tab ">Issues</a>
+ 
+ 
+ 
+ 
+ 
+ <a href="http://code.google.com/p/pyfpdf/source/browse/" class="tab ">Source</a>
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ <div class="gtbc"></div>
+</div>
+<table class="st" width="100%" border="0" cellpadding="0" cellspacing="0" align="center">
+ <tbody><tr>
+ 
+ 
+ 
+ <td class="subt">
+ <div class="issueDetail">
+<div class="isf">
+ 
+ <span class="inIssueList"> 
+ <span>Search</span>
+ <form action="http://code.google.com/p/pyfpdf/w/list" method="GET" style="display: inline;">
+ <select id="can" name="can">
+ <option disabled="disabled">Search within:</option>
+ 
+ <option value="1">&nbsp;All wiki pages</option>
+ <option value="3">&nbsp;Featured pages</option>
+ <option value="2" selected="selected">&nbsp;Current pages</option>
+ 
+ 
+ <option value="5">&nbsp;My starred pages</option>
+ 
+ <option value="4">&nbsp;Deprecated pages</option>
+ 
+ </select>
+ <span>for</span>
+ <span id="qq"><input size="38" id="searchq" name="q" value="" autocomplete="off" type="text"></span>
+ 
+ 
+ 
+ <input value="Search" type="submit">
+ </form>
+ </span>
+
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+</div>
+</div>
+
+ </td>
+ 
+ 
+ 
+ 
+ 
+ 
+ <td class="bevel-right" valign="top" align="right"></td>
+ </tr>
+</tbody></table>
+
+
+
+<div id="maincol">
+
+ 
+
+
+
+
+
+
+
+ 
+
+<div id="wikipage">
+<table>
+ <tbody><tr>
+ 
+ 
+ <td style="vertical-align: top; padding-left: 5px;">
+ 
+ <div id="wikiheader">
+ 
+ <img id="star_img" src="star_on.gif" style="cursor: pointer;" onclick="_CS_toggleStar(this,
+ {'scope': 'wiki',
+ 'user': '_CURRENT_USER',
+ 'item': 'pyfpdf:Unicode'
+ });" height="15" width="15">
+ 
+ <span style="font-size: 120%; font-weight: bold;">Unicode</span>
+ &nbsp;
+ <div> 
+ 
+ <i>unicode utf-8 ttf font support (based on sFPDF)</i>
+ 
+ 
+ <br>
+ 
+ <a class="label" style="padding-top: 2px;" href="http://code.google.com/p/pyfpdf/w/list?q=label:Phase-Support" title="Plans for user support and advocacy">Phase-Support</a>, 
+ 
+ <a class="label" style="padding-top: 2px;" href="http://code.google.com/p/pyfpdf/w/list?q=label:Featured" title="Listed on project home page">Featured</a>
+ 
+ 
+ 
+ <div id="wikiauthor" style="float: right;">
+ Updated <span title="Thu Dec 20 08:32:10 2012">
+ Dec 20, 2012</span>
+ 
+ by 
+
+ <a class="userlink" href="http://code.google.com/u/106648422805201078665/">romiq...@gmail.com</a>
+ 
+ </div>
+ </div>
+ </div>
+ 
+ <div id="wikicontent">
+ <div class="vt" id="wikimaincol">
+ <h1><a name="Introduction"></a>Introduction<a href="#Introduction" class="section_anchor"></a></h1><p>The FPDF class was modified adding UTF-8 support. Moreover, it embeds only the necessary parts of the fonts that are used in the document, making the file size much smaller than if the whole fonts were embedded. These features were originally developed for the <a href="http://mpdf.bpm1.com/" rel="nofollow">mPDF</a> project, and ported from <a href="mailto:ian@bpm1.com?subject=sFPDF" rel="nofollow">Ian Back</a>'s <a href="http://www.fpdf.org/en/script/script91.php" rel="nofollow">sFPDF</a> LGPL PHP version. </p><p>Before you can use UTF-8, you have to install at least one Unicode font in the font directory (or system font folder). Some free font packages are available for download (extract them into font folder): </p><ul><li><a href="http://dejavu-fonts.org/" rel="nofollow">DejaVu</a> family: Sans, Sans Condensed, Serif, Serif Condensed, Sans Mono (Supports more than 200 languages) </li><li><a href="http://www.gnu.org/software/freefont/" rel="nofollow">GNU FreeFont</a> family: FreeSans, FreeSerif, FreeMono </li><li><a href="http://en.wikipedia.org/wiki/Help:Multilingual_support_(Indic)" rel="nofollow">Indic</a> (ttf-indic-fonts debian/ubuntu package) for Bengali, Devanagari, Gujarati, Gurmukhi (including the variants for Punjabi),  Kannada, Malayalam, Oriya, Tamil, Telugu, Tibetan </li><li><a href="http://www.study-area.org/apt/firefly-font/" rel="nofollow">AR PL New Sung</a> (firefly): The Open Source Chinese Font (also supports others east-asia languages) </li><li><a href="https://wiki.archlinux.org/index.php/Fonts" rel="nofollow">Alee</a> (ttf-alee arch linux package):  General purpose Hangul truetype fonts that Contain Korean syllable and Latin9 (iso8859-15) characters. </li><li><a href="http://linux.thai.net/projects/fonts-tlwg/" rel="nofollow">Fonts-TLWG</a> (formerly ThaiFonts-Scalable)  </li></ul><p>These fonts are included with this library installers, see <a href="http://code.google.com/p/pyfpdf/wiki/Unicode#Free_Font_Pack_and_Copyright_Restrictions">Free Font Pack for FPDF</a> below for more information. </p><p>Then, to use a Unicode font in your script, pass <tt>True</tt> as the fourth parameter of <a href="http://code.google.com/p/pyfpdf/wiki/AddFont">AddFont</a>(). </p><h2><a name="Example"></a>Example<a href="#Example" class="section_anchor"></a></h2><p>This example uses several free fonts to display some Unicode strings. Be sure to install the fonts in the <tt>font</tt> directory first. </p><pre class="prettyprint"><span class="com">#!/usr/bin/env python</span><span class="pln"><br></span><span class="com"># -*- coding: utf8 -*-</span><span class="pln"><br><br></span><span class="kwd">from</span><span class="pln"> fpdf </span><span class="kwd">import</span><span class="pln"> FPDF<br><br>pdf </span><span class="pun">=</span><span class="pln"> FPDF</span><span class="pun">()</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">add_page</span><span class="pun">()</span><span class="pln"><br><br></span><span class="com"># Add a DejaVu Unicode font (uses UTF-8)</span><span class="pln"><br></span><span class="com"># Supports more than 200 languages. For a coverage status see:</span><span class="pln"><br></span><span class="com"># http://dejavu.svn.sourceforge.net/viewvc/dejavu/trunk/dejavu-fonts/langcover.txt</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">add_font</span><span class="pun">(</span><span class="str">'DejaVu'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="str">'DejaVuSansCondensed.ttf'</span><span class="pun">,</span><span class="pln"> uni</span><span class="pun">=</span><span class="kwd">True</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">set_font</span><span class="pun">(</span><span class="str">'DejaVu'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14</span><span class="pun">)</span><span class="pln"><br><br>text </span><span class="pun">=</span><span class="pln"> u</span><span class="str">"""<br>English: Hello World<br>Greek: Γειά σου κόσμος<br>Polish: Witaj świecie<br>Portuguese: Olá mundo<br>Russian: Здравствуй, Мир<br>Vietnamese: Xin chào thế giới<br>Arabic: مرحبا العالم<br>Hebrew: שלום עולם<br>"""</span><span class="pln"><br><br></span><span class="kwd">for</span><span class="pln"> txt </span><span class="kwd">in</span><span class="pln"> text</span><span class="pun">.</span><span class="pln">split</span><span class="pun">(</span><span class="str">'\n'</span><span class="pun">):</span><span class="pln"><br>&nbsp; &nbsp; pdf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="lit">8</span><span class="pun">,</span><span class="pln"> txt</span><span class="pun">)</span><span class="pln"><br>&nbsp; &nbsp; pdf</span><span class="pun">.</span><span class="pln">ln</span><span class="pun">(</span><span class="lit">8</span><span class="pun">)</span><span class="pln"><br><br></span><span class="com"># Add a Indic Unicode font (uses UTF-8)</span><span class="pln"><br></span><span class="com"># Supports: Bengali, Devanagari, Gujarati, </span><span class="pln"><br></span><span class="com"># &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Gurmukhi (including the variants for Punjabi) </span><span class="pln"><br></span><span class="com"># &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; Kannada, Malayalam, Oriya, Tamil, Telugu, Tibetan</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">add_font</span><span class="pun">(</span><span class="str">'gargi'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="str">'gargi.ttf'</span><span class="pun">,</span><span class="pln"> uni</span><span class="pun">=</span><span class="kwd">True</span><span class="pun">)</span><span class="pln"> <br>pdf</span><span class="pun">.</span><span class="pln">set_font</span><span class="pun">(</span><span class="str">'gargi'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="lit">8</span><span class="pun">,</span><span class="pln"> u</span><span class="str">'Hindi: नमस्ते दुनिया'</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">ln</span><span class="pun">(</span><span class="lit">20</span><span class="pun">)</span><span class="pln"><br><br></span><span class="com"># Add a AR PL New Sung Unicode font (uses UTF-8)</span><span class="pln"><br></span><span class="com"># The Open Source Chinese Font (also supports others east-asia languages)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">add_font</span><span class="pun">(</span><span class="str">'fireflysung'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="str">'fireflysung.ttf'</span><span class="pun">,</span><span class="pln"> uni</span><span class="pun">=</span><span class="kwd">True</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">set_font</span><span class="pun">(</span><span class="str">'fireflysung'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="lit">8</span><span class="pun">,</span><span class="pln"> u</span><span class="str">'Chinese: 你好世界\n'</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="lit">8</span><span class="pun">,</span><span class="pln"> u</span><span class="str">'Japanese: こんにちは世界\n'</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">ln</span><span class="pun">(</span><span class="lit">10</span><span class="pun">)</span><span class="pln"><br><br></span><span class="com"># Add a Alee Unicode font (uses UTF-8)</span><span class="pln"><br></span><span class="com"># General purpose Hangul truetype fonts that Contain Korean syllable </span><span class="pln"><br></span><span class="com"># and Latin9 (iso8859-15) characters.</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">add_font</span><span class="pun">(</span><span class="str">'eunjin'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Eunjin.ttf'</span><span class="pun">,</span><span class="pln"> uni</span><span class="pun">=</span><span class="kwd">True</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">set_font</span><span class="pun">(</span><span class="str">'eunjin'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="lit">8</span><span class="pun">,</span><span class="pln"> u</span><span class="str">'Korean: 안녕하세요'</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">ln</span><span class="pun">(</span><span class="lit">20</span><span class="pun">)</span><span class="pln"><br><br></span><span class="com"># Add a Fonts-TLWG (formerly ThaiFonts-Scalable) (uses UTF-8)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">add_font</span><span class="pun">(</span><span class="str">'waree'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="str">'Waree.ttf'</span><span class="pun">,</span><span class="pln"> uni</span><span class="pun">=</span><span class="kwd">True</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">set_font</span><span class="pun">(</span><span class="str">'waree'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="lit">8</span><span class="pun">,</span><span class="pln"> u</span><span class="str">'Thai: สวัสดีชาวโลก'</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">ln</span><span class="pun">(</span><span class="lit">20</span><span class="pun">)</span><span class="pln"><br><br></span><span class="com"># Select a standard font (uses windows-1252)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">set_font</span><span class="pun">(</span><span class="str">'Arial'</span><span class="pun">,</span><span class="pln"> </span><span class="str">''</span><span class="pun">,</span><span class="pln"> </span><span class="lit">14</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">ln</span><span class="pun">(</span><span class="lit">10</span><span class="pun">)</span><span class="pln"><br>pdf</span><span class="pun">.</span><span class="pln">write</span><span class="pun">(</span><span class="lit">5</span><span class="pun">,</span><span class="pln"> </span><span class="str">'This is standard built-in font'</span><span class="pun">)</span><span class="pln"><br><br>pdf</span><span class="pun">.</span><span class="pln">output</span><span class="pun">(</span><span class="str">"unicode.pdf"</span><span class="pun">,</span><span class="pln"> </span><span class="str">'F'</span><span class="pun">)</span></pre><p>View the result here: <a href="https://pyfpdf.googlecode.com/hg/tutorial/unicode.pdf" rel="nofollow">unicode.pdf</a> </p><h2><a name="Metric_Files"></a>Metric Files<a href="#Metric_Files" class="section_anchor"></a></h2><p>FPDF will try to automatically generate metrics (i.e. character widths) about TTF font files to speed up their processing. </p><p>Such metrics are stored using the Python Pickle format (<tt>.pkl</tt> extension), by default in the font directory (ensure Read/Write permission!).  </p><p>TTF metric files often weight about 650K, so keep that in mind if you use many TTF fonts and have disk size or memory limitations.  </p><p>By design, metric files are not imported as they could cause a temporary memory leak if not managed properly (this could be an issue in  a webserver environment with many processes/threads, so the current implementation discards metrics when FPDF objects are disposed). </p><p>In most circumstances, you will not notice any difference about storing metric files vs. generating them in each run on-the-fly (according basic tests, elapsed time is equivalent, YMMV) </p><p>Like the original php implementation, this library should work even if it could not store the metric file, and as no source code file is generated at runtime, it should work in restricted environments. </p><h2><a name="Free_Font_Pack_and_Copyright_Restrictions"></a>Free Font Pack and Copyright Restrictions<a href="#Free_Font_Pack_and_Copyright_Restrictions" class="section_anchor"></a></h2><p>For your convenience, this library collected 96 TTF files in an optional <a href="http://pyfpdf.googlecode.com/files/fpdf_unicode_font_pack.zip" rel="nofollow">"Free Unicode TrueType Font Pack for FPDF"</a>, with useful fonts commonly distributed with GNU/Linux operating systems (see above for a complete description). This pack is included in the windows installers, or can be downloaded separately (for any operating system). </p><p>You could use any TTF font file as long embedding usage is allowed in the licence. If not, a runtime exception will be raised saying: <i>"ERROR - Font file filename.ttf cannot be embedded due to copyright restrictions."</i> </p>
+ </div>
+ </div>
+ </td></tr><tr>
+</tr></tbody></table>
+ </div>
+
+
+ 
+ <div id="wikicommentcol">
+ 
+
+
+ 
+ 
+ 
+
+<div class="collapse">
+
+
+ 
+
+
+<div id="commentlist">
+
+ 
+ <div class="artifactcomment">
+ 
+ 
+ 
+ 
+ 
+ 
+ <span class="author">Comment
+ 
+ by  project member 
+ 
+ 
+
+ <a class="userlink" href="http://code.google.com/u/jurgis.pralgauskis/">jurgis.pralgauskis</a>,
+ 
+ </span>
+ <span class="date" title="Sun Apr 28 02:25:03 2013">Apr 28, 2013</span>
+ <div>
+<div class="commentcontent">
+<p>if You use write_html( ..some unicode content.. ) <a href="https://code.google.com/p/pyfpdf/wiki/WriteHTML" rel="nofollow">https://code.google.com/p/pyfpdf/wiki/WriteHTML</a> </p><p>you should set font via &lt;font&gt; tag </p><p>pdf.write_html(u"&lt;H1&gt;&lt;font face='DejaVu' size='20'&gt;Ąžuolas&lt;/font&gt;&lt;H2&gt;")  </p>
+</div>
+ 
+ 
+ </div>
+ </div>
+ 
+
+</div>
+</div>
+
+ 
+
+
+ 
+
+
+ </div>
+ 
+ 
+ 
+ 
+ 
+ <div id="commentform">
+ <form action="http://code.google.com/p/pyfpdf/w/detail.do" method="post">
+ <table>
+ <tbody><tr><td class="vt">
+ <input name="pagename" value="Unicode" type="hidden">
+ <input name="token" value="pm5vaqz2FljokLsw1z-oJMs1Nxg:1369361187007" type="hidden">
+ <div class="graytext" style="float: right;">
+ Hint: You can use <a href="http://code.google.com/p/support/wiki/WikiSyntax">Wiki Syntax.</a>
+ </div>
+ <div>Enter a comment:</div>
+ <textarea id="itsalltext_generated_id_content_1" name="content" rows="6" cols="100"></textarea><img style="cursor: pointer ! important; display: none ! important; position: absolute ! important; padding: 0px ! important; margin: 0px ! important; border: medium none ! important; width: 28px ! important; height: 14px ! important; opacity: 0.0152174 ! important; left: 783px ! important; top: 2486px ! important;" title="It's All Text!" src="chrome://itsalltext/locale/gumdrop.png"><br><br>
+ <input name="submit" value="Submit" type="submit">
+ </td>
+ </tr></tbody></table>
+ </form>
+ </div>
+ 
+ 
+ 
+ 
+ 
+ <form name="delcom" action="http://code.google.com/p/pyfpdf/w/delComment.do" method="POST">
+ <input name="sequence_num" value="" type="hidden">
+ <input name="create_time" value="" type="hidden">
+ <input name="mode" value="" type="hidden">
+ <input name="pagename" value="Unicode" type="hidden">
+ <input name="token" value="pm5vaqz2FljokLsw1z-oJMs1Nxg:1369361187007" type="hidden">
+ </form>
+
+
+ 
+ 
+
+
+
+
+
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+</div> 
+
+<div id="footer" dir="ltr">
+ <div class="text">
+ <a href="http://code.google.com/projecthosting/terms.html">Terms</a> -
+ <a href="http://www.google.com/privacy.html">Privacy</a> -
+ <a href="http://code.google.com/p/support/">Project Hosting Help</a>
+ </div>
+</div>
+ <div class="hostedBy" style="margin-top: -20px;">
+ <span style="vertical-align: top;">Powered by <a href="http://code.google.com/projecthosting/">Google Project Hosting</a></span>
+ </div>
+
+ 
+ 
+
+
+ 
+ 
+
+
+
+<div style="display: none;" id="menuDiv-projects-dropdown" class="menuDiv instance0"><div class="menuCategory default"></div><b style="display: block;" class="categoryTitle projects">Projects</b><div class="menuCategory projects"><a href="http://code.google.com/p/tazjel/" style="display: block;" class="menuItem">tazjel</a></div><b style="display: block;" class="categoryTitle starred_projects">Starred projects</b><div class="menuCategory starred_projects"><a href="http://code.google.com/p/altdrag/" style="display: block;" class="menuItem">altdrag</a><a href="http://code.google.com/p/apt-cyg/" style="display: block;" class="menuItem">apt-cyg</a><a href="http://code.google.com/p/ardesia/" style="display: block;" class="menuItem">ardesia</a><a href="http://code.google.com/p/autokey/" style="display: block;" class="menuItem">autokey</a><a href="http://code.google.com/p/copyq/" style="display: block;" class="menuItem">copyq</a><a href="http://code.google.com/p/cyg-apt/" style="display: block;" class="menuItem">cyg-apt</a><a href="http://code.google.com/p/dragonfly/" style="display: block;" class="menuItem">dragonfly</a><a href="http://code.google.com/p/googlefontdirectory/" style="display: block;" class="menuItem">googlefontdirectory</a><a href="http://code.google.com/p/jquery-ui-vk/" style="display: block;" class="menuItem">jquery-ui-vk</a><a href="http://code.google.com/p/key-mon/" style="display: block;" class="menuItem">key-mon</a><a href="http://code.google.com/p/mintty/" style="display: block;" class="menuItem">mintty</a><a href="http://code.google.com/p/mobileterminal/" style="display: block;" class="menuItem">mobileterminal</a><a href="http://code.google.com/p/msysgit/" style="display: block;" class="menuItem">msysgit</a><a href="http://code.google.com/p/music21/" style="display: block;" class="menuItem">music21</a><a href="http://code.google.com/p/puttycyg/" style="display: block;" class="menuItem">puttycyg</a><a href="http://code.google.com/p/swapy/" style="display: block;" class="menuItem">swapy</a><a href="http://code.google.com/p/textroom/" style="display: block;" class="menuItem">textroom</a><a href="http://code.google.com/p/tweetx/" style="display: block;" class="menuItem">tweetx</a><a href="http://code.google.com/p/uc-debug/" style="display: block;" class="menuItem">uc-debug</a><a href="http://code.google.com/p/web2py/" style="display: block;" class="menuItem">web2py</a></div><div class="menuCategory controls"><hr class="menuSeparator"><a href="http://code.google.com/hosting/" style="display: block;" class="menuItem">Find open source projects...</a><a href="http://code.google.com/hosting/createProject" style="display: block;" class="menuItem">Create a project...</a></div></div><div style="display: none;" id="menuDiv-multilogin-dropdown" class="menuDiv instance1"><div class="menuCategory default"><span style="display: block;" class="menuText"><b>tazjel@gmail.com</b></span><a href="http://code.google.com/p/pyfpdf/wiki/Unicode?authuser=1" style="display: block;" class="menuItem">abobani@gmail.com</a></div><div class="menuCategory controls"><hr class="menuSeparator"><a href="http://www.google.com/accounts/AddSession?service=code&amp;continue=http%3A%2F%2Fcode.google.com%2Fp%2Fpyfpdf%2Fwiki%2FUnicode" style="display: block;" class="menuItem"><nobr>Sign in with another account...</nobr></a></div></div></body>
+</html>

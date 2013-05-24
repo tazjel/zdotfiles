@@ -1,0 +1,7 @@
+results = []
+res = { "next_page": "magic_token_to_get_first_page" }
+while "next_page" in res:
+    fp = urllib2.urlopen("http://search.twitter.com/search.json" + res["next_page"])
+    res = simplejson.load(fp)
+    fp.close()
+    results.extend(res["results"])

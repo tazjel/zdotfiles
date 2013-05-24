@@ -1,0 +1,17 @@
+tutorial for QtSixA very very soon, but for now, try this:
+sudo add-apt-repository ppa:falk-t-j/qtsixa
+sudo apt-get update
+sudo apt-get install qtsixa
+1 - connect your sixaxis via USB (so as the bluetooth adapter, if not internal), and run:
+Code:
+
+sudo sixpair
+
+then disconnect the sixaxis (usb cable)
+
+2 - run sixad, and press the PS button on the sixaxis:
+Code:
+
+sudo sixad -s
+
+

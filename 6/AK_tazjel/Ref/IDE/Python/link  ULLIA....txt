@@ -1,0 +1,1 @@
+link = UL(*[LI(A(tab,_href=URL(args=tab))) for tab in db.tables])
