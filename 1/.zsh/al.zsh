@@ -1,28 +1,22 @@
-#Tue May 21 05:40:35 AST 2013
+#
+#Tue May 28 13:48:00 AST 2013
 ##
 #
 ########################################################
 # zdotfiles aliases
 #
 ########################################################
-
-function ww_sixad {
-    lsusb;dmesg
-
-}
-
-alias -g wv='| vim -'
 zal=$HOME/zdotfiles/1/.zsh/al.zsh
 
 alias 00=$HOME/zdotfiles
 alias gal='cat $alf | grep'
 alias al='alias | grep'
-alias fal='alias | grep'
 
 alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 
 alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
+alias -g wv='| vim -'
 alias lh='ls -a | egrep "^\."'
 alias lhd='ls -A | egrep "^\."'
 #
@@ -30,20 +24,17 @@ alias lhd='ls -A | egrep "^\."'
 alias 'wl'='clear;pwd;ls;date -R;echo $PWD'
 
 #################################
-#  rsync 
-#
-
 #rsync mobile 
 alias wzi='rsync -e ssh -r --progress root@zphone.local:/var/mobile/qq.sh ~/qq.sh'
 
 ##alias 'wadd'='rsync -avz --progress -e  "ssh -p 2233" root@192.168.1.5:/var/mobile/AddressBook.sqlitedb ~/'
 ###############################
-alias 'zrf1'="rsync -avz --progress '$1' '/media/Transcend/w/$1'"
 function zbp {
-for xx in ~/.* ;do
+    for xx in ~/.* ;do
     rsync -avz --progress $HOME/.* $HOME/zzz_bkp
     echo $xx
-done;}
+done;
+}
 
 #
 alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
@@ -51,7 +42,7 @@ alias __="sudo"
 
 #######################################
 
-alias 'w'='ls -a; ls'
+alias 'w'='ls -alF;pwd;date'
 alias 'ww'='vim'
 alias 'www'='cat'
 
@@ -395,7 +386,7 @@ alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
 alias -g Gh='--help | grep'
 alias -g G='| grep'
 
-### Search
+#Search
 function ww10 {
 for i in $(seq 1 10);do
     echo $i
@@ -435,3 +426,14 @@ alias 'Ww_apt-cache_search_xfce4'='apt-cache search xfce4'
 alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
 
 alias 'b'='clear;ls;pwd;date'
+
+alias '66'='cd $HOME/zdotfiles/6'
+
+alias 'ww_firefox_editor'="firefox 'data:text/html, <html contenteditable>' "
+
+
+function ww_sixad {
+    lsusb;dmesg
+
+}
+
