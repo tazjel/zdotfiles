@@ -1,0 +1,23 @@
+/* ::::: http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.13/themes/redmond/jquery-ui.css ::::: */
+
+.ui-helper-hidden { display: none; }
+.ui-widget { font-family: Lucida Grande,Lucida Sans,Arial,sans-serif; font-size: 1.1em; }
+.ui-widget-content { border: 1px solid rgb(166, 201, 226); background: url('ui-bg_inset-hard_100_fcfdfd_1x100.png') repeat-x scroll 50% bottom rgb(252, 253, 253); color: rgb(34, 34, 34); }
+.ui-state-hover, .ui-widget-content .ui-state-hover, .ui-widget-header .ui-state-hover, .ui-state-focus, .ui-widget-content .ui-state-focus, .ui-widget-header .ui-state-focus { border: 1px solid rgb(121, 183, 231); background: url('ui-bg_glass_75_d0e5f5_1x400.png') repeat-x scroll 50% 50% rgb(208, 229, 245); font-weight: bold; color: rgb(29, 89, 135); }
+.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active { border: 1px solid rgb(121, 183, 231); background: url('ui-bg_inset-hard_100_f5f8f9_1x100.png') repeat-x scroll 50% 50% rgb(245, 248, 249); font-weight: bold; color: rgb(225, 112, 9); }
+.ui-widget :active { outline: medium none; }
+.ui-corner-all { border-radius: 5px 5px 5px 5px; }
+button.ui-button::-moz-focus-inner { border: 0px none; padding: 0px; }
+/* ::::: http://osdir.com/ml/css/defaultv6.css ::::: */
+
+body { margin: 0px; padding: 0px; border: 0px none; width: 100%; background: none repeat scroll 0% 0% rgb(255, 255, 255); font-size: 14px; font-family: "Verdana",Georgia,Serif; }
+a { color: rgb(43, 62, 174); }
+a:hover { text-decoration: none; }
+h1, h2, h3 { margin: 0.8em 0px 0.2em; padding: 0px; font-size: 15px; }
+p { margin: 0.4em 0px 0.8em; padding: 0px; }
+img { margin: 10px 0px 5px; }
+iframe { border: 0px none; }
+.cleanDis a:link, a:hover { text-decoration: none; }
+ul { list-style: none outside none; margin-left: 5px; }
+ul { padding: 3px; margin: 0px; }
+strong, b { font-weight: normal ! important; }

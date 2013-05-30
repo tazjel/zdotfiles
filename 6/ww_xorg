@@ -1,0 +1,29 @@
+Section "InputDevice"
+        Identifier      "Sixaxis"
+        Driver          "joystick"
+        Option          "Device"        "/dev/input/by-id/usb-Sony_PLAYSTATION_R_3_Controller-event-joystick"
+#The previous line will be system specific.  To find yours, invoke $ls /dev/input/by-id
+        Option          "Path"          "/dev/input/js0"
+#The previous line will also be system specific, but you will most likely find the Sixaxis at /dev/input/js0
+# Map Button 16 - square
+        Option          "MapButton16"   "button=3"
+# Map Button 15 - x
+        Option          "MapButton15"   "button=1"
+# Map Button 11 - L1
+        Option          "MapButton11"   "key=Alt_L,Left"
+# Map Button 12 - R1
+        Option          "MapButton12"   "key=Alt_L,Right"
+        Option          "MapAxis1"      "mode=relative axis=2.0x deadzone=3000"
+        Option          "MapAxis2"      "mode=relative axis=2.0y deadzone=3000"
+EndSection
+
+#Note: a detailed explanation of the input options can be found in the xserver-xorg-input-joystick manual which can be opened with $man joystick 
+
+#Add the new InputDevice to the ServerLayout section of xorg.conf. The line you need to add is as follows
+
+
+Section "ServerLayout"
+        InputDevice     "Sixaxis"       "SendCoreEvents"
+        Identifier      "Default Layout"
+        screen          "Default Screen"
+EndSection

@@ -1,0 +1,94 @@
+/* ::::: https://pypi.python.org/styles/screen-switcher-default.css ::::: */
+
+/* ::::: https://pypi.python.org/styles/styles.css ::::: */
+
+HTML, BODY { margin: 0px; padding: 0px; font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; font-size: 103%; color: rgb(0, 0, 0); background-color: rgb(255, 255, 255); }
+IMG { border: 0px none; }
+H1, H2, H3, H4, H5 { font-family: Georgia,"Bitstream Vera Serif","New York",Palatino,serif; font-weight: normal; line-height: 1em; }
+H1 { font-size: 160%; color: rgb(35, 71, 100); margin: 0.7em 0px; text-decoration: none; }
+H1 A { color: rgb(35, 71, 100); }
+H4 { font-size: 125%; color: rgb(54, 109, 156); margin: 0.4em 0px 0em; }
+#logoheader { border-width: 0px 0px 1px; border-style: none none solid; border-color: -moz-use-text-color -moz-use-text-color rgb(153, 153, 153); -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; margin: 0px; padding: 1px; z-index: 1; background-color: rgb(247, 247, 247); background-image: url('header-bg2.png'); background-repeat: repeat-x; height: 84px; }
+#logo { width: 211px; height: 71px; margin-top: 10px; margin-left: 3%; }
+#content-body { position: absolute; left: 0px; top: 63px; width: 93.9%; z-index: 0; font-size: 75%; margin-left: 3%; min-width: 660px; }
+#body-main { padding: 0px 0.55em 40px 0em; line-height: 1.4em; font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; margin-left: 19em; }
+#body-main { font-size: 100%; }
+#left-hand-navigation { position: absolute; left: 3%; z-index: 1; top: 110px; }
+#menu { padding: 0px; margin-bottom: 5px; width: 16em; font-size: 75%; }
+#menu ul { list-style: none outside none; margin: 0px; padding: 0px; border: 0px none; }
+#menu li { display: inline; }
+#menu ul.level-one a { display: block; border: 1px solid rgb(218, 218, 218); padding: 2px 2px 2px 4px; margin: 0px 0px 4px 1.4em; width: 12em ! important; font-family: Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; color: rgb(75, 90, 106); background-image: url('nav-off-bg.png'); background-position: right top; background-repeat: no-repeat; background-color: rgb(245, 245, 245); text-transform: uppercase; }
+#menu ul.level-one a:hover { color: black; text-decoration: underline; }
+#menu ul.level-one a.selected { background-image: url('nav-on-bg.png'); background-color: rgb(255, 255, 255); color: black; border-left: 3px solid rgb(255, 219, 76); }
+#menu ul.level-two li:first-child a { border-top: 0px none; }
+#menu ul.level-two a { display: block; border-right: 0px none; border-width: 1px 0px 0px; border-style: solid none none; border-color: rgb(221, 221, 221) -moz-use-text-color -moz-use-text-color; -moz-border-top-colors: none; -moz-border-right-colors: none; -moz-border-bottom-colors: none; -moz-border-left-colors: none; border-image: none; padding: 0.1em; margin: 0px 3em 0px 1.5em; color: rgb(60, 75, 123); background: none repeat scroll 0% 0% transparent; width: 11em ! important; font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; text-transform: none; }
+#menu ul.level-two a:hover { text-decoration: underline; color: black; }
+#menu ul.level-two a:visited { color: rgb(76, 59, 91); }
+#menu li ul { margin-bottom: 7px; }
+#menu a { text-decoration: none; }
+#body-main a:link { color: rgb(0, 0, 170); text-decoration: none; }
+#body-main a:visited { color: rgb(85, 26, 139); text-decoration: none; }
+#body-main ul, #body-main li { margin-left: 1em; padding-left: 0px; }
+#breadcrumb { vertical-align: middle; color: rgb(58, 73, 105); font-size: 110%; margin-bottom: 30px; background-image: url('bullet.gif'); padding-left: 0.9em; background-repeat: no-repeat; background-position: left center; }
+#breadcrumb a:link, #breadcrumb a:visited { text-decoration: none; color: rgb(60, 75, 107); }
+#breadcrumb a:hover { text-decoration: underline; color: black; }
+.breadcrumb-separator { color: rgb(172, 198, 209); }
+#utility-menu { position: absolute; top: 0px; right: 4%; height: 85px; margin: 0px; padding: 0px; width: 400px; z-index: 1; font-size: 88%; font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; }
+#searchbox { position: absolute; white-space: nowrap; top: 16px; right: 0px; width: 28.1em; vertical-align: middle; font-weight: bold; text-align: right; }
+#searchbox form { display: inline; }
+#search { color: rgb(163, 142, 96); }
+#search .input-text { margin-top: 3px; border: 1px solid rgb(196, 204, 204); background-color: rgb(255, 255, 255); vertical-align: top; font-weight: normal; font-size: 116%; width: 11em; }
+#search .input-button { color: rgb(34, 51, 68); font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; font-weight: bold; font-size: 103%; border-width: 1px; border-style: solid; border-color: rgb(196, 204, 204) rgb(111, 119, 119) rgb(111, 119, 119) rgb(196, 204, 204); background-color: rgb(248, 247, 247); background-image: url('button-on-bg.png'); background-repeat: no-repeat; padding: 0px 0.2em; margin: 3px 0.4em 0px; vertical-align: text-top; }
+#skiptonav { height: 1px; width: 1px; }
+.homepage-box h4, #document-navigation h4, .externallinks h4 { font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; font-size: 94%; font-weight: bold; padding: 3px 0px 4px 12px; margin-bottom: 8px; border-bottom: 3px solid rgb(255, 188, 41); background-color: rgb(246, 246, 246); text-align: left; z-index: 0; }
+#document-navigation { font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; font-size: 98%; text-align: left; color: rgb(60, 75, 107); background-color: rgb(247, 246, 240); width: 15em; border: 1px solid rgb(183, 190, 204); z-index: 999; float: right; margin: 0px 12px 12px; padding-bottom: 10px; list-style: none outside none; }
+#document-navigation ul { list-style: none outside none; display: block; border: 0px none; padding: 0px; margin: 0px 3em 0px 1.1em; color: rgb(60, 75, 107); background: none repeat scroll 0% 0% transparent; width: auto; font-size: 103%; font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; }
+#document-navigation a:link, #document-navigation a:visited { color: rgb(60, 75, 107); text-decoration: none; }
+#document-navigation a:hover { color: rgb(0, 0, 0); text-decoration: underline; }
+#document-navigation a { text-decoration: none; }
+#body-main ul A:link, #body-main ul A:visited { border-bottom: 1px dashed rgb(204, 204, 204); }
+#document-navigation h4, .homepage-box h4, .externallinks h4 { font-family: Arial,Verdana,Geneva,"Bitstream Vera Sans",Helvetica,sans-serif; font-size: 94%; font-weight: bold; padding: 3px 0px 4px 12px; margin: 0px; text-align: left; z-index: 0; color: rgb(255, 255, 255); background-color: rgb(55, 106, 148); }
+#skiptonav { position: absolute; }
+#footer { margin: 3em 0px 0px; padding: 1em 0px; border-top: 1px dotted rgb(204, 204, 204); bottom: 0px; font-size: 90%; position: relative; clear: both; }
+#footer a:visited, #footer a:link { color: rgb(102, 102, 102); display: inline; }
+#footer a:hover { color: rgb(51, 51, 51); display: inline; }
+#footer #credits { position: absolute; top: 0px; right: 0px; margin: 1em 0px 0px; }
+iframe { margin-top: 20px; }
+#content { min-height: 500px; font-size: 115%; }
+#content p, #content li { line-height: 1.5; }
+/* ::::: https://pypi.python.org/styles/netscape4.css ::::: */
+
+#left-hand-navigation {  }
+#left-hand-navigation a {  }
+#content-body {  }
+#content-body a {  }
+#document-navigation {  }
+#logoheader {  }
+#logo {  }
+#logolink {  }
+#search {  }
+#skiptonav {  }
+#breadcrumb {  }
+#utility-menu {  }
+ul {  }
+/* ::::: https://pypi.python.org/css/docutils.css ::::: */
+
+/* ::::: https://pypi.python.org/css/pygments.css ::::: */
+
+/* ::::: https://pypi.python.org/css/pypi.css ::::: */
+
+ul.nodot { list-style-type: none; }
+#document-navigation ul { margin: 0px; }
+#document-navigation a { border-bottom: medium none; }
+#document-navigation a:link { text-decoration: underline; }
+#document-navigation a:visited { text-decoration: underline; }
+/* ::::: https://pypi.python.org/css/pypi-screen.css ::::: */
+
+/* ::::: https://fonts.googleapis.com/css?family=Open+Sans ::::: */
+
+@font-face {
+	font-family: "Open Sans";
+	font-style: normal;
+	font-weight: 400;
+	src: local("Open Sans"), local("OpenSans"), url('cjzkeoubrn4kerxqtauh3t8e0i7kzn-epnyo3hzu7kw.woff') format("woff");
+}

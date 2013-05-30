@@ -17,7 +17,7 @@
 set t_Co=256 "use 256 colours in terminal
 set nocompatible
 set encoding=utf-8
-
+""
 set foldmethod=manual
 "set t_Co=256 "use 256 colours in terminal
 
@@ -193,3 +193,7 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "o23<ESC>qqYp<C-A>q40@q
 "----------------------------------------
 "# : Pressing F5 lists all buffer, just type number
+"web2py
+"
+"
+"

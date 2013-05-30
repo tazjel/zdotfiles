@@ -157,6 +157,7 @@ alias fin='find -iname'
 alias fn='find -name'
 alias freenodetor='dig +short irc.tor.freenode.net cname'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
+alias wfreq='cut -f1 -d" " ~/.zsh_history | sort | uniq -c | sort -nr | head -n 30'
 alias fwn='find -wholename'
 alias g=git
 alias ga='git add'
@@ -363,16 +364,16 @@ alias d='dirs -v | head -10'
     #cp $1 `basename $1`-`date +%Y%m%d%H%M`.backup ;
 #}
 
-#hack()
-#{
-    #var=$(history | ack $1 | wc -l)
-    #if (( $var > 22 ))
-    #then
-        #history | ack $1 | less
-    #else
-        #history | ack $1
-    #fi
-#}
+hack()
+{
+    var=$(history | ack $1 | wc -l)
+    if (( $var > 22 ))
+    then
+        history | ack $1 | less
+    else
+        history | ack $1
+    fi
+}
 
 
 function wW_grep_logs(){
@@ -398,6 +399,7 @@ grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
 
 }
 
+alias 'wwww_clean_history_get_install'="lg install | sed 's/install//g' | sed 's/^ //g' | sed 's/sudo aptitude//g' | sed 's/^[ ]apt-get//g'| sed 's/^alg.*$//g"
 
 alias 'wmsg'='dmesg | tail -15'
 
@@ -405,7 +407,6 @@ alias '___'='sudo su'
 
 alias 'wmw_mlterm_bblack_whati'=' mlterm -b=black -f=white -w=16'
 
-alias '99'='cd ~/zdotfiles/Projects/web2py'
 
 alias 'ww_chmodX'='chmod +x'
 
@@ -430,8 +431,16 @@ alias 'b'='clear;ls;pwd;date'
 alias '66'='cd $HOME/zdotfiles/6'
 
 alias 'ww_firefox_editor'="firefox 'data:text/html, <html contenteditable>' "
-
-
+##########################################################################3#
+#
+#
+#
+#
+#web2py
+#
+alias '99'='cd ~/zdotfiles/Projects/web2py'
+alias '99_welcome/controllers/default'='cd $HOME/zdotfiles/Projects/web2py/web2py/applications/welcome/controllers'
+alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
 function ww_sixad {
     lsusb;dmesg
 

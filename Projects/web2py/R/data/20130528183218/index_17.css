@@ -1,0 +1,36 @@
+/* ::::: http://static.fundrazr.com/give-button/1100/give-sprite.css ::::: */
+
+div[id^="fr_give-container"], div[id^="fr_give-container"] div, div.fr_give-widget-class[id^="fr_give-widget"], div.fr_give-widget-class[id^="fr_give-widget"] div, div.fr_give-widget-class[id^="fr_give-widget"] h2, div.fr_give-widget-class[id^="fr_give-widget"] p, #fr_hovercard-outer, #fr_hovercard-inner, #fr_hovercard-inner div, #fr_hovercard-inner h2, #fr_hovercard-inner p, #fr_footer, #fr_footer a { color: rgb(51, 51, 51) ! important; font-family: arial,helvetica,tahoma,verdana,sans-serif ! important; font-size: 100%; font-weight: normal; font-style: normal; font-variant: normal ! important; text-decoration: none; text-align: left ! important; text-transform: none ! important; text-indent: 0px ! important; letter-spacing: normal ! important; word-spacing: normal ! important; line-height: 1em ! important; white-space: normal ! important; vertical-align: baseline; direction: ltr ! important; visibility: visible; padding: 0px ! important; margin: 0px ! important; border: medium none; background: none repeat scroll 0% 0% transparent; clear: both; overflow: hidden ! important; }
+div.fr_give-widget-class[id^="fr_give-widget"], div.fr_give-widget-class[id^="fr_give-widget"] div, div.fr_give-widget-class[id^="fr_give-widget"] h2, div.fr_give-widget-class[id^="fr_give-widget"] p, #fr_hovercard-outer, #fr_hovercard-inner, #fr_hovercard-inner div, #fr_hovercard-inner h2, #fr_hovercard-inner p, #fr_footer a { position: relative ! important; }
+#fr_hovercard-inner #fr_hovercard-inner2 { float: left ! important; clear: none ! important; width: 160px; }
+#widget { border-color: rgb(101, 138, 177) ! important; width: 180px; height: 335px; }
+.campaign_image { height: 130px ! important; }
+#stats { width: 180px; }
+/* ::::: http://static.fundrazr.com/widgets/1100/style/badge-tall.css ::::: */
+
+#widget { position: relative; float: left; padding: 5px; margin: 0px; background: none repeat scroll 0% 0% white; border: 4px solid rgb(232, 232, 232); border-radius: 5px 5px 5px 5px; box-shadow: 0px 1px 2px rgba(34, 25, 25, 0.4); overflow: hidden; font-family: arial,helvetica,verdana,sans-serif; font-size: 9pt; color: rgb(68, 68, 63); font-weight: normal; letter-spacing: normal; line-height: 1.2em; cursor: pointer; }
+h2 { font-family: arial,helvetica,verdana,sans-serif; font-size: 20pt; color: rgb(68, 68, 63); font-weight: bold; letter-spacing: normal; margin: 1.2em 0px 0.4em; text-decoration: none; text-transform: none; }
+h3 { font-family: inherit; font-size: 12pt; font-weight: bold; letter-spacing: normal; line-height: 1em; padding: 0px; margin: 0px; }
+.hilight { color: rgb(51, 102, 153); }
+a { color: rgb(51, 102, 153); text-decoration: none; }
+a:visited { color: rgb(51, 102, 153); text-decoration: none; }
+a:hover { color: rgb(0, 102, 204); text-decoration: underline; }
+a:active { color: rgb(0, 102, 153); text-decoration: none; }
+.grey { color: rgb(102, 102, 102); }
+div.image_wrapper { display: block; overflow: hidden; width: 100%; padding: 0px; margin: 0px 0px 10px -1px; border: 1px solid rgb(204, 204, 204); background: none repeat scroll 0% 0% rgb(232, 232, 232); }
+div.campaign_image { width: 100%; height: auto; display: block; background-color: black; background-position: center center; background-repeat: no-repeat; background-size: auto 100%; }
+h3.campaign_title { margin-bottom: 12px; max-height: 3em; overflow: hidden; }
+h3.campaign_category { display: block; width: 100%; height: 25px; left: 0px; bottom: 0px; margin: 0px; padding: 0px 5px; color: white; background: none repeat scroll 0% 0% black; line-height: 25px; text-align: left; }
+img.campaign_avatar { display: block; float: left; width: 50px; height: 50px; margin: 0px 8px 10px 0px; border: 0px none; background: none repeat scroll 0% 0% rgb(232, 232, 232); }
+p { margin: 8px 0px 0px; }
+p.byline { margin-top: 0px; }
+#details { overflow: hidden; }
+#stats { position: absolute; bottom: 10px; }
+div.progress_bar { clear: both; position: relative; height: 24px; margin-top: 6px; background: none repeat scroll 0% 0% rgb(239, 239, 239); border-radius: 3px 3px 3px 3px; overflow: hidden; }
+div.progress_bar_shading { position: absolute; top: 0px; left: 0px; width: 100%; height: 100%; border-radius: 3px 3px 3px 3px; background: -moz-linear-gradient(center top , rgba(255, 255, 255, 0) 0px, rgba(255, 255, 255, 0.22) 50%, rgba(255, 255, 255, 0) 100%) repeat scroll 0% 0% transparent; box-shadow: 0px 0px 4px rgba(0, 0, 0, 0.6) inset; z-index: 9; }
+div.progress_bar_fill { position: absolute; top: 0px; left: 0px; height: 100%; border-radius: 3px 3px 3px 3px; background: none repeat scroll 0% 0% rgb(199, 199, 199); z-index: 8; }
+p.label_raised, p.label_goal { position: relative; font-size: 14px; line-height: 1.2em; font-weight: bold; margin: 6px 0px 1px; }
+p.label_raised { float: left; }
+p.label_goal { float: right; }
+span.currency_symbol { font-size: 8pt; line-height: 1.2em; vertical-align: text-top; }
+p.campaign_supporters { margin-top: 0.2em; font-size: 8pt; }
