@@ -4,7 +4,6 @@ Work in progress
 
 zdotfiles
 
-###
 #1-First Diminsion :
     ## Command line
 #2- Second Diminsion :
@@ -14,14 +13,14 @@ zdotfiles
 #4- Fourth Diminsion :
     ## Logs
 #5- Fivth Diminsion :
-   ## Current processes
+    ## Current processes
 #6- Sixth Diminsion :
-   ## Dotfiles
+    ## Dotfiles
 #7- Seventh Diminsion :
-   ## System Administration
+    ## System Administration
 #8- Eighth Diminsion
-   ## Access your account on-line
+    ## Access your account on-line
 #9- Nineth Diminsion
-   ## Access : SSH/Root
+    ## Access : SSH/Root
 #10- Multisystem
-   ## Access your System from different OS
+    ## Access your System from different OS
