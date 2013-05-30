@@ -1,0 +1,5 @@
+Processing triggers for initramfs-tools ...
+update-initramfs: Generating /boot/initrd.img-3.2.0-44-generic
+cryptsetup: WARNING: failed to detect canonical device of /host/ubuntu/disks/root.disk
+cryptsetup: WARNING: could not determine root device from /etc/fstab
+Warning: No support for locale: ar_SA.utf8

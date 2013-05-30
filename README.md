@@ -1,4 +1,4 @@
-﻿dotfiles
+﻿Dotfiles
 =========
 Work in progress
 
