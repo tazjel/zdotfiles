@@ -1,27 +1,27 @@
-﻿Dotfiles
+﻿dotfiles
 =========
 Work in progress
 
 zdotfiles
 
 ###
-#1-First Diminsion :Line
-    ## Bash,zsh
-#2- Second Diminsion : Lines & columns
-   #VIMVIEWS
-#3-Thisrd Diminsion : lines in a Menu or GUI
-   #GVIM
-#4- Fourth Diminsion : Time-line
-   #KSyslogs
-#5- Fivth Diminsion : Lines of Processes
-   #ps
-#6- Sixth Diminsion : ~ # $HOME/$USER   Lines at regex-Search and find. Search a a and  line
-   #find , grep ,ag
-#7- Seventh Diminsion # ROOT
-   #sudoers
-#8- User Accounts on-line.
-   #gmail
-#9- Root at Remote host
-   #ssh
-#10- Multisystem.
-
+#1-First Diminsion :
+    ## Command line
+#2- Second Diminsion :
+    ## Text Documents
+#3-Thisrd Diminsion :
+    ## GUI
+#4- Fourth Diminsion :
+    ## Logs
+#5- Fivth Diminsion :
+   ## Current processes
+#6- Sixth Diminsion :
+   ## Dotfiles
+#7- Seventh Diminsion :
+   ## System Administration
+#8- Eighth Diminsion
+   ## Access your account on-line
+#9- Nineth Diminsion
+   ## Access : SSH/Root
+#10- Multisystem
+   ## Access your System from different OS
