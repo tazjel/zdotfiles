@@ -446,3 +446,5 @@ function ww_sixad {
 
 }
 
+
+alias 'ww_ff_search'='firefox -search'

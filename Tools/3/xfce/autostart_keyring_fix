@@ -1,0 +1,37 @@
+
+sudo vim  /etc/xdg/autostart/gnome-keyring-pkcs11.desktop
+
+WARNING: gnome-keyring:: couldn't connect to: /tmp/keyring pkcs11: No such file or directory
+
+THIS FIX MAKES THE gnome-keyring-pkcs11.so LOAD AT STARTUP FOR THE LXDE SESSION
+
+This is one of them, now fixed....Warning message, it's an error message cause it is not letting the command to run. "WARNING: gnome-keyring:: couldn't connect to: /tmp/keyring-<SOMEGENERATEDSTRING>/pkcs11: No such file or directory "This is caused because of a module: gnome-keyring-pkcs11.so that is not being loaded when you log into an LXDE session. (this problem is analog to other sessions too, in this case I am using LXDE but could be KDE, GNOME etc... see the solution to understand how).
+
+
+
+Here is the FIX!!!:
+
+add "LXDE;" (without the double quotes and plus the semicolon, didn't try without it) 
+to this file "/etc/xdg/autostart/gnome-keyring-pkcs11.desktop"  by editing it with whatever text editor you preffer, I'll use "nano" 
+
+1 - in a terminal type (as root or with sudo): nano /etc/xdg/autostart/gnome-keyring-pkcs11.desktop
+
+[Desktop Entry]
+Type=Application
+Name=Certificate and Key Storage
+Comment=GNOME Keyring: PKCS#11 Component
+Exec=/usr/bin/gnome-keyring-daemon --start --components=pkcs11
+OnlyShowIn=GNOME;Unity;LXDE;
+X-GNOME-Autostart-Phase=Initialization
+X-GNOME-AutoRestart=false
+X-GNOME-Autostart-Notify=true
+X-GNOME-Bugzilla-Bugzilla=GNOME
+X-GNOME-Bugzilla-Product=gnome-keyring
+X-GNOME-Bugzilla-Component=general
+X-GNOME-Bugzilla-Version=3.2.2
+NoDisplay=true
+X-Ubuntu-Gettext-Domain=gnome-keyring
+
+2 - after editing, make sure you save the changes
+
+3 - RESTART YOUR PC
