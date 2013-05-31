@@ -448,3 +448,6 @@ function ww_sixad {
 
 
 alias 'ww_ff_search'='firefox -search'
+
+alias -g 'H'="--help"
+alias -g 'wH'="--help | grep "
