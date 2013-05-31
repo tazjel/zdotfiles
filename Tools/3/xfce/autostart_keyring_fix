@@ -1,5 +1,11 @@
+###################################################
+1- Enable gnome on startup
+2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 2- Do the following instructions 
+###################################################
 
 sudo vim  /etc/xdg/autostart/gnome-keyring-pkcs11.desktop
+
+
 
 WARNING: gnome-keyring:: couldn't connect to: /tmp/keyring pkcs11: No such file or directory
 
