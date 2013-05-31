@@ -451,3 +451,15 @@ alias 'ww_ff_search'='firefox -search'
 
 alias -g 'H'="--help"
 alias -g 'wH'="--help | grep "
+
+
+
+
+
+
+cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
+
+
+alias 'wx'='chmod +x'
+
+alias 'wX'='chmod -x'

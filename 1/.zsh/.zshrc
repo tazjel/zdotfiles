@@ -7,5 +7,4 @@ source $HOME/zdotfiles/1/.zsh/functions.zsh
 source $HOME/zdotfiles/1/.zsh/history.zsh
 source $HOME/zdotfiles/1/.zsh/prompt.zsh
 source $HOME/zdotfiles/1/.zsh/setopt.zsh
-source $HOME/zdotfiles/1/.zsh/zsh_history
 source $HOME/zdotfiles/1/.zsh/zsh_hooks.zsh
