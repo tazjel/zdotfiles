@@ -1,0 +1,9 @@
+From: "Ahmed" <abobani@gmail.com>
+To: "tazjel" <tazjel@gmail.com>
+Subject: This is a test
+
+Hi John,
+I'm sending this mail with curl thru my gmail account.
+Bye!
+
+احمد الباني

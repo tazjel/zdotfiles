@@ -415,7 +415,7 @@ alias 'ww_chmod_x'='chmod -x'
 alias '__r'='sudo reboot'
 
 function Ww () {
-ag $(echo "$1") $(echo $HOME/zdotfiles)
+ag -C 3 $(echo "$1") $(echo $HOME/zdotfiles)
 }
 
 #Ww lsof G net | sed 's/###/\n\n###/'g | sed 's/##/\n\n##/g' | sed 's/#\!bin/\n\n#\!\/bin/g' | sed 's/\+alias/#\n   +alias/g'
@@ -442,9 +442,21 @@ alias '99'='cd ~/zdotfiles/Projects/web2py'
 alias '99_welcome/controllers/default'='cd $HOME/zdotfiles/Projects/web2py/web2py/applications/welcome/controllers'
 alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
 function ww_sixad {
-    lsusb;dmesg
-
+    lsusb;dmesg;hcitool dev;hcitool con;
+    echo " بسم الله ما شاء الله"
 }
+
+
+
+function ww_sixad_bluetooth_restart {
+    sudo service bluetooth restart;
+}
+
+
+
+
+
+
 
 
 alias 'ww_ff_search'='firefox -search'
@@ -459,7 +471,41 @@ alias -g 'wH'="--help | grep "
 
 cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 
-
+####################################################
+#
+#
+function ww_send_gmail 
+{
+echo "Your Email :  " && read Email;
+echo " Enter Password : " && read pw;
+echo "Send To : " && read mailto ;
+curl --url "smtps://smtp.gmail.com:465" --ssl-reqd --mail-from "$(echo $Email)" --mail-rcpt "$(echo $mailto)" --upload-file mail.txt --user "$(echo $Email):$(echo $pw)" --insecure;
+}
+#
+#
+########################3
+#
 alias 'wx'='chmod +x'
 
 alias 'wX'='chmod -x'
+
+alias '11'='cd /home/abobani/zdotfiles/1'
+
+alias 'W'='echo'
+
+alias 'w-grep'='grep -vE "^$|^[\s]*[;#]"'
+
+ #'ws'='PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done"
+
+function wwrename {
+    for file in * ; do
+    mv "$file" `echo "$file" | tr ' ' '_' | tr '[A-Z]' '[a-z]'`;
+    done;
+}
+
+alias 'wtst'='cd ~/tst'
+
+alias 'wlv'='ls -a | grep vim'
+alias 'wlz'='ls -a | grep zsh'
+
+alias 'wdev'='hcitool dev'

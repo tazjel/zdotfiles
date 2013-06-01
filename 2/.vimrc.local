@@ -18,7 +18,10 @@
 set t_Co=256
 set nocompatible
 set encoding=utf-8
+"# { <F10> HTML
 
+vnoremap <T-F5> :!sed -i 's/<[^>]*>//g' %<CR>
+"#}
 
 "-----------------------------
 "   manul {
@@ -103,15 +106,15 @@ nnoremap <F4> :verbose map
 
                                 "F5
 
-nnoremap <F5> :source %<CR>
 
-"nnoremap <S-F5> :vsplit $HOME/.vimrc.local<CR>
+nnoremap <S-F5> :vsplit $HOME/.vimrc.local<CR>
+nnoremap  <S-F5>w :vsplit $HOME/.vimrc.localw<CR>
+"nnoremap <silent> <C-F5> :vsplit ~/.vimrc.localww<CR>
+nnoremap <C-F5> :vsplit ~/.vimrc.localww<CR>
 "F5"
     " source vimrc
 nnoremap <silent> <F5> :source ~/.vimrc.local<CR>
-nnoremap <silent> <C-F5> :vsplit ~/.vimrc.local<CR>
-nnoremap <silent> <S-F5> :SessionSaveAs 
-nnoremap <silent> <M-S-F5> :SessionList<CR>
+"nnoremap <silent> <M-S-F5> :SessionList<CR>
                                 "F7
 "map   <F6>>   :w<CR>:!perl -c %<CR>
 
@@ -195,5 +198,6 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "# : Pressing F5 lists all buffer, just type number
 "web2py
 "
-"
-"
+": pre-loading registers (put in .vimrc)
+let @y='yy@"'
+

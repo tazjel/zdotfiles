@@ -11,4 +11,4 @@ function ww10
 
 ww10
 tree ~/tst
-echo "done"
+echo "نعم"
