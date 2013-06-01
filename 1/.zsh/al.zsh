@@ -459,7 +459,7 @@ function ww_sixad_bluetooth_restart {
 
 
 
-alias 'ww_ff_search'='firefox -search'
+alias 'wf'='firefox -search'
 
 alias -g 'H'="--help"
 alias -g 'wH'="--help | grep "
