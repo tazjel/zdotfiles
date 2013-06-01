@@ -509,3 +509,5 @@ alias 'wlv'='ls -a | grep vim'
 alias 'wlz'='ls -a | grep zsh'
 
 alias 'wdev'='hcitool dev'
+
+alias '1'='ls'

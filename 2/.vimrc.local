@@ -58,67 +58,40 @@ nnoremap <silent> W :w<CR>
 "            F[1-12]
 "==================================="
 """"'<,'>sort /.*\%2v/
-                    "F1
+                    "{F1
 map <F1> ,c<space>
+"}
+                    "{<F2>
+"nnoremap <F2> :reg<CR>
+nnoremap <F5> :source ~/.vimrc.local<CR>
+"}"
+"{ Lists<F3>
+map <F3>b :ls<CR>:sb
+map <F3>r :reg<CR>
+map <F3>m :marks<CR>
 
-                    "<F2>
-nnoremap <F2> :reg<CR>
 
- "Multiple Files Management (Essential)
-":bn              : goto next buffer
-":bp              : goto previous buffer
-":wn              : save file and move to next (super)
-":wp              : save file and move to previous
-":bd              : remove file from buffer list (super)
-":bun             : Buffer unload (remove window but not from list)
-":badd file.c     : file from buffer list
-":b3              : go to buffer 3 [C]
-":b main          : go to buffer with main in name eg main.c (ultra)
-":sav php.html    : Save current file as php.html and "move" to php.html
-":sav! %<.bak     : Save Current file to alternative extension (old way)
-":sav! %:r.cfm    : Save Current file to alternative extension
-":sav %:s/fred/joe/           : do a substitute on file name
-":sav %:s/fred/joe/:r.bak2    : do a substitute on file name & ext.
-":!mv % %:r.bak   : rename current file (DOS use Rename or DEL)
-":help filename-modifiers
-":e!              : return to unmodified file
-":w c:/aaa/%      : save file elsewhere
-":e #             : edit alternative file (also cntrl-^)
-":rew             : return to beginning of edited files list (:args)
-":brew            : buffer rewind
-":sp fred.txt     : open fred.txt into a split
-":sball,:sb       : Split all buffers (super)
-":scrollbind      : in each split window
-":map   <F5> :ls<CR>:e # : Pressing F5 lists all buffer, just type number
-":set hidden      : Allows to change buffer w/o saving current buffer
-"-
-                    ""F3
-map <F3> :ls<CR>:sb
-map <s-F3> [c
-map <S-Right> dp
-map <S-Left> do
+"}"
 
-                     "<F4> :verbose map 
+ "{"<F4>
 
 nnoremap <F4> :verbose map 
 
-                                                "commenter"
+"}
+"{F5"
 
-                                "F5
-
-
+nnoremap <F5> :source ~/.vimrc.local<CR>
+nnoremap <F5>v :vsplit $HOME/.vimrc.local<CR>
 nnoremap <S-F5> :vsplit $HOME/.vimrc.local<CR>
-nnoremap  <S-F5>w :vsplit $HOME/.vimrc.localw<CR>
-"nnoremap <silent> <C-F5> :vsplit ~/.vimrc.localww<CR>
+nnoremap <S-F5>w :vsplit $HOME/.vimrc.localw<CR>
+nnoremap <silent> <C-F5> :vsplit ~/.vimrc.localww<CR>
 nnoremap <C-F5> :vsplit ~/.vimrc.localww<CR>
-"F5"
-    " source vimrc
-nnoremap <silent> <F5> :source ~/.vimrc.local<CR>
-"nnoremap <silent> <M-S-F5> :SessionList<CR>
+"}
                                 "F7
-"map   <F6>>   :w<CR>:!perl -c %<CR>
+"{<F6>
 
 map   <F6> :ls<CR>:e # : Pressing F5 lists all buffer, just type number
+"}
 map <F7> :%s//gc<Left><Left><Left>
 "F8
 map <F8> :diffthis<CR>
@@ -200,4 +173,37 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "
 ": pre-loading registers (put in .vimrc)
 let @y='yy@"'
+
+ "Multiple Files Management (Essential)
+":bn              : goto next buffer
+":bp              : goto previous buffer
+":wn              : save file and move to next (super)
+":wp              : save file and move to previous
+":bd              : remove file from buffer list (super)
+":bun             : Buffer unload (remove window but not from list)
+":badd file.c     : file from buffer list
+":b3              : go to buffer 3 [C]
+":b main          : go to buffer with main in name eg main.c (ultra)
+":sav php.html    : Save current file as php.html and "move" to php.html
+":sav! %<.bak     : Save Current file to alternative extension (old way)
+":sav! %:r.cfm    : Save Current file to alternative extension
+":sav %:s/fred/joe/           : do a substitute on file name
+":sav %:s/fred/joe/:r.bak2    : do a substitute on file name & ext.
+":!mv % %:r.bak   : rename current file (DOS use Rename or DEL)
+":help filename-modifiers
+":e!              : return to unmodified file
+":w c:/aaa/%      : save file elsewhere
+":e #             : edit alternative file (also cntrl-^)
+":rew             : return to beginning of edited files list (:args)
+":brew            : buffer rewind
+":sp fred.txt     : open fred.txt into a split
+":sball,:sb       : Split all buffers (super)
+":scrollbind      : in each split window
+":map   <F5> :ls<CR>:e # : Pressing F5 lists all buffer, just type number
+":set hidden      : Allows to change buffer w/o saving current buffer
+
+
+iabbr <silent> ff  function {}<Left><CR>O
+iabbr <silent> ww  alias ''=''<Left><Left><Left><Left>
+
 
