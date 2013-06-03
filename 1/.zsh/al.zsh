@@ -448,7 +448,7 @@ function ww_sixad {
 
 
 
-function ww_sixad_bluetooth_restart {
+function ww-bluetooth_restart {
     sudo service bluetooth restart;
 }
 
@@ -511,3 +511,15 @@ alias 'wlz'='ls -a | grep zsh'
 alias 'wdev'='hcitool dev'
 
 alias '1'='ls'
+
+alias 'wwraw'='sudo sixad-raw /dev/'
+
+alias 'ww-lsusb-grep-Sony'='lsusb| grep Sony'
+
+alias 'ww-dmesg-sony'='dmesg | grep sony'
+
+alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
+
+alias 'wi'='sudo apt-get install'
+
+alias 'wwww_which_ubuntu_dist'='cat /etc/issue'

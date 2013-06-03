@@ -1,0 +1,2 @@
+bash gui select option 
+smart bash and python commands 

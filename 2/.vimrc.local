@@ -1,4 +1,5 @@
 " Modeline and Notes {
+                    "{F1
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "   _____       _______        ___ __
@@ -20,7 +21,7 @@ set nocompatible
 set encoding=utf-8
 "# { <F10> HTML
 
-vnoremap <T-F5> :!sed -i 's/<[^>]*>//g' %<CR>
+vnoremap <F5>h :!sed -i 's/<[^>]*>//g' %<CR>
 "#}
 
 "-----------------------------
@@ -58,8 +59,8 @@ nnoremap <silent> W :w<CR>
 "            F[1-12]
 "==================================="
 """"'<,'>sort /.*\%2v/
-                    "{F1
 map <F1> ,c<space>
+map 00 ,c<space>
 "}
                     "{<F2>
 "nnoremap <F2> :reg<CR>
@@ -125,25 +126,6 @@ fun! FindFiles()
     redraw!
 endfun
 
-"----------------------------------------
-"----------------------------------------
-"" Markers & moving about
-"'.               : jump to last modification line (SUPER)
-"`.               : jump to exact spot in last modification line
-"g;               : cycle thru recent changes (oldest first)
-"g,               : reverse direction 
-":changes
-":h changelist    : help for above
-"<C-O>            : retrace your movements in file (starting from most recent)
-"<C-I>            : retrace your movements in file (reverse direction)
-":ju(mps)         : list of your movements
-":help jump-motions
-":history         : list of all your commands
-":his c           : commandline history
-":his s           : search history
-"q/               : Search history Window (puts you in full edit mode) (exit CTRL-C)
-"q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
-":<C-F>           : history Window (exit CTRL-C)
                                 "F6
 "nnoremap <F6> :set arabic<CR>
 "nnoremap <S-F6>:set noarabic<CR>
@@ -174,6 +156,30 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 ": pre-loading registers (put in .vimrc)
 let @y='yy@"'
 
+"{"iabbr
+iabbr <silent> ff  function {}<Left><CR>O
+iabbr <silent> ww  alias ''=''<Left><Left><Left><Left>
+"}
+
+"{References----------------------------------------
+"----------------------------------------
+"" Markers & moving about
+"'.               : jump to last modification line (SUPER)
+"`.               : jump to exact spot in last modification line
+"g;               : cycle thru recent changes (oldest first)
+"g,               : reverse direction 
+":changes
+":h changelist    : help for above
+"<C-O>            : retrace your movements in file (starting from most recent)
+"<C-I>            : retrace your movements in file (reverse direction)
+":ju(mps)         : list of your movements
+":help jump-motions
+":history         : list of all your commands
+":his c           : commandline history
+":his s           : search history
+"q/               : Search history Window (puts you in full edit mode) (exit CTRL-C)
+"q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
+":<C-F>           : history Window (exit CTRL-C)
  "Multiple Files Management (Essential)
 ":bn              : goto next buffer
 ":bp              : goto previous buffer
@@ -202,8 +208,4 @@ let @y='yy@"'
 ":map   <F5> :ls<CR>:e # : Pressing F5 lists all buffer, just type number
 ":set hidden      : Allows to change buffer w/o saving current buffer
 
-
-iabbr <silent> ff  function {}<Left><CR>O
-iabbr <silent> ww  alias ''=''<Left><Left><Left><Left>
-
-
+"}"
