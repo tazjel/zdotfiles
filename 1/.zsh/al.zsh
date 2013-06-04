@@ -434,3 +434,5 @@ function Wb {
 done;
 }
 
+
+alias 'wt'='cd ~/tst'

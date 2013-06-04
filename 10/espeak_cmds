@@ -1,0 +1,53 @@
+# commandlinefu.com by David Winterbottom
+
+# Hypnosis
+for count in $(seq 2 1001); do espeak "$count sheeps";sleep 2;done
+
+# Pipe system log to espeak
+tail -f /var/log/messages.log | while read line ; do echo $line | cut -d \  -f5- | sed s/\\[[0-9]*\\]// | espeak ; done
+
+# webpage reader
+curl -s http://www.google.com | espeak -m -ven+11
+
+# Have your sound card call out elapsed time.
+for ((x=0;;x+=5)); do sleep 5; echo $x | festival --tts & done
+
+# Have your sound card call out elapsed time.
+for ((x=0;;x+=5)); do sleep 5; espeak $x & done
+
+# Timer with sound alarm
+sleep 3s && espeak "wake up, you bastard" 2>/dev/null
+
+# make computer speaking to you :)
+tail -f /var/log/messages | espeak
+
+# Speaking alarm clock
+sleep 8h && while [ 1 ] ; do date "+Good Morning. It is time to wake up. The time is %I %M %p" | espeak -v english -p 0 -s 150 -a 100 ; sleep 1m; done
+
+# Generate background office noise using Digg feeds and OSX.
+IFS=`echo -en "\n\b"`; for i in $(curl http://feeds.digg.com/digg/container/technology/popular.rss | grep '<title>' | sed -e 's#<[^>]*>##g' | tail -n10); do echo $i; echo $i | sed 's/^/Did you hear about /g' | say; sleep 30; done
+
+# Your name backwards
+espeak "$USER" --stdout | sox - -t mp3 - reverse | mpg123 -
+
+# your terminal sings
+echo {1..199}" bottles of beer on the wall, cold bottle of beer, take one down, pass it around, one less bottle of beer on the wall,, " | espeak -v english -s 140
+
+# Let your computer lull you to sleep
+echo {1..199}" sheep," | espeak -v english -s 80
+
+# Read aloud a text file in Ubuntu (and other Unixes with espeak installed
+espeak -f text.txt
+
+# alarm central using keyboard as zone inputs ( output spoken out aloud )
+watch '/home/mm/bash/keypress.sh |/home/mm/bash/evento.sh'
+
+# stdin speaker via espeak
+awk '{print}' | espeak -v pt -stdin
+
+# Say the current time (Mac OS X)
+date "+The time is %H:%M" | say
+
+# listen to an offensive fortune
+fortune -o | espeak
+

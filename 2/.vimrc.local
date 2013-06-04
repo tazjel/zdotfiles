@@ -1,5 +1,4 @@
-"Modeline and Notes {
-"vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
@@ -17,6 +16,7 @@
 set t_Co=256 "use 256 colours in terminal
 set nocompatible
 set encoding=utf-8
+set ffs=unix,dos,mac
 
 set foldmethod=manual
 "set t_Co=256 "use 256 colours in terminal
@@ -48,7 +48,7 @@ vmap sb "zdi<b><C-R>z</b><ESC>
 """"""""""""""
 
 "close"
-nnoremap <silent> ; :q!<CR>
+nnoremap <silent> ;; :q!<CR>
 nnoremap <silent> W :w<CR>
         "Save "
 "==================================="
@@ -131,8 +131,11 @@ nnoremap <C-F9> :SessionSaveAs
 "F11
 "F12
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+cab zz ~/zdotfiles
+cab ww :w!sudo tee %
+cab wcp !cp % $HOME/zdotfiles/
 
- "substitute 
+ "Regex
 "%s/<[^>]*>//gi<cr>
 
 "find files
@@ -190,3 +193,5 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "----------------------------------------
 "# : Pressing F5 lists all buffer, just type number
 let g:is_bash=1
+colorscheme ir_black
+UnBundle 'AutoClose'
