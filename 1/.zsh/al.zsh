@@ -1,4 +1,3 @@
-#
 #Tue May 28 13:48:00 AST 2013
 ##
 #
@@ -8,27 +7,14 @@
 ########################################################
 zal=$HOME/zdotfiles/1/.zsh/al.zsh
 
-alias 00=$HOME/zdotfiles
-alias gal='cat $alf | grep'
 alias al='alias | grep'
-
 alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
-
 alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
 alias -g wv='| vim -'
 alias lh='ls -a | egrep "^\."'
 alias lhd='ls -A | egrep "^\."'
-#
-#####################################
-alias 'wl'='clear;pwd;ls;date -R;echo $PWD'
-
 #################################
-#rsync mobile 
-alias wzi='rsync -e ssh -r --progress root@zphone.local:/var/mobile/qq.sh ~/qq.sh'
-
-##alias 'wadd'='rsync -avz --progress -e  "ssh -p 2233" root@192.168.1.5:/var/mobile/AddressBook.sqlitedb ~/'
-###############################
 function zbp {
     for xx in ~/.* ;do
     rsync -avz --progress $HOME/.* $HOME/zzz_bkp
@@ -37,7 +23,14 @@ done;
 }
 
 #
+
 alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
+
+function ww_sixad {
+    lsusb;dmesg;hcitool dev;hcitool con;
+    echo " بسم الله ما شاء الله"
+}
+
 alias __="sudo"
 
 #######################################
@@ -73,9 +66,8 @@ alias ..5='cd ../../../../../'
 
 
 
-#============================================
 ########## zdotfiles
-#
+
 function WW {
     desc="ADD DESCRIPTION..."
     if [ -n "$3" ]; then
@@ -86,8 +78,6 @@ function WW {
     source $zal
     echo "" && echo "- Alias added  $1 = $2 " && echo "";
 }
-
-
 
 
 ##########
@@ -130,7 +120,6 @@ alias cd..='cd ..'
 alias cd...='cd ../..'
 alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
-alias cd/='cd /'
 alias cgrep='grep --color=always'
 alias clip='xclip -sel clip'
 alias clr='clear;pwd;ls'
@@ -140,15 +129,10 @@ alias convert_pdf='abiword --to=pdf '
 alias cp='cp -i'
 alias cpf='sudo aptitude clean && sudo aptitude purge && sudo aptitude -f install'
 alias cpip='curl -s ifconfig.me | tr -d "\n" | pbcopy'
-alias d='git diff|tig'
 alias ddel='rm -Rf'
-alias edit-aliases='nano ~/.bash_aliases'
-alias debinstall='sudo dpkg -i '
-alias del='rm -i'
 alias dfree='df -h -x tmpfs'
-alias dir=ls
 alias display='less +F'
-alias dl='cd ~/Downloads'
+
 alias dropbox_conflicts='find ~/Dropbox -name \*conflicted\ copy\*'
 alias eg='git config -e'
 alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash'
@@ -189,7 +173,6 @@ alias glgga='git log --graph --decorate --all'
 alias globurl='noglob urlglobber '
 alias gm='git merge'
 alias go='git checkout '
-alias got='git '
 alias gp='git push'
 alias gpl='git pull'
 alias gpm='git push origin master'
@@ -251,16 +234,10 @@ alias logs='tail -n30 /var/log/apache2/error.log'
 alias lr='ls -R'
 alias lrt='ls -lart'
 alias ls='ls --color=tty'
-alias lscleanup='/System/Library/Frameworks/CoreServices.framework/Frameworks/LaunchServices.framework/Support/lsregister -kill -r -domain local -domain system -domain user && killall Finder'
+
 alias lsd='ls -Gal | grep ^d'
 alias lt='ls --sort=time'
-alias man='nocorrect man'
-alias md=mkdir
-alias mkdir='nocorrect mkdir'
-alias mkvenv='virtualenv --distribute --no-site-packages venv'
-alias mv='nocorrect mv'
-alias myip='curl ip.appspot.com'
-alias mysql='nocorrect mysql'
+
 alias netlisteners='lsof -i -P | grep LISTEN'
 alias netstat='netstat -pantu'
 alias nfas='grep -c "^>"'
@@ -273,42 +250,17 @@ alias process='ps -ax'
 alias prs='ps faux|grep -v grep|grep "$@"'
 alias psf='ps auxf'
 alias psg='ps -ef |grep '
-alias pubip='curl ifconfig.me'
 alias qfind='find . -name '
 alias qless='qstat -u "*" | less'
 alias rd=rmdir
-alias realias='$EDITOR ~/.bash_aliases && source ~/.bash_aliases'
-alias refunction='$EDITOR ~/.bash_functions && source ~/.bash_functions'
-alias reload='source $HOME/.bashrc 1>/dev/null'
 alias remove='sudo apt-get remove'
-alias rename=mv
-alias rfresh=' rsync -avz --progress -e  "ssh -p 2233" user@110.11.11.11:/your/remote/path /my/local/path'
-alias rm='rm -I'
-alias sa='ssh-add '
-alias sc='screen -S'
-alias scp='scp -p'
-alias scw='screen -wipe'
-alias sdi='sudo dpkg -i'
-alias sl='screen -ls'
-alias sls='screen -ls'
+
 alias snlcp='tr -d "\n" | pbcopy'
+
 alias source-private-aliases='source <(wget -t 3 -q -O - "$@" https://alias.sh/user/$ALIAS_SH_USER_ID/alias/key/$ALIAS_SH_USER_KEY)'
 alias speedtest='wget --output-document=/dev/null http://speedtest.wdc01.softlayer.com/downloads/test500.zip'
-alias ssh-config='nano ~/.ssh/config'
-
-alias sshr='ssh -l root'
-alias sud='sudo -s'
-alias sulast='su -c $(history -p !-1) root'
-
-alias tarc='tar czvf'
-alias tart='tar tzvf'
-alias tarx='tar xzvf'
-
-alias temp='/opt/vc/bin/vcgencmd measure_temp'
 
 alias tm='ps -ef | grep'
-
-alias tube='display http://www.tfl.gov.uk/assets/downloads/standard-tube-map.gif'
 
 
 alias uncomment='egrep -v "^#|^$"'
@@ -317,53 +269,18 @@ alias unzip-all='7z x -y '\''*.zip'\'
 
 alias up_master='git push origin master'
 
-
-
-###
-alias '¨wK¨'='¨sudo'
-#sudo apt-cache rdepends kde-runtime-data | grep "^ .*" | tr '\n' ' ' > ~/backed_up_package_list
-
-
--
-
-###
-#alias '#instll'='#txt2regex'
-
 alias md='mkdir -p'
 alias rd=rmdir
 alias d='dirs -v | head -10'
 
-###
-#Get the IP address of a machine. Just the IP, no junk
-#
-#alias 'wgm'='curl -u abobani --silent https://mail.google.com/mail/feed/atom | perl -ne 'print t if /<name>/; print n if /<(title|name)>(.*)<\/\1>/;''
-#
-#/sbin/ifconfig -a |sed -n 's/.*addr:\(.*\)[ ]*Bcast.*/\1/p'
-#
-#/sbin/ifconfig $(netstat -rn | grep "^0.0.0.0" | awk '{print $8}') | awk -F: '/inet addr/ {printf("%s\n",substr($2,1,index($2," "))) }'
-#
-#
-#ifconfig $if | egrep -o "inet addr:[^ ]*"
-#
-#
-#
-#/sbin/ifconfig $(netstat -rn | grep "^0.0.0.0" | awk '{print $8}') | awk -F: '/inet addr/ {printf("%s\n",substr($2,1,index($2," "))) }'
-#
-#ifconfig $(route|grep default|awk '{ print $8 }')|grep 'inet addr:' | sed 's/.*addr\:\(.*\) Bcast\:.*/\1/'
-#
-##
-
-#route -n | egrep "^0." | awk '{print "Gateway to the Word: "$2", via "$NF""}'
-
-#-ifconfig eth0
-#ifconfig eth0 | grep inet | awk '{print $2}' | cut -d ':' -f2
-#
-
-
-#bu () {
-    #cp $1 `basename $1`-`date +%Y%m%d%H%M`.backup ;
+#function {
+#curl -u abobani --silent https://mail.google.com/mail/feed/atom | perl -ne 'print t if /<name>/
+#print n if /<(title|name)>(.*)<\/\1>/;
 #}
 
+#
+#
+#
 hack()
 {
     var=$(history | ack $1 | wc -l)
@@ -380,8 +297,6 @@ function wW_grep_logs(){
     grep "$1" */logs/*.log
 }
 
-###
-
 
 alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
 alias -g Gh='--help | grep'
@@ -389,13 +304,13 @@ alias -g G='| grep'
 
 #Search
 function ww10 {
-for i in $(seq 1 10);do
-    echo $i
-done
+    for i in $(seq 1 10);do
+        echo $i
+    done
 }
 
 function alg {
-grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
+    grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
 
 }
 
@@ -404,8 +319,6 @@ alias 'wwww_clean_history_get_install'="lg install | sed 's/install//g' | sed 's
 alias 'wmsg'='dmesg | tail -15'
 
 alias '___'='sudo su'
-
-alias 'wmw_mlterm_bblack_whati'=' mlterm -b=black -f=white -w=16'
 
 
 alias 'ww_chmodX'='chmod +x'
@@ -418,33 +331,19 @@ function Ww () {
 ag -C 3 $(echo "$1") $(echo $HOME/zdotfiles)
 }
 
-#Ww lsof G net | sed 's/###/\n\n###/'g | sed 's/##/\n\n##/g' | sed 's/#\!bin/\n\n#\!\/bin/g' | sed 's/\+alias/#\n   +alias/g'
 
 alias 'Ww_aptitude'='sudo aptitude -f'
 
 alias 'Ww_apt-cache_search_xfce4'='apt-cache search xfce4'
 
 alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
-
-alias 'b'='clear;ls;pwd;date'
-
-alias '66'='cd $HOME/zdotfiles/6'
-
 alias 'ww_firefox_editor'="firefox 'data:text/html, <html contenteditable>' "
-##########################################################################3#
-#
-#
-#
 #
 #web2py
 #
 alias '99'='cd ~/zdotfiles/Projects/web2py'
 alias '99_welcome/controllers/default'='cd $HOME/zdotfiles/Projects/web2py/web2py/applications/welcome/controllers'
 alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
-function ww_sixad {
-    lsusb;dmesg;hcitool dev;hcitool con;
-    echo " بسم الله ما شاء الله"
-}
 
 
 
@@ -454,20 +353,10 @@ function ww-bluetooth_restart {
 
 
 
-
-
-
-
-
 alias 'wf'='firefox -search'
 
 alias -g 'H'="--help"
 alias -g 'wH'="--help | grep "
-
-
-
-
-
 
 cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 
@@ -489,7 +378,6 @@ alias 'wx'='chmod +x'
 
 alias 'wX'='chmod -x'
 
-alias '11'='cd /home/abobani/zdotfiles/1'
 
 alias 'W'='echo'
 
@@ -523,3 +411,16 @@ alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
 alias 'wi'='sudo apt-get install'
 
 alias 'wwww_which_ubuntu_dist'='cat /etc/issue'
+
+alias '99'='clear;pwd;cd ~/zdotfiles/9;ls -X'
+alias '88'='clear;pwd;cd ~/zdotfiles/8;ls -X'
+alias '77'='clear;pwd;cd ~/zdotfiles/7;ls -X'
+alias '66'='clear;pwd;cd ~/zdotfiles/6;ls -X'
+alias '55'='clear;pwd;cd ~/zdotfiles/5;ls -X'
+alias '44'='clear;pwd;cd ~/zdotfiles/4;ls -X'
+alias '33'='clear;pwd;cd ~/zdotfiles/3;ls -X'
+alias '22'='clear;pwd;cd ~/zdotfiles/2;ls -X'
+alias '11'='clear;pwd;cd ~/zdotfiles/1;ls -X'
+alias '111'='vim ~/zdotfiles/1.sh'
+alias '1111'='bash ~/zdotfiles/1.sh'
+alias 00=$HOME/zdotfiles
