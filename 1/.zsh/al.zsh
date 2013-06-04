@@ -424,3 +424,13 @@ alias '11'='clear;pwd;cd ~/zdotfiles/1;ls -X'
 alias '111'='vim ~/zdotfiles/1.sh'
 alias '1111'='bash ~/zdotfiles/1.sh'
 alias 00=$HOME/zdotfiles
+
+function Wb {
+    for xx in ~/.* ;do
+    rsync -avz --progress $HOME/.* $HOME/zzz_bkp
+    ls -a > ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
+    echo ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
+
+done;
+}
+

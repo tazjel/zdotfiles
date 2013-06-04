@@ -24,22 +24,25 @@ pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
 }
  
+three () {
+    while true
+    do
+        PS3="Enter a number: "; cd $HOME; select f in *;do echo "\n <b> $(echo $f) </b>"; break; done && break
+    done
+        pause
+}
+
+wcmdfu(){ local TCF="/var/tmp/cmdfu"; echo "  Searching..."; curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent > "$TCF"; vim -c "set filetype=sh" -RM "$TCF"; rm "$TCF"; }
 one(){
-    sleep 1
-	echo "one() called \n You should edit the file" && dmesg
-    sleep 1
-	echo "Now edit the file" && dmesg
-    vim ~/zdotfiles/1.sh
+    while true
+    do
+        echo "Enter :       -> Enter"
+        read fn
+        wcmdfu $fn && break
+    done
         pause
 }
- 
-# do something in two()
-two(){
-	echo "two() called" && lsusb
-        pause
-}
- 
-# function to display menus
+
 show_menus() {
 		clear
 	echo "~~~~~~~~~~~~~~~~~~~~~"	
@@ -50,7 +53,8 @@ show_menus() {
 	echo "~~~~~~~~~~~~~~~~~~~~~"
 	echo "1. dmesg & edit"
 	echo "2. lsusb"
-	echo "3. Exit"
+	echo "3. List Files"
+	echo "4. Exit"
 	echo "~~~~~~~~~~~~~~~~~~~~~"	
 	echo " بسم الله الرحمن الرحيم"
 	echo "~~~~~~~~~~~~~~~~~~~~~"
@@ -65,15 +69,16 @@ read_options(){
 	case $choice in
 		1) one ;;
 		2) two ;;
-		3) exit 0;;
-		*) echo -e "${RED}Error...${STD}" && sleep 2
+		3) three ;;
+		4) exit 0;;
+		*) echo -e "${RED}Error...${STD}" && sleep 1
 	esac
 }
  
 # ----------------------------------------------
-# Step #3: Trap CTRL+C, CTRL+Z and quit singles
+#d Step #3: Trap CTRL+C, CTRL+Z and quit singles
 # ----------------------------------------------
-trap '' SIGINT SIGQUIT SIGTSTP
+#trap '' SIGINT SIGQUIT SIGTSTP
  
 # -----------------------------------
 # Step #4: Main logic - infinite loop
@@ -83,4 +88,5 @@ do
 	show_menus
 	read_options
 done
+
 

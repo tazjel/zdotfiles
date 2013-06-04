@@ -56,7 +56,7 @@ nnoremap <silent> W :w<CR>
 "==================================="
 "'<,'>sort /.*\%2v/
                     "F1
-""""map <F1> ,cc<space>
+map <F1> ,cc<space>
 
                     "<F2>
 nnoremap <F2> :reg<CR>
@@ -189,3 +189,4 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "o23<ESC>qqYp<C-A>q40@q
 "----------------------------------------
 "# : Pressing F5 lists all buffer, just type number
+let g:is_bash=1
