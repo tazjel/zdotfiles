@@ -1,0 +1,77 @@
+# commandlinefu.com by David Winterbottom
+
+# Stream system sounds over rtmp
+sox -d -p | ffmpeg -i pipe:0 -f flv -preset ultrafast -tune zerolatency rtmp://localhost/live/livestream
+
+# Create a video screencast (capture screen) of screen portion, with audio (the audio you hear, not your mic)
+cvlc --input-slave pulse://<device> screen:// --screen-fps=15 --screen-top=0 --screen-left=0 --screen-width=640 --screen-height=480 --sout='#transcode{vcodec=FLV1,vb=1600,acodec=aac}:std{access=file,mux=ffmpeg{mux=flv},dst=viewport1.flv}'
+
+# Convert flv/mp4 video to ogg/mp3
+ffmpeg -i video.flv audio.ogg
+
+# Extract audio from Flash video (*.flv) as mp3 file
+ffmpeg -i video.flv -vn -ar 44100 -ac 2 -ab 192k -f mp3 audio.mp3
+
+# Create an animated gif from a Youtube video
+youtube-dl -o bun.flv http://www.youtube.com/watch?v=SfPLcQhXpCc; mplayer bun.flv -ss 03:16 -endpos 5 -vo jpeg:outdir=bun:quality=100:smooth=30:progressive -vf scale=320:240 -nosound; convert -delay 4 -loop 0 bun/*.jpg bun.gif
+
+# Get video information with ffmpeg
+ffprobe video.flv
+
+# Discover media files from a web page
+sudo ngrep -lqi -p -W none ^get\|^post tcp dst port 80 -d eth0 | egrep '(flv|mp4|m4v|mov|mp3|wmv)'
+
+# Cut flv video from minute 19 to minute 20 using flvtool2
+flvtool2 -C -i 1140000 -o 1200000 input output
+
+# Dumping Audio stream from flv (using ffmpeg)
+ffmpeg -i input.flv -aq 2 output.mp3
+
+# Download Youtube video with wget!
+wget http://www.youtube.com/watch?v=dQw4w9WgXcQ -qO- | sed -n "/fmt_url_map/{s/[\'\"\|]/\n/g;p}" | sed -n '/^fmt_url_map/,/videoplayback/p' | sed -e :a -e '$q;N;5,$D;ba' | tr -d '\n' | sed -e 's/\(.*\),\(.\)\{1,3\}/\1/' | wget -i - -O surprise.flv
+
+# Convert all FLV's in a directory to Ogg Theora (video)
+for i in $(ls *.flv); do ffmpeg2theora -v 6 --optimize $i; done
+
+# Stream and save Youtube video
+wget `youtube-dl -g 'http://www.youtube.com/watch?v=-S3O9qi2E2U'` -O - | tee -a parachute-ending.flv | mplayer -cache 8192 -
+
+# Add an audio soundtrack to a series of images to create an flv
+ffmpeg -t 300 -r '0.5' -i head-%03d.png -i ../TvQuran.com__144.mp3 -acodec copy muxed.flv
+
+# Convert .flv to .avi
+ffmpeg -i file.flv file.avi
+
+# Convert .flv to .avi
+mencoder input.flv -ovc lavc -oac mp3lame -o output.avi
+
+# Join flv files
+mencoder -forceidx -of lavf -oac copy -ovc copy -o output.flv clip1.flv clip2.flv clip3.flv
+
+# fix flash video (flv) file (ffmpeg)
+ffmpeg -i broken.flv -acodec copy -vcodec copy fixed.flv
+
+# Play newest or random YouTube video
+goyoutube() {   d=/path/to/videos   p=$d/playlist    m=$d/*.mp4   f=$d/*.flv   if [ "$1" == 'rand' ]; then     ls -1 $m $f | shuf >$p   else     ls -1t $m $f >$p   fi   mplayer -geometry 500x400 -playlist $p }
+
+# convert video format to youtube flv format
+ffmpeg -i Your_video_file -s 320x240 FILE.flv
+
+# convert flv into avi file and mp3 sound
+mencoder input.flv -ovc lavc -oac mp3lame -o output.avi
+
+# ffmpeg -i movie.mpg -vhook '/usr/lib/vhook/watermark.so -f overlay.png -m 1 -t 222222' -an mm.flv
+ffmpeg -i movie.mpg -vhook '/usr/lib/vhook/watermark.so -f overlay.png -m 1 -t 222222' -an mm.flv
+
+# ffmpeg vhook imlib2.so
+ffmpeg -i input.flv -vhook '/usr/lib/vhook/imlib2.so -c white -x 250 -y H+(-1.8*N+80) -t Hallo! -A max(0,255-exp(N/16))' -sameq -acodec copy output.flv
+
+# Use heading subtitle file as watermark using mencoder
+mencoder -sub heading.ssa -subpos 0 -subfont-text-scale 4 -utf8 -oac mp3lame -lameopts cbr=128 -ovc lavc -lavcopts vcodec=mjpeg -vf scale=320:-2,expand=:240:::1 -o output.avi input.flv
+
+# FLV to AVI with subtitles and forcing audio sync using mencoder
+mencoder -sub subs.ssa -utf8 -subfont-text-scale 4 -oac mp3lame -lameopts cbr=128 -ovc lavc -lavcopts vcodec=mpeg4 -ffourcc xvid -o output.avi input.flv
+
+# Quick and dirty convert to flash
+ffmpeg -i inputfile.mp4 outputfile.flv
+

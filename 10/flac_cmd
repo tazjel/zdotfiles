@@ -1,0 +1,74 @@
+# commandlinefu.com by David Winterbottom
+
+# Batch transcode .flac to .mp3 with gstreamer
+for i in *.flac; do gst-launch filesrc location="$i" ! flacdec ! audioconvert ! lamemp3enc target=quality quality=2 ! id3v2mux ! filesink location="${i%.flac}.mp3"; done
+
+# Converts a single FLAC file with associated cue file into multiple FLAC files
+shnsplit -o flac -t "%n - %t - %a" -f sample.cue sample.flac
+
+# Convert flac to mp3
+for file in *.flac; do flac -cd "$file" | lame -h -b 320 - "${file%.flac}.mp3"; done
+
+# Record live sound from soundcard input to FLAC
+rec -c 2 -r 44100 -s -t wav - | flac - --sign=signed --channels=2 --endian=big --sample-rate=44100 --bps=16 -f -o file.flac
+
+# Find all files of a type and copy them elsewhere while keeping intact their full directory structure using find and cpio
+find . -iname "*.flac" | cpio -pdm /Volumes/Music/FLAC
+
+# Multi-thread any command
+xargs -P 3 -n 1 <COMMAND> < <FILE_LIST>
+
+# Move mp3 files to another path with existing subtree structure
+find . -iname "*.mp3" -type f -print0 | xargs -0 -I '{}' mv {} /new/path/to/mp3/{}
+
+# copy selected folder found recursively under src retaining the structure
+find . -type d -exec mkdir /new/path/{} \;
+
+# SoX recording audio and trimming silence
+sox -t alsa default ./recording.flac silence 1 0.1 5% 1 1.0 5%
+
+# Google voice recognition "API"
+wget -q -U "Mozilla/5.0" --post-file speech.flac --header="Content-Type: audio/x-flac; rate=16000" -O - "http://www.google.com/speech-api/v1/recognize?lang=en-us&client=chromium"
+
+# convert all flac files in a folder to mp3 files with a bitrate of 192 kbps
+for f in *;do flac -cd $f |lame -b 192 - $f.mp3;done
+
+# DVD ripping with ffmpeg
+cat VIDEO_TS/VTS_01_[1234].VOB | nice ffmpeg -i - -s 512x384 -vcodec libtheora -acodec libvorbis ~/Videos/dvd_rip.ogg
+
+# Convert all .flac from a folder subtree in 192Kb mp3
+find . -type f -iname '*.flac' | while read FILE; do FILENAME="${FILE%.*}"; flac -cd "$FILE" | lame -b 192 - "${FILENAME}.mp3"; done
+
+# Transcode .flac to .wav with gstreamer
+for i in *.flac; do gst-launch filesrc location="$i" ! flacdec ! wavenc ! filesink location="${i%.flac}.wav"; done
+
+# Convert all Flac in a directory to Mp3 using maximum quality variable bitrate
+for file in *.flac; do flac -cd "$file" | lame -q 0 --vbr-new -V 0 - "${file%.flac}.mp3"; done
+
+# Convert multiple flac files to mp3
+for file in *.flac; do $(flac -cd "$file" | lame -h - "${file%.flac}.mp3"); done
+
+# convert flac to mp3
+flac -cd input.flac |lame -h - output.mp3
+
+# Download full FLAC albums from archive.org
+wget -rc -A.flac --tries=5 http://archive.org/the/url/of/the/album
+
+# Mostly silent FLAC checking (only errors are displayed)
+flac -ts *.flac
+
+# convert wav files to flac
+flac --best *.wav
+
+# Record live sound in Vorbis (eg for bootlegs or to take audio notes)
+rec -c 2 -r 44100 -s -t wav - | oggenc -q 5 --raw --raw-chan=2 --raw-rate=44100 --raw-bits=16 - > MyLiveRecording.ogg
+
+# Split lossless audio (ape, flac, wav, wv) by cue file
+cuebreakpoints <cue file> | shnsplit -o <lossless audio type> <audio file>
+
+# List your FLAC albums
+find -iname '*.flac' | sed 's:/[^/]*$::' | uniq
+
+# Converts a single FLAC file with associated cue file into multiple FLAC files
+cuebreakpoints "$2" | shnsplit -o flac "$1"
+

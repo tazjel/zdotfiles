@@ -1,0 +1,77 @@
+# commandlinefu.com by David Winterbottom
+
+# Poor man's pomodoro timer
+echo "aplay ring.wav" | at now + 25 min
+
+# Resample a WAV file with sox
+sox infile.wav -r 44100 outfile.wav resample
+
+# Copy the most recent wav file from /media/ to the current folder
+cp $(find /media/ -type f -name "*.wav" -printf "%T@ %h/%f\n" | sort | tail -1 | awk '{ print $2 }') .
+
+# Convert a .wav file to .sln file
+sox is_that_correct.wav -t raw -r 8000 -s -w -c 1 is_that_correct.sln
+
+# Record live sound from soundcard input to FLAC
+rec -c 2 -r 44100 -s -t wav - | flac - --sign=signed --channels=2 --endian=big --sample-rate=44100 --bps=16 -f -o file.flac
+
+# Record active input of soundcard to file.wav
+rec -c 2 -r 44100 -s -t wav file.wav
+
+# Convert .wav audio files to .gsm format
+sudo sox <file name>.wav -r 8000 <file name>.gsm
+
+# Convert .wav audio files to .gsm forman
+sudo sox <file name>.wav -r 8000 <file name>.gsm
+
+# Convert wav to mp3
+lame rec01.wav rec01.mp3
+
+# create screencast (record text and audio simultaneously) using 'script' and 'arecord'
+screencast() { arecord -R 1000 -f cd -t wav $1.wav & RECPID=$!; echo "Starting screencast in new shell. Exit subshell to quit."; script -t 2> $1.timing -a $1.session; kill $RECPID; }
+
+# Convert wma to wav
+for i in *.wma; do mplayer -vo null -vc dummy -af resample=44100 -ao pcm:waveheader:file="${i%.wma}.wav" "$i" ; done
+
+# Capture video of a linux desktop
+ffmpeg -y -f alsa -ac 2 -i pulse -f x11grab -r 30 -s `xdpyinfo | grep 'dimensions:'|awk '{print $2}'` -i :0.0 -acodec pcm_s16le output.wav -an -vcodec libx264 -vpre lossless_ultrafast -threads 0 output.mp4
+
+# To convert **.wav to **.mp3 using LAME running one process per CPU core run:
+parallel -j+0 lame {} -o {.}.mp3 ::: *.wav
+
+# Create and play an instant keyword based playlist
+find -E ~/Music -type f -iname "*search terms*" -iregex '.*\.(3g[2|p]|aac|ac3|adts|aif[c|f]?|amr|and|au|caf|m4[a|r|v]|mp[1-4|a]|mpeg[0,9]?|sd2|wav)' -exec afplay "{}" \; &
+
+# Stream audio over ssh
+sox Klaxon.mp3 -t wav - |ssh thelab@company.com paplay
+
+# Transcode .flac to .wav with gstreamer
+for i in *.flac; do gst-launch filesrc location="$i" ! flacdec ! wavenc ! filesink location="${i%.flac}.wav"; done
+
+# Burn an audio CD.
+goburncd() { d=/tmp/goburncd_$RANDOM; mkdir $d && for i in *.[Mm][Pp]3; do lame --decode "$i" "$d/${i%%.*}.wav"; done; sudo cdrecord -pad $d/* && rm -r $d; eject }
+
+# send incoming audio to a Icecast server (giss.tv)
+rec -c 2 -r 44100 -s -t wav - | oggenc - | tee streamdump.ogg | oggfwd giss.tv 8000 password /mountpoint.ogg
+
+# Truncate 0.3 sec from an audio file using sox
+sox input.wav output.wav reverse trim 00:00:00.3 reverse
+
+# Convert all .wav to .mp3
+ls *.wav | while read f; do lame "$f" -o "$(echo $f | cut -d'.' -f1)".mp3; done;
+
+# Merge - Concate MP3 files
+sox *.mp3 -t wavpcm - | lame - > bunch.mp3
+
+# convert wav into mp3 using lame
+lame -V2 rec01.wav rec01.mp3
+
+# Burn a directory of mp3s to an audio cd.
+alias burnaudiocd='mkdir ./temp && for i in *.[Mm][Pp]3;do mpg123 -w "./temp/${i%%.*}.wav" "$i";done;cdrecord -pad ./temp/* && rm -r ./temp'
+
+# convert wav files to ogg
+oggenc *.wav
+
+# convert wav files to flac
+flac --best *.wav
+
