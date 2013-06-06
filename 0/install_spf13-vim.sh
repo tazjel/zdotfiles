@@ -26,8 +26,8 @@ echo "thanks for installing taxilian's fork of spf13-vim"
 echo "backing up current vim config"
 today=`date +%Y%m%d`
 for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
-
-
+ #sh <(curl http://j.mp/spf13-vim3 -L)
+ #curl http://j.mp/spf13-vim3 -L -o - | sh
 if [ ! -e $endpath/.git ]; then
     echo "cloning spf13-vim"
     git clone --recursive -b 3.0-new http://github.com/taxilian/spf13-vim.git $endpath

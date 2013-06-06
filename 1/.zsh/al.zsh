@@ -436,3 +436,7 @@ done;
 
 
 alias 'wt'='cd ~/tst'
+
+alias 'wshp'='ssh tazjel@ssh.pythonanywhere.com'
+
+alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'

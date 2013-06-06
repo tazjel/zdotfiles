@@ -1,4 +1,5 @@
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+"Modeline and Notes {
+"vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
@@ -16,7 +17,6 @@
 set t_Co=256 "use 256 colours in terminal
 set nocompatible
 set encoding=utf-8
-set ffs=unix,dos,mac
 
 set foldmethod=manual
 "set t_Co=256 "use 256 colours in terminal
@@ -33,7 +33,6 @@ set foldmethod=manual
 "tabs"
 "buffers"
 "windows"
-
 set clipboard+=unnamed
 map Y y$
 map <C-c> "+y<CR>
@@ -48,13 +47,15 @@ vmap sb "zdi<b><C-R>z</b><ESC>
 """"""""""""""
 
 "close"
-nnoremap <silent> ;; :q!<CR>
+nnoremap <silent> ; :q!<CR>
 nnoremap <silent> W :w<CR>
         "Save "
 "==================================="
 "            F[1-12]
 "==================================="
-"'<,'>sort /.*\%2v/
+cab zz ~/zdotfiles/
+cab wv ~/zdotfiles/2/.vimrc.local
+map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
                     "F1
 map <F1> ,cc<space>
 
@@ -99,15 +100,13 @@ map <S-Left> do
 
 nnoremap <F4> :verbose map 
 
-                                                "commenter"
-
                                 "F5
 
 
 "F5"
-    " source vimrc
+nnoremap <S-F5> source $HOME/.vimrc.local<CR>
 nnoremap <silent> <F5> :vsplit ~/.vimrc.local<CR>
-nnoremap <S-F5> :vsplit $HOME/.vimrc.local<CR>
+nnoremap <S-F5> :source $HOME/.vimrc.local<CR>
                                 "F7
 "map   <F6>>   :w<CR>:!perl -c %<CR>
 
@@ -122,7 +121,7 @@ map <C-F8><C-F8> :diffput<CR>
 "F9
 "F9"
     " SessionOpen:
-nnoremap <silent> <F9> :SessionSave<CR>
+nnoremap <silent> <F9> :Session
 nnoremap <silent> <S-F9> :SessionList<CR>
 nnoremap <M-F9> :SessionOpen
 nnoremap <C-F9> :SessionSaveAs
@@ -131,11 +130,8 @@ nnoremap <C-F9> :SessionSaveAs
 "F11
 "F12
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
-cab zz ~/zdotfiles
-cab ww :w!sudo tee %
-cab wcp !cp % $HOME/zdotfiles/
 
- "Regex
+ "substitute 
 "%s/<[^>]*>//gi<cr>
 
 "find files
@@ -193,5 +189,3 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "----------------------------------------
 "# : Pressing F5 lists all buffer, just type number
 let g:is_bash=1
-colorscheme ir_black
-UnBundle 'AutoClose'

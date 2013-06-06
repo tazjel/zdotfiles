@@ -1,0 +1,287 @@
+# This file is my bashrc script for bash 2.01.0(1)-release
+# It can be found at http://www.scn.de/~hermann/configs
+# Version 0.2 Last Update Mon Nov  3 10:38:51 MET 1997
+# Hermann Heimhardt <hermann@sbs.de>  
+# http://www.scn.de/~hermann
+# .bashrc
+
+# check for GNU stuff and use it if found
+# 
+alias ls="/cygnus/cygwin-b20/H-i586-cygwin32/bin/ls --color"
+# check for GNU or system perl
+if [ -x /usr/local/bin/perl ]
+then
+	PERL="/usr/local/bin/perl"
+fi
+
+# check for GNU or system cc
+if [ -x /usr/local/bin/gcc ]
+	then
+	CC="/usr/local/bin/gcc"
+fi
+
+# check for GNU or system tar
+if [ -x /usr/local/bin/tar ]
+	then
+	TAR="/usr/local/bin/tar"
+fi
+
+if [ -x /usr/local/bin/gtar ]
+	then
+	TAR="/usr/local/bin/gtar"
+fi
+
+# Colors
+export fg_black="[30m"
+export fg_red="[31m"
+export fg_green="[32m"
+export fg_yellow="[33m"
+export fg_blue="[34m"
+export fg_magenta="[35m"
+export fg_cyan="[36m"
+export fg_white="[37m"
+export bg_black="[40m"
+export bg_red="[41m"
+export bg_green="[42m"
+export bg_yellow="[43m"
+export bg_blue="[44m"
+export bg_magenta="[45m"
+export bg_cyan="[46m"
+export bg_white="[47m"
+export normal="[0m"
+
+        set_promtp_colors()
+        {
+            if (( $? ))
+            then
+                prompt_beg=${bg_red}${fg_yellow}
+                prompt_end=${normal}
+            else
+                prompt_beg=${bg_blue}${fg_yellow}
+                prompt_end=${normal}
+            fi
+        }
+
+PROMPT_COMMAND=set_promtp_colors
+
+###############################################################################
+# global definitions go here. We may change some of them due to OS specific
+# needs.
+###############################################################################
+# the prompt should look like this: [hh@inferno /usr/local]$
+PS1="[\u@\h \W]\\$ "
+PS2='> '
+export PS1 PS2
+###############################################################################
+# User specific editor environment 
+EDITOR=/usr/local/bin/vim 
+VISUAL=$EDITOR
+FCEDIT=$EDITOR
+export EDITOR VISUAL FCEDIT
+
+###############################################################################
+# So we can use RCS & CVS
+export RCSBIN=/usr/local/bin
+export CVSROOT=/var/cvsroot
+
+###############################################################################
+# frequently used hosts
+alias cisco="telnet 194.112.84.113"
+alias doomed="slogin -l hh doomed.sbs.de"
+alias desaster="slogin -l hh desaster.fth.sbs.de"
+alias eraser="telnet eraser.sbs.de"
+alias inferno="slogin -l hh inferno.fth.sbs.de"
+alias krake.fth="slogin -l bofh krake.sbs.de"
+alias mail.fth="slogin -l internet mail.fth.sbs.de"
+alias marina="slogin -l hermann marina.sbs.de"
+alias news.fth="slogin -l news news.fth.sbs.de"
+alias ns="telnet ns.sbs.de"
+alias o2="ssh -l root o2.fth.sbs.de"
+alias proxy="telnet proxy.fth.sbs.de"
+alias spooky="telnet spooky.pdb.sni.de"
+alias workspace.fth="ssh -l internet workspace.fth.sbs.de"
+
+# Some useful aliases.
+alias a="alias"
+alias bye="logout"
+alias cp="cp -i"
+alias cvf="tar cvf"
+alias cvfz="tar cvfz"
+alias cx="chmod +x"
+alias del="rm -i"
+alias e="vim"
+alias ftp=ncftp
+alias fd="find . -type d -exec chmod 755 {} \; -o -type f -exec chmod 644 {} \;"
+alias gv="gvim"
+alias h='history | tail'
+alias j="jobs -l"
+alias l="ls -laF"
+alias ll="ls -l"
+alias lm="/bin/ls -alF|m"
+alias lock="lockscreen"
+alias lx="ls -axF"
+alias m="less"
+alias mj='ps $PSSWITCHES|grep $LOGNAME'
+alias more="less"
+alias mroe="less"
+alias mv="mv -i"
+alias p="ps $PSSWITCHES"
+alias po="popd"
+alias psg="p|fgrep $1"
+alias pu="pushd"
+alias rm="rm -i"
+alias rrm="/bin/rm"
+alias rxvt="rxvt -fn -misc-fixed-*-*-*-*-*-140-100-100-*-*-*-*&"
+alias src="cd /usr/local/src"
+alias term='set noglob; eval `tset -Q -s `'
+alias telent=t
+alias tin='tin -r'
+alias tvf="tar tvf"
+alias tvfz="gtar tvfz"
+alias type="less"
+alias u="unalias"
+alias v="vim"
+alias which="type -path"
+alias xt="xterm -fn -misc-fixed-*-*-*-*-*-140-100-100-*-*-*-*&"
+alias xvf="tar xvf"
+alias xvfz="gtar xvfz"
+alias rm="rm -i"
+alias m=less
+alias more=less
+alias t=telnet
+alias telent=t
+alias ftp=ncftp
+alias f=ftp
+
+
+# now check OSTYPE and override VAR values (if appropriate)
+###############################################################################
+# set up appropriate path (this should pretty much cover all OSes that I use)
+OSTYPE=`uname`
+case "$OSTYPE" in
+	'Linux')
+		PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/bin/X11:/usr/X11R6/bin"
+		PSSWITCHES="-aux"
+	;;
+	'SINIX-N')
+		PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/opt/bin:/usr/ucb:/usr/bin/X11"
+		PSSWITCHES="-eaf"
+	;;
+	'IRIX')
+		PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/opt/bin:/usr/bsd:/usr/etc:/usr/bin/X11"
+		PSSWITCHES="-eaf"
+	;;
+	'SunOS')
+		PATH="/bin:/usr/bin:/usr/local/bin:/sbin:/usr/sbin:/usr/local/sbin:/usr/etc:/usr/5bin:/usr/ucb:/usr/openwin/bin:/usr/bin/X11"
+		PSSWITCHES="-eaf"
+	;;
+	'CYGWIN32_95')
+		# don't tweak PATHS (define this in AUTOEXEC.BAT)
+		PATH=$PATH;
+		# needed on Cygnus releases !! don't confuse with Win32 FIND
+		alias find="/gnu/H-i386-cygwin32/bin/find.exe"
+		# don't use Windows telnet client
+		alias telnet='/usr/local/bin/telnet'
+		alias t=telnet
+		alias l="ls -alF --color"
+		alias vim="/bin/vim-5.0/gvim"
+		alias gtar="tar"
+		# Add some extra colors for ls to use when it colors the file types
+		export LS_COLORS="*.c=32:*.h=32:*.o=1;32:*.txt=1:*~=35:*.zip=1;31:*.z=1;31:*.Z=1;31:*.gz=1;31:*.tgz=1;31:*.tar=31"
+		export MAKE_MODE=unix
+		# To help our friendly configure scripts ...
+		export CC=gcc
+		export PGPPATH=/pgp
+		export BISON_SIMPLE=/gnu/share/bison.simple
+		export BISON_HAIRY=/gnu/share/bison.hairy
+		# So groff can find it's files ...
+		export GROFF_FONT_PATH=/usr/local/share/groff/font
+		export GROFF_TMAC_PATH=/usr/local/share/groff/tmac
+		export GROFF_COMMAND_PREFIX=
+		export GROFF_TYPESETTER=latin1
+		# vim is different on Win32 Boxes
+		export EDITOR="/usr/local/bin/gvim"
+		eval `dircolors`
+	;;
+
+	*)
+		PATH=$PATH
+		PSSWITCHES=
+	;;
+esac
+###############################################################################
+# add personal PATH to system PATH
+PATH=$PATH:~/bin
+export PATH
+###############################################################################
+# the name of the shell (bash of course ;-))
+SHELL=${SHELL:-${BASH:-/usr/local/bin/bash}}
+export SHELL
+###############################################################################
+# Pagers (less is more ;-))
+PAGER=/usr/local/bin/less
+# switches for less
+LESS='-i -e -M -P%t?f%f :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
+export PAGER LESS
+###############################################################################
+# Bogus 1003.2 variables.  This should really be in /etc/profile
+# Who am i ?
+LOGNAME=${USER-$(whoami)}
+export LOGNAME
+# What time is it (German Summer/Winter time switches)
+TZ=MET-1MDT,M3.5.0/02:00:00,M10.5.0/03:00:00
+export TZ
+###############################################################################
+# Nobody should read my files
+umask 077
+###############################################################################
+# Environment definition for bash
+ENV=$HOME/.bashrc
+BASH_ENV=$ENV
+###############################################################################
+# where do i read news ?
+NNTPSERVER=news.fth.sbs.de
+export NNTPSERVER
+###############################################################################
+# where do i find manual Pages
+MANPATH=/usr/man:/usr/share:/usr/share/man:/usr/local/man:/home/man:/opt/man:/usr/share/catman
+export MANPATH
+###############################################################################
+# the LD_LIRBRARY_PATH
+export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+###############################################################################
+# Terminal stuff
+if [ $TERM = xterm ]; then
+	export COLORTERM=yes
+	resize
+elif [ $TERM = iris-ansi-net ]; then
+	export COLORTERM=yes
+	resize	
+elif [ $TERM = iris-ansi ]; then
+	export	COLORTERM=yes
+	resize	
+elif [ $TERM = color_xterm ]; then
+	export COLORTERM=yes
+	resize	
+elif [ $TERM = color-xterm ]; then
+	export COLORTERM=yes
+	resize	
+elif [ $TERM = rxvt ]; then
+	export	COLORTERM=yes
+	resize	
+elif [ $TERM = vt100 ]; then
+	echo
+fi
+export TERM
+# where do i have source code
+export SRC=/usr/local/src
+
+# User specific aliases and functions
+
+# Source global definitions
+# if [ -f /etc/bashrc ]; then
+#         . /etc/bashrc
+# fi
+
+PS1='\n\u@\h \w\n\! \$ '
+PS1='$fg_red  \u@$fg_green \h $fg_blue$(dirs) \!$normal\n \$ '

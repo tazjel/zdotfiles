@@ -1,7 +1,7 @@
 
 #!/bin/bash
 ### list of packages to install.
-
+xpk = (
 aptitude
 zsh
 git
@@ -11,15 +11,18 @@ automake
 build-essential
 python-dev
 automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+)
 
-                            ################
-
-git clone https://github.com/ggreer/the_silver_searcher
-the_silver_searcher && ./build.sh && install
- ./build.sh && install
-
+#git clone https://github.com/ggreer/the_silver_searcher
+#the_silver_searcher && ./build.sh && install
+ #./build.sh && install
 
 
+do_list ()
+{
+    for i in $xpk;do
+        echo $xpk
+}
                             ################
 #check MACHINE_TYPE
 MACHINE_TYPE=`uname -m`
