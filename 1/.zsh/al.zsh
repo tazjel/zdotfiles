@@ -89,6 +89,9 @@ function glll {
     git push origin --all && git push origin --tags
 }
 #############################
+ # The easiest way is to disable the SSL CERT verfiy:
+
+      #git config --global http.sslVerify false
 alias wotgobblemem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
 alias xclip='xclip -selection c'
 
