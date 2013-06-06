@@ -362,14 +362,16 @@ cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 
 
 ####################################################
 #
-#
-function ww_send_gmail 
-{
-echo "Your Email :  " && read Email;
-echo " Enter Password : " && read pw;
-echo "Send To : " && read mailto ;
-curl --url "smtps://smtp.gmail.com:465" --ssl-reqd --mail-from "$(echo $Email)" --mail-rcpt "$(echo $mailto)" --upload-file mail.txt --user "$(echo $Email):$(echo $pw)" --insecure;
-}
+##
+#function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
+
+#function ww_send_gmail
+##{
+#echo "Your Email :  " && read Email;
+#echo " Enter Password : " && read pw;
+#echo "Send To : " && read mailto ;
+#curl --url "smtps://smtp.gmail.com:465" --ssl-reqd --mail-from "$(echo $Email)" --mail-rcpt "$(echo $mailto)" --upload-file mail.txt --user "$(echo $Email):$(echo $pw)" --insecure;
+#}
 #
 #
 ########################3
@@ -385,6 +387,7 @@ alias 'w-grep'='grep -vE "^$|^[\s]*[;#]"'
 
  #'ws'='PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done"
 
+#alias find /etc -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
 function wwrename {
     for file in * ; do
     mv "$file" `echo "$file" | tr ' ' '_' | tr '[A-Z]' '[a-z]'`;
@@ -440,3 +443,5 @@ alias 'wt'='cd ~/tst'
 alias 'wshp'='ssh tazjel@ssh.pythonanywhere.com'
 
 alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'
+
+alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'

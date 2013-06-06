@@ -14,13 +14,15 @@
 "
 "   This is a mirror of :http://spf13.com
 " }
+let g:BASH_SyntaxCheckOptionsGlob  = "-O extglob"
+"%s/[\r \t]\+$//
+
 set t_Co=256 "use 256 colours in terminal
 set nocompatible
 set encoding=utf-8
 
 set foldmethod=manual
 "set t_Co=256 "use 256 colours in terminal
-
 "-----------------------------
 "   Pasteboard
 "-----------------------------
@@ -35,8 +37,10 @@ set foldmethod=manual
 "windows"
 set clipboard+=unnamed
 map Y y$
+let g:vimsyn_noerror= 1
 map <C-c> "+y<CR>
 
+vnoremap <silent> w1 w!>> ~/tst/vi.txt<CR>
 vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
 vnoremap <silent> wW :Bookmark<CR>
 "References
@@ -53,9 +57,10 @@ nnoremap <silent> W :w<CR>
 "==================================="
 "            F[1-12]
 "==================================="
-cab zz ~/zdotfiles/
-cab wv ~/zdotfiles/2/.vimrc.local
-map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
+cab zz w ~/zdotfiles/
+cab wv w ~/zdotfiles/2/.vimrc.local
+set syntax=vim
+""#map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
                     "F1
 map <F1> ,cc<space>
 
@@ -96,17 +101,14 @@ map <s-F3> [c
 map <S-Right> dp
 map <S-Left> do
 
-                     "<F4> :verbose map 
+                     "<F4> :verbose map
 
-nnoremap <F4> :verbose map 
-
-                                "F5
+nnoremap <F4> :verbose map
 
 
 "F5"
-nnoremap <S-F5> source $HOME/.vimrc.local<CR>
-nnoremap <silent> <F5> :vsplit ~/.vimrc.local<CR>
-nnoremap <S-F5> :source $HOME/.vimrc.local<CR>
+nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+nnoremap <S-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
                                 "F7
 "map   <F6>>   :w<CR>:!perl -c %<CR>
 
@@ -131,7 +133,7 @@ nnoremap <C-F9> :SessionSaveAs
 "F12
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
 
- "substitute 
+ "substitute
 "%s/<[^>]*>//gi<cr>
 
 "find files
@@ -150,7 +152,7 @@ endfun
 "'.               : jump to last modification line (SUPER)
 "`.               : jump to exact spot in last modification line
 "g;               : cycle thru recent changes (oldest first)
-"g,               : reverse direction 
+"g,               : reverse direction
 ":changes
 ":h changelist    : help for above
 "<C-O>            : retrace your movements in file (starting from most recent)

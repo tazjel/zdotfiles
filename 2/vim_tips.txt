@@ -1,5 +1,5 @@
 _BEGIN__
-*vimtips.txt*	For Vim version 7.3.  
+*vimtips.txt*	For Vim version 7.3.
 ------------------------------------------------------------------------------
 " new items marked [N] , corrected items marked [C]
 " *best-searching*
@@ -55,7 +55,7 @@ _BEGIN__
 " find str but not on lines containing tongue
 ^\(.*tongue.*\)\@!.*nose.*$
 \v^((tongue)@!.)*nose((tongue)@!.)*$
-.*nose.*\&^\%(\%(tongue\)\@!.\)*$ 
+.*nose.*\&^\%(\%(tongue\)\@!.\)*$
 :v/tongue/s/nose/&/gic
 "----------------------------------------
 " *best-substitution*
@@ -97,7 +97,7 @@ _BEGIN__
 :help /\{-}                 : help non-greedy
 " substitute using a register
 :s/fred/<c-r>a/g            : sub "fred" with contents of register "a"
-:s/fred/<c-r>asome_text<c-r>s/g  
+:s/fred/<c-r>asome_text<c-r>s/g
 :s/fred/\=@a/g              : better alternative as register not displayed
 " multiple commands on one line
 :%s/\f\+\.gif\>/\r&\r/g | v/\.gif$/d | %s/gif/jpg/
@@ -113,7 +113,7 @@ _BEGIN__
 :%s:\(\(\w\+\s\+\)\{2}\)str1:\1str2:
 " Swapping first & last column (4 columns)
 :%s:\(\w\+\)\(.*\s\+\)\(\w\+\)$:\3\2\1:
-" format a mysql query 
+" format a mysql query
 :%s#\<from\>\|\<where\>\|\<left join\>\|\<\inner join\>#\r&#g
 " filter all form elements into paste register
 :redir @*|sil exec 'g#<\(input\|select\|textarea\|/\=form\)\>#p'|redir END
@@ -153,7 +153,7 @@ _BEGIN__
 " Substitute inside substitute
 :%s/.*/\='cp '.submatch(0).' all/'.substitute(submatch(0),'/','_','g')/
 ----------------------------------------
-" *best-global* command 
+" *best-global* command
 :g/gladiolli/#              : display with line numbers (YOU WANT THIS!)
 :g/fred.*joe.*dick/         : display all lines fred,joe & dick
 :g/\<fred\>/                : display all lines fred but not freddy
@@ -178,7 +178,7 @@ _BEGIN__
 :g/^Chapter/t.|s/./-/g      : Automatically underline selecting headings [N]
 :g/\(^I[^^I]*\)\{80}/d      : delete all lines containing at least 80 tabs
 " perform a substitute on every other line
-:g/^/ if line('.')%2|s/^/zz / 
+:g/^/ if line('.')%2|s/^/zz /
 " match all lines containing "somestr" between markers a & b
 " copy after line containing "otherstr"
 :'a,'bg/somestr/co/otherstr/ : co(py) or mo(ve)
@@ -188,7 +188,7 @@ _BEGIN__
 " incrementing numbers (type <c-a> as 5 characters)
 :.,$g/^\d/exe "norm! \<c-a>": increment numbers
 :'a,'bg/\d\+/norm! ^A       : increment numbers
-" storing glob results (note must use APPEND) you need to empty reg a first with qaq. 
+" storing glob results (note must use APPEND) you need to empty reg a first with qaq.
 "save results to a register/paste buffer
 :g/fred/y A                 : append all lines fred to register a
 :g/fred/y A | :let @*=@a    : put into paste buffer
@@ -249,7 +249,7 @@ N      last / or ? search in opposite direction
 ----------------------------------------
 * # g* g#           : find word under cursor (<cword>) (forwards/backwards)
 %                   : match brackets {}[]()
-.                   : repeat last modification 
+.                   : repeat last modification
 @:                  : repeat last : command (then @@)
 matchit.vim         : % now matches tags <tr><td><script> <?php etc
 <C-N><C-P>          : word completion in insert mode
@@ -346,7 +346,7 @@ ggVGg?                          : rot13 whole file (toggles)
 '.               : jump to last modification line (SUPER)
 `.               : jump to exact spot in last modification line
 g;               : cycle thru recent changes (oldest first)
-g,               : reverse direction 
+g,               : reverse direction
 :changes
 :h changelist    : help for above
 <C-O>            : retrace your movements in file (starting from most recent)
@@ -363,7 +363,7 @@ q:               : commandline history Window (puts you in full edit mode) (exit
 " Abbreviations & Maps
 " Following 4 maps enable text transfer between VIM sessions
 :map   <f7>   :'a,'bw! c:/aaa/x       : save text to file x
-:map   <f8>   :r c:/aaa/x             : retrieve text 
+:map   <f8>   :r c:/aaa/x             : retrieve text
 :map   <f11>  :.w! c:/aaa/xr<CR>      : store current line
 :map   <f12>  :r c:/aaa/xr<CR>        : retrieve current line
 :ab php          : list of abbreviations beginning php
@@ -616,7 +616,7 @@ do                         : "get" difference under cursor from other file
 " complex diff parts of same file [N]
 :1,2yank a | 7,8yank b
 :tabedit | put a | vnew | put b
-:windo diffthis 
+:windo diffthis
 ----------------------------------------
 " Vim traps
 In regular expressions you must backslash + (match 1 or more)
@@ -642,7 +642,7 @@ In regular expressions you must backslash { (count)
 :reg             : display contents of all registers
 :reg a           : display content of register a
 :reg 12a         : display content of registers 1,2 & a [N]
-"5p              : retrieve 5th "ring" 
+"5p              : retrieve 5th "ring"
 "1p....          : retrieve numeric registers one by one
 :let @y='yy@"'   : pre-loading registers (put in .vimrc)
 qqq              : empty register "q"
@@ -942,7 +942,7 @@ nmap ] i@@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
 :autocmd bufenter *.tex map <F1> :!latex %<CR>
 :autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
 " allow yanking of php variables with their dollar [N]
-:autocmd bufenter *.php :set iskeyword+=\$ 
+:autocmd bufenter *.php :set iskeyword+=\$
 ----------------------------------------
 " reading Ms-Word documents, requires antiword (not docx)
 :autocmd BufReadPre *.doc set ro
@@ -951,9 +951,9 @@ nmap ] i@@@<ESC>hhkyWjl?@@@<CR>P/@@@<CR>3s
 ----------------------------------------
 " a folding method
 vim: filetype=help foldmethod=marker foldmarker=<<<,>>>
-A really big section closed with a tag <<< 
---- remember folds can be nested --- 
-Closing tag >>> 
+A really big section closed with a tag <<<
+--- remember folds can be nested ---
+Closing tag >>>
 ----------------------------------------
 " Return to last edit position (You want this!) [N]
 autocmd BufReadPost *
@@ -996,7 +996,7 @@ comp.editors
 groups.yahoo.com/group/vim "VIM" specific newsgroup
 VIM Webring
 VimTips PDF Version (PRINTABLE!)
-Vimtips in Belarusian 
+Vimtips in Belarusian
 ----------------------------------------
 " : commands to neutralise < for HTML display and publish
 " use yy@" to execute following commands

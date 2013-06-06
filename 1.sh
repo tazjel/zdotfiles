@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#set syntax=sh
 ## ----------------------------------
 # Step #1: Define variables
 # ----------------------------------
@@ -13,6 +13,7 @@ cmdfu(){
     curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -
 }
 
+#find /etc -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
 # ----------------------------------
 
 pause(){
@@ -29,22 +30,22 @@ one(){
         pause
 }
 
+wthree () {
+
+    PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done
+}
+
 
 1_one(){
     while true
     do
         clear
-        echo -e "\n [===================================]"
-        echo -e ""
+        echo -e "Next Level"
         echo -e " You are at 1_one "
-        echo -e "\n [===================================]"
-        echo -e "\n [===================================]"
-        sleep 1
-        ls && pwd
+        ls && break
     done
         pause
-        start_GUI 
-
+            start_GUI
 }
 
 two() {
@@ -69,10 +70,10 @@ three () {
 
 show_menus() {
     clear
-    echo "~~~~~~~~~~~~~~~~~~~~~"	
+    echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " بسم الله الرحمن الرحيم"
     echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "~~~~~~~~~~~~~~~~~~~~~"	
+    echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " M A I N - M E N U"
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo "1.[cmdfu]"
@@ -156,7 +157,6 @@ start_GUI () {
         read_options
     done
 }
-
 # -----------------------------------
-start_GUI 
+start_GUI
 
