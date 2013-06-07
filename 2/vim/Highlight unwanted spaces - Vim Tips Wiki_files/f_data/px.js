@@ -1,0 +1,1 @@
+var d=document,e=escape,u='undefined';d.write('<scri'+'pt type="text/javascript" src="//x.domdex.com/px.js?l='+e(window.location)+(typeof(d.referrer)!==u?'&r='+e(d.referrer):'')+'&t='+(new Date()).getTime()+(typeof(Math.random)!==u?'&n='+(Math.random()*99999999999):'')+'"></scri'+'pt>');

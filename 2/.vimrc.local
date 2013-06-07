@@ -116,6 +116,7 @@ map   <F6> :ls<CR>:e # : Pressing F5 lists all buffer, just type number
 map <F7> :%s//gc<Left><Left><Left>
 "F8
 map <F8> :diffthis<CR>
+map <F8> :diffthis<CR><ESC><C-W><C-W>:diffthisa<CR>
 
 map <F8><F8> :diffoff<CR>
 map <C-F8> :diffput<CR>
@@ -133,7 +134,7 @@ nnoremap <C-F9> :SessionSaveAs
 "F12
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
 
- "substitute
+"html substitute
 "%s/<[^>]*>//gi<cr>
 
 "find files
@@ -191,3 +192,5 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "----------------------------------------
 "# : Pressing F5 lists all buffer, just type number
 let g:is_bash=1
+UnBundle 'AutoClose'
+ca w!! w !sudo tee "%"

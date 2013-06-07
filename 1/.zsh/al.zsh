@@ -140,7 +140,6 @@ alias dropbox_conflicts='find ~/Dropbox -name \*conflicted\ copy\*'
 alias eg='git config -e'
 alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash'
 alias erase='shred -n 35 -z -u'
-alias fin='find -iname'
 alias fn='find -name'
 alias freenodetor='dig +short irc.tor.freenode.net cname'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
@@ -163,13 +162,7 @@ alias get='git '
 alias gf='git ls-files | grep'
 alias gg='sr google -browser='
 alias ggpnp='git pull origin $(current_branch) && git push origin $(current_branch)'
-alias ggpull='git pull origin $(current_branch)'
 alias ggpush='git push origin $(current_branch)'
-alias gist='nocorrect gist'
-alias git-root='root="$(git rev-parse --show-cdup)"; [ -n "$root" ] && cd "$root"'
-alias git-svn-dcommit-push='git svn dcommit && git push github master:svntrunk'
-alias gitlog='git log --graph --all --format=format:'\''%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n'\'\''          %C(white)%s%C(reset) %C(bold white)— %an%C(reset)'\'' --abbrev-commit'
-alias gk='gitk --all&'
 alias gl='git pull'
 alias glg='git log --stat --max-count=5'
 alias glgg='git log --graph --max-count=5'
@@ -248,7 +241,7 @@ alias nfas='grep -c "^>"'
 alias no-assume='git update-index --no-assume-unchanged'
 alias open=xdg-open
 alias please=sudo
-alias pm='git push origin master'
+alias ppm='git push origin master'
 alias poogle='ping google.com'
 alias process='ps -ax'
 alias prs='ps faux|grep -v grep|grep "$@"'
@@ -276,25 +269,6 @@ alias up_master='git push origin master'
 alias md='mkdir -p'
 alias rd=rmdir
 alias d='dirs -v | head -10'
-
-#function {
-#curl -u abobani --silent https://mail.google.com/mail/feed/atom | perl -ne 'print t if /<name>/
-#print n if /<(title|name)>(.*)<\/\1>/;
-#}
-
-#
-#
-#
-hack()
-{
-    var=$(history | ack $1 | wc -l)
-    if (( $var > 22 ))
-    then
-        history | ack $1 | less
-    else
-        history | ack $1
-    fi
-}
 
 
 function wW_grep_logs(){
@@ -354,7 +328,6 @@ alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/we
 function ww-bluetooth_restart {
     sudo service bluetooth restart;
 }
-
 
 
 alias 'wf'='firefox -search'
@@ -442,11 +415,10 @@ alias 00=$HOME/zdotfiles
 
 function Wb {
     for xx in ~/.* ;do
-    rsync -avz --progress $HOME/.* $HOME/zzz_bkp
-    ls -a > ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
-    echo ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
-
-done;
+        rsync -avz --progress $HOME/.* $HOME/zzz_bkp
+        ls -a > ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
+        echo ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
+    done;
 }
 
 
@@ -460,8 +432,18 @@ alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
 
 alias 'wshut'='sudo shutdown -h now'
 
-#(while read fn; do; cp "$fn" $DESTINATION\.; done<filename.txt)
-# cut filed -d";"
-alias 'whis'='cut -f2 -d";" ~/.zsh_history G zsele | sort -u wv'
+alias 'whis'='cut -f2 -d";" ~/.zsh_history | grep "$1" | sort -u'
 
+
+
+alias 'wmp3_notify'='play ~/zdotfiles/References/notify.mp3'
+
+alias 'wr'='xd=$(date +%s); rec -c 2 -r 44100 -s -t wav ~/Dropbox/tools/zfile$xd.wav'
+alias 'wp'='play ~/Dropbox/tools/zfile$xd.wav'
+
+
+# get a random number in bash
+alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
+#
+#rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d<]*/
 

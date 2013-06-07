@@ -1,32 +1,43 @@
 #!/bin/bash
-#set syntax=sh
+# set syntax=sh
+
 ## ----------------------------------
 # Step #1: Define variables
 # ----------------------------------
 
+#todo:mkdir -p ~/zdotfiles/.workflow/
+#askapache : ahave apth check
+
+
 # Step #2: User defined function
 # ----------------------------------
 
-# Search commandlinefu
+
+znotify(){
+    play ~/zdotfiles/References/notify.mp3
+}
 
 cmdfu(){
+    # Search commandlinefu
     curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -
 }
 
-#find /etc -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
-# ----------------------------------
 
 pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
+  znotify
 }
 
 one(){
     while true
     do
-        echo -e "\t Search for a command :"
+        echo -e "Search [[commandlinefu]]:"
         read fn
         cmdfu $fn && break
     done
+    echo -e "Do you want to tag this search words ?"
+    read tags_fn
+    echo -e "#$tags_fn \n$fn" > ~/zdotfiles/.workflow/tags_fn && tail ~/zdotfiles/.workflow/tags_fn;
         pause
 }
 
@@ -76,16 +87,16 @@ show_menus() {
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " M A I N - M E N U"
     echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "1.[cmdfu]"
-    echo "2. vim"
-    echo "3. GUI"
-    echo "4. Logs"
-    echo "5. Ps"
-    echo "6. Search "
-    echo "7. root"
-    echo "8. curl | wget"
-    echo "9. ssh | git"
-    echo "0. Exit"
+    echo "1. ZSh"
+    echo "2. ZVim"
+    echo "3. ZKeys"
+    echo "4. ZTime"
+    echo "5. ZWatch"
+    echo "6. ZSearch "
+    echo "7. ZAdmin"
+    echo "8. WWW"
+    echo "9. SSH | Git"
+    echo "0. EXIT"
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " بسم الله الرحمن الرحيم"
     echo "~~~~~~~~~~~~~~~~~~~~~"
@@ -158,5 +169,5 @@ start_GUI () {
     done
 }
 # -----------------------------------
-start_GUI
-
+start_GUI && znotify
+# -----------------------------------

@@ -1,0 +1,54 @@
+" Press ? for help
+
+>----------Bookmarks----------
+>.qtsixa2 <e/abobani/.qtsixa2/
+>.vimrc.local <ni/.vimrc.local
+>34:C7:31:35:08:44 <1:35:08:44
+>bluetooth <var/lib/bluetooth/
+>font /home/abobani/font/
+>fpdf <2py/gluon/contrib/fpdf/
+>zdotfiles <abobani/zdotfiles/
+
+.. (up a dir)
+/home/abobani/zdotfiles/1/
+▾ .zsh/
+  ▾ .bash/
+  ▸ cache/
+    .directory
+    .zshenv
+    .zshrc
+    al.zsh
+    bindkeys.zsh
+    checks.zsh
+    colors.zsh
+    completion.zsh
+    exports.zsh
+    functions.zsh
+    fundctions.zsh
+    history.zsh
+    prompt.zsh
+    setopt.zsh
+    shell.zsh
+    zsh_hooks.zsh
+▸ 00/
+▸ 01/
+▸ bash_files/
+  .bash
+  .directory
+  .zprofile
+  .zshrcw
+  askapache-bash-profile.txt
+  bootCMDs
+  C_history.sh*
+  cmd_history
+  export_cmds.sh
+  GrubOoCMDs
+  import_cmds.sh
+  letters_line_cmds.sh
+  line_cmds.sh
+  locale_cmds.sh
+  ls_human_cmds.sh
+  word_line_cmds.sh
+  X11CMDs
+  xFCECMDs
+  zProcess.sh
