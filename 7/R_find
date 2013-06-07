@@ -29,9 +29,7 @@ ls -lad
 # find established tcp connections without using netstat!! {{{2
 lsof -i -n | grep ESTABLISHED
 
-# List OSX applications and versions. {{{2
-find /Applications -type d -maxdepth 1 -exec sh -c 'echo "{}"; (plutil -convert xml1 -o - "{}/Contents/Info.plist" | xpath /dev/stdin "concat(\"v\", /plist/dict/string[preceding-sibling::key[1]=\"CFBundleShortVersionString\"]/node())" 2>/dev/null)' \;
-
+# List OSX applications and versions. {{{2 find /Applications -type d -maxdepth 1 -exec sh -c 'echo "{}"; (plutil -convert xml1 -o - "{}/Contents/Info.plist" | xpath /dev/stdin "concat(\"v\", /plist/dict/string[preceding-sibling::key[1]=\"CFBundleShortVersionString\"]/node())" 2>/dev/null)' \; 
 # Recursively change permissions on directories, leave files alone. {{{2
 find /var/www/ -type f -print0 | xargs -0 chmod 644
 

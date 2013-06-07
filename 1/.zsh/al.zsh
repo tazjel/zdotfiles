@@ -145,6 +145,7 @@ alias fn='find -name'
 alias freenodetor='dig +short irc.tor.freenode.net cname'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
 alias wfreq='cut -f1 -d" " ~/.zsh_history | sort | uniq -c | sort -nr | head -n 30'
+alias wwfreq='cat ~/.zsh_history  | head -n 300'
 alias fwn='find -wholename'
 alias g=git
 alias ga='git add'
@@ -388,7 +389,15 @@ alias 'W'='echo'
 
 alias 'w-grep'='grep -vE "^$|^[\s]*[;#]"'
 
- #'ws'='PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done"
+alias 'wws'='PS3="nter a number: "; select f in *;do $EDITOR $f; break; done'
+wwws () {
+    PS3="Enter a number: "
+    select f in '$1';do
+        echo $f;
+        break;
+    done;
+}
+
 
 #alias find /etc -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
 function wwrename {
@@ -448,3 +457,11 @@ alias 'wshp'='ssh tazjel@ssh.pythonanywhere.com'
 alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'
 
 alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
+
+alias 'wshut'='sudo shutdown -h now'
+
+#(while read fn; do; cp "$fn" $DESTINATION\.; done<filename.txt)
+# cut filed -d";"
+alias 'whis'='cut -f2 -d";" ~/.zsh_history G zsele | sort -u wv'
+
+

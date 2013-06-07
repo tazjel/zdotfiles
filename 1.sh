@@ -23,7 +23,7 @@ pause(){
 one(){
     while true
     do
-        echo -e "\t Enter :"
+        echo -e "\t Search for a command :"
         read fn
         cmdfu $fn && break
     done
@@ -133,7 +133,7 @@ show_menu_1 () {
 
 
 # ----------------------------------------------
-read_options() {
+menu_1_read_options() {
     local choice
     echo -e "  [====================================================================]\n"
     echo -e ""
