@@ -1,6 +1,29 @@
 #!/bin/bash
 # set syntax=sh
 
+### 0 search apt-cache
+### 1 search cmdfu ## commandlinefu
+### 2 search zdotfiles-vimrc zdotfiles.org
+### 3 search github ### github-cli
+### 4 search help ? stockflow-ubuntu
+### 5
+
+#Process
+### sed stream
+### sed stream
+
+#Organize
+# wc cut sort uniq awk
+
+#Review
+### If - while test
+
+#Do 
+#e-mail - deloploy
+
+#Inboxes
+### Dir - files -DAL
+
 ## ----------------------------------
 # Step #1: Define variables
 # ----------------------------------
@@ -12,6 +35,12 @@
 # Step #2: User defined function
 # ----------------------------------
 
+### search apt
+acs(){
+    apt-cache search
+}
+
+acsh () {apt-cache show}
 
 znotify(){
     play ~/zdotfiles/References/notify.mp3
