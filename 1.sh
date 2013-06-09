@@ -1,16 +1,18 @@
 #!/bin/bash
-# set syntax=sh
+# vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+
+#{{Menu
 
 ### 0 search apt-cache
 ### 1 search cmdfu ## commandlinefu
 ### 2 search zdotfiles-vimrc zdotfiles.org
 ### 3 search github ### github-cli
 ### 4 search help ? stockflow-ubuntu
-### 5
+### 5}}
 
-#Process
+#{Process
 ### sed stream
-### sed stream
+### sed stream}
 
 #Organize
 # wc cut sort uniq awk
@@ -18,7 +20,7 @@
 #Review
 ### If - while test
 
-#Do 
+
 #e-mail - deloploy
 
 #Inboxes
@@ -35,13 +37,6 @@
 # Step #2: User defined function
 # ----------------------------------
 
-### search apt
-acs(){
-    apt-cache search
-}
-
-acsh () {apt-cache show}
-
 znotify(){
     play ~/zdotfiles/References/notify.mp3
 }
@@ -54,45 +49,44 @@ cmdfu(){
 
 pause(){
   read -p "Press [Enter] key to continue..." fackEnterKey
-  znotify
 }
 
 one(){
     while true
     do
-        echo -e "Search [[commandlinefu]]:"
+        echo "Search [[commandlinefu]]:"
         read fn
         cmdfu $fn && break
     done
-    echo -e "Do you want to tag this search words ?"
+    echo "Do you want to tag this search words ?"
     read tags_fn
-    echo -e "#$tags_fn \n$fn" > ~/zdotfiles/.workflow/tags_fn && tail ~/zdotfiles/.workflow/tags_fn;
+    echo "#$tags_fn \n$fn" > ~/zdotfiles/.workflow/tags_fn && tail ~/zdotfiles/.workflow/tags_fn;
         pause
 }
 
 wthree () {
 
-    PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done
+    PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done;
 }
 
 
-1_one(){
+two_one (){
     while true
     do
         clear
-        echo -e "Next Level"
-        echo -e " You are at 1_one "
-        ls && break
+        echo "Next Level"
+        echo " You are at 1_one "
+        znotify && break
     done
-        pause
-            start_GUI
+       pause
+        start_GUI
 }
 
 two() {
     while true
     do
-        show_menu_1
-        read_options_1 && break
+        show_menu_two
+        menu_read_options_two && break
     done
         Pause
 }
@@ -128,7 +122,7 @@ show_menus() {
     echo "0. EXIT"
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " بسم الله الرحمن الرحيم"
-    echo "~~~~~~~~~~~~~~~~~~~~~"
+    echo "~~~~~~~~~~~~~~~~~~~~~";
 }
 
 #
@@ -148,13 +142,13 @@ read_options () {
 }
 
 
-show_menu_1 () {
+show_menu_two () {
     clear
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " بسم الله الرحمن الرحيم"
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "\t [[MENU 1 ]]"
+    echo "[[MENU two ]]"
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo "1. Edit 1.sh"
     echo "2. lsusb"
@@ -173,15 +167,15 @@ show_menu_1 () {
 
 
 # ----------------------------------------------
-menu_1_read_options() {
+menu_read_options_two() {
     local choice
-    echo -e "  [====================================================================]\n"
-    echo -e ""
-    read -p " [[    Enter :       ] " choice
+    echo "===================================================================="
+    echo ""
+    read -p "Enter:" choice
     case $choice in
-        1) 1_one ;;
-        2) 1_two ;;
-        3) 1_three ;;
+        1) two_one ;;
+        2) 2_two ;;
+        3) 2_three ;;
         0) exit 0;;
         *) echo -e "\t ${RED}Error...${STD}" && sleep 1
     esac
@@ -195,8 +189,6 @@ start_GUI () {
     while true; do
         show_menus
         read_options
-    done
+    done;
 }
-# -----------------------------------
-start_GUI && znotify
-# -----------------------------------
+start_GUI

@@ -1,0 +1,691 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+  <title>tony baldwin | blog   &raquo; search google, wikipedia, reverso from the bash terminal</title>
+
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+  <meta name="generator" content="WordPress 3.5.1" /> <!-- leave this for stats -->
+  <!--[if lte IE 7]><link rel="stylesheet" href="http://blog.tonybaldwin.me/wp-content/themes/tbme/ie.css" type="text/css" media="screen" /><![endif]-->
+  <link rel="stylesheet" href="http://blog.tonybaldwin.me/wp-content/themes/tbme/style.css" type="text/css" media="screen" />
+  <link rel="pingback" href="http://blog.tonybaldwin.me/xmlrpc.php" />
+  <link rel="alternate" type="application/rss+xml" title="tony baldwin | blog RSS 2.0 Feed" href="http://blog.tonybaldwin.me/feed/" />
+  <link rel="alternate" type="text/xml" title="tony baldwin | blog RSS Feed" href="http://blog.tonybaldwin.me/feed/rss/" />
+  <link rel="alternate" type="application/atom+xml" title="tony baldwin | blog Atom 0.3" href="http://blog.tonybaldwin.me/feed/atom/" />
+  <link rel="Shortcut Icon" href="http://blog.tonybaldwin.me/wp-content/themes/tbme/img/favicon.ico" type="image/x-icon" />
+      <link rel="alternate" type="application/rss+xml" title="tony baldwin | blog &raquo; search google, wikipedia, reverso from the bash terminal Comments Feed" href="http://blog.tonybaldwin.me/2011/04/25/search-google-wikipedia-reservo-from-the-bash-terminal/feed/" />
+<link rel='stylesheet' id='wp-syntax-css-css'  href='http://blog.tonybaldwin.me/wp-content/plugins/wp-syntax/css/wp-syntax.css?ver=1.0' type='text/css' media='all' />
+<link rel='stylesheet' id='statusnet-widget-style-css'  href='http://blog.tonybaldwin.me/wp-content/plugins/statusnet-widget/statusnet-widget.css?ver=3.5.1' type='text/css' media='all' />
+<script type="text/javascript">/* <![CDATA[ */ var SHRSB_Globals = {"src":"http:\/\/blog.tonybaldwin.me\/wp-content\/plugins\/shareaholic\/spritegen_default","perfoption":"1","twitter_template":"%24%7Btitle%7D+-+%24%7Bshort_link%7D+via+%40Shareaholic","locale":"0","shortener":"yourls","shortener_key":"","pubGaSocial":0,"pubGaKey":""}; /* ]]> */</script><script type='text/javascript' src='http://blog.tonybaldwin.me/wp-includes/js/jquery/jquery.js?ver=1.8.3'></script>
+<script type='text/javascript' src='http://blog.tonybaldwin.me/wp-includes/js/comment-reply.min.js?ver=3.5.1'></script>
+<script type='text/javascript' src='http://dtym7iokkjlif.cloudfront.net/media/js/jquery.shareaholic-publishers-sb.min.js?ver=6.1.3.5'></script>
+<link rel="EditURI" type="application/rsd+xml" title="RSD" href="http://blog.tonybaldwin.me/xmlrpc.php?rsd" />
+<link rel="wlwmanifest" type="application/wlwmanifest+xml" href="http://blog.tonybaldwin.me/wp-includes/wlwmanifest.xml" /> 
+<link rel='prev' title='Real Men DON&#8217;T buy girls!' href='http://blog.tonybaldwin.me/2011/04/11/real-men-dont-buy-girls-2/' />
+<link rel='next' title='search wiktionary from the bash cli' href='http://blog.tonybaldwin.me/2011/05/16/search-wiktionary-from-the-bash-cli/' />
+<meta name="generator" content="WordPress 3.5.1" />
+<link rel='canonical' href='http://blog.tonybaldwin.me/2011/04/25/search-google-wikipedia-reservo-from-the-bash-terminal/' />
+<link rel='shortlink' href='http://tonyb.us/2k' />
+
+<!-- Bad Behavior 2.2.14 run time: 4.229 ms -->
+<script type="text/javascript">
+<!--
+function bb2_addLoadEvent(func) {
+	var oldonload = window.onload;
+	if (typeof window.onload != 'function') {
+		window.onload = func;
+	} else {
+		window.onload = function() {
+			oldonload();
+			func();
+		}
+	}
+}
+
+bb2_addLoadEvent(function() {
+	for ( i=0; i < document.forms.length; i++ ) {
+		if (document.forms[i].method == 'post') {
+			var myElement = document.createElement('input');
+			myElement.setAttribute('type', 'hidden');
+			myElement.name = 'bb2_screener_';
+			myElement.value = '1370759148 188.49.67.2';
+			document.forms[i].appendChild(myElement);
+		}
+	}
+});
+// --></script>
+		
+<!-- Shareaholic Content Tags -->
+
+<meta property='shareaholic:site_name' content='tony baldwin | blog' />
+<meta property='shareaholic:image' content='http://www.tonybaldwin.info/blog/wp-content/uploads/2011/04/042511221535-300x187.jpg' />
+
+<!-- / Shareaholic Content Tags -->
+
+
+
+<!-- Shareaholic - Open Graph Tags -->
+
+<meta property='og:image' content='http://www.tonybaldwin.info/blog/wp-content/uploads/2011/04/042511221535-300x187.jpg' />
+
+<!-- / Shareaholic - Open Graph Tags -->
+
+ 
+  <!-- Drop-down menus -->
+  <script type='text/javascript'>
+    jQuery(document).ready(function() {
+    jQuery("#dropmenu ul").css({display: "none"}); // Opera Fix
+    jQuery("#dropmenu li").hover(function(){
+          jQuery(this).find('ul:first').css({visibility: "visible",display: "none"}).show(268);
+          },function(){
+          jQuery(this).find('ul:first').css({visibility: "hidden"});
+          });
+    });
+  </script>
+  <!-- Drop-down menus -->
+</head>
+
+<body>
+
+  <div id="wrapper">
+
+<!-- <a href="http://tonybaldwin.me"><img src="http://tonybaldwin.homelinux.net/images/tbmeUAL.jpg" width="960" alt="tonybaldwin.me"></a> --!>
+    <div id="header">
+
+      <!-- Blog Description -->
+      <div id="blackband_top_left">
+        <h2>non compos mentis</h2><!-- <div id="counters"> -->
+<!-- </div> -->      </div>
+
+      <!-- Page Navigation -->
+      <div id="blackband_top_right">
+        <h2>
+        <ul id="dropmenu">
+          <li class="page_item"><a href="http://blog.tonybaldwin.me" title="tony baldwin | blog">Home</a></li>
+          <li class="page_item page-item-1410"><a href="http://blog.tonybaldwin.me/about-2/">About Tony</a></li>
+<li class="page_item page-item-1264"><a href="http://blog.tonybaldwin.me/abolish-slavery/">Abolish Slavery</a></li>
+        </ul>
+        </h2>
+      </div>
+
+      <!-- Blog Title -->
+      <div id="header_siteheader">
+        <a href="http://blog.tonybaldwin.me/feed/rss/" title="Subscribe to the Blog Feed (RSS)" rel="nofollow"><img src="http://blog.tonybaldwin.me/wp-content/themes/tbme/img/rss_logo.png" alt="Subscribe to the Blog Feed (RSS)" /></a>
+        <h1><a href="http://blog.tonybaldwin.me">tony baldwin | blog</a></h1>
+      </div>
+
+      <!-- Header Sidebar -->
+      <div id="header_sidebar">
+        <!-- <div align="center"> -->
+<form method="get" id="searchform" action="http://blog.tonybaldwin.me/">
+		<!-- <input type="text" value="" name="s" id="s" size="20" /> -->
+ 		<input type="text" value="Search" name="s" id="s" size="20" onfocus="if (this.value == 'Search') {this.value = '';}" onblur="if (this.value == '') {this.value = 'Search';}" />
+		<input type="submit" id="searchsubmit" value="Find" />
+</form>
+<!-- </div> -->      </div>
+
+    </div>
+
+<!-- CONTENT -->
+
+  <div id="content">
+
+    	
+    		
+    			<h1>search google, wikipedia, reverso from the bash terminal</h1>
+
+    			<!-- Start Shareaholic LikeButtonSetTop Automatic --><!-- End Shareaholic LikeButtonSetTop Automatic --><div id="attachment_1481" class="wp-caption alignright" style="width: 310px"><a href="http://www.tonybaldwin.info/blog/wp-content/uploads/2011/04/042511221535.jpg" target="_new"><img class="size-medium wp-image-1481" title="searching in bash" src="http://www.tonybaldwin.info/blog/wp-content/uploads/2011/04/042511221535-300x187.jpg" alt="searching in bash" width="300" height="187" /></a><p class="wp-caption-text">searching in bash</p></div>
+<p>Okay, so, I like to use my bash terminal.  Call me a geek all you like; it matters not to me.  I wear that badge with pride.</p>
+<p>The bash terminal is quick and efficient for doing a lot of stuff that one might otherwise use some bloated, cpu sucking, eye-candied, gui monstrosity to do.  So, when I find ways to use it for more stuff, more stuff I do with it.</p>
+<p>Now, for my work (recall, I am professionally <a href="http://www.baldwinlinguas.com" target="_blank">a translator</a>) I must often do research, some of which entails heavy lifting, and, otherwise, often simply searching for word definitions and translations.  I use <a href="http://baldwinsoftware.com/tdict.html">TclDict</a>, which I wrote, frequently, but, I also use a lot of online resources that I never programmed TclDict to access, and would generally use a browser for that stuff.   Unless, of course, I can do it my terminal!</p>
+<p>For precisely such purposes, here are a couple of handy scripts I use while working.</p>
+<p>First, let&#8217;s look up terms at <a href="http://www.dict.org" target="_new">Dict.org</a>:</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+</pre></td><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#!/bin/bash</span>
+<span style="color: #666666; font-style: italic;"># default db=all</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #7a0874; font-weight: bold;">&#91;</span><span style="color: #7a0874; font-weight: bold;">&#91;</span> $<span style="color: #7a0874; font-weight: bold;">&#40;</span><span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #007800;">$*</span><span style="color: #7a0874; font-weight: bold;">&#41;</span> <span style="color: #7a0874; font-weight: bold;">&#93;</span><span style="color: #7a0874; font-weight: bold;">&#93;</span>; <span style="color: #000000; font-weight: bold;">then</span>
+&nbsp;
+<span style="color: #007800;">searchterm</span>=<span style="color: #ff0000;">&quot;$*&quot;</span>
+<span style="color: #000000; font-weight: bold;">else</span>
+&nbsp;
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Enter your search term: &quot;</span> searchterm
+<span style="color: #000000; font-weight: bold;">fi</span>
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;choose database (enter 'list' to list all options, leave blank for first match): &quot;</span> db
+&nbsp;
+<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #7a0874; font-weight: bold;">&#91;</span><span style="color: #7a0874; font-weight: bold;">&#91;</span> <span style="color: #007800;">$db</span> = list <span style="color: #7a0874; font-weight: bold;">&#93;</span><span style="color: #7a0874; font-weight: bold;">&#93;</span> ; <span style="color: #000000; font-weight: bold;">then</span>
+curl dict:<span style="color: #000000; font-weight: bold;">//</span>dict.org<span style="color: #000000; font-weight: bold;">/</span>show:db
+&nbsp;
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;choose database, again: &quot;</span> db
+<span style="color: #000000; font-weight: bold;">fi</span>
+&nbsp;
+curl dict:<span style="color: #000000; font-weight: bold;">//</span>dict.org<span style="color: #000000; font-weight: bold;">/</span>d:<span style="color: #007800;">$searchterm</span>:<span style="color: #007800;">$db</span> <span style="color: #000000; font-weight: bold;">|</span> <span style="color: #c20cb9; font-weight: bold;">less</span></pre></td></tr></table></div>
+
+<p>Now, let&#8217;s search google from the command line:</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+</pre></td><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#!/bin/bash</span>
+<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #7a0874; font-weight: bold;">&#91;</span><span style="color: #7a0874; font-weight: bold;">&#91;</span> $<span style="color: #7a0874; font-weight: bold;">&#40;</span><span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #007800;">$*</span><span style="color: #7a0874; font-weight: bold;">&#41;</span> <span style="color: #7a0874; font-weight: bold;">&#93;</span><span style="color: #7a0874; font-weight: bold;">&#93;</span>; <span style="color: #000000; font-weight: bold;">then</span>
+<span style="color: #007800;">searchterm</span>=<span style="color: #ff0000;">&quot;$*&quot;</span>
+<span style="color: #000000; font-weight: bold;">else</span>
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Enter your search term: &quot;</span> searchterm
+<span style="color: #000000; font-weight: bold;">fi</span>
+<span style="color: #c20cb9; font-weight: bold;">lynx</span> -accept_all_cookies http:<span style="color: #000000; font-weight: bold;">//</span>www.google.com<span style="color: #000000; font-weight: bold;">/</span>search?<span style="color: #007800;">q</span>=<span style="color: #007800;">$searchterm</span>
+<span style="color: #666666; font-style: italic;"># I accept all cookies to go direct to search results without having to approve each cookie.</span>
+<span style="color: #666666; font-style: italic;"># you can disable that, of course.</span></pre></td></tr></table></div>
+
+<p>I saved that in ~/bin/goose # for GOOgle SEarch<br />
+and just do<br />
+<code>goose $searchterm</code><br />
+Or, search the google dictionary to translate a term:</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+</pre></td><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#!/bin/bash</span>
+<span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #660033;">-e</span> <span style="color: #ff0000;">&quot;Search google dictionary.n&quot;</span>
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Source language (two letters): &quot;</span> slang
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Target language (two letters): &quot;</span> tlang
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Search term: &quot;</span> sterm
+<span style="color: #c20cb9; font-weight: bold;">lynx</span> <span style="color: #660033;">-dump</span> <span style="color: #ff0000;">&quot;http://www.google.com/dictionary?langpair=<span style="color: #007800;">$slang</span>|<span style="color: #007800;">$tlang</span>&amp;amp;q=<span style="color: #007800;">$sterm</span>&quot;</span> <span style="color: #000000; font-weight: bold;">|</span> <span style="color: #c20cb9; font-weight: bold;">less</span></pre></td></tr></table></div>
+
+<p>Note: For a monolingual search, just use the same language for source and target.  Don&#8217;t leave either blank.</p>
+<p>Or:</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+</pre></td><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#!/bin/bash</span>
+<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #7a0874; font-weight: bold;">&#91;</span> <span style="color: #000000; font-weight: bold;">!</span> <span style="color: #007800;">$3</span> <span style="color: #7a0874; font-weight: bold;">&#93;</span>;
+<span style="color: #000000; font-weight: bold;">then</span>
+<span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #660033;">-e</span> <span style="color: #ff0000;">&quot;usage requires 3 parameters: source language, target language, search term. n
+Thus, I have this as ~/bin/googdict, and do n
+googdict en es cows n
+to translate &quot;</span>cows<span style="color: #ff0000;">&quot; to Spanish. n
+For monolingual search, enter the language twice. n
+As indicated, use the two letter code: n
+&quot;</span>en<span style="color: #ff0000;">&quot; for English, &quot;</span>fr<span style="color: #ff0000;">&quot; for French, etc.&quot;</span>
+<span style="color: #7a0874; font-weight: bold;">exit</span>
+<span style="color: #000000; font-weight: bold;">fi</span>
+<span style="color: #c20cb9; font-weight: bold;">lynx</span> <span style="color: #660033;">-dump</span> <span style="color: #ff0000;">&quot;http://www.google.com/dictionary?langpair=$1|$2&amp;amp;q=$3&quot;</span> <span style="color: #000000; font-weight: bold;">|</span> <span style="color: #c20cb9; font-weight: bold;">less</span></pre></td></tr></table></div>
+
+<p>For the above, I have it in ~/bin/gd, usage being simply &#8220;gd $sourcelanguage $targetlanguage $searchterm&#8221;.<br />
+Example:<br />
+me@machine:~$ gd en es cow<br />
+Searches the Englist to Spanish dictionary for &#8220;cow&#8221;.</p>
+<p>We can use similar principles to search <a href="http://dictionary.reverso.net" target="_blank">reverso</a>:</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+</pre></td><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#!/bin/bash</span>
+<span style="color: #666666; font-style: italic;">#search reverso</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #7a0874; font-weight: bold;">&#91;</span> <span style="color: #000000; font-weight: bold;">!</span> <span style="color: #007800;">$1</span> <span style="color: #7a0874; font-weight: bold;">&#93;</span>;
+<span style="color: #000000; font-weight: bold;">then</span>
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Enter the source language: &quot;</span> slang
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Enter target language: &quot;</span> tlang
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Enter your search term: &quot;</span> searchterm
+<span style="color: #c20cb9; font-weight: bold;">lynx</span> <span style="color: #660033;">-dump</span> dictionary.reverso.net<span style="color: #000000; font-weight: bold;">/</span><span style="color: #007800;">$slang</span>-<span style="color: #007800;">$tlang</span><span style="color: #000000; font-weight: bold;">/</span><span style="color: #007800;">$searchterm</span> <span style="color: #000000; font-weight: bold;">|</span> <span style="color: #c20cb9; font-weight: bold;">less</span>
+&nbsp;
+<span style="color: #000000; font-weight: bold;">else</span>
+&nbsp;
+<span style="color: #c20cb9; font-weight: bold;">lynx</span> <span style="color: #660033;">-dump</span> dictionary.reverso.net<span style="color: #000000; font-weight: bold;">/</span><span style="color: #007800;">$1</span>-<span style="color: #007800;">$2</span><span style="color: #000000; font-weight: bold;">/</span><span style="color: #007800;">$3</span> <span style="color: #000000; font-weight: bold;">|</span> <span style="color: #c20cb9; font-weight: bold;">less</span>
+<span style="color: #000000; font-weight: bold;">fi</span></pre></td></tr></table></div>
+
+<p>With the google dictionary, you use the two-letter language code (i.e., &#8220;en&#8221; for English, &#8220;fr&#8221; for French, etc.).  With reverso, you have to spell out the language (&#8220;english&#8221; for English, etc.).</p>
+<p>With all of the above, I&#8217;ve used the program, <a href="http://ss64.com/bash/less.html" target="_new">less</a>, to display the results, rather than spitting it all out to to the terminal at once.  Click <a href="http://ss64.com/bash/less.html" target="_new">here</a> to learn how to use less, if needed.</p>
+<p>Additionally, most of the above require <a href="http://lynx.browser.org/" target="_new">Lynx Browser</a>, which is generally available for any gnu/linux distribution via your favorite package manager (apt, synaptic, aptitude, yum, portage, pacman, etc.).  For the dict.org script, I used <a href="http://curl.haxx.se/" target="_new">cURL</a> (also part of most gnu/linux distributions and installable with your favorite package manager).</p>
+<p>Google Translate can also be accessed, but for this, we&#8217;ll use a bit of python magic (I know, I pick on google translate, a lot, but it can be useful):</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre class="python" style="font-family:monospace;"><span style="color: #808080; font-style: italic;">#!/usr/bin/env python</span>
+<span style="color: #ff7700;font-weight:bold;">from</span> <span style="color: #dc143c;">urllib2</span> <span style="color: #ff7700;font-weight:bold;">import</span> urlopen
+<span style="color: #ff7700;font-weight:bold;">from</span> <span style="color: #dc143c;">urllib</span> <span style="color: #ff7700;font-weight:bold;">import</span> urlencode
+<span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #dc143c;">sys</span>
+&nbsp;
+<span style="color: #808080; font-style: italic;"># The google translate API can be found here:</span>
+<span style="color: #808080; font-style: italic;"># http://code.google.com/apis/ajaxlanguage/documentation/#Examples</span>
+&nbsp;
+lang1<span style="color: #66cc66;">=</span><span style="color: #dc143c;">sys</span>.<span style="color: black;">argv</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>
+lang2<span style="color: #66cc66;">=</span><span style="color: #dc143c;">sys</span>.<span style="color: black;">argv</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>
+langpair<span style="color: #66cc66;">=</span><span style="color: #483d8b;">'%s|%s'</span>%<span style="color: black;">&#40;</span>lang1<span style="color: #66cc66;">,</span>lang2<span style="color: black;">&#41;</span>
+text<span style="color: #66cc66;">=</span><span style="color: #483d8b;">' '</span>.<span style="color: black;">join</span><span style="color: black;">&#40;</span><span style="color: #dc143c;">sys</span>.<span style="color: black;">argv</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">3</span>:<span style="color: black;">&#93;</span><span style="color: black;">&#41;</span>
+base_url<span style="color: #66cc66;">=</span><span style="color: #483d8b;">'http://ajax.googleapis.com/ajax/services/language/translate?'</span>
+params<span style="color: #66cc66;">=</span>urlencode<span style="color: black;">&#40;</span> <span style="color: black;">&#40;</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'v'</span><span style="color: #66cc66;">,</span><span style="color: #ff4500;">1.0</span><span style="color: black;">&#41;</span><span style="color: #66cc66;">,</span>
+<span style="color: black;">&#40;</span><span style="color: #483d8b;">'q'</span><span style="color: #66cc66;">,</span>text<span style="color: black;">&#41;</span><span style="color: #66cc66;">,</span>
+<span style="color: black;">&#40;</span><span style="color: #483d8b;">'langpair'</span><span style="color: #66cc66;">,</span>langpair<span style="color: black;">&#41;</span><span style="color: #66cc66;">,</span><span style="color: black;">&#41;</span> <span style="color: black;">&#41;</span>
+url<span style="color: #66cc66;">=</span>base_url+params
+content<span style="color: #66cc66;">=</span>urlopen<span style="color: black;">&#40;</span>url<span style="color: black;">&#41;</span>.<span style="color: black;">read</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span>
+start_idx<span style="color: #66cc66;">=</span>content.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'&quot;translatedText&quot;:&quot;'</span><span style="color: black;">&#41;</span>+<span style="color: #ff4500;">18</span>
+translation<span style="color: #66cc66;">=</span>content<span style="color: black;">&#91;</span>start_idx:<span style="color: black;">&#93;</span>
+end_idx<span style="color: #66cc66;">=</span>translation.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'&quot;}, &quot;'</span><span style="color: black;">&#41;</span>
+translation<span style="color: #66cc66;">=</span>translation<span style="color: black;">&#91;</span>:end_idx<span style="color: black;">&#93;</span>
+<span style="color: #ff7700;font-weight:bold;">print</span> translation</pre></td></tr></table></div>
+
+<p>Originally found that <a href="http://ubuntuforums.org/showthread.php?t=1087457" target="_new">here</a>, on the ubuntuforums.</p>
+<p>And now for Wikipedia we have a couple of options.<br />
+First, we have this awesome little handy script, tucked into my $PATH as &#8220;define&#8221;:</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+</pre></td><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#!/bin/bash</span>
+<span style="color: #c20cb9; font-weight: bold;">dig</span> +short txt <span style="color: #007800;">$1</span>.wp.dg.cx
+<span style="color: #7a0874; font-weight: bold;">exit</span></pre></td></tr></table></div>
+
+<p>I use it simply with &#8220;define $searchterm&#8221;, and it gives a short definition from wikipedia.  I originally found it <a href="http://www.catonmat.net/blog/another-ten-one-liners-from-commandlinefu-explained" target="_new">here</a>.</p>
+<p>Another extremely handy tool is <a href="http://www.256bit.org/~chrisbra/wiki" target="_blank">Wikipedia2Text</a>, which I simply installed from the debian repos via aptitude.  When I use this, I also pipe it to less:</p>
+
+<div class="wp_syntax"><table><tr><td class="line_numbers"><pre>1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+</pre></td><td class="code"><pre class="bash" style="font-family:monospace;"><span style="color: #666666; font-style: italic;">#!/bin/bash</span>
+<span style="color: #000000; font-weight: bold;">if</span> <span style="color: #7a0874; font-weight: bold;">&#91;</span><span style="color: #7a0874; font-weight: bold;">&#91;</span> $<span style="color: #7a0874; font-weight: bold;">&#40;</span><span style="color: #7a0874; font-weight: bold;">echo</span> <span style="color: #007800;">$*</span><span style="color: #7a0874; font-weight: bold;">&#41;</span> <span style="color: #7a0874; font-weight: bold;">&#93;</span><span style="color: #7a0874; font-weight: bold;">&#93;</span>; <span style="color: #000000; font-weight: bold;">then</span>
+&nbsp;
+<span style="color: #007800;">searchterm</span>=<span style="color: #ff0000;">&quot;$*&quot;</span>
+<span style="color: #000000; font-weight: bold;">else</span>
+&nbsp;
+<span style="color: #c20cb9; font-weight: bold;">read</span> <span style="color: #660033;">-p</span> <span style="color: #ff0000;">&quot;Enter your search term: &quot;</span> searchterm
+<span style="color: #000000; font-weight: bold;">fi</span>
+&nbsp;
+wikipedia2text <span style="color: #007800;">$searchterm</span> <span style="color: #000000; font-weight: bold;">|</span> <span style="color: #c20cb9; font-weight: bold;">less</span></pre></td></tr></table></div>
+
+<p>I have that tucked into ~/bin/wikit, thus, do simply</p>
+<p><code>wikit $searchterm</code><br />
+to get my results.</p>
+<p>Enjoy!</p>
+<p>All code here that I have written is free and released according to the GPL v. 3.  Check the links for code I borrowed for licensing information (pretty sure it&#8217;s all GPL-ed, too).</p>
+<p>./<a href="http://www.tonybaldwin.info">tony</a></p>
+<div class="shr-publisher-1480"></div><!-- Start Shareaholic LikeButtonSetBottom Automatic --><div style="clear: both; min-height: 1px; height: 3px; width: 100%;"></div><div class='shareaholic-like-buttonset' style='float:none;height:30px;'><a class='shareaholic-fblike' data-shr_layout='button_count' data-shr_showfaces='false' data-shr_href='http://blog.tonybaldwin.me/2011/04/25/search-google-wikipedia-reservo-from-the-bash-terminal/' data-shr_title='search+google%2C+wikipedia%2C+reverso+from+the+bash+terminal'></a><a class='shareaholic-googleplusone' data-shr_size='medium' data-shr_count='true' data-shr_href='http://blog.tonybaldwin.me/2011/04/25/search-google-wikipedia-reservo-from-the-bash-terminal/' data-shr_title='search+google%2C+wikipedia%2C+reverso+from+the+bash+terminal'></a><a class='shareaholic-tweetbutton' data-shr_count='horizontal' data-shr_href='http://blog.tonybaldwin.me/2011/04/25/search-google-wikipedia-reservo-from-the-bash-terminal/' data-shr_title='search+google%2C+wikipedia%2C+reverso+from+the+bash+terminal'></a></div><div style="clear: both; min-height: 1px; height: 3px; width: 100%;"></div><!-- End Shareaholic LikeButtonSetBottom Automatic -->            				
+          <div id="postmeta">
+
+            Posted on April 25, 2011 at 7:44 pm by <a href="http://www.tonybaldwin.info" title="Visit tony baldwin&#8217;s website" rel="author external">tony baldwin</a> · <a href="http://blog.tonybaldwin.me/2011/04/25/search-google-wikipedia-reservo-from-the-bash-terminal/" rel="bookmark" title="Permanent link to this post">Permalink</a>
+<br />
+In:&nbsp;<a href="http://blog.tonybaldwin.me/category/computers-software-programming/baldwinsoftware/" title="View all posts in baldwinsoftware" rel="category tag">baldwinsoftware</a>, <a href="http://blog.tonybaldwin.me/category/computers-software-programming/free-software/" title="View all posts in free software" rel="category tag">free software</a>, <a href="http://blog.tonybaldwin.me/category/gnulinux-free-software-freedom-2/" title="View all posts in gnu/linux" rel="category tag">gnu/linux</a>, <a href="http://blog.tonybaldwin.me/category/computers-software-programming/free-software/hacking-free-software/" title="View all posts in hacking" rel="category tag">hacking</a>&#32;·&nbsp;Tagged with:&nbsp;<a href="http://blog.tonybaldwin.me/tag/bash/" rel="tag">bash</a>, <a href="http://blog.tonybaldwin.me/tag/bash-script/" rel="tag">bash script</a>, <a href="http://blog.tonybaldwin.me/tag/cli/" rel="tag">cli</a>, <a href="http://blog.tonybaldwin.me/tag/dict-org/" rel="tag">dict.org</a>, <a href="http://blog.tonybaldwin.me/tag/dictionary/" rel="tag">dictionary</a>, <a href="http://blog.tonybaldwin.me/tag/google/" rel="tag">google</a>, <a href="http://blog.tonybaldwin.me/tag/lookup/" rel="tag">lookup</a>, <a href="http://blog.tonybaldwin.me/tag/reverso/" rel="tag">reverso</a>, <a href="http://blog.tonybaldwin.me/tag/script/" rel="tag">script</a>, <a href="http://blog.tonybaldwin.me/tag/search/" rel="tag">search</a>, <a href="http://blog.tonybaldwin.me/tag/wikipedia/" rel="tag">wikipedia</a>
+          </div>
+
+          
+<div id="disqus_thread">
+                    <div id="dsq-content">
+
+
+            <ul id="dsq-comments">
+                    <li class="post pingback">
+        <p>Pingback: <a href='http://baldwinsoftware.com/blog/2011/05/16/search-wiktionary-from-the-bash-cli/' rel='external nofollow' class='url'>search wiktionary from the bash cli at tony baldwin | bloguiando</a></p>
+    </li>
+    </li>
+            </ul>
+
+
+        </div>
+
+    </div>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    var disqus_url = 'http://blog.tonybaldwin.me/2011/04/25/search-google-wikipedia-reservo-from-the-bash-terminal/';
+    var disqus_identifier = '1480 http://baldwinsoftware.com/blog/?p=1480';
+    var disqus_container_id = 'disqus_thread';
+    var disqus_domain = 'disqus.com';
+    var disqus_shortname = 'tonybaldwinisme';
+    var disqus_title = "search google, wikipedia, reverso from the bash terminal";
+        var disqus_config = function () {
+        var config = this; // Access to the config object
+        config.language = '';
+
+        /*
+           All currently supported events:
+            * preData — fires just before we request for initial data
+            * preInit - fires after we get initial data but before we load any dependencies
+            * onInit  - fires when all dependencies are resolved but before dtpl template is rendered
+            * afterRender - fires when template is rendered but before we show it
+            * onReady - everything is done
+         */
+
+        config.callbacks.preData.push(function() {
+            // clear out the container (its filled for SEO/legacy purposes)
+            document.getElementById(disqus_container_id).innerHTML = '';
+        });
+                config.callbacks.onReady.push(function() {
+            // sync comments in the background so we don't block the page
+            var script = document.createElement('script');
+            script.async = true;
+            script.src = '?cf_action=sync_comments&post_id=1480';
+
+            var firstScript = document.getElementsByTagName( "script" )[0];
+            firstScript.parentNode.insertBefore(script, firstScript);
+        });
+                    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+    var DsqLocal = {
+        'trackbacks': [
+            {
+                'author_name':    "search wiktionary from the bash cli at tony baldwin | bloguiando",
+                'author_url':    "http:\/\/baldwinsoftware.com\/blog\/2011\/05\/16\/search-wiktionary-from-the-bash-cli\/",
+                'date':            "05\/17\/2011 08:44 PM",
+                'excerpt':        "[...]  Last week I posted several scripts for searching google, google translate, google dictionary, reverso, and wikipedia from the ...",
+                'type':            "pingback"            }
+        ],
+        'trackback_url': "http:\/\/blog.tonybaldwin.me\/2011\/04\/25\/search-google-wikipedia-reservo-from-the-bash-terminal\/trackback\/"    };
+/* ]]> */
+</script>
+
+<script type="text/javascript">
+/* <![CDATA[ */
+(function() {
+    var dsq = document.createElement('script'); dsq.type = 'text/javascript';
+    dsq.async = true;
+    dsq.src = '//' + disqus_shortname + '.' + 'disqus.com' + '/embed.js?pname=wordpress&pver=2.74';
+    (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+})();
+/* ]]> */
+</script>
+
+          <br />
+
+      		<div id="navigation">
+	   	  		<div class="left"><a href="http://blog.tonybaldwin.me/2011/04/11/real-men-dont-buy-girls-2/" rel="prev">&laquo; Previous post</a></div>
+	    	  	<div class="right"><a href="http://blog.tonybaldwin.me/2011/05/16/search-wiktionary-from-the-bash-cli/" rel="next">Next post &raquo;</a></div>
+		      </div>
+
+    		
+		
+  </div>
+
+  <div id="sidebar">
+
+  <ul>
+    <li id="text-2" class="widget widget_text">			<div class="textwidget"><p><a href="http://www.tonybaldwin.info"><img src="http://www.tonybaldwin.info/images/tonybaldwin20081228.jpg"></a></p>
+<p><a href="https://free-haven.org/u/tony" target="_blank"><img src="http://tonybaldwin.homelinux.net/images/friendika-32.png" alt="add me on friendica"></a> <a href="http://status.farcebork.com/tonybaldwin" target="_blank"><img src="http://tonybaldwin.homelinux.net/images/sn-32.jpg" alt="follow me on statusnet"></a></p>
+<p><a href="http://www.fsf.org/associate/support_freedom/join_fsf?referrer=2442"><img src="http://static.fsf.org/fsforg/img/thin-image.png" alt="Support freedom" title="Help protect your freedom, join the Free Software Foundation" /></a><br /><script src="http://l.yimg.com/a/i/us/pps/imagebadge_1.5.js">{"pipe_id":"f2c734d2e480b74b4dfedc88372b6029","_btype":"image","width":"200","height":"200"}</script><br />
+<a href="http://www.myownsite.me" target="_blank"><img src="http://tonybaldwin.me/images/myownsitebox155x100.jpg" alt="myownsite.me - web hosting, development and design"></a><br />
+<br /><a href="http://mariadb.org" target="_blank"><img src="http://badges.mariadb.org/mariadb-badge-88x31.png" width="88" height="31" border="0" alt="Powered by MariaDB" title="Powered by MariaDB" /></a></p>
+</div>
+		</li><li id="search-2" class="widget widget_search"><form role="search" method="get" id="searchform" action="http://blog.tonybaldwin.me/" >
+	<div><label class="screen-reader-text" for="s">Search for:</label>
+	<input type="text" value="" name="s" id="s" />
+	<input type="submit" id="searchsubmit" value="Search" />
+	</div>
+	</form></li>              <li id="statusnetwidget-2" class="widget widget_statusnetwidget">                  <h2 class="widgettitle">statusupdates</h2>                  <ul class="statusnet"><li class="statusnet-item">Today in History:  Jun 09  Senior Citizen&<a href="http://status.farcebork.com/tag/039;s">#039;s</a> Day in Oklahoma Jun 09  Les Paul (Lester Polfus) is born in Waukesha, Wisconsin, 1923 Jun 09  N&<a href="http://status.farcebork.com/tag/039;oubliez">#039;oubliez</a> pas les Diane ! Jun 09  Félix Jun 09* День работников легкой промышленности <a href="http://status.farcebork.com/tag/history">#history</a> <a href="http://status.farcebork.com/History">@History</a> <a href="http://fbork.me/1s">http://fbork.me/1s</a> <span class="statusnet-timestamp"><abbr title="2013/06/09 06:12:55"><a href="http://status.farcebork.com/notice/528260">13 mins ago</a></abbr></span></li><li class="statusnet-item">Step Out: Walk to Stop Diabetes: American Diabetes Association <a href="http://tonyb.us/adawalk2013">http://tonyb.us/adawalk2013</a> help me stomp out <a href="http://status.farcebork.com/tag/diabetes">#diabetes</a> <span class="statusnet-timestamp"><abbr title="2013/06/09 05:00:03"><a href="http://status.farcebork.com/notice/528259">1 hour ago</a></abbr></span></li><li class="statusnet-item">Tell President Obama: Justify your indiscriminate spying on Americans  <a href="http://fbork.me/6p">http://fbork.me/6p</a> <span class="statusnet-timestamp"><abbr title="2013/06/08 16:30:07"><a href="http://status.farcebork.com/notice/528193">14 hours ago</a></abbr></span></li><li class="statusnet-item">My disillusionment - <a href="http://fbork.me/6o">http://fbork.me/6o</a> <a href="http://tonyb.us/4y">http://tonyb.us/4y</a> <a href="http://status.farcebork.com/benfell">@benfell</a> <span class="statusnet-timestamp"><abbr title="2013/06/08 13:33:18"><a href="http://status.farcebork.com/notice/528165">17 hours ago</a></abbr></span></li></ul>              </li>        		<li id="recent-posts-2" class="widget widget_recent_entries">		<h2 class="widgettitle">Recent Posts</h2>		<ul>
+					<li>
+				<a href="http://blog.tonybaldwin.me/2013/06/07/1st-race-in-about-26-years/" title="1st &quot;race&quot; in about 26 years&#8230;">1st &quot;race&quot; in about 26 years&#8230;</a>
+						</li>
+					<li>
+				<a href="http://blog.tonybaldwin.me/2013/06/03/join-me-luke-together-we-can-stomp-out-diabetes/" title="Join me, Luke! Together we can STOMP OUT DIABETES!">Join me, Luke! Together we can STOMP OUT DIABETES!</a>
+						</li>
+					<li>
+				<a href="http://blog.tonybaldwin.me/2013/05/29/the-mars-society/" title="The Mars Society">The Mars Society</a>
+						</li>
+					<li>
+				<a href="http://blog.tonybaldwin.me/2013/05/28/screenshot-3/" title="screenshot">screenshot</a>
+						</li>
+					<li>
+				<a href="http://blog.tonybaldwin.me/2013/05/27/red-to-wordpress-xpost/" title="Red to WordPress Xpost">Red to WordPress Xpost</a>
+						</li>
+				</ul>
+		</li><li id="tag_cloud-2" class="widget widget_tag_cloud"><h2 class="widgettitle">Tags</h2><div class="tagcloud"><a href='http://blog.tonybaldwin.me/tag/art/' class='tag-link-23' title='8 topics' style='font-size: 11.216216216216pt;'>art</a>
+<a href='http://blog.tonybaldwin.me/tag/bash/' class='tag-link-72' title='22 topics' style='font-size: 18.972972972973pt;'>bash</a>
+<a href='http://blog.tonybaldwin.me/tag/bash-script/' class='tag-link-73' title='6 topics' style='font-size: 9.3243243243243pt;'>bash script</a>
+<a href='http://blog.tonybaldwin.me/tag/blogging/' class='tag-link-88' title='8 topics' style='font-size: 11.216216216216pt;'>blogging</a>
+<a href='http://blog.tonybaldwin.me/tag/brasil/' class='tag-link-92' title='8 topics' style='font-size: 11.216216216216pt;'>brasil</a>
+<a href='http://blog.tonybaldwin.me/tag/brazil/' class='tag-link-95' title='7 topics' style='font-size: 10.27027027027pt;'>brazil</a>
+<a href='http://blog.tonybaldwin.me/tag/chile/' class='tag-link-114' title='8 topics' style='font-size: 11.216216216216pt;'>chile</a>
+<a href='http://blog.tonybaldwin.me/tag/connecticut/' class='tag-link-132' title='6 topics' style='font-size: 9.3243243243243pt;'>connecticut</a>
+<a href='http://blog.tonybaldwin.me/tag/debian/' class='tag-link-151' title='12 topics' style='font-size: 14.243243243243pt;'>debian</a>
+<a href='http://blog.tonybaldwin.me/tag/dreamwidth/' class='tag-link-172' title='6 topics' style='font-size: 9.3243243243243pt;'>dreamwidth</a>
+<a href='http://blog.tonybaldwin.me/tag/foss/' class='tag-link-215' title='14 topics' style='font-size: 15.567567567568pt;'>foss</a>
+<a href='http://blog.tonybaldwin.me/tag/free/' class='tag-link-220' title='7 topics' style='font-size: 10.27027027027pt;'>free</a>
+<a href='http://blog.tonybaldwin.me/tag/free-software/' class='tag-link-28' title='29 topics' style='font-size: 21.243243243243pt;'>free software</a>
+<a href='http://blog.tonybaldwin.me/tag/gnu/' class='tag-link-244' title='8 topics' style='font-size: 11.216216216216pt;'>gnu</a>
+<a href='http://blog.tonybaldwin.me/tag/gnulinux/' class='tag-link-247' title='7 topics' style='font-size: 10.27027027027pt;'>gnu/linux</a>
+<a href='http://blog.tonybaldwin.me/tag/google/' class='tag-link-248' title='11 topics' style='font-size: 13.675675675676pt;'>google</a>
+<a href='http://blog.tonybaldwin.me/tag/hacking-free-software/' class='tag-link-31' title='7 topics' style='font-size: 10.27027027027pt;'>hacking</a>
+<a href='http://blog.tonybaldwin.me/tag/humor/' class='tag-link-5' title='5 topics' style='font-size: 8pt;'>humor</a>
+<a href='http://blog.tonybaldwin.me/tag/identi-ca/' class='tag-link-272' title='6 topics' style='font-size: 9.3243243243243pt;'>identi.ca</a>
+<a href='http://blog.tonybaldwin.me/tag/language-linguistics-translation/' class='tag-link-7' title='10 topics' style='font-size: 12.918918918919pt;'>language</a>
+<a href='http://blog.tonybaldwin.me/tag/linguas-os/' class='tag-link-308' title='5 topics' style='font-size: 8pt;'>linguas os</a>
+<a href='http://blog.tonybaldwin.me/tag/linux/' class='tag-link-309' title='20 topics' style='font-size: 18.216216216216pt;'>linux</a>
+<a href='http://blog.tonybaldwin.me/tag/livejournal/' class='tag-link-312' title='9 topics' style='font-size: 12.162162162162pt;'>livejournal</a>
+<a href='http://blog.tonybaldwin.me/tag/machine-translation/' class='tag-link-324' title='5 topics' style='font-size: 8pt;'>machine translation</a>
+<a href='http://blog.tonybaldwin.me/tag/mexico/' class='tag-link-338' title='10 topics' style='font-size: 12.918918918919pt;'>mexico</a>
+<a href='http://blog.tonybaldwin.me/tag/music/' class='tag-link-10' title='18 topics' style='font-size: 17.459459459459pt;'>music</a>
+<a href='http://blog.tonybaldwin.me/tag/poetry/' class='tag-link-15' title='6 topics' style='font-size: 9.3243243243243pt;'>poetry</a>
+<a href='http://blog.tonybaldwin.me/tag/python/' class='tag-link-416' title='8 topics' style='font-size: 11.216216216216pt;'>python</a>
+<a href='http://blog.tonybaldwin.me/tag/rock/' class='tag-link-425' title='13 topics' style='font-size: 15pt;'>rock</a>
+<a href='http://blog.tonybaldwin.me/tag/rock-en-espanol/' class='tag-link-428' title='19 topics' style='font-size: 17.837837837838pt;'>rock en espanol</a>
+<a href='http://blog.tonybaldwin.me/tag/screenshot/' class='tag-link-19' title='13 topics' style='font-size: 15pt;'>screenshot</a>
+<a href='http://blog.tonybaldwin.me/tag/script/' class='tag-link-442' title='13 topics' style='font-size: 15pt;'>script</a>
+<a href='http://blog.tonybaldwin.me/tag/tcl/' class='tag-link-490' title='32 topics' style='font-size: 22pt;'>tcl</a>
+<a href='http://blog.tonybaldwin.me/tag/tcltk/' class='tag-link-491' title='21 topics' style='font-size: 18.594594594595pt;'>tcl/tk</a>
+<a href='http://blog.tonybaldwin.me/tag/tk/' class='tag-link-511' title='8 topics' style='font-size: 11.216216216216pt;'>tk</a>
+<a href='http://blog.tonybaldwin.me/tag/tony/' class='tag-link-514' title='15 topics' style='font-size: 15.945945945946pt;'>tony</a>
+<a href='http://blog.tonybaldwin.me/tag/tony-baldwin/' class='tag-link-515' title='22 topics' style='font-size: 18.972972972973pt;'>tony baldwin</a>
+<a href='http://blog.tonybaldwin.me/tag/translation-language-linguistics-translation/' class='tag-link-21' title='17 topics' style='font-size: 17.081081081081pt;'>translation</a>
+<a href='http://blog.tonybaldwin.me/tag/translator/' class='tag-link-525' title='6 topics' style='font-size: 9.3243243243243pt;'>translator</a>
+<a href='http://blog.tonybaldwin.me/tag/translators/' class='tag-link-526' title='5 topics' style='font-size: 8pt;'>translators</a>
+<a href='http://blog.tonybaldwin.me/tag/twitter/' class='tag-link-532' title='5 topics' style='font-size: 8pt;'>twitter</a>
+<a href='http://blog.tonybaldwin.me/tag/wallpaper/' class='tag-link-545' title='5 topics' style='font-size: 8pt;'>wallpaper</a>
+<a href='http://blog.tonybaldwin.me/tag/window-manager/' class='tag-link-564' title='6 topics' style='font-size: 9.3243243243243pt;'>window manager</a>
+<a href='http://blog.tonybaldwin.me/tag/wordpress/' class='tag-link-570' title='8 topics' style='font-size: 11.216216216216pt;'>wordpress</a>
+<a href='http://blog.tonybaldwin.me/tag/xpostulate/' class='tag-link-578' title='7 topics' style='font-size: 10.27027027027pt;'>xpostulate</a></div>
+</li><li id="categories-2" class="widget widget_categories"><h2 class="widgettitle">Categories</h2><select name='cat' id='cat' class='postform' >
+	<option value='-1'>Select Category</option>
+	<option class="level-0" value="23">art</option>
+	<option class="level-0" value="24">baldwinsoftware</option>
+	<option class="level-0" value="25">book review</option>
+	<option class="level-0" value="26">business</option>
+	<option class="level-0" value="2">entertainment &amp; media</option>
+	<option class="level-0" value="27">environment</option>
+	<option class="level-0" value="607">fitness</option>
+	<option class="level-0" value="3">food</option>
+	<option class="level-0" value="28">free software</option>
+	<option class="level-0" value="4">gnu/linux</option>
+	<option class="level-0" value="29">green party</option>
+	<option class="level-0" value="30">greens</option>
+	<option class="level-0" value="31">hacking</option>
+	<option class="level-0" value="593">health</option>
+	<option class="level-0" value="32">human rights</option>
+	<option class="level-0" value="5">humor</option>
+	<option class="level-0" value="6">info technology</option>
+	<option class="level-0" value="33">international</option>
+	<option class="level-0" value="7">language</option>
+	<option class="level-0" value="8">linguistics</option>
+	<option class="level-0" value="9">literature</option>
+	<option class="level-0" value="10">music</option>
+	<option class="level-0" value="11">news</option>
+	<option class="level-0" value="12">open standards</option>
+	<option class="level-0" value="13">personal</option>
+	<option class="level-0" value="14">photography</option>
+	<option class="level-0" value="15">poetry</option>
+	<option class="level-0" value="16">politics</option>
+	<option class="level-0" value="17">recipe</option>
+	<option class="level-0" value="18">recipe</option>
+	<option class="level-0" value="19">screenshot</option>
+	<option class="level-0" value="20">socialism</option>
+	<option class="level-0" value="34">software release</option>
+	<option class="level-0" value="613">space</option>
+	<option class="level-0" value="619">technology</option>
+	<option class="level-0" value="21">translation</option>
+	<option class="level-0" value="581">trivia</option>
+	<option class="level-0" value="1">Uncategorized</option>
+	<option class="level-0" value="22">web</option>
+</select>
+
+<script type='text/javascript'>
+/* <![CDATA[ */
+	var dropdown = document.getElementById("cat");
+	function onCatChange() {
+		if ( dropdown.options[dropdown.selectedIndex].value > 0 ) {
+			location.href = "http://blog.tonybaldwin.me/?cat="+dropdown.options[dropdown.selectedIndex].value;
+		}
+	}
+	dropdown.onchange = onCatChange;
+/* ]]> */
+</script>
+
+</li><li id="text-3" class="widget widget_text">			<div class="textwidget"><a href="http://rockes.farcebork.com" target="_blank"><img src="http://tonybaldwin.homelinux.net/images/rockesquare200.jpg" border="0" alt="Rock en Español - el mejor de ROCK en TU idioma"></a></div>
+		</li><li id="archives-2" class="widget widget_archive"><h2 class="widgettitle">Archives</h2>		<select name="archive-dropdown" onchange='document.location.href=this.options[this.selectedIndex].value;'> <option value="">Select Month</option> 	<option value='http://blog.tonybaldwin.me/2013/06/'> June 2013 </option>
+	<option value='http://blog.tonybaldwin.me/2013/05/'> May 2013 </option>
+	<option value='http://blog.tonybaldwin.me/2013/04/'> April 2013 </option>
+	<option value='http://blog.tonybaldwin.me/2013/03/'> March 2013 </option>
+	<option value='http://blog.tonybaldwin.me/2013/02/'> February 2013 </option>
+	<option value='http://blog.tonybaldwin.me/2013/01/'> January 2013 </option>
+	<option value='http://blog.tonybaldwin.me/2012/12/'> December 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/11/'> November 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/10/'> October 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/09/'> September 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/08/'> August 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/07/'> July 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/06/'> June 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/05/'> May 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/04/'> April 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/03/'> March 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/02/'> February 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2012/01/'> January 2012 </option>
+	<option value='http://blog.tonybaldwin.me/2011/11/'> November 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/10/'> October 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/09/'> September 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/08/'> August 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/07/'> July 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/05/'> May 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/04/'> April 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/02/'> February 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2011/01/'> January 2011 </option>
+	<option value='http://blog.tonybaldwin.me/2010/12/'> December 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/11/'> November 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/10/'> October 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/09/'> September 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/08/'> August 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/07/'> July 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/06/'> June 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/05/'> May 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/04/'> April 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/03/'> March 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/02/'> February 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2010/01/'> January 2010 </option>
+	<option value='http://blog.tonybaldwin.me/2009/12/'> December 2009 </option>
+	<option value='http://blog.tonybaldwin.me/2009/11/'> November 2009 </option>
+	<option value='http://blog.tonybaldwin.me/2009/10/'> October 2009 </option>
+	<option value='http://blog.tonybaldwin.me/2009/08/'> August 2009 </option>
+	<option value='http://blog.tonybaldwin.me/2009/07/'> July 2009 </option>
+	<option value='http://blog.tonybaldwin.me/2009/01/'> January 2009 </option>
+	<option value='http://blog.tonybaldwin.me/2008/09/'> September 2008 </option>
+	<option value='http://blog.tonybaldwin.me/2008/08/'> August 2008 </option>
+	<option value='http://blog.tonybaldwin.me/2008/07/'> July 2008 </option>
+	<option value='http://blog.tonybaldwin.me/2008/06/'> June 2008 </option>
+	<option value='http://blog.tonybaldwin.me/2008/05/'> May 2008 </option>
+	<option value='http://blog.tonybaldwin.me/2008/04/'> April 2008 </option>
+	<option value='http://blog.tonybaldwin.me/2008/03/'> March 2008 </option>
+	<option value='http://blog.tonybaldwin.me/2008/02/'> February 2008 </option>
+ </select>
+</li><li id="meta-2" class="widget widget_meta"><h2 class="widgettitle">Meta</h2>			<ul>
+						<li><a href="http://blog.tonybaldwin.me/wp-login.php">Log in</a></li>
+			<li><a href="http://blog.tonybaldwin.me/feed/" title="Syndicate this site using RSS 2.0">Entries <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://tonybaldwinisme.disqus.com/latest.rss" title="The latest comments to all posts in RSS">Comments <abbr title="Really Simple Syndication">RSS</abbr></a></li>
+			<li><a href="http://wordpress.org/" title="Powered by WordPress, state-of-the-art semantic personal publishing platform.">WordPress.org</a></li>
+						</ul>
+</li>    <!--  <li><h2>Some ads here</h2>
+  <ul> -->
+
+<!--   ---------------------- LINK ADS ---------------------- -->
+
+
+<!-- / ---------------------- LINK ADS ---------------------- -->
+
+<!--  </ul>
+</li> -->  </ul>
+</div>
+<!-- /CONTENT -->
+
+  <!-- FOOTER -->
+  <div id="footer">
+  	<div id="blackband_bottom_left">&copy; <a href="http://blog.tonybaldwin.me">tony baldwin | blog</a>.</div>
+		<div id="blackband_bottom_right">Powered by <a href="http://wordpress.org" title="wordpress.org">WordPress</a> <!-- Styled by --> and <a href="http://blog.tonybaldwin.info/2012/12/14/tbme-wordpress-theme/">TBme</a>.</div>
+  <script type="text/javascript">var SHRSB_Settings = {"shr-publisher-1480":{"link":"http:\/\/blog.tonybaldwin.me\/2011\/04\/25\/search-google-wikipedia-reservo-from-the-bash-terminal\/","short_link":"http:\/\/tonyb.us\/2k","shortener":"yourls","title":"search google, wikipedia, reverso from the bash terminal","notes":"%0A%0AOkay%2C%20so%2C%20I%20like%20to%20use%20my%20bash%20terminal.%20%20Call%20me%20a%20geek%20all%20you%20like%3B%20it%20matters%20not%20to%20me.%20%20I%20wear%20that%20badge%20with%20pride.%0A%0AThe%20bash%20terminal%20is%20quick%20and%20efficient%20for%20doing%20a%20lot%20of%20stuff%20that%20one%20might%20otherwise%20use%20some%20bloated%2C%20cpu%20sucking%2C%20eye-candied%2C%20gui%20monstrosity%20to%20do.%20%20So%2C%20when%20I%20fi","service":"5,7,88,304,38,205,40,61,78","apikey":"8afa39428933be41f8afdb8ea21a495c","expand":true,"src":"http:\/\/blog.tonybaldwin.me\/wp-content\/plugins\/shareaholic\/spritegen_default","localize":true,"share_src":"http:\/\/www.shareaholic.com","rel":"nofollow","target":"_blank","bgimg":"http:\/\/blog.tonybaldwin.me\/wp-content\/plugins\/shareaholic\/images\/sharing-shr.png","bgimg_padding":"28px 0 0 10px","center":true,"twitter_template":"%24%7Btitle%7D+-+%24%7Bshort_link%7D+via+%40Shareaholic","mode":"inject","designer_toolTips":"1","tip_bg_color":"#000000","tip_text_color":"#ffffff"}};</script>  </div>
+</div>
+</body>
+</html>

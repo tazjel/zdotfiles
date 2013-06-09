@@ -53,7 +53,7 @@ map ws :!rm ~/.vimswap/*<CR>
 
 "Install unhtml
 map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
-"close"
+""close"
 nnoremap <silent> ; :q!<CR>
 nnoremap <silent> W :w<CR>
         "Save "
@@ -62,7 +62,9 @@ nnoremap <silent> W :w<CR>
 "==================================="
 cab zz w ~/zdotfiles/
 cab wv w ~/zdotfiles/2/.vimrc.local
-set syntax=vim
+"set syntax=vim<CR>
+map wy :set filetype=bash<CR>
+
 ""#map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
                     "F1
 map <F1> ,cc<space>
@@ -230,5 +232,5 @@ set modifiable
 let g:is_bash=1
 UnBundle 'AutoClose'
 ca w!! w !sudo tee "%"
-ca WW !sudo tee "%"
+map WW !sudo tee "%"
 

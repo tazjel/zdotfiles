@@ -1,0 +1,1401 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<title>Surfraw - Shell Users' Revolutionary Front Rage Against the Web</title>
+<!-- Comments are used by a script to insert values. Be careful changing them -->
+<!-- $Id$ -->
+</head>
+
+<body>
+
+<p>
+<pre>
+           ______  _     _  ______   _______  ______   _______  _  _  _
+          / _____)(_)   (_)(_____ \ (_______)(_____ \ (_______)(_)(_)(_)
+         ( (____   _     _  _____) ) _____    _____) ) _______  _  _  _
+          \____ \ | |   | ||  __  / |  ___)  |  __  / |  ___  || || || |
+          _____) )| |___| || |  \ \ | |      | |  \ \ | |   | || || || |
+         (______/  \_____/ |_|   |_||_|      |_|   |_||_|   |_| \_____/
+         Surfraw - Shell Users' Revolutionary Front Rage Against the Web
+</pre>
+
+<div align="center">
+<p>
+<a href="#about">About Surfraw</a> |
+<a href="#news">News</a> |
+<a href="#elvilist">List of Elvi</a> |
+<a href="#downloading">Downloading</a> |
+<a href="#installation">Installation</a> |
+<a href="#usage">Usage</a> |
+<a href="#configuration">Configuration</a> |
+<a href="#development">Development and Support</a>
+</div>
+
+
+<div align="center">
+<p>
+Oh Baybee<br>
+I need some<br>
+Deep Linking<br>
+Let us go<br>
+Surfin' in the raw!<br>
+</div>
+
+<hr>
+<h2><a name="about">About Surfraw</a></h2>
+
+<p>
+Surfraw provides a fast unix command line interface to a variety of
+popular WWW search engines and other artifacts of power. It reclaims
+google, altavista, babelfish, dejanews, freshmeat, research index,
+slashdot and
+<a href="#elvilist">many others</a>
+from the false-prophet, pox-infested heathen
+lands of html-forms, placing these wonders where they belong, deep in
+unix heartland, as god loving extensions to the shell.
+
+<p>
+Surfraw abstracts the browser away from input. Doing so lets it get on
+with what it's good at. Browsing. Interpretation of linguistic forms
+is handed back to the shell, which is what it, and human beings are
+good at. Combined with
+<a href="http://wp.netscape.com/newsref/std/x-remote.html">netscape-remote</a>
+or incremental text browsers, such as
+<a href="http://lynx.isc.org">lynx</a>, 
+<a href="http://artax.karlin.mff.cuni.cz/~mikulas/links/">links</a> or
+<a href="http://www.w3m.org">w3m</a>,
+along with
+<a href="http://freshmeat.net/projects/screen/">screen</a>
+a Surfraw liberateur is capable of navigating speeds that leave GUI
+tainted idolaters agape with fear and wonder.
+
+<p>
+For example:
+<p>
+<pre>
+         $ surfraw google -results=100 RMS, GNU, which is sinner, which is sin?
+         $ sr wikipedia surfraw
+         $ sr austlii -method=phrase dog like
+         $ /usr/lib/surfraw/rhyme -method=perfect Julian
+</pre>
+
+<hr>
+
+<h2><a name="news">News</a></h2>
+
+<p>Current surfraw version:
+<a href="dist/surfraw-2.2.8.tar.gz">
+2.2.8
+</a>
+
+<h3>Tue Jul 12 00:46:02 BST 2011  - surfraw 2.2.8</h3>
+<ul>
+  <li> New elvi:
+    <ul>
+      <li> ads - search the SAO/NASA Astrophysics data system.
+      <li> archwiki: search the arch wiki.
+      <li> bugzilla - search various bugzillas, defaults to kernel.
+      <li> cablesearch - search wikileaks cables
+      <li> deli: search delicious.com.
+      <li> duckduckgo - replace with better implementation
+      <li> openports - search openbsd ports
+      <li> pasearch - search Penny Arcade archives.
+      <li> scirus, scitopia, worldwidescience - science searches
+      <li> stack: search stackoverflow.com and friends.
+      <li> yandex - russian web search.
+    </ul>
+  <li> Changed elvi:
+    <ul>
+      <li> archpkg: now supports options.
+      <li> arxiv: quote queries for exact string matches.
+      <li> ctan: Option -doc replaced by -id. Options no longer mutually
+      exclusive.
+      <li> codesearch, musicbrainz, rpmsearch: rewritten to match new
+      site. Options have changed to match site, see help message.
+      <li> debbugs: add -s as an alias for -search=src.
+      <li> google: new options:
+        <ul>
+	  <li> -v, -search=video: search video
+	  <li> -m, -search=maps: search maps
+	  <li> -n, -search=news: search news
+	  <li> -i: new shortcut for -search=images
+	  <li> -safe=default|off|moderate|strict: safe search
+	</ul>
+      <li> openbsd: support -misc and -tech.
+      <li> opensearch: new option -r, uses remote redirector
+      which means it can run without heavy dependencies.
+      <li> pgpkeys: add more options, support more keyservers,
+      default to sks-keyservers.net.
+      <li> translate: added Google Translate support.
+      <li> wayback: advanced search is broken, rip out all
+      options and use basic search.
+      <li> wikipedia: new option -d, uses remote redirector
+      to search both wikipedia and deletionpedia.
+      use -fallback=wikipedia|deletionpedia to customise
+      behaviour.
+      </ul>
+    <li> Fixed elvi: archpkg, arxiv, cia, codesearch, ctan, javasun,
+    lastfm, musicbrainz, netbsd, rpmsearch, w3link, yahoo.
+    <li> Removed elvi:
+      <ul>
+	<li> altavista: is now just a front-end to yahoo. RIP.
+	<li> cddb: gracenote made the "hard decision" to remove the
+	website search. sigh.
+	<li> fast: another yahoo front-end.
+	<li> filesearching: refuses to work without 'Referer:' header.
+	<li> port: site gone
+      </ul>
+    <li> Support -local-help, --local-help or -lh to get elvi-specific
+    help without displaying the global options. This works for
+    all elvi and the main surfraw script.
+    <li> Support -h as a synonym for -help.
+    <li> Improved listing of elvi.
+    <li> Default to surfraw_graphical_remote=no,
+    as chromium doesn't support "-remote openURL".
+    <li> Bookmark names are now an exact match not a substring match.
+    <li> Support BSD/POSIX make.
+    <li> README: added INTEGRATION section on uzbl and pentadactyl.
+  </ul>
+
+<h3>Thu May  6 20:20:09 BST 2010  - surfraw 2.2.7</h3>
+<ul>
+  <li>New elvi (surfraw now has over one hundred elvi!):
+    <ul>
+      <li>by tczy:
+	<ul>
+	  <li>bing: Search using Microsoft's Bing.
+	</ul>
+      <li>by Ivy Foster:
+	<ul>
+	  <li>bookfinder: Search for books using www.bookfinder.com.
+	  <li>bugmenot: Bypass compulsory web registration with
+	  bugmenot.com.
+	</ul>
+      <li>by Ian Beckwith:
+	<ul>
+	  <li>duckduckgo: Search the web via duckduckgo.com.
+	  <li>scroogle: Search Google anonymously via www.scroogle.org.
+	</ul>
+      <li>by Simone Fittabile:
+	<ul>
+	  <li>amendo: Search Jamendo: free music with Creative Commons
+	    licenses
+	</ul>
+    </ul>
+    <li>Removed elvi:
+      <ul>
+	<li>genpkg (use genportage instead).
+      </ul>
+    <li>Fixed elvi:
+      <ul>
+	<li>cnn
+	<li>imdb (thanks to Sadako)
+	<li>bbcnews (thanks to Sumant Oemrawsingh and James Rowe)
+      </ul>
+    <li>aur: added options (thanks to Ivy Foster)
+    <li>wikipedia, ixquick: support https. Thanks to Simone Fittabile.
+    <li>debwiki: remove -w, Debian Women wiki is being merged into main
+	  Debian wiki. Thanks to Simone Fittabile.
+    <li>Improved support for screen(1). Thanks to Ivy Foster:
+      <ul>
+	  <li>Support for using tmux as $SURFRAW_screen.
+	  <li>Added `-ns|-newscreen' switch for setting $SURFRAW_new_screen.
+	  <li>Added $SURFRAW_screen_args for passing arguments to the defined
+	    screen tool.
+      </ul>
+    <li>uzbl_load_url_from_surfraw: fix menu.
+	  Thanks to Sumant Oemrawsingh.
+</ul>
+
+<h3>Fri Nov 20 03:34:19 GMT 2009  - surfraw 2.2.6</h3>
+<ul>
+  <li> New elvi:
+    <ul>
+      <li> by Sumant Oemrawsingh:
+	<ul>
+	  <li> cliki        - search the common lisp wiki.
+	  <li> l1sp         - search lisp documentation.
+	  <li> mathworld    - search Wolfram MathWorld.
+	  <li> mininova     - search mininova for torrents.
+	  <li> youtube      - search youtube for videos.
+	</ul>
+      <li> by fittabile@lifegate.it:
+	<ul>
+	  <li> acronym      - find acronyms
+          <li> gcache       - search google cache.
+	</ul>
+      <li> by Nick White:
+	<ul>
+          <li> genbugs      - search gentoo bug tracker
+	</ul>
+      <li> by Ian Beckwith:
+	<ul>
+          <li> debpkghome   - view home page of a debian package.
+          <li> debvcsbrowse - browse vcs of a debian package
+          <li> rpmsearch    - search for packages in rpm-based distros.
+          <li> finkpkg      - search Fink packages.
+          <li> macports     - search macports packages.
+	</ul>
+    </ul>
+  <li> Move config files to follow XDG basedir spec<br>
+    This means that if your global config was in /etc/surfraw.conf
+    it is now in /etc/xdg/surfraw/conf, and local config is
+    now in $HOME/.config/surfraw/conf. The same applies to bookmarks.<br>
+    See README for details on configuring config locations, and the
+    <a href="http://standards.freedesktop.org/basedir-spec/basedir-spec-0.6.html">
+      XDG basedir spec</a>
+    for the gory details. The old locations are still supported for
+    backwards-compatibility.
+  <li> Support per-user elvi in $HOME/.config/surfraw/elvi/<br>
+    Patch by James Rowe, idea by Sumant Oemrawsingh.
+  <li> Added -o | -o=<i>FILE</i> option, to fetch URL and dump to
+    stdout or <i>FILE</i>.
+  <li> Modified elvi:
+    <ul>
+      <li> freebsd: new options -psearch=<i>TYPE</i> -psection=<i>SEC</i>
+        to conduct a search of type <i>TYPE</i> in section <i>SEC</i> of ports.
+      <li> netbsd:  new option -ps to search ports
+      <li> openbsd: new option -ps to search ports
+      <li> debsec: fixed (Thanks to Moritz Muehlenhoff, for this
+        and all his other work).
+      <li> cia: fixed.
+    </ul>
+  <li> Added examples/uzbl_load_url_from_surfraw, to integrate surfraw
+    with <a href="http://uzbl.org">uzbl</a>, thanks to Sumant Oemrawsingh.
+</ul>
+
+<h3>Tue Jul 21 20:44:59 BST 2009 - Migrated CVS repository to git</h3>
+<p>The surfraw source code repository is now hosted in git.
+<p>The repository can be browsed at
+  <a href="http://git.debian.org/?p=surfraw/surfraw.git"
+     >http://git.debian.org/?p=surfraw/surfraw.git</a>
+  and can be checked out with:
+<p>
+  <code>git clone git://git.debian.org/surfraw/surfraw.git</code>
+
+<h3>Wed May 13 02:30:21 BST 2009  - surfraw 2.2.5</h3>
+<ul>
+  <li>Replaced scaleplus elvi with comlaw.
+  <li>rfc: use HTML for RFCs and BCPs.
+  <li>Support '--' to indicate end of options, so, for instance,
+      &quot;sr&nbsp;google&nbsp;-g&nbsp;--&nbsp;foo&nbsp;-bar&quot; works.
+  <li>debpackages, debcontents: update ubuntu release names.
+</ul>
+
+<h3>Sun Mar  1 02:12:14 GMT 2009  - surfraw 2.2.4</h3>
+<ul>
+  <li> New elvi:
+    <ul>
+      <li>ntrs, scicom, springer - Thanks to Wim Van Hoydonck.
+      <li>urban - Thanks to J. R. Mauro.
+      <li>aur - Thanks to René Reigel.
+    </ul>
+  <li> excite: fixed.
+  <li> cite: changed to use citeseerx.ist.psu.edu, the old
+       citeseer is no longer being updated.
+  <li> amazon: fixed; updated categories.
+</ul>
+
+<h3>Sat Sep 13 20:40:01 BST 2008  - surfraw 2.2.3</h3>
+<ul>
+  <li> Surfraw now defaults to graphical mode. See surfraw(1)
+       for how to change the default back.
+  <li> Search for default browsers during build.
+    This can be overridden by passing <code>--with-text-browser=</code><i>BROWSER</i>
+    and <code>--with-graphical-browser=</code><i>BROWSER</i> to <code>./configure</code>.
+  <li> New elvis: piratebay, genportage. Thanks to J.R. Mauro.
+  <li> Detect which awk to use.
+  <li> Fixed slinuxdoc and webster.
+  <li> Removed bashisms.
+  <li> Fixed uninstall.
+  <li> Add <code>--disable-sr</code> option to <code>./configure</code>
+    to disable installing the <code>sr</code> symbolic link, to avoid clashes with
+    the <a href="http://www.cs.arizona.edu/sr/">SR</a> programming language.
+</ul>
+
+<h3>Thu Jul  3 08:47:14 BST 2008  - surfraw 2.2.2</h3>
+<ul>
+  <li>New elvis:
+    <ul>
+      <li>arxiv - Search the Los Alamos Science E-Print Archive
+	replaces xxx which was just a stub (thanks to John Gruenenfelder).
+      <li>javasun - search Java API Docs (thanks to James TD Smith)
+    </ul>
+  <li> Fixed elvis:
+    <ul>
+      <li>debpackages/debcontents: update options and distributions,
+	add -a options to use archive.debian.net.
+      <li>wetandwild: switched to weather.com, as yahoo now uses AJAX.
+	Command line options and SURFRAW_weather_* variables no
+	longer supported.
+      <li>austlii: fixed search URL, default method is now 'auto'.
+      <li>port: original site is back.
+      <li>translate: fixed URLs.
+    </ul>
+  <li>Removed elvis:
+    <ul>
+      <li>sundocs: use sunonesearch.
+      <li>xxx: replaced by arxiv.
+    </ul>
+  <li>surfraw: fix w3_url_escape quoting (thanks Micah Anderson)
+  <li> surfraw-update-path: fix csh syntax (thanks John Gruenenfelder)
+  <li> google: Add -country option to specify country. Respects
+  <li>SURFRAW_lang variable (Thanks to James TD Smith).
+</ul>
+
+<h3>March 9th, 2008 - Released Surfraw 2.2.1</h3>
+<ul>
+  <li> New elvi:
+    <ul>
+      <li>lsm - Search the Linux Software Map.
+      <li>sunonesearch - Search Sun's One Search (replaces sunsolve).
+    </ul>
+  <li>Fixed elvi: cddb, cnn, debcontents, deblists, debpackages, freedb,
+    fsfdir, genpkg, and yubnub (thanks for the latter to Nathaniel Heinrichs).
+  <li>Removed elvi: sunsolve (replaced by sunonesearch).
+  <li>amazon, ebay, translate: expanded language/country list.
+  <li>Added new configuration variable SURFRAW_lang.
+    Elvi that support specifying language or country
+    will use this as a default. If used, it should be set
+    to an ISO 2-letter country code (eg uk, de, ca).
+    Thanks to Simon Ernst for the idea.
+  <li> Fixed quoting single quotes in URLs (thanks to Alexander
+    Becher for the patch).
+</ul>
+
+<h3>September 14th, 2007 - Resumed making upstream releases.</h3>
+<p>
+    Surfraw is now maintained by the Debian Surfraw-Devel Team. Please
+    report bugs to <a href="mailto:surfraw-devel@lists.alioth.debian.org">
+    surfraw-devel@lists.alioth.debian.org</a>, and feel
+    free to join us on the list.
+<p>
+    There have been many changes since the last official release:
+
+<ul>
+<li><p>
+    New elvi: alioth archpkg bbcnews cddb cia codesearch ctan cve
+    	      deblists deblogs debpts debsec debwiki discogs dmoz ebay
+    	      etym foldoc freedb fsfdir genpkg gutenberg happypenguin
+    	      imdb ixquick lastfm leodict musicbrainz opensearch
+    	      pgpkeys port rae rfc scholar scpan w3css w3html w3link
+    	      w3rdf wayback wikipedia yubnub
+<li><p>
+    Removed elvi: appwatch britannica ftpfind ftpsearch jake
+    	    	  raging swhois
+<li><p>
+    Elvi now live in <code>/usr/lib/surfraw</code> (or
+    <code>/usr/local/lib/surfraw</code>)
+    Use <code>surfraw-update-path</code> to add this directory to your path or
+    prefix elvi with <code>sr</code> or <code>surfraw</code>,
+    eg <code>sr google foo bar</code>.
+<li><p>
+    Bookmarks can be defined in <code>/etc/surfraw.bookmarks</code> or
+    <code>~/.surfraw.bookmarks</code>. See <code>/etc/surfraw.bookmarks</code>
+    for the format.  Bookmarks can be used with <code>sr [options]
+    bookmarkname</code>.
+<li><p>
+    There is now a test suite. <code>make test</code> to run it or
+    see <code>test/README</code>.
+</ul>
+
+<p>
+  Old news entries can be viewed <a href="NEWS">here</a>.
+  For a full list of changes to surfraw, consult the
+  <a href="ChangeLog">ChangeLog</a> file from the surfraw
+  source distribution. Earlier log entries were kept in
+  <a href="debchangelog">debian/changelog</a>.
+
+<hr>
+
+<h2><a name="downloading">Downloading</a></h2>
+
+<p>
+The current version of surfraw is
+2.2.8
+
+<p>
+  <table border="0">
+    <tr>
+      <td rowspan="2" valign="top">Current release tarball:</td>
+      <td>
+	<a href="dist/surfraw-2.2.8.tar.gz">
+	  surfraw-2.2.8.tar.gz
+	</a>
+      </td>
+    </tr>
+    <tr>
+      <td>
+	<a href="dist/surfraw-2.2.8.tar.gz.md5">[MD5]</a>
+	<a href="dist/surfraw-2.2.8.tar.gz.sha1">[SHA1]</a>
+	<a href="dist/surfraw-2.2.8.tar.gz.sig">[GPG SIG]</a>
+      </td>
+    </tr>
+  </table>
+
+<p>
+  <a href="dist/surfraw-2.2.8.tar.gz">
+    surfraw-2.2.8.tar.gz
+  </a> is <a href="dist/surfraw-2.2.8.tar.gz.sig">signed</a>
+  by the <a href="surfraw-release-key.asc">surfraw release key</a>, also
+  available from
+  <a href="http://pgp.mit.edu:11371/pks/lookup?search=0xE7892D44&amp;op=index&amp;fingerprint=on&amp;exact=on">
+    keyservers</a>.
+<p>
+  Debian packages:
+
+<p>
+<table border="0">
+  <tr>
+	<td>Debian surfraw binary package (all architectures)
+	<td><a href="dist/surfraw_2.2.8-1_all.deb">
+surfraw_2.2.8-1_all.deb
+</a>
+  </tr>
+  <tr>
+	<td>Debian surfraw-extra binary package (all architectures)
+	<td><a href="dist/surfraw-extra_2.2.8-1_all.deb">
+surfraw-extra_2.2.8-1_all.deb
+</a>
+  </tr>
+  <tr>
+	<td rowspan="4" valign="top">Debian source package
+	<td><a href="dist/surfraw_2.2.8-1.dsc">
+surfraw_2.2.8-1.dsc
+</a>
+  </tr>
+  <tr>
+	<td><a href="dist/surfraw_2.2.8-1.diff.gz">
+surfraw_2.2.8-1.diff.gz
+</a>
+  </tr>
+  <tr>
+	<td><a href="dist/surfraw_2.2.8.orig.tar.gz">
+surfraw_2.2.8.orig.tar.gz
+</a>
+  </tr>
+  <tr>
+	<td><a href="dist/surfraw_2.2.8-1_amd64.changes">
+surfraw_2.2.8-1_amd64.changes
+</a>
+  </tr>
+</table>
+
+<p>
+Older versions are available
+<a href="dist/">here</a>.
+
+<hr>
+
+<h2><a name="installation">Installation</a></h2>
+
+<h3>Source Tarball</h3>
+
+<p>
+Unpack the source with
+<p>
+<code>gzip -dc surfraw-2.2.8.tar.gz | tar xvvf -</code>
+<p>
+Then, change into the <code>surfraw-2.2.8</code> directory, and type
+
+<p>
+<code>./configure</code>
+<p>
+<code>make</code>
+<p>
+then, as root,
+<p>
+<code>make install</code>
+
+<p>This will install surfraw into <code>/usr/local/</code>
+
+<p>For more detailed installation instructions, see the
+<a href="INSTALL">INSTALL</a> file that is part of the surfraw distribution.
+
+<p>Note that the opensearch elvis depends on the perl libraries
+  <a href="http://search.cpan.org/search?query=WWW%3A%3AOpenSearch&amp;mode=all">WWW::OpenSearch</a>,
+  <a href="http://search.cpan.org/search?query=HTML%3A%3AParser&amp;mode=all">HTML::Parser</a> and
+  <a href="http://search.cpan.org/search?query=LWP&amp;mode=all">LWP (libwww-perl)</a>.
+  If you don't want to install
+  opensearch, use <pre>./configure --disable-opensearch</pre>
+
+<h3>Debian Binary Package</h3>
+<p>
+To install the
+<a href="http://packages.qa.debian.org/s/surfraw.html">version</a>
+in your
+<a href="http://www.debian.org/">Debian</a>
+distribution, as root, type:
+<p>
+<code>apt-get install surfraw surfraw-extra</code>
+
+<p>To install the .deb files directly, as root, type:
+<p>
+<code>dpkg -i surfraw_2.2.8-1_all.deb 
+surfraw-extra_2.2.8-1_all.deb</code>
+
+<p>Note that calling <code>dpkg</code> directly does not automatically
+  install dependencies, and surfraw-extra in particular has many
+  dependencies, so it is best to stick with <code>apt-get install</code>
+  where possible.
+
+<h3>Debian source package</h3>
+<p>
+First you need to ensure you have the necessary packages installed to
+successfully build surfraw.
+<p>
+The following commands (run as root) should ensure you have everything
+necessary to build surfraw:
+<p>
+<code>
+apt-get install build-essential fakeroot<br>
+apt-get build-dep surfraw
+</code>
+
+<p>
+<a href="#downloading">Download</a> the 
+<a href="dist/surfraw_2.2.8-1.dsc">surfraw_2.2.8-1.dsc</a>, 
+<a href="dist/surfraw_2.2.8-1.diff.gz">surfraw_2.2.8-1.diff.gz</a>
+and
+<a href="dist/surfraw_2.2.8.orig.tar.gz">surfraw_2.2.8.orig.tar.gz</a>
+files, then type:
+
+<p>
+<code>dpkg-source -x surfraw_2.2.8-1.dsc</code>
+<p>
+This will unpack the source into a subdirectory called
+<code>surfraw-2.2.8</code>
+
+<p>
+Change into this directory, and type:
+<p>
+<code>fakeroot debian/rules binary</code>
+
+<p>This should produce files called
+<code>surfraw_2.2.8-1_all.deb</code> and
+<code>surfraw-extra_2.2.8-1_all.deb</code>
+in the directory above the surfraw source directory. To install
+these files, type as root:
+
+<p>
+<code>dpkg -i surfraw_2.2.8-1_all.deb surfraw-extra_2.2.8-1_all.deb</code>
+<hr>
+
+<h2><a name="elvilist">List of Elvi</a></h2>
+
+<p>
+Surfraw contains the following web site search scripts (<i>elvi</i>)
+<p>
+
+<table>
+<tr>
+  <td><b>W</b></td>
+  <td>Activate Surfraw defined web-browser</td>
+</tr>
+<tr>
+  <td><b>acronym</b></td>
+  <td>Look for acronyms definitions (www.acronymfinder.com)</td>
+</tr>
+<tr>
+  <td><b>ads</b></td>
+  <td>Search SAO/NASA Astrophysics Data System</td>
+</tr>
+<tr>
+  <td><b>alioth</b></td>
+  <td>Search Alioth (alioth.debian.org)</td>
+</tr>
+<tr>
+  <td><b>amazon</b></td>
+  <td>Search the amazon.com bookstore</td>
+</tr>
+<tr>
+  <td><b>archpkg</b></td>
+  <td>Search Arch Linux Packages (www.archlinux.org/packages/)</td>
+</tr>
+<tr>
+  <td><b>archwiki</b></td>
+  <td>Search the Arch Linux Wiki</td>
+</tr>
+<tr>
+  <td><b>arxiv</b></td>
+  <td>Search arXiv E-Print Archive for articles</td>
+</tr>
+<tr>
+  <td><b>ask</b></td>
+  <td>Question the web using Ask Jeeves (www.ask.com)</td>
+</tr>
+<tr>
+  <td><b>aur</b></td>
+  <td>Search aur.archlinux.org for PKGBUILDs</td>
+</tr>
+<tr>
+  <td><b>austlii</b></td>
+  <td>Search Australian Law docs (www.austlii.edu.au)</td>
+</tr>
+<tr>
+  <td><b>bbcnews</b></td>
+  <td>Search BBC News (news.bbc.co.uk)</td>
+</tr>
+<tr>
+  <td><b>bing</b></td>
+  <td>Search the web using Microsoft's Bing (www.bing.com)</td>
+</tr>
+<tr>
+  <td><b>bookfinder</b></td>
+  <td>Search for books using www.bookfinder.com</td>
+</tr>
+<tr>
+  <td><b>bugmenot</b></td>
+  <td>Bypass compulsory web registration with bugmenot.com</td>
+</tr>
+<tr>
+  <td><b>bugzilla</b></td>
+  <td>Search for bugs on Bugzilla bugtrackers</td>
+</tr>
+<tr>
+  <td><b>cablesearch</b></td>
+  <td>search openports for OpenBSD packages</td>
+</tr>
+<tr>
+  <td><b>cia</b></td>
+  <td>Search CIA documents at www.cia.gov</td>
+</tr>
+<tr>
+  <td><b>cite</b></td>
+  <td>Search computer science papers (citeseerx.ist.psu.edu)</td>
+</tr>
+<tr>
+  <td><b>cliki</b></td>
+  <td>Search the common lisp wiki</td>
+</tr>
+<tr>
+  <td><b>cnn</b></td>
+  <td>Search on CNN (cnn.com)</td>
+</tr>
+<tr>
+  <td><b>codesearch</b></td>
+  <td>Search source code using Google Code Search (www.google.fr/codesearch)</td>
+</tr>
+<tr>
+  <td><b>comlaw</b></td>
+  <td>Search Australian Law using Comlaw (www.comlaw.gov.au)</td>
+</tr>
+<tr>
+  <td><b>ctan</b></td>
+  <td>Search the Comprehensive TeX Archive Network (ctan.org)</td>
+</tr>
+<tr>
+  <td><b>currency</b></td>
+  <td>Convert currencies with the Universal Currency Converter (www.xe.net/ucc)</td>
+</tr>
+<tr>
+  <td><b>cve</b></td>
+  <td>Search for CAN assignments in CVE</td>
+</tr>
+<tr>
+  <td><b>debbugs</b></td>
+  <td>Search the debian BTS (bugs.debian.org)</td>
+</tr>
+<tr>
+  <td><b>debcontents</b></td>
+  <td>Search contents of debian/ubuntu packages (packages.debian.org/packages.ubuntu.com)</td>
+</tr>
+<tr>
+  <td><b>deblists</b></td>
+  <td>Search debian mailing lists (lists.debian.org/search.html)</td>
+</tr>
+<tr>
+  <td><b>deblogs</b></td>
+  <td>Show changelogs for a package in Debian main (changelogs.debian.net)</td>
+</tr>
+<tr>
+  <td><b>debpackages</b></td>
+  <td>Search debian/ubuntu packages (packages.debian.org/packages.ubuntu.com)</td>
+</tr>
+<tr>
+  <td><b>debpkghome</b></td>
+  <td>Visit the home page for a Debian package</td>
+</tr>
+<tr>
+  <td><b>debpts</b></td>
+  <td>Search the Debian Package Tracking System (packages.qa.debian.org)</td>
+</tr>
+<tr>
+  <td><b>debsec</b></td>
+  <td>Search the Debian Security Tracker for CVE ids or package names</td>
+</tr>
+<tr>
+  <td><b>debvcsbrowse</b></td>
+  <td>Browse the VCS repository for a Debian package</td>
+</tr>
+<tr>
+  <td><b>debwiki</b></td>
+  <td>Search the Debian Wikis (wiki.debian.org & women.debian.org/wiki)</td>
+</tr>
+<tr>
+  <td><b>deja</b></td>
+  <td>Search usenet using Google Groups (groups.google.com)</td>
+</tr>
+<tr>
+  <td><b>deli</b></td>
+  <td>Search Delicious bookmarks</td>
+</tr>
+<tr>
+  <td><b>discogs</b></td>
+  <td>Search the Discogs database of music information (www.discogs.com)</td>
+</tr>
+<tr>
+  <td><b>dmoz</b></td>
+  <td>Search the Open Directory Project web directory (dmoz.org)</td>
+</tr>
+<tr>
+  <td><b>duckduckgo</b></td>
+  <td>Securely search the web using duckduckgo (www.duckduckgo.com)</td>
+</tr>
+<tr>
+  <td><b>ebay</b></td>
+  <td>Search the Ebay auction site</td>
+</tr>
+<tr>
+  <td><b>etym</b></td>
+  <td>Look up word origins at www.etymonline.com</td>
+</tr>
+<tr>
+  <td><b>excite</b></td>
+  <td>Search on Excite (www.excite.com)</td>
+</tr>
+<tr>
+  <td><b>finkpkg</b></td>
+  <td>Search Fink packages (pdb.finkproject.org)</td>
+</tr>
+<tr>
+  <td><b>foldoc</b></td>
+  <td>The Free On-Line Dictionary Of Computing (foldoc.org)</td>
+</tr>
+<tr>
+  <td><b>freebsd</b></td>
+  <td>Search FreeBSD related information (www.freebsd.org)</td>
+</tr>
+<tr>
+  <td><b>freedb</b></td>
+  <td>Search for cd track listings in FreeDB (www.freedb.org)</td>
+</tr>
+<tr>
+  <td><b>freshmeat</b></td>
+  <td>Search Freshmeat (www.freshmeat.net)</td>
+</tr>
+<tr>
+  <td><b>fsfdir</b></td>
+  <td>Search the FSF/UNESCO Free Software Directory (directory.fsf.org)</td>
+</tr>
+<tr>
+  <td><b>gcache</b></td>
+  <td>Search the web using Google cache (www.google.com)</td>
+</tr>
+<tr>
+  <td><b>genbugs</b></td>
+  <td>Search the Gentoo bug tracker (bugs.gentoo.org)</td>
+</tr>
+<tr>
+  <td><b>genportage</b></td>
+  <td>Search gentoo-portage.com for packages</td>
+</tr>
+<tr>
+  <td><b>google</b></td>
+  <td>Search the web using Google (www.google.com)</td>
+</tr>
+<tr>
+  <td><b>gutenberg</b></td>
+  <td>Search for books on Project Gutenberg (gutenberg.org)</td>
+</tr>
+<tr>
+  <td><b>happypenguin</b></td>
+  <td>Search the Linux Game Tome (www.happypenguin.org)</td>
+</tr>
+<tr>
+  <td><b>imdb</b></td>
+  <td>Search the Internet Movie Database (www.imdb.com)</td>
+</tr>
+<tr>
+  <td><b>ixquick</b></td>
+  <td>Search the web using ixquick [HTTPS] (www.ixquick.com)</td>
+</tr>
+<tr>
+  <td><b>jamendo</b></td>
+  <td>Search Jamendo: free music with Creative Commons licenses (www.jamendo.com)</td>
+</tr>
+<tr>
+  <td><b>javasun</b></td>
+  <td>Search Java API docs (java.sun.com)</td>
+</tr>
+<tr>
+  <td><b>l1sp</b></td>
+  <td>Search lisp documentation</td>
+</tr>
+<tr>
+  <td><b>lastfm</b></td>
+  <td>Search last.fm</td>
+</tr>
+<tr>
+  <td><b>leodict</b></td>
+  <td>Search Leo's German <-> English dictionary (dict.leo.org)</td>
+</tr>
+<tr>
+  <td><b>lsm</b></td>
+  <td>Search the Linux Software Map</td>
+</tr>
+<tr>
+  <td><b>macports</b></td>
+  <td>Search macports packages (macports.org)</td>
+</tr>
+<tr>
+  <td><b>mathworld</b></td>
+  <td>Search Wolfram MathWorld</td>
+</tr>
+<tr>
+  <td><b>mininova</b></td>
+  <td>Search the mininova bittorent source.</td>
+</tr>
+<tr>
+  <td><b>musicbrainz</b></td>
+  <td>Search MusicBrainz (musicbrainz.org)</td>
+</tr>
+<tr>
+  <td><b>netbsd</b></td>
+  <td>Search NetBSD related information (www.netbsd.org)</td>
+</tr>
+<tr>
+  <td><b>ntrs</b></td>
+  <td>Search the NASA Technical Report Server</td>
+</tr>
+<tr>
+  <td><b>openbsd</b></td>
+  <td>Search OpenBSD related information (www.openbsd.org)</td>
+</tr>
+<tr>
+  <td><b>openports</b></td>
+  <td>search openports for OpenBSD packages</td>
+</tr>
+<tr>
+  <td><b>opensearch</b></td>
+  <td>Search an OpenSearch-enabled website</td>
+</tr>
+<tr>
+  <td><b>pasearch</b></td>
+  <td>Search the unofficial Penny Arcade archives (pipefour.org/pa)</td>
+</tr>
+<tr>
+  <td><b>pgpkeys</b></td>
+  <td>Search the PGP key database</td>
+</tr>
+<tr>
+  <td><b>piratebay</b></td>
+  <td>Search thepiratebay.org for torrents</td>
+</tr>
+<tr>
+  <td><b>pubmed</b></td>
+  <td>Search medical/molbio databases (www.ncbi.nlm.nih.gov)</td>
+</tr>
+<tr>
+  <td><b>rae</b></td>
+  <td>Busca en el diccionario de la Real Academia de la Lengua Española (Spanish Dictionary)</td>
+</tr>
+<tr>
+  <td><b>rfc</b></td>
+  <td>Search RFCs (internet standards documents)</td>
+</tr>
+<tr>
+  <td><b>rhyme</b></td>
+  <td>Search for rhymes et al using Lycos Rhyme (rhyme.lycos.com)</td>
+</tr>
+<tr>
+  <td><b>rpmsearch</b></td>
+  <td>Search for RPMs in various distros</td>
+</tr>
+<tr>
+  <td><b>scholar</b></td>
+  <td>Search Google Scholar (scholar.google.com)</td>
+</tr>
+<tr>
+  <td><b>scicom</b></td>
+  <td>Search Scientific Commons</td>
+</tr>
+<tr>
+  <td><b>scirus</b></td>
+  <td>Search for science using Scirus (scirus.com)</td>
+</tr>
+<tr>
+  <td><b>scitopia</b></td>
+  <td>Search for science with scitopia.org</td>
+</tr>
+<tr>
+  <td><b>scpan</b></td>
+  <td>Search the Comprehensive Perl Archive Network (search.cpan.org)</td>
+</tr>
+<tr>
+  <td><b>scroogle</b></td>
+  <td>Search Google anonymously via Scroogle (www.scroogle.org)</td>
+</tr>
+<tr>
+  <td><b>slashdot</b></td>
+  <td>Search stories on Slashdot (www.slashdot.org)</td>
+</tr>
+<tr>
+  <td><b>slinuxdoc</b></td>
+  <td>Search entries in LDP (www.linuxdoc.org)</td>
+</tr>
+<tr>
+  <td><b>sourceforge</b></td>
+  <td>Search SourceForge (www.sourceforge.net)</td>
+</tr>
+<tr>
+  <td><b>springer</b></td>
+  <td>Search Springer for Books and Articles</td>
+</tr>
+<tr>
+  <td><b>stack</b></td>
+  <td>Search Stack Overflow</td>
+</tr>
+<tr>
+  <td><b>stockquote</b></td>
+  <td>Get a single stock quote (multiple providers)</td>
+</tr>
+<tr>
+  <td><b>sunonesearch</b></td>
+  <td>Search Sun One Search (onesearch.sun.com)</td>
+</tr>
+<tr>
+  <td><b>thesaurus</b></td>
+  <td>Look up word in Merriam-Webster's Thesaurus (www.m-w.com)</td>
+</tr>
+<tr>
+  <td><b>translate</b></td>
+  <td>Translate human languages (various providers)</td>
+</tr>
+<tr>
+  <td><b>urban</b></td>
+  <td>Search urbandictionary.com for a definition</td>
+</tr>
+<tr>
+  <td><b>w3css</b></td>
+  <td>Validate a CSS URL with the w3c CSS validator (jigsaw.w3.org/css-validator)</td>
+</tr>
+<tr>
+  <td><b>w3html</b></td>
+  <td>Validate a web page URL with the w3c validator (validator.w3.org)</td>
+</tr>
+<tr>
+  <td><b>w3link</b></td>
+  <td>Check web page links with the w3c linkchecker (validator.w3.org/checklink)</td>
+</tr>
+<tr>
+  <td><b>w3rdf</b></td>
+  <td>Validate a RDF URL with the w3c RDF validator (validator.w3.org)</td>
+</tr>
+<tr>
+  <td><b>wayback</b></td>
+  <td>Search The Internet Archive's Wayback Machine for a URL (archive.org)</td>
+</tr>
+<tr>
+  <td><b>webster</b></td>
+  <td>Look up word in Merriam-Webster's Dictionary (www.m-w.com)</td>
+</tr>
+<tr>
+  <td><b>wetandwild</b></td>
+  <td>Real time weather information (many sources)</td>
+</tr>
+<tr>
+  <td><b>wikipedia</b></td>
+  <td>Search the free encyclopedia wikipedia</td>
+</tr>
+<tr>
+  <td><b>woffle</b></td>
+  <td>Search the web using Woffle (localhost:8080)</td>
+</tr>
+<tr>
+  <td><b>worldwidescience</b></td>
+  <td>Search for science with www.worldwidescience.org</td>
+</tr>
+<tr>
+  <td><b>yahoo</b></td>
+  <td>Search Yahoo categories (www.yahoo.com)</td>
+</tr>
+<tr>
+  <td><b>yandex</b></td>
+  <td>Search the web using Yandex (yandex.ru)</td>
+</tr>
+<tr>
+  <td><b>youtube</b></td>
+  <td>Search YouTube (www.youtube.com)</td>
+</tr>
+<tr>
+  <td><b>yubnub</b></td>
+  <td>Use the social command-line for the web (yubnub.org)</td>
+</tr>
+</table>
+
+
+<hr>
+
+<h2><a name="usage">Usage</a></h2>
+
+<p>
+Surfraw consists of a collection of elvi, each of which knows how
+to search a specific web site.
+
+<p>
+To see the
+<a href="#elvilist">list</a> of elvi type:
+
+<p>
+<code>surfraw -elvi</code>
+
+<p>
+Note that sr is an alias for surfraw, so that could equally be:
+<p>
+<code>sr -elvi</code>
+
+<p>
+To search using an elvis use:
+<p>
+<code>sr elviname</code> <i>[options] search terms..</i>
+
+<p>
+For example, to search google for information on Debian ports,
+using the &quot;I'm feeling lucky&quot; option:
+
+<p>
+<code>sr google -l debian ports</code>
+
+<p>Note that putting quotes round arguments works now, so you can do,
+for example:
+<p>
+<code>sr google foo "bar baz" bam</code><br>
+
+<p>
+and the quoting is passed on to the search engine.
+
+<h3>Adding the elvi to your path</h3>
+
+<p>
+If you are a regular user of surfraw, you will probably get sick
+of typing <code>sr</code> or <code>surfraw</code> each time.
+You can regain the old behaviour of running the elvi directly
+by adding the elvi directory (usually <code>/usr/lib/surfraw/</code>
+or <code>/usr/local/lib/surfraw/</code>) to your path,
+either manually or using
+<code>surfraw-update-path(1)</code>.
+
+<h3>Bookmarks</h3>
+
+<p>Surfraw now supports bookmarks. To add a bookmark, add it to
+<code>/etc/surfraw.bookmarks</code> or <code>$HOME/.surfraw.bookmarks</code>
+
+<p>The format of the bookmarks file is simple, each bookmark is on a
+separate line, with the bookmark and URL separated by whitespace,
+for example:
+
+<p>
+<code>
+ntk   http://www.ntk.net/
+</code>
+
+<p>To invoke a bookmark, use <code>surfraw bookmark</code> or
+<code>sr bookmark</code>, and if an elvis of that name doesn't
+exist, it searches for a bookmark of that name instead.
+
+<p>There are some example bookmarks in <code>/etc/surfraw.bookmarks</code>
+
+<h3>Completion</h3>
+
+<p>Surfraw has support for bash completion. If bash completion is
+enabled you can use the &lt;TAB&gt; key to complete elvi names, options
+and arguments.
+
+
+<h3>Options</h3>
+
+Global options are common to all Surfraw elvi (clients). You can
+get a
+<a href="#elvilist">list</a>
+of the currently installed elvi by typing
+<code>surfraw -elvi</code>.
+
+<p>
+All elvi have useful low calorie help, for example:
+
+<pre>
+$ sr rhyme -help
+Usage: rhyme [options] [search words]...
+Description:
+  Surfraw search for rhymes and other word correlations using
+  Lycos Rhyme (http://rhyme.lycos.com)
+Example:
+  $ surfraw rhyme Julian
+  $ sr rhyme -method=rel surfer
+Results:
+  Hurclean St. Julien.
+  surfboarder, bather, natator, swimmer
+Local options:
+  -method=                      Type of word correlation to search for
+          prefect       |       Perfect rhyme
+          syn           |       Synonyms
+          hom           |       Homophones
+          cons          |       Consonsant rhymes only
+          rel           |       Semantically related words
+          sub           |       Phrases
+          spell         |       Similar spellings
+          pic           |       Pictures
+          shake         |       Match with Shakespeare archives
+          def                   Find wordnet definition
+                                Default: perfect
+                                Environment: SURFRAW_rhyme_method
+Global options:
+  -browser=EXECUTABLE           Set browser
+                                Default: mozilla
+  -elvi                         List Surfraw mechanisms for conquering evil
+  -escape-url-args=yes|no       Apply url escaping to arguments
+                                Default: yes
+                                Environment: SURFRAW_escape_url_args
+  -g | -graphical               Get some windowed sin
+  -help                         What you're reading now, dude
+  -quiet=yes|no                 I can't enjoy it with you talking all the time
+                                Default: no
+                                Environment: SURFRAW_quiet
+  -new[=yes|no]                 Start in a new window
+                                Default: no
+                                Environment: SURFRAW_new_window
+  -t | -text                    Back to the yellow brick road
+  -q | -quote                   Quote arguments with " characters
+                                Default: no
+                                Environment: SURFRAW_quote_args
+  -version                      Display Surfraw version (1.0.4)
+Copyright:
+  Copyright (c) 2003-2007 The Surfraw-Devel Team
+                           &lt;surfraw-devel@lists.alioth.debian.org&gt;
+  Copyright (c) 2000-2001 Julian Assange
+  Copyright (c) 2001 Australian Institute for Collaborative Research
+  Copyright (c) 2000 Melbourne Institute for Advanced Study
+  ---
+</pre>
+
+<hr>
+
+<h2><a name="configuration">Configuration</a></h2>
+
+<p>
+Surfraw gets its configuration from three sources, in order:
+
+<ol>
+  <li>Environment variables
+  <li><code>/etc/surfraw.conf</code>
+  <li><code>$HOME/.surfraw.conf</code>
+</ol>
+
+<p>
+<code>/etc/surfraw.conf</code> and <code>$HOME/.surfraw.conf</code>
+are both fragments of bourne-shell style shell script.
+
+<p>
+
+<code>/etc/surfraw.conf</code> should use def and defyn to define
+variables.  These functions set variables unless they are already set by
+the environment.  defyn is used for boolean configuration variables, def
+for all others. For instance:
+
+<p>
+<pre>
+ def     SURFRAW_text_browser	/usr/bin/lynx
+ defyn   SURFRAW_graphical		no
+</pre>
+
+<p>
+<code>$HOME/.surfraw.conf</code> should use <i>sh</i>-style entries, eg:
+
+<pre>
+ SURFRAW_text_browser=/usr/bin/lynx
+ SURFRAW_graphical=no
+</pre>
+
+<p>
+This is because you want them to override environment variables
+unconditionally.
+
+<h3>Configuration Variables</h3>
+
+<table border="1">
+  <tr>
+    <th>Variable
+    <th>Meaning
+    <th>Default
+  </tr>
+  <tr>
+    <td>SURFRAW_global_conf
+    <td>Location of global configuration file.
+    <td>/etc/surfraw.conf
+  </tr>
+  <tr>
+    <td>SURFRAW_conf
+    <td>Location of per-user configuration file.
+    <td>$HOME/.surfraw.conf
+  </tr>
+  <tr>
+    <td>SURFRAW_graphical
+    <td>Whether to use a graphical browser.
+    <td>no
+  </tr>
+  <tr>
+    <td>SURFRAW_text_browser
+    <td>Name/path of text browser executable.<br>
+      e.g. links, lynx, w3m
+    <td>sensible-browser
+  </tr>
+  <tr>
+    <td>SURFRAW_graphical_browser
+    <td>Name/path of graphical browser executable.<br>
+      e.g mozilla, netscape etc.
+    <td>sensible-browser
+  </tr>
+  <tr>
+    <td>SURFRAW_text_browser_args
+    <td>Text browser arguments, or "none".
+    <td>none
+  </tr>
+  <tr>
+    <td>SURFRAW_graphical_browser_args
+    <td>Graphical browser arguments, or "none".
+    <td>none
+  </tr>
+  <tr>
+    <td>SURFRAW_graphical_remote
+    <td>Whether to use <code>-remote openURL</code> for graphical browser.
+    <td>yes
+  </tr>
+  <tr>
+    <td>SURFRAW_new_window
+    <td>When using SURFRAW_graphical_remote, open a new window?
+    <td>no
+  </tr>
+  <tr>
+    <td>SURFRAW_screen
+    <td>Name of screen command to run.
+    <td>screen
+  </tr>
+  <tr>
+    <td>SURFRAW_new_screen
+    <td>If surfraw is running under screen(1), start a new screen
+      for each text browser invocation?
+    <td>no
+  </tr>
+  <tr>
+    <td>SURFRAW_quiet
+    <td>I can't enjoy it with you talking all the time.
+    <td>no
+  </tr>
+  <tr>
+    <td>SURFRAW_quote_args
+    <td>Whether to "quote" all the arguments.
+    <td> no
+  </tr>
+  <tr>
+    <td>SURFRAW_quote_ifs
+    <td>Whether to re-quote arguments if they have spaces in, ie so:<br>
+      <code>sr google foo "bar baz" bam</code><br>
+      works as expected.
+    <td>yes
+  </tr>
+  <tr>
+    <td>SURFRAW_results
+    <td>Default number of results to return (not supported by all elvi).
+    <td>30
+  </tr>
+  <tr>
+    <td>SURFRAW_escape_url_args
+    <td>Whether to escape
+      <code>[%&quot;$%&amp;+,/:;&lt;=&gt;?@[\^{|}~']</code>
+      characters in command line arguments
+      subsequently used to construct a url.
+    <td>yes
+  </tr>
+  <tr>
+    <td>SURFRAW_lang
+    <td>Elvi supporting this will use it to select a default country or
+      language. It should be set to an ISO 2-letter country code (e.g.
+      <em>uk</em>, <em>de</em>, <em>ca</em>).
+    <td>none
+  </tr>
+</table>
+
+<p>
+
+
+<h3>Files</h3>
+<p>
+
+<dl>
+<dt><code>$(libdir)/surfraw</code>
+<dd>Location of the elvi.
+
+
+<dt><code>/etc/surfraw.conf</code>
+<dd>Default system wide configuration file.
+
+<dt><code>$HOME/.surfraw.conf</code>
+<dd>Default per-user config file
+
+<dt><code>/etc/surfraw.bookmarks</code>
+<dd>System wide bookmarks file.
+
+<dt><code>$HOME/.surfraw.bookmarks</code>
+<dd>Per-user bookmarks file.
+
+</dl>
+
+<hr>
+
+<h2><a name="development">Development and Support</a></h2>
+
+<p>
+
+Surfraw was originally written by Julian Assange. It is now maintained
+and improved by a team of programmers based around the
+<a href="mailto:surfraw-devel@lists.alioth.debian.org">surfraw-devel</a>
+mailing list.
+
+<p>
+The surfraw project webpage is at
+<a href="http://surfraw.alioth.debian.org/">surfraw.alioth.debian.org</a>
+
+<p>To report a bug or request an enhancement (e.g. a new elvis), send
+email to
+<a href="mailto:surfraw-devel@lists.alioth.debian.org">surfraw-devel@lists.alioth.debian.org</a>
+
+<p>
+The current development version of surfraw can be obtained from the
+surfraw <a href="http://git.debian.org/?p=surfraw/surfraw.git">git
+repository</a>. To check out the repository:
+
+<p>
+<pre>git clone git://git.debian.org/surfraw/surfraw.git</pre>
+
+<p>
+Interested in contributing?
+<a href="http://lists.alioth.debian.org/mailman/listinfo/surfraw-devel">Subscribe</a>
+to surfraw-devel.
+<a href="http://lists.alioth.debian.org/pipermail/surfraw-devel/">View</a>
+the surfraw-devel list archives.
+<a href="HACKING">Read</a> the surfraw HACKING guide.
+Surfrawize the soul of your favourite
+internet wonder.  Join the <b>S</b>hell <b>U</b>sers'
+<b>R</b>evolutionary
+<b>F</b>ront <b>A</b>gainst the
+WW<b>W</b> by submitting code. Reclaim heathen lands. Bear witness to the
+truth. Its love will set you free.
+
+<p>
+<hr>
+<p>
+Last modified: Tue Jul 12 02:02:16 BST 2011
+
+</body> </html>

@@ -1,0 +1,857 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+ Linux: Get IP Address on Command Line/Shell (internal/external)
+
+
+div#fancy_inner{border-color:#BBBBBB}div#fancy_close{right:-15px;top:-12px}div#fancy_bg{background-color:#FFFFFF}
+
+
+
+
+<!--[if lt IE 7]>
+	
+	
+	
+<![endif]-->
+<!--[if IE 7]>
+	
+<![endif]-->
+<!--[if IE 8]>
+	
+<![endif]-->
+
+
+
+
+
+
+
+
+
+
+
+
+ #content-area{background-color:#4e4e4e;}#top-header{border-color:#4e4e4e;}#content-area{border-color:#4e4e4e;}#content-area{background-image:url(http://www.if-not-true-then-false.com/wp-content/themes/Aggregate/images/body-bg15.png);} .recentcomments a{display:inline!important;padding:0!important;margin:0!important;}
+.recentcomments a{display:inline!important;padding:0!important;margin:0!important;}
+ 
+
+
+
+ 
+#et_pt_portfolio_gallery{margin-left:-41px;margin-right:-51px;}.et_pt_portfolio_item{margin-left:35px;}.et_portfolio_small{margin-left:-40px!important;}.et_portfolio_small .et_pt_portfolio_item{margin-left:32px!important;}.et_portfolio_large{margin-left:-26px!important;}.et_portfolio_large .et_pt_portfolio_item{margin-left:11px!important;}
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+ 
+
+
+
+
+
+
+If Not True Then False 
+
+ 
+
+
+
+ 
+
+ 
+ 
+ 
+ 
+
+
+Forums
+Featured
+Linux
+Programming
+Servers
+SQL
+YUM
+Command Line
+ 
+
+
+
+
+  
+  
+  
+ 
+ 
+
+
+
+
+
+
+
+
+Home �
+Command Line Guides � Linux: Get IP Address on Command Line/Shell (internal/external)   
+
+  
+ 
+ 
+ 
+ 
+  
+
+Linux: Get IP Address on Command Line/Shell (internal/external)
+
+
+Updated by JR on Oct 4, 2012 in Command Line Guides, Linux | 22 comments 
+  
+ 
+
+Do you like this?
+
+
+
+
+
+ 
+
+
+
+ 
+
+ 
+ 
+ 
+ 
+
+
+ 
+This is quick tip, howto get internal IP address and external IP address on Linux Shell / Command Line. This guide also show, howto make useful Bash functions to get IP addresses quickly.
+Note: All functions could be named as you wish and to make functions permanent, add functions to ~/.bashrc or /etc/bashrc. Also all awk commands should work also with gawk and nawk.
+
+1. Get Internal IP Address(es) on Linux Shell / Command Line
+1.1 Get Single IP Address by Interface
+Returns plain IP address.
+/sbin/ifconfig $1 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'
+�
+## Example usage ##
+/sbin/ifconfig eth0 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'
+10.20.10.1
+Create simple bash function (example int-ip) with following command.
+function int-ip { /sbin/ifconfig $1 | grep "inet addr" | awk -F: '{print $2}' | awk '{print $1}'; }
+�
+## Example usage ##
+int-ip eth0
+10.20.10.1
+
+1.2 Get Every Interfaces IP Address
+Returns every interface and IP address pairs.
+/sbin/ifconfig |grep -B1 "inet addr" |awk '{ if ( $1 == "inet" ) { print $2 } else if ( $2 == "Link" ) { printf "%s:" ,$1 } }' |awk -F: '{ print $1 ": " $3 }'
+�
+## Example output ##
+eth0: 10.20.10.1
+eth1: 10.20.1.168
+lo: 127.0.0.1
+Create simple bash function (example int-ips) with following command.
+function int-ips { /sbin/ifconfig |grep -B1 "inet addr" |awk '{ if ( $1 == "inet" ) { print $2 } else if ( $2 == "Link" ) { printf "%s:" ,$1 } }' |awk -F: '{ print $1 ": " $3 }'; }
+�
+## Example usage ##
+int-ips
+eth0: 10.20.10.1
+eth1: 10.20.1.168
+lo: 127.0.0.1
+
+2. Get External IP Address on Linux Shell / Command Line
+I use here whatismyip.org service.
+2.1 Get External IP Address Using Lynx
+Returns plain IP address.
+lynx --dump http://ipecho.net/plain
+�
+## Example output ##
+80.10.10.80
+Create simple bash function (example ext-ip) with following command.
+function ext-ip () { lynx --dump http://ipecho.net/plain; }
+�
+## Example usage ##
+ext-ip
+80.10.10.80
+
+2.2 Get External IP Address Using Curl
+Returns plain IP address.
+curl http://ipecho.net/plain; echo
+�
+## Example output ##
+80.10.10.80
+Create simple bash function (example ext-ip) with following command.
+function ext-ip () { curl http://ipecho.net/plain; echo; }
+�
+## Example usage ##
+ext-ip
+80.10.10.80
+
+ 
+ 
+ 
+ 
+
+
+ 
+
+
+ 
+ 
+
+ 
+
+
+Related posts:
+Linux: Create Text File on Linux Shell / Command Line
+Google search from Linux and UNIX command line
+Linux Tip: How to handle a files with a dash as first character from command line
+Linux locate command: Find Files and Directories Quickly and Efficiently
+Microsoft Word doc documents handling on Linux command line with Antiword
+
+
+
+
+Follow If Not True Then False Updates!
+
+Follow @inttf 
+
+
+
+
+
+
+
+  
+ 
+
+22 Comments
+
+
+
+
+
+tommy / January 17, 2011 
+ 
+another way :<br/>
+curl ifconfig.me
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+JR / January 17, 2011 
+ 
+Hi tommy,
+Really nice alternative url, thanks! :)
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+
+
+vando / March 17, 2011 
+ 
+For internal IP:
+ifconfig eth0 | sed &#8216;/inet addr/!d;s/.*addr:\(.*\) Bcast.*$/\1/&#8217;
+and for external IP:
+curl -s icanhazip.com
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+Steve Robson / December 2, 2011 
+ 
+Nice tips, thanks! Beware that &#8220;ifconfig&#8221; might not be found in everyone&#8217;s PATH &#8211; in my distro here (RHEL5) it&#8217;s &#8220;/sbin/ifconfig&#8221; and &#8220;/sbin&#8221; isn&#8217;t in a non-root user&#8217;s PATH by default. Hence it&#8217;s safest to always specify the full command pathname as suits your distro.<br/>
+Just pointing out so as to avoid those irksome &#8220;command not found&#8221; errors!
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+JR / December 2, 2011 
+ 
+Hi Steve,
+Nice note and yes you are right, &#8220;/sbin&#8221; isn&#8217;t in a non-root user&#8217;s PATH by default on RHEL 5.
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+
+
+Ankit / December 20, 2011 
+ 
+Awesome blog. It really helps me a lot. Keep it up. Thanks for sharing knowledge.
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+JR / December 20, 2011 
+ 
+Hi Ankit and thanks! Nice to hear that this helped you. :)
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+
+
+james / April 7, 2012 
+ 
+thanks for the information, at least i can now know my Linux IP.
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+Awesome / April 14, 2012 
+ 
+wget -qO- http://ipecho.net/plain
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+pritesh / May 3, 2012 
+ 
+osam&#8230;&#8230;..thank you
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+David / June 12, 2012 
+ 
+There&#8217;s also a neat little utility that allows tracking the IP addresses of the machine it&#8217;s installed on. You can get the IP addresses via Email or have them written to a MySQL database. Here&#8217;s the link
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+Steve Phillips / July 20, 2012 
+ 
+Here&#8217;s the one I&#8217;ve used for years (thankfully checkip.dyndns.org&#8217;s structure is stable, unlike some other sites) &#8211;
+lynx -dump checkip.dyndns.org 2>&1 | awk '{print $4}' | grep ^[0-9]
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+JR / July 20, 2012 
+ 
+Hi Steve and nice to see you here. :)
+Works nice. Thanks for sharing this!
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+
+
+Schorschi / July 29, 2012 
+ 
+ifconfig eth0 | sed ‘/inet addr/!d;s/.*addr:\(.*\) Bcast.*$/\1/’ ??? Does not work on Fedora 17! Maybe something is getting wacked in the text/font translation on this web page?
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+JR / July 29, 2012 
+ 
+Hi Schorschi,
+/sbin/ifconfig eth0 | sed '/inet addr/!d;s/.*addr:\(.*\) Bcast.*$/\1/'
+Command works for me, but you should select right device, like eth0, eth1, wlan0 etc.
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+
+
+Schorschi / July 30, 2012 
+ 
+Works fine on CentOS 6.3. But on Fedora 17 returns nothing. Fedora does not reference &#8216;addr&#8217; substring, in fact Fedora 17 has changed a lot things, including not using UDEV rules for NIC interface assignment.
+Fedora 17&#8230;
+eth0: flags=4163 mtu 1500<br/>
+inet 192.168.1.2 netmask 255.255.255.0 broadcast 192.168.1.255
+CentOS&#8230;
+eth0 Link encap:Ethernet HWaddr 00:0C:29:1D:6C:C8<br/>
+inet addr:192.168.1.57 Bcast:192.168.1.255 Mask:255.255.255.0
+For Fedora 17, I tweaked it&#8230; not knowing regular expressions well, I am not sure this is optimal?
+/sbin/ifconfig eth0 | sed &#8216;/inet /!d;s/.*inet \(.*\) netmask.*$/\1/&#8217;
+What would be great is an expression that works on both? I sure there is a way to do it, just way above my knowledge of regular expressions. Maybe something like&#8230;
+/sbin/ifconfig eth0 | sed &#8216;/inet /!d;s/.*[addr:|inet]\(.*\) [netmask|Bcast].*$/\1/&#8217;
+Results&#8230;
+CentOS 6.3&#8230; &#8220;192.168.1.2&#8243;<br/>
+Fedora 17&#8230; &#8221; 192.168.1.2&#8243;
+But the above leaves a leading space for IP address on Fedora 17. But I don&#8217;t see an obvious way to fix that (again I am not a regular expression guru).
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+kabucek / September 17, 2012 
+ 
+
+showips() {
+names=(`ifconfig | grep "lo\|eth" -A 1 | awk -F" " '{print $1}' | grep -v "inet\|-" | sort -u`)
+�
+for i in "${names[@]}"
+do
+ echo $i interface has ip address: `ifconfig | grep $i -A 1 | grep addr | awk -F" " '{print $2}' | awk -F":" '{print $2}'`
+done
+}
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+mahmoud / October 12, 2012 
+ 
+How can I get a Server
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+JR / October 13, 2012 
+ 
+Hi mahmoud,
+What server you are looking for?
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+
+
+Alex / January 4, 2013 
+ 
+hostname -i
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+Al / January 4, 2013 
+ 
+I found that the -i flag only returned 127.0.0.1, but a capital i (-I) flag returned the correct internal ip address of the active interface:
+hostname -I
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+
+
+JavaMechanic / January 31, 2013 
+ 
+Thank You.. Its very usefull..
+  
+ 
+Reply   
+
+  
+  
+
+
+
+
+
+Leave a Comment Cancel reply
+
+Your email address will not be published. Required fields are marked * Name * 
+Email * 
+Website
+Comment You may use these <abbr title="HyperText Markup Language">HTML</abbr> tags and attributes: <a href="" title=""> <abbr title=""> <acronym title=""> <b> <blockquote cite=""> <cite> <code> <del datetime=""> <em> <i> <q cite=""> <strike> <strong>  
+
+
+
+
+  Notify me of followup comments via e-mail. You can also subscribe without commenting.   
+ 
+
+Trackbacks/Pingbacks
+
+ipcpu � Blog Archive � Linux: Get IP Address on Command Line/Shell (internal/external) - [...] get internal IP address and external IP address on Linux Shell / Command Line. See more ... 
+
+
+
+
+  
+  
+
+Sponsors 
+ 
+
+ 
+ 
+
+  
+  
+  Subscribe 
+
+Follow @inttf
+
+
+
+
+
+
+  Popular Posts 
+490
+Fedora 16 nVidia Drivers Install Guide (disable nouveau driver)
+Posted by JR on 11-10-11
+
+
+333
+VirtualBox 4.2.12 on Fedora 18/17, CentOS/Red Hat (RHEL) 6.4/5.9
+Posted by JR on 2-18-10
+
+
+248
+Adobe Flash Player 11.2 on Fedora 18/17, CentOS/RHEL 6.3/5.8
+Posted by JR on 3-11-10
+
+
+246
+Install SVN (Subversion) Server on Fedora 18/17, CentOS/Red Hat (RHEL) 6.4/5.9
+Posted by JR on 10-6-10
+
+
+217
+Install Google Chrome on Fedora 18/17, CentOS/Red Hat (RHEL) 6.3
+Posted by JR on 2-20-10
+
+
+220
+Install MySQL 5.5.32 on Fedora 18/17, CentOS/Red Hat (RHEL) 6.4/5.9
+Posted by JR on 7-30-10
+
+
+198
+Install Apache OpenOffice 3.4.1 on Fedora 18/17, CentOS/RHEL 6.4
+Posted by JR on 2-18-10
+
+  Sponsors  
+
+ 
+  Recent From Linux 
+
+
+ 
+
+  
+Fedora 18 nVidia Drivers Install / Uninstall Guide
+Posted by JR on 1-29-13
+  
+
+
+
+ 
+
+  
+Fedora 18 &#8220;Spherical Cow&#8221; Install Guide
+Posted by JR on 1-26-13
+  
+
+
+
+ 
+
+  
+Upgrade Fedora 17 to Fedora 18 using FedUp
+Posted by JR on 1-20-13
+  
+
+
+
+ 
+
+  
+YUM Delete / Remove Old Kernels on Fedora, CentOS, Red Hat (RHEL)
+Posted by JR on 10-14-12
+  
+
+
+
+ 
+
+  
+Install PostgreSQL 9.2 on Fedora 18/17, CentOS/RHEL/SL 6.4/5.9
+Posted by JR on 10-8-12
+  
+
+
+
+ 
+
+  
+Debian Sid / Wheezy Netinstall with LVM &#8211; Network Installation Guide
+Posted by JR on 9-26-12
+  
+
+
+
+ 
+
+  
+SVN (Subversion) Backup and Restore
+Posted by JR on 9-19-12
+  
+More From Linux
+  Recent From Programming 
+
+
+ 
+
+  
+SVN (Subversion) Backup and Restore
+Posted by JR on 9-19-12
+  
+
+
+
+ 
+
+  
+PHP: APC Configuration and Usage Tips and Tricks
+Posted by JR on 7-22-12
+  
+
+
+
+ 
+
+  
+Solarized Linux
+Posted by JR on 7-19-12
+  
+
+
+
+ 
+
+  
+PHP / PDO / SQLite3 Example
+Posted by JR on 1-23-12
+  
+
+
+
+ 
+
+  
+PHP Memory Usage Information Class
+Posted by JR on 11-12-11
+  
+
+
+
+ 
+
+  
+Install Nginx/PHP-FPM on Fedora 18/17, CentOS/RHEL 6.4/5.9
+Posted by JR on 10-30-11
+  
+
+
+
+ 
+
+  
+NetBeans 7.2 on Fedora 18/17, CentOS/RHEL 6.3/5.8
+Posted by JR on 12-10-10
+  
+More From Programming
+   �Latest Discussion from ForumsОдноклассники в новом формате !Posted on June 8, 2013Одноклассники в новом формате !Posted on June 8, 2013Одноклассники в новом формате !Posted on June 8, 2013Одноклассники в новом формате !Posted on June 8, 2013время вперед программа впередPosted on June 7, 2013  Recent CommentsInstall Skype 4.1/4.0 on Fedora 18/17, CentOS/RHEL/SL 6.3Posted by launching problem of skypeVirtualBox Guest Additions on Fedora 18/17, CentOS/RHEL 6.4/5.9Posted by RicoVirtualBox Guest Additions on Fedora 18/17, CentOS/RHEL 6.4/5.9Posted by JRInstall Eclipse SDK 4.2.2 (Juno) on Fedora 18/17, CentOS/RHEL 6.4/5.9Posted by Failed to execute child process "/usr/local/eclipse/eclipse" (No such file or directoVirtualBox Guest Additions on Fedora 18/17, CentOS/RHEL 6.4/5.9Posted by Rico  Sponsors 
+
+
+ 
+
+ 
+ 
+
+ 
+
+
+
+    
+   
+  
+  
+
+
+
+
+© 2013 If Not True Then False
+ |
+
+Privacy Policy
+ |
+
+Terms of Service (Disclaimer)
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+ 
+
+
+ 
+ 
