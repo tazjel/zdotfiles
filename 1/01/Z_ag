@@ -1,1 +1,0 @@
-ag -C 7 --no-numbers --noheading diff | sort -u | vim -

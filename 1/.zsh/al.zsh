@@ -447,5 +447,6 @@ alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
 #
 #rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d<]*/
 
+alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
 
 alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'

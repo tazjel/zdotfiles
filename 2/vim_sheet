@@ -1,0 +1,322 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+
+	
+		VIM Tips
+		
+		
+		
+		
+	
+	
+		
+			
+				
+					Mark's Home&#8593;
+				
+			
+		
+
+
+		
+			
+				
+			
+	
+			
+			
+				Vim Website
+				
+				Reference Card
+				Another Reference Card
+				
+				Using VI
+
+				
+					Key Commands
+					
+
+				d$ - delete from current currsor position to end of line ref
+				G      - goto the last line of the file
+				u      - undo last change
+				U      - return line to its original state (undo all changes in current line)
+				CTRL-R - redo changes that were undone
+				vs [file name]     - vertical split
+				sp [file name]     - horizontal split
+				CTRL-W,(UP,DOWN,LEFT,RIGHT) - move to different window
+				CTRL-W, CTRL-W - move to next window
+				CTRL-g - displays filename, current line, and total number of lines
+				CTRL-o - jump to previous location in history
+				CTRL-p - autocomplete
+				zz or z. - sets the current line to the center of the window
+				>/< - tab/untab a block of code(indicate a block of code by highlighting it)
+				w - move cursor forward by one word
+				b - move cursor backward by one word
+				:qa - quit(exit) all windows, whereas :q just exits the current window
+				X% - jump to X percent of the file
+				
+
+				Restore file's previous cursor position
+				
+					Add to either /etc/vim/vimrc or ~/.vimrc
+
+" Tell vim to remember certain things when we exit
+"  '10  :  marks will be remembered for up to 10 previously edited files
+"  "100 :  will save up to 100 lines for each register
+"  :20  :  up to 20 lines of command-line history will be remembered
+"  %    :  saves and restores the buffer list
+"  n... :  where to save the viminfo files
+"set viminfo='10,\"100,:20,%,n~/.viminfo
+
+if has("autocmd")
+aug vimrc
+au!
+" restore cursor position when the file has been read
+au BufReadPost *
+\ if line("'\"") > 0 && line("'\"") <= line("$") |
+\ exe "norm g`\"" |
+\ endif
+aug ENG
+endif
+
+					
+					ref
+				
+
+
+					
+				
+
+				Title case
+				
+					:s/\<\(\w\)\(\w*\)\>/\u\1\L\2/g
+					ref
+				
+
+				File name
+				
+					get absolute path - ctrl + 1 + g
+				
+
+				Remove DOS style new lines (^M)
+				
+					:%s/{Ctrl+V}{Ctrl+M}//{Enter}
+					:%/{Ctrl+V}{Ctrl+M}//{Enter}
+					ref
+				
+
+				Getting values of variables
+				
+					echo &variable_name
+					:set variable_name
+				
+
+				Tabs and Spaces			
+				
+					to insert spaces whenever the tab key is pressed, use set expandtab
+
+					to control the number of spaces inserted when the tab key is
+					pressed, use set tabstop=x where x is the number of spaces to insert.
+					(NOTE: this will not affect the existing tabs)
+
+					to set the number of spaces/tabs inserted for indenting, use set shiftwidth=x
+					to set the number of spaces a tab character represents, use set tabstop=x
+
+					to show tabs explicitly :set list
+					to not show tabs, eol, etc explicitly :set nolist
+					to convert all existing tab characters to spaces
+					
+						set proper value of tabstop
+						:set expandtab
+						:retab
+					
+
+					When highlighting text and indenting with '>', the indent
+					amount used is the amount specified by shiftwidth.  So, it may be
+					helpful when using this feature, to set shiftwidth =
+					tabstop.
+
+				
+					
+				
+			
+				Regular Expressions
+				
+					'ignorecase' option
+					
+						put \c anywhere in the pattern and the whole pattern is treated as if the ignorecase option is set
+					
+				
+					
+		
+				
+
+				
+					Vim Configuration files(~/.vimrc and /etc/vim/vimrc.local)
+					
+						Personalizing Vim
+						tab width - set tabstop=3   " tab width
+						shift width - set shiftwidth=3
+					
+				
+
+				
+					diff
+					
+						Syntax: vimdiff file1 file2
+						open file1 then from within Vim :vert diffsplit file1
+					
+				
+		
+				
+					Color Schemes
+					
+						To change colorscheme colorscheme name_of_color_scheme (e.g. evening)
+						a list of other color schemes can be found in the $VIMRUNTIME/colors directory
+					
+				
+
+				
+					Folding
+					
+						open fold - zo
+						close fold - zc
+					
+				
+
+				
+					Compiling
+					
+						:clist   - lists all error/warning from the compiler
+						:cp      - goto previous error/warning
+						:cn      - goto next error/warning
+						:cwindow - list all errors/warnings in a separate window
+					
+				
+	
+				
+					Find and Replace
+					
+						
+							:%s/search term/replacement/options
+							
+								
+									options
+									
+										g - replacement if for all occurrences, without this, replacement is only for the first occurrence in each line
+										c - request confirmation for each replacement
+										i - case insensitive find
+										I - case sensitive find
+									
+								
+							
+						
+						e.g: ':%s/href/HREF/gc'
+						%s//something/gc - search for most recently searched token and replace with "something"
+						v (highlight text) followed by :s/word/new word/gc - search for "word" within highlighted area and replace it with "new word" (when you type ":" in visual mode, it will automatically be replaced with ":'<'>" so the full command is actually ":'<'>s/word/new word/gc"
+						put string at beginning of selected/all lines
+						
+							go to first line and :ka
+							go to last line and :kb
+							:'a,'bs/^/#/
+							
+							if line numbers known, :10,20s/^/#/
+						
+						new line character when searching and replacing
+							search - '\n'
+							replace - '\r'
+							ref
+						
+						
+					
+								
+
+				
+					Directory/File Listing
+					
+						EDIT FILE OR DIRECTORY HIDING LIST - <ctrl-h>
+						cycle between handling of hiding list (ignore, hide file that match, show only files that match) - a
+					
+				
+
+
+				
+					Use Vim as man page viewer
+					
+						modify either:
+						
+							the .bashrc file for a particular user
+							/etc/profile (to make default for all users)
+						
+						insert the line:
+						
+							export MANPAGER="vimmanpager -"
+							
+							export MANPAGER="col -b | view -c 'set ft=man nomod nolist' -"
+						
+					
+				
+
+				
+					readonly option set
+					
+						sometimes you open a file, make changes, and attempt to save it but come to find out the readonly option is set
+						
+							suspend Vim
+							change permissions on file
+							:set noro
+						
+					
+				
+
+				
+					text alignment
+					
+						:set tw=n (where n is the maximum number of columns)
+						format one line of text - gq
+						format one paragraph (A Paragraph) - gqap
+						format from current position to the last line - gqG
+					
+				
+
+				
+					trailing spaces
+					
+						Vim Tip: Removing Trailing Spaces
+						tab after space in the middle of a line
+							
+:highlight RedundantSpaces ctermbg=red guibg=red
+:match RedundantSpaces /\s\+$\| \+\ze\t/
+							
+						
+					
+				
+
+				
+					disable text wrapping
+					
+						:set nowrap
+						:set textwidth=0
+					
+				
+
+	
+				
+					Enabling vi key bindings
+					
+						ref
+					
+				
+
+				
+					To clear or not on exit
+					
+						the alt screen
+					
+				
+	
+				
+			
+
+		
+	

@@ -16,7 +16,7 @@
 " }
 let g:BASH_SyntaxCheckOptionsGlob  = "-O extglob"
 "%s/[\r \t]\+$//
-
+set autoread
 set t_Co=256 "use 256 colours in terminal
 set nocompatible
 set encoding=utf-8
@@ -49,7 +49,8 @@ vmap sb "zdi<b><C-R>z</b><ESC>
 ":g/map/t$"
 ":g/^/t.                     : duplicate every line
 """"""""""""""
-
+"Install unhtml
+cab whtml :r!unhtml<CR>gg
 "close"
 nnoremap <silent> ; :q!<CR>
 nnoremap <silent> W :w<CR>
@@ -107,6 +108,7 @@ nnoremap <F4> :verbose map
 
 
 "F5"
+
 nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 nnoremap <S-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
                                 "F7
@@ -154,6 +156,15 @@ map <CR> o<Esc>k
 
 
 "find files
+
+" Recursively search your directory tree files for a string
+
+"alias gfind='find . -print0  | xargs -0 egrep -I '
+map zz :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR><CR><ESC><ESC>Gp<ESC><C-W>q
+cab wz w ~/zdotfiles/1/
+
+cab wv w ~/zdotfiles/2/
+set autoread
 
 
 
@@ -211,7 +222,10 @@ cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "" *generate a list of numbers*  23-64
 "o23<ESC>qqYp<C-A>q40@q
 "----------------------------------------
-"# : Pressing F5 lists all buffer, just type number
+" : Pressing F5 lists all buffer, just type number
+set modifiable
 let g:is_bash=1
 UnBundle 'AutoClose'
 ca w!! w !sudo tee "%"
+ca WW !sudo tee "%"
+

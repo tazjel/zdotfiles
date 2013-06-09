@@ -1,9 +1,0 @@
-[Dolphin]
-AdditionalInfo=Details_Size,Details_Date,Details_Type,Details_Permissions,Details_Owner,Details_Group,Details_LinkDestination,Details_Path,CustomizedDetails
-GroupedSorting=true
-PreviewsShown=true
-Timestamp=2013,5,12,15,43,57
-ViewMode=1
-
-[Settings]
-HiddenFilesShown=true

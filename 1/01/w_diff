@@ -1,3 +1,0 @@
-
-diff <(lsusb) <(sleep 3s && lsusb)
-
