@@ -1,0 +1,2 @@
+#search and wget dotfiles.org
+for i in $(sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" VVV | sed "s/^'\///g" | sed "s/'$//g");do echo "http://www.dotfiles.org/"$i;done

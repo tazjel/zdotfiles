@@ -49,8 +49,10 @@ vmap sb "zdi<b><C-R>z</b><ESC>
 ":g/map/t$"
 ":g/^/t.                     : duplicate every line
 """"""""""""""
+map ws :!rm ~/.vimswap/*<CR>
+
 "Install unhtml
-cab whtml :r!unhtml<CR>gg
+map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
 "close"
 nnoremap <silent> ; :q!<CR>
 nnoremap <silent> W :w<CR>
@@ -154,6 +156,7 @@ map <CR> o<Esc>k
 
 
 
+"!sed 's/<[^>]*>//g' %
 
 "find files
 

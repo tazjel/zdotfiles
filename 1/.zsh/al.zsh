@@ -450,3 +450,9 @@ alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
 alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
 
 alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'
+
+extract_url_links (){
+    for i in $(sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" VVV | sed "s/^'\///g" | sed "s/'$//g");do echo "http://www.dotfiles.org/"$i;done;
+}
+
+
