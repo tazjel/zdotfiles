@@ -1,11 +1,11 @@
-#Tue May 28 13:48:00 AST 2013
+#
+#Sun Jun  9 12:03:28 AST 2013
 ##
 #
 ########################################################
 # zdotfiles aliases
 #
 ########################################################
-zal=$HOME/zdotfiles/1/.zsh/al.zsh
 
 alias al='alias | grep'
 alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
@@ -35,7 +35,8 @@ alias __="sudo"
 
 #######################################
 
-alias 'w'='ls -alF;pwd;date'
+alias 'w'='clear;ls -atr;pwd;date'
+
 alias 'ww'='vim'
 alias 'www'='cat'
 
@@ -436,6 +437,7 @@ alias 'whis'='cut -f2 -d";" ~/.zsh_history | grep "$1" | sort -u'
 
 
 
+
 alias 'wmp3_notify'='play ~/zdotfiles/References/notify.mp3'
 
 alias 'wr'='xd=$(date +%s); rec -c 2 -r 44100 -s -t wav ~/Dropbox/tools/zfile$xd.wav'
@@ -452,7 +454,7 @@ alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
 alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'
 
 extract_url_links (){
-    for i in $(sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" VVV | sed "s/^'\///g" | sed "s/'$//g");do echo "http://www.dotfiles.org/"$i;done;
+    for i in $(sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" $1 | sed "s/^'\///g" | sed "s/'$//g");do echo $i;done;
 }
 
 

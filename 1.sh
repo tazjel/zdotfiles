@@ -69,14 +69,16 @@ wthree () {
     PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done;
 }
 
-
+function grep_zsh_history () {
+    cut -f2 -d";" ~/.zsh_history | sort | uniq -c | sort -nr | grep $1;
+}
 two_one (){
     while true
     do
-        clear
-        echo "Next Level"
-        echo " You are at 1_one "
-        znotify && break
+        echo "Search history:"
+        local his
+        read -p "Now:" his
+        grep_zsh_history $his | vim - && break
     done
        pause
         start_GUI
@@ -169,7 +171,7 @@ show_menu_two () {
 # ----------------------------------------------
 menu_read_options_two() {
     local choice
-    echo "===================================================================="
+    echo "==============="
     echo ""
     read -p "Enter:" choice
     case $choice in
@@ -192,3 +194,25 @@ start_GUI () {
     done;
 }
 start_GUI
+
+function WW {
+    desc="ADD DESCRIPTION..."
+    if [ -n "$3" ]; then
+        desc="$3"
+    fi
+    echo "" >> $zal
+    echo "alias '$1'='$2'" >> $zal
+    source $zal
+    echo "" && echo "- Alias added  $1 = $2 " && echo "";
+}
+
+
+##########
+function glll {
+    cd $HOME/zdotfiles
+    git add -A
+    git commit -a
+    git push -all
+    git push origin --all && git push origin --tags
+}
+
