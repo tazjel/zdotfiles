@@ -6,13 +6,33 @@
 # zdotfiles aliases
 #
 ########################################################
-
+# vim: set ts=2 sw=2 et:
+#
+#
 alias al='alias | grep'
 alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
 #to use it with WW Function
-#
+WWW_path=~/zdotfiles/8/R_urls_sources_bash
+
+
+
+# Add References Bash
+function WWW {
+    desc="ADD DESCRIPTION..."
+    if [ -n "$3" ]; then
+        desc="$3"
+    fi
+    echo "" >> $WWW_path
+    echo "# $desc" >> $WWW_path
+    echo '# "$1"="$2" ' >> $WWW_path
+    tail -7 $WWW_path
+
+
+    echo "" && echo "- Alias added  $1 = $2 " && echo "";
+}
+
 #
 #
 #
@@ -75,7 +95,6 @@ alias ..5='cd ../../../../../'
 ######################################################################
 
 
-
 ########## zdotfiles
 
 function WW {
@@ -123,6 +142,7 @@ alias aliasupdt='wget -q -O - "$@" https://alias.sh/user/1110/alias >> ~/.bash_a
 alias assume='git update-index --assume-unchanged'
 alias back='cd -'
 alias build='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
+
 alias c=clear
 alias cat='pygmentize -O style=monokai -f console256 -g'
 alias cathtml='sed '\''s/<[^>]*>//g'\'

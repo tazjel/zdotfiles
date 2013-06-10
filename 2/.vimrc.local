@@ -1,5 +1,5 @@
 "Modeline and Notes {
-"vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
@@ -60,8 +60,8 @@ nnoremap <silent> W :w<CR>
 "==================================="
 "            F[1-12]
 "==================================="
-cab zz w ~/zdotfiles/
-cab wv w ~/zdotfiles/2/.vimrc.local
+cab zz w! ~/zdotfiles/1/
+cab vv w! ~/zdotfiles/2/
 cab wx !chmod u+x<CR>
 cab wxx !sh %<CR>
 "set syntax=vim<CR>
