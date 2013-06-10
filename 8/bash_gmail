@@ -14,7 +14,7 @@ echo "###############"
 echo "Gmail Bashified"
 echo "###############"
 echo " "
-read -p "Password : " -esr password
+read -p "Password : " password
 echo " "
 curl -su "$username":"$password" https://mail.google.com/mail/feed/atom -o /tmp/gmail.out # get the email and stick it in /tmp
 

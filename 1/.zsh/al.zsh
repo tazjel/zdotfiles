@@ -220,6 +220,7 @@ alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m
 alias listips='nmap -sP 192.168.1.1/24'
 
 
+
 alias ll='ls -l'
 alias lla='ls -lhFA'
 alias lldu='find -maxdepth 1 -mindepth 1 -type d -exec du -sh {} \;'
@@ -341,6 +342,10 @@ alias -g 'wH'="--help | grep "
 cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 
 ####################################################
+wwww(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
+
+
+
 #
 ##
 #function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }

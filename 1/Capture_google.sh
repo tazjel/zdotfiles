@@ -10,7 +10,7 @@ if [ -z $1 ]
 then
   # If no search term --> start Links on the Google page
   #
-  links http://google.ca/
+  links http://google.com/
 else
   #URL construction
   #
@@ -39,4 +39,5 @@ else
 fi
 
 exit 0
+
 

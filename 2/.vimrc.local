@@ -62,6 +62,8 @@ nnoremap <silent> W :w<CR>
 "==================================="
 cab zz w ~/zdotfiles/
 cab wv w ~/zdotfiles/2/.vimrc.local
+cab wx !chmod u+x<CR>
+cab wxx !sh %<CR>
 "set syntax=vim<CR>
 map wy :set filetype=bash<CR>
 
@@ -232,5 +234,5 @@ set modifiable
 let g:is_bash=1
 UnBundle 'AutoClose'
 ca w!! w !sudo tee "%"
-map WW !sudo tee "%"
+"map WW !sudo tee "%"
 
