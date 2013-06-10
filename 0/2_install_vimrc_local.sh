@@ -1,8 +1,9 @@
 #!/usr/bin/env sh
-#  3
 
 ########################################
-endpath="$HOME/zdotfiles"
+
+#{
+zendpath="$HOME/zdotfiles"
 
 warn() {
     echo "$1" >&2
@@ -21,7 +22,7 @@ lnif() {
         ln -sf $1 $2
     fi
 }
-
+#}
 ########################################
 echo "Thanks for installing zdotfiles"
 
