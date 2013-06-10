@@ -217,7 +217,9 @@ alias lba='cd ~/Library/Application\ Support/LaunchBar/Actions'
 alias le='ls --sort=extension'
 alias lf='ls -Gl | grep ^d'
 alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
-alias listips='nmap -sP 192.168.2.0/24'
+alias listips='nmap -sP 192.168.1.1/24'
+
+
 alias ll='ls -l'
 alias lla='ls -lhFA'
 alias lldu='find -maxdepth 1 -mindepth 1 -type d -exec du -sh {} \;'

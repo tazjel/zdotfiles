@@ -79,9 +79,9 @@ lnif $zendpath/2/.vimrc.localw $HOME/.vimrc.localw
 echo "Done! Check your vimrc.local"
 
 ########################################
-<<<<<<< HEAD
+
 lnif $zendpath/1/.zsh/.zshrc $HOME/.zshrc
 lnif $zendpath/1/.zsh/.zshenv $HOME/.zshenv 
-=======
->>>>>>> 6e1d3b7475f6614cf067e567cb70722170fefcb5
-########################################
+
+
+
