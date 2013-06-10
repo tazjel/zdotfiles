@@ -11,6 +11,15 @@ alias al='alias | grep'
 alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
+#to use it with WW Function
+#
+#
+#
+#
+zal=~/zdotfiles/1/.zsh/al.zsh
+
+
+
 alias -g wv='| vim -'
 alias lh='ls -a | egrep "^\."'
 alias lhd='ls -A | egrep "^\."'
@@ -75,8 +84,9 @@ function WW {
         desc="$3"
     fi
     echo "" >> $zal
-    echo "alias '$1'='$2'" >> $zal
+    echo 'alias "$1"="$2" ' >> $zal
     source $zal
+
     echo "" && echo "- Alias added  $1 = $2 " && echo "";
 }
 
@@ -112,7 +122,6 @@ alias agdu='sudo apt-get dist-upgrade'
 alias aliasupdt='wget -q -O - "$@" https://alias.sh/user/1110/alias >> ~/.bash_aliases'
 alias assume='git update-index --assume-unchanged'
 alias back='cd -'
-alias bbc='mplayer http://www.bbc.co.uk/worldservice/meta/live/mp3/eneuk.pls'
 alias build='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
 alias c=clear
 alias cat='pygmentize -O style=monokai -f console256 -g'
