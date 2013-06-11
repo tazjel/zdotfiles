@@ -64,6 +64,15 @@ cab zz w! ~/zdotfiles/1/
 cab vv w! ~/zdotfiles/2/
 cab wx !chmod u+x<CR>
 cab wxx !sh %<CR>
+cab w99 w! ~/zdotfiles/9/
+cab w88 w! ~/zdotfiles/8/
+cab w77 w! ~/zdotfiles/7/
+cab w66 w! ~/zdotfiles/6/
+cab w55 w! ~/zdotfiles/6/
+cab w44 w! ~/zdotfiles/5/
+cab w33 w! ~/zdotfiles/4/
+cab w22 w! ~/zdotfiles/2/
+cab w11 w! ~/zdotfiles/1/
 "set syntax=vim<CR>
 map wy :set filetype=bash<CR>
 
