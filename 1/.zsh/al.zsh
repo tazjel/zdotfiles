@@ -526,11 +526,12 @@ wfind () {
 
 
 # Recursive chmod all *.sh files within the current directory
-alias 'wfx'find ./ -name "*.sh" -exec chmod +x {} \;
-alias 'wfX'find ./ -name "*.sh" -exec chmod -x {} \;
+alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
+
+alias 'wfX'='find ./ -name "*.sh" -exec chmod -x {} \;'
 
 # list and get size
-alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"' 
+alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"'
 # Recursively search your directory tree files for a string
 #
 alias gfind='find . -print0  | xargs -0 egrep -I '
@@ -542,3 +543,9 @@ function Wll () {
     ls -lhR | grep -e "total\|:$"
 }
 
+#Useage : wst_string <Enter> add your strings. Then, close by only typing zx
+#You can echo $iz
+
+alias 'wst_string'="read -d '' iz <<"zx""
+
+alias 'wask'='vim ~/zdotfiles/1/askapache-bash-profile.txt'
