@@ -28,7 +28,7 @@ set clipboard+=unnamed
 "{The w culture "
 vnoremap <silent> w1 w!>> ~/tst/vi.txt<CR>
 vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
-vnoremap <silent> wW :Bookmark<CR>
+vnoremap wb :Bookmark<CR>
 
 nnoremap <silent> ; :q!<CR>
 nnoremap <silent> W :w<CR>
@@ -312,8 +312,7 @@ map <S-Left> do
                      "<F4> :verbose map
 
 nnoremap <F4> :verbose map
-
-
+nnoremap w9 :e! /home/www-data/web2py/applications/zIST/views/default/index.html<CR>
 "F5"
 
 nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
