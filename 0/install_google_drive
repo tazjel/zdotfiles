@@ -1,0 +1,43 @@
+
+Grive
+Grive is an open-source Google Drive synchronization tool. It supports two-way sync with Google Drive. Unfortunately, grive a few limitations. It canât watch for changes and automatically run in the background, so youâll have to run it from a terminal to make it sync. It also doesnât support synchronizing Google documents, spreadsheets, or other Google Docs files â just files youâre storing in Google Drive.
+
+To use Grive, you run the Grive command to synchronize with your Google Drive account. Any newly added files will be downloaded, files youâve changed on either end will be updated with more recent versions, and deleted files will be moved to the trash. To perform another sync and update things later, run the grive command again.
+
+If youâd like to use Grive on Ubuntu, you can install it by opening a terminal and running the following commands:
+
+sudo add-apt-repository ppa:nilarimogard/webupd8
+sudo apt-get update
+sudo apt-get install grive
+
+Run the following command to make a folder named grive in your home directory:
+
+mkdir ~/grive
+
+Switch to the grive directory:
+
+cd ~/grive
+
+Run grive with the -a switch to authenticate with your Google Drive account:
+
+grive âa
+
+
+
+Copy-paste the address displayed in the terminal into your browserâs address bar to load it. Youâll get an authentication code, which youâll need to copy-paste back into the terminal to give grive access to your Google account. After you have, grive will perform its first sync.
+
+
+
+To perform a sync with your Google drive in the future, run the following commands:
+
+cd ~/grive
+
+grive
+
+Note that grive syncs to the current folder when you run it, so you must cd to your grive folder before running the grive command.
+
+Revoking Access
+If you stop using grive or Insync in the future, you can revoke their access to your Google account from the Connected Sites, Apps, and Services page on the Google website. You can also revoke access to other apps and websites you no longer use from this page.
+
+Thanks to WebUpd8 for hosting the grive PPA!
+
