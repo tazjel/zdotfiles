@@ -4,23 +4,29 @@ Work in progress
 
 zdotfiles
 
-#1-First Diminsion :
+### 1-First Diminsion :
      Command line
-#2- Second Diminsion :
+### 2- Second Diminsion :
      Text Documents
-#3-Thisrd Diminsion :
+### 3-Thisrd Diminsion :
      GUI
-#4- Fourth Diminsion :
+### 4- Fourth Diminsion :
      Logs
-#5- Fivth Diminsion :
+### 5- Fivth Diminsion :
      Current processes
-#6- Sixth Diminsion :
+### 6- Sixth Diminsion :
      Dotfiles
-#7- Seventh Diminsion :
+### 7- Seventh Diminsion :
      System Administration
-#8- Eighth Diminsion
+### 8- Eighth Diminsion
      Access your account on-line
-#9- Nineth Diminsion
+### 9- Nineth Diminsion
      Access : SSH/Root
-#10- Multisystem
+### 10- Multisystem
      Access your System from different OS
+
+### Manual (not recommended)
+
+1. Install the
+   [zdotfiles](https://github.com/tazjel/zdotfiles.git)/
+2. Put file in your Home directory (usually `~/zdotfiles/`
