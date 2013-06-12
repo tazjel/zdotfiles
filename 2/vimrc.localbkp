@@ -1,5 +1,4 @@
 "Modeline and Notes {
-
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "   _____       _______        ___ __
@@ -50,7 +49,6 @@ cab zz w! ~/zdotfiles/1/
 cab vv w! ~/zdotfiles/2/
 cab wx !chmod u+x<CR>
 cab wxx !sh %<CR>
-cab abo vsplit ~/Dropbox/abobanirc
 "}
 "{cab maped to the [1-10] "
 cab w99 w! ~/zdotfiles/9/
@@ -170,7 +168,7 @@ map <CR> o<Esc>k
 " Recursively search your directory tree files for a string
 
 "alias gfind='find . -print0  | xargs -0 egrep -I '
-map zz :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR><ESC>Gp<ESC><C-W><C-W>
+map zz :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR><CR><ESC><ESC>Gp<ESC><C-W>q
 cab wz w ~/zdotfiles/1/
 
 cab wv w ~/zdotfiles/2/
@@ -484,7 +482,3 @@ ca w!! w !sudo tee "%"
 
 """"" 
 cab w2a vsp ~/zdotfiles/9/web2py_arabic_admin.py
-
-"set no readonly
-set noro
-"Good"

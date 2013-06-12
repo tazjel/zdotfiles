@@ -108,10 +108,13 @@ function WW {
         desc="$3"
     fi
     echo "" >> $zal
-    echo 'alias "$1"="$2" ' >> $zal
+    echo "alias '$1'='$2' " >> $zal
     source $zal
 
     echo "" && echo "- Alias added  $1 = $2 " && echo "";
+    echo "" >> $zal
+    echo "" >> $zal
+    tail $zal
 }
 
 
@@ -250,7 +253,7 @@ alias la='ls -A'
 alias lba='cd ~/Library/Application\ Support/LaunchBar/Actions'
 alias le='ls --sort=extension'
 alias lf='ls -Gl | grep ^d'
-alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
+#alias lg='git log --graph --full-history --all --color --pretty=format:"%x1b[31m%h%x09%x1b[32m%d%x1b[0m%x20%s"'
 alias listips='nmap -sP 192.168.1.1/24'
 
 
@@ -285,7 +288,6 @@ alias process='ps -ax'
 alias prs='ps faux|grep -v grep|grep "$@"'
 alias psf='ps auxf'
 alias psg='ps -ef |grep '
-alias qfind='find . -name '
 alias qless='qstat -u "*" | less'
 alias rd=rmdir
 alias remove='sudo apt-get remove'
@@ -498,8 +500,45 @@ extract_url_links (){
     for i in $(sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" $1 | sed "s/^'\///g" | sed "s/'$//g");do echo $i;done;
 }
 
+compare_strings () {
+    #string='My string';
+    string="$@";
+
+    if [[ "$1" == *"$2"* ]]
+
+    then
+      echo "It's there!";
+    fi
+        echo "No"
+    #needle='y s'
+    #if [[ "$string" == *"$needle"* ]]; then
+      #echo "haystack '$string' contains needle '$needle'"
+      #
+    #fi
+}
 
 
 alias "wwf"="cmdfu"
 
-alias "$1"="$2" 
+wfind () {
+    grep -i "$@" $zal;
+}
+
+
+# Recursive chmod all *.sh files within the current directory
+alias 'wfx'find ./ -name "*.sh" -exec chmod +x {} \;
+alias 'wfX'find ./ -name "*.sh" -exec chmod -x {} \;
+
+# list and get size
+alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"' 
+# Recursively search your directory tree files for a string
+#
+alias gfind='find . -print0  | xargs -0 egrep -I '
+
+
+
+# List directories recursively showing its sizes using only ls and grep
+function Wll () {
+    ls -lhR | grep -e "total\|:$"
+}
+

@@ -215,4 +215,20 @@ function glll {
     git push -all
     git push origin --all && git push origin --tags
 }
+function zselect () {
+    select CHOICE in bob amy quit
+    done
+            case "$CHOICE" in
+                    "bob")
+                            echo "Bob was here"
+                            ;;
+                    "amy")
+                            echo "Amy was here"
+                            ;;
+                    "quit")
+                            exit
+                            ;;
+            esac
+    done
+}
 

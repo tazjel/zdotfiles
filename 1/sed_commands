@@ -1,0 +1,2169 @@
+ruby -ryaml -rjson -e 'puts YAML.dump(JSON.parse(STDIN.read))' < file.json > file.yaml
+
+# Recompress all files in current directory from gzip to bzip2
+find . -type f -name "*.gz" | while read line ; do gunzip --to-stdout "$line" | bzip2 > "$(echo $line | sed 's/gz$/bz2/g')" ; done
+
+# Updates Archlinux, downloads and builds AUR
+urxvtc -e bash -c 'sudo pacman -Syu ; cower -dut ~/Downloads/cower/ ; for D in `ls -d ~/Downloads/cower/*` ; do ( cd $D && makepkg -sci ) ; done ; read -p ":: All done. Press [Enter] key to continue..."'
+--
+pwd|grep -o '/'|perl -ne '$x.="./.";print`readlink -f $x`'|xargs -tn1 chmod 755
+
+# Encrypt and password-protect execution of any bash script, Version 2
+read -p 'Script: ' S && C=$S.crypt H='eval "$((dd if=$0 bs=1 skip=//|gpg -d)2>/dev/null)"; exit;' && gpg -c<$S|cat >$C <(echo $H|sed s://:$(echo "$H"|wc -c):) - <(chmod +x $C)
+
+# Copy canonical path of file 'foo' in the clipboard
+readlink -fn foo | xsel -ib
+--
+find ~/ -type d \( -wholename '/dev/*' -o -wholename '/sys/*' -o -wholename '/proc/*' \) -prune -o -exec test -w {} \; -exec echo {} writable \; 2>/dev/null
+
+# display the hover text of the most recent xkcd
+curl -s 'http://xkcd.com/rss.xml' | xpath '//item[1]/description/text()' 2>&1 | sed -n 's/.*title="\([^"]*\)".*/\1/p' | fold -s
+
+# commandlinefu.com by David Winterbottom
+
+# UBNT device
+iwlist ath0 scanning |egrep '(ESSID|Signal|Address)'| \sed -e 's/Cell  - Address:*//g'  -e 's/ESSID://g' \-e 's/Noise level=-//g' -e 's/dBm//g' \-e 's/Quality=*//g'  -e 's/Signal level=-//g' \-e 's/"//g'
+
+# Scan a document to PDF
+scanimage -p --resolution 250 --mode Gray -x 215.9 -y 279.4 | pnmtops -imageheight 11 -imagewidth 8.5 | ps2pdf - output.pdf
+--
+for i in `seq 254`;do ping -c 1 192.168.10.$i > /dev/null && echo "$i is up"||echo "$i is down";done
+
+# Display only hosts up in network
+nmap -sP -PR -oG - `/sbin/ip -4 addr show | awk '/inet/ {print $2}' | sed 1d`
+
+# Create a QR code image in MECARD format
+qrencode -o myqr.png 'MECARD:N:Lee,Chris;TEL:8881234567;EMAIL:chris.lee@somedomain.com;;'
+<Ctrl><Alt><F6>  killall5
+
+# List only directories, one per line
+ls -l | grep ^d  | sed 's:.*\ ::g'
+
+# Collect output from a segfaulting program and keep the script from dying
+(trap 'true' ERR; exec <SEGFAULT_PRONE_PROGRAM>)
+--
+# Speed up builds and scripts, remove duplicate entries in $PATH.  Users scripts are oftern bad:  PATH=/apath:$PATH type of thing cause diplicate.
+glu() { (local IFS="$1"; shift && echo "$*") }; repath() { ( _E=`echo "${PATH//:/$'\n'}" | awk '!x[$0]++'`; glu ":" $_E ) ; } ; PATH=`repath` ; export PATH
+
+# bulk rename files with sed, one-liner
+for f in *; do mv "$f" "${f/foo/bar}"; done
+
+rename 's/ /-/g' *.mp3
+
+# Tracklist reaplace backspace to '-'
+ls|grep .mp3 >list.txt; while read line; do newname=`echo $line|sed 's/\ /-/g'|sort`; newname=`echo $newname|tr -s '-' `; echo $newname; echo $newname>> tracklist.txt;mv "$line" "$newname"; done <list.txt; rm list.txt
+
+# Locate a list of processes by process name that need to be killed
+for i in `ps -ef | grep tracker | awk '{print $8}' | cut -d'/' -f4 | grep -v grep`; do killall -9 $i; done
+--
+(pv -n long_running > output) 2>&1 | zenity --progress
+
+# Download YouTube music playlist and convert it to mp3 files
+yt-pl2mp3() {umph -m 50 $1 | cclive -f mp4_720p; IFS=$(echo -en "\n\b"); for track in $(ls | grep mp4 | awk '{print $0}' | sed -e 's/\.mp4//'); do (ffmpeg -i $track.mp4 -vn -ar 44100 -ac 2 -ab 320 -f mp3 $track.mp3); done; rm -f *.mp4}
+
+# add a particular track to a playlist by looking for a part of its file name
+find `pwd` -iname *SEARCH_STRING* >> ~/PLAYLIST_NAME.m3u
+--
+gpsbabel -i kml -f in.kml -o gpx -F out.gpx
+
+# Get curenttly playing track in Last.fm radio
+curl -s http://ws.audioscrobbler.com/1.0/user/<user_id>/recenttracks.rss|grep '<title>'|sed -n '2s/ *<\/\?title>//gp'
+
+# dhcdrop - testing/suppression/tracking false DHCP servers
+sudo dhcdrop -i eth1 -y -l 00:11:22:33:44:55
+tail -F /var/log/nginx/access.log | python -c 'exec("import sys,time\nl=0\ne=int(time.time())\nfor line in sys.stdin:\n\tt = int(time.time())\n\tl += 1\n\tif t > e:\n\t\te = t\n\t\tprint l\n\t\tl = 0")'
+
+# Append the line # -*- coding: utf-8 -*- to a file
+sed -i -e '1i \# -*- coding: utf-8 -*-' yourfile.py
+
+# python - covert image to base64 string for data URI use
+python -c 'print open("path/to/image.png", "rb").read().encode("base64").replace("\n","")'
+du -x / | sort -rn | less
+
+# Use top to monitor only all processes with the same name fragment 'foo'
+top $(pgrep foo | sed 's|^|-p |g')
+
+# Server load and process monitoring
+watch -n1 "uptime && ps auxw|grep http|grep -v grep | grep -v watch|wc -l && netstat -ntup|grep :80 |grep ESTABLISHED|wc -l && netstat -ntup|grep :80|grep WAIT|wc -l && free -mo && ps -ylC httpd --sort:rss|tail -3|awk '{print \$8}'"
+--
+vbetool dpms [on|off|standby]
+
+# Monitor RAID IO Usage
+iotop -a -p $(sed 's, , -p ,g' <<<`pgrep "_raid|_resync|jbd2"`)
+
+# Quick Battery Power Monitor
+watch -n 5 "upower -d | grep energy -A 4"
+ffmpeg -f alsa -i default -f x11grab -s sxga -r 10 -i :0.0 -f mp4 -s vga -sameq out.mp4
+
+# A video capture command which can be assigned to a keyboard shortcut.
+gnome-terminal -e "bash -c \"ffmpeg -f x11grab -r 25 -s $(xwininfo -root |sed -n 's/ -geometry \([0-9x]*\).*/\1/p') -i :0.0 -vcodec huffyuv -sameq ~/Desktop/screencast.avi; exec bash\""
+
+# View files opened by a program on startup and shutdown
+sudo lsof -rc command >> /tmp/command.txt
+--
+tcpdump -nr capture.file | awk '{print }' | grep -oE '[0-9]{1,}.[0-9]{1,}.[0-9]{1,}.[0-9]{1,}' | sort | uniq -c | sort -n
+
+# Make a quick network capture with tcpdump to a file - filename based on tcpdump arguments
+tcpdump -w "$(sed 's/-//gi; s/ /_/gi'<<<"-vvv -s0 -ieth1 -c10 icmp").pcap"
+
+# ASCII webcam live stream video using mplayer
+mplayer -tv driver=v4l2:gain=1:width=640:height=480:device=/dev/video0:fps=10:outfmt=rgb16 -vo aa tv://
+# commandlinefu.com by David Winterbottom
+
+# Remove ( color / special / escape / ANSI ) codes, from text, with sed
+sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"
+
+# convert finenames containing a numeric index from differing to fixed index-length; padding required zeroes in front of first number
+export l=$1; shift; rename 'my $l=$ENV{'l'}; my $z="0" x $l; s/\d+/substr("$z$&",-$l,$l)/e' "$@"
+--
+which <command> > /dev/null 2>&1 && echo Success!
+
+# Encrypt and password-protect execution of any bash script, Version 2
+read -p 'Script: ' S && C=$S.crypt H='eval "$((dd if=$0 bs=1 skip=//|gpg -d)2>/dev/null)"; exit;' && gpg -c<$S|cat >$C <(echo $H|sed s://:$(echo "$H"|wc -c):) - <(chmod +x $C)
+
+# Encrypt and password-protect execution of any bash script
+echo "eval \"\$(dd if=\$0 bs=1 skip=XX 2>/dev/null|gpg -d 2>/dev/null)\"; exit" > script.secure; sed -i s:XX:$(stat -c%s script.secure): script.secure; gpg -c < script.bash >> script.secure; chmod +x script.secure
+
+# Limit the cpu usage of a process
+prlimit --cpu=10 sort -u hugefile
+--
+git diff --name-only --diff-filter=AMXTCR HEAD~2 HEAD | xargs -l -I{}  cp --parents --verbose "{}" target_dir
+
+# Find stock debian package config files that have been modified since installation
+dpkg-query -Wf  '${Package}\n' | xargs dpkg --status | sed '/^Conffiles:/,/^Description:/!d;//d' | awk '{print $2 "  " $1}' | md5sum -c 2>/dev/null | grep FAILED$ | cut -f1 -d':'
+
+# diff process output
+diffprocess () { diff <($*) <(sleep  3; $*); }
+--
+diff -u <(ssh -t user@host1 sudo cat /dir1/file1) <(ssh -t user@host2 sudo cat /dir2/file2)
+
+# Compares two source directories, one original and one post configure and deletes the differences in the source folder
+diff ../source-dir.orig/ ../source-dir.post/ | grep "Only in" | sed -e 's/^.*\:.\(\<.*\>\)/\1/g' | xargs rm -r
+
+# add a change in git that you have just checked using git diff
+^diff^add
+md5sum filename | ncat hash.cymru.com 43
+
+# Verify a file has not been tampered with since dpkg installation
+cat /var/lib/dpkg/info/*.md5sums|grep usr/sbin/sshd|sed 's,usr,/usr,'|md5sum -c
+
+# Useful to check if the disks as of same size or not. Helpful in checking Raid configs
+df | awk '{if ($2!=dspace) print "different"; dspace=$2;}'
+# commandlinefu.com by David Winterbottom
+
+# Add an "alert" alias for long running commands
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# mailwatcher on-new-mail command
+notify-send -i mail_new 'Mail watcher' 'You have new mail!'
+--
+watch -n 900 "notify-send -t 10000 'Look away. Rest your eyes'"
+
+# Get notified when a job you run in a terminal is done, using NotifyOSD
+alias alert='notify-send -i /usr/share/icons/gnome/32x32/apps/gnome-terminal.png "[$?] $(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/;\s*alert$//'\'')"'
+
+# I finally found out how to use notify-send with at or cron
+echo notify-send test | at now+1minute
+# commandlinefu.com by David Winterbottom
+
+# dmesg with colored human-readable dates
+dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
+
+# write the output of a command to /var/log/user.log... each line will contain $USER, making this easy to grep for.
+log() { (echo "\$ $@";$@) | logger -t $USER; }
+ls -Sh **/*(.Lm+100) | tail -5
+
+# Add an "alert" alias for long running commands
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Change wallpaper random
+feh --bg-scale "`ls -d $HOME/backgrounds/* |sort -R |tail -1`"
+--
+tail -F logfile
+
+# Pipe system log to espeak
+tail -f /var/log/messages.log | while read line ; do echo $line | cut -d \  -f5- | sed s/\\[[0-9]*\\]// | espeak ; done
+
+# delete first X lines of a file
+tail +56 file > newfile
+--
+end_w_nl() { [[ $(tail -c1 $1 | xxd -ps) == 0a ]] }
+
+# Deleting / Ignoring tailer record from the file
+cp foo.txt foo.txt.tmp; sed '$ d' foo.txt.tmp > foo.txt; rm -f foo.txt.tmp
+
+# Deleting / Ignoring lines from the top of a file
+tail -n +2 foo.txt
+# commandlinefu.com by David Winterbottom
+
+# List mp3 files with less than 320 kbps bitrate.
+find -name '*.mp3' -exec mp3info {} -p "%F: %r kbps\n" \;  | sort | sed '/320 kbps/d'
+
+# Chrome sucks
+ps -e -m -o user,pid,args,%mem,rss | grep Chrome | perl -ne 'print "$1\n" if / (\d+)$/' | ( x=0;while read line; do (( x += $line )); done; echo $((x/1024)) );
+--
+curl -s -u $USERNAME -X POST -d "track=obama,barack" https://stream.twitter.com/1.1/statuses/filter.json -o twitter-stream.out
+
+# Google verbatim search on your terminal
+function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
+
+# Get the number of open sockets for a process
+ps aux | grep [process] | awk '{print $2}' | xargs -I % ls /proc/%/fd | wc -l
+--
+prompt (){ if [ "$1" = "on" ]; then . ~/.bash_profile; else if [ "$1" = "off" ];then PS1="$ ";fi;fi; }
+
+# copy zip files which contains XXX
+for i in *RET.zip; do unzip -l "$i"| grep -B 4 XXX | grep RET| sed "s/.\+EPS/EPS/" |xargs -I '{}' cp '{}' out/'{}';done;
+
+# Export a postgresql query into csv file
+# su -c "psql -d maillog -c \"copy (select date,sender,destination,subject from maillog where destination like '%domain.com%') to '/tmp/mails.csv' with csv;\" " postgres
+# commandlinefu.com by David Winterbottom
+
+# Remove ( color / special / escape / ANSI ) codes, from text, with sed
+sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"
+
+# Show reason of revocation for 0xDEADBEEF with gpg.
+gpg --export 0xDEADBEEF | gpg --list-packets | grep -Pzao ':signature packet:.*\n\t.*sigclass 0x20(\n\t.*)*'
+--
+zgrep --color=always 'get install' /var/log/apt/history.log*
+
+# Listing all your bundles Entities files to issue a doctrine:generate:entities
+find ./src -type d -name "Entity" | xargs ls -A | cut -d . -f1 | sed 's_^_app/console doctrine:generate:entities YourOwnBundleName:_'
+
+# count the number of specific characters in a file or text stream
+find /some/path -type f -and -iregex '.*\.mp3$' -and -print0 | tr -d -c '\000' |wc -c
+--
+mount /dev/root /mnt/root; rsync -avHX /mnt/root/ /mnt/target/
+
+# SVN Status log to CSV (Mac OSX friendly)
+svn log | tr -d '\n' | sed -E 's/-{2,}/\'$'\n/g' | sed -E 's/ \([^\)]+\)//g' | sed -E 's/^r//' | sed -E "s/[0-9]+ lines?//g" | sort -g
+
+# Find Out My Linux Distribution Name and Version
+cat /etc/issue
+find . -printf "touch -m -d \"%a\" '%p'\n" | tee /tmp/retime.sh
+
+# find geographical location of an ip address
+function ip-where { wget -qO- -U Mozilla http://www.ip-adress.com/ip_tracer/$1  | html2text -nobs -style pretty | sed -n /^$1/,/^$/p;}
+
+# Find the 10 lusers winners of the "I take up the most disk space" award
+du -sh /home/*|sort -rh|head -n 10
+-------------------------------------------------------------------------
+USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)        Dec. 29, 2005
+Compiled by Eric Pement - pemente[at]northpark[dot]edu        version 5.5
+
+Latest version of this file (in English) is usually at:
+   http://sed.sourceforge.net/sed1line.txt
+   http://www.pement.org/sed/sed1line.txt
+
+This file will also available in other languages:
+  Chinese     - http://sed.sourceforge.net/sed1line_zh-CN.html
+  Czech       - http://sed.sourceforge.net/sed1line_cz.html
+  Dutch       - http://sed.sourceforge.net/sed1line_nl.html
+  French      - http://sed.sourceforge.net/sed1line_fr.html
+  German      - http://sed.sourceforge.net/sed1line_de.html
+  Italian     - (pending)
+  Portuguese  - http://sed.sourceforge.net/sed1line_pt-BR.html
+  Spanish     - (pending)
+
+
+FILE SPACING:
+
+ # double space a file
+ sed G
+
+ # double space a file which already has blank lines in it. Output file
+ # should contain no more than one blank line between lines of text.
+ sed '/^$/d;G'
+
+ # triple space a file
+ sed 'G;G'
+
+ # undo double-spacing (assumes even-numbered lines are always blank)
+ sed 'n;d'
+
+ # insert a blank line above every line which matches "regex"
+ sed '/regex/{x;p;x;}'
+
+ # insert a blank line below every line which matches "regex"
+ sed '/regex/G'
+
+ # insert a blank line above and below every line which matches "regex"
+ sed '/regex/{x;p;x;G;}'
+
+NUMBERING:
+
+ # number each line of a file (simple left alignment). Using a tab (see
+ # note on '\t' at end of file) instead of space will preserve margins.
+ sed = filename | sed 'N;s/\n/\t/'
+
+ # number each line of a file (number on left, right-aligned)
+ sed = filename | sed 'N; s/^/     /; s/ *\(.\{6,\}\)\n/\1  /'
+
+ # number each line of file, but only print numbers if line is not blank
+ sed '/./=' filename | sed '/./N; s/\n/ /'
+
+ # count lines (emulates "wc -l")
+ sed -n '$='
+
+TEXT CONVERSION AND SUBSTITUTION:
+
+ # IN UNIX ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format.
+ sed 's/.$//'               # assumes that all lines end with CR/LF
+ sed 's/^M$//'              # in bash/tcsh, press Ctrl-V then Ctrl-M
+ sed 's/\x0D$//'            # works on ssed, gsed 3.02.80 or higher
+
+ # IN UNIX ENVIRONMENT: convert Unix newlines (LF) to DOS format.
+ sed "s/$/`echo -e \\\r`/"            # command line under ksh
+ sed 's/$'"/`echo \\\r`/"             # command line under bash
+ sed "s/$/`echo \\\r`/"               # command line under zsh
+ sed 's/$/\r/'                        # gsed 3.02.80 or higher
+
+ # IN DOS ENVIRONMENT: convert Unix newlines (LF) to DOS format.
+ sed "s/$//"                          # method 1
+ sed -n p                             # method 2
+
+ # IN DOS ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format.
+ # Can only be done with UnxUtils sed, version 4.0.7 or higher. The
+ # UnxUtils version can be identified by the custom "--text" switch
+ # which appears when you use the "--help" switch. Otherwise, changing
+ # DOS newlines to Unix newlines cannot be done with sed in a DOS
+ # environment. Use "tr" instead.
+ sed "s/\r//" infile >outfile         # UnxUtils sed v4.0.7 or higher
+ tr -d \r <infile >outfile            # GNU tr version 1.22 or higher
+
+ # delete leading whitespace (spaces, tabs) from front of each line
+ # aligns all text flush left
+ sed 's/^[ \t]*//'                    # see note on '\t' at end of file
+
+ # delete trailing whitespace (spaces, tabs) from end of each line
+ sed 's/[ \t]*$//'                    # see note on '\t' at end of file
+
+ # delete BOTH leading and trailing whitespace from each line
+ sed 's/^[ \t]*//;s/[ \t]*$//'
+
+ # insert 5 blank spaces at beginning of each line (make page offset)
+ sed 's/^/     /'
+
+ # align all text flush right on a 79-column width
+ sed -e :a -e 's/^.\{1,78\}$/ &/;ta'  # set at 78 plus 1 space
+
+ # center all text in the middle of 79-column width. In method 1,
+ # spaces at the beginning of the line are significant, and trailing
+ # spaces are appended at the end of the line. In method 2, spaces at
+ # the beginning of the line are discarded in centering the line, and
+ # no trailing spaces appear at the end of lines.
+ sed  -e :a -e 's/^.\{1,77\}$/ & /;ta'                     # method 1
+ sed  -e :a -e 's/^.\{1,77\}$/ &/;ta' -e 's/\( *\)\1/\1/'  # method 2
+
+ # substitute (find and replace) "foo" with "bar" on each line
+ sed 's/foo/bar/'             # replaces only 1st instance in a line
+ sed 's/foo/bar/4'            # replaces only 4th instance in a line
+ sed 's/foo/bar/g'            # replaces ALL instances in a line
+ sed 's/\(.*\)foo\(.*foo\)/\1bar\2/' # replace the next-to-last case
+ sed 's/\(.*\)foo/\1bar/'            # replace only the last case
+
+ # substitute "foo" with "bar" ONLY for lines which contain "baz"
+ sed '/baz/s/foo/bar/g'
+
+ # substitute "foo" with "bar" EXCEPT for lines which contain "baz"
+ sed '/baz/!s/foo/bar/g'
+
+ # change "scarlet" or "ruby" or "puce" to "red"
+ sed 's/scarlet/red/g;s/ruby/red/g;s/puce/red/g'   # most seds
+ gsed 's/scarlet\|ruby\|puce/red/g'                # GNU sed only
+
+ # reverse order of lines (emulates "tac")
+ # bug/feature in HHsed v1.5 causes blank lines to be deleted
+ sed '1!G;h;$!d'               # method 1
+ sed -n '1!G;h;$p'             # method 2
+
+ # reverse each character on the line (emulates "rev")
+ sed '/\n/!G;s/\(.\)\(.*\n\)/&\2\1/;//D;s/.//'
+
+ # join pairs of lines side-by-side (like "paste")
+ sed '$!N;s/\n/ /'
+
+ # if a line ends with a backslash, append the next line to it
+ sed -e :a -e '/\\$/N; s/\\\n//; ta'
+
+ # if a line begins with an equal sign, append it to the previous line
+ # and replace the "=" with a single space
+ sed -e :a -e '$!N;s/\n=/ /;ta' -e 'P;D'
+
+ # add commas to numeric strings, changing "1234567" to "1,234,567"
+ gsed ':a;s/\B[0-9]\{3\}\>/,&/;ta'                     # GNU sed
+ sed -e :a -e 's/\(.*[0-9]\)\([0-9]\{3\}\)/\1,\2/;ta'  # other seds
+
+ # add commas to numbers with decimal points and minus signs (GNU sed)
+ gsed -r ':a;s/(^|[^0-9.])([0-9]+)([0-9]{3})/\1\2,\3/g;ta'
+
+ # add a blank line every 5 lines (after lines 5, 10, 15, 20, etc.)
+ gsed '0~5G'                  # GNU sed only
+ sed 'n;n;n;n;G;'             # other seds
+
+SELECTIVE PRINTING OF CERTAIN LINES:
+
+ # print first 10 lines of file (emulates behavior of "head")
+ sed 10q
+
+ # print first line of file (emulates "head -1")
+ sed q
+
+ # print the last 10 lines of a file (emulates "tail")
+ sed -e :a -e '$q;N;11,$D;ba'
+
+ # print the last 2 lines of a file (emulates "tail -2")
+ sed '$!N;$!D'
+
+ # print the last line of a file (emulates "tail -1")
+ sed '$!d'                    # method 1
+ sed -n '$p'                  # method 2
+
+ # print the next-to-the-last line of a file
+ sed -e '$!{h;d;}' -e x              # for 1-line files, print blank line
+ sed -e '1{$q;}' -e '$!{h;d;}' -e x  # for 1-line files, print the line
+ sed -e '1{$d;}' -e '$!{h;d;}' -e x  # for 1-line files, print nothing
+
+ # print only lines which match regular expression (emulates "grep")
+ sed -n '/regexp/p'           # method 1
+ sed '/regexp/!d'             # method 2
+
+ # print only lines which do NOT match regexp (emulates "grep -v")
+ sed -n '/regexp/!p'          # method 1, corresponds to above
+ sed '/regexp/d'              # method 2, simpler syntax
+
+ # print the line immediately before a regexp, but not the line
+ # containing the regexp
+ sed -n '/regexp/{g;1!p;};h'
+
+ # print the line immediately after a regexp, but not the line
+ # containing the regexp
+ sed -n '/regexp/{n;p;}'
+
+ # print 1 line of context before and after regexp, with line number
+ # indicating where the regexp occurred (similar to "grep -A1 -B1")
+ sed -n -e '/regexp/{=;x;1!p;g;$!N;p;D;}' -e h
+
+ # grep for AAA and BBB and CCC (in any order)
+ sed '/AAA/!d; /BBB/!d; /CCC/!d'
+
+ # grep for AAA and BBB and CCC (in that order)
+ sed '/AAA.*BBB.*CCC/!d'
+
+ # grep for AAA or BBB or CCC (emulates "egrep")
+ sed -e '/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d    # most seds
+ gsed '/AAA\|BBB\|CCC/!d'                        # GNU sed only
+
+ # print paragraph if it contains AAA (blank lines separate paragraphs)
+ # HHsed v1.5 must insert a 'G;' after 'x;' in the next 3 scripts below
+ sed -e '/./{H;$!d;}' -e 'x;/AAA/!d;'
+
+ # print paragraph if it contains AAA and BBB and CCC (in any order)
+ sed -e '/./{H;$!d;}' -e 'x;/AAA/!d;/BBB/!d;/CCC/!d'
+
+ # print paragraph if it contains AAA or BBB or CCC
+ sed -e '/./{H;$!d;}' -e 'x;/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d
+ gsed '/./{H;$!d;};x;/AAA\|BBB\|CCC/b;d'         # GNU sed only
+
+ # print only lines of 65 characters or longer
+ sed -n '/^.\{65\}/p'
+
+ # print only lines of less than 65 characters
+ sed -n '/^.\{65\}/!p'        # method 1, corresponds to above
+ sed '/^.\{65\}/d'            # method 2, simpler syntax
+
+ # print section of file from regular expression to end of file
+ sed -n '/regexp/,$p'
+
+ # print section of file based on line numbers (lines 8-12, inclusive)
+ sed -n '8,12p'               # method 1
+ sed '8,12!d'                 # method 2
+
+ # print line number 52
+ sed -n '52p'                 # method 1
+ sed '52!d'                   # method 2
+ sed '52q;d'                  # method 3, efficient on large files
+
+ # beginning at line 3, print every 7th line
+ gsed -n '3~7p'               # GNU sed only
+ sed -n '3,${p;n;n;n;n;n;n;}' # other seds
+
+ # print section of file between two regular expressions (inclusive)
+ sed -n '/Iowa/,/Montana/p'             # case sensitive
+
+SELECTIVE DELETION OF CERTAIN LINES:
+
+ # print all of file EXCEPT section between 2 regular expressions
+ sed '/Iowa/,/Montana/d'
+
+ # delete duplicate, consecutive lines from a file (emulates "uniq").
+ # First line in a set of duplicate lines is kept, rest are deleted.
+ sed '$!N; /^\(.*\)\n\1$/!P; D'
+
+ # delete duplicate, nonconsecutive lines from a file. Beware not to
+ # overflow the buffer size of the hold space, or else use GNU sed.
+ sed -n 'G; s/\n/&&/; /^\([ -~]*\n\).*\n\1/d; s/\n//; h; P'
+
+ # delete all lines except duplicate lines (emulates "uniq -d").
+ sed '$!N; s/^\(.*\)\n\1$/\1/; t; D'
+
+ # delete the first 10 lines of a file
+ sed '1,10d'
+
+ # delete the last line of a file
+ sed '$d'
+
+ # delete the last 2 lines of a file
+ sed 'N;$!P;$!D;$d'
+
+ # delete the last 10 lines of a file
+ sed -e :a -e '$d;N;2,10ba' -e 'P;D'   # method 1
+ sed -n -e :a -e '1,10!{P;N;D;};N;ba'  # method 2
+
+ # delete every 8th line
+ gsed '0~8d'                           # GNU sed only
+ sed 'n;n;n;n;n;n;n;d;'                # other seds
+
+ # delete lines matching pattern
+ sed '/pattern/d'
+
+ # delete ALL blank lines from a file (same as "grep '.' ")
+ sed '/^$/d'                           # method 1
+ sed '/./!d'                           # method 2
+
+ # delete all CONSECUTIVE blank lines from file except the first; also
+ # deletes all blank lines from top and end of file (emulates "cat -s")
+ sed '/./,/^$/!d'          # method 1, allows 0 blanks at top, 1 at EOF
+ sed '/^$/N;/\n$/D'        # method 2, allows 1 blank at top, 0 at EOF
+
+ # delete all CONSECUTIVE blank lines from file except the first 2:
+ sed '/^$/N;/\n$/N;//D'
+
+ # delete all leading blank lines at top of file
+ sed '/./,$!d'
+
+ # delete all trailing blank lines at end of file
+ sed -e :a -e '/^\n*$/{$d;N;ba' -e '}'  # works on all seds
+ sed -e :a -e '/^\n*$/N;/\n$/ba'        # ditto, except for gsed 3.02.*
+
+ # delete the last line of each paragraph
+ sed -n '/^$/{p;h;};/./{x;/./p;}'
+
+SPECIAL APPLICATIONS:
+
+ # remove nroff overstrikes (char, backspace) from man pages. The 'echo'
+ # command may need an -e switch if you use Unix System V or bash shell.
+ sed "s/.`echo \\\b`//g"    # double quotes required for Unix environment
+ sed 's/.^H//g'             # in bash/tcsh, press Ctrl-V and then Ctrl-H
+ sed 's/.\x08//g'           # hex expression for sed 1.5, GNU sed, ssed
+
+ # get Usenet/e-mail message header
+ sed '/^$/q'                # deletes everything after first blank line
+
+ # get Usenet/e-mail message body
+ sed '1,/^$/d'              # deletes everything up to first blank line
+
+ # get Subject header, but remove initial "Subject: " portion
+ sed '/^Subject: */!d; s///;q'
+
+ # get return address header
+ sed '/^Reply-To:/q; /^From:/h; /./d;g;q'
+
+ # parse out the address proper. Pulls out the e-mail address by itself
+ # from the 1-line return address header (see preceding script)
+ sed 's/ *(.*)//; s/>.*//; s/.*[:<] *//'
+
+ # add a leading angle bracket and space to each line (quote a message)
+ sed 's/^/> /'
+
+ # delete leading angle bracket & space from each line (unquote a message)
+ sed 's/^> //'
+
+ # remove most HTML tags (accommodates multiple-line tags)
+ sed -e :a -e 's/<[^>]*>//g;/</N;//ba'
+
+ # extract multi-part uuencoded binaries, removing extraneous header
+ # info, so that only the uuencoded portion remains. Files passed to
+ # sed must be passed in the proper order. Version 1 can be entered
+ # from the command line; version 2 can be made into an executable
+ # Unix shell script. (Modified from a script by Rahul Dhesi.)
+ sed '/^end/,/^begin/d' file1 file2 ... fileX | uudecode   # vers. 1
+ sed '/^end/,/^begin/d' "$@" | uudecode                    # vers. 2
+
+ # sort paragraphs of file alphabetically. Paragraphs are separated by blank
+ # lines. GNU sed uses \v for vertical tab, or any unique char will do.
+ sed '/./{H;d;};x;s/\n/={NL}=/g' file | sort | sed '1s/={NL}=//;s/={NL}=/\n/g'
+ gsed '/./{H;d};x;y/\n/\v/' file | sort | sed '1s/\v//;y/\v/\n/'
+
+ # zip up each .TXT file individually, deleting the source file and
+ # setting the name of each .ZIP file to the basename of the .TXT file
+ # (under DOS: the "dir /b" switch returns bare filenames in all caps).
+ echo @echo off >zipup.bat
+ dir /b *.txt | sed "s/^\(.*\)\.TXT/pkzip -mo \1 \1.TXT/" >>zipup.bat
+
+TYPICAL USE: Sed takes one or more editing commands and applies all of
+them, in sequence, to each line of input. After all the commands have
+been applied to the first input line, that line is output and a second
+input line is taken for processing, and the cycle repeats. The
+--
+more filenames can be appended to the command line if the input does
+not come from stdin. Output is sent to stdout (the screen). Thus:
+
+ cat filename | sed '10q'        # uses piped input
+ sed '10q' filename              # same effect, avoids a useless "cat"
+ sed '10q' filename > newfile    # redirects output to disk
+
+For additional syntax instructions, including the way to apply editing
+commands from a disk file instead of the command line, consult "sed &
+awk, 2nd Edition," by Dale Dougherty and Arnold Robbins (O'Reilly,
+1997; http://www.ora.com), "UNIX Text Processing," by Dale Dougherty
+and Tim O'Reilly (Hayden Books, 1987) or the tutorials by Mike Arst
+distributed in U-SEDIT2.ZIP (many sites). To fully exploit the power
+of sed, one must understand "regular expressions." For this, see
+"Mastering Regular Expressions" by Jeffrey Friedl (O'Reilly, 1997).
+The manual ("man") pages on Unix systems may be helpful (try "man
+sed", "man regexp", or the subsection on regular expressions in "man
+ed"), but man pages are notoriously difficult. They are not written to
+teach sed use or regexps to first-time users, but as a reference text
+for those already acquainted with these tools.
+
+QUOTING SYNTAX: The preceding examples use single quotes ('...')
+instead of double quotes ("...") to enclose editing commands, since
+sed is typically used on a Unix platform. Single quotes prevent the
+Unix shell from intrepreting the dollar sign ($) and backquotes
+(`...`), which are expanded by the shell if they are enclosed in
+double quotes. Users of the "csh" shell and derivatives will also need
+to quote the exclamation mark (!) with the backslash (i.e., \!) to
+properly run the examples listed above, even within single quotes.
+Versions of sed written for DOS invariably require double quotes
+("...") instead of single quotes to enclose editing commands.
+
+USE OF '\t' IN SED SCRIPTS: For clarity in documentation, we have used
+the expression '\t' to indicate a tab character (0x09) in the scripts.
+However, most versions of sed do not recognize the '\t' abbreviation,
+so when typing these scripts from the command line, you should press
+the TAB key instead. '\t' is supported as a regular expression
+metacharacter in awk, perl, and HHsed, sedmod, and GNU sed v3.02.80.
+
+VERSIONS OF SED: Versions of sed do differ, and some slight syntax
+variation is to be expected. In particular, most do not support the
+use of labels (:name) or branch instructions (b,t) within editing
+commands, except at the end of those commands. We have used the syntax
+which will be portable to most users of sed, even though the popular
+GNU versions of sed allow a more succinct syntax. When the reader sees
+a fairly long command such as this:
+
+   sed -e '/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d
+
+it is heartening to know that GNU sed will let you reduce it to:
+
+   sed '/AAA/b;/BBB/b;/CCC/b;d'      # or even
+   sed '/AAA\|BBB\|CCC/b;d'
+
+In addition, remember that while many versions of sed accept a command
+like "/one/ s/RE1/RE2/", some do NOT allow "/one/! s/RE1/RE2/", which
+contains space before the 's'. Omit the space when typing the command.
+
+--
+be executed more quickly if the "find" expression is specified before
+giving the "s/.../.../" instruction. Thus:
+
+   sed 's/foo/bar/g' filename         # standard replace command
+   sed '/foo/ s/foo/bar/g' filename   # executes more quickly
+   sed '/foo/ s//bar/g' filename      # shorthand sed syntax
+
+On line selection or deletion in which you only need to output lines
+from the first part of the file, a "quit" command (q) in the script
+will drastically reduce processing time for large files. Thus:
+
+   sed -n '45,50p' filename           # print line nos. 45-50 of a file
+   sed -n '51q;45,50p' filename       # same, but executes much faster
+
+If you have any additional scripts to contribute or if you find errors
+in this document, please send e-mail to the compiler. Indicate the
+version of sed you used, the operating system it was compiled for, and
+the nature of the problem. To qualify as a one-liner, the command line
+must be 65 characters or less. Various scripts in this file have been
+written or contributed by:
+--
+ Al Aab                   # founder of "seders" list
+ Edgar Allen              # various
+ Yiorgos Adamopoulos      # various
+ Dale Dougherty           # author of "sed & awk"
+ Carlos Duarte            # author of "do it with sed"
+ Eric Pement              # author of this document
+ Ken Pizzini              # author of GNU sed v3.02
+ S.G. Ravenhall           # great de-html script
+ Greg Ubben               # many contributions & much help
+install_msfonts () {
+  echo "Installing Microsoft Fonts (you'll need to sign for this)..."
+  apt-get install --yes --quiet \
+    $(apt-cache depends ttf-mscorefonts-installer | grep Depends | sed "s/.*ends:\ //" | tr '\n' ' ') \
+     > ${STDOUT} 2> ${STDERR}
+
+  apt-get install --yes --quiet --quiet \
+--
+
+install_acroread () {
+  sudo apt-get install --yes --quiet \
+    $(apt-cache depends acroread | grep Depends | sed "s/.*ends:\ //" | tr '\n' ' ') \
+    > ${STDOUT} 2> ${STDERR}
+    
+  echo "You're about to have to accept some license agreements using the arrow and enter keys..."
+awk '{print $5}' | sed 's/^.*:.*://g'
+
+awk '{print $5}' | sed 's/^.*:.*://g'
+
+date --rfc-822 
+date --rfc-822 | awk '{print $5}' | sed 's/^.*:.*://g'
+
+date --rfc-822 | awk '{print $5}' | sed 's/^.*://g'
+
+
+#You have to install ipcalc to make that solution work.
+
+IP_AND_MASK=`ifconfig | grep "inet addr" | head -n1 | sed 's|.*addr:\([0-9\.]*\).*Mask:\([0-9\.]*\)|\1/\2|g'`
+NETWORK=`ipcalc "$IP_AND_MASK" | grep "Network:" | sed 's|^Network:\s*\([0-9/\.]*\).*|\1|g'`
+nmap -sP "$NETWORK"
+rdiff-backup --print-statistics   $LOCAL_PATH $REMOTE_IP::$REMOTE_PATH >/tmp/last_backup.txt 2>/tmp/last_backup_E.txt 
+
+#Prepare Notify
+sed s/\<DATE\>/"`date`"/ $SCRIPT_PATH/template.tpl >/tmp/email.txt
+cat /tmp/last_backup.txt >>/tmp/email.txt
+cat $SCRIPT_PATH//help.txt >>/tmp/email.txt
+
+--
+#Error : check error looking into --print-statistics file (/tmp/last_backup.txt)
+error=`grep -e 'Errors.0' /tmp/last_backup.txt`
+if [ -z "$error" ]; then
+	sed s/\<DATE\>/"`date`"/ $SCRIPT_PATH/template_error.tpl >/tmp/email_e.txt
+	cat /tmp/last_backup_E.txt >>/tmp/email_e.txt
+	cat /tmp/email_e.txt  | sendmail -f$FROM -s$SERVER $TO
+fi 
+echo "1 SoX Sound Exchange - Convert WAV to FLAC with 16000" 
+sox message.wav message.flac rate 16k 
+echo "2 Submit to Google Voice Recognition" 
+wget -q -U "Mozilla/5.0" --post-file message.flac --header="Content-Type: audio/x-flac; rate=16000" -O - "http://www.google.com/speech-api/v1/recognize?lang=de-de&client=chromium" > message.ret echo "3 SED Extract recognized text" cat message.ret | sed 's/.*utterance":"//' | sed 's/","confidence.*//' > message.txt 
+echo "4 Remove Temporary Files" 
+rm message.flac rm message.ret 
+echo "5 Show Text " 
+du -hs *
+
+# Open (in vim) all modified files in a git repository
+vim `git status --porcelain | sed -ne 's/^ M //p'`
+
+# This little command edits your gitignore from anywhere in your repo
+vim $(git rev-parse --show-toplevel)/.gitignore
+--
+git status --porcelain | awk '{print $2}' | xargs git add
+
+# Show a random oneliner from commandlinefu.com
+echo -e "`curl -sL http://www.commandlinefu.com/commands/random/json|sed -re 's/.*,"command":"(.*)","summary":"([^"]+).*/\\x1b[1;32m\2\\n\\n\\x1b[1;33m\1\\x1b[0m/g'`\n"
+
+# Find a list of all installed packages on a Redhat/CentOS system
+rpm -qa | sort | sed -n -e "s/\-[0-9].[0-9]*.*//p" | uniq
+
+# Prints per-line contribution per author for a GIT repository
+git ls-files | xargs -n1 git blame --line-porcelain | sed -n 's/^author //p' | sort -f | uniq -ic | sort -nr
+
+# Create a git archive of the latest commit with revision number as name of file
+git archive HEAD --format=zip -o `git rev-parse HEAD`.zip
+--
+alias sudo='sudo '
+
+# Multi (file)source SSH host tab-completion
+complete -W "$( { awk '/^Host / { print $2 }' ~/.ssh/config | egrep -v '\*|,'      echo $( grep '^ssh ' .bash_history | sort -u | sed 's/^ssh //' )      while IFS=' ,' read host t; do echo $host; done < ~/.ssh/known_hosts ;} )" ssh
+
+# Style a block of code in a blog that accepts HTML.
+overflow:auto;padding:5px;border-style:double;font-weight:bold;color:#00ff00;background-color:0;"><pre style="white-space:pre-wrap;white-space:-moz-pre-wrap !important;white-space:-pre-wrap;white-space:-o-pre-wrap;word-wrap:break-word;_white-space:pre;
+--
+for filename in *.epub;do ebook-convert "$filename" "${filename%.epub}.mobi" --prefer-author-sort --output-profile=kindle --linearize-tables --smarten-punctuation --asciiize --enable-heuristics;done
+
+# Find Malware in the current and sub directories by MD5 hashes
+IFS=$'\n' && for f in `find . -type f -exec md5sum "{}" \;`; do echo $f | sed -r 's/^[^ ]+/Checking:/'; echo $f | cut -f1 -d' ' | netcat hash.cymru.com 43 ; done
+
+# Multiple variable assignments from command output in BASH
+eval $(date +"day=%d; month=%m; year=%y")
+rename 's/\d+/sprintf("%02d",$&)/e' -- $@
+
+# rename multiple files with different name, eg converting all txt to csv
+touch file{1..10}.txt ; ls *txt| sed -e "p;s/\.txt$/\.csv/"|xargs -n2 mv
+
+# resize all the images returned by ls command and append "new_" to the resized images
+for file in `ls *.png`;do convert $file -resize 65% new_$file; done
+find /some/path -type f | gawk -F/ '{print $NF}' | gawk -F. '/\./{print $NF}' | sort | uniq -c | sort -rn
+
+# find duplicate messages in a Maildir
+find $folder -name "[1-9]*" -type f -print|while read file; do echo $file $(sed -e '/^$/Q;:a;$!N;s/\n //;ta;s/ /_/g;P;D' $file|awk '/^Received:/&&!r{r=$0}/^From:/&&!f{f=$0}r&&f{printf "%s%s",r,f;exit(0)}');done|sort -k 2|uniq -d -f 1
+
+# fbari
+lynx -useragent=Opera -dump 'http://www.facebook.com/ajax/typeahead_friends.php?u=521826202&__a=1' |gawk -F'\"t\":\"' -v RS='\",' 'RT{print $NF}' |grep -v '\"n\":\"' |cut -d, -f2
+--
+lynx -useragent=Opera -dump 'http://www.facebook.com/ajax/typeahead_friends.php?u=100000475200812&__a=1' |gawk -F'\"t\":\"' -v RS='\",' 'RT{print $NF}' |grep -v '\"n\":\"' |cut -d, -f2
+
+# Find highest context switches
+grep -H voluntary_ctxt /proc/*/status |gawk '{ split($1,proc,"/"); if ( $2 > 10000000 ) { printf $2 " - Process : "; system("ps h -o cmd -p "proc[3]) } }' | sort -nk1,1 | sed 's/^/Context Switches: /g'
+
+# Capture screen and mic input using FFmpeg and ALSA
+a=$(xwininfo |gawk 'BEGIN {FS="[x+ \t]*"} /-geometry/ {print int(($3+1)/2)*2"x"int(($4+1)/2)*2"+"$5"+"$6}') ; echo ${a} ; ffmpeg -f x11grab -s ${a} -r 10 -i :0.0 -sameq -f mp4 -s wvga -y /tmp/out.mpg
+--
+$ lynx -useragent=Opera -dump 'http://www.facebook.com/ajax/typeahead_friends.php?u=100003119823986&__a=1' |gawk -F'\"t\":\"' -v RS='\",' 'RT{print $NF}' |grep -v '\"n\":\"' |cut -d, -f2
+
+# du with colored bar graph
+t=$(df|awk 'NR!=1{sum+=$2}END{print sum}');sudo du / --max-depth=1|sed '$d'|sort -rn -k1 | awk -v t=$t 'OFMT="%d" {M=64; for (a=0;a<$1;a++){if (a>c){c=a}}br=a/c;b=M*br;for(x=0;x<b;x++){printf "\033[1;31m" "|" "\033[0m"}print " "$2" "(a/t*100)"% total"}'
+
+# wala
+lynx -useragent=Opera -dump 'http://www.facebook.com/ajax/typeahead_friends.php?u=Bilal Butt&__a=1' |gawk -F'\"t\":\"' -v RS='\",' 'RT{print $NF}' |grep -v '\"n\":\"' |cut -d, -f2
+for f in `find . -name "*.php"`; do perl -p -i.bak -e 's/<\?php \/\*\*\/ eval\(base64_decode\(\"[^\"]+"\)\);\?>//' $f; done
+
+# Convert an UNIX file to a DOS file.
+sed -i 's/$/\r/' file
+
+# Install an entire folder of .apk files to your android device thru adb
+find ~/path/to/apk/files -name '*.apk' -exec adb install {} \;
+make -d | egrep --color -i '(considering|older|newer|remake)'
+
+# Calculate a transcendental number (pi)
+seq 1 2 99999999 | sed 's!^!4/!' | paste -sd-+ | bc -l
+
+# Binary clock
+echo "10 i 2 o $(date +"%H%M"|cut -b 1,2,3,4 --output-delimiter=' ') f"|dc|tac|xargs printf "%04d\n"|tr "01" ".*"
+
+# Get sunrise time for any city, by name
+sunrise() { city=${1-Seattle}; w3m "google.com/search?q=sunrise:$city" | sed -r '1,/^\s*1\./d; /^\s*2\./,$d; /^$/d' ;}
+
+# Check syntax of all Perl modules or scripts underneath the current directory
+for code in $(find . -type f -name '*.p[ml]'); do perl -c "$code"; done
+grep -E/egrep 'word1.*word2|word2.*word1' "$@"
+
+# Google verbatim search on your terminal
+function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
+
+# Graphically display directory structure
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+
+# find potentially malicious PHP commands used in backdoors and aliked scripts
+find ./public_html/ -name \*.php -exec grep -HRnDskip "\(passthru\|shell_exec\|system\|phpinfo\|base64_decode\|chmod\|mkdir\|fopen\|fclose\|readfile\) *(" {} \;
+
+# Search google.com on your terminal
+Q="YOURSEARCH"; GOOG_URL="http://www.google.com/search?q="; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}\"${Q/\ /+}\"" | grep -oP '\/url\?q=.+?&amp' | sed 's/\/url?q=//;s/&amp//'); echo -e "${stream//\%/\x}"
+
+# Get the number of open sockets for a process
+ps aux | grep [process] | awk '{print $2}' | xargs -I % ls /proc/%/fd | wc -l
+rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d
+
+# Resample MP3's to 44.1kHz
+file /music/dir/* | grep -v 44.1 | sed 's/:.*//g' | grep .mp3 | { while IFS= read; do filebak="\"$REPLY.original\""; file="\"$REPLY\""; mv $file $filebak; sox -t mp3 $filebak $file rate 44k; done; };
+
+# Stream audio over ssh
+sox Klaxon.mp3 -t wav - |ssh thelab@company.com paplay
+# commandlinefu.com by David Winterbottom
+
+# Recursively search and replace old with new string, inside every instance of filename.ext
+find . -type f -name filename.exe -exec sed -i "s/oldstring/oldstring/g" {} +;
+
+# Print a list of all hardlinks in the working directory, recursively
+find . -type f -a \! -links 1
+# commandlinefu.com by David Winterbottom
+
+# Recursively search and replace old with new string, inside every instance of filename.ext
+find . -type f -name filename.exe -exec sed -i "s/oldstring/oldstring/g" {} +;
+
+# Update Twitter From the Linux Command Line
+curl -u user:pass -d status=?I am Tweeting from the shell? http://twitter.com/statuses/update.xml
+--
+^foo^bar^:&
+
+# Get Top Trending Topic on Twiter by location
+lynx --dump http://en.trending-topic.com/countries/Mexico/ | grep "62]#" | sed 's/\[62\]//g'
+
+# Verify a file has not been tampered with since dpkg installation
+cat /var/lib/dpkg/info/*.md5sums|grep usr/sbin/sshd|sed 's,usr,/usr,'|md5sum -c
+
+# Add fade in/out to first & last 25 frames of a video
+melt colour:black out=24 vid.mp4 -mix 25 -mixer luma colour:black out=24 -mix 25 -mixer luma -consumer avformat:out.mp4
+
+# generate 30 x 30 matrix
+xxd -p /dev/urandom |fold -60|head -30|sed 's/\(..\)/\1 /g'
+
+# (DEBIAN-BASED DISTROS) Find total installed size of packages given a search term
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | grep "\-dev" | sort -n | awk '{ sum+=$1} END {print sum/1024 "MB"}'
+--
+for %1 in (*.dll) do regsvr32 /s  %1
+
+# a find and replace within text-based files
+find /path/ -type f -exec grep -l '<string of text>' {} \; | xargs sed -i -e 's%<string of text>%<new text string>%g'
+
+# a find and replace within text-based files
+sed -i 's/http:\/\/old\/new\///g' index.html
+
+# csv file of ping every minutes
+while true; do (date | tr "\n" ";") && ping -q -c 1 www.google.com|tail -1|cut -d/ -f5 ;sleep 1; done >> uptime.csv
+
+# Git Global search and replace
+git grep -l foo | xargs sed -i 's/foo/bar/g'
+
+# automatically ditch old versions in a conflict
+qq/<<<<<<^Md/^======^Mdd/>>>>>>^Mdd^M/<<<<<<q
+--
+find . -name \*.swp -type f -delete
+
+# Put uppercase letters in curly brackets in a BibTeX database
+sed '/^\s*[^@%]/s=\([A-Z][A-Z]*\)\([^}A-Z]\|},$\)={\1}\2=g' literature.bib > output.bib
+
+# Get the /dev/disk/by-id fragment for a physical drive
+ls -l /dev/disk/by-id | egrep ata-.*`hdparm -i /dev/sda | grep SerialNo | sed 's/.*SerialNo=//' | tr -d "\n"`.*sda$ | sed -e 's/.*ata-/ata-/' -e 's|[ ].*||' | tr -d "\n"
+
+# Oneliner to get domain names list of all existing domain names (from wikipedia)
+curl -s http://en.m.wikipedia.org/wiki/List_of_Internet_top-level_domains | sed -n '/<tr valign="top">/{s/<[^>]*>//g;p}'
+
+# recursive search and replace old with new string, inside files
+replace old new -- `find -type f`
+# commandlinefu.com by David Winterbottom
+
+# UBNT device
+iwlist ath0 scanning |egrep '(ESSID|Signal|Address)'| \sed -e 's/Cell  - Address:*//g'  -e 's/ESSID://g' \-e 's/Noise level=-//g' -e 's/dBm//g' \-e 's/Quality=*//g'  -e 's/Signal level=-//g' \-e 's/"//g'
+
+# Prints total line count contribution per user for an SVN repository
+svn ls -R | egrep -v -e "\/$" | tr '\n' '\0' | xargs -0 svn blame | awk '{print $2}' | sort | uniq -c | sort -nr
+--
+man ls | egrep "^([A-Z]|   [A-Z])"
+
+# Get the /dev/disk/by-id fragment for a physical drive
+ls -l /dev/disk/by-id | egrep ata-.*`hdparm -i /dev/sda | grep SerialNo | sed 's/.*SerialNo=//' | tr -d "\n"`.*sda$ | sed -e 's/.*ata-/ata-/' -e 's|[ ].*||' | tr -d "\n"
+
+# Find out local DISPLAY number
+export DISPLAY=$(tr '\000' '\n' < /proc/`pidof Xorg`/cmdline | egrep '^:[0-9]+')
+--
+egrep -v  '(\t)?#.*|^$' /etc/apache2/sites-available/default
+
+# list uniq extensions of files from the current directory
+find . -type f |egrep '^./.*\.' |sed -e "s/\(^.*\.\)\(.*$\)/\2/" |sort |uniq
+
+# What is my ip?
+curl -s mi-ip.net | grep '"ip"' | cut -f2 -d ">" | egrep -o '[0-9.]+'
+
+# Use exit codes that actually means something.
+source <(egrep '^#define EX_.*' /usr/include/sysexits.h  | sed -e 's/#define/declare -r/g' | sed 's/\//#/g' | sed -e 's/\s\{1,\}/ /g' | sed -e 's/ \([0-9]\)/\=\1/'g )
+
+# Short Information about loaded kernel modules
+lsmod | tail -n +2 | cut -d' ' -f1 | xargs modinfo | egrep '^file|^desc|^dep' | sed -e'/^dep/s/$/\n/g'
+
+# Watch active calls on an Asterisk PBX
+watch "asterisk -vvvvvrx 'core show channels' | egrep \"(call|channel)\""
+--
+lsof -p `pidof pidgin` | awk '{ print $9 }'|egrep `hostname` | grep -o ">[^:]\+:" | tr -d ":>" | while read line; do host $line; done;
+
+# Escape literal string for inclusion in an egrep regex
+egrep_escape() {  echo "$1" |sed -re 's/([\\.*+?(|)^$[])/\\\1/g' -e 's/\{/[{]/g';  }
+
+# sum and average of requests responses times or sizes in Apache2 access log
+egrep '.*(("STATUS)|("HEAD)).*' http_access.2012.07.18.log | awk '{sum+=$11; ++n} END {print "Tot="sum"("n")";print "Avg="sum/n}'
+
+# Get Unique Hostnames from Apache Config Files
+egrep 'ServerAlias|ServerName' /etc/apache2/sites-enabled/*.conf | awk '{printf "%s\t%s\n",$2,$3}' | sed 's/www.//' | sort | uniq
+
+# Plaintext credentials sniffing with tcpdump and grep
+tcpdump port http or port ftp or port smtp or port imap or port pop3 -l -A | egrep -i 'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user ' --color=auto --line-buffered -B20
+# Multiple variable assignments from command output in BASH
+eval $(date +"day=%d; month=%m; year=%y")
+
+# Extract specific lines from a text file using Stream Editor (sed)
+sed -n -e 1186,1210p A-small-practice.in
+
+# Setup Vim environment for USACO coding
+alias viaco='task="$(basename "$(pwd)")"; if [ -f "$task.c" ]; then vi -c "set mouse=n" -c "set autoread" -c "vsplit $task.out" -c "split $task.in" -c "wincmd l" -c "wincmd H" $task.c; fi'
+--
+# How to Kill Process that is Running on Certain Port in Windows?
+netstat -a -o -n | grep 8080
+
+# sed /pat/!d without using sed (no RE; limited to shell patterns aka globbing)
+se(){ while read a;do [ "$a" != "${a#*$@*}" ]&&echo $a;done ;} # usage: se pattern # use in place of sed /pat/!d where RE are overkill
+
+# cpu stress test
+taskset  0x00000001 yes > /dev/null &
+--
+tar pcf - home | pv -s $(du -sb home | awk '{print $1}') --rate-limit 500k | gzip > /mnt/c/home.tar.gz
+
+# Define words with google. (busybox version)
+wget -q -U busybox -O- "http://www.google.com/search?ie=UTF8&q=define%3A$1" | tr '<' '\n' | sed -n 's/^li>\(.*\)/\1\n/p'
+
+# wget, tar xzvf, cd, ls
+wtzc () { wget "$@"; foo=`echo "$@" | sed 's:.*/::'`; tar xzvf $foo; blah=`echo $foo | sed 's:,*/::'`; bar=`echo $blah | sed -e 's/\(.*\)\..*/\1/' -e 's/\(.*\)\..*/\1/'`; cd $bar; ls; }
+
+svn import /home/kaz/myproject svn+ssh://svn.FOO.codehaus.org/home/projects/FOO/scm/project1/trunk
+
+# Open the current project on Github by typing gh
+git remote -v | grep fetch | sed 's/\(.*github.com\)[:|/]\(.*\).git (fetch)/\2/' | awk {'print "https://github.com/" $1'} | xargs open
+
+# List users in a group
+lsgrp() { read GID USERS <<< "$(grep "^$1:" /etc/group | cut -d: -f3,4 | tr ':,' ' ')" ; echo -e "${USERS// /\n}" | egrep -v "^($1)?$" ; egrep :[0-9]+:$GID: /etc/passwd | cut -d: -f1 ; }
+--
+cd ~/ruby/project_a ; find . -name "*profile*" -exec pax -rw {} ~/ruby/project_b/ \;
+
+# Fixing maven POM messed up by a broken release.
+find . -iname pom.xml -type f -exec bash -c "cat {} | sed s/1\.0\.46\-SNAPSHOT/1\.0\.48\-SNAPSHOT/g > {}.tmp " \; -exec mv {}.tmp {} \;
+
+# checkout directory and the files it contains, without any further subdirectories
+cvs checkout -l project/src/
+--
+vim -p `ls *.java *.xml *.txt *.bnd 2>/dev/null`
+
+# How many lines in your PHP project without comments
+find . -type f -name '*.php' | xargs cat | sed -re ':top /\/\*.*\*\// { s/\/\*.*\*\///g ; t top }; /\/\*/ { N ; b top }' | awk '$0 !~ /^[\t[:space:]]*($|(\/\/)|(#))/' | wc -l
+
+# How many lines in your c project?
+find . -type f -name *.[ch] -exec wc -l {} \;
+# commandlinefu.com by David Winterbottom
+
+# List mp3 files with less than 320 kbps bitrate.
+find -name '*.mp3' -exec mp3info {} -p "%F: %r kbps\n" \;  | sort | sed '/320 kbps/d'
+
+# Recursively search and replace old with new string, inside every instance of filename.ext
+find . -type f -name filename.exe -exec sed -i "s/oldstring/oldstring/g" {} +;
+
+# Get a list of Mageia Linux mirrors providing rsync connectivity for Mageia 3 release
+url=http://mirrors.mageia.org/api/mageia.3.i586.list; wget -q ${url} -O - | grep rsync:
+--
+find /etc -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
+
+# Recompress all files in current directory from gzip to bzip2
+find . -type f -name "*.gz" | while read line ; do gunzip --to-stdout "$line" | bzip2 > "$(echo $line | sed 's/gz$/bz2/g')" ; done
+
+# Recompress all files in current directory from gzip to bzip2
+find . -type f -name '*.gz'|awk '{print "zcat", $1, "| bzip2 -c >", $0.".tmp", "&& rename", "s/.gz.tmp/.bz2/", "*.gz.tmp", "&& rm", $0}'|bash
+curl -k https://Username:Password@api.del.icio.us/v1/posts/all?red=api | xml2| \grep '@href' | cut -d\= -f 2- | sort | uniq | linkchecker -r0 --stdin --complete -v -t 50 -F blacklist
+
+# Download all images from a 4chan thread
+curl -s http://boards.4chan.org/---/res/nnnnnn | grep -o -i 'File: <a href="//images.4chan.org\/[a-z]*\/src\/[0-9]*\.[a-z]\{3\}' | sed -r 's/File: <a href="\/\///' |xargs wget
+
+# Extract URLs from all anchors inside an HTML document with sed and grep
+cat index.html | grep -o '<a .*href=.*>' | sed -e 's/<a /\n<a /g' | sed -e 's/<a .*href=['"'"'"]//' -e 's/["'"'"'].*$//' -e '/^$/ d'
+
+# convert html links into plain text with link anchor
+sed 's!<[Aa] *href*=*"\([^"]*\)"*>\([^<>]*\)</[Aa]>!\1,\2!g' links.html
+
+# turn url and link text into a hyperlink
+sed "s/\([a-zA-Z]*\:\/\/[^,]*\),\(.*\)/\<a href=\"\1\"\>\2\<\/a\>/"
+
+# regex for turning a URL into a real hyperlink (i.e. for posting somewhere that accepts basic html)
+sed "s/\([a-zA-Z]*\:\/\/[^ ]*\)\(.*\)/\<a href=\"\1\"\>\1\<\/a\>\2/"
+
+# check a list of domains registered on godaddy
+for i in `wget -O url|grep '<a rel="nofollow"'|grep http|sed 's|.*<a rel="nofollow" class="[^"]\+" href="[^"]*https\?://\([^/]\+\)[^"]*">[^<]\+</a>.*|\1|'`;do if test -n "$(whois $i|grep -i godaddy)";then echo $i uses GoDaddy;fi;sleep 20;done
+
+# Get all files of particular type (say, PDF) listed on some wegpage (say, example.com)
+curl -s http://example.com | grep -o -P "<a.*href.*>" | grep -o "http.*.pdf" |  xargs -d"\n" -n1  wget -c
+
+# convert chrome html export to folders, links and descriptions
+grep -E '<DT><A|<DT><H3' bookmarks.html | sed 's/<DT>//' | sed '/Bookmarks bar/d' | sed 's/ ADD_DATE=\".*\"//g' | sed 's/^[ \t]*//' | tr '<A HREF' '<a href'
+
+# Create cheap and easy index.html file
+F=index.html; for i in *; do [[ $i = $F ]] && continue; echo "<li><a href='$i'>$i</a>"; done >$F
+--
+echo "javascript:location.href='http://www.commandlinefu.com/commands/matching/'+encodeURIComponent('%s')+'/'+btoa('%s')+'/sort-by-votes'"
+
+# Short URLs with ur1.ca
+ur1() { curl -s --url http://ur1.ca/ -d longurl="$1" | sed -n -e '/Your ur1/!d;s/.*<a href="\(.*\)">.*$/\1/;p' ; }
+
+# Take a screenshot of the screen, upload it to ompldr.org and put link to the clipboard and to the screenshots.log (with a date stamp) in a home directory.
+scrot $1 /tmp/screenshot.png && curl -s -F file1=@/tmp/screenshot.png -F submit="OMPLOAD\!" http://ompldr.org/upload | egrep '(View file: <a href="v([A-Za-z0-9+\/]+)">)' | sed 's/^.*\(http:\/\/.*\)<.*$/\1/' | xsel -b -i ? (full in a sample output)
+
+# Download all data from Google Ngram Viewer
+wget -qO - http://ngrams.googlelabs.com/datasets | grep -E href='(.+\.zip)' | sed -r "s/.*href='(.+\.zip)'.*/\1/" | uniq | while read line; do `wget $line`; done
+
+# Download all images from a 4chan thread
+curl -s http://boards.4chan.org/wg/|sed -r 's/.*href="([^"]*).*/\1\n/g'|grep images|xargs wget
+
+# Download all images from a 4chan thread
+function 4get () { curl $1 | grep -i "File<a href" | awk -F '<a href="' '{print $4}' | awk -F '" ' '{print $1}' | xargs wget }
+
+# Create an easy to pronounce shortened URL from CLI
+shout() { curl -s "http://shoutkey.com/new?url=${1}" | sed -n "/<h1>/s/.*href=\"\([^\"]*\)\".*/\1/p" ;}
+
+# Choose from a nice graphical menu which DI.FM radio station to play
+zenity --list --width 500 --height 500 --column 'radio' --column 'url' --print-column 2 $(curl -s http://www.di.fm/ | awk -F '"' '/href="http:.*\.pls.*96k/ {print $2}' | sort | awk -F '/|\.' '{print $(NF-1) " " $0}') | xargs mplayer
+--
+shmore(){ local l L M="`echo;tput setab 4&&tput setaf 7` --- SHMore --- `tput sgr0`";L=2;while read l;do echo "${l}";((L++));[[ "$L" == "${LINES:-80}" ]]&&{ L=2;read -p"$M" -u1;echo;};done;}
+
+# Parse bookmarks and download youtube files
+sed 's+href="\([^"]*\)"+\n\1\n+g' bookmarks.html | grep '^http' |clive
+
+# last.fm rss parser
+awk '/<link>/{gsub(/.*<link>|<\/link>.*/,"");print "<li><a href=\042"$0"\042> "t"</a>" } /<title>/{gsub(/.*<title>|<\/title>.*/,"");t=$0 }' file
+
+# last.fm rss parser
+egrep "<link>|<title>" recenttracks.rss | awk 'ORS=NR%2?" ":"\n"' | awk -F "</title>" '{print $2, $1}' | sed -e 's/\<link\>/\<li\>\<a href\=\"/' -e 's/\<\/link\>/\">/' -e 's/\<title\>//' -e 's/$/\<\/a\>\<\/li\>/g' -e '1,1d' -e 's/^[ \t]*//'
+
+# Get full URL via http://untr.im/api/ajax/api
+URL=[target.URL]; curl -q -d "url=$URL" http://untr.im/api/ajax/api | awk -F 'href="' '{print $3}' | awk -F '" rel="' '{print $1}'
+ffmpeg -i source.mpg -f s16le -acodec pcm_s16le audio.raw
+
+# Extract all archives from current folder, each archive in its own folder.
+for ARG in * ; do sudo -u USER 7z x -o"$(echo $ARG|sed 's/\(.*\)\..*/\1/')" "$ARG" ; done
+
+# Extract audio stream from an video file using mencoder
+mencoder "${file}" -of rawaudio -oac mp3lame -ovc copy -o "${file%.*}.mp3"
+--
+tar --create --file - --posix --gzip -- <dir> | openssl enc -e -aes256 -out <file>
+
+# Extract single table from a MySQL dump
+cat dump.sql | sed -n -e '/Table structure for table .table1./,/Table structure for table .table2./p'
+
+# Extract android adb ab backup to tar format (only works for non encrypted backups)
+dd if=mybackup.ab bs=24 skip=1 | openssl zlib -d > mybackup.tar
+
+# Compares two source directories, one original and one post configure and deletes the differences in the source folder
+diff ../source-dir.orig/ ../source-dir.post/ | grep "Only in" | sed -e 's/^.*\:.\(\<.*\>\)/\1/g' | xargs rm -r
+
+# Extract list of packages installed on one server and generate 'apt' command to install them on a new server
+dpkg --list | rgrep ii | cut -d" " -f3 | sed ':a;N;$!ba;s/\n/ /g' | sed 's/^\(.\)/apt-get install \1/'
+
+# Extract .tar.lzma archive
+tar --lzma -xvf /path/to/archive
+--
+# extracts 64 bytes of random digits from random lines out of /dev/random sent to stdio
+cat /dev/urandom|od -t x1|awk 'NR > line { pos=int(rand()*15)+2;printf("%s",$pos);line=NR+(rand()*1000);digits = digits+2 } digits == 64 { print("\n");exit }'
+
+# Extract URLs from all anchors inside an HTML document with sed and grep
+cat index.html | grep -o '<a .*href=.*>' | sed -e 's/<a /\n<a /g' | sed -e 's/<a .*href=['"'"'"]//' -e 's/["'"'"'].*$//' -e '/^$/ d'
+
+# Random quote from Borat
+curl -s http://smacie.com/randomizer/borat.html | sed -nE "s# *<td valign=\"top\"><big><big><big><font face=\"Comic Sans MS\">(.*)</font></big></big></big></td>#\1#p"
+
+# Extract any archive
+aunpack foo.tar.bz2
+data:text/html, <html contenteditable>
+
+# remove old index.html if you download it again and organiaz the java script tag on the file index.html
+rm index.html | wget www.google.com;cat index.html | sed 's/<script>/\n\n\<script>\n\n/g' | sed 's/<\/script>/>\n\n/g'
+
+# make a bunch of files based on a template file
+echo "template file: ";read tpl;echo "new file(s separated w. space):"; read fl;touch $fl;find $fl -exec cp -ap $tpl "{}" \;
+--
+rsync  -arl  --rsh=ssh --progress --exclude-from=/etc/localbin/exclude_files.txt  /var/www/html/source/* <user>@<server>:/var/www/html/source/
+
+# a find and replace within text-based files
+sed -i 's/http:\/\/old\/new\///g' index.html
+
+# cygwin startx
+startx -- -fullscreen -noresize -unixkill
+--
+uname -m   # display machine "hardware name"
+
+# Oneliner to get domain names list of all existing domain names (from wikipedia)
+curl -s http://en.m.wikipedia.org/wiki/List_of_Internet_top-level_domains | sed -n '/<tr valign="top">/{s/<[^>]*>//g;p}'
+
+# Remove the first character of each line in a file
+cat files |sed 's/.\(.*\)/\1/'
+
+# find . \( -name \*.cgi -o -name \*.txt -o -name \*.htm -o -name \*.html -o -name \*.shtml \) -print | xargs grep -s pattern
+find . \( -name \*.cgi -o -name \*.txt -o -name \*.htm -o -name \*.html -o -name \*.shtml \) -print | xargs grep -s pattern
+
+# Remove UTF-8 Byte Order Mark BOM
+find . -type f -regex '.*html$' -exec sed -i 's/\xEF\xBB\xBF//' '{}' \;
+
+# Transform an XML document with an XSL stylesheet
+xsltproc --stringparam name value <xsl_stylesheet> <xml_document>
+--
+command 3>&1 1>&2 2>&3 | tee file
+
+# find geographical location of an ip address
+function ip-where { wget -qO- -U Mozilla http://www.ip-adress.com/ip_tracer/$1  | html2text -nobs -style pretty | sed -n /^$1/,/^$/p;}
+
+# What is my ip?
+curl -s mi-ip.net | grep '"ip"' | cut -f2 -d ">" | egrep -o '[0-9.]+'
+nocache <I/O-heavy-command>
+
+# Recursively search and replace old with new string, inside every instance of filename.ext
+find . -type f -name filename.exe -exec sed -i "s/oldstring/oldstring/g" {} +;
+
+# The single most useful thing in bash
+vim ~/.inputrc
+--
+cat .bash_history | tail -100 | grep {command}
+
+# Google verbatim search on your terminal
+function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
+
+# find potentially malicious PHP commands used in backdoors and aliked scripts
+find ./public_html/ -name \*.php -exec grep -HRnDskip "\(passthru\|shell_exec\|system\|phpinfo\|base64_decode\|chmod\|mkdir\|fopen\|fclose\|readfile\) *(" {} \;
+
+# Search google.com on your terminal
+Q="YOURSEARCH"; GOOG_URL="http://www.google.com/search?q="; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}\"${Q/\ /+}\"" | grep -oP '\/url\?q=.+?&amp' | sed 's/\/url?q=//;s/&amp//'); echo -e "${stream//\%/\x}"
+
+# Get fresh FollowBack list for Twitter
+for a in $(seq 5 8); do cat twit.txt | cut -d " " -f$a | grep "^@" | sort -u; done > followlst.txt
+--
+sudo find / -type f -name config.inc.php -exec vim -p {} +
+
+# Git Global search and replace
+git grep -l foo | xargs sed -i 's/foo/bar/g'
+
+# Copy a file over SSH without SCP
+ssh username1@servername1 -t ssh username2@servername2 uuencode -m testfile1.tar - | uudecode > testfile1.tar
+--
+grep -i -h 'account.journal.cashbox.line' *.py
+
+# Put uppercase letters in curly brackets in a BibTeX database
+sed '/^\s*[^@%]/s=\([A-Z][A-Z]*\)\([^}A-Z]\|},$\)={\1}\2=g' literature.bib > output.bib
+
+# Grep inside Vim and navigate results
+:vimgrep pattern %
+
+# Oneliner to get domain names list of all existing domain names (from wikipedia)
+curl -s http://en.m.wikipedia.org/wiki/List_of_Internet_top-level_domains | sed -n '/<tr valign="top">/{s/<[^>]*>//g;p}'
+
+# Command to find filesystem type
+#11671
+dpkg -l | grep ^rc | awk '{ print $2}' | xargs apt-get -y remove --purge
+
+# copy zip files which contains XXX
+for i in *RET.zip; do unzip -l "$i"| grep -B 4 XXX | grep RET| sed "s/.\+EPS/EPS/" |xargs -I '{}' cp '{}' out/'{}';done;
+
+# Copy modified files between two Git commits
+git diff --name-only --diff-filter=AMXTCR HEAD~2 HEAD | xargs -l -I{}  cp --parents --verbose "{}" target_dir
+
+# rename multiple files with different name, eg converting all txt to csv
+touch file{1..10}.txt ; ls *txt| sed -e "p;s/\.txt$/\.csv/"|xargs -n2 mv
+
+# a find and replace within text-based files
+find /path/ -type f -exec grep -l '<string of text>' {} \; | xargs sed -i -e 's%<string of text>%<new text string>%g'
+
+# Find stock debian package config files that have been modified since installation
+dpkg-query -Wf  '${Package}\n' | xargs dpkg --status | sed '/^Conffiles:/,/^Description:/!d;//d' | awk '{print $2 "  " $1}' | md5sum -c 2>/dev/null | grep FAILED$ | cut -f1 -d':'
+
+# Git Global search and replace
+git grep -l foo | xargs sed -i 's/foo/bar/g'
+
+# Find corrupted jpeg image files
+find . -iname '*jpg' -print0  | xargs -0 exiftool -warning; find . -iname '*jpg' -print0  | xargs -0 jpeginfo -c
+watch "asterisk -vvvvvrx 'core show channels' | egrep \"(call|channel)\""
+
+# Set name of windows in tmux/byobu to hostnames of servers you're connected to
+for i in $(tmux list-windows -F '#{window_index}'); do panenames=$(tmux list-panes -t $i -F '#{pane_title}' | sed -e 's/:.*$//' -e 's/^.*@//' | uniq); windowname=$(echo ${panenames} | sed -e 's/ /|/g'); tmux rename-window -t $i $windowname; done
+
+# parse html/stdin with lynx
+alias html2ascii='lynx -force_html -stdin -dump -nolist'
+--
+# Search and replace in VIM
+:%s/foo/bar/g
+
+# Alternative way to generate an XKCD #936 style 4 word password usig sed
+shuf -n4 /usr/share/dict/words | sed -e ':a;N;$!ba;s/\n/ /g;s/'\''//g;s/\b\(.\)/\u\1/g;s/ //g'
+
+# MySQL: Strip a my.cnf file from comments, remove blank lines, normalize spaces:
+cat my.cnf | sed '/^#/d' | sed '/^$/d' | sed -e 's/[ \t]\+//g'
+
+# Create a bash script from last n commands
+history | tail -(n+1) | head -(n) | sed 's/^[0-9 ]\{7\}//' >> ~/script.sh
+
+# Real time duplication of Apache app traffic to a second server
+nice -n -20 ssh SOURCE_SERVER  "tail -f /var/log/httpd/access.log " | awk '{print $7}' | grep jsp | parallel 'curl TARGET_SERVER{} 2>&1 /dev/null'
+--
+find . -type f -iname "*.mp3" -exec id3v2 --delete-all {} \;
+
+# Cleanly list available wireless networks (using iwlist)
+iwlist wlan0 scan | sed -ne 's#^[[:space:]]*\(Quality=\|Encryption key:\|ESSID:\)#\1#p' -e 's#^[[:space:]]*\(Mode:.*\)$#\1\n#p'
+
+# strips the first field of each line where the delimiter is the first ascii character
+cut -f2 -d`echo -e '\x01'` file
+
+# Video Google download
+wget -qO- "VURL" | grep -o "googleplayer.swf?videoUrl\\\x3d\(.\+\)\\\x26thumbnailUrl\\\x3dhttp" | grep -o "http.\+" | sed -e's/%\([0-9A-F][0-9A-F]\)/\\\\\x\1/g' | xargs echo -e | sed 's/.\{22\}$//g' | xargs wget -O OUPUT_FILE
+
+# strip non-constant number of directories from tar archive while decompressing
+tar --transform 's#.*/\([^/]*\)$#\1#' -xzvf test-archive.tar.gz
+ls -l --time-style=+%Y-%m-%d | awk "/$(date +'%Y-%m-%d')/ {print \$7}"
+
+# Convert ascii string to hex
+echo -n 'text' | xxd -ps | sed 's/[[:xdigit:]]\{2\}/\\x&/g'
+
+# Find out what the day ends in
+date +%A | tail -2c
+# Scan a document to PDF
+scanimage -p --resolution 250 --mode Gray -x 215.9 -y 279.4 | pnmtops -imageheight 11 -imagewidth 8.5 | ps2pdf - output.pdf
+
+# Remove ( color / special / escape / ANSI ) codes, from text, with sed
+sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"
+
+# Capitalize the first letter of every word
+sed "s/\b\(.\)/\u\1/g"
+
+# launch bash without using any letters
+${0##-}
+--
+for i in {a..z}; do echo $(cat ~/.bash_history | grep ^$i.* | wc -l) $i; done | sort -n -r
+
+# Put uppercase letters in curly brackets in a BibTeX database
+sed '/^\s*[^@%]/s=\([A-Z][A-Z]*\)\([^}A-Z]\|},$\)={\1}\2=g' literature.bib > output.bib
+
+# launch bash without using any letters
+${0/-/}
+--
+read -ra words <<< "<sentence>" && echo "${words[@]^}"
+
+# Capitalize first letter of each word in a string
+echo 'fOo BaR' | tr '[A-Z]' '[a-z]' | sed 's/\(^\| \)\([a-z]\)/\1\u\2/g'
+
+# Apply fade effect to a audio
+sox input.mp3 output.mp3 fade h 5 00:02:58 5
+export PS1="\[\e[01;32m\]\u@\h \[\e[01;34m\]\W \`if [ \$? = 0 ]; then echo -e '\[\e[01;32m\]:)'; else echo -e '\[\e[01;31m\]:('; fi\` \[\e[01;34m\]$\[\e[00m\]"
+
+# hostgrep: set ip and hostname from /etc/hosts (non-DNS)
+dng(){ local a;a=$(sed '/'"$1"'/!d' /etc/hosts |sed '=;'"${2-1,$}"'!d'|sed '/ /!d');echo $a|tr '\040' '\n'|nl -bp'[0-9]$'|less -E;export dn=$(echo $a|sed 's,.* ,,');export ip=$(echo $a|sed 's, .*,,');echo \$dn=$dn;echo \$ip=$ip;}
+
+# identify NEEDED sonames in a path
+scanelf --nobanner --recursive --quiet --needed --format "+n#F" $1 | tr ',' '\n' | sort -u
+# commandlinefu.com by David Winterbottom
+
+# UBNT device
+iwlist ath0 scanning |egrep '(ESSID|Signal|Address)'| \sed -e 's/Cell  - Address:*//g'  -e 's/ESSID://g' \-e 's/Noise level=-//g' -e 's/dBm//g' \-e 's/Quality=*//g'  -e 's/Signal level=-//g' \-e 's/"//g'
+
+# Prints total line count contribution per user for an SVN repository
+svn ls -R | egrep -v -e "\/$" | tr '\n' '\0' | xargs -0 svn blame | awk '{print $2}' | sort | uniq -c | sort -nr
+--
+man ls | egrep "^([A-Z]|   [A-Z])"
+
+# Get the /dev/disk/by-id fragment for a physical drive
+ls -l /dev/disk/by-id | egrep ata-.*`hdparm -i /dev/sda | grep SerialNo | sed 's/.*SerialNo=//' | tr -d "\n"`.*sda$ | sed -e 's/.*ata-/ata-/' -e 's|[ ].*||' | tr -d "\n"
+
+# Find out local DISPLAY number
+export DISPLAY=$(tr '\000' '\n' < /proc/`pidof Xorg`/cmdline | egrep '^:[0-9]+')
+--
+egrep -v  '(\t)?#.*|^$' /etc/apache2/sites-available/default
+
+# list uniq extensions of files from the current directory
+find . -type f |egrep '^./.*\.' |sed -e "s/\(^.*\.\)\(.*$\)/\2/" |sort |uniq
+
+# What is my ip?
+curl -s mi-ip.net | grep '"ip"' | cut -f2 -d ">" | egrep -o '[0-9.]+'
+
+# Use exit codes that actually means something.
+source <(egrep '^#define EX_.*' /usr/include/sysexits.h  | sed -e 's/#define/declare -r/g' | sed 's/\//#/g' | sed -e 's/\s\{1,\}/ /g' | sed -e 's/ \([0-9]\)/\=\1/'g )
+
+# Short Information about loaded kernel modules
+lsmod | tail -n +2 | cut -d' ' -f1 | xargs modinfo | egrep '^file|^desc|^dep' | sed -e'/^dep/s/$/\n/g'
+
+# Watch active calls on an Asterisk PBX
+watch "asterisk -vvvvvrx 'core show channels' | egrep \"(call|channel)\""
+--
+lsof -p `pidof pidgin` | awk '{ print $9 }'|egrep `hostname` | grep -o ">[^:]\+:" | tr -d ":>" | while read line; do host $line; done;
+
+# Escape literal string for inclusion in an egrep regex
+egrep_escape() {  echo "$1" |sed -re 's/([\\.*+?(|)^$[])/\\\1/g' -e 's/\{/[{]/g';  }
+
+# sum and average of requests responses times or sizes in Apache2 access log
+egrep '.*(("STATUS)|("HEAD)).*' http_access.2012.07.18.log | awk '{sum+=$11; ++n} END {print "Tot="sum"("n")";print "Avg="sum/n}'
+
+# Get Unique Hostnames from Apache Config Files
+egrep 'ServerAlias|ServerName' /etc/apache2/sites-enabled/*.conf | awk '{printf "%s\t%s\n",$2,$3}' | sed 's/www.//' | sort | uniq
+
+# Plaintext credentials sniffing with tcpdump and grep
+tcpdump port http or port ftp or port smtp or port imap or port pop3 -l -A | egrep -i 'pass=|pwd=|log=|login=|user=|username=|pw=|passw=|passwd=|password=|pass:|user:|username:|password:|login:|pass |user ' --color=auto --line-buffered -B20
+python -c 'import sys, yaml, json; json.dump(yaml.load(sys.stdin), sys.stdout, indent=4)' < file.yaml > file.json
+
+# MPD + Digitally Imported
+wget -q -O - http://listen.di.fm/public2 | sed 's/},{/\n/g' | perl -n -e '/"key":"([^"]*)".*"playlist":"([^"]*)"/; print "$1\n"; system("wget -q -O - $2 | grep -E '^File' | cut -d= -f2 > di_$1.m3u")'
+
+# Remaining Disk space for important mounted drives
+df -H | grep -vE '^Filesystem|tmpfs|cdrom|none' | awk '{ print $5 " " $1 }'
+--
+import -window root -quality 98 screenshot.png
+
+# Put uppercase letters in curly brackets in a BibTeX database
+sed '/^\s*[^@%]/s=\([A-Z][A-Z]*\)\([^}A-Z]\|},$\)={\1}\2=g' literature.bib > output.bib
+
+# Generate a 18 character password, print the password and sha512 salted hash
+cat /dev/urandom | tr -dc 'a-zA-Z0-9' | fold -w 18 | head -1 | python -c "import sys,crypt; stdin=sys.stdin.readline().rstrip('\n'); print stdin;print crypt.crypt(stdin)"
+du -h --max-depth=1
+
+# dmesg with colored human-readable dates
+dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
+
+# du and sort to find the biggest directories in defined filesystem
+for i in G M K; do du -hx /var/ | grep [0-9]$i | sort -nr -k 1; done | less
+--
+hexdump -C -n 20 filename
+
+# Change time format in log, UNIX Timestamp to Human readable
+sed -r 's/(\[|])//g' | awk ' { $1=strftime("%D %T",$1); print }'
+
+# List the size (in human readable form) of all sub folders from the current location
+du -sch *
+  do
+    # Replace white spaces in the search terms
+    #
+    searchTerm=`echo $searchTerm | sed 's/ /%20/g'`
+
+    url="$url%22$searchTerm%22"
+
+grep -E/egrep 'word1.*word2|word2.*word1' "$@"
+
+# Google verbatim search on your terminal
+function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
+
+# Poor man's pomodoro timer
+echo "aplay ring.wav" | at now + 25 min
+
+# Capitalize the first letter of every word
+sed "s/\b\(.\)/\u\1/g"
+
+# Do some learning...
+whatis /usr/bin/* 2> /dev/null | less
+--
+git diff -U10 |wdiff --diff-input -a -n -w $'\e[1;91m' -x $'\e[0m' -y $'\e[1;94m' -z $'\e[0m' |less -R
+
+# highlight chars or words in program output
+#!/bin/zsh SHL='\\e[0;31m' EHL='\\e[0m' while read line; do   TEXT=$line   for SSTR in $*; do     TEXT=$(echo $TEXT | sed -e "s:$SSTR:${SHL}${SSTR}${EHL}:g")   done   echo -e $TEXT done
+
+# Query Wikipedia via console over DNS
+wki () { 	dig +short txt "${*// /_}".wp.dg.cx | sed -e 's/^"\(.*\)"$/\1/' -e 's/\([^\]\)"[^\]*"/\1/g' -e 's/\\\(.\)/\1/g' }
+
+# Remove all lines beginning with words from another file
+for wrd in `cat file2` ; do   sed -i .bk "/^$wrd/d" file1; done
+
+# Dump an aspell dictionary as a word list
+aspell -d en dump master | aspell -l en expand > words
+-------------------------------------------------------------------------
+USEFUL ONE-LINE SCRIPTS FOR SED (Unix stream editor)        Dec. 29, 2005
+Compiled by Eric Pement - pemente[at]northpark[dot]edu        version 5.5
+
+Latest version of this file (in English) is usually at:
+   http://sed.sourceforge.net/sed1line.txt
+   http://www.pement.org/sed/sed1line.txt
+
+This file will also available in other languages:
+  Chinese     - http://sed.sourceforge.net/sed1line_zh-CN.html
+  Czech       - http://sed.sourceforge.net/sed1line_cz.html
+  Dutch       - http://sed.sourceforge.net/sed1line_nl.html
+  French      - http://sed.sourceforge.net/sed1line_fr.html
+  German      - http://sed.sourceforge.net/sed1line_de.html
+  Italian     - (pending)
+  Portuguese  - http://sed.sourceforge.net/sed1line_pt-BR.html
+  Spanish     - (pending)
+
+
+FILE SPACING:
+
+ # double space a file
+ sed G
+
+ # double space a file which already has blank lines in it. Output file
+ # should contain no more than one blank line between lines of text.
+ sed '/^$/d;G'
+
+ # triple space a file
+ sed 'G;G'
+
+ # undo double-spacing (assumes even-numbered lines are always blank)
+ sed 'n;d'
+
+ # insert a blank line above every line which matches "regex"
+ sed '/regex/{x;p;x;}'
+
+ # insert a blank line below every line which matches "regex"
+ sed '/regex/G'
+
+ # insert a blank line above and below every line which matches "regex"
+ sed '/regex/{x;p;x;G;}'
+
+NUMBERING:
+
+ # number each line of a file (simple left alignment). Using a tab (see
+ # note on '\t' at end of file) instead of space will preserve margins.
+ sed = filename | sed 'N;s/\n/\t/'
+
+ # number each line of a file (number on left, right-aligned)
+ sed = filename | sed 'N; s/^/     /; s/ *\(.\{6,\}\)\n/\1  /'
+
+ # number each line of file, but only print numbers if line is not blank
+ sed '/./=' filename | sed '/./N; s/\n/ /'
+
+ # count lines (emulates "wc -l")
+ sed -n '$='
+
+TEXT CONVERSION AND SUBSTITUTION:
+
+ # IN UNIX ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format.
+ sed 's/.$//'               # assumes that all lines end with CR/LF
+ sed 's/^M$//'              # in bash/tcsh, press Ctrl-V then Ctrl-M
+ sed 's/\x0D$//'            # works on ssed, gsed 3.02.80 or higher
+
+ # IN UNIX ENVIRONMENT: convert Unix newlines (LF) to DOS format.
+ sed "s/$/`echo -e \\\r`/"            # command line under ksh
+ sed 's/$'"/`echo \\\r`/"             # command line under bash
+ sed "s/$/`echo \\\r`/"               # command line under zsh
+ sed 's/$/\r/'                        # gsed 3.02.80 or higher
+
+ # IN DOS ENVIRONMENT: convert Unix newlines (LF) to DOS format.
+ sed "s/$//"                          # method 1
+ sed -n p                             # method 2
+
+ # IN DOS ENVIRONMENT: convert DOS newlines (CR/LF) to Unix format.
+ # Can only be done with UnxUtils sed, version 4.0.7 or higher. The
+ # UnxUtils version can be identified by the custom "--text" switch
+ # which appears when you use the "--help" switch. Otherwise, changing
+ # DOS newlines to Unix newlines cannot be done with sed in a DOS
+ # environment. Use "tr" instead.
+ sed "s/\r//" infile >outfile         # UnxUtils sed v4.0.7 or higher
+ tr -d \r <infile >outfile            # GNU tr version 1.22 or higher
+
+ # delete leading whitespace (spaces, tabs) from front of each line
+ # aligns all text flush left
+ sed 's/^[ \t]*//'                    # see note on '\t' at end of file
+
+ # delete trailing whitespace (spaces, tabs) from end of each line
+ sed 's/[ \t]*$//'                    # see note on '\t' at end of file
+
+ # delete BOTH leading and trailing whitespace from each line
+ sed 's/^[ \t]*//;s/[ \t]*$//'
+
+ # insert 5 blank spaces at beginning of each line (make page offset)
+ sed 's/^/     /'
+
+ # align all text flush right on a 79-column width
+ sed -e :a -e 's/^.\{1,78\}$/ &/;ta'  # set at 78 plus 1 space
+
+ # center all text in the middle of 79-column width. In method 1,
+ # spaces at the beginning of the line are significant, and trailing
+ # spaces are appended at the end of the line. In method 2, spaces at
+ # the beginning of the line are discarded in centering the line, and
+ # no trailing spaces appear at the end of lines.
+ sed  -e :a -e 's/^.\{1,77\}$/ & /;ta'                     # method 1
+ sed  -e :a -e 's/^.\{1,77\}$/ &/;ta' -e 's/\( *\)\1/\1/'  # method 2
+
+ # substitute (find and replace) "foo" with "bar" on each line
+ sed 's/foo/bar/'             # replaces only 1st instance in a line
+ sed 's/foo/bar/4'            # replaces only 4th instance in a line
+ sed 's/foo/bar/g'            # replaces ALL instances in a line
+ sed 's/\(.*\)foo\(.*foo\)/\1bar\2/' # replace the next-to-last case
+ sed 's/\(.*\)foo/\1bar/'            # replace only the last case
+
+ # substitute "foo" with "bar" ONLY for lines which contain "baz"
+ sed '/baz/s/foo/bar/g'
+
+ # substitute "foo" with "bar" EXCEPT for lines which contain "baz"
+ sed '/baz/!s/foo/bar/g'
+
+ # change "scarlet" or "ruby" or "puce" to "red"
+ sed 's/scarlet/red/g;s/ruby/red/g;s/puce/red/g'   # most seds
+ gsed 's/scarlet\|ruby\|puce/red/g'                # GNU sed only
+
+ # reverse order of lines (emulates "tac")
+ # bug/feature in HHsed v1.5 causes blank lines to be deleted
+ sed '1!G;h;$!d'               # method 1
+ sed -n '1!G;h;$p'             # method 2
+
+ # reverse each character on the line (emulates "rev")
+ sed '/\n/!G;s/\(.\)\(.*\n\)/&\2\1/;//D;s/.//'
+
+ # join pairs of lines side-by-side (like "paste")
+ sed '$!N;s/\n/ /'
+
+ # if a line ends with a backslash, append the next line to it
+ sed -e :a -e '/\\$/N; s/\\\n//; ta'
+
+ # if a line begins with an equal sign, append it to the previous line
+ # and replace the "=" with a single space
+ sed -e :a -e '$!N;s/\n=/ /;ta' -e 'P;D'
+
+ # add commas to numeric strings, changing "1234567" to "1,234,567"
+ gsed ':a;s/\B[0-9]\{3\}\>/,&/;ta'                     # GNU sed
+ sed -e :a -e 's/\(.*[0-9]\)\([0-9]\{3\}\)/\1,\2/;ta'  # other seds
+
+ # add commas to numbers with decimal points and minus signs (GNU sed)
+ gsed -r ':a;s/(^|[^0-9.])([0-9]+)([0-9]{3})/\1\2,\3/g;ta'
+
+ # add a blank line every 5 lines (after lines 5, 10, 15, 20, etc.)
+ gsed '0~5G'                  # GNU sed only
+ sed 'n;n;n;n;G;'             # other seds
+
+SELECTIVE PRINTING OF CERTAIN LINES:
+
+ # print first 10 lines of file (emulates behavior of "head")
+ sed 10q
+
+ # print first line of file (emulates "head -1")
+ sed q
+
+ # print the last 10 lines of a file (emulates "tail")
+ sed -e :a -e '$q;N;11,$D;ba'
+
+ # print the last 2 lines of a file (emulates "tail -2")
+ sed '$!N;$!D'
+
+ # print the last line of a file (emulates "tail -1")
+ sed '$!d'                    # method 1
+ sed -n '$p'                  # method 2
+
+ # print the next-to-the-last line of a file
+ sed -e '$!{h;d;}' -e x              # for 1-line files, print blank line
+ sed -e '1{$q;}' -e '$!{h;d;}' -e x  # for 1-line files, print the line
+ sed -e '1{$d;}' -e '$!{h;d;}' -e x  # for 1-line files, print nothing
+
+ # print only lines which match regular expression (emulates "grep")
+ sed -n '/regexp/p'           # method 1
+ sed '/regexp/!d'             # method 2
+
+ # print only lines which do NOT match regexp (emulates "grep -v")
+ sed -n '/regexp/!p'          # method 1, corresponds to above
+ sed '/regexp/d'              # method 2, simpler syntax
+
+ # print the line immediately before a regexp, but not the line
+ # containing the regexp
+ sed -n '/regexp/{g;1!p;};h'
+
+ # print the line immediately after a regexp, but not the line
+ # containing the regexp
+ sed -n '/regexp/{n;p;}'
+
+ # print 1 line of context before and after regexp, with line number
+ # indicating where the regexp occurred (similar to "grep -A1 -B1")
+ sed -n -e '/regexp/{=;x;1!p;g;$!N;p;D;}' -e h
+
+ # grep for AAA and BBB and CCC (in any order)
+ sed '/AAA/!d; /BBB/!d; /CCC/!d'
+
+ # grep for AAA and BBB and CCC (in that order)
+ sed '/AAA.*BBB.*CCC/!d'
+
+ # grep for AAA or BBB or CCC (emulates "egrep")
+ sed -e '/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d    # most seds
+ gsed '/AAA\|BBB\|CCC/!d'                        # GNU sed only
+
+ # print paragraph if it contains AAA (blank lines separate paragraphs)
+ # HHsed v1.5 must insert a 'G;' after 'x;' in the next 3 scripts below
+ sed -e '/./{H;$!d;}' -e 'x;/AAA/!d;'
+
+ # print paragraph if it contains AAA and BBB and CCC (in any order)
+ sed -e '/./{H;$!d;}' -e 'x;/AAA/!d;/BBB/!d;/CCC/!d'
+
+ # print paragraph if it contains AAA or BBB or CCC
+ sed -e '/./{H;$!d;}' -e 'x;/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d
+ gsed '/./{H;$!d;};x;/AAA\|BBB\|CCC/b;d'         # GNU sed only
+
+ # print only lines of 65 characters or longer
+ sed -n '/^.\{65\}/p'
+
+ # print only lines of less than 65 characters
+ sed -n '/^.\{65\}/!p'        # method 1, corresponds to above
+ sed '/^.\{65\}/d'            # method 2, simpler syntax
+
+ # print section of file from regular expression to end of file
+ sed -n '/regexp/,$p'
+
+ # print section of file based on line numbers (lines 8-12, inclusive)
+ sed -n '8,12p'               # method 1
+ sed '8,12!d'                 # method 2
+
+ # print line number 52
+ sed -n '52p'                 # method 1
+ sed '52!d'                   # method 2
+ sed '52q;d'                  # method 3, efficient on large files
+
+ # beginning at line 3, print every 7th line
+ gsed -n '3~7p'               # GNU sed only
+ sed -n '3,${p;n;n;n;n;n;n;}' # other seds
+
+ # print section of file between two regular expressions (inclusive)
+ sed -n '/Iowa/,/Montana/p'             # case sensitive
+
+SELECTIVE DELETION OF CERTAIN LINES:
+
+ # print all of file EXCEPT section between 2 regular expressions
+ sed '/Iowa/,/Montana/d'
+
+ # delete duplicate, consecutive lines from a file (emulates "uniq").
+ # First line in a set of duplicate lines is kept, rest are deleted.
+ sed '$!N; /^\(.*\)\n\1$/!P; D'
+
+ # delete duplicate, nonconsecutive lines from a file. Beware not to
+ # overflow the buffer size of the hold space, or else use GNU sed.
+ sed -n 'G; s/\n/&&/; /^\([ -~]*\n\).*\n\1/d; s/\n//; h; P'
+
+ # delete all lines except duplicate lines (emulates "uniq -d").
+ sed '$!N; s/^\(.*\)\n\1$/\1/; t; D'
+
+ # delete the first 10 lines of a file
+ sed '1,10d'
+
+ # delete the last line of a file
+ sed '$d'
+
+ # delete the last 2 lines of a file
+ sed 'N;$!P;$!D;$d'
+
+ # delete the last 10 lines of a file
+ sed -e :a -e '$d;N;2,10ba' -e 'P;D'   # method 1
+ sed -n -e :a -e '1,10!{P;N;D;};N;ba'  # method 2
+
+ # delete every 8th line
+ gsed '0~8d'                           # GNU sed only
+ sed 'n;n;n;n;n;n;n;d;'                # other seds
+
+ # delete lines matching pattern
+ sed '/pattern/d'
+
+ # delete ALL blank lines from a file (same as "grep '.' ")
+ sed '/^$/d'                           # method 1
+ sed '/./!d'                           # method 2
+
+ # delete all CONSECUTIVE blank lines from file except the first; also
+ # deletes all blank lines from top and end of file (emulates "cat -s")
+ sed '/./,/^$/!d'          # method 1, allows 0 blanks at top, 1 at EOF
+ sed '/^$/N;/\n$/D'        # method 2, allows 1 blank at top, 0 at EOF
+
+ # delete all CONSECUTIVE blank lines from file except the first 2:
+ sed '/^$/N;/\n$/N;//D'
+
+ # delete all leading blank lines at top of file
+ sed '/./,$!d'
+
+ # delete all trailing blank lines at end of file
+ sed -e :a -e '/^\n*$/{$d;N;ba' -e '}'  # works on all seds
+ sed -e :a -e '/^\n*$/N;/\n$/ba'        # ditto, except for gsed 3.02.*
+
+ # delete the last line of each paragraph
+ sed -n '/^$/{p;h;};/./{x;/./p;}'
+
+SPECIAL APPLICATIONS:
+
+ # remove nroff overstrikes (char, backspace) from man pages. The 'echo'
+ # command may need an -e switch if you use Unix System V or bash shell.
+ sed "s/.`echo \\\b`//g"    # double quotes required for Unix environment
+ sed 's/.^H//g'             # in bash/tcsh, press Ctrl-V and then Ctrl-H
+ sed 's/.\x08//g'           # hex expression for sed 1.5, GNU sed, ssed
+
+ # get Usenet/e-mail message header
+ sed '/^$/q'                # deletes everything after first blank line
+
+ # get Usenet/e-mail message body
+ sed '1,/^$/d'              # deletes everything up to first blank line
+
+ # get Subject header, but remove initial "Subject: " portion
+ sed '/^Subject: */!d; s///;q'
+
+ # get return address header
+ sed '/^Reply-To:/q; /^From:/h; /./d;g;q'
+
+ # parse out the address proper. Pulls out the e-mail address by itself
+ # from the 1-line return address header (see preceding script)
+ sed 's/ *(.*)//; s/>.*//; s/.*[:<] *//'
+
+ # add a leading angle bracket and space to each line (quote a message)
+ sed 's/^/> /'
+
+ # delete leading angle bracket & space from each line (unquote a message)
+ sed 's/^> //'
+
+ # remove most HTML tags (accommodates multiple-line tags)
+ sed -e :a -e 's/<[^>]*>//g;/</N;//ba'
+
+ # extract multi-part uuencoded binaries, removing extraneous header
+ # info, so that only the uuencoded portion remains. Files passed to
+ # sed must be passed in the proper order. Version 1 can be entered
+ # from the command line; version 2 can be made into an executable
+ # Unix shell script. (Modified from a script by Rahul Dhesi.)
+ sed '/^end/,/^begin/d' file1 file2 ... fileX | uudecode   # vers. 1
+ sed '/^end/,/^begin/d' "$@" | uudecode                    # vers. 2
+
+ # sort paragraphs of file alphabetically. Paragraphs are separated by blank
+ # lines. GNU sed uses \v for vertical tab, or any unique char will do.
+ sed '/./{H;d;};x;s/\n/={NL}=/g' file | sort | sed '1s/={NL}=//;s/={NL}=/\n/g'
+ gsed '/./{H;d};x;y/\n/\v/' file | sort | sed '1s/\v//;y/\v/\n/'
+
+ # zip up each .TXT file individually, deleting the source file and
+ # setting the name of each .ZIP file to the basename of the .TXT file
+ # (under DOS: the "dir /b" switch returns bare filenames in all caps).
+ echo @echo off >zipup.bat
+ dir /b *.txt | sed "s/^\(.*\)\.TXT/pkzip -mo \1 \1.TXT/" >>zipup.bat
+
+TYPICAL USE: Sed takes one or more editing commands and applies all of
+them, in sequence, to each line of input. After all the commands have
+been applied to the first input line, that line is output and a second
+input line is taken for processing, and the cycle repeats. The
+--
+more filenames can be appended to the command line if the input does
+not come from stdin. Output is sent to stdout (the screen). Thus:
+
+ cat filename | sed '10q'        # uses piped input
+ sed '10q' filename              # same effect, avoids a useless "cat"
+ sed '10q' filename > newfile    # redirects output to disk
+
+For additional syntax instructions, including the way to apply editing
+commands from a disk file instead of the command line, consult "sed &
+awk, 2nd Edition," by Dale Dougherty and Arnold Robbins (O'Reilly,
+1997; http://www.ora.com), "UNIX Text Processing," by Dale Dougherty
+and Tim O'Reilly (Hayden Books, 1987) or the tutorials by Mike Arst
+distributed in U-SEDIT2.ZIP (many sites). To fully exploit the power
+of sed, one must understand "regular expressions." For this, see
+"Mastering Regular Expressions" by Jeffrey Friedl (O'Reilly, 1997).
+The manual ("man") pages on Unix systems may be helpful (try "man
+sed", "man regexp", or the subsection on regular expressions in "man
+ed"), but man pages are notoriously difficult. They are not written to
+teach sed use or regexps to first-time users, but as a reference text
+for those already acquainted with these tools.
+
+QUOTING SYNTAX: The preceding examples use single quotes ('...')
+instead of double quotes ("...") to enclose editing commands, since
+sed is typically used on a Unix platform. Single quotes prevent the
+Unix shell from intrepreting the dollar sign ($) and backquotes
+(`...`), which are expanded by the shell if they are enclosed in
+double quotes. Users of the "csh" shell and derivatives will also need
+to quote the exclamation mark (!) with the backslash (i.e., \!) to
+properly run the examples listed above, even within single quotes.
+Versions of sed written for DOS invariably require double quotes
+("...") instead of single quotes to enclose editing commands.
+
+USE OF '\t' IN SED SCRIPTS: For clarity in documentation, we have used
+the expression '\t' to indicate a tab character (0x09) in the scripts.
+However, most versions of sed do not recognize the '\t' abbreviation,
+so when typing these scripts from the command line, you should press
+the TAB key instead. '\t' is supported as a regular expression
+metacharacter in awk, perl, and HHsed, sedmod, and GNU sed v3.02.80.
+
+VERSIONS OF SED: Versions of sed do differ, and some slight syntax
+variation is to be expected. In particular, most do not support the
+use of labels (:name) or branch instructions (b,t) within editing
+commands, except at the end of those commands. We have used the syntax
+which will be portable to most users of sed, even though the popular
+GNU versions of sed allow a more succinct syntax. When the reader sees
+a fairly long command such as this:
+
+   sed -e '/AAA/b' -e '/BBB/b' -e '/CCC/b' -e d
+
+it is heartening to know that GNU sed will let you reduce it to:
+
+   sed '/AAA/b;/BBB/b;/CCC/b;d'      # or even
+   sed '/AAA\|BBB\|CCC/b;d'
+
+In addition, remember that while many versions of sed accept a command
+like "/one/ s/RE1/RE2/", some do NOT allow "/one/! s/RE1/RE2/", which
+contains space before the 's'. Omit the space when typing the command.
+
+--
+be executed more quickly if the "find" expression is specified before
+giving the "s/.../.../" instruction. Thus:
+
+   sed 's/foo/bar/g' filename         # standard replace command
+   sed '/foo/ s/foo/bar/g' filename   # executes more quickly
+   sed '/foo/ s//bar/g' filename      # shorthand sed syntax
+
+On line selection or deletion in which you only need to output lines
+from the first part of the file, a "quit" command (q) in the script
+will drastically reduce processing time for large files. Thus:
+
+   sed -n '45,50p' filename           # print line nos. 45-50 of a file
+   sed -n '51q;45,50p' filename       # same, but executes much faster
+
+If you have any additional scripts to contribute or if you find errors
+in this document, please send e-mail to the compiler. Indicate the
+version of sed you used, the operating system it was compiled for, and
+the nature of the problem. To qualify as a one-liner, the command line
+must be 65 characters or less. Various scripts in this file have been
+written or contributed by:
+--
+ Al Aab                   # founder of "seders" list
+ Edgar Allen              # various
+ Yiorgos Adamopoulos      # various
+ Dale Dougherty           # author of "sed & awk"
+ Carlos Duarte            # author of "do it with sed"
+ Eric Pement              # author of this document
+ Ken Pizzini              # author of GNU sed v3.02
+ S.G. Ravenhall           # great de-html script
+ Greg Ubben               # many contributions & much help
+curl -u user:pass -d status=?I am Tweeting from the shell? http://twitter.com/statuses/update.xml
+
+# Recompress all files in current directory from gzip to bzip2
+find . -type f -name "*.gz" | while read line ; do gunzip --to-stdout "$line" | bzip2 > "$(echo $line | sed 's/gz$/bz2/g')" ; done
+
+# Prints total line count contribution per user for an SVN repository
+svn ls -R | egrep -v -e "\/$" | tr '\n' '\0' | xargs -0 svn blame | awk '{print $2}' | sort | uniq -c | sort -nr
+--
+count=0;while IFS= read -r -d '' line; do echo "${line#* }"; ((++count==5)) && break; done < <(find . -type f -printf '%s %p\0' | sort -znr)
+
+# Remove blank lines
+sed '/^$/d'
+
+# Compress blank lines
+cat -s
+add "ssh $1@$2" in /usr/sbin/connect with executable permission, now use commad "connect user 192.168.1.1"
+
+# ls output with mode in octal
+lso(){ jot -w '%04d' 7778 0000 7777 |sed '/[89]/d;s,.*,printf '"'"'& '"'"';chmod & '"$1"';ls -l '"$1"'|sed s/-/./,' \ |sh \ |{ echo "lso(){";echo "ls \$@ \\";echo " |sed '";sed 's, ,@,2;s,@.*,,;s,\(.* \)\(.*\),s/\2/\1/,;s, ,,';echo \';echo };};}
+
+w3m mon-ip.com -dump|grep -Eo "[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}"|uniq|xclip -selection clipboard
+
+# Generate random sensible passwords, and copy them to the clipboard
+while true; do curl -s http://sensiblepassword.com/?harder=1 | tail -n 15 | head -n 1 | sed 's;<br/>;;' | cut -c 5- | cb; sleep 1; done
+
+# Screenshot pipe to remote host, adding URL to clipboard, notifying when done. (without saving locally)
+DATE=$(date +%Y-%m-%d_%H-%M-%S)-$(($(date +%N)/10000000)); HOST=ssh_host; DEST=file_dest; URL=url/screenshot_$DATE.png; import -window root png:- | ssh $HOST "cat > $DEST/screenshot_$DATE.png"; echo $URL | xclip; notify-send -u low "Title" "Message"
+--
+xclip -o -selection clipboard | xclip -selection clipboard
+
+# encode image to base64 and copy to clipboard
+uuencode -m $1 /dev/stdout | sed '1d' | sed '$d' | tr -d '\n' | xclip -selection clipboard
+
+# preprocess code to be posted in comments on this site
+sed 's/^/$ /' "$script" | xclip
+
+# OSX command to take badly formatted xml from the clipboard, cleans it up and puts it back into the clipboard.
+pbpaste | tidy -xml -wrap 0 | pbcopy
+switchMonitor () { LF=/tmp/screen-lock; if [ -f $LF ]; then rm $LF; else touch $LF; sleep .5; while [ -f  $LF ]; do xset dpms force off; sleep 2; done; fi };
+
+# A video capture command which can be assigned to a keyboard shortcut.
+gnome-terminal -e "bash -c \"ffmpeg -f x11grab -r 25 -s $(xwininfo -root |sed -n 's/ -geometry \([0-9x]*\).*/\1/p') -i :0.0 -vcodec huffyuv -sameq ~/Desktop/screencast.avi; exec bash\""
+
+# Generate a random password
+openssl rand -base64 12
+--
+setxkbmap -layout us,ru -variant basic,phonetic -option -option grp:switch,grp:caps_toggle
+
+# Terminal Keyboard Shortcut list
+echo -e "Terminal shortcut keys\n" && sed -e 's/\^/Ctrl+/g;s/M-/Shift+/g' <(stty -a 2>&1| sed -e 's/;/\n/g' | grep "\^" | tr -d ' ')
+
+# use SHIFT + ALT to toggle between two keyboard layouts
+setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,es
+pv /dev/random > /dev/null
+
+# Download the last most popular 20 pictures from 500px
+for line in `wget --referer='http://500px.com/' --quiet -O- http://500px.com/popular | grep "from=popular" | sed -n 's/.*<img src="\([^"]*\)".*/\1/p' | sed s/"3.jpg"/"4.jpg"/ | sed s/"?t".*$//`; do wget -O $RANDOM.jpg --quiet "$line"; done
+
+# command for conky. To update a random command for each 300 sec from commandline.com
+${execi 300 lynx --dump http://www.commandlinefu.com/commands/random/plaintext | grep .}
+--
+pwgen 10   # generate a table of 10 character random passwords
+
+# Get Lorum Ipsum random text from lorumipsum.com
+p=1 ; lynx -source http://www.lipsum.com/feed/xml?amount=${p} | grep '<lipsum>' -A$(((p-1))) | perl -p -i -e 's/\n/\n\n/g' | sed -n '/<lipsum>/,/<\/lipsum>/p' | sed -e 's/<[^>]*>//g'
+
+# generate a randome 3 character password
+tr -dc '[:graph:]' </dev/urandom  | head -c30; echo
+WID=xprop -root | grep "_NET_ACTIVE_WINDOW(WINDOW)"| awk '{print $5}' xdotool windowfocus $WID xdotool key ctrl+shift+t wmctrl -i -a $WID
+
+# Mouse Tracking
+while true; do xdotool getmouselocation | sed 's/x:\(.*\) y:\(.*\) screen:.*/\1, \2/' >> ./mouse-tracking; sleep 10; done
+
+# Type a random string into a X11 window
+sleep 3 && xdotool type --delay 0ms texthere
+#cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
+#Confirm() { echo -n "$1 [y/n]? " ; read reply; case $reply in Y*|y*) true ;; *) false ;; esac }
+zselect() {
+    PS3="Enter a number: "
+# Ref1.: http://www.redmine.org/projects/redmine/wiki/HowTo_Install_Redmine_in_a_sub-URI # Preferred solution used
+# Ref2.: http://www.redmine.org/issues/12102 # JS and CSS was not working until I add this line 'RedmineApp::Application.routes.default_scope =  { :path => "/redmine", :shallow_path => "/redmine" }' before 'RedmineApp::Application.initialize!'
+cp environment.rb environment.rb_original # Backup default environment.rb
+sed '/RedmineApp::Application.initialize!/c \RedmineApp::Application.routes.default_scope =  { :path => "/redmine", :shallow_path => "/redmine" }\nRedmineApp::Application.initialize!\nRedmine::Utils::relative_url_root = "/redmine"' environment.rb_original > environment.rb
+# Now we configure Redmine database access
+#nano database.yml
+# paste :
+ 
+}' >/etc/nginx/conf.d/web2py.conf
+
+sed -i "s/YOUR_SERVER_IP/$SERVER_IP/" /etc/nginx/conf.d/web2py.conf
+sed -i "s/YOUR_SERVER_FQDN/$SERVER_FQDN/" /etc/nginx/conf.d/web2py.conf
+
+
+# Create configuration file /etc/uwsgi/web2py.xml
+	#   other if a failure occurred
+
+	#start-stop-daemon --stop --quiet --retry=TERM/30/KILL/5 --pidfile $PIDFILE
+	for P in $(ps ax | grep "web2py.*-R" | grep -v grep | sed "s/^ *//;s/  */ /g" | cut -d\  -f1)
+	do
+	  kill $P
+	done
+# Get sunrise time for any city, by name
+sunrise() { city=${1-Seattle}; w3m "google.com/search?q=sunrise:$city" | sed -r '1,/^\s*1\./d; /^\s*2\./,$d; /^$/d' ;}
+### 5}}
+
+#{Process
+### sed stream
+### sed stream}
+
+#Organize
+# wc cut sort uniq awk
+--
+
+cmdfu(){
+    # Search commandlinefu
+    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -
+}
+
+
+blacklist usb_storage >> /etc/modprobe.d/blacklist.conf
+
+# Show UDID of iPhone
+lsusb -s :`lsusb | grep iPhone | cut -d ' ' -f 4 | sed 's/://'` -v | grep iSerial | awk '{print $3}'
+
+# Find usb device
+diff <(lsusb) <(sleep 3s && lsusb)
+../1/01/all_cmds:7512:# Blacklist usb storage
+../1/01/all_cmds:7513:blacklist usb_storage >> /etc/modprobe.d/blacklist.conf
+../1/01/all_cmds:7659:sudo mount -t vfat -o umask=000,uid=YOUR_UID,gid=users /dev/sdb1 /media/usb
+../1/01/all_cmds:8155:lsusb -s :`lsusb | grep iPhone | cut -d ' ' -f 4 | sed 's/://'` -v | grep iSerial | awk '{print $3}'
+../1/01/all_cmds:8500:# send a .loc file to a garmin gps over usb
+../1/01/all_cmds:8501:gpsbabel -D 0 -i geo -f "/path/to/.loc" -o garmin -F usb:
+../1/01/all_cmds:9483:ls -la /dev/disk/by-id/usb-*
+--
+../6/qtsixad/Install_qtsixad/lsusb grep Sony.txt:1:lsusb |grep Sony
+../6/usbCMDs.sh:9:# Blacklist usb storage
+../6/usbCMDs.sh:10:blacklist usb_storage >> /etc/modprobe.d/blacklist.conf
+../6/usbCMDs.sh:13:lsusb -s :`lsusb | grep iPhone | cut -d ' ' -f 4 | sed 's/://'` -v | grep iSerial | awk '{print $3}'
+../6/usbCMDs.sh:15:# Find usb device
+../6/usbCMDs.sh:16:diff <(lsusb) <(sleep 3s && lsusb)
+../6/usbCMDs.sh:22:sudo mount -t vfat -o umask=000,uid=YOUR_UID,gid=users /dev/sdb1 /media/usb
+--
+../References/All_cmdsw:7512:# Blacklist usb storage
+../References/All_cmdsw:7513:blacklist usb_storage >> /etc/modprobe.d/blacklist.conf
+../References/All_cmdsw:7659:sudo mount -t vfat -o umask=000,uid=YOUR_UID,gid=users /dev/sdb1 /media/usb
+../References/All_cmdsw:8155:lsusb -s :`lsusb | grep iPhone | cut -d ' ' -f 4 | sed 's/://'` -v | grep iSerial | awk '{print $3}'
+../References/All_cmdsw:8500:# send a .loc file to a garmin gps over usb
+../References/All_cmdsw:8501:gpsbabel -D 0 -i geo -f "/path/to/.loc" -o garmin -F usb:
+../References/All_cmdsw:9483:ls -la /dev/disk/by-id/usb-*
+blacklist usb_storage >> /etc/modprobe.d/blacklist.conf
+
+# Show UDID of iPhone
+lsusb -s :`lsusb | grep iPhone | cut -d ' ' -f 4 | sed 's/://'` -v | grep iSerial | awk '{print $3}'
+
+# Find usb device
+diff <(lsusb) <(sleep 3s && lsusb)
+function Capture_website() {
+    curl  $www
+}
+#wget -O - http://dotfiles.org/.vimrc VV | grep -o '<a href=['"'"'"][^"'"'"']*['"'"'"]' | sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'
+function extract_urls () {
+    sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" "$@"| sed "s/^'\///g" | sed "s/'$//g" "$@"
+    cat $extracted_urls
+    echo ""
+    echo ""
+function Capture_website() {
+    curl  $website >> $local_downloaded_site
+}
+#wget -O - http://dotfiles.org/.vimrc VV | grep -o '<a href=['"'"'"][^"'"'"']*['"'"'"]' | sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'
+function extract_urls () {
+    sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" $website_downloaded | sed "s/^'\///g" | sed "s/'$//g" >> $extracted_urls
+    cat $extracted_urls
+    echo ""
+    echo ""
+while read line
+    do z=$(($z+1));
+#firefox $x$line$y$L;
+    #firefox $x`echo "$line" | sed -e 's/ /\%20/g'`$y$L
+    firefox $x${line// /%20}$y$L;
+#sleep so google doesn't baulk about suspicious traffic
+    sleep 3
+#
+#echo "enter :  " && read pw;curl --url "smtps://smtp.gmail.com:465" --ssl-reqd --mail-from "abobani@gmail.com" --mail-rcpt "tazjel@gmail.com" --upload-file mail.txt --user "abobani@gmail.com:$(echo $pw)" --insecure
+#check your unread Gmail from the command line
+curl -u username --silent "https://mail.google.com/mail/feed/atom" | awk 'BEGIN{FS="\n";RS="(</entry>\n)?<entry>"}NR!=1{print "\033[1;31m"$9"\033[0;32m ("$10")\033[0m:\t\033[1;33m"$2"\033[0m""]]]]]"}' | sed -e 's,<[^>]*>,,g' | column -t -s $'\t'
+
+splays the number of unread messages on your gmail at the top right corner of your terminal
+while sleep 30; do tput sc;tput cup 0 $(($(tput cols)-15));echo -n " New Emails: $(curl -u username:password --silent https://mail.google.com/mail/feed/atom | grep 'fullcount' | grep -o '[0-9]\+')";tput rc; done &
+du -xB M --max-depth=2 /var | sort -rn | head -n 15
+
+# List mp3 files with less than 320 kbps bitrate.
+find -name '*.mp3' -exec mp3info {} -p "%F: %r kbps\n" \;  | sort | sed '/320 kbps/d'
+
+# check your up to date delicious links.
+curl -k https://Username:Password@api.del.icio.us/v1/posts/all?red=api | xml2| \grep '@href' | cut -d\= -f 2- | sort | uniq | linkchecker -r0 --stdin --complete -v -t 50 -F blacklist
+vimdiff local_dir1/local_file.xml scp://user@remote_host//remote_absolute_location/remote_file.xml
+
+# Compares two source directories, one original and one post configure and deletes the differences in the source folder
+diff ../source-dir.orig/ ../source-dir.post/ | grep "Only in" | sed -e 's/^.*\:.\(\<.*\>\)/\1/g' | xargs rm -r
+
+# Formatted list - WWNs of all LUNs
+for i in /sys/block/sd* ; do wwn=`/lib/udev/scsi_id -g -s /block/${i##*/}` ; [ "$wwn" != "" ] && echo -e ${i##*/}'\t'$wwn ;done
+--
+Diff files over SSH: ssh [login]@[host] "cat [remote file]" | diff - "[local file]"
+
+# Are the two lines anagrams?
+s(){ sed 's/./\n\0/g'<<<$1|sort;};cmp -s <(s foobar) <(s farboo)||echo -n "not ";echo anagram
+
+# Are the two lines anagrams?
+(echo foobar; echo farboo) | perl -E 'say[sort<>=~/./g]~~[sort<>=~/./g]?"anagram":"not anagram"'
+vimdiff local_dir1/local_file.xml scp://user@remote_host//remote_absolute_location/remote_file.xml
+
+# Open (in vim) all modified files in a git repository
+vim `git status --porcelain | sed -ne 's/^ M //p'`
+
+# This little command edits your gitignore from anywhere in your repo
+vim $(git rev-parse --show-toplevel)/.gitignore
+# commandlinefu.com by David Winterbottom
+
+# List mp3 files with less than 320 kbps bitrate.
+find -name '*.mp3' -exec mp3info {} -p "%F: %r kbps\n" \;  | sort | sed '/320 kbps/d'
+
+# Recursively search and replace old with new string, inside every instance of filename.ext
+find . -type f -name filename.exe -exec sed -i "s/oldstring/oldstring/g" {} +;
+
+# Print file content in reverse order
+sed -n '1!G;h;$p' techie.txt
+
+# UBNT device
+iwlist ath0 scanning |egrep '(ESSID|Signal|Address)'| \sed -e 's/Cell  - Address:*//g'  -e 's/ESSID://g' \-e 's/Noise level=-//g' -e 's/dBm//g' \-e 's/Quality=*//g'  -e 's/Signal level=-//g' \-e 's/"//g'
+
+# Rename your Raspberry Pi
+sudo sed -i 's/raspberrypi/pita1/' /etc/hosts /etc/hostname; sudo reboot
+
+# Recompress all files in current directory from gzip to bzip2
+find . -type f -name "*.gz" | while read line ; do gunzip --to-stdout "$line" | bzip2 > "$(echo $line | sed 's/gz$/bz2/g')" ; done
+
+# remove old index.html if you download it again and organiaz the java script tag on the file index.html
+rm index.html | wget www.google.com;cat index.html | sed 's/<script>/\n\n\<script>\n\n/g' | sed 's/<\/script>/>\n\n/g'
+
+# Google verbatim search on your terminal
+function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
+
+# Graphically display directory structure
+ls -R | grep ":$" | sed -e 's/:$//' -e 's/[^-][^\/]*\//--/g' -e 's/^/   /' -e 's/-/|/'
+
+# Search google.com on your terminal
+Q="YOURSEARCH"; GOOG_URL="http://www.google.com/search?q="; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}\"${Q/\ /+}\"" | grep -oP '\/url\?q=.+?&amp' | sed 's/\/url?q=//;s/&amp//'); echo -e "${stream//\%/\x}"
+
+# count the number of times you match a substring in a larger text file
+sed ?s/[sub_str]/[sub_str]\n/g? [text_file] | wc -l
+
+# Add an "alert" alias for long running commands
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
+
+# Remove ( color / special / escape / ANSI ) codes, from text, with sed
+sed "s,\x1B\[[0-9;]*[a-zA-Z],,g"
+
+# Remove blank lines
+sed '/^$/d'
+
+# Capitalize the first letter of every word
+sed "s/\b\(.\)/\u\1/g"
+
+# Go get those photos from a Picasa album (full size)
+wget -O - "[PICASA ALBUM RSS LINK]" |sed 's/</\n</g' | grep media:content |sed 's/.*url='"'"'\([^'"'"']*\)'"'"'.*$/\1/' |awk -F'/' '{gsub($NF,"d/"$NF); print $0}'|wget -i -
+
+# Get Top Trending Topic on Twiter by location
+lynx --dump http://en.trending-topic.com/countries/Mexico/ | grep "62]#" | sed 's/\[62\]//g'
+
+# Verify a file has not been tampered with since dpkg installation
+cat /var/lib/dpkg/info/*.md5sums|grep usr/sbin/sshd|sed 's,usr,/usr,'|md5sum -c
+
+# Encrypt and password-protect execution of any bash script, Version 2
+read -p 'Script: ' S && C=$S.crypt H='eval "$((dd if=$0 bs=1 skip=//|gpg -d)2>/dev/null)"; exit;' && gpg -c<$S|cat >$C <(echo $H|sed s://:$(echo "$H"|wc -c):) - <(chmod +x $C)
+
+# Encrypt and password-protect execution of any bash script
+echo "eval \"\$(dd if=\$0 bs=1 skip=XX 2>/dev/null|gpg -d 2>/dev/null)\"; exit" > script.secure; sed -i s:XX:$(stat -c%s script.secure): script.secure; gpg -c < script.bash >> script.secure; chmod +x script.secure
+
+# Revoke an existing user's group memberships and add another user to those same groups,
+sed -i.awkbak "s/\([:,]\)oldspiderman/\1newspiderman/" /etc/group
+
+# empty set of files
+sed -i -n '/%/p' *.php
+
+# Find Duplicate Files (based on size first, then MD5 hash)
+find . -type f -size +0 -printf "%-25s%p\n" | sort -n | uniq -D -w 25 | sed 's/^\w* *\(.*\)/md5sum "\1"/' | sh | sort | uniq -w32 --all-repeated=separate
+
+# MPD + Digitally Imported
+wget -q -O - http://listen.di.fm/public2 | sed 's/},{/\n/g' | perl -n -e '/"key":"([^"]*)".*"playlist":"([^"]*)"/; print "$1\n"; system("wget -q -O - $2 | grep -E '^File' | cut -d= -f2 > di_$1.m3u")'
+
+# generate 30 x 30 matrix
+xxd -p /dev/urandom |fold -60|head -30|sed 's/\(..\)/\1 /g'
+
