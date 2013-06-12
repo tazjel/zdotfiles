@@ -1,0 +1,45 @@
+# Chrome Add-on Vimium 
+Vimium Help
+Navigating the page
+j, <c-e>	:	 Scroll down
+k, <c-y>	:	 Scroll up
+h	:	 Scroll left
+l	:	 Scroll right
+gg	:	 Scroll to the top of the page
+G	:	 Scroll to the bottom of the page
+d	:	 Scroll a page down
+u	:	 Scroll a page up
+r	:	 Reload the page
+gs	:	 View page source
+yy	:	 Copy the current URL to the clipboard
+yf	:	 Copy a link URL to the clipboard
+p	:	 Open the clipboard's URL in the current tab
+P	:	 Open the clipboard's URL in a new tab
+i	:	 Enter insert mode
+f	:	 Open a link in the current tab
+F	:	 Open a link in a new tab
+o	:	 Open URL, bookmark, or history entry
+O	:	 Open URL, bookmark, history entry, in a new tab
+T	:	 Search through your open tabs
+b	:	 Open a bookmark
+B	:	 Open a bookmark in a new tab
+gf	:	 Cycle forward to the next frame on the page
+Using find
+/	:	 Enter find mode
+n	:	 Cycle forward to the next find match
+N	:	 Cycle backward to the previous find match
+Navigating history
+H	:	 Go back in history
+L	:	 Go forward in history
+Manipulating tabs
+K, gt	:	 Go one tab right
+J, gT	:	 Go one tab left
+g0	:	 Go to the first tab
+g$	:	 Go to the last tab
+t	:	 Create new tab
+yt	:	 Duplicate current tab
+x	:	 Close current tab
+X	:	 Restore closed tab
+Miscellaneous
+?	:	 Show help
+

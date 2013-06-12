@@ -4,8 +4,7 @@
 #
 # Tue Jun 11 02:55:36 AST 2013*/
 ########################################################
-# { zdotfiles aliases
-# Ahmed Alghamdi
+# AHMED BANI
 # }
 #
 #
@@ -22,8 +21,9 @@ WWW_path=~/zdotfiles/8/R_urls_sources_bash
 
 
 
+
 # Add References Bash
-#
+WWW_path=$zal
 function WWW {
     desc="ADD DESCRIPTION..."
     if [ -n "$3" ]; then
@@ -33,8 +33,6 @@ function WWW {
     echo "# $desc" >> $WWW_path
     echo '# "$1"="$2" ' >> $WWW_path
     tail -7 $WWW_path
-
-
     echo "" && echo "- Alias added  $1 = $2 " && echo "";
 }
 
@@ -163,6 +161,7 @@ alias cd....='cd ../../..'
 alias cd.....='cd ../../../..'
 alias cgrep='grep --color=always'
 alias clip='xclip -sel clip'
+
 alias clr='clear;pwd;ls'
 alias co='git checkout '
 alias confcat='sed -e '\''s/[#;].*//;/^\s*$/d'\'' '
@@ -379,12 +378,23 @@ cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 
 
 ####################################################
 wwww(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
-
-
+1 First
+2 SECONDS
+3 Then 
+4
+5
+6
+7
+8
+9
+10
 
 #
-##
-#function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
+
+#
+#
+#
+function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
 
 #function ww_send_gmail
 ##{
@@ -492,7 +502,7 @@ alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
 #
 #rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d<]*/
 
-alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
+#alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
 
 alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'
 
@@ -549,3 +559,15 @@ function Wll () {
 alias 'wst_string'="read -d '' iz <<"zx""
 
 alias 'wask'='vim ~/zdotfiles/1/askapache-bash-profile.txt'
+alias 'wjprayer'='wf "jeddah prayer time"'
+
+
+
+alias 'wfbash'="#\bash \command line filetype:bash @$"
+
+
+alias 'wfbash'='firefox -search bash command line "$@"'
+functions wfbash() {
+    firefox -search
+}
+
