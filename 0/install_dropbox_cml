@@ -1,0 +1,160 @@
+#http://www.dropboxwiki.com/Using_Dropbox_CLI
+
+#Using the official Dropbox command line interface (CLI)
+
+#This article assumes you have already installed Dropbox as per the instructions here
+
+#Installation
+
+#Download the Dropbox command line interface or get it via the command line:
+
+#First make aÂ  binÂ  directory, or a directory of your choosing. The examples below all assume you made a Â bin Â  directory:
+mkdir -p ~/bin
+
+#Download the CLI interface viaÂ  wget:Â Â 
+wget -O ~/bin/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
+
+
+#Set the permissions so you can execute the CLI interface:
+chmod +x ~/bin/dropbox.py
+
+#Getting Started
+
+#Start off by printing the help menu:
+~/bin/dropbox.py help
+
+#which will show you all the commands you can use
+echo "
+status       get current status of the dropboxd
+ help         provide help
+ puburl       get public url of a file in your dropbox
+ stop         stop dropboxd
+ running      return whether dropbox is running
+ start        start dropboxd
+ filestatus   get current sync status of one or more files
+ ls           list directory contents with current sync status
+ autostart    automatically start dropbox at login
+ exclude      ignores/excludes a directory from syncing
+"
+
+#As the help menu shows, to start Dropbox, simply type
+#~/bin/dropbox.py start
+#If successful, it should show
+#Starting Dropbox...Done!
+#Then check its status with
+~/bin/dropbox.py status
+#Commands
+#STATUS
+#Description
+ #get current status of the dropboxd 
+#Usage
+#Â Basic usage dropbox.py status
+#Example ~/bin/dropbox.py status 
+#Combined with "watch" command watch '~/bin/dropbox.py status' 
+#Sample output
+#$ ~/bin/dropbox.py status
+#Indexing 317 files... 
+#$ ~/bin/dropbox.py status
+#Idle
+
+#HELP
+#Description
+ #provide help 
+#Usage
+#Â  Basic usageÂ Â  Â Â  dropbox.py help 
+#Â ExampleÂ Â Â Â Â Â Â Â Â Â  ~/bin/dropbox.py help
+#Â Command help usage dropbox.py help COMMAND 
+#Example Â  Â  Â ~/bin/dropbox.py help exclude
+#Sample output
+#$ ~/bin/dropbox.py help
+#Dropbox command-line interface
+#commands:
+
+#Note: use dropbox help <command> to view usage for a specific command.
+
+ #status       get current status of the dropboxd
+ #help         provide help
+ #puburl       get public url of a file in your dropbox
+ #stop         stop dropboxd
+ #running      return whether dropbox is running
+ #start        start dropboxd
+ #filestatus   get current sync status of one or more files
+ #ls           list directory contents with current sync status
+ #autostart    automatically start dropbox at login
+ #exclude      ignores/excludes a directory from syncing
+
+#$ ~/bin/dropbox.py help puburl
+#dropbox puburl FILE
+#Prints out a public url for FILE.
+
+#PUBURL
+#Description
+ #get public url of a file in your dropbox 
+#Usage
+#Â Basic usage Â Â Â  dropbox.py puburl FILE
+#Â Example Â  Â  Â  Â  Â Â ~/bin/dropbox.py puburl ~/Dropbox/Public/file.zip
+#Sample output
+#$ ~/bin/dropbox.py puburl ~/Dropbox/Public/file.zip
+#http://dl.dropbox.com/u/XXXXXXX/file.zip
+#If not used on a file in your Public folder, you will get an error message:
+#$ ~/bin/dropbox.py puburl ~/Dropbox/myFolder/file.zip 
+#Couldn't get public url: Unknown Error
+#STOP
+#Description
+ #stop dropboxd 
+#Usage
+#Â  Basic usageÂ Â Â Â  dropbox.py stop 
+#Â Example Â  Â  Â  Â  Â Â  ~/bin/dropbox.py stop
+#Sample output
+#$ ~/bin/dropbox.py stop
+#Dropbox daemon stopped.
+#RUNNING
+#Description
+ #return whether dropbox is running 
+#Used in scripts to check if Dropbox is running. This command does not output anything to the user.
+#Extra Info
+#$ ~/bin/dropbox.py help running
+#dropbox running
+#Returns 1 if running 0 if not running.
+
+#Usage
+#Â  Basic usageÂ Â Â  dropbox.py running 
+#Â  Example Â  Â  Â  Â Â ~/bin/dropbox.py running
+#Sample output
+#$ ~/bin/dropbox.py running
+#<no output>
+#EXCLUDE
+#Description
+ #ignores/excludes a directory from syncing 
+#Used in scripts to check if Dropbox is running. This command does not output anything to the user.
+#Extra Info
+#$ ~/bin/dropbox.py help exclude
+#dropbox exclude [list]
+#dropbox exclude add [DIRECTORY] [DIRECTORY] ...
+#dropbox exclude remove [DIRECTORY] [DIRECTORY] ...
+#"list" prints a list of directories currently excluded from syncing.  
+#"add" adds one or more directories to the exclusion list, then resynchronizes Dropbox. 
+#"remove" removes one or more directories from the exclusion list, then resynchronizes Dropbox.
+#With no arguments, executes "list". 
+#Any specified path must be within Dropbox.
+
+#Usage
+#Â  List usage: Â Â  dropbox.py exclude list 
+#ExampleÂ Â Â Â Â Â Â Â  ~/bin/dropbox.py exclude 
+#Example Â  Â  Â  Â  ~/bin/dropbox.py exclude list
+#Â Add exclusion usage Â dropbox.py exclude add DIRECTORY 
+#Example Â  Â  Â  Â Â ~/bin/dropbox.py exclude add ~/Dropbox/MyExcludedFolder
+#Remove exclusion usage Â  dropbox.py exclude remove DIRECTORY
+#Example Â  Â  Â Â  ~/bin/dropbox.py exclude remove ~/Dropbox/MyReincludedFolder
+#Sample output
+#$ ~/bin/dropbox.py exclude list
+#Excluded: 
+#Dropbox/backup
+#Dropbox/documents
+#Dropbox/music
+#Dropbox/papers
+#Dropbox/photos
+#Dropbox/pictures
+#$ ~/bin/dropbox.py exclude add ~/Dropbox/MyExclude1 ~/Dropbox/MyExclude2 ~/Dropbox/MyExclude3
+#[...]
+

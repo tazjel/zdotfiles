@@ -468,3 +468,7 @@ set noro
 "https://bitbucket.org/
 
 
+set background=dark
+
+colorscheme darkburn
+

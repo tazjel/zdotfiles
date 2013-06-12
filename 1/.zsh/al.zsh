@@ -173,7 +173,6 @@ alias ddel='rm -Rf'
 alias dfree='df -h -x tmpfs'
 alias display='less +F'
 
-alias dropbox_conflicts='find ~/Dropbox -name \*conflicted\ copy\*'
 alias eg='git config -e'
 alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash'
 alias erase='shred -n 35 -z -u'
@@ -378,21 +377,6 @@ cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 
 
 ####################################################
 wwww(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
-1 First
-2 SECONDS
-3 Then 
-4
-5
-6
-7
-8
-9
-10
-
-#
-
-#
-#
 #
 function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
 
@@ -494,6 +478,7 @@ alias 'whis'='cut -f2 -d";" ~/.zsh_history | grep "$1" | sort -u'
 alias 'wmp3_notify'='play ~/zdotfiles/References/notify.mp3'
 
 alias 'wr'='xd=$(date +%s); rec -c 2 -r 44100 -s -t wav ~/Dropbox/tools/zfile$xd.wav'
+
 alias 'wp'='play ~/Dropbox/tools/zfile$xd.wav'
 
 
@@ -570,4 +555,44 @@ alias 'wfbash'='firefox -search bash command line "$@"'
 functions wfbash() {
     firefox -search
 }
+
+
+#Installers
+function install_dropbox_cmd () {
+    mkdir -p ~/bin
+    wget -O ~/bin/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
+    chmod +x ~/bin/dropbox.py
+    . ~/bin/dropbox.py help
+}
+### {install spf13
+#https://github.com/spf13/spf13-vim
+warn() {
+    echo "$1" >&2
+}
+
+die() {
+    warn "$1"
+    exit 1
+}
+
+lnif() {
+    if [ ! -e $2 ] ; then
+        ln -s $1 $2
+    fi
+    if [ -L $2 ] ; then
+        ln -sf $1 $2
+    fi
+}
+
+#}
+#
+
+#Set the permissions so you can execute the CLI interface:
+
+#Getting Started
+
+#Start off by printing the help menu:
+alias 'wdr'='~/bin/dropbox.py' 
+
+
 
