@@ -121,7 +121,6 @@ function glll {
     cd $HOME/zdotfiles
     git add -A
     git commit -a
-    git push -all
     git push origin --all && git push origin --tags
 }
 #############################

@@ -79,8 +79,3 @@ echo "Done! Check your vimrc.local"
 
 ########################################
 
-lnif $zendpath/1/.zsh/.zshrc $HOME/.zshrc
-lnif $zendpath/1/.zsh/.zshenv $HOME/.zshenv 
-
-
-
