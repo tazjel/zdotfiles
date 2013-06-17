@@ -17,11 +17,15 @@
 "   This is a mirror of :http://spf13.com
 " }
 "{
+
+"{"
+set history=500
 set autoread
 set t_Co=256 "use 256 colours in terminal
 set nocompatible
 set encoding=utf-8
-
+set encoding=utf-8
+set fileencoding=utf-8
 set foldmethod=manual
 set clipboard+=unnamed
 "}
@@ -466,9 +470,19 @@ cab w2a vsp ~/zdotfiles/9/web2py_arabic_admin.py
 set noro
 "Good"
 "https://bitbucket.org/
-
-
+set showmatch
+set shell=/bin/zsh
+set showcmd
 set background=dark
-
+set showfulltag
 colorscheme darkburn
+set splitright 
+set showtabline=2 " always show tab bar
+
+
+set timeoutlen=250        " Time to wait after ESC (default causes an annoying delay)
+
+
+
+set termencoding=utf-8  " force terminal encoding
 
