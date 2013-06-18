@@ -729,6 +729,6 @@ alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
 #How many lines in your files without comments
 #find . -type f -name '*.php' | xargs cat | sed -re ':top /\/\*.*\*\// { s/\/\*.*\*\///g ; t top }; /\/\*/ { N ; b top }' | awk '$0 !~ /^[\t[:space:]]*($|(\/\/)|(#))/' | wc -l
 
-alias 'wfw'='./zdotfiles/5/ranger-1.6.1/ranger.py' 
+alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
 
 

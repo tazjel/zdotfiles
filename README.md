@@ -1,4 +1,7 @@
 ﻿dotfiles
+ماشاء الله لا قوة الا بالله
+
+
 =========
 Work in progress
 
