@@ -1,0 +1,76 @@
+Guidelines on Code Modification
+===============================
+
+Coding Style
+------------
+
+* Use syntax compatible to both python 2.6 and 3.1.
+* Use docstrings with pydoc in mind
+* Follow the style guide for python code:
+    http://www.python.org/dev/peps/pep-0008/
+* Test the code with "doctest" where it makes sense
+
+
+Patches
+-------
+
+Send patches, created with "git format-patch", to the email adress
+
+    hut@lavabit.com
+
+If you plan to do major changes, or many changes over time, I encourage
+you to create a fork on GitHub, Gitorious or any other site.
+
+
+Starting Points
+---------------
+
+Good places to read about ranger internals are:
+ranger/core/actions.py
+ranger/fsobject/fsobject.py
+
+About the UI:
+ranger/gui/widgets/browsercolumn.py
+ranger/gui/widgets/browserview.py
+ranger/gui/ui.py
+
+
+Common Changes
+--------------
+
+* Change which files are previewed in the auto preview:
+In ranger/fsobject/file.py
+the constant PREVIEW_BLACKLIST
+
+* Adding options:
+In ranger/config/options.py
+add the default value, like: my_option = True
+In ranger/container/settings.py
+add the name of your option to the constant ALLOWED_SETTINGS
+
+The setting is now accessible at self.settings.my_option,
+assuming <self> is a "SettingsAware" object.
+
+* Adding colorschemes:
+Copy ranger/colorschemes/default.py to ranger/colorschemes/myscheme.py
+and modify it according to your needs.  Alternatively, mimic the jungle
+colorscheme.  It subclasses the default scheme and just modifies a few things.
+In ranger/config/options.py (or ~/.config/ranger/options.py), change
+    colorscheme = 'default'
+to: colorscheme = 'myscheme'
+
+* Change the file type => application associations:
+In ranger/config/apps.py
+modify the method app_default.
+The variable "f" is a filesystem-object with attributes like mimetype,
+extension, etc.  For a full list, check ranger/fsobject/fsobject.py
+
+* Change the file extension => mime type associations:
+Modify ranger/data/mime.types
+
+
+Version Numbering
+-----------------
+
+Three numbers;  The first changes on a rewrite, the second changes when major
+configuration incompatibilities occur and the third changes with each release.

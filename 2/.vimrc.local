@@ -61,6 +61,7 @@ nnoremap <F2> :reg<CR>
 
 vnoremap <silent> WW Y<C-W><C-W>Gp'[v'],c<Space><C-W><C-W>
 "vnoremap <silent> WW Y<C-W><C-W>Gp<C-W><C-W>
+vnoremap <silent> 2 <C-W><C-W>
 map Y y$
 
 let g:vimsyn_noerror= 1
@@ -325,6 +326,7 @@ cab w00 w! ~/zdotfiles/0/
 
 "set syntax=vim<CR>
 
+
 map wy :set filetype=bash<CR>
 
 ""#map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
@@ -499,7 +501,7 @@ set shell=/bin/zsh
 set showcmd
 set background=dark
 set showfulltag
-colorscheme pf_earth
+"colorscheme pf_earth
 "colorscheme koehler
 set splitright
 set showtabline=2 " always show tab bar
@@ -526,3 +528,4 @@ nnoremap ,html :set ft=html<CR>i<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN
 
 
 noremap wt :%s/[ ^I]*$//g
+

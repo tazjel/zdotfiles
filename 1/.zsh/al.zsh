@@ -717,4 +717,16 @@ alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
 #jockey-text -l
 ## Copy a file over SSH without SCP
 #ssh username1@servername1 -t ssh username2@servername2 uuencode -m testfile1.tar - | uudecode > testfile1.tar
+#
+# Advanced ls using find to show much more detail than ls ever could
+#alias LS='find -mount -maxdepth 1 -printf "%.5m %10M %#9u:%-9g %#5U:%-5G %TF_%TR %CF_%CR %AF_%AR %#15s [%Y] %p\n" 2>/dev/null'
+#
+ #resize all images in folder and create new images (w/o overwriting)
+#for file in *; do convert $file -resize 800x600 resized-$file; done
+#
+#How many lines in your files without comments
+#find . -type f -name '*.php' | xargs cat | sed -re ':top /\/\*.*\*\// { s/\/\*.*\*\///g ; t top }; /\/\*/ { N ; b top }' | awk '$0 !~ /^[\t[:space:]]*($|(\/\/)|(#))/' | wc -l
+
+alias 'wfw'='./zdotfiles/5/ranger-1.6.1/ranger.py' 
+
 
