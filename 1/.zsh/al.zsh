@@ -38,7 +38,9 @@ function sw () {
     scrot '%Y-%m-%date_day$wx$h_scrot.png' -e 'mv $f ~/images/shots';
 }
 
-
+function wpw_capture_pic_every_2 () {
+i=0;while :; do i=$(expr "$i" + 1); scrot "$i".png; sleep 2; done;
+}
 
 WWW_path=$zal
 function WWW {
