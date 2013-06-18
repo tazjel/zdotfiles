@@ -1,0 +1,1871 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+  Dr Chip's Vim Page  <!-- {{{1 -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
+	Dr Chip's Vim Page
+	
+
+  Author: Charles E. Campbell
+  Copyright 2012
+
+
+
+
+ Latest Stable Release Vim 7.3
+ Patches        001-865
+<!--   Latest Unstable Release  Vim 7.3f -->
+<!--   Patches   001-003 -->
+
+
+
+
+ Ten Most Recent Script Updates
+
+   ScriptVersionDate
+   <!-- BEGIN-INCLUDE-RECENT -->
+  Sum v1b Apr 22, 2013
+  getscript v36a Apr 22, 2013
+  LargeFile v5j Apr 24, 2013
+  mpage v1 Apr 24, 2013
+  Decho v21o May 07, 2013
+  FlistTree v9c May 08, 2013
+  Hdrtag v1u May 07, 2013
+  netrw v150a Jun 05, 2013
+  zip v27b Jun 10, 2013
+  synchk v1d Jun 05, 2013
+   <!-- END-INCLUDE-RECENT -->
+
+
+
+Welcome to my Vim Page.  Herein you'll find a number of scripts, some source
+code (needs compiling, but I do have pre-compiled executables for you PC
+types), and Vim syntax files.  If you'd like to know more about Vim, check out
+Vim Online.  For more about vi, click on the  vi lovers home page.  The
+syntax files below are often snapshots of my working copies, so sometimes they
+may be works-in-progress.  Usually such files will say ASTRO-ONLY
+somewhere in the top four lines of the file.  In any case, the scripts here
+will be more up-to-date than the versions, if any, that I put on vim.sf.net.
+
+
+As a word of warning: Nasa Federal Credit Union has been taking out $5/month from my daughter's savings account.  Since this account was a "kid's" account,
+it tends to be inactive.  I admit that I don't look at the kids' statements every month; I generally do so once per year at tax time.  They claim that they
+called my daughter, but as its a family phone with an answering machine, I can confidently say that there was no such phone call.  So, I advise you not to
+set up "kid" savings accounts with NASA-FCU.
+
+
+If you'd like to be on the cutting edge of Vim, may I suggest reading
+Getting the Vim source with Mercurial.
+
+Nearly all scripts herein will be using the vimball archive format (*.vba
+files) which first became available with vim 7.0 -- it provides for better
+installation and automatic helptag generation.  If there's a "vba" suffix,
+you'll need vim 7.0 or later!  Vim 7.0 users, however, do need to get a new
+version of (vimball);
+vim 7.1 users already have a sufficiently up-to-date version of vimball.
+
+Layout:
+This admittedly long page is organized into the following format: Contents,
+Subpages, and Links.  Subpages, which cover specific topics, are separated by
+horizontal lines and have links to the Contents and Links at their bottom
+right.  A few subpages also provide links to more complete webpages (ex. "Color Scheme").
+Typically subpages will also provide a link to "Links" in or near
+their first sentence; this Link goes near where the associated script, code,
+etc is in the Links section.
+
+
+Netscape Users:
+(on the PC) Some versions of Netscape on the PC have this unfortunate "feature"
+that causes files to be renamed which have more than one period in them (the
+periods become underscores).  As a consequence, WinZip doesn't know what to do
+with the downloaded file.  Just pay attention and fix up the name Netscape
+gives in its saving/downloading dialog box (ie. restore the name to what it
+was).  WinZip should then be able to understand what to do with the files.
+
+
+
+
+  Contents <!-- {{{1 -->
+
+
+     Section
+          "Abbreviations" for C
+             C/C++ Code Beautifier
+           C/C++ Functions: prototypes, hints, etc
+          Color Scheme
+         Columnizing
+       DrChip's Links to Tips and Scripts
+           Patches
+           PC: Pre-Compiled Executables
+         Short Vim Command List
+        Spelling Checker
+            Tag Generation
+           Text and Declarations Alignment
+            Useful Maps
+       Vim Versions and Features
+        Vim Functions, Plugs, and Stubs
+     Links
+
+
+
+ Home Page
+		              Contents&#032;&#032;&#032;&#032;&#032;
+				                                      Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+"Abbreviations" for C
+Normally with abbreviations one has to type a space to kick off the
+abbreviation.  I wanted to put in stub-like bits of code for common C
+constructs such as if, for, etc.  Well, instead of an abbreviation, I rather
+like the following solution: use an inoremap on
+"`"
+and have it examine the previous word to decide
+what to do.  If you'd like to try it out, click on Dr Chip's C Abbreviations
+(also listed as Stubs).
+
+
+   Shorthand  Longhand
+   Map        Map
+   i`                                               if`
+   e`                                               else`
+   ei`                                              elif`
+   f`                                               for`
+   w`                                               while`
+   s`                                               switch`
+   c`                                               case`
+   d`                                               default`
+                                                    do`
+
+
+There are also maps for E`, R`, and D` which generate DrChip's debugger calls.
+
+This approach allows your cinoptions to be effective, so you get the
+indentation style you prefer (abbreviations prevent this).  So,
+if you use my stubs file, you probably should set the cino option.  That way
+the stub will be indented in your style.  I've included a copy of my cinoptions below;
+feel free to incorporate them (my style is the best, of course!) and change them as
+you will (aw, shucks).
+
+
+set cino=>s,e0,n0,f0,{0,}4,^-1s,:0,=s,g0,h1s,p2,t0,+2,(2,)20,*30
+
+
+
+  >s add 1 shiftwidth on normal indent
+  e0    add 0 to prevailing-indent if '{' not at start-of-line
+  n0    add 0 to prevailing-indent for statements after if/while/etc, if statements not inside {}
+  f0    first opening { of a function/block is placed in column 0
+  {0    opening braces are placed 0 characters from prevailing indent
+  }4    closing braces are placed 4 characters from the matching opening {'s indent
+  ^-1s  add -1 space to prevailing-indent if opening brace is in column 0
+  :0    case labels are placed 0 characters from switch()'s indent
+  =s    statements after a case label are placed 1 shiftwidth from indent of label
+  g0    c++ scope (public, private, etc) placed 0 chars from indent of block they're in
+  h1s   c++ statements after public/private/etc 1shiftwidth in
+  p2    k&r function-argument parameter declarations placed 2chars in from margin
+  t0    types for function declaration indented flush with margin
+  +2    continuation lines (split lines) are indented an additional 2 spaces
+  (2    when in unclosed parentheses, indent two spaces
+  )20   unclosed parentheses will be searched for at most 20 lines away
+  *30   unclosed comments will be searched for 30 lines away
+
+
+ Home Page
+		              Contents&#032;&#032;&#032;&#032;&#032;
+				                                      Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+C/C++ Code Beautifier
+
+The <ccb> program
+(get ccb source here)
+beautifies C and C++ code.
+Be careful -- this program does change indentation and can move curly braces
+around, but if it still has a bad bug, it could damage your source if you use
+the -r flag (replace).  That's why
+this program is labelled  Use At Your Own Risk!.
+The -s flag is much safer; it saves
+the beautified versions in *.cb files.  Make sure that the beautified source is
+ok before doing anything irretrievable with your original source code.  That
+said, it does work for me, and normally produces output close to my own
+preferred style.  The "standard" cb style can be obtained with -cdfi.  Now that I've released it to the World,
+expect some bug reports to crop up (hopefully no really awful ones).
+
+
+ccb has been on my website since May 25, 2000 with no runtime bugs reported!
+
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+C/C++ Functions: prototypes, hints, etc.
+
+Intro: Flist
+is a program which does a number of things with C/C++ source files' functions: use it to generate
+listings of functions, prototypes, calling trees, tags, and more (
+get flist source here)!  You may find the maps in
+flistmaps a help in using flist with the
+current file in Vim.
+
+Hints: Flist's -h option makes <hints> files.
+After you've used flist to generate your hints file, just source it into
+your editing session or put the following code into your
+<.vimrc> for automatic sourcing of hints:
+
+
+if filereadable(expand("hints"))
+  au BufNewFile,BufReadPost *.c,*.C,*.cpp,*.CPP,*.cxx  so hints<CR>
+endif
+
+
+The result?  Every time you type a function name, a prototype for it will
+appear on the information line.  In order to see it, you should set your
+cmdheight to 2 or more (:set ch=2) and possibly have showmode off (:set nosmd).
+
+<!-- Hints for Python: Kevin Dahlhausen says "Flist is great! Thanks so much... Flist motivated me -->
+<!-- to write a program that creates a hints file for Python source."  You can -->
+<!-- download his code for generating a -->
+<!-- Python hints file. -->
+<!--  -->
+Maps: Along with flist itself I've
+provided a small set of maps which use flist.  The maps take the form
+\[px][pxgs]: prototype or extern, and prototype, extern, global, and static.
+The map invokes flist against the current file and inserts a list of
+(global/static/both) prototypes or extern-style function declarations.  The \pc
+map inserts a list of prototypes suitable for inclusion in a comment.
+
+Source Trees: Flist's -Tg option builds a tree-like graph of function use.
+Coupled with the Flist-based Tree plugin for vim 6.0 or later,
+one can browse the calling tree on the left hand side of the screen,
+select a function to edit by putting the cursor on its line, and hitting
+return.  Put <FlistTree.vim> into your plugin directory; you may then use the
+command :Flist [filename(s)] to begin graph-tree editing.  See the
+usage notes in <FlistTree.vim> for more commands!  Click for a
+screenshot if you'd
+like to see it first.
+
+Dummy Functions: Flist includes a -D option, which generates "dummy" function
+definitions.  In order to make trees, flist makes a pass over all the source
+files to determine what functions are present, and then a second pass to
+determine what functions are called by what functions.  Thus common functions
+(such as printf) are ignored, and the structure of your program is usually
+better revealed.  However, if you want to know where such functions are called,
+or functions that were defined in your own personal library, you may wish
+to set up a <dummy.c> file containing a list of such functions with no
+body (or even arguments).  That way flist will process the dummy file
+quickly.  The -D option allows one to generate such a dummy file easily
+from real ones.
+
+
+    Calling Options    Explanation
+   flist    *.c                                           list functions in files
+   flist -d *.c                                           generate a <ctags> file
+   flist -e *.c                                           generate an <etags> file
+   flist -h *.c                                           generate a <hints> file
+   flist -p *.c                                           list prototypes
+   flist -t *.c                                           list of functions for inclusion in a comment
+   flist -x *.c                                           list functions as externs
+   flist -Ta *.c                                          list calling tree, all roots
+   flist -Tg *.c                                          "graphical" calling tree
+   flist -Tf *.c                                          functions found report
+   flist -Tu *.c                                          functions used/called-by report
+   flist "?"                                              help
+ <!-- IMG src="../../images/newscroll.gif" -->
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+Color Scheme
+
+I've included Vim-script which implements my choice for syntax
+highlighting.  Please check out my page on DrChip's colorscheme
+for the colorscheme I use.  I like keeping the same colorscheme for both
+gui (gvim) and console (vim); the latter restricts the number of colors available, so such dual-use
+colorschemes must needs be designed for the limitations of the console.
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+Columnizing
+
+Ever wished to convert a list of words into a multi-column list (such as
+ls produces)?  Mcol will do that
+for you (see  below), and check out some of my mcol-using scripts.
+
++---------+------------------------------------------------------+
+|Original |   Using ma on "one", moving to "six", and typing \mn3|
+|List     |            map \mn3  0!'amcol -n3<CR>                |
++---------+------------------------------------------------------+
+|one      |                                                      |
+|two      |                                                      |
+|three    |            one      three      five                  |
+|four     |            two      four       six                   |
+|five     |                                                      |
+|six      |                                                      |
++---------+------------------------------------------------------+
+
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+DrChip's Links to Tips and Scripts
+
+Scripts <!-- {{{2 -->
+
+   Stable Release at                                              Alpha/Beta Release
+   SourceForge                                                    on this Website     Description
+   aftersyntax             AFTERSYNTAX         allows multiple after/syntax/[lang]/files.vim
+   Align                    ALIGN                     alignment by multiple separators
+   AnsiEsc                  ANSIESC                 highlighting by ansi escape sequences plus concealment
+   AsNeeded                 ASNEEDED               loading vim scripts on demand
+   astronaut                ASTRONAUT             same syntax highlighting for console and gui
+   AutoAlign                AUTOALIGN             auto-alignment of =: = etc as one types
+   blockhl                  BLOCKHL                 highlighting of {} level for C/C++
+   ---                                                                                                 CALUTIL                calendar utilities
+   ---                                                                                                 CECMATRIX            matrix calculator for vim
+   cecscope                CECSCOPE               command and menu driven cscope interface
+   cecutil                 CECUTIL                 some utilities used by other of my scripts
+   ---                                                                                                 CLISTFUNC            generates a menu of functions for C
+   ---                                                                                                 COMPILING            quickfix error formats and checker
+   ---                                                                                                 CTAGEXPL              explorer for ctags
+   CVSconflict             CVSCONFLICT         CVS conflict resolution using vimdiff
+   Decho                    DECHO                     supports script debugging
+   ---                                                                                                 DOTFILL                table of contents dot filler
+   DrawIt!                   DRAWIT                   ascii line drawing (lines, ellipses, fills, etc)
+   drc_indent              DRCINDENT             various indent files
+   drcstubs                DRCSTUBS               ftplugins to support quick and easy language constructs
+   EasyAccents              EASYACCENTS         making accents easy
+   engspchk                 ENGSPCHK               spelling checker
+   ephtml                   ---                                            extended perl html syntax highlighting
+   ---                                                                                                 FLISTTREE            graphical function usage tree (for C)
+   foldcol                 FOLDCOL                 inline fold a visual block (column)
+   ---                                                                                                 FUNCSRCH              searches restricted to a C function
+   ---                                                                                                 GDBMGR                  interface between vim and Gdb
+   GetLatestVimScripts.vim  GETSCRIPT             how to keep your scripts from vim.sf.net up-to-date
+   gvcolors                 GVCOLORS               displays X colornames in their own colors
+   ---                                                                                                 HDRTAGEXPLORER  explorer for hdrtag
+   ---                                                                                                 HELP                      extra help file syntax highlighting
+   hicolors                HICOLORS               display current highlighting scheme colors + colorscheme editor
+   HiCurLine                HICURLINE             Highlights the current line
+   ---                                                                                                 HIGHLIGHT            highlights current line
+   ---                                                                                                 HILINKS                displays syntax and highlighting labels for cursor position
+   ---                                                                                                 HIMARKS                highlights marks using signs feature
+   ---                                                                                                HIMTCHBRKT           Highlights the current line
+   hints_man2.vim          HINTSMAN2             Hints for C Library Functions (man2 based)
+   hints_man3.vim          HINTSMAN3             Hints for C Library Functions (man3 based)
+   hints_gsl.vim           HINTSGSL               Hints for GSL Library Functions (1.14 based)
+   LargeFile               LARGEFILE             Edit large files quickly
+   ---                                                                                                 LIBVIEW                visualizes contents of a library
+   LogiPat                 LOGIPAT                 Boolean Logic Patterns
+   ---                                                                                                 MAINTAINER          display maintainer of syntax highlighting
+   ---                                                                                                MANPAGEVIEW         vim-based manpage viewing
+   maplesyrup              MAPLESYRUP           indenting, autoalign, and matchit support for Maple V
+   math                    MATH                       Math keymap and a menu for inserting math symbols
+   ---                                                                                                 MCOL                      multi-column listing
+   Mines                    MINES                     a game
+   ---                                                                                                 MPAGE                    show file in multiple windows
+   mrswin                   ---                                            a toggling version of mswin.vim
+   netrw                   NETRW                     Network Oriented Reading and Writing
+   ---                                                                                                 NETRWCLEAN          remove netrw-related files
+   pluginkiller            PLUGINKILLER       helps plugin writers find troublesome options
+   ---                                                                                                 RAINBOW                displays matching [] () {} in rainbow colors
+   ---                                                                                                 RLTVNMBR              relative numbering using signs
+   ---                                                                                                 RNDM                      pseudo-random number generator
+   RunView                 RUNVIEW                 Run scripts through filter and display output in separate window
+   SeeTab                   SEETAB                   makes tabs visible as alternating bars
+   ---                                                                                                 STLSHOWFUNC        shows current function name in status line
+   ---                                                                                                 SUM                        computes sum of numbers
+   ---                                                                                                 SWAPSTRINGS        swaps two strings
+   ---                                                                                                 TAR                        handles tar files (also distributed with vim)
+   ---                                                                                                 TEXMAPS                LaTeX stubs
+   ---                                                                                                 TWL                        toggle horizontal/vertical window layout
+   vimball                 VIMBALL                 vim-based archiver builder and extractor
+   vis                     VIS                         VisualCommands, Substitutes, and Searches
+   ---                                                                                                 VISCDECL              uses cdecl to explain C declarations
+   visincr                  VISINCR                 visual-block based incremented lists
+   ---                                                                                                 VISSORT                sorts visually selected lines
+   ---                                                                                                 VISSWAP                swaps visually selected text
+   WhereFrom               WHEREFROM             helps one locate where maps, scripts, and functions are defined
+   ---                                                                                                 WINRING                implements a "kill ring" for a vim window
+   ---                                                                                                 ZIP                        handles zip files (also distributed with vim)
+   ---                                                                                                 ZMAPS                    various extra zX maps
+   ZoomWin                  ZOOMWIN                 zoom into a window, zoom out to all windows
+
+
+  Tips <!-- {{{2 -->
+
+    Swapping characters, words, and lines
+    Alignment: =, LaTeX tables, declarations, etc
+     Applying substitutes to a visual block
+    Deleting a buffer without changing your window layout
+    Generating a column of increasing numbers
+    Getting the official distribution's latest: syntax highlighting, runtime, docs, plugins, etc
+    How do I get rid of that bold stuff with my xterm?
+    How to initialize plugins
+    How to overwrite a visual-block of text with another such block
+    How to sort using visual blocks
+     How to tell what syntax highlighting group *that* is!
+    How to toggle between all vertical and all horizontal window layout
+    How to write a plugin
+    Maps, Commands, and Functions - some examples of their interplay
+    Opening gvim atop a console window
+    Repeating a substitute from current cursor position
+     Restore cursor to file position in previous editing session
+    Using vim as a man-page viewer under Unix
+
+
+
+<!-- Script  Help                                                                          -->
+<!-- Script  StlShowFunc : shows function name in the status line                         -->
+<!--       Tip      A map for swapping words                                                                     -->
+<!--       Tip      Alignment: =, LaTeX tables, declarations, etc                                                -->
+<!--       Tip       Applying substitutes to a visual block                                                       -->
+<!--       Tip      Bouncing Parentheses (during insertion)                                                      -->
+<!--       Tip      Deleting a buffer without changing your window layout                                        -->
+<!--       Tip      Generating a column of increasing numbers                                                    -->
+<!--       Tip      Getting the official distribution's latest: syntax highlighting, runtime, docs, plugins, etc -->
+<!--       Tip      Highlight matching brackets as one moves in normal mode                                      -->
+<!--       Tip      How do I get rid of that bold stuff with my xterm?                                           -->
+<!--       Tip      How to initialize plugins                                                                    -->
+<!--       Tip      How to overwrite a visual-block of text with another such block                              -->
+<!--       Tip      How to sort using visual blocks                                                              -->
+<!--       Tip       How to tell what syntax highlighting group *that* is!                                        -->
+<!--       Tip      How to toggle between all vertical and all horizontal window layout                          -->
+<!--       Tip      How to write a plugin                                                                        -->
+<!--       Tip      Maps, Commands, and Functions - some examples of their interplay                             -->
+<!--       Tip      Opening gvim atop a console window                                                           -->
+<!--       Tip      Repeating a substitute from current cursor position                                          -->
+<!--       Tip      Spelling checkers: Dutch, English, German, Hungarian, and Yiddish                            -->
+<!--       Tip      Using vim as a man-page viewer under Unix                                                    -->
+
+
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+  <!-- {{{1 -->
+Patches
+
+
+	getfsize patch
+	    This patch extends getfsize({fname}) to getfsize({fname}[,unitsize]).
+		The optional second argument specifies the units that getfsize()
+		will return the file size in.  It's useful for handling file
+		sizes that are over 2GB.
+
+	helptags patch
+		This patch extends the helptags command to construct personal help tags files
+		with *.txt files in subdirectories.  Looks like Bram has already included it
+		with v7.3 patch 734!
+
+    Lua patch
+	   This patch, by Luis Carvalho, provides internal vim support for Lua (akin to vim's support for perl, etc).
+
+
+
+
+ Home Page
+					  Contents&#032;&#032;&#032;&#032;&#032;
+													  Links
+
+
+
+
+PC: Pre-Compiled Executables
+
+I've included some pre-compiled executables for the PC for which I used a Borland
+C/C++ compiler (under Miscellaneous in the Links).
+As a bonus, I've thrown in my calculator program, too.  You should
+still get the source code distributions; if you have ansi escape sequences enabled
+for your MS-DOS windows, and have <rdcolor.dat>, prompts and help will come
+up in color.  The copyright notices associated with the source distributions also
+still apply to the executables.
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+Short Vim Command List
+
+If you've gotten here, I'm sure you realize that Vim has a large
+number of commands -- that is, commands that one can do while
+in normal mode.  That's not counting the command mode commands!
+Check out the Real Short Vim Normal-Mode List of Commands.
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+   <!-- {{{1 -->
+Spelling Checker
+
+The English spelling checker
+(under Scripts in the Links)
+uses Vim's native syntax highlighting ability to make
+misspelled (English) words show up as an "Error" (usually white on a red
+background).  Vim 7.0 introduced a built-in spelling checker with many
+features based on those engspchk provided; however, engspchk is still
+good for those of you still using earlier versions of vim.
+
+The Vim-based English spell checker also supports entering words
+that the cursor is on into a temporary or permanent dictionary and allows one
+to skip to the previous or subsequent spelling error (if any).  It co-exists
+quite well with TeX, LaTeX, Html, and other such specialized text, and can
+be used to check the spelling inside comments in various programming languages.
+
+Getting Started:
+
+The English spelling checker now comes as a "tarball":
+gunzip the file <engspchk.tar.gz> and
+tar -oxvf engspchk.tar in the .vim or _vimfiles
+directory.
+
+The English spelling checker is a plugin; it
+does a quick load and makes a map for &#092;ec (actually the &#092;
+is <Leader> which can be changed; see :he mapleader).
+The dictionary isn't loaded until one types &#092;ec.
+It also creates a menu item to load the spelling checker for gvim
+(the gui).
+
+The custom user dictionary and optional Webster's 1913 dictionary
+is stored using the path specified by the vim variable g:cvimsyn,
+settable in the <.vimrc>.
+If that variable isn't set, then the CVIMSYN environment
+variable, if it exists, is used.
+
+If you want to use the environment variable approach:
+
+
+   sh                   CVIMSYN="path";export CVIMSYN
+   csh                  setenv CVIMSYN "path"
+   ksh                  export CVIMSYN="path"
+   Windows 95,98        in <autoexec.bat>:
+                        set CVIMSYN=..path..
+   Windows 2000,NT,etc  Right click on <My Computer>
+                        Choose <Properties>
+                        Click <System Properties>
+                        Click <Advanced> tab
+
+
+Moving:
+For Vim versions 5.04 and later, the <engspchk.vim>
+file additionally provides two maps (\en and \ep) to move to the next and preceding
+spelling error, if any.  I suggest you upgrade if you haven't already, because
+Vim's functions are powerful!
+
+Custom Dictionary:
+Engspchk allows the user to temporarily save (\et) or to
+permanently save (\es) words the user uses but somehow isn't in
+Engspchk's dictionary.  A temporary save only affects the current
+vim editing session; a permanent save writes the word to a custom user dictionary
+which is automatically loaded in the future.
+
+Alternatives:
+For Vim version 6.0 and later, <engspchk.vim>
+provides the (\ea) map which brings up a one-line alternatives window for the
+word under the cursor.  Move left and right with the full power of Vim, and
+when the cursor lies on the desired substitute word, a simple carriage return
+will cause replacement.  You'll also need to have the
+agrep
+program to do this (there's a pre-compiled for Windows version available using
+this link).  The first use of (\ea)
+takes longer than subsequent use because the script that gets invoked constructs
+a plain list of words from the engspchk file.
+
+No Flashing:
+With Vim version 6.0y and later and starting with version 2.04 of
+engspchk no longer will Error highlighting flash on and off while you're
+typing.  Thanks go to Chase Tingley (with emendations by Bram Moolenaar) who
+wrote the changes to Vim to make this possible.
+
+More Words:  Previously the
+<wb1913_engspchk.vim> file was provided separately, but it is
+now provided in the <engsphck.tar.gz> tarball.  still optional if you'd
+rather not load it.  Webster has provided an electronic copy of the words from
+its 1913 edition; those words that appear in that dictionary that don't appear
+in <engspchk.vim>'s dictionary itself are provided in the
+<wb1913_engsphck.vim> file.  If the file appears in the directory
+specified by the g:cvimsyn variable (or by the CVIMSYN environment variable)
+then it is loaded automatically.
+
+Languages other than English: There are now variants of
+<engspchk.vim> for Dutch, German, Hungarian, Polish, and Yiddish.  Engspchk
+has been improved so that mostly all that's needed are the dictionaries themselves.
+I'd appreciate it if you could let me know where on the Web to find it so I can make a link on
+this page to it!
+<!---->
+<!---->
+<!--  Dutch nlspchk.dict.bz2-->
+<!---->
+
+Thomas Köhler has made his create script which
+uses the Bourne shell; it merges a dictionary with engspchk.vim to
+create a spelling checker for another language.
+
+Since vim 7.0 and later now includes embedded spell checking, I've removed
+most of the spelling dictionaries.  If someone is still interested, please
+send me an email (NdrOchip@ScampbellPfamily.AbizM - NOSPAM) and I'll send
+you a copy.  Unfortunately, I'm limited on my webspace, and I needed the
+space!  I have dictionaries for Dutch, French, German, Hungarian, Italian,
+Polish, Russian, and Spanish.
+
+To see a screenshot, please click on this.
+
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+Tag Generation
+
+I have written my own tag generating program (get source for hdrtag here);
+although Exuberant Ctags is good, I know how to modify hdrtag
+to suit me.  It contains tagging generation for C/C++, C/C++ header files,
+lex, yacc, TeX (cites and labels), vim scripts (functions and syntax), and Maple V.
+
+Exuberant Ctags will no longer be distributed with vim as of v6.0i.  I've provided
+a link to its home site here.
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+Text Alignment
+
+The alignment scripts (<Align.vim> and <AlignMaps.vim>) now supplant
+the older external filter approach.  The new scripts, which include help and
+plentiful examples, provide:
+
+ cyclic left, right, and centering justification of fields
+     cyclic or equivalent regular-expression separators
+     cyclic left, right, and centering of multi-length separators
+     improved initial white space control: retain, eliminate, re-use first
+     specifiable separator padding
+     visual range specified alignment, including via visual-block
+     multiple maps in <AlignMaps.vim> which tackle complex
+         alignment problems, such as aligning C/C++ declarations,
+         function argument lists, etc.
+
+
+See my DrChip's Alignment Tool for Vim page for links and examples.
+An alternative aligner is available from
+Gergely Kontra
+(Johannes Zellner used to have one available, but apparently his site has disappeared).
+
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+Useful Maps
+
+
+   Date maps (year-month-day, month-day-year, etc)
+            imap <Leader>ymd   <C-R>=strftime("%y%m%d")<CR>
+            imap <Leader>mdy   <C-R>=strftime("%m/%d/%y")<CR>
+            imap <Leader>ndy   <C-R>=strftime("%b %d, %Y")<CR>
+            imap <Leader>hms   <C-R>=strftime("%T")<CR>
+            imap <Leader>ynd   <C-R>=strftime("%Y %b %d")<CR>
+            com! YMD :norm! i<C-R>=strftime("%y%m%d")<CR>
+            com! MDY :norm! i<C-R>=strftime("%m/%d/%y")<CR>
+            com! NDY :norm! i<C-R>=strftime("%b %d, %Y")<CR>
+            com! HMS :norm! i<C-R>=strftime("%T")<CR>
+
+   Determining the highlight group that the word under the cursor belongs to
+       nmap <silent> <F10>   :echo "hi<" . synIDattr(synID(line("."),col("."),1),"name") . '> trans<' . synIDattr(synID(line("."),col("."),0),"name") . "> lo<" . synIDattr(synIDtrans(synID(line("."),col("."),1)),"name") . ">"<CR>
+
+   Mirrors and Reversals:
+       nno  <silent> <Leader>fr   :set lz<cr>'aO<esc>ma'':'a+1,.g/^/m 'a<cr>kdd:set lz!<cr>
+       vno  <silent> <Leader>fr   :<c-u>set lz<CR>O<esc>V'>:g/^/m '<<cr>'<dd:set lz!<cr>
+       nmap <silent> <Leader>fR   V'a\fR
+       vno  <silent> <Leader>fR   c<C-O>:set ri lz<cr><C-R>"<esc>:norm! dd`<<cr>:set ri! lz!<cr>
+
+   Insertion mode Completion Function Key Maps (press <F12> while in insert mode to see list)
+       " <F1>   <c-x><c-L> completion: whole line
+       " <F2>   <c-x><c-N> completion: keywords using current file
+       " <F3>   <c-x><c-K> completion: keywords using dictionary
+       " <F4>   <c-x><c-T> completion: keywords using thesaurus
+       " <F5>   <c-x><c-I> completion: keywords in current and included files
+       " <F6>   <c-x><c-]> completion: tags
+       " <F7>   <c-x><c-F> completion: file names
+       " <F8>   <c-x><c-D> completion: definitions or macros
+       " <F9>   <c-x><c-V> completion: vim command line
+       " <F10>  <c-x><c-O> completion: omni completion
+       ino <silent> <F1>      <c-x><c-L>
+       ino <silent> <F2>      <c-x><c-N>
+       ino <silent> <F3>      <c-x><c-K>
+       ino <silent> <F4>      <c-x><c-T>
+       ino <silent> <F5>      <c-x><c-I>
+       ino <silent> <F6>      <c-x><c-]>
+       ino <silent> <F7>      <c-x><c-F>
+       ino <silent> <F8>      <c-x><c-D>
+       ino <silent> <F9>      <c-x><c-V>
+       ino <silent> <F10>     <c-x><c-O>
+       ino <silent> <F11>     <C-O>ma<C-O>yiw<C-O>:ptag <C-R>"<CR><C-O>`a
+       ino <silent> <s-left>  <c-x><c-p>
+       ino <silent> <s-right> <c-x><c-n>
+       ino <silent> <F12>     <c-o>:echo 'completes[ F1:line F2:keywrd F3:dict F4:thes - F5:fromfile F6:tags F7:fname F8:defns - F9:vimcmd F10:omni ] F11:ptag-iw F12:funkey help'<CR>
+        Moving up/down by function, unfolding current function but folding all else
+       noremap [[  [[zMzvz.
+       noremap ]]  ]]zMzvz.
+
+   Some typical settings for viminfo that I use:
+        set viminfo=!,'10,\"100,:20,%,nc:\\cec\\_viminfo
+        set viminfo=!,'25,\"100,:20,%,n~/.viminfo
+
+   Transferring blocks of text between vim sessions
+       nmap <Leader>xr   :r $HOME/.vimxfer<CR>
+       nmap <Leader>xw   :'a,.w! $HOME/.vimxfer<CR>
+       vmap <Leader>xw   :w! $HOME/.vimxfer<CR>
+       nmap <Leader>xa   :'a,.w>> $HOME/.vimxfer<CR>
+       vmap <Leader>xa   :w>> $HOME/.vimxfer<CR>
+       nmap <Leader>xS   :so $HOME/.vimxfer<CR>
+       nmap <Leader>xy   :'a,.y *<CR>
+       vmap <Leader>xy   :y *<CR>
+
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+ <!-- {{{1 -->
+Vim Functions, Plugs, and Stubs
+
+ VIM 7.0 USERS: BE SURE TO GET THE LATEST VIMBALL PLUGIN BEFORE ATTEMPTING TO USE SCRIPTS UPLOADED ON OR AFTER AUG 1, 2006
+
+
+Various functions, plug-ins, and quick-insertion stubs follow alphabetically.  There are several
+plugins that I post both here and at vim.sf.net.
+Scripts here are my most up-to-date ones and may be considered as alpha/beta releases;
+I tend to put the ones I'm updating/fixing here.  After a bit of feedback, and a variable length
+of time (ie. whenever I get around to it), I will also post the scripts on
+vim.sf.net.
+
+Most plugins here are provided in the vimball format; simply use vim name_of_plugin.vba.gz
+and follow the directions.  Windows users may not have a gunzip utility; if you're a Windows user,
+you'll need to get one if you don't have one already.
+
+   Item  Tool/Suite  Free  Website
+   7zip                                      tool                                            y                                         try here
+   Winzip                                    tool                                            n                                         try here
+   unxutils                                  suite                                           y                                         try here
+   cygwin                                    suite                                           y                                         try here
+   GnuWin32                                  suite                                           y                                         try here
+   MinGW                                     suite                                           y                                         try here
+
+
+Then type :so %; this runs the vimball utility and distributes the components of the plugins where they belong.  It also enables help via vim's help facility for the plugin (ex. :help netrw).
+
+I use three release states with my plugins:
+
+    NOT RELEASED -- my latest version (labelled v[0-9]*[a-z], ex. v3b).
+				  These versions may be handed out to individuals while I'm
+				  attempting to debug some problem they're having.  The version
+				  number will remain fixed while the plugin is in this state.
+				  These versions of my plugins shouldn't get generally
+				  released, but accidents happen.
+				
+
+     ASTRO-ONLY -- a somewhat experimental version of a plugin, like
+	              "NOT RELEASED" versions, also labelled with a trailing
+				  letter such as v[0-9]*[a-z] (ex. v3b).  These versions
+                  do have their trailing letter changed as they get
+                  updated.  These versions appear on this website.
+				
+
+     (nothing) -- the plugin has been released on vim.sf.net
+	              and concurrently on this website.  These versions also drop the trailing
+                  letter, having the format v[0-9]* (ex. v3).  Those plugins which Bram has
+				  picked up for distribution with Vim have also been forwarded to Bram.
+				
+
+
+Thus v1a is ASTRO-ONLY or possibly NOT RELEASED; v3 is RELEASED.
+
+In other words, I use the ASTRO-ONLY stage as an alpha/beta release, and NOT
+RELEASED as an alpha.  This process is supposed to help get the bugs out before
+the plugin is potentially released to thousands.
+
+If you have some feedback (problems or kudos!), please send an email to NdrOchip@ScampbellPfamily.AbizM
+(remove the embedded NOSPAM therein first, of course).
+
+
+  After/Syntax Directories <!-- {{{2 -->
+          Updated Apr 07, 2005 (v2a)           <!-- vbafiles/aftersyntax.vba.gz -->
+		                                          (this plugin is superceded by vim 7.x, which looks into after/syntax subdirectories on its own)
+                                                  Several directories, such as .vim/after/syntax, allows multiple files
+                                                  therein but vim does not look into sudirectories therein.  By copying this
+                                                  file to such a directory, and renaming it using the subdirectory name + ".vim",
+                                                  the subdirectory name will be scanned for any and all *.vim files and such
+                                                  files will be loaded.
+                                                  Also available at vim.sf.net where you may rank it.
+
+
+     DrChip's Astronaut Colorscheme <!-- {{{2 -->
+         Updated Apr 01, 2013 (v8f)           <!-- vbafiles/astronaut.vba.gz -->
+		 IF YOU DON'T CARE ABOUT VIM AND GVIM USING THE SAME COLORS, THIS COLORSCHEME IS NOT FOR YOU!!!  (guess I'm tired of those who complain about the use of only 8 colors...)
+
+		 This colorscheme is a dark-background style colorscheme with the
+		 advantage that it works with console/terminal vim in the same way that
+		 it works with GUI vim.  Thus it is restricted to using just the basic
+		 eight colors that many xterms are limited to.  The <astronaut.vim>
+		 file gives you the dark background colorscheme I prefer and use.  If
+		 you'd like to see a preview, check this out, and see check out DrChip's colorscheme.
+
+     Alignment  <!-- {{{2 -->
+         Updated Apr 16, 2013 (v38)          <!-- vbafiles/Align.vba.gz -->
+		 Manual
+                                                 Aligns text based on patterns (see this page for more!).  The vimball for this plugin contains both Align and AlignMaps;
+												 the latter is for most users' convenience.  If you're one who wishes not to have AlignMaps, the :AlignMapsClean command will remove the
+												 AlignMaps plugin from your installation.
+                                                 NOTICE: The latest version of Align and AlignMaps given here need vim 7.0aa.
+                                                 Also available at vim.sf.net where you may rank it.
+
+
+     Alignment Maps  <!-- {{{2 -->
+         Updated Jun 10, 2011 (v42m)          <!-- vbafiles/AlignMaps.vba.gz -->
+		 Manual
+                                                 Provides numerous maps to facilitate text alignment (see page for more!)
+                                                 Also available at vim.sf.net where you may rank it.
+
+
+     Ansi Highlighting  <!-- {{{2 -->
+         Updated Dec 06, 2012 (v13d)          <!-- vbafiles/AnsiEsc.vba.gz -->
+		 Manual
+												  This plugin follows Ansi-escape sequences to colorize subsequent text using vim's syntax highlighting engine.
+												
+												  The AnsiEsc plugin provides a single command:  :AnsiEsc ,
+												  which will toggle Ansi-escape sequence processing.
+												  When enabled, AnsiEsc will handle <esc>[FGm,
+												  <esc>[ATTR;FGm, and <esc>[FG;BGm sequences;
+												  subsequent text will then be colored appropriately.
+												
+												  With vim 7.2 and earlier, the escape sequence itself will take space but will be suppressed using "Ignore" highlighting.
+												  Vim 7.3 comes with Vince Negri's conceal/ownsyntax capabilities built-in.  With it, Ansi-escape sequences
+												  will have their colorizing effects but will themselves be concealed (again, when AnsiEsc is enabled and
+												  one has used set conceallevel=[2 or 3]).
+												  Also available at vim.sf.net
+												  where you may rank it.
+
+
+     AsNeeded  <!-- {{{2 -->
+         Updated Feb 25, 2013 (v17l)          <!-- vbafiles/AsNeeded.vba.gz -->
+		 Manual
+                                                  Supports automatic sourcing (loading) of functions as needed.  AsNeeded.vim is a plugin
+                                                  that sources other scripts in the .vim/AsNeeded directory when a function is called
+                                                  that is needed.  One may use :AsNeeded command or :AN command.  AsNeeded actually
+                                                  supports as-needed sourcing for functions, maps, and commands.
+
+
+     AutoAlign suite  <!-- {{{2 -->
+         Updated Mar 18, 2013 (v14k)          <!-- vbafiles/AutoAlign.vba.gz -->
+		 Manual
+                                                  Uses the Align.vba.gz
+                                                  package to facilitate aligning equations, etc, as you type them.
+                                                  Also available at vim.sf.net
+                                                  where you may rank it.
+
+
+     Blockhl: Nesting Level Based Highlighting For C <!-- {{{2 -->
+         Updated Sep 22, 2011 (v6e) <!-- vbafiles/blockhl.vba.gz -->
+		 Manual
+		                                          Blockhl controls the highlighting of leading tabs based on the nesting level of {}s
+												  for the C and C++ languages by providing a sequence of graylevels.
+												  The file should be put into the .../after/syntax/c directory.
+
+
+     Calendar Utilities  <!-- {{{2 -->
+         Updated Oct 08, 2008 (v3b)           <!-- vbafiles/calutil.vba.gz -->
+		 Manual
+                                                 Used by visincr.vim (which is described
+                                                 below), <calutil.vim> provides three calendar-related functions:
+                                                 DayOfWeek(y,m,d), Cal2Jul(y,m,d), and Jul2Cal(julday).  DayOfWeek() converts a date
+                                                 to a day of week name, and the other two convert between dates and the Julian day.
+
+
+     Cecmatrix: Matrix Handling <!-- {{{2 -->
+         Updated Mar 18, 2013 (v1d)           <!-- vbafiles/cecmatrix.vba.gz -->
+		 Manual
+		                                          Using this plugin is a snap!  Just...
+												
+												        Visual-block select a region of text containing a matrix of numbers, and type  :MatSet MatrixName  (ex. :MatSet A)
+												        :Mat matrix-expression (for example, :Mat D=(A+B)/C, or :Mat 1/E)
+												        :MatWrite matrix-expression  (ex. :MatWrite D  which will write the D matrix after the current line in the text)
+												
+												  Uses the Align and cecutil plugins; Align isn't strictly necessary, although cecmatrix will produce
+												  nicer output with it; cecutil is provided along with cecmatrix.
+
+
+     Cscope Interface <!-- {{{2 -->
+         Updated Apr 27, 2012 (v5h)           <!-- vbafiles/cecscope.vba.gz -->
+		 Manual
+                                                 (vim v7.0 only) Cscope interface to find functions which call functions,
+                                                 are called by functions, etc.  Put in your .vim/plugin directory, and
+                                                 try :CSh for help.  There's optional local quickfix windows, vertical
+                                                 or horizontal window with cscope output, menus, etc.
+
+
+     DrC's Utilities contains various functions and some maps:  <!-- {{{2 -->
+         Updated Apr 03, 2010 (v18h)          <!-- vbafiles/cecutil.vba.gz -->
+		 Manual
+                                                 Marks: SaveMark(markname) RestoreMark(markname) DestroyMark(markname)
+                                                 Pos'n: SaveWinPosn() RestoreWinPosn() \swp \rwp  (actually uses <Leader>)
+
+
+     C Function Menu Generator <!-- {{{2 -->
+                                                 Marcel van der Laan wrote a function
+                                                 :call C_ListFuncs() which uses flist to generate a menu of functions in the current file.
+
+
+     C Compiler Commands <!-- {{{2 -->
+         Updated Jan 05, 2006 (v1)            <!-- vbafiles/compiling.vba.gz -->
+		 Manual
+                                                The compiling.vim plugin
+                                                provides error format files for several C compilers, plus
+                                                a :Chk command to show one window with source with lines with errors and warnings
+                                                given Error highlighting and a quickfix window showing the associated messages.
+
+
+     CtagExpl: Ctags Explorer <!-- {{{2 -->
+         Updated Feb 22, 2011 (v1k)           <!-- vbafiles/CtagExpl.vba.gz -->
+		 Manual
+		                                          An explorer for tags files generated by exuberant ctags; much like
+												  Lakshmanan's taglist explorer.  However,
+												  CtagExpl cooperates with gdbmgr, providing it with a tags-based explorer.
+
+
+     CVS Conflict File Handler <!-- {{{2 -->
+         Updated Sep 27, 2011 (v2h)           <!-- vbafiles/CVSconflict.vba.gz -->
+		 Manual
+                                                 When one does "cvs update", one may get files marked with "C" for
+                                                 conflict.  Cvs was unable to automatically merge one's local
+                                                 version with the repository, and merging requires human intervention.
+                                                 The :CVSconflict command takes the current conflict file,
+                                                 splits it into two separate files, and enables vimdiff-style
+                                                 editing and viewing.
+
+
+     Decho: DrC's Vim Debugger  <!-- {{{2 -->
+         Updated May 07, 2013 (v21o)          <!-- vbafiles/Decho.vba.gz -->
+		 Manual
+												 The Decho.vim plugin provides debugging messages in a separate window.
+												 One puts
+												 Decho "some message here"
+												 -or-
+												 call Decho("another message")
+												 and Decho will split the screen with a five line debugging window on the
+												 bottom of the display where the messages will appear.  Allows one to
+												 inspect multiple error messages with the usual vim editing commands!
+												
+												 Decho can optionally redirect its messages to a separate dedicated tab,
+												 to Vim's messages list, or to a "remote" vim.
+												
+												 More help and commands are available - see their descriptions Decho's manual.
+												
+
+     DotFill <!-- {{{2 -->
+         Updated Aug 25, 2011 (v1b)           <!-- vbafiles/DotFill.vba.gz -->
+		 Manual
+                                                 Facilitates setting up aligned columns with user-specified fill-characters.  Often used with contents
+                                                 pages.  Example of usage:  :[range]DotFill .  (to fill with dots)
+												
+
+     DrawIt  <!-- {{{2 -->
+         Updated Mar 18, 2013 (v13a)           <!-- vbafiles/DrawIt.vba.gz -->
+		 Manual
+                                                 A plugin for drawing vertical, horizontal, and slanted lines using text.
+												 With DrawIt, one may use the number pad to leave a trail of dashes,
+                                                 bars, etc behind.  Furthermore, it also supports using visual-block specified regions
+                                                 to draw boxes, ellipses, arrowheads, lines, and to specify floods.
+												
+												 New: DrawIt has two new commands, :DIsngl and :DIdbl, that tell DrawIt to draw boxes using
+												 utf-8 box characters (single-bar, double-bar).  Your current file needs to be using the
+												 utf-8 encoding for this to work.
+												
+                                                 Also available at vim.sf.net
+                                                 where you may rank it.  The version here requires vim 7.0!!!
+
+
+      Stubs  <!-- {{{2 -->
+         Updated Jun 19, 2010 (v4a)           <!-- vbafiles/drcstubs.vba.gz -->
+		 Manual
+                                                  Supports quick entry of language constructs for C, sh/ksh/bash, LaTeX, and vim.
+                                                  Ie. while in insert mode and using C, a if` will result in
+                                                  a if(){} construct entered into your code with the
+                                                  cursor appropriately positioned for further insertion.  When done with entering
+                                                  the test expression, hitting <esc> will place your cursor (in insert mode)
+                                                  after the "{".  (also see Abbreviations for C)
+
+
+     EasyAccents  <!-- {{{2 -->
+         Updated Aug 30, 2010 (v10c)           <!-- vbafiles/EasyAccents.vba.gz -->
+		 Manual
+                                                  A plug-in that makes using accented characters easier
+                                                  Also available at vim.sf.net
+                                                  where you may rank it.  (Version 8)
+
+
+     Engspchk (spelling checker)  <!-- {{{2 -->
+         Updated Feb 22, 2011 (v65f)           <!-- vbafiles/engspchk.vba.gz -->
+		 Manual
+                                                  A multiple-human-language spell checking tool!
+                                                  Supports on-the-fly spell-checking, spelling suggestions,
+                                                  the mouse (when available), and menus (gvim).
+												
+
+     FlistTree <!-- {{{2 -->
+         Updated May 08, 2013 (v9c)           <!-- vbafiles/FlistTree.vba.gz -->
+		 Manual
+                                                 Shows a graphical function-usage tree.  See FlistTree.vim itself for instructions.
+                                                 (uses flist, a program)
+												
+
+     Highlight <!-- {{{2 -->
+         Updated Sep 21, 2011 (v1i)           <!-- vbafiles/Highlight.vba.gz -->
+		 Manual
+												  Highlights patterns (like :match, :2match, etc, except any number of such highlights may be used).
+												
+
+     Indent Files by DrC  <!-- {{{2 -->
+                                                 Updated May 03, 2005 (v1)           <!-- vbafiles/drc_indent.vba.gz -->
+                                                 The drc_indent.vim package of indent files provides DrC's indent files and customizations for sh, vim, tex, and maple.
+
+
+     foldcol  <!-- {{{2 -->
+         Updated Aug 17, 2010 (v3f)           <!-- vbafiles/foldcol.vba.gz -->
+		 Manual
+                                                  The foldcol plugin, when used with vim 7.3, makes it possible to fold columns of text from view (using the conceal feature).
+                                                  Also available at vim.sf.net where you may rank it.
+
+
+     funcsrch  <!-- {{{2 -->
+         Updated Jan 25, 2006 (v2a)           <!-- vbafiles/funcsrch.vba.gz -->
+		 Manual
+                                                  Permits searches to be taken only within a function, as
+                                                  defined by [[ (for start of function) and ][ (for end of function).  These normal
+                                                  commands may, of course, be defined as maps in the ftplugin directory to customize
+                                                  them for specific languages.
+
+
+     Gdbgmgr: Gnu Debugger Manager for Vim<!-- {{{2 -->
+         Updated Mar 18, 2013 (v2b)           <!-- tarfiles/gdbmgr.tar.gz -->
+		 Manual
+		 Requirements: linux and a "huge" vim
+		 Gdbmgr has two main components: a plugin portion, which provides an interface for the user, and the second component, written in C, which provides communications between vim and gdb.
+		 Gdbmgr works with core dumps, utilizes hovering-cursor balloons to reveal variables' values, and provides a runtime interface to your program via gdb and vim.
+		 It doesn't touch vim's source code (no patches!) or need external interpreters, unlike several other ways to get vim and gdb to work together.
+		 											
+														 GdbMgr provides an interface between vim and gdb: no patches!
+														 No external interpreters are used (ie. no perl, no python, no ruby, ...)
+														 GdbMgr requires a "huge" vim (configure --with-features=huge) with one or more of the following choices:
+														
+															    configure: --enable-perlinterp
+														        configure: --enable-pythoninterp
+															    have in Makefile: EXTRA_LIBS=-lutil
+															
+														 Integrated multi-window displays available include: Assembly, Breakpoints, Expressions, Function Stack, Messages, Source, Threads, and Watchpoints; it also supports
+														     in an integrated fashion "foreign apps": Netrw, CtagExpl, HdrTag,
+															 and bufexplorer (thanks go to Jeff Lanzarotta for the last!).
+														
+
+													     Customizable display (one may pick any subset of the integrated windows available and specify how they're to be displayed and/or stacked).
+														 Snapshot 1
+														     This snapshot shows GdbMgr with a breakpoint and a temporary breakpoint in prog7's Func2() function.
+														
+
+														 Snapshot 2
+														     This snapshot shows GdbMgr with the Command window having had a dialog with the user (ie. "Enter something:", user entered "OK<cr>", etc.
+															 The program has run to completion.
+														
+
+														 Its distributed as a gzipped tarball instead of the vimball format usually used here as it contains some binaries (the two xpm files for the breakpoint signs)
+														 Currently tested only under Linux; it definitely does need a Unix-like environment. I need a mac person to tell me how to get a shared library working on the
+														     Mac.  I've included a first cut at it with Makefile.mac (under .vim/gdbmgr/src)
+														 Integration with vim and gdb is provided by the plugin itself via vim's libcall() function and a small shared library written in C (code provided)
+														 At the current time, gdbmgr has moved from alpha to beta (ie. majoring in bug removal, minoring in new features; its been working well lately).
+														     Please let me know if you experience problems (my email address is at the top of gdbmgr.vim).
+														
+
+														
+
+
+     GetScript<!-- {{{2 -->
+         Updated Apr 22, 2013 (v36a)           <!-- vbafiles/getscript.vba.gz -->
+		 Manual
+                                                  This plugin's :GetLatestVimScripts command (or :GLVS for short)
+                                                  will automate grabbing the latest version of the plugins and scripts that you
+                                                  express an interest in by putting a line into the GetScript/GetScript.dat
+                                                  file.  With cooperating plugins, GetScript can build the data file itself, too.
+												  Unfortunately, there was a bug that makes the getscript.vim version that was distributed with vim v7.0
+												  cause difficulties with a vimball-installation of a new getscript.vim.  So, you'll need to remove
+												  the older version of getscript.vim:
+
+                                                    Change directory to the directory holding the vim 7.0 distribution's plugin/ and autoload/ directories.
+                                                    /bin/rm plugin/getscript*.vim autoload/getscript*.vim doc/pi_getscript.txt
+
+
+
+     gvcolors <!-- {{{2 -->
+         Updated Apr 16, 2013 (v7)           <!-- vbafiles/gvcolors.vba.gz -->
+		 Manual
+                                                  Gvim colors -- displays a list of named colors that gvim has available
+                                                  with X; each color shows up in its own color!  One can toggle between dark and bright backgrounds
+                                                  by using a rightmouse click.  A leftmouse click on a color brings it to the
+                                                  top line of the display.  The colors at the top of the display have their
+                                                  red-green-blue values, in decimal, on the bottom of the screen.
+
+
+     Hdrtag Explorer  <!-- {{{2 -->
+         Updated May 07, 2013 (v1u)           <!-- vbafiles/Hdrtag.vba.gz -->
+		 Manual
+                                                  Explore tags in a left-hand window with the :Hdrtag command.
+												  Intended to support the hdrtag program by providing
+												  a taglist-like interface for it.
+
+
+     More Help Syntax Highlighting  <!-- {{{2 -->
+         Updated Nov 23, 2009 (v1e)           <!-- vbafiles/help.vba.gz -->
+                                                  This script will add extra highlighting and syntax-based folding to the vim help pages.
+
+
+     HelpExtractor  <!-- {{{2 -->
+         Updated May 25, 2005 (v3)           <!-- vbafiles/HelpExtractor.vba.gz -->
+		 Manual
+                                                  This script can be used to make .vim scripts automatically install help.
+                                                  Also available at vim.sf.net
+
+
+     Highlight Colors Help and Editor <!-- {{{2 -->
+         Updated Mar 26, 2012 (v9m)           <!-- vbafiles/hicolors.vba.gz -->
+		 Manual
+                                                  Shows highlighting colors in their own colors, plus a colorscheme editor!
+
+
+     Highlight Current Line  <!-- {{{2 -->
+         Updated Apr 05, 2010 (v8d)           <!-- vbafiles/HiCurLine.vba.gz -->
+		 Manual
+                                                  With this plugin the current line will be highlighted
+                                                  Also available at vim.sf.net where you may rank it.
+
+
+     Highlight Marks  <!-- {{{2 -->
+         Updated Mar 20, 2008 (v2c)           <!-- vbafiles/HiMarks.vba.gz -->
+		                                          Highlights marks by using the signs feature (your vim needs to be compiled for big/huge).
+												  Required: Kruize and Gedde's ShowMarks.vim plugin, which does most of the work.  Its at
+												  vim.sf.net .
+
+
+     Hints for Library Functions (gsl based) <!-- {{{2 -->
+         Updated Apr 04, 2012 (v1b)           <!-- vbafiles/hints_gsl.vba.gz -->
+                                                  Shows prototype hints as one types a function (for GSL 1.14)
+
+
+     Hints for Library Functions (man2 based) <!-- {{{2 -->
+         Updated Jan 12, 2012 (v2b)           <!-- vbafiles/hints_man2.vba.gz -->
+                                                  Shows prototype hints as one types a function (man page 2 based)
+
+
+     Hints for Library Functions (man3 based) <!-- {{{2 -->
+         Updated Jan 12, 2012 (v2b)           <!-- vbafiles/hints_man3.vba.gz -->
+                                                  Shows prototype hints as one types a function (man page 3 based), and, for C and C++, will show prototypes in a balloon if your
+												  vim supports balloon evaluation (and the mouse is hovering over an appropriate word that happens to also be in your tags file).
+
+
+     HiLinkTrace <!-- {{{2 -->
+         Updated Apr 03, 2013 (v4l)           <!-- vbafiles/hilinks.vba.gz -->
+		 Manual
+                                                  A plugin which traces the highlighting linkages; ie. just what highlighting
+                                                  groups associated with the word under the cursor? (hilinks.vim, implements a map "\hlt")
+
+
+     Highlighting Matching Brackets  <!-- {{{2 -->
+         Updated Feb 22, 2011 (v23k)           <!-- vbafiles/HiMtchBrkt.vba.gz -->
+		 Manual
+                                                  A Vim 6.0 plugin that highlights a matching bracket when the cursor moves on it: (){}[]  (actually the |'matchpairs'| option is used).
+												
+                                                  The matching bracket is highlighted when the cursor is moved on top of the bracket.
+												  It does so by making a fair number of maps that intercept the requested motion, perform the requested motion,
+												  then also call the HiMatchBracket() function which does the work to highlight any matching bracket.
+												  Basically it does a "%" to find the matching bracket (if any) and then constructs and executes an appropriate ":match" command.
+												
+                                                  Version 12 supports overloading of 0, too (if you have vim6.2 and patch 405 or later).
+
+                                                  Because vim is rich with commands that can move the cursor, the script also uses the CursorHold event
+												  (see help for cursorhold and updatetime) to highlight matching brackets after the cursor is left still for awhile.
+
+
+     IndGuide  <!-- {{{2 -->
+         Updated Feb 22, 2012 (v1b)           <!-- vbafiles/IndGuide.vba.gz -->
+		 Manual
+		                                          Uses vim's signs support to signify indentation level, akin to Notepad++.
+												  Really easy to use:  :IndGuide to enable, and :IndGuide! to disable.
+												  However, your vim does need to support the signs feature (:version should show +signs); try compiling vim for the "huge" feature.
+
+
+     LaTeX Maps  <!-- {{{2 -->
+         Updated Jan 24, 2012 (v2h)           <!-- vbafiles/texmaps.vba.gz -->
+                                                  Supports quick entry of LaTeX constructs (ie. ".." becomes
+                                                  ``..'', enum` gets expanded to \begin{enumerate}, etc).
+
+
+     LaTeX Menus  <!-- {{{2 -->
+         Updated Nov 16, 2011 (v1b)           <!-- vbafiles/texmenu.vba.gz -->
+		                                          Sets up a "DrChip.TexSymbols" menu full of various symbols that LaTeX supports; it works in insert mode,
+												  and when selected, inserts the appropriate LaTeX code to produce the selected symbol.
+
+
+     LargeFile  <!-- {{{2 -->
+         Updated Apr 24, 2013 (v5j)           <!-- vbafiles/LargeFile.vba.gz -->
+		 Manual
+                                                  Allows much quicker editing of large files (default: 100MB+ are "large"), at the price of turning
+                                                  off events, undo, syntax highlighting, etc.
+                                                  Also available at vim.sf.net
+                                                  where you may rank it.
+												
+
+      Library Viewer  <!-- {{{2 -->
+          Updated May 23, 2011 (v1i)           <!-- vbafiles/libview.vba.gz -->
+		 Manual
+												  This plugin uses the "nm" utility to present an overview of the contents of archive and object files.
+												  Its based on autocmds, and so to use it all one needs do is to open an archive (*.a), an object (*.o) file,
+												  or a shared library (*.so) by attempting to edit it.  (formerly known as the archive/object visualizer)
+
+
+     LogiPat  <!-- {{{2 -->
+         Updated Mar 13, 2013 (v3)           <!-- vbafiles/LogiPat.vba.gz -->
+		 Manual
+                                                  Provides a  :LogiPat {boolean-logic pattern} and forms a search.
+                                                  Also available at vim.sf.net
+                                                  where you may rank it.
+												
+
+     Maintainer  <!-- {{{2 -->
+         Updated Mar 27, 2006 (v2a)           <!-- vbafiles/maintainer.vba.gz -->
+                                                  Use ":echo Maintainer" to find
+                                                  out who the maintainer is of the syntax file you're
+                                                  currently using; ":echo Maintainer("language")"
+                                                  to determine the Maintainer of a specific language (ie.  c, vim, tex, jsp, etc).
+
+
+     Man Page Viewer  <!-- {{{2 -->
+         Updated Apr 08, 2013 (v25l)           <!-- vbafiles/manpageview.vba.gz -->
+		 Manual
+                                                  A plugin which facilitates the viewing of man pages under Unix systems;
+                                                  supports :Man topic, :Man topic booknumber, :Man booknumber topic, and
+                                                  :Man topic(booknumber).  While in a man page the K key will invoke manpaging
+                                                  on the word under the cursor.
+                                                  Also available at vim.sf.net
+                                                  where you may rank it.  Supports perl (*.pl, *.upl) and info (*.i), too.
+												
+
+     Maple Syrup  <!-- {{{2 -->
+         Updated Jan 25, 2006 (v3b)           <!-- vbafiles/maplesyrup.vba.gz -->
+                                                  This tarball contains multiple files to support MapleSoft's Maple programming
+                                                  language for symbolic algebra.  Included: indent, auto-align, and matchit support.
+
+
+     Math Keymap  <!-- {{{2 -->
+         Updated Apr 16, 2013 (v4)           <!-- vbafiles/math.vba.gz -->
+		 Manual
+		                                          Contains a keymap supporting math under utf-8.  Install in the regular vimball way; to use it, ":set kmp=math" when in vim.
+												  See this screenshot for an example (a portion of a comment in a C program is shown
+												  using font Luxi Mono, Regular, size 10pts).
+
+
+     Mines  <!-- {{{2 -->
+         Updated Apr 16, 2013 (v20)           <!-- vbafiles/Mines.vba.gz -->
+		 Manual
+                                                  A game for vim implementing the world famous game of Mines!
+                                                  Also available at vim.sf.net
+                                                  where you may rank it.
+
+
+     Multi-Column Listing<!-- {{{2 -->
+         Updated Aug 26, 2010 (v1c)           <!-- vbafiles/mcol.vba.gz -->
+		 Manual
+                                                 The mcol.vim plugin
+                                                 converts a list of words into a multi-column listing, much as "ls" does with a list of files.
+                                                 It uses the mcol program; see mcol to get a copy of the source.
+												
+
+     MultiPage<!-- {{{2 -->
+         Updated Apr 24, 2013 (v1)           <!-- vbafiles/mpage.vba.gz -->
+		 Manual
+                                                 The mpage.vim plugin supports using multiple windows as separate pages to view a buffer (ie. file), with each
+												 window under mpage control sequentially showing lines of text.
+												
+
+     Network Oriented Reading, Writing, and Browsing  <!-- {{{2 -->
+         Updated Jun 05, 2013 (v150a)           <!-- vbafiles/netrw.vba.gz -->
+		 Manual
+                                                  Supports network-oriented editing with urls.  One may read and write files
+                                                  using one of several supported protocols (ex: ftp, scp) and browse
+                                                  directories, both remotely and locally.  This version requires vim 7.0.
+												  Be sure to remove any older versions of netrw before attempting to install this version.
+
+												  In version v142b of netrw, g:netrw_winsize's meaning has been changed.  Previously, it was the number of
+												  rows or lines to be used for new windows spawned off of netrw (ex. when using v or o).  The new
+												  method uses g:netrw_winsize as a percentage of the netrw's window size in the appropriate direction
+												  (ie. winheight or winwidth).  The percentage is an integer (by default, it is 50).
+
+												  Unfortunately, there was a bug that makes the netrw version that was distributed with vim v7.0
+												  cause difficulties with a vimball-installation of a new netrw.  So, for vim v7.0, you'll need to remove
+												  the older version of netrw:
+
+                                                    Change directory to the directory holding the vim 7.0 distribution's plugin/ and autoload/ directories.
+                                                    /bin/rm plugin/netrw*.vim autoload/netrw*.vim doc/pi_netrw.txt
+
+
+												  Beginning with v108b of netrw: sourcing remote files is supported.
+
+												  Here's a list of some netrw options that I myself use:
+												
+													let g:netrw_altv          = 1
+													let g:netrw_fastbrowse    = 2
+													let g:netrw_keepdir       = 0
+													let g:netrw_liststyle     = 2
+													let g:netrw_retmap        = 1
+													let g:netrw_silent        = 1
+													let g:netrw_special_syntax= 1
+												
+												
+
+     Netrw Clean<!-- {{{2 -->
+         Updated Oct 07, 2008 (v1b)           <!-- vbafiles/netrwclean.vba.gz -->
+                                                 The netrwclean.vim plugin will attempt to remove the netrw plugin: with :NetrwClean, only the personal directory copy
+												 will be cleaned.  With :NetrwClean!, this plugin will attempt to remove netrw from both your personal directory
+												 and the system directory.  You need permission to remove such files, of course.  This plugin may be helpful
+												 for those who've previously gotten an up-to-date version of netrw but then update their vim later via ftp, cvs, etc
+												 with an even more recent version of netrw (in that case, use :NetrwClean).
+												
+
+     PassWGen: Password Generator<!-- {{{2 -->
+         Updated Dec 16, 2011 (v1a)           <!-- vbafiles/PassWGen.vba.gz -->
+		 Manual
+		                                         The PassWGen.vim plugin generates a password given the desired password length and a string
+												 containing the desired alphabet from which to choose symbols:
+												 :echo PassWGen(len,symbols)
+												
+
+     Plugin Killer! <!-- {{{2 -->
+         Updated Apr 15, 2010 (v4c)           <!-- vbafiles/pluginkiller.vba.gz -->
+		 Manual
+                                                  Plugin writers: have you ever wished you could find what option settings
+                                                  will interfere with your plugin before your users do?  The pluginkiller
+                                                  helps automate finding such troublesome settings.
+
+
+     Rainbow  <!-- {{{2 -->
+         Updated Oct 19, 2012 (v2q)           <!-- vbafiles/Rainbow.vba.gz -->
+		 Manual
+                                                  C and C++: this plugin provides a rainbow of colors for matching brackets ( [] () {} ) depending
+                                                  on their nesting level.  One may choose any subset of these brackets for highlighting.
+												  Lisp: The syntax file distributed with Vim for Lisp already supports rainbow highlighting of ()s; bring up vim and
+												  type ":help ft-lisp-syntax".
+												  Matlab: this plugin provides rainbow highlighting for if for switch while,
+												  again, depending on their nesting level.  One may choose any subset of these regions for highlighting, too.
+												  LaTeX: this plugin provides rainbow highlighting depending on brace depth "{}()[]", begin-end depth, and dollar depth.
+												  This mode is somewhat ugly, but I've found it very useful for finding problems in LaTeX scripts.
+												
+
+     RltvNmbr  <!-- {{{2 -->
+         Updated Mar 22, 2010 (v4a)           <!-- vbafiles/RltvNmbr.vba.gz -->
+		 Manual
+												  Shows relative numbering signs (ie. relative to the cursor's current position).
+												  Really easy to use:  :RltvNmbr to enable, and :RltvNmbr! to disable.
+												  However, your vim does need to support the signs feature (:version should show +signs); try compiling vim for the "huge" feature.
+
+
+     Rndm  <!-- {{{2 -->
+         Updated Aug 12, 2008 (v4f)           <!-- vbafiles/Rndm.vba.gz -->
+		 Manual
+                                                  Returns random variates
+
+                                                    Rndm()             returns uniformly distributed variates on [0, 100,000,000)
+                                                    Urndm(a,b)         returns uniformly distributed variates on [a,b])
+                                                    Dice(qty,sides)    rolls qty of sides-sided dice and adds them up
+
+
+
+     RunView  <!-- {{{2 -->
+         Updated Nov 08, 2011 (v3g)           <!-- vbafiles/RunView.vba.gz -->
+		 Manual
+                                                  :[range]RunView[!] filtercmd
+                                                  {visual line selection}\rh
+                                                  {visual line selection}\rv
+                                                  RunView passes user-selected lines through a filter (default filter specified by
+                                                  g:runview_filtcmd); output from the filter is placed into a separate window.
+                                                  Multiple runs of the filter are clearly separated in the filter output window.
+                                                  Great for debugging scripts!
+
+
+     SeeTab  <!-- {{{2 -->
+         Updated Jun 05, 2008 (v4b)           <!-- vbafiles/SeeTab.vba.gz -->
+		 Manual
+                                                  Makes leading tabs more visible
+
+
+     Showing Current Function Name in Status Line  <!-- {{{2 -->
+         Updated Sep 24, 2012 (v2q)           <!-- vbafiles/StlShowFunc.vba.gz -->
+		 Manual
+                                                  This package of a plugin and ftplugins manipulates the status line to show the name of the current function that
+                                                  the cursor is in.  Currently supported: C, C++, DrChip's debugger output, Maple V, Matlab, Perl, Shell (Korn, Bash), Tex, and Vim.
+
+
+     Sum  <!-- {{{2 -->
+         Updated Apr 22, 2013 (v1b)           <!-- vbafiles/Sum.vba.gz -->
+		 Manual
+		 										  Computes the sum of a visual-block selected column of (optionally floating point) numbers
+
+
+     Swapping Two Strings  <!-- {{{2 -->
+         Updated Jan 21, 2009 (v1h)           <!-- vbafiles/swapstrings.vba.gz -->
+		 Manual
+												  Use this plugin to easily swap strings!
+
+  :[range]SwapStrings string1 string2
+
+
+
+     Syntax Checker  <!-- {{{2 -->
+         Updated Jun 05, 2013 (v1d)           <!-- vbafiles/synchk.vba.gz -->
+		 Manual
+												  The synchk.vim plugin helps syntax highlighting plugin writers to
+												  maintain their syntax highlighting plugin.  Typical use involves
+												  manually inspecting a test file to insure that its being highlighted
+												  correctly; once that is so, run |:MakeSynChk| on it.  This operation
+												  will save information on the current syntax highlighting;
+												  subsequently, one may run |:SynChk| to verify that the highlighting
+												  has not changed.
+												
+
+  :[range]SwapStrings string1 string2
+
+
+
+     Tar Handler <!-- {{{2 -->
+         Updated Apr 17, 2013 (v29)           <!-- vbafiles/tar.vba.gz -->
+		 Manual
+                                                  Michael Toren wrote a nice plugin to handle tar files.
+                                                  I've written a related one that also handles writing changed files back into the tarball.
+
+												  Unfortunately, there was a bug that makes the zip.vim version that was distributed with vim v7.0
+												  cause difficulties with a vimball-installation of a new zip.vim.  So, you'll need to remove
+												  the older version of zip.vim:
+
+                                                    Change directory to the directory holding the vim 7.0 distribution's plugin/ and autoload/ directories.
+                                                    /bin/rm plugin/zip*.vim autoload/zip*.vim doc/pi_zip.txt
+
+
+
+     Toggle Window Layout <!-- {{{2 -->
+         Updated Nov 02, 2012 (v1b)           <!-- vbafiles/twl.vba.gz -->
+                                                  Toggle the window layout from all-horizontal to all-vertical.
+
+
+     Vim Error Finder <!-- {{{2 -->
+         Updated Apr 17, 2012 (v2i)           <!-- vbafiles/VimErrFind.vba.gz -->
+                                                  When vim gives an error message while running a plugin, it gives a function name and a line number
+												  which is relative to the function's beginning.  This plugin provides ":VEF funcname rel_line_num",
+												  which preferentially jumps to the function in the current buffer (but will use tags to find the
+												  function's source file otherwise).
+
+
+     Vimball Archiver<!-- {{{2 -->
+         Updated Apr 17, 2013 (v36)           <!-- tarfiles/vimball.tar.gz -->
+		 Manual
+                                                  Archive and de-archive vim plugins.  To install:
+												  well, I've decided that the vimball plugin itself should not expect that vimball is available to extract itself.
+                                                  Hence, it is now being distributed as vimball.tar.gz.  To unravel and install it:
+
+                                                   Change directory to the directory holding the plugin/ and autoload/ directories where you want to install vimball.
+                                                       It is probably best to install the new vimball in the distribution directory. If you choose not to overwrite the
+													   version that came with the plugin, but to put the new vimball in your personal directories, you must remove or otherwise
+													   deactivate the original version that came with vim 7.0.
+                                                   gunzip vimball.tar.gz
+												   tar -oxvf vimball.tar
+                                                   (unix) chmod a+r autoload/vimball.vim doc/pi_vimball.txt plugin/vimballPlugin.vim
+
+												 If you'd like to use a C program (you'll need a C compiler) that will create vimballs: mkvimball.
+												 For beginners, may I suggest:
+												
+												   You should have a .vim/ or vimfiles\ in your home directory.  Bring up vim, then type  :echo &rtp.  The first directory on that
+												       comma separated list is where vim expects to find your .vim/ (or vimfiles\) directory.
+												   You should have, as a minimum, the following two lines in your <.vimrc> to enable plugins:
+												
+set nocp
+filetype plugin on
+
+
+
+
+     Visual Block Commands  <!-- {{{2 -->
+         Updated Apr 02, 2013 (v21b)           <!-- vbafiles/vis.vba.gz -->
+		 Manual
+                                                   Performs an Ex command on a ctrl-v highlighted block.
+                                                   I often use it to target substitutes onto just a visual-block selection.
+                                                   The original <vis.vim> was by Stefan Roemer, but this one
+                                                   has been radically modified to support embedded tabs.  It appears to operate
+                                                   considerably faster, and has no side effects on register usage, etc.
+                                                   It requires DrC's Utilities as it
+                                                   also retains the original cursor/window positioning using functions from
+                                                   that package.
+
+
+     Visual C Declarations  <!-- {{{2 -->
+         Oct 26, 2006 (v1a)           <!-- vbafiles/VisCdecl.vba.gz -->
+		 Manual
+		                                          Use the shift-F1 key on a declaration in a C file, and a comment explaining the
+												  declaration will be appended.  Needs the cdecl program!
+
+
+     Visual Block Sorting  <!-- {{{2 -->
+         Updated Apr 16, 2013 (v4)           <!-- vbafiles/vissort.vba.gz -->
+		 Manual
+                                                  Sorts the lines based on a ctrl-v block selected portion thereof.
+                                                  Works with Visual Incrementing, too,
+                                                  to just sort the selected block.  Vissort also provides BlockSort() which
+                                                  enables sorting blocks of text based on a tag found in each block.
+
+
+     Visual Incrementing  <!-- {{{2 -->
+         Updated Mar 18, 2013 (v21a)           <!-- vbafiles/visincr.vba.gz -->
+		 Manual
+                                                 Transforms a ctrl-v selected visual-block of numbers into an incremented
+                                                 list of numbers.  The first line's number initializes the incrementation.  The
+                                                 updated <visincr.vim> now uses virtual column information to allow leading
+                                                 tabs, handles ragged right visual blocks, will insert spaces as needed if
+                                                 the count's string-length exceeds the visual-block's constraints, and also
+                                                 accepts an optional incrementation argument (I [incr]) (which can be negative).
+                                                 By default incr is 1.  If the initial number is zero-padded on the left (ie. 001),
+                                                 then the column of numbers will also be zero-padded as needed.  For the maps
+                                                 which handle dates, you'll also need to have
+                                                 calutil.vba.gz.
+
+                                                    I [incr]  - create an ascending or descending column of numbers, right padded
+                                                    II [incr [zfill]] - create an ascending or descending column of numbers, left padded
+                                                    IA [incr]   - create an ascending or descending alphabetic column
+                                                    ID [incr]   - create an ascending or descending column of daynames
+                                                    IYMD [incr] - create an ascending or descending column of year/month/day dates
+                                                    IMDY [incr] - create an ascending or descending column of month/day/year dates
+                                                    IDMY [incr] - create an ascending or descending column of day/month/year dates
+
+                                                 The :R... versions (:RI :RII :RIYMD etc) restrict the renumbering/relabelling to
+                                                 those lines which have an appropriate pattern (numbers for :RI and :RII, daynames
+                                                 for :RID, etc).
+                                                 Also available at vim.sf.net
+                                                 where you may rank it.
+
+
+     Visual Mode Based Swapping  <!-- {{{2 -->
+         Updated Mar 18, 2013 (v4f)           <!-- vbafiles/visswap.vba.gz -->
+		 Manual
+                                                 Swap text using visual modes!
+
+                                                    Select first region using a visual mode (V, v, or ctrl-v), then press <ctrl-y> ("yank").
+                                                    Select second region using a visual mode (V, v, or ctrl-v), then press <ctrl-x> ("exchange").
+
+                                                 HelpExtractor technology is used to automatically install help for vswap.
+                                                 There's also a tip about more swapping at Tip#329
+
+                                                 In addition, one may replace columns of text with a selection:
+
+                                                    Select source region using visual-block (ctrl-v) selection plus motion.
+                                                    Hit <escape>
+                                                    Move cursor to where the upper left corner of the column replacement should be; hit \vr
+                                                        (the backslash is actually <Leader>)
+
+												
+
+     WhereFrom  <!-- {{{2 -->
+         Updated Aug 16, 2005 (v3a)           <!-- vbafiles/WhereFrom.vba.gz -->
+		 Manual
+                                                 Ever wonder where a function, script, or command was defined, or where a setting
+                                                 was last set?  WhereFrom helps answer the question.  :WhereFrom[!] {function|map|setting|command}
+                                                 (or :WF[!] {function|map|setting|command} for a shorter command) will search the runtimepath
+                                                 to determine where the item was defined.  The optional "!" will make WhereFrom
+                                                 continue looking for more than one instance -- the last one found is likely to be
+                                                 the one you have currently loaded.
+
+
+     Window Kill Ring <!-- {{{2 -->
+         Updated Oct 08, 2008 (v1c)           <!-- vbafiles/WinRing.vba.gz -->
+		 Manual
+                                                 Implements a "kill ring" for a vim window:  :[N]R[!] [files]
+                                                 To see a window's kill ring contents, use :RShow.
+
+
+     Zip Handler <!-- {{{2 -->
+         Updated Jun 10, 2013 (v27b)           <!-- vbafiles/zip.vba.gz -->
+		 Manual
+                                                 Zip Handler handles zip files; it resembles Tar Handler in look and feel.
+                                                 It handles browsing, reading, and writing files.
+
+												 Unfortunately, there was a bug that makes the zip.vim version that was distributed with vim v7.0
+												 cause difficulties with a vimball-installation of a new zip.vim.  So, you'll need to remove
+												 the older version of zip.vim:
+
+                                                   Change directory to the directory holding the vim 7.0 distribution's plugin/ and autoload/ directories.
+                                                   /bin/rm plugin/zip*.vim autoload/zip*.vim doc/pi_zip.txt
+
+
+
+     Z Maps  <!-- {{{2 -->
+         Updated Sep 21, 2011 (v1b)           <!-- vbafiles/zmaps.vba.gz -->
+                                                 Helpful z maps
+
+                                                  z<  shift text on screen left
+                                                  z>  shift text on screen right
+                                                  z,  put cursor in middle of screen
+                                                  z0  put cursor on left-hand-side of screen
+                                                  z$  put cursor on right-hand-side of screen
+                                                  zp  put text (like "p") but keep cursor in same column
+                                                  zP  Put text (like "P") but keep cursor in same column
+
+
+
+     ZoomWin  <!-- {{{2 -->
+         Updated Mar 13, 2013  (v25g)           <!-- vbafiles/ZoomWin.vba.gz -->
+		 Manual
+                                                  Provides the ability to zoom into/out-of a window
+                                                  (by Ron Aaron and C Campbell), similar to what the editor Brief provided.  Version 14 was both
+                                                  about 2/3 the size and faster, and the latest handles quickfix windows, too.
+                                                  Also available at vim.sf.net
+                                                  where you may rank it.
+
+
+
+
+ Home PageContents&#032;&#032;&#032;&#032;&#032;Links
+
+
+<!-- ======================================================================== -->
+
+  <!-- {{{1 -->
+Links
+
+<!--                                              Vim CVS Repository                                                 Vim's CVS Repository                                                                                                 -->
+<!--                                              Vi/Ex Tutorial (UnixWorld)                                                  Vi/Ex Tutorial                                                                                               -->
+<!--                                              Vim's Regular Expressions                                                   Vim Regular Expressions                                                                                                      -->
+<!--                                              Fellow Vim User (tex latex matchit brkt)                                    Benji Fisher                                                                                                         -->
+<!--                                              Fellow Vim User (tips,uil,prolog)                                           Thomas Köhler                                                                                                                -->
+<!--                                              Fellow Vim User (map of vim users)                                          Mikolaj Machowski                                                                                                         -->
+<!--                                              Fellow Vim User (vimrc, alignment)                                          Brian Sturk                                                                                                          -->
+<!--                                              Fellow Vim User (mac port)                                                  Dany St-Amant                                                                                                        -->
+<!--                                              Fellow Vim User (scripts latex)                                             Ralf Arens                                                                                                               -->
+<!--                                              Fellow Vim User (tips)                                                      Adrian Nagle                                                                                                               -->
+<!--                                              Fellow Vim User (autocorrect html latex)                                    Gabe Zachmann's Vim Page                                                                                                   -->
+<!--                                              Fellow Vim User (vine)                                                      Ron Aaron's Vim Page                                                                                                                   -->
+<!--                                              Fellow Vim User (macros)                                                    Jano's Vim Macros                                                                                                     -->
+<!--                                              Fellow Vim User (vimrc, vim faq)                                            Felix von Leitner                                                                                                     -->
+<!--                                              Fellow Vim User (latex)                                                     Carl Mueller                                                                                                      -->
+<!--                                              Fellow Vim User (alignment, email)                                          David Rogers                                                                                                         -->
+<!--                                              Fellow Vim User (vim Q and A)                                               Mark Thomas                                                                                                                 -->
+<!--                                              Fellow Vim User (functions)                                                 Johannes Zellner                                                                                                                     -->
+<!--                                              Fellow Vim User (file-explorer scripts)                                     Aziz Ahmed                                                                                                                   -->
+<!--                                              Fellow Vim User (brkt macros)                                               Stephen Riehm                                                                                                          -->
+<!--                                              (1999) Bill Joy, author of vi                                               1999 Interview with Bill Joy                                   Lnkd 9/14/00    -->
+
+   ----                                                                                                                                                                                                                                                                                           <!-- {{{2 -->
+   Category  Description          Link
+   Color Scheme                           DrChip's Colorscheme     astronaut.tar.gz                                                                                                                                                             <!-- {{{2 -->
+   ----
+   Category  Description          Link
+   Elsewhere                              Vim Online                                      Vim Online                                                                                                                                                                   <!-- {{{2 -->
+                                                 Vim Download Site                               Vim Source
+                                                 Vim Download Site                               Vim Source (Mercurial)
+                                                 Vim FAQ                                         Vim FAQ
+                                                 Bill Joy's Original Vi Source Code                       Joy's Vi Source
+                                                 Building Vim under Linux                                 Compiling Vim (Linux)
+                                                 Building Vim under Windows                                Compiling Vim (Windows)
+                                                 Colorscheme Examples                                     Vim Colorscheme Test
+                                                 Google's Comp.Editors                                    Comp.Editors
+                                                 Gui Vim Cheat Sheet                                      Vim Cheat Sheet and Tutorial
+                                                 Gui Vim Cheat Sheet                                      Vim Cheat Sheet
+                                                 Less Home Page                                            The Less home page
+                                                 Postscript and PDF versions of Vim's User Documentation  Vim Docs in PS/PDF
+                                                 Vi Lovers                                                 vi lovers home page
+                                                 Vi Reference                                             Vi Reference
+                                                 Vim Book: by Oualline                                    Vi Improved-VIM
+                                                 Vim Book: by RunPaint                                    Vim Recipes
+                                                 Vim Book: by Swaroop                                     A Byte of Vim
+                                                 Vim and VMS                                              Vim and VMS
+                                                 Vim's Author                                             Bram Moolenaar's Vim Page
+                                                 Vim and Eclipse                                          Vimplugin
+                                                 Vim's Latest Syntax Highlighting Files                   Syntax Highlighting Files
+                                                 Vim's User Guide                                         Vim's User Guide
+                                                 Fellow Vim User (hypertext)                              Stefan Bittner
+                                                 Fellow Vim User (vimail)                                 Cesar A.R. Crusius
+                                                 Fellow Vim User (jtags)                                  Claudio Fleiner
+                                                 Fellow Vim User (author of original vim home pages)      Sven Guckes
+                                                 Fellow Vim User (windows, binaries)                      Steve Hall
+                                                 Fellow Vim User (tex latex)                              Luc Hermite
+                                                 Fellow Vim User (bufexplorer, rcs)                       Jeff Lanzarotta
+                                                 Fellow Vim User (vi v vim, outliner)                     Steve Litt
+                                                 Fellow Vim User (windows, howto, links, compiling vim)   Antoine Mechelynck
+                                                 Fellow Vim User (tips)                                   David Rayner
+                                                 Fellow Vim User (xml)                                    Tobias Reif
+                                                 Fellow Vim User (tags, macros, maps)                     Jos Van Riswick
+                                                 Fellow Vim User (latex and conceal)                      BjÃ¶rn Winckler
+   ----                                                                                                                                                                                                                                                                                            <!-- {{{2 -->
+   Category  Description          Link
+   Miscellaneous                          Pre-compiled executables            Pre-Compiled Executables                                                                  Upd  09/06/00
+                                                 (1984) Bill Joy, author of vi                            1984 Interview with Bill Joy                              Lnkd 09/14/00
+                                                 Early Unix History                                       Unix History                            Lnkd 09/27/00
+                                                 Vim Commands                                             Short Vim List of Commands
+<!--                                                 Vim Regular Expressions                                  Vim Regular Expressions 101                                       Lnkd 03/14/01 -->
+                                                 Vim Functions, Plugs, and Stubs  Vim Functions
+                                                 Vim Normal Mode Reference Card (Word97)                  Campbell&Troy's Vim 5 Reference Card
+                                                 Oleg Raisky's Vim 5 Reference Card                       Vim 5 Reference Card
+                                                 Vim-LaTeX Suite                                          Vim LaTeX Suite                                                    Lnkd 12/09/02
+                                                 Vince Negri's ownsyntax/conceal patch                    Vince Negri's Ownsyntax/Conceal patch
+   ----                                                                                                                                                                                                                                                                                         <!-- {{{2 -->
+   Category  Description          Link
+   Scripts                                Alignment                                                                                                                                          Upd 11/08/05
+                                                 French Spelling Dictionary for Engspchk                  French Spelling Dictionary
+                                                 German Spelling Dictionary for Engspchk                  German Spelling Dictionary
+                                                 Hungarian Spelling Checker (based on engspchk v11)       Hungarian Spelling Checker                Upd 06/21/01
+                                                 Hungarian Spelling Dictionary for Engspchk               Hungarian Spelling Dictionary                                             Upd 06/21/01
+                                                 Italian Spelling Dictionary for Engspchk                 Italian Spelling Dictionary
+                                                 Dutch Spelling Dictionary for Engspchk                   Dutch Spelling Dictionary
+                                                 Polish Spelling Checker (based on engspchk v29)          Polish Spelling Checker                               Upd 06/21/01
+                                                 Polish Spelling Dictionary for Engspchk                  Polish Spelling Dictionary
+                                                 Russian Spelling Dictionary for Engspchk                 Russian Spelling Dictionary
+                                                 Spanish Spelling Dictionary for Engspchk                 Spanish Spelling Dictionary
+                                                 Yiddish Spelling Checker                                 Yiddish Spelling Checker                           Upd 04/10/01
+                                                 Matt Corks' Spelling Corrector                           Spelling Corrector                                                            Upd 12/01/00
+   ----                                                                                                                                                                                                                                                                                             <!-- {{{2 -->
+   Category  Description          Link
+                                                 Tag Generation                       Exuberant Ctags
+                                                 Tag Generation                       Hdrtag (C, C++, vim, tex)
+   ----                                                                                                                                                                                                                                                                                          <!-- {{{2 -->
+   Category  Description          Link
+   Syntax                                 Amiga Script                                                amiga.vim.gz                                                                     <!-- _SYNTAX_ -->
+                                                 C shell                                                       csh.vim.gz                                                                         <!-- _SYNTAX_ -->
+                                                 Dec's Control Language                                        dcl.vim.gz                                                                         <!-- _SYNTAX_ -->
+                                                 Elm Filter                                                elmfilt.vim.gz                                                                 <!-- _SYNTAX_ -->
+                                                 Unix's /etc/exports                                       exports.vim.gz                                                                 <!-- _SYNTAX_ -->
+                                                 Lex                                                           lex.vim.gz                                                                         <!-- _SYNTAX_ -->
+                                                 Lisp                                                         lisp.vim.gz                                                                       <!-- _SYNTAX_ -->
+                                                 Maple V                                                     maple.vim.gz                                                                     <!-- _SYNTAX_ -->
+                                                 Rpcgen                                                     rpcgen.vim.gz                                                                   <!-- _SYNTAX_ -->
+                                                 Sh Bash Ksh                                                    sh.vim.gz                                                                           <!-- _SYNTAX_ -->
+                                                 Sendmail                                                       sm.vim.gz                                                                           <!-- _SYNTAX_ -->
+                                                 Tags                                                         tags.vim.gz                                                                       <!-- _SYNTAX_ -->
+                                                 LaTeX, TeX                                                    tex.vim.gz                                                                         <!-- _SYNTAX_ -->
+                                                 Vim                                                           vim.vim.gz                                                                         <!-- _SYNTAX_ -->
+                                                 Xmath                                                       xmath.vim.gz                                                                     <!-- _SYNTAX_ -->
+                                                 Xxd                                                           xxd.vim.gz                                                                         <!-- _SYNTAX_ -->
+                                                 Yacc                                                         yacc.vim.gz                                                                       <!-- _SYNTAX_ -->
+
+<!--  -->
+<!-- Updated -->
+
+Note:
+
+  An Astro-Only syntax file has not yet been sent to Bram Moolenaar
+  but has been made available here for downloading and testing.
+
+
+
+
+
+  2 Tim 2:22
+  Now flee from youthful lusts, and pursue after righteousness, faith, love, and
+  peace, with those who call on the Lord from a pure heart.
+
+
+
+
+   Home
+      <!--optional text here -->
+<!-- Start of StatCounter Code {{{1 -->
+
+
+
+       <!-- End of StatCounter Code -->
+	
+	   Cont ents
+	
+
+
+<!-- ========================================== ========= -->
+<!-- Begin The Vi IMproved Editor Web Ring HTML  Fragment {{{1 -->
+
+
+   <!-- Left VimFire+Arrow -->
+
+
+
+
+
+   <!-- [previous 5|previous|next|next 5] selector -->
+
+    The site you are viewing is a part of the Vi IMproved Editor Webring
+
+      Previous 5 Sites
+          Previous
+          Next
+          Next 5 Sites
+           Random Site
+          List Sites
+
+
+   <!-- Right VimFire+Arrow -->
+
+
+
+
+
+
+
+<!-- =================================================== -->
+
+
+   Last Modified <!-- DATE -->Jun 10, 2013 10:06:53 AM
+      <!-- COPYRIGHT -->© 2012, Charles E Campbell
+	
+
+
+<!-- vim: fdm=marker
+-->
