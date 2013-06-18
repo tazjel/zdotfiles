@@ -5,11 +5,27 @@
 # Tue Jun 11 02:55:36 AST 2013*/
 ########################################################
 # AHMED BANI
-# }
-#
+########################################################
+
+########################################################
+# <F0> git
 #
 ########################################################
-# vim: set ts=2 sw=2 et:
+# Put readline into vi mode
+#set -o vigit config --global user.name
+#git config --global user.email
+
+#git config --global color.ui auto
+########################################################
+# <F1>
+########################################################
+
+
+
+
+########################################################
+# F2
+########################################################
 #
 #
 alias al='alias | grep'
@@ -176,12 +192,10 @@ alias display='less +F'
 alias eg='git config -e'
 alias emptytrash='sudo rm -rfv /Volumes/*/.Trashes; sudo rm -rfv ~/.Trash'
 alias erase='shred -n 35 -z -u'
-alias fn='find -name'
 alias freenodetor='dig +short irc.tor.freenode.net cname'
 alias freq='cut -f1 -d" " ~/.bash_history | sort | uniq -c | sort -nr | head -n 30'
 alias wfreq='cut -f1 -d" " ~/.zsh_history | sort | uniq -c | sort -nr | head -n 30'
 alias wwfreq='cat ~/.zsh_history  | head -n 300'
-alias fwn='find -wholename'
 alias g=git
 alias ga='git add'
 alias gb='git branch'
@@ -258,7 +272,6 @@ alias listips='nmap -sP 192.168.1.1/24'
 
 alias ll='ls -l'
 alias lla='ls -lhFA'
-alias lldu='find -maxdepth 1 -mindepth 1 -type d -exec du -sh {} \;'
 alias lle='ll --sort=extension'
 alias lll='ls -alF'
 alias llocal='ifconfig eth0 | grep inet6'
@@ -410,7 +423,7 @@ wwws () {
 }
 
 
-#alias find /etc -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
+
 function wwrename {
     for file in * ; do
     mv "$file" `echo "$file" | tr ' ' '_' | tr '[A-Z]' '[a-z]'`;
@@ -515,21 +528,11 @@ compare_strings () {
 
 alias "wwf"="cmdfu"
 
-wfind () {
-    grep -i "$@" $zal;
-}
-
-
-# Recursive chmod all *.sh files within the current directory
-alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
-
-alias 'wfX'='find ./ -name "*.sh" -exec chmod -x {} \;'
 
 # list and get size
 alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"'
 # Recursively search your directory tree files for a string
 #
-alias gfind='find . -print0  | xargs -0 egrep -I '
 
 
 
@@ -594,5 +597,101 @@ lnif() {
 #Start off by printing the help menu:
 alias 'wdr'='~/bin/dropbox.py' 
 
+
+
+
+alias 'wj'='joy2key' 
+
+
+
+alias 'wjs'='jstest --normal /dev/input/js0' 
+
+
+#sqlite3 ~/.mozilla/firefox/*default/places.sqlite "select a.url, a.title from moz_places a, moz_bookmarks b where a.id=b.fk and b.parent=2;"
+
+#scanimage -p --resolution 250 --mode Gray -x 215.9 -y 279.4 | pnmtops -imageheight 11 -imagewidth 8.5 | ps2pdf - output.pdf
+# Recursively search and replace old with new string, inside every instance of filename.ext
+
+#uname -m   # display machine "hardware name"
+# Commandline document conversion with Libreoffice
+#soffice --headless -convert-to odt:"writer8" somefile.docx
+
+# Discover the process start time
+#ps -eo pid,lstart,cmd
+#
+#stat -f -L -c %T YOUR_FILE_OR_DIRECTORY
+
+#
+# List mp3 files with less than 320 kbps bitrate.
+## Delete a file securely by overwriting its contents
+#shred -v filename
+
+#<F5>
+# Show who is logged on and find out what they are doing
+#watch w
+
+# find established tcp connections without using netstat!!
+#lsof -i -n | grep ESTABLISHED
+
+
+#<F6>
+
+# Find out the permissions of the current directory
+#ls -lad
+
+
+#{find search recursively
+function wfs_find_string () {
+    find . -print0  | xargs -0 egrep -I
+}
+# 
+alias fn='find . -name "*[sh]" -exec grep -is /dev/null $1 {} \;'
+function wff_find_file () {
+
+}
+
+alias lldu='find -maxdepth 1 -mindepth 1 -type d -exec du -sh {} \;'
+
+alias fwn='find -wholename'
+#alias wfip find /etc -exec grep '[0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*[.][0-9][0-9]*' {} \;
+wfind () {
+    grep -i "$@" $zal;
+}
+
+# Recursive chmod all *.sh files within the current directory
+alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
+
+#find -name '*.mp3' -exec mp3info {} -p "%F: %r kbps\n" \;  | sort | sed '/320 kbps/d'
+#find . -type f -name filename.exe -exec sed -i "s/oldstring/oldstring/g" {} +;
+#alias gfind='find . -print0  | xargs -0 egrep -I '
+## Execute commands on files found by the find command
+#find -iname "MyCProgram.c" -exec md5sum {} \;
+#}
+#
+##find -iname "MyCProgram.c" -exec md5sum {} \;
+# (DEBIAN-BASED DISTROS) Find total installed size of packages given a search term
+#dpkg-query -Wf '${Installed-Size}\t${Package}\n' | grep "\-dev" | sort -n | awk '{ sum+=$1} END {print sum/1024 "MB"}'
+# How to search for files and open all of them in tabbed vim editor.
+ #find / -type f -name $file -exec vim -p {} +
+
+
+#<F9>
+## Copy a file over SSH without SCP
+#ssh username1@servername1 -t ssh username2@servername2 uuencode -m testfile1.tar - | uudecode > testfile1.tar
+#<F7>
+# Recursively change permissions on directories, leave files alone.
+#find /var/www/ -type f -print0 | xargs -0 chmod 644
+# find unreadable file
+#sudo -u apache find . -not -perm /o+r
+
+
+
+#sed '/^\s*[^@%]/s=\([A-Z][A-Z]*\)\([^}A-Z]\|},$\)={\1}\2=g' literature.bib > output.bib
+#
+#
+#
+#<F8>
+ #Oneliner to get domain names list of all existing domain names (from wikipedia)
+#curl -s http://en.m.wikipedia.org/wiki/List_of_Internet_top-level_domains | sed -n '/<tr valign="top">/{s/<[^>]*>//g;p}'
 
 

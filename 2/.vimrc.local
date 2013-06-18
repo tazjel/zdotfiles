@@ -16,40 +16,16 @@
 "
 "   This is a mirror of :http://spf13.com
 " }
-"{
-
 "{"
-set history=500
-set autoread
-set t_Co=256 "use 256 colours in terminal
-set nocompatible
-set encoding=utf-8
-set encoding=utf-8
-set fileencoding=utf-8
-set foldmethod=manual
-set clipboard+=unnamed
-"}
 "{The w culture "
-vnoremap <silent> w1 w!>> ~/tst/vi.txt<CR>
-vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
-vnoremap wb :Bookmark<CR>
-
+"File
 nnoremap <silent> ; :q!<CR>
 nnoremap <silent> W :w<CR>
-"}
-"{References
-
-vmap sb "zdi<b><C-R>z</b><ESC>
-
+ca w!! w !sudo tee "%"
 map ws :!rm ~/.vimswap/*<CR>
-
-map Y y$
-
-let g:vimsyn_noerror= 1
-
-map <C-c> "+y<CR>
 "}
-"{
+" {The Z culture
+"cab
 cab zz w! ~/zdotfiles/1/
 cab vv w! ~/zdotfiles/2/
 cab wx !chmod u+x<CR>
@@ -68,22 +44,29 @@ cab w22 w! ~/zdotfiles/2/
 cab w11 w! ~/zdotfiles/1/
 cab w00 w! ~/zdotfiles/0/
 "}
-"{set syntax=vim<CR>
-
-map wy :set filetype=bash<CR>
-
 "Install unhtml
 map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
 
 "}
-""#map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
 
+""""""""""""""""""""""""""""
                     "F1
-"map <F1> ,c<space>
+""""""""""""""""""""""""""""
+map <F1> ,c<space>
 
+""""""""""""""""""""""""""""
                     "<F2>
+""""""""""""""""""""""""""""
 nnoremap <F2> :reg<CR>
 
+vnoremap <silent> WW Y<C-W><C-W>Gp'[v'],c<Space><C-W><C-W>
+"vnoremap <silent> WW Y<C-W><C-W>Gp<C-W><C-W>
+map Y y$
+
+let g:vimsyn_noerror= 1
+
+map <C-c> "+y<CR>
+"}
 "-
                     ""F3
 map <F3> :ls<CR>:sb
@@ -91,15 +74,25 @@ map <s-F3> [c
 map <S-Right> dp
 map <S-Left> do
 
+""""""""""""""""""""""""""""""""""""""
                      "<F4> :verbose map
-
+""""""""""""""""""""""""""""""""""""""
 nnoremap <F4> :verbose map
 
+":ju(mps)         : list of your movements
+":help jump-motions
+":history         : list of all your commands
+":his c           : commandline history
+":his s           : search history
+"q/               : Search history Window (puts you in full edit mode) (exit CTRL-C)
+"q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
+":<C-F>           : history Window (exit CTRL-C)
 
 """""""""""""""""""""F5"
 
 nnoremap <silent> wk  :vsplit ~/zdotfiles/1/askapache-bash-profile.txt<CR>
 nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+nnoremap <silent> w0 :vsplit ~/zdotfiles/0/apt_install_packages.sh<CR>
 "nnoremap <silent> ww :vsplit ~/zdotfiles/2/.vimrc.localw<CR>
 nnoremap <silent> w2 :vsplit ~/zdotfiles/2/.vimrc.localw<CR>
 nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
@@ -156,7 +149,6 @@ map zz :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR><ESC>Gp<ESC><C-W><C-W>
 cab wz w ~/zdotfiles/1/
 
 cab wv w ~/zdotfiles/2/
-set autoread
 
 
 
@@ -191,11 +183,6 @@ endfun
 "q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
 ":<C-F>           : history Window (exit CTRL-C)
                                 "F6
-"nnoremap <F6> :set arabic<CR>
-"nnoremap <S-F6>:set noarabic<CR>
-"nnoremap <S-F6> :set rightleft<CR>
-"nnoremap <C-F6> :set norightleft<CR>
-
 " A function to save word under cursor to a file
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 "---------------------------------------------------"
@@ -274,7 +261,6 @@ map wy :set filetype=bash<CR>
 
 ""#map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
                     "F1
-map <F1> ,cc<space>
 
                     "<F2>
 nnoremap <F2> :reg<CR>
@@ -399,48 +385,9 @@ endfun
 "g,               : reverse direction
 ":changes
 ":h changelist    : help for above
-"<C-O>            : retrace your movements in file (starting from most recent)
-"<C-I>            : retrace your movements in file (reverse direction)
-":ju(mps)         : list of your movements
-":help jump-motions
-":history         : list of all your commands
-":his c           : commandline history
-":his s           : search history
-"q/               : Search history Window (puts you in full edit mode) (exit CTRL-C)
-"q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
-":<C-F>           : history Window (exit CTRL-C)
-                                "F6
-"nnoremap <F6> :set arabic<CR>
-"nnoremap <S-F6>:set noarabic<CR>
-"nnoremap <S-F6> :set rightleft<CR>
-"nnoremap <C-F6> :set norightleft<CR>
 
-" A function to save word under cursor to a file
-imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
-"---------------------------------------------------"
 
-let g:I=0
-function! INC(increment)
-    let g:I =g:I + a:increment
-    return g:I
-endfunction
-" eg create list starting from 223 incrementing by 5 between markers a,b
-":let I=223
-":'a,'bs/^/\=INC(5)/
-"" create a(comand Abbreviations) map for INC
-cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "----------------------------------------
-"" *generate a list of numbers*  23-64
-"o23<ESC>qqYp<C-A>q40@q
-"----------------------------------------
-" : Pressing F5 lists all buffer, just type number
-set modifiable
-let g:is_bash=1
-
-ca w!! w !sudo tee "%"
-"map WW !sudo tee "%"
-
-"{
 
 "-----------------------------
 "   Pasteboard
@@ -454,11 +401,10 @@ ca w!! w !sudo tee "%"
 "tabs"
 "buffers"
 "windows"
-"set t_Co=256 "use 256 colours in terminal
 
 "}
 
-
+"white space
 "%s/[\r \t]\+$//
 "%s/[\r \t]\+$//
 "let g:BASH_SyntaxCheckOptionsGlob  = "-O extglob"
@@ -466,11 +412,21 @@ ca w!! w !sudo tee "%"
 """"" 
 cab w2a vsp ~/zdotfiles/9/web2py_arabic_admin.py
 
-"set no readonly
-set noro
-"Good"
-"https://bitbucket.org/
+"""""""""""""""""""""""""""""""""""""""""""""""""
+" set
+"
+"""""""""""""""""""""""""""""""""""""""""""""""""
+
+set history=500
+set t_Co=256 "use 256 colours in terminal
+set nocompatible
+set encoding=utf-8
+set fileencoding=utf-8
+set foldmethod=manual
+set clipboard+=unnamed
+set modifiable
 set showmatch
+set noro
 set shell=/bin/zsh
 set showcmd
 set background=dark
@@ -478,11 +434,14 @@ set showfulltag
 colorscheme darkburn
 set splitright 
 set showtabline=2 " always show tab bar
-
-
 set timeoutlen=250        " Time to wait after ESC (default causes an annoying delay)
-
-
-
+"set syntax=vim<CR>
 set termencoding=utf-8  " force terminal encoding
+map wy :set filetype=bash<CR>
 
+"nnoremap <F6> :set arabic<CR>
+"nnoremap <S-F6>:set noarabic<CR>
+"nnoremap <S-F6> :set rightleft<CR>
+"nnoremap <C-F6> :set norightleft<CR>
+
+"https://bitbucket.org/
