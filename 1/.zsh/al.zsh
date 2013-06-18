@@ -635,6 +635,7 @@ alias 'wjs'='jstest --normal /dev/input/js0'
 
 
 #<F6>
+#du --max-depth=1 -h * |sort -h -k 1 |egrep '(M|G)\s'
 
 # Find out the permissions of the current directory
 #ls -lad
@@ -679,7 +680,8 @@ alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
 ## Copy a file over SSH without SCP
 #ssh username1@servername1 -t ssh username2@servername2 uuencode -m testfile1.tar - | uudecode > testfile1.tar
 #<F7>
-# Recursively change permissions on directories, leave files alone.
+#du -xB M --max-depth=2 /var | sort -rn | head -n 15
+ #Recursively change permissions on directories, leave files alone.
 #find /var/www/ -type f -print0 | xargs -0 chmod 644
 # find unreadable file
 #sudo -u apache find . -not -perm /o+r

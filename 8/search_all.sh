@@ -1,0 +1,136 @@
+
+#!/bin/bash
+
+set -e
+ARGS=(go google github dochub rubydoc jquery wiki feedme help)
+
+#/ go           Go to the url
+#\ yo go modeset.com
+go() {
+  open "http://www.${ARGV[*]}"
+}
+
+#/ google       Open up the results of a Google search
+#\ yo google ron burgundy
+google() {
+  open "http://www.google.com/search?hl=en&q=${ARGV[*]}"
+}
+
+#/ github       Open up the results of a GitHub repository search
+#\ yo github cmsimple
+github() {
+  open "https://github.com/search?q=${ARGV[*]}"
+}
+
+#/ dochub       Search dochub.io sections (css|html|javascript|dom|jquery) for a term
+#\ yo dochub css background-image
+#\ yo dochub html heading
+#\ yo dochub javascript math
+#\ yo dochub dom element
+dochub() {
+  section=${ARGV[0]}
+  terms=${ARGV[*]:1}
+  open "http://dochub.io/#$section/$terms"
+}
+
+#/ rubydoc      Search the ruby-doc.org API docs
+#\ yo rubydoc
+#\ yo rubydoc File
+rubydoc() {
+  if [[ ${ARGV[0]} ]]; then
+    open "http://ruby-doc.org/core-1.9.3/${ARGV[0]}.html"
+  else
+    open "http://ruby-doc.org/core-1.9.3/"
+  fi
+}
+
+#/ jquery       Search the jQuery API docs (preferred over dochub's version)
+#\ yo jquery animate
+jquery() {
+  open "http://api.jquery.com/?s=${ARGV[*]}"
+}
+
+#/ wiki         Open up the results of a Wikipedia search
+#\ yo wiki mt mansfield
+wiki() {
+  open "http://en.wikipedia.org/wiki/Special:Search?search=${ARGV[*]}&go=Go"
+}
+
+#/ feedme       Display a listing of current top 10 articles in your terminal
+#\ yo feedme news
+#\ yo feedme sports
+#\ yo feedme feeds.feedburner.com/thechangelog
+feedme() {
+  if [[ ${ARGV[0]} == "news" ]]; then
+    local url="http://rss.cnn.com/rss/cnn_topstories.rss"
+  elif [[ ${ARGV[0]} == "sports" ]]; then
+    local url="http://sports.espn.go.com/espn/rss/news"
+  else
+    local url="http://${ARGV[0]}"
+  fi
+
+  echo ""
+  echo "$(curl --silent $url | \
+    sed -e 's/<title>CNN.*<\/title/>/g' \
+        -e 's/<title>ESPN.*<\/title/>/g' | \
+    ack -m15 -o '<title>[^/]*</title>' | \
+    sed -e 's,.*<!\[CDATA\[\([^\]*\)\]\].*,\1,g' \
+        -e 's,.*<title>\([^<]*\)</title>.*,\1,g' \
+        )"
+  echo ""
+}
+
+#/ help         Print this message
+help() {
+  cat<<EOF
+Yo opens search results in a browser tab for the given service based on a term.
+
+Usage: $(basename "$0") [${ARGS[@]}] [term]
+
+Commands:
+$(print_usage)
+
+Examples:
+$(print_examples)
+
+- Happy hunting.
+EOF
+}
+
+
+## Internal
+# -----------------------------------------------------------------------------
+
+# Get usage from the public api comments starting with `#/`
+print_usage() {
+  cat "$HOME/.bin/yo" | grep '^#\/' | sed "s/#\///g" | while read line; do
+    printf "%2s$line\n"
+  done
+}
+
+# Get examples from the public api comments starting with `#|`
+print_examples() {
+  cat "$HOME/.bin/yo" | grep '^#\\' | sed "s/#//g" | while read line; do
+    printf "%2s$line\n"
+  done
+}
+
+## Initialization
+# -----------------------------------------------------------------------------
+
+# See if a valid argument is passed and call it...
+if [[ $* > 1 ]]; then
+  for fn in "${ARGS[@]}"; do
+    if [[ $fn == $1 ]]; then
+      func=$1
+      shift
+      ARGV=($@)
+      $fn
+      exit 0
+    fi
+  done
+fi
+
+# ...otherwise barf out a help warning
+help
+exit 0
