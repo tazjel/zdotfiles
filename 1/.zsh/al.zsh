@@ -22,23 +22,24 @@
 
 
 
-
 ########################################################
 # F2
 ########################################################
-#
-#
 alias al='alias | grep'
 alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
-#to use it with WW Function
-WWW_path=~/zdotfiles/8/R_urls_sources_bash
+########################################################
+# <F3>
+########################################################
+#mkdir ~/images/shots/
+#
+function sw () {
+    scrot '%Y-%m-%date_day$wx$h_scrot.png' -e 'mv $f ~/images/shots';
+}
 
 
 
-
-# Add References Bash
 WWW_path=$zal
 function WWW {
     desc="ADD DESCRIPTION..."
