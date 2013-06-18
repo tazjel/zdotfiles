@@ -93,71 +93,6 @@ nnoremap <F4> :verbose map
 nnoremap <silent> wk  :vsplit ~/zdotfiles/1/askapache-bash-profile.txt<CR>
 nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 nnoremap <silent> w0 :vsplit ~/zdotfiles/0/apt_install_packages.sh<CR>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
 "nnoremap <silent> ww :vsplit ~/zdotfiles/2/.vimrc.localw<CR>
 nnoremap <silent> w2 :vsplit ~/zdotfiles/2/.vimrc.localw<CR>
 nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
@@ -175,13 +110,10 @@ map <C-F8><C-F8> :diffput<CR>
 "F9
 "F9"
     " SessionOpen:
-"nnoremap <silent> <F9> :Session
-"nnoremap <silent> <S-F9> :SessionList<CR>
-"nnoremap <M-F9> :SessionOpen
-"nnoremap <C-F9> :SessionSaveAs
-map <F9> :bn<cr>
-map <F10> :bp<cr>
-
+nnoremap <silent> <F9> :Session
+nnoremap <silent> <S-F9> :SessionList<CR>
+nnoremap <M-F9> :SessionOpen
+nnoremap <C-F9> :SessionSaveAs
 
 "F10
 "F11
@@ -258,7 +190,7 @@ imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 let g:I=0
 function! INC(increment)
     let g:I =g:I + a:increment
-    return g:
+    return g:I
 endfunction
 " eg create list starting from 223 incrementing by 5 between markers a,b
 ":let I=223
@@ -390,10 +322,10 @@ map <C-F8><C-F8> :diffput<CR>
 "F9
 "F9"
     " SessionOpen:
-"nnoremap <silent> <F9> :Session
-"nnoremap <silent> <S-F9> :SessionList<CR>
-"nnoremap <M-F9> :SessionOpen
-"nnoremap <C-F9> :SessionSaveAs
+nnoremap <silent> <F9> :Session
+nnoremap <silent> <S-F9> :SessionList<CR>
+nnoremap <M-F9> :SessionOpen
+nnoremap <C-F9> :SessionSaveAs
 
 "F10
 "F11
@@ -477,7 +409,7 @@ endfun
 "%s/[\r \t]\+$//
 "let g:BASH_SyntaxCheckOptionsGlob  = "-O extglob"
 
-"""""
+""""" 
 cab w2a vsp ~/zdotfiles/9/web2py_arabic_admin.py
 
 """""""""""""""""""""""""""""""""""""""""""""""""
@@ -501,7 +433,7 @@ set background=dark
 set showfulltag
 colorscheme pf_earth
 "colorscheme koehler
-set splitright
+set splitright 
 set showtabline=2 " always show tab bar
 set timeoutlen=250        " Time to wait after ESC (default causes an annoying delay)
 "set syntax=vim<CR>
@@ -513,16 +445,4 @@ map wy :set filetype=bash<CR>
 "nnoremap <S-F6> :set rightleft<CR>
 "nnoremap <C-F6> :set norightleft<CR>
 
-"let c_space_errors=1
-highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
-"""""""""""""""""""""""""""""""""""""""""""}}}
-""" DiffMode:							{{{2
-set diffopt=filler,context:4,iwhite	" options for using diff mode
-"set diffexpr		" expression used to obtain a diff file
-"set patchexpr		" expression used to patch a file
-" Create a new HTML document.
-nnoremap ,html :set ft=html<CR>i<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd"><CR><HTML lang="en"><CR><HEAD><CR><META http-equiv="Content-Type" content="text/html; charset=UTF-8"><CR><TITLE></TITLE><CR></HEAD><CR><BODY><CR></BODY><CR></HTML><ESC>kkkkeela
-
-
-noremap wt :%s/[ ^I]*$//g
+"https://bitbucket.org/

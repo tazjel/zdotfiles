@@ -4,7 +4,7 @@
 #
 # Tue Jun 11 02:55:36 AST 2013*/
 ########################################################
-# AHMED BANI
+# AHMED BAN
 ########################################################
 
 ########################################################
@@ -596,16 +596,16 @@ lnif() {
 #Getting Started
 
 #Start off by printing the help menu:
-alias 'wdr'='~/bin/dropbox.py' 
+alias 'wdr'='~/bin/dropbox.py'
 
 
 
 
-alias 'wj'='joy2key' 
+alias 'wj'='joy2key'
 
 
 
-alias 'wjs'='jstest --normal /dev/input/js0' 
+alias 'wjs'='jstest --normal /dev/input/js0'
 
 
 #sqlite3 ~/.mozilla/firefox/*default/places.sqlite "select a.url, a.title from moz_places a, moz_bookmarks b where a.id=b.fk and b.parent=2;"
@@ -637,6 +637,9 @@ alias 'wjs'='jstest --normal /dev/input/js0'
 
 #<F6>
 #du --max-depth=1 -h * |sort -h -k 1 |egrep '(M|G)\s'
+# check for write/read permissions
+#find ~/ -type d \( -wholename '/dev/*' -o -wholename '/sys/*' -o -wholename '/proc/*' \) -prune -o -exec test -w {} \; -exec echo {} writable \; 2>/dev/null
+
 
 # Find out the permissions of the current directory
 #ls -lad
@@ -644,9 +647,9 @@ alias 'wjs'='jstest --normal /dev/input/js0'
 
 #{find search recursively
 function wfs_find_string () {
-    find . -print0  | xargs -0 egrep -I
+    find . -print0  | xargs -0 egrep -
 }
-# 
+#
 alias fn='find . -name "*[sh]" -exec grep -is /dev/null $1 {} \;'
 function wff_find_file () {
 
@@ -697,4 +700,21 @@ alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
  #Oneliner to get domain names list of all existing domain names (from wikipedia)
 #curl -s http://en.m.wikipedia.org/wiki/List_of_Internet_top-level_domains | sed -n '/<tr valign="top">/{s/<[^>]*>//g;p}'
 
+
+# list all world-writeable Linux files
+#
+#sudo find / -perm -2 ! -type l -ls
+
+
+# list all world-writeable Linux files
+#sudo find / -perm -2 ! -type l -ls
+#netstat -antu | awk '{print $5}' | awk -F: '{print $1}' | sort | uniq -c | sort -n
+#(($i > 0)) && echo "var is a number"
+# What addresses are your applications talking to?
+#watch "lsof -i -P |grep ESTABLISHED |awk '{printf \"%15.15s \\t%s\\n\", \$1, \$9}'"
+
+# Find out which driver is in use
+#jockey-text -l
+## Copy a file over SSH without SCP
+#ssh username1@servername1 -t ssh username2@servername2 uuencode -m testfile1.tar - | uudecode > testfile1.tar
 
