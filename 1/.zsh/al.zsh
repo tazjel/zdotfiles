@@ -683,6 +683,9 @@ alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
 
 
 #<F9>
+function wwp_web2py () {
+    sudo chown -R www-data:www-data $1
+}
 ## Copy a file over SSH without SCP
 #ssh username1@servername1 -t ssh username2@servername2 uuencode -m testfile1.tar - | uudecode > testfile1.tar
 #<F7>
@@ -732,3 +735,22 @@ alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
 alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
 
 
+
+alias 'wak'='autokey -l' 
+
+
+
+alias 'w7'='ssh' 
+
+
+
+alias 'wib'='ssh root@192.168.1.7' 
+
+
+
+
+alias 'war'='setxmap -layout ar'
+alias 'wen'='setxmap -layout us'
+
+#Enable Arabic . English alt shift
+alias 'wenar'setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
