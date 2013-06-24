@@ -1,0 +1,10 @@
+
+The Debian way is:
+
+dpkg-reconfigure keyboard-configuration
+dpkg-reconfigure console-data
+
+To make the change visible in X (else reboot):
+
+/etc/init.d/hal restart
+
