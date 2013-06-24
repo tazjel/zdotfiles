@@ -115,7 +115,7 @@ show_menus() {
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " M A I N - M E N U"
     echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "1. ZSh"
+    echo "1. First Diamintion"
     echo "2. ZVim"
     echo "3. ZKeys"
     echo "4. ZTime"
