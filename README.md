@@ -1,6 +1,9 @@
-﻿dotfiles
 
+### بسم الله الرحمن الرحيم
 ### ماشاء الله لا قوة الا بالله
+
+
+https://github.com/tazjel/zdotfiles
 
 
 =========
