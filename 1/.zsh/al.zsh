@@ -4,10 +4,9 @@
 #
 # Tue Jun 11 02:55:36 AST 2013*/
 ########################################################
-# AHMED BANI
+# Author : AHMED BANI
 clear
-echo -e "
-                ###########################"
+#echo -e "                  #########"
 echo -e "                    بسم الله الرحمن الرحيم"
 echo -e "                    ماشاءالله لاقوة الابالله"
                     
@@ -34,6 +33,7 @@ alias "اقرا"="cat"
 alias "اكتب عربي"="vim -A"
 alias "اعد"="zsh"
 alias "نظف"="clear"
+alias "بحث"="grep -iaR"
 alias "التاريخ"="date"
 #############################################
 
@@ -51,9 +51,12 @@ alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 #mkdir ~/images/shots/
 #
 function sw () {
-    scrot '%Y-%m-%date_day$wx$h_scrot.png' -e 'mv $f ~/images/shots';
+    today=`date +%Y_%m_%d_%h_%s`
+    scrot '$today_srot.png' -e 'mv $f ~/images/shots/'
 }
-
+function wsw() {
+    today=`date +%d_%s`;echo $today; scrot "$today"_shot.png -e 'mv $f ~/images/shots/';ls ~/images/shots
+}
 function wpw_capture_pic_every_2 () {
 i=0;while :; do i=$(expr "$i" + 1); scrot "$i".png; sleep 2; done;
 }
