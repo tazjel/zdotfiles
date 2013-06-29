@@ -194,6 +194,7 @@ alias acs='apt-cache search'
 alias acsh='apt-cache show'
 alias agdu='sudo apt-get dist-upgrade'
 alias aliasupdt='wget -q -O - "$@" https://alias.sh/user/1110/alias >> ~/.bash_aliases'
+
 alias assume='git update-index --assume-unchanged'
 alias build='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
 
@@ -420,6 +421,7 @@ alias -g 'wH'="--help | grep "
 
 cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 
+
 ####################################################
 #wwww(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 #
@@ -507,7 +509,6 @@ function Wbkp {
 
 alias 'wt'='cd ~/tst'
 
-alias 'wshp'='ssh tazjel@ssh.pythonanywhere.com'
 
 alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'
 
@@ -775,7 +776,7 @@ alias 'w7'='ssh'
 
 
 
-alias 'wib'='ssh root@192.168.1.7' 
+alias 'wib'='ssh root@192.168.1.$(echo "$1")'
 
 
 

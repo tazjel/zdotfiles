@@ -538,3 +538,5 @@ nnoremap ,html :set ft=html<CR>i<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN
 
 noremap wt :%s/[ ^I]*$//g
 
+
+noremap wba :!vim ftp://tazjel@baniop.com/public_html/<CR>
