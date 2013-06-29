@@ -22,10 +22,26 @@ echo -e "                    ماشاءالله لاقوة الابالله"
 ########################################################
 # <F1>
 ########################################################
-
+#setxkbmap -v -rules xfree86 -model pc104 -layout "us,ar" -option "grp:alt_shift_toggle" -option "grp_led:caps"
 setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
 setxkbmap -option ctrl:nocaps
-###########################################
+############## 
+#{Bindkey
+
+# Make HOME and END work reasonably
+#case $TERM in
+    #xterm*)
+    #bindkey "^[[F" end-of-line
+    #bindkey "^[[H" beginning-of-line 
+    #;;
+#esac
+
+#bindkey '\e[1~' beginning-of-line       # Home
+#bindkey '\e[4~' end-of-line             # End
+#bindkey '\e[3~' delete-char             # Del
+#bindkey '\e[2~' overwrite-mode          # Insert 
+#bindkey -v
+#}##########################################
 alias "سم"="alias"
 alias "قل"="echo"
 alias "اكتب"="vim"
@@ -37,7 +53,8 @@ alias "بحث"="grep -iaR"
 alias "التاريخ"="date"
 #############################################
 
-
+alias 'wml'='env SHELL=zsh mlterm --meta=esc --metakey=alt -E ar.SA.UTF-8 -f=green -b=black -0=green -R=30-40'
+#env SHELL=zsh mlterm  --meta=esc --metakey=alt
 ########################################################
 # F2
 ########################################################
@@ -404,7 +421,7 @@ alias -g 'wH'="--help | grep "
 cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 
 ####################################################
-wwww(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
+#wwww(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 #
 function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
 
@@ -575,6 +592,8 @@ functions wfbash() {
 }
 
 
+    #function vimgrep () { tmp="$@" ; vim -c "vimgrep $tmp | copen" ; }
+ #example : vimgrep pattern 'dir/**/*.c'
 #Installers
 function install_dropbox_cmd () {
     mkdir -p ~/bin
@@ -766,3 +785,4 @@ alias 'wen'='setxmap -layout us'
 
 #Enable Arabic . English alt shift
 alias 'wenar'setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
+

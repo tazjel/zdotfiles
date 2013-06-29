@@ -1,0 +1,484 @@
+
+<!-- saved from url=(0053)http://faculty.washington.edu/heer/enablingarabic.htm -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<title>Enabling Arabic</title>
+</head>
+<body class="">
+<center><h3>Enabling Arabic, Persian</h3></center>
+<center><h4>and</h4></center>
+<center><h3>Other Arabic-Script Languages</h3></center>
+<center><h4>on</h4></center>
+<center><h3>Debian Linux 3.1 (Sarge)</h3></center>
+
+<center>(Latest Revision, April 2007)</center>
+<br>&nbsp;<br>
+
+<table width="80%" align="center">
+<tbody><tr>
+<td>
+<p align="left">
+
+	1. It is not necessary to change your locale to an Arabic locale to
+enable Arabic, however it is useful to have a default locale with UTF-8
+encoding.  To find out what your current default locale is give the command
+"locale".  The easiest way to change your locale is to use the command
+"dpkg-reconfigure locales".  You must be root to do this.  This command
+launches a program that lets you add as many locales as you wish from a list. 
+Hold the control key down to select more than one locale.  You will then be
+asked whether you want to make one locale the default locale.  If you choose
+an Arabic locale as the default you will Arabicize the desktop and many menus. 
+If you choose "none", POSIX will become your default locale.  This is not a
+good idea because POSIX does not support unicode (UTF-8) encoding.  So choose
+a locale for any language with UTF-8 encoding.  After you have selected your
+default locale you will have to reboot before the change goes into effect.  If
+you wish you can edit the /etc/locale.gen file by hand.  You will find a list
+of all the possible locales in /usr/share/i18n/SUPPORTED.  Then when you have
+edited the file you must run the command "locale-gen" to generate the locales
+you have added to /etc/locale.gen.  You can then use the command "locale -a"
+to see a list of the locales that are now available.  You will still have to
+run "dpkg-reconfigure locales" to set your default locale. 
+
+<br>&nbsp;<br>
+
+	2. Your next step after setting your default locale is to install some
+Arabic-script font packages from your Debian dvd. To see what packages are
+available use the command "apt-cache search Arabic" or "apt-cache search
+Farsi".  Then install the packages you want by using "apt-get install
+[.....]".  For Arabic fonts you should install the ttf-kacst and ttf-arabeyes
+packages.  For Mozilla and Firefox install the mozilla-firefox-locale-ar
+package.  You may also want to install katoob, an Arabic/Hebrew editor that
+also works with Persian if you have the Persian keyboard loaded.  Most of
+these fonts will be stored in /usr/share/fonts/truetype.  Additional
+Arabic-script fonts can be downloaded from:
+
+<br>&nbsp;<br>
+
+<a href="http://www.wazu.jp/gallery/Fonts_Arabic.html">WAZU JAPAN's Gallery of
+Unicode Fonts</a>
+<br>&nbsp;<br> 
+
+Several of these fonts contain the full range of Arabic Unicode
+characters.  They are Ariel, Lateef and Scheherazade.  If you want to use
+Arabic-script languages other than Arabic and Persian you will need these
+fonts.  Also you will need Lateef or or Scheherazade if you want to use
+vocalization (tashkil) with Arabic.  Many of the other Arabic fonts are not
+able to join vocalized characters correctly. The fonts to be downloaded will
+probably be zipped.  If they are truetype fonts put the zipped file in
+/usr/share/fonts/truetype and unzip it.  Make sure that the unzipped files are
+readable by users other than root.  <br>&nbsp;<br>
+
+	3. Finally you must load the Arabic and Persian keyboards for X.  To
+load the Arabic keyboard you use the setxkbmap command as follows:
+<br>&nbsp;<br>
+
+setxkbmap -v -rules xfree86 -model pc104 -layout "us,ar" -option
+"grp:alt_shift_toggle" -option "grp_led:caps"
+<br>&nbsp;<br>
+
+If the command is successful in loading the Arabic keyboard, you should get 
+the following message:
+<br>&nbsp;<br>
+
+</p><pre>Warning! Multiple definitions of rules file
+         Using command line, ignoring X server
+Warning! Multiple definitions of keyboard model
+         Using command line, ignoring X server
+Warning! Multiple definitions of keyboard layout
+         Using command line, ignoring X server
+Trying to build keymap using the following components:
+keycodes:   xfree86+aliases(qwerty)
+types:      complete
+compat:     complete+leds(caps)
+symbols:    pc/pc(pc104)+pc/us+pc/ar:2+group(alt_shift_toggle)
+geometry:   pc(pc104)
+</pre>
+<p align="left">
+
+You can then toggle between English and Arabic by pressing the shift key and
+the alt key at the same time.  When you change to the Arabic keyboard the
+caps-lock light will go on.  When you return to the English keyboard the
+caps-lock light will go off.  You can put the command in your .bashrc file,
+but make sure it is all in one line.  To load the Persian keyboard use the
+same command but change "us,ar" to "us,ir".  If you wish you can even combine
+the two commands by including all three languages (us,ar,ir) in the same
+command.  You can then toggle between all three languages, but the caps-lock
+light will stay on for both the Arabic and Persian keyboards and will only go
+off when you switch to the English keyboard.  The language symbols that can be
+used in the setxkbmap command are actually the names of the keymap files used
+by setxkbmap.  They can be found in /usr/X11R6/lib/X11/xkb/symbols and
+/usr/X11R6/lib/X11/xkb/symbols/pc.  (/usr/X11R6/lib/X11/xkb is a link to
+/etc/X11/xkb/.)  Some Arabic fonts, such as Nazli and Homa, also contain
+Persian characters but most do not, so if you want to write in Persian you
+will have to make sure that the font you are using has the additional
+characters needed for Persian. Further information on keyboards and keymapping
+may be found in the files /etc/X11/xkb/README, /etc/X11/xkb/README.config, and
+/etc/X11/xkb/README.enhancing.  The same files are also in
+/usr/X11R6/lib/X11/xkb. 
+
+<br>&nbsp;<br>
+
+	4. It is fairly easy to edit the existing ar and ir keyboard files. 
+The files are found in /usr/X11R6/lib/X11/xkb/symbols and
+/usr/X11R6/lib/X11/xkb/symbols/pc.  If you are using a generic pc keyboard
+edit the files in the /pc subdirectory of the /symbols directory.  By editing
+a keyboard file you can remove characters you do not need and substitute for
+them characters that you do need.  You can, for example, add characters needed
+for other Arabic-script languages.  However, you will then have to install the
+appropriate fonts.  You can also rearrange the position of the characters on
+the keyboard.  To make a new keyboard, even one based on an existing keyboard,
+is much more complicated.  Do not try it unless you know what you are doing. 
+Information on editing and creating keyboards can be found on the following
+web sites:
+<br>&nbsp;<br>
+<a href="http://www.k2.dion.ne.jp/~oibane/aonl/en/">Arabic on Linux 
+(Oibane's website)</a>
+<br>
+<a href="http://www.tsu.ru/~pascal/en/xkb/">XKB Configuration by Ivan 
+Pascal</a>
+<br>
+<a href="http://pascal.tsu.ru/en/xkb/setup.html">XKB Setup by Ivan 
+Pascal</a>
+<br>
+<a href="http://www.mdstud.chalmers.se/~eldada/keyboard.html">Ali El 
+Dada's Web Page</a>
+<br>&nbsp;<br>
+For Unicode encoding charts of all the characters used in Arabic-script
+languages go to:  
+<br>&nbsp;<br>
+<a href="http://www.unicode.org/charts/">www.unicode.org/charts/</a>
+<br>&nbsp;<br>
+	5. Installing additional truetype Unicode fonts for other
+Arabic-script languages is easy.  As mentioned above fonts with the full range
+of Arabic characters are available for downloading from:
+<br>&nbsp;<br>
+
+<a href="http://www.wazu.jp/gallery/Fonts_Arabic.html">WAZU JAPAN's 
+Gallery of Unicode Fonts</a>
+
+<br>&nbsp;<br>
+
+The fonts will probably be zipped.  If they are truetype fonts put the zipped
+file in /usr/share/fonts/truetype and unzip it.  Make sure that the unzipped
+files are readable by users other than root.  That's all you have to do.  You
+should be able to use the new font in any editor or word processor. 
+<br>&nbsp;<br>
+	5. Once you have enabled Arabic and Persian on your computer you will
+be able to create Arabic or Persian files and save them with Arabic or Persian
+names.  The file names will appear in Arabic or Persian in desktop file
+manager programs, but if you use "ls" in a command-line terminal you will see
+only question marks for an Arabic file name. 
+<br>&nbsp;<br>
+	6. The following programs work well with both Arabic and Persian. 
+They all support the ISO-8859-6 code page for Arabic and the Windows cp-1256
+and Unicode UTF-8 code pages for both Arabic, Persian and other Arabic-script
+languages.  They do not support the Persian code page ISIRI-3342.  The default
+encoding is UTF-8.  It is a little tricky to open previously-written files
+written in encodings other than UTF-8 or that may have been created with
+different programs or with different operating systems.  How such files can be
+opened is described in the paragraphs below dealing with the various word
+processors and editors. 
+<br>&nbsp;<br>
+<b>Word Processors:</b>
+<br>&nbsp;<br>
+	oowriter - Open Office Writer is a bidirectional word processor that
+works very well with Arabic fonts.  You can align text to either the right or
+the left.  This is useful of you want to align Arabic text to the left instead
+of to the right.  You can also change the direction of the text.  To open a
+previously-written file pull down the "file" menu and click on "Open".  A
+window with a list of files will appear.  Select the file you wish to open and
+then click on "File Type" and select "Text Encoded" near the top of the list. 
+Another window will pop up asking you to select the encoding.  You can also
+select an Arabic or Persian font in this window as well as the language. 
+After you have selected the correct encoding click "OK" and the file will
+open.  You can also select the font after the file has opened.  Go to the
+"Edit" menu and click on "Select All", then change the font and the size.
+Oowriter supports UTF-8, Windows cp-1256 and ISO-8859-6.  It does not support
+ISIRI-3342 for Persian.  Oowriter allows you to choose between Arabic
+(Western) and Hindi (Persian style) numbers.  You can set the numbers in the
+"Tools" menu under "Options" &gt; "Language Settings" &gt; "Complex Text
+Layout".  If you set Hindi numbers you will also get Hindi numbers when you
+are writing in English.  In fact, changing to Hindi may remove the ability to
+type any numbers at all.  If this happens change back to Arabic or System
+numbers.  <br>&nbsp;<br>
+
+	abiword - Abiword is another bidirectional word processor similar to
+oowriter.  It does not however handle all Arabic fonts well.  It cannot
+connect the letters properly in some fonts and may put periods, for example,
+at the beginning of a sentence instead of at the end.  It does allow one to
+select the alignment of text to either the right or the left.  To open a
+previously-written Arabic-script file first load Abiword. Then pull down the
+"File" menu and click on "Open".  A list of files will appear in a window. 
+Select the file you wish to open.  At the bottom of the window you can choose
+the type of file to be opened.  For Arabic and Persian files chose "encoded
+text" and then click OK.  Another window will open which will allow you to
+indicate the code page used for the encoding.  Select the code page.  For
+Arabic you can choose cp1256, ISO-8859-6 or UTF-8.  For Persian there is only
+cp1256 or UTF-8.  Click on "OK".  If you have selected the correct code page
+the file will open, but you will then have to choose the font before you will
+see any Arabic or Persian.  Pull down the "Edit" menu and click on "Select
+All".  Then change the font to an Arabic or Persian font.  <br>&nbsp;<br>
+
+<b>Editors:</b>
+<br>&nbsp;<br>
+
+        katoob - Katoob is a bidirectional Arabic/Persian and Hebrew UTF-8
+editor with its own keyboard emulators for Arabic and Hebrew.  You can,
+however, use the keyboards for Arabic and Persian that you have loaded
+with setxkbmap if you wish.  Katoob does not have its own fonts.  Make
+sure you have at least one font, such as Nazli, Homa or Arial, that
+contains Persian characters if you wish to write in Persian. Katoob aligns
+Arabic and Persian text automatically to the right and English text to the
+left.  When opening previously written files Katoob tries to convert the
+file to UTF-8, so you must let it know what code page the file is in.  It
+can convert from cp1256, ISO-8859-6 but not from ISIRI-3342.  When you
+quit Katoob make sure that you are in US/Ascii mode; otherwise your Arabic
+keyboard will remain loaded and you will not be able to type in a
+terminal.  There are manual pages for Katoob. <br>&nbsp;<br>
+
+	gedit - Gedit is bidirectional and works with all Arabic-script fonts. 
+Like Katoob it automatically aligns text to the right or to the left depending
+on the language.  This can be a problem if you want to align Arabic text to
+the left instead of the right.  There is a full set of fonts. You can save
+files in UTF-8, ISO-8859-6, or cp1256 encodings. When opening
+previously-written files it is necessary to tell Gedit what encoding the file
+is in.  To do this you must open a file by clicking on "Open" in the "File"
+menu.  You will get a window with a list of files.  At the bottom of the
+window is a list of encodings.  The default is "Auto Detected".  "Auto
+Detected" does not usually work so you must indicate the encoding of the file
+before clicking on the name of the file.  The file will then open in the
+correct encoding.  If you open a file from a shell command line the file will
+open without any Arabic or Persian characters.  Gedit does not support
+ISIRI-3342 for Persian.  <br>&nbsp;<br>
+
+bluefish - Bluefish is an html editor that works with Arabic script languages. 
+<br>&nbsp;<br>
+
+<b>KDE Editors:</b>  
+<br>&nbsp;<br>
+	If you have a problem opening a file in these programs because
+they can't communicate with klauncher give the command "kdeinit".
+<br>&nbsp;<br>
+	kedit - Kedit works with both Arabic and Persian.  It automatically
+aligns text to the right or to the left depending on language.  Therefore you
+cannot align English to the right and Arabic to the left.  There is a full set
+of fonts, To set the encoding pull down the "Settings" menu.  Click on
+"Configure Kedit" and then on "ABC Spelling".  You can change the encoding on
+the fourth line of the menu.  For Arabic and Persian the only encoding
+provided is UTF8. To open previously-written files pull down the "file" menu
+and click on "open".  A window will appear with a list of files.  Select the
+file you want to open.  Then click on "ABC" in the bar at the top left corner
+of the window.  This will open another window in which you can indicate the
+encoding of the file. For Arabic and Persian you can choose cp1256, ISO-8859-6
+or UTF8.  If you have a problem opening a program because kedit can't 
+communicate with klauncher give the command "kdeinit". 
+ <br>&nbsp;<br>
+	kate - Kate works with both Arabic and Persian.  It does not align
+text to the right, however.  It has a full selection of encodings and fonts.
+To set the font pull down the "settings" menu.  Click on "configure Kate". 
+Click on "fonts and colors" under "editor".  Then click on "font".  To set the
+encoding pull down the "view" menu and click on "set encoding".  To open
+previously written files you must tell kate, as with the other editors, what
+encoding the file is in.  Do this by opening files by clicking on "open" in
+the "file" menu. You will get a window with a list of files.  At the right
+side of the window is a list of encodings.  Click on the correct encoding
+before clicking on the name of the file.  The file will then open in the
+correct encoding.  If you open a file from a shell command line the file will
+open without any Arabic or Persian characters.
+<br>&nbsp;<br>
+      kwrite - Kwrite works with all Arabic-script fonts and various
+encodings.  Like Kate, however, it does not align text to the right.  When
+opening previously-written files make sure you first set the correct encoding
+in the upper-right corner of the list of files to be opened.
+<br>&nbsp;<br>
+
+<b>Browsers:</b>
+<br>&nbsp;<br>
+
+	Mozilla, Firefox, Epiphany, and Konqueror all work with Arabic texts. 
+Mozilla, Firefox, and Epiphany, however, cannot correctly join vocalized
+Arabic letters nor can they join Arabic letters from languages other than
+Arabic and Persian.  Konqueror does not have either of these problems.  Also 
+it seems that Konqueror is the only browser that can print Arabic files.
+<br>&nbsp;<br>
+
+<b>Terminals:</b> <br>&nbsp;<br> 
+
+If your default locale has UTF-8 encoding you can use Arabic and Persian in
+any of the terminals provided by Debian but without bidirectionality and
+shaping of the Arabic letters. <br>&nbsp;<br>
+
+If you want bidirectionality and shaping you will have to install MultiLingual
+Terminal (mlterm).  There are Debian packages for mlterm which you can
+download from the <a href="http://www.debian.org/">Debian</a> website.  
+You will need the following packages:
+<br>&nbsp;<br>
+
+mlterm-common_2.9.2-2_i386.deb<br>
+mlterm_2.9.2-2_i386.deb<br> 
+mlterm-tools_2.9.2-2_i386.deb<br> 
+<br>&nbsp;<br>
+
+You may also have to download some unicode fonts.  These fonts are in the 
+following packages: <br>&nbsp;<br> 
+
+unifont_1.0-1_all.deb<br>
+xfonts-efont-unicode_0.4.0-4_all.deb<br> 
+<br>&nbsp;<br> 
+
+Put the mlterm packages in /usr/local/ and then, as root, install them with
+dpkg -i. <br>&nbsp;<br>
+
+Install mlterm-common first, then the others. <br>&nbsp;<br> 
+
+The mlterm files will be installed in the following directories: 
+<br>&nbsp;<br>
+
+/etc/mlterm<br>
+/usr/share/doc/mlterm<br> 
+/usr/share/terminfo/m/mlterm<br>
+/usr/share/mlterm<br> 
+/usr/bin/mlterm<br> 
+/usr/lib/menu/mlterm<br>
+/usr/lib/mlterm<br> 
+<br>&nbsp;<br> 
+
+If you find that you need the Debian unicode fonts, download them and install
+them with dpkg -i. <br>&nbsp;<br> 
+
+Once mlterm is installed you must configure it for Arabic with UTF-8 encoding.
+You will find the configuration files in /etc/mlterm/.  There are other
+important documents in /usr/share/doc/mlterm/ which you should read, and there
+are also man pages for mlterm.  <br>&nbsp;<br>
+
+The main configuration file is /etc/mlterm/main.  Make sure that you have the
+following lines in it: 
+
+<br>&nbsp;<br>
+
+use_bidi=true<br> 
+ENCODING=UTF-8<br> 
+input_method=kbd<br> 
+
+<br>&nbsp;<br> 
+
+As far as I know the only Arabic font that will work in mlterm on Debian is
+the one mentioned in the /etc/mlterm/font file, so uncomment the font for
+Arabic speakers:  <br>&nbsp;<br>
+
+ISO10646_UCS4_1 = -gnu-unifont-medium-r-normal--*-iso10646-1;
+
+<br>&nbsp;<br> 
+
+In the /etc/mlterm/key file add this line: <br>&nbsp;<br>
+
+Shift+space=IM_HOTKEY
+<br>&nbsp;<br> 
+
+This line means that when you hit shift and then space the word "Arabic" will
+appear on the screen just under the cursor and you will be able to type in
+Arabic from your keyboard.  <br>&nbsp;<br>
+
+Make sure that the line Shift+space=XIM_OPEN is commented out.  <br>&nbsp;<br>
+
+Note, however, that in order for mlterm to work properly your default locale
+must be one with UTF-8 encoding.  Use the command "locale" to check to see
+what your default locale is.  If it does not have UTF-8 encoding change your
+default locale to one that does have UTF-8 encoding by using the
+"dpkg-reconfigure locales" command as described above.  To launch mlterm from
+another terminal give the command "mlterm".
+
+<br>&nbsp;<br>
+
+Not all editors will work in mlterm.  The ones I have found to work are vi,
+vim and Joe's editor in its different configurations.  Version 4.93 of pico,
+the new unicode version, will also work, as will alpine, the new unicode
+version of the pine mail program.  For some reason nano does not work.  
+
+<br>&nbsp;<br>
+
+Mlterm will will also allow you to see and write Arabic file names, and to
+manipulate files with Arabic names just as you would files with ASCII names. 
+And you will be able to read Arabic files with the "less" and "more" commands. 
+If you have a Persian keyboard you will be able to do the same things in
+Persian.  I have not tried out mlterm with any other Arabic-script languages
+except Jawi.  With Jawi mlterm displays the additional Jawi letters but it
+cannot shape them. 
+
+<br>&nbsp;<br>
+
+Further information on mlterm may be found on the following web sites:
+<br>&nbsp;<br>
+<a href="http://mlterm.sourceforge.net/">Mlterm Web Site</a><br>
+<a href="http://www.k2.dion.ne.jp/~oibane/aonl/en/mlterm.htm">Oibane's 
+pages on mlterm</a><br>
+
+<br>&nbsp;<br>
+
+<b>TeX and ArabTeX:</b>
+<br>&nbsp;<br>
+
+TeX is a marvelous typesetting program created by Donald Knuth.  The Debian
+distribution of Linux includes TeX in the following versions: tetex, latex,
+pdftex and arabtex.  ArabTeX is a set of macros created by Klaus Lagally that
+works with plain TeX (tetex), LaTeX and pdftex.  Since it is a self-contained
+program with its own Arabic, Persian and other Arabic-script fonts, you can
+use ArabTeX without enabling Arabic on your computer.  One of the advantages
+of using ArabTeX is that it allows you to format Arabic poetry just as a
+printer would using old-fashioned handset type.  Click here for a <a href="http://faculty.washington.edu/heer/hemistic.pdf">pdf file </a> showing some Arabic poetry formatted with
+ArabTeX.  Another advantage of TeX is that it contains a complete set of
+accents and diacritical marks useful in transliterating Arabic scripts
+into other alphabets. 
+
+
+<br>&nbsp;<br>
+
+
+Additional useful information on enabling Arabic on Debian Linux can be 
+found on these sites: <br>&nbsp;<br>
+
+<a href="http://www.k2.dion.ne.jp/~oibane/aonl/en/">Arabic on Linux 
+(Oibane's website)</a>
+<br>
+
+<a href="http://www.arabeyes.org/download/documents/howto/arabic-howto-en/">
+Arabic Howto on www.arabeyes.org</a>
+
+<br>
+<a href="http://www.farsiweb.ir/wiki/Main_Page/">Web Page for Sharif 
+Linux, a Persian
+version of Linux</a>
+ 
+<br>
+
+<a href="http://www.laits.utexas.edu/persian/persianword/persianwp.htm">
+Information on Persian word processors for Microsoft Windows</a> (includes
+information useful for Linux users also such as a chart of the standard
+Persian keyboard in pdf.format)
+
+<br>
+<a href="http://www.openroad.net.au/support/notes/persian.html"> 
+www.openroad.net.au/support/notes/persian.html</a>
+<br>&nbsp;<br>
+
+Comments and corrections to this file are welcome.  I can be reached at <a href="mailto://heer@u.washington.edu">heer@u.washington.edu</a>
+
+<br>&nbsp;<br>
+</p></td>
+</tr>
+</tbody></table>
+
+<table width="50%" align="center">
+<tbody><tr>
+<td>
+
+<p align="right">
+<br>&nbsp;<br>
+---Nicholas Heer
+<br>&nbsp;<br>
+</p></td>
+</tr>
+</tbody></table>
+
+
+
+<div class="vimiumReset vimiumHUD" style="right: 150px; opacity: 0; display: none;">/j</div></body></html>

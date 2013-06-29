@@ -1,0 +1,112 @@
+
+Back to main page
+
+The Quick-n-Dirty Guide to Mlterm
+
+Revision 1.0.2 - see ChangeLog
+
+Introduction
+
+This guide demonstrates how to set up Mlterm, probably because you want a lightweight, UTF-8-capable terminal emulator that can do transparency. Or at least that is why I switched to Mlterm.
+
+Desired Config
+
+Here is what we are trying to achieve:
+
+Transparent background with shading.
+White foreground (since I use a dark background image).
+No scrollbar, no window decorations (e.g. titlebar, move / resize handles, etc.).
+Window geometry customised so that I can fit four terminal windows on a 1280x1024 virtual desktop (managed by FluxBox).
+Use a visual "bell" instead of an audible one when the terminal wants to beep.
+Keep a big scrollback buffer! I want my terminal output to hang around for a goodly while.
+The terminal should report itself as "xterm", so as not to confuse Solaris or other Unix variants that get very unhappy when TERM=mlterm.
+Mlterm Installation
+
+You must install Mlterm before you can use it! For help on this, see "The Quick-N-Dirty Guide to Finding and Installing Software" or your distribution's documentation.
+
+Mlterm Configuration
+
+Once you have Mlterm installed, you will need to write a very minimal config file before you are ready to actually use it. Here's how.
+
+In a terminal window, run the following command: mkdir ~/.mlterm
+Using your favourite text editor, edit the (new) file ~/.mlterm/main
+To enable transparent backgrounds with shading, add the following lines to ~/.mlterm/main:
+# Transparency settings (http://www.qnd-guides.net/qnd-mlterm.html#config_trans)
+use_transbg = true
+brightness = 20
+fade_ratio = 75
+To setup the foreground colours, add the following lines:
+# Colour settings (http://www.qnd-guides.net/qnd-mlterm.html#config_colour)
+fg_color = white
+bg_color = black
+To remove all window decorations, add the following lines:
+# Decoration settings (http://www.qnd-guides.net/qnd-mlterm.html#config_decor)
+scrollbar_mode = none
+borderless = true
+To fix the window geometry, add the following lines:
+# Geometry settings (http://www.qnd-guides.net/qnd-mlterm.html#config_geom)
+fontsize = 14
+geometry = 90x35
+use_anti_alias = false
+Remember, this is for a 1280x1024 FluxBox desktop, so your settings will need tweaking if your resolution is different or if your window manager / desktop environment has a bigger taskbar than does FluxBox. Likewise, if you want to use a bigger or smaller font than 14pt, you will have to alter your geometry settings to match. 
+Also note that we are turning font anti-aliasing off. You might be tempted to enable it (most likely since you have used Firefox with beautiful, anti-aliased Unicode fonts), but sadly, your only reward would be a huge, ugly terminal with the default fonts that Mlterm uses. Luckily, loyal reader Evan Monroig found a way to have nice anti-aliased fonts! If this sounds nice to you, just read the next section.
+So if you want sexy, anti-aliased fonts (as opposed the very unsexy ones that Mlterm wants to use by default), you will need to first install some. I recommend the GNOME project's lovely Bitstream Vera. For help on installing fonts, see "The Quick-N-Dirty Guide to Finding and Installing Software" or your distribution's documentation.
+
+Once you have the fonts installed, you will need to open a new file in your text editor: ~/.mlterm/aafont. To this file, add the following (assuming you are using the aforementioned Bitstream Vera font):
+
+ISO8859_1 = bitstream vera sans mono-medium-iso8859-1;
+ISO8859_15 = bitstream vera sans mono-medium-iso8859-15;
+ISO10646_UCS2_1 = bitstream vera sans mono-medium-iso10646-1;
+ISO10646_UCS2_1_BOLD = bitstream vera sans mono-bold-iso10646-1;
+If you commonly use other character sets, you may want to add similar lines for them, as well. To see all the monospaced fonts that you have to choose from, run: xlsfonts | grep mono.
+After you create the ~/.mlterm/aafont file, you will need to update your ~/.mlterm/main file to use anti-aliased fonts. Find the # Geometry settings line (that you created in the previous section) and change it to read:
+
+# Geometry settings (aafont) (http://www.qnd-guides.net/qnd-mlterm.html#config_aafont)
+fontsize = 12
+geometry = 90x35
+use_anti_alias = true
+For a visual bell, add the following lines:
+# Bell settings (http://www.qnd-guides.net/qnd-mlterm.html#config_bell)
+bel_mode = visual
+For a huge scrollback buffer, add the following lines:
+# Scrollback settings (http://www.qnd-guides.net/qnd-mlterm.html#config_buf)
+logsize = 4096
+To make Mlterm masquerade as Xterm, add the following lines:
+# Terminal settings (http://www.qnd-guides.net/qnd-mlterm.html#config_name)
+name = xterm
+Finally, there are a few areas where Mlterm's defaults are not the same as Eterm's. In keeping with the Rule of Least Surprise (AKA Principle of Least Astonishment), add the following lines:
+# Selection settings (http://www.qnd-guides.net/qnd-mlterm.html#config_sel)
+word_separators = " ,;="
+Actually, this changes one word delimiter from Eterm's defaults: the '@' character, which I don't want as a word boundary so I can select email addresses more easily. 
+
+Two other selection-related behaviours differ from Eterm:
+Triple-clicking does select the entire line, but not the newline at the end
+Right-clicking does not continue a previously started selection
+These behaviours are annoying. If you know how to fix them, please email me at jmglov***replace_with_at-sign***jmglov.net.
+M17N
+
+One really handy feature of Mlterm is the ability to switch character encodings on the fly (just like you can in a web browser). The easiest way to do this is to hold down the Ctrl key and right-click anywhere in the terminal window. This will bring up the "mlterm configuration" dialog. Click in the "Encoding" dropbox (the default setting should be "auto (currently UTF-8)") and select the encoding that you need (e.g. "EUC-JP", "SJIS", "CP1251 (Bulgarian,Belarusian)", etc.).
+
+Of course, one of the main reasons that you want a multi-lingual terminal emulator is probably so you can input Japanese, or Korean, or Chinese, or Cyrillic, or something like that. Thus far, I have only figured out how to input Japanese with uim-anthy. Add the following to your ~/.mlterm/main file:
+
+# Input settings (http://www.qnd-guides.net/qnd-mlterm.html#m17n_input)
+input_method = uim
+Then launch your Mlterms like this:
+LC_CTYPE='ja_JP.utf8' mlterm
+If you know where to set your X enviroment, you can just put the LC_TYPE='ja_JP.utf8' setting there.
+I will attempt to figure out how to use other input methods with Mlterm for future revisions of this document. If you find working configurations, please email me at jmglov***replace_with_at-sign***jmglov.net.
+
+Geometry
+
+The geometry configuration sub-section deals only with FluxBox at 1280x1024. Here are some geometry line for other window manager / resolution permutations:
+
+FluxBox at 1024x768:
+fontsize = 12
+geometry = 72x24
+If you find a geometry line that works for a four terminal per virtual desktop configuration that is not listed above, please email it to me at jmglov***replace_with_at-sign***jmglov.net, and I will be happy to add it to the list above.
+ChangeLog
+
+1.0.2
+
+The title of this document is now "The Quick-n-Dirty Guide to Mlterm", since it does not really matter what terminal you are migrating from; this document simply describes how to configure Mlterm in a reasonable fashion.
+Added new anti-aliased font configuration sub-section. Thanks to Evan Monroig for the tips!
