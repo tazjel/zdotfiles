@@ -1,0 +1,77 @@
+# commandlinefu.com by David Winterbottom
+
+# Produces a list of when your domains expire
+cat domainlist.txt  | while read line; do echo -ne $line; whois $line | grep Expiration ; done | sed 's:Expiration Date::'
+
+# Print file content in reverse order
+tac filename.txt
+
+# Go to a specified line in a file
+vim +143 filename.txt
+
+# Print file content in reverse order
+sed -n '1!G;h;$p' techie.txt
+
+# copy files listed in a text file
+(while read fn; do; cp "$fn" $DESTINATION\.; done<filename.txt)
+
+# Write in a text file the contents of all the zip files in a directory.
+for file in *.zip; do unzip -l "$file" >> archiveindex.txt ; done;
+
+# grep for 2 (or more) words anywhere on each line of a file
+grep -E "(.*)(ERROR)(.*)(FAULT)(.*)" log.txt
+
+# find top 20 results in apache statistics for a specific month
+awk '/Dec\/2012/ {print $1,$8}' logfile | grep -ivE '(.gif|.jpg|.png|favicon|.css|.js|robots.txt|wp-l|wp-term)' | sort | uniq -c | sort -rn | head -n 20
+
+# AES file encryption with openssl
+openssl aes-256-cbc -salt -in secrets.txt -out secrets.txt.enc
+
+# Open a file with less and go to first match of pattern
+less -p pattern file.txt
+
+# Get fresh FollowBack list for Twitter
+for a in $(seq 5 8); do cat twit.txt | cut -d " " -f$a | grep "^@" | sort -u; done > followlst.txt
+
+# make rsync progress output suitable for shell script reading
+rsync --progress user@host:/path/to/source /path/to/target/ | stdbuf -oL tr '\r' '\n' >> rsyncprogress.txt
+
+# convert single digit to double digits
+for f ([0-9].txt) zmv $f '${(l:1::0:)}'$f
+
+# rename multiple files with different name, eg converting all txt to csv
+zmv '(*).txt' '$1.csv'
+
+# convert uppercase to lowercase
+tr '[:upper:]' '[:lower:]' < input.txt > output.txt
+
+# mailx to send mails from console
+true | mailx -n -a MYTEXT.txt -r my@mail.com -s log -S smtp=mail.com -S smtp-auth-user=MYUSER -S smtp-auth-password=MYPASSWORD FRIEND@mail.com
+
+# Sync files in /var/www/html dir with other server excluding files in exclude_files.txt
+rsync  -arl  --rsh=ssh --progress --exclude-from=/etc/localbin/exclude_files.txt  /var/www/html/source/* <user>@<server>:/var/www/html/source/
+
+# grep
+more blast.out| grep virus | awk '{print $1}' > virus_id.txt
+
+# Create a package list for offline download
+sudo apt-get <apt-get command and options> --print-uris -qq | sed -n "s/'\([^ ]\+\)' \([^ ]\+\) \([^ ]\+\) MD5Sum:\([^ ]\+\)/wget -c \1/p" > dowload_deb_list.txt
+
+# rename multiple files with different name, eg converting all txt to csv
+touch file{1..10}.txt ; ls *txt| sed -e "p;s/\.txt$/\.csv/"|xargs -n2 mv
+
+# find files containing text
+grep -H -r "string" ./* >> grep.txt
+
+# remove recursively all txt files with number of lines less than 10
+find . -type f -name "*.txt" | while read; do (($(cat $THISFILE | wc -l) < 10)) && rm -vf "$THISFILE";  done
+
+# Count unique lines in file sorted by instance count (descending) and alphabetically (ascending)
+sort file.txt | uniq -c | sort -k1nr -k2d
+
+# Create a tar archive from a text list without trailing slash in directories
+cat list.txt | pax -wd > archive.tar
+
+# Convert any sequence of spaces/tabs to single space/tab
+tr -s ' \t' <1.txt >2.txt
+
