@@ -1,0 +1,77 @@
+# commandlinefu.com by David Winterbottom
+
+# Non-interactively set timezone in Ubuntu
+echo 'Etc/UTC' | tee /etc/timezone; dpkg-reconfigure --frontend noninteractive tzdata
+
+# Purgue foreing architecture packages on debian
+dpkg -l |grep i386 | awk '{ print "apt-get -y  remove --purge "$2 }' | sh
+
+# Purge configuration file of all desinstalled package
+dpkg --list | grep '^rc\b' | awk '{ print $2 }' | xargs sudo dpkg -P
+
+# Verify a file has not been tampered with since dpkg installation
+cat /var/lib/dpkg/info/*.md5sums|grep usr/sbin/sshd|sed 's,usr,/usr,'|md5sum -c
+
+# (DEBIAN-BASED DISTROS) Find total installed size of packages given a search term
+dpkg-query -Wf '${Installed-Size}\t${Package}\n' | grep "\-dev" | sort -n | awk '{ sum+=$1} END {print sum/1024 "MB"}'
+
+# Purge completely packages on debian / ubuntu
+dpkg -l | grep ^rc | awk '{ print $2}' | xargs apt-get -y remove --purge
+
+# Find stock debian package config files that have been modified since installation
+dpkg-query -Wf  '${Package}\n' | xargs dpkg --status | sed '/^Conffiles:/,/^Description:/!d;//d' | awk '{print $2 "  " $1}' | md5sum -c 2>/dev/null | grep FAILED$ | cut -f1 -d':'
+
+# Purge all broken packages on ubuntu
+aptitude purge $(dpkg -l|grep ^rc|awk '{ print $2 }')
+
+# Extract list of packages installed on one server and generate 'apt' command to install them on a new server
+dpkg --list | rgrep ii | cut -d" " -f3 | sed ':a;N;$!ba;s/\n/ /g' | sed 's/^\(.\)/apt-get install \1/'
+
+# Display packages and versions on Debian/Ubuntu distrib
+dpkg-query -Wf '${Package} - ${Version}\n' | sort -n
+
+# Remove all unused kernels with apt-get
+sudo apt-get remove $(dpkg -l|awk '/^ii  linux-image-/{print $2}'|sed 's/linux-image-//'|awk -v v=`uname -r` 'v>$0'|sed 's/-generic*//'|awk '{printf("linux-headers-%s\nlinux-headers-%s-generic*\nlinux-image-%s-generic*\n",$0,$0,$0)}')
+
+# Remove all unused kernels with apt-get
+sudo apt-get remove $(dpkg -l|awk '/^ii  linux-image-/{print $2}'|sed 's/linux-image-//'|awk -v v=`uname -r` 'v>$0'|sed 's/-generic-pae//'|awk '{printf("linux-headers-%s\nlinux-headers-%s-generic*\nlinux-image-%s-generic*\n",$0,$0,$0)}')
+
+# Generate debian package without signing and only binaries
+dpkg-buildpackage -b -rfakeroot -us -uc
+
+# Fix for error perl: warning: Setting locale failed.
+sudo locale-gen en_GB.UTF-8 && sudo locale-gen --purge && sudo dpkg-reconfigure locales
+
+# Remove all unused kernels with apt-get
+sudo apt-get remove $(dpkg -l|awk '/^ii  linux-image-/{print $2}'|sed 's/linux-image-//'|awk -v v=`uname -r` 'v>$0'|sed 's/-generic//'|awk '{printf("linux-headers-%s\nlinux-headers-%s-generic\nlinux-image-%s-generic\n",$0,$0,$0)}')
+
+# Force GNU/Linux keyboard settings, layout and configuration
+sudo dpkg-reconfigure keyboard-configuration
+
+# put an unpacked .deb package back together
+dpkg-repack firefox
+
+# Show Apt/Dpkg configuration
+apt-config dump
+
+# (Debian/Ubuntu) Discover what package a file belongs to
+pacof -e rlogin
+
+# to know which package in Ubuntu is install
+dpkg -l | grep (package name)
+
+# Find out which debian package a command (executable) belongs to on debian-based distros
+function whichpkg() { readlink -f "$(which $1)" | xargs --no-run-if-empty dpkg -S; }
+
+# List contents of a deb package
+dpkg -c deb_package
+
+# Generate a list of installed packages on Debian-based systems
+dpkg -l
+
+# Install 4 new package files
+sudo dpkg -i `ls -tr *.deb | tail -n4`
+
+# Remove all unused kernels with apt-get
+apt-get remove $(dpkg -l | awk "/^ii  linux-(image|headers)/ && ! /`uname -r`/ {print \$2}")
+

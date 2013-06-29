@@ -131,12 +131,7 @@ alias ..3='cd ../../../../'
 alias ..4='cd ../../../../'
 alias ..5='cd ../../../../../'
 
-######################################################################
-######################################################################
-######################################################################
-
-
-########## zdotfiles
+##
 
 function WW {
     desc="ADD DESCRIPTION..."
@@ -180,15 +175,13 @@ alias a2r='/etc/init.d/apache2 restart'
 alias aa='git add -A .'
 alias acs='apt-cache search'
 alias acsh='apt-cache show'
-alias active='grep -v -e "^$" -e"^ *#"'
 alias agdu='sudo apt-get dist-upgrade'
 alias aliasupdt='wget -q -O - "$@" https://alias.sh/user/1110/alias >> ~/.bash_aliases'
 alias assume='git update-index --assume-unchanged'
-alias back='cd -'
 alias build='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
 
 alias c=clear
-alias cat='pygmentize -O style=monokai -f console256 -g'
+alias cats='pygmentize -O style=monokai -f console256 -g'
 alias cathtml='sed '\''s/<[^>]*>//g'\'
 alias cbuild='mkdir build && cd build; cmake ..; make'
 alias ccat='pygmentize -O bg=dark'
@@ -486,7 +479,7 @@ alias '111'='vim ~/zdotfiles/1.sh'
 alias '1111'='bash ~/zdotfiles/1.sh'
 alias 00=$HOME/zdotfiles
 
-function Wb {
+function Wbkp {
     for xx in ~/.* ;do
         rsync -avz --progress $HOME/.* $HOME/zzz_bkp
         ls -a > ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
@@ -522,7 +515,7 @@ alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
 #
 #rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d<]*/
 
-#alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
+alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
 
 alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'
 

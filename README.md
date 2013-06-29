@@ -2,6 +2,7 @@
 ### بسم الله الرحمن الرحيم
 ### ماشاء الله لا قوة الا بالله
 
+Author : Ahmed Bani
 
 https://github.com/tazjel/zdotfiles
 

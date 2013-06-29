@@ -1,6 +1,5 @@
 #!/usr/bin/env sh
 
-########################################
 zendpath="$HOME/zdotfiles"
 
 warn() {
@@ -23,9 +22,6 @@ lnif() {
 
 ########################################
 echo "Thanks for installing zdotfiles"
-########################################
-
-
 
 echo "backing up current zsh config"
 
@@ -47,28 +43,19 @@ else
 fi
 
 
-########################################
-
-
-
+########                  ZSH
 
 echo "setting up symlinks"
 
 lnif $zendpath/1/.zsh/.zshrc $HOME/.zshrc
 lnif $zendpath/1/.zsh/.zshenv $HOME/.zshenv
 
-
-
-########################################
-
 echo "We are done. Please, check it out"
 
-########################################
+###########               VIM
 
 echo "Backup vimrc.local & vimrc.localw"
 for i in $HOME/.vimrc.local $HOME/.vimrc.localww $HOME/.vimrc.localw;  do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
-
-########################################
 
 echo "Setting up symlinks for [ .vimrc.local & .vimrc.localw (Tips) ]"
 
@@ -76,11 +63,3 @@ lnif $zendpath/2/.vimrc.local $HOME/.vimrc.local
 lnif $zendpath/2/.vimrc.localw $HOME/.vimrc.localw
 
 echo "Done! Check your vimrc.local"
-
-########################################
-
-lnif $zendpath/1/.zsh/.zshrc $HOME/.zshrc
-lnif $zendpath/1/.zsh/.zshenv $HOME/.zshenv 
-
-
-
