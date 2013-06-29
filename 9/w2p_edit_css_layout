@@ -1,0 +1,55 @@
+Reference : 
+http://amberdoctor.wordpress.com/2012/05/11/web2py-converting-a-css-design-to-a-plugin-layout-template/
+
+May 11, 2012	
+Web2py: Converting a CSS design to a Plugin Layout Template
+
+The following steps describe the process I followed to create a plug-in from the Abundant CSS layout available at http://www.freecsstemplates.org/preview/abundant/.  It may have been faster to use the command line for aspects of this process but I was working exclusively through the web2py admin GUI.
+
+Download and Install the CSS:
+
+    Select the CSS demo that you want to be working with.  I chose the abundant style listed in the above link.
+    Download the CSS zip file
+    Unzip the file where you want.  I left it on my desktop for ease of use.
+    Open your application in the GUI.  Navigate to the static section and Browse for the files you want to upload and rename as “plugin_layout_abundant/whatever file structure and naming was in the download” Don’t forget to explicitly state the file type (ie .css or .jpg) or it can cause problems.  I used the GUI and didn’t see a way to upload more than one file at a time.  This wasn’t too bad because there were so few files but this is definitely a time where the command line would have made things faster.
+    This creates a file in the plugin section rather than in the static section where you downloaded it.
+    To check to see if the file was properly uploaded to your application, enter the address of the index file included in the layout upload.  In my case the url would be: http://localhost/tasktracker2/static/plugin_layout_abundant/index.html
+
+Edit the Index Page to Create a Layout Template:
+
+    Create a new .html file in views called “mylayout” (you could give it any name you want)
+    Copy the index file from static to this new file
+    Open mylayout for edits
+    The first thing to edit is to put in the correct references to the CSS style pages and images.  For me it was replacing:
+
+    <link href=”style.css” rel=”stylesheet” type=”text/css” media=”screen” />
+
+    with
+
+    <link href=”{{=URL(‘static’, ‘plugin_layout_abundant/style.css’)}}” rel=”stylesheet” type=”text/css” media=”screen” />
+
+    Next is including the content into the template.  Find the div of the template you want to have your content included and add {{include}} deleting any test text that might have been present.  This will include the content of the file that is extending your template at this location in the page
+    To change the application title, find the title section of the template and update it to read <title>{{=response.title}}</title>  I found that there was a few other spots that also had the title “abundant” hard coded and also replaced those spots using find.
+    I did a similar process and included {{=response.subtitle}}
+    To edit the static menu and include the web2py menu I replaced all of the text between the Menu Div with {{=MENU(response.menu)}}
+    Add any blocks that you want want like {{block “footer”}}{{pass}} around the footer information
+    I included all of the web2py scripts found conveniently in the web2py_ajax.html file by adding  {{include ‘web2py_ajax.html’}} right before the </head>.  Placement of this does matter because you don’t want it to be in conflict with any other scripts that are imported into the document.  In my case this was not an issue as there were no other scripts.  When you place this, just check for other scripts and see if you need to remove any conflicting ones.  Conflicting may mean that the template is specifically importing something that your include already imports and reimporting can cause conflicts.
+    Decide where you want the flash message to appear.  Then place the following div including any additional styling you want in that location.  <div class=”flash”>{{=response.flash or ”}}</div>
+    Decide where you want your login/profile controls to be and include {{=auth.navbar()}}.  For this project, I placed them in the side bar.
+
+Package the layout as a plugin:
+
+    Copy your edited “mylayout.html” into both the view/plugin_layout_abundant/ and static/plugin_layout_abundant/.   Since I wasn’t at the command line, I did this by making the two files in the web2py GUI.  I followed the same steps as before for the static file and for the view file, I made the file then hand copied the information into it from “mylayout”.  Not efficient but effective.
+    Click the download plugin button to package the plugin and save it.
+
+ 
+
+EDIT: I was referencing this and copied a few of the code snippets to use when I noticed that some of the quote marks etc didn’t paste quite right.  Just a warning if you are directly copying from this article that you might need to correct the quote marks, etc.
+About these ads
+Share this:
+
+    Twitter
+    Facebook
+
+Like this:
+This entry was posted in SE 511.
