@@ -10,10 +10,14 @@ https://github.com/tazjel/zdotfiles
 =========
 Work in progress
 
+Quote of the day:
+The UNIX philosophy - "Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface."
+-- Ref: uzbl.org
+
 zdotfiles
 
 ### 1-First Diminsion :
-     Command line
+    Command line
 ### 2- Second Diminsion :
      Text Documents
 ### 3- Third Diminsion :
@@ -42,4 +46,5 @@ zdotfiles
 
 # Clone zdotfiles
 git clone git://github.com/tazjel/zdotfiles.git
+## Use as Reference only!
 
