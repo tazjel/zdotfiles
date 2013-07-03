@@ -1,0 +1,22 @@
+[user]
+	name = Ahmed Bani
+	email = tazjel@gmail.com
+[credential]
+	helper = cache --timeout=3600
+[color]
+	ui = auto
+[advice]
+	statusHints = false
+[core]
+	whitespace = trailing-space,space-before-tab
+[diff]
+	renames = copies
+	mnemonicprefix = true
+[branch]
+	autosetupmerge = true
+[push]
+	default = tracking
+[rerere]
+	enabled = true
+[merge]
+	stat = true
