@@ -175,6 +175,7 @@ function glll {
     git push --all
     git push origin --all && git push origin --tags
 }
+
 #############################
  # The easiest way is to disable the SSL CERT verfiy:
 
@@ -276,7 +277,7 @@ alias gsd='git svn dcommit'
 alias gsl='git shortlog -nsw -e'
 alias gsr='git svn rebase'
 alias gss='git status -s'
-alias wst='git status'
+alias gst='git status'
 alias gt='git stash'
 alias gup='git pull --rebase'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
@@ -787,4 +788,5 @@ alias 'wen'='setxmap -layout us'
 
 #Enable Arabic . English alt shift
 alias 'wenar'setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
+
 

@@ -1,0 +1,1325 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+
+
+
+
+
+
+
+<!--[if lte IE 6]><![endif]-->
+
+Linux
+
+body { padding: 2px 16px; }
+h1 { font-size: 1.5em; }
+h2 { font-size: 1.3em; margin: 24px 4px; }
+h3 { background-color: #eeeeff; border: 1px solid black; color: inherit; font-size: 1.2em; margin: 32px 2px 2px; padding: 2px 4px; }
+hr { margin: 32px 0px; }
+.box { background-color: #f8f8ff; border: 1px solid #aaa; color: inherit; margin: 0px 16px 16px; padding: 8px 16px 8px 32px; }
+li { margin: 2px; font-size: 0.9em; }
+code { font-size: 1.1em; }
+
+
+
+
+Linux
+
+Why?
+
+Advantages
+
+Simplicity: simple to install, simple to use -- it just works
+Comfort: automatic centralized updates of ALL applications
+Security: no viruses, no malware, no bloatware, no licensing worries, no waiting for important security updates
+Price: it's not only free in the meaning of liberty, it's also free in the meaning of free beer
+Choice: thousands of free and open source applications are available for almost every purpose, and can be automatically installed through an integrated package browser.
+Community: people help and support each other, trying new things, exploring possibilities, learning technologies, and so on.
+It's not THAT different from "mainstream commercial systems", but basically the same desktop environment as usual.
+If you are used to one of these mainstream commercial systems, don't worry, there are many good alternatives for your favorite mainstream proprietary applications.
+
+
+Handicaps
+
+Sometimes lacking support from commercial service providers.
+Sometimes difficulties with very old or very new or very exotic hardware, namely:
+	graphics cards, monitors, printers, tv cards.
+For some excessive mainstream gaming, you might want to keep a dual-boot system.
+If you are very used to a certain other system, and you don't like to learn something new, then better stay with it because there is a difference.
+
+
+More
+
+Why Linux is better
+Five Essential Ubuntu Features
+Five More Essential Ubuntu Features
+Warum auf Ubuntu umsteigen
+
+
+Basics
+
+Keys and Shortcuts
+
+CTRL + ALT + F1-F7 - change virtual terminal; F7 is usually used by X; newer Ubuntu use F8 for boot messages
+CTRL + ALT + DEL - shutdown and restart system (in virtual terminal only)
+CTRL + ALT + ARROW - switch workspace to specified direction
+CTRL + ALT + BACKSPACE - kill and restart X (maybe double BACKSPACE) (disabled in Ubuntu since 2008)
+CTRL + ALT + D - minimize all windows, show desktop; press again to undo
+CTRL + ALT + ESC - run xkill; left click to kill application, right click to cancel (XFCE only?)
+ALT + F1 - open main menu
+ALT + F2 - open run application dialog
+ALT + F4 - close current window
+ALT + F5 - unmaximize current window
+ALT + F7 - move current window with arrow keys or mouse; press enter or click to finish; press ESC to cancel
+ALT + F8 - resize current window with arrow keys or mouse; press enter or click to finish; press ESC to cancel
+ALT + F9 - minimize current window
+ALT + F10 - maximize current window
+ALT + SPACE - open window menu
+ALT + TAB - cycle through open applications; press shift to cycle in reverse order
+ALT + PrintScreen - take a screenshot of the currently focused window
+CTRL + SHIFT + ALT + ARROW - move current window to another workspace in the specified direction
+frequent application shortcuts
+	F1 - help
+	F3 - find (next)
+	F10 - open application menu
+	SHIFT + F10 - show sub-window menu, or context menu
+	F11 - fullscreen
+	CTRL + A - select all
+	CTRL + C - copy
+	CTRL + F - find
+	CTRL + G - find next
+	CTRL + H - replace
+	CTRL + K - search bar (in Firefox)
+	CTRL + L - location bar, goto line
+	CTRL + N - new window
+	CTRL + O - open
+	CTRL + P - print
+	CTRL + Q - quit application
+	CTRL + R - reload
+	CTRL + S - save
+	CTRL + T - new tab
+	CTRL + V - paste
+	CTRL + W - close tab
+	CTRL + X - cut
+	CTRL + Y - redo
+	CTRL + Z - undo
+	CTRL + + - zoom in
+	CTRL + - - zoom out
+	
+help.ubuntu.com/community/KeyboardShortcuts
+Top 15 Shortcut Keys in GNOME and Nautilus
+Extensive List of Keyboard Shortcuts for Ubuntu/GNOME Desktop
+
+
+Shell
+
+user@host:~$ - denotes a user shell.
+root@host:/# - denotes a root shell.
+CTRL + c - cancel the running process
+CTRL + d - logout, quit current shell, end-of-file
+CTRL + l - clear screen
+CTRL + r - search in command history
+CTRL + z - send current process to background - "zombie"
+TAB - auto completion: continues current word if possible. If there is more than one possibility, press TAB again to get a list.
+!! - repeat last command
+	sudo !! - repeat last command as super user
+^abc^xyz - replace first occurence of abc with xyz in last command and execute this
+<command> - run command in search path
+./<command> - run comamand in current directory (separate shell)
+. <command> - run command within existing shell -- see source -- (like #include in C).
+<command1> ; <command2> - run commands one after another, without condition
+<command1> && <command2> - run command 2 only if command 1 returned 0 (true)
+<command1> || <command2> - run command 2 only if command 1 returned 1 (false)
+<command> > [file] - redirect standard output to file. (overwrite)
+<command> >> [file] - redirect standard output to file. (append)
+<command> < [file] - redirect standard input from file.
+<command1> | <command2> - pipe: redirect stdout of cmd1 to stdin of cmd2
+<command> 2>&1 - redirect output from stderr to stdout.
+<command> | tee [file] - fork output to stdout AND to file.
+<command> & - run command in background.
+<< x - here-doc, terminated by x (any freely defined word)
+<<- - here-doc that ignores leading tabs
+<<< "..." - here-string, terminated by quotation marks or line break (?)
+exec - redirect standard output or input
+grep [pattern] [file] - print lines matching a pattern. Examples:
+	find . | grep foo
+	grep -e "^(WW)" -e "^(EE)" /var/log/Xorg.0.log - prints all lines that contain warnings or errors
+	grep -c '[;{]' *.java - quick & dirty lines-of-code (LOC) counter (more like number-of-statements)
+man [command] - show manual for command. Press q to quit, h for help.
+	man -k [keyword] - search for keyword in all installed man pages.
+	
+	Categories:
+	(1) - Executable programs or shell commands
+	(2) - System calls (functions provided by the kernel)
+	(3) - Library calls (functions within program libraries)
+	(4) - Special files (usually found in /dev)
+	(5) - File formats and conventions eg /etc/passwd
+	(6) - Games
+	(7) - Miscellaneous (including macro packages and conventions)
+	(8) - System administration commands (usually only for root)
+	(9) - Kernel routines [Non standard]
+	
+	Ubuntu Manpage Repository
+whatis - search the whatis database for complete words; the whatis database contains short descriptions of system commands.
+apropos - search the whatis database for strings.
+history - list last used command lines.
+clear - clear current terminal.
+reset - reset current terminal.
+su - switch user. Commonly used to change to super user permissions.
+sudo [command] - run command as super user using own credentials; similar to su -c.
+	sudo -b [command] - run in background (appending & would hide the auth request)
+	sudo -k - reset temporarily stored password (e.g. 15 min)
+	sudo -v - refresh temporarily stored password, ask if necessary
+	sudo -l - list all sudoers entries for current user
+nohup [command] - continue after logout.
+at 23:59 < jobs.txt - run commands in input file at certain time.
+	atq - list pending jobs
+	atrm [id] - remove a pending job
+Frequent command line options:
+	-a - all, archive
+	-c - command, checksum
+	-C - compress
+	-f - force
+	-h - help, human
+	-i - case insensitive
+	-l - long
+	-o - option, output
+	-p - preserve
+	-q - quiet
+	-R - recursive
+	-u - user, update
+	-v - verbose
+	-V - version
+	-z - compress
+	--help - long help
+	
+Variables:
+	printenv - prints all environment variables
+	export variable=wert - set
+	unset variable - unset
+	X=Y program - use program with variable X (even works as "time X=Y program")
+	"Unfortunately, there is no way to export variables back to the parent process, to the process that called or invoked the script or shell."
+	... but: see ". command" or "source" above ... (?)
+	
+remove duplicates from bash_history when HISTCONTROL=ignoreboth:erasedups don't suit the needs:
+	awk '!x[$0]++' .bash_history > .bash.tmp && mv -f .bash.tmp .bash_history
+more: Unix shell,
+	Unix utilities,
+	Advanced Bash-Scripting Guide,
+	Learning the Shell,
+	Shell-Programmierung (de),
+	Die GNU-Shell Bash (de),
+	Bash-Befehle und Bash-Programmierung (de),
+	Treffpunkt für Linux-Shelluser
+	An A-Z Index of the Bash command line for Linux
+	
+
+
+Files and Streams
+
+file [file] - print info about file's content.
+less [file] - view a file. Press q to quit, h for help. '/word' searches forward, '?word' backward, n continues.
+most [file] - view a file in hex mode.
+head [file] - view first 10 lines of a file. Press q to quit.
+tail [file] - view last 10 lines of a file. Press q to quit. Options: f: follow.
+nano [file] - edit a file. Press CTRL-X to quit.
+ls - list directory contents. Options: a: all, l: long.
+pwd - print name of working (current) directory.
+find ...  - search for files or directories. Examples:
+	find /tmp -size +5k -iname *.html
+	find /etc -type f -exec grep -q searchstring {} \; -print
+	find ~ -mtime 2 (find all files in the user's home that have been modified within the last 2 days)
+slocate [file] - search file systems without displaying unauthorized files.
+cd [directory] - change working directory. Special: / root, ~ home, . current, .. parent, - last.
+rm [file or directory] - remove file. Options: f: force, R: recursive.
+shred [file] - overwrite file content. Options: u: remove, z: zero.
+mkdir [directory] - make directory.
+rmdir [directory] - remove empty directory.
+cp [source] [target] - copy files or directories. Options: p: preserve, R: recursive.
+mv [source] [target] - move (rename) files or directories.
+ln -s [source] [target] - make symbolic links between files or directories.
+touch [file] - create file, or update timestamp.
+split - split a file into pieces.
+sort - sort lines of text files.
+cmp - compare files byte by byte.
+diff - compare files line by line. Example:
+	diff -y --suppress-common-lines A.txt B.txt - compare in two colums, show differences only
+comm - compare sorted files line by line. Example:
+	comm -3 A.txt B.txt - show differences in two columns
+meld - compare files line by line in a GUI.
+md5sum - compare files using MD5 sums.
+sed 's/foo/bar/g' [file] - replaces all occurrences of foo with bar in file. (sed = stream edit)
+chmod [options] [file] - change access permissions. Example: chmod -R ugo+x mydir.
+	Permissions: u user, g group, o owner, a all -- r read, w write, x execute -- s setuid (execute root's file as user)
+chown [user[:group]] [file] - change file owner and group. Example:  chown -R myself:mygroup mydir.
+cat [file] - concatenate files and print on the standard output.
+dd - convert and copy a data stream.
+	dd if=/dev/cdrom of=disk.iso bs=1024 - create an ISO image from a CD.
+	dd if=floppy.img of=/def/fd0 - copy image to floppy.
+	dd if=/dev/urandom of=/dev/sdb1 bs=1M count=2 - copy 2 MB random data to a partition to hide future encryption keys there.
+	# killall -USR1 dd - let a running dd process print its status.
+	
+wc [file] - print newline, word, and byte counts.
+df -hT - report filesystem disk space usage.
+du -chs [directory] - report file space usage.
+rsync -a /home/mydata/ /backups/data-20080810/ - file synchronization. Examples:
+	remote: rsync -a /home/mydata/ 192.168.1.1::mybackups/data-20080810/
+	over ssh: rsync -a -e ssh 192.168.1.1:/backups/data-20080810/ /home/mydata/
+	big files: rsync -a --partial --inplace /home/bigfiles/ 192.168.1.1::mybackups/bigfiles/
+	nice introduction: System Rescue CD Manual
+	
+tar -cvpzf backup-home.tar.gz /home/ - create backup of home directory
+tar -xvpf backup-home.tar.gz - decompress the backup
+
+
+System
+
+ps -efly - list current processes.
+top - display tasks. k: kill, q: quit, r: renive, 1: SMP view.
+taskset - retrieve or set a process's CPU affinity. Examples:
+	taskset -cp 0 1234 - bind process 1234 to cpu 0
+	taskset -c 1 [command] - launch new program on cpu 1
+jobs - list background processes.
+fg [job id] - run jobs in the foreground - move a background process into the foreground.
+nice [command] - run with modified scheduling priority.
+renice [priority] [process id] - re-set the priority of a process.
+free - display amount of free and used memory in the system.
+uptime - display how long the system has been running.
+uname -a - print kernel information.
+date - print or set the system date and time.
+cal - print this month's calendar.
+time [command] - print how long command takes to complete.
+dmesg | less - display last kernel boot messages.
+lshal - list all ? devices.
+lspci - list all pci devices.
+	lspci -nnvv - show IDs and name, be very verbose
+lsusb - list all usb devices.
+whereis [command] - locate the binary, source, and manual page files for a command.
+which [command] - show complete path of the executable.
+pidof [process] - print the process id of a running program; may be a space-separated list of numbers.
+kill [process id] - send TERM signal to the process. kill -9 [pid] sends KILL signal.
+killall [name] - send TERM signal to all processes that run the specified (command) name.
+exit - quit current shell.
+runlevel - print previous and current runlevel; N means no previous runlevel.
+shutdown [options] now - shut system down. Options: r: reboot, h: halt (poweroff), f: skip fsck.
+halt/poweroff/reboot - instantly halt/poweroff/reboot the system using shutdown.
+init [0123456] - change runlevel. Debian/Ubuntu: 0 halt, 1 single, 2 multi (default), 6 reboot. (prefer shutdown)
+startx - initialize an X session.
+/etc/init.d/gdm [start|stop|restart] - start|stop|restart X server.
+# pm-hibernate - go to hibernate instantly
+watch -n 1 acpi -V - watch ACPI status.
+How do I change the I/O scheduler for a particular hard disk without rebooting my Linux server system?
+
+
+Debian Package Management
+
+dpkg -i file.deb - installs a package
+dpkg -r file.deb - removes a package
+dpkg -P file.deb - purges a package
+dpkg --info file.deb - print package information such as description, version etc.
+dpkg -l - lists all installed packages
+dpkg -l abc* - lists all installed packages that start with 'abc'
+dpkg-query -W -f='${Package}\n' - list all installed packages, only name
+dpkg -s package | grep 'Status' - find out if package is installed or not
+dpkg -p package - print details of available version
+dpkg --get-selections > selections.txt - backup package list; * also lists removed packages
+dpkg --get-selections abc - output only if package abc installed
+dpkg --admindir=/media/disk-1/var/lib/dpkg --get-selections - save list of packages from other disk
+dpkg --set-selections < selections.txt - restore selection state
+apt-get dselect-upgrade - apply the changes set via dpkg --set-selections
+echo mutt hold | dpkg --set-selections - prevents updating of 'mutt'
+dpkg -S /bin/sh - shows package that a file belongs to
+dpkg -L mypackage - shows files that belong to mypackage
+dpkg -c file.deb - shows files that would be installed by file.deb (i.e. contents of file.deb)
+dpkg --contents file.deb - list files provided (or owned) by the package (no matter if installed or not)
+dpkg --configure -a - configure all packages that are unconfigured (helps after disrupted update)
+dpkg-reconfigure mypackage - re-run configuration for a package
+apt-get update - fetch package lists from package sources (listed in /etc/apt/sources.list)
+apt-get install mypackage - installs a package
+apt-get remove mypackage - removes a package (keep configuration); --purge removes configuration
+apt-get install evolution mutt- - installs evolution, removes mutt
+apt-get upgrade - updates installed packages, doesn't add or remove packages
+apt-get dist-upgrade - updates installed packages, adds or removes packages if required
+apt-get clean - cleans package cache in /var/cache/apt/archives
+apt-get autoclean - deletes only outdated packages from cache
+apt-cache search browser - searches for 'browser'
+apt-cache show mypackage - shows info for a package
+apt-cache depends mypackage - display dependencies for mypackage
+apt-file search stdio.h - shows package that contains a file, even if not installed yet (uses own cache that is updated with apt-file update)
+
+
+User
+
+id - print user identity.
+whoami - print effective user id. Same as id -un.
+who - show who is logged on.
+w - show who is logged on and what they are doing.
+finger [user] - display information about user.
+fuser - identify processes using files or sockets.
+	fuser -n tcp 2001 - check if some process is using tcp port 2001
+wall - sends a message to all users that are currently logged in.
+useradd -m [login] - create new user and home directory.
+userdel -r [login] - delete user and home directory.
+passwd - change user password.
+
+
+Network
+
+ifconfig - interface configuration. Example:
+	sudo ifconfig eth0 192.168.1.2 netmask 255.255.255.0 - set address and subnet on eth0
+	
+netstat - show network status. Options: i: statistics, nr: routing, ta: tcp connections.
+ping [host] - ping.
+traceroute [host] - traceroute.
+route - show/manipulate the IP routing table. Example:
+	route add default gw [ip] - add default gateway (e.g. internet access router)
+	
+nmap -p- localhost - scan for open ports on localhost.
+	nmap -T4 -F 127.0.0.1 - quick check the reaction of the firewall.
+whois [domain] - print whois info.
+dig [domain] - print DNS info. Options: x: reverse lookup.
+dhclient eth0 - request ip from dhcp server.
+ssh - secure shell client (remote login).
+scp - secure copy (remote file copy).
+wget - non-interactive download.
+smbclient -U% -L localhost - list resources
+ethtool -i eth0 - shows driver and firmware version
+iwconfig - wireless interface configuration
+iwlist [chan|scan] - wireless channel config
+
+
+Devices
+
+parted [device] - partitioning of a device.
+fsck [device] - check and repair a file system.
+e2fsck [device] - check and repair an ext2/3 file system. Examples:
+	e2fsck -fD - removes invalid entries from directory files and rebuilds the file name tree (?)
+	
+e2label [device] - get label of ext2/3 file system. also allows to set.
+tune2fs [device] - adjust tunable filesystem parameters on ext2/3 filesystems. Example:
+	tune2fs -c 100 -i 180 - allows 100 mounts or 180 days before next e2fsck run
+	tune2fs -m 1 /dev/sdf1 - reduce "preserve for priviledged processes" on ext3 from 5 to 1%
+	
+# sfill -llv /media/Empty/ - secure delete (overwrite) free space on a mounted (ext2-compatible?) partition; one pass using /dev/urandom.
+badblocks [device] - search a device for bad blocks; can test and refresh backups.
+mount [-t type] [device] [directory] - mount a device. Examples:
+	mount -t smbfs //server/share /mnt/dir -o user=Workgroup/Username:Password
+	mount -t davfs https://webdav.mc.gmx.net /mnt/dir
+	mount -o loop disk.iso /mnt/image
+	mount -n -o remount,ro / - remount root read-only, e.g. to test it via fsck
+	mount -l | grep /dev/sd - print all mounted hard disk partitions
+	
+umount [device | directory] - unmount a filesystem.
+dd_rescue - copy data from one file or block device to another, don't stop on error.
+	dd_rescue /dev/zero /dev/sda - quick overwrite disk
+sudo cat [/dev/ttyS0 | /dev/psaux | /dev/input/mice] - test serial, ps/2, resp. usb mouse (move it).
+sudo hdparm -tT [device] - benchmark a hard disk drive.
+sudo swapon -s - show swap status.
+ls -l /dev/disk/by-uuid - list UUIDs.
+smartctl -a [device] - show SMART status.
+smartctl -t long [device] - perform long SMART test (surface test).
+eject - eject removable media (/media/cdrom)
+eject -x 9 /dev/scd0 - slowdown drive to 9 (minimum to play DVD)
+# blockdev --getsize64 /dev/sda - returns size of device in bytes
+# lde - Linux Disk Editor, supports ext2 and msdos
+
+
+Graphics
+
+glxinfo | grep rendering - check 3D acceleration.
+glxgears - check 3D acceleration (subjective).
+aticonfig --initial --input=/etc/X11/xorg.conf - create initial X config file.
+aticonfig --od-gettemperature --od-getclocks - show temperature and clocks of an ATI card.
+
+
+Shell Programming
+
+echo - display a line of text.
+echo $variable | sed 's/$variable/foo/' - do not interpret content of single quotes.
+echo $variable | sed "s/$variable/bar/" - interpret content of double quotes.
+echo `command` - execute command and print the result (left single quotation mark, grave accent, U+0060).
+PID=`pidof dd` - store the result of the command to a variable.
+{ command; command; } - run as block.
+(command) - run in subshell.
+test - check file types and compare values.
+basename [file] [[suffix]] - strip directory and suffix from filenames.
+DIR="$( cd "$( dirname "$0" )" && pwd )" - get full directory name of the script no matter where it is being called from.
+$0 - name of the current command.
+$1...$9,${n} - arguments, n<100.
+$* - expands to all arguments of a command; "$*" expands to "$1 $2 $3 ...".
+$@ - expands to all arguments of a command; "$@" expands to "$1" "$2" "$3" ...
+$# - number of arguments.
+	if [ $# -eq 0 ]; then exit 1; fi - test for zero arguments
+$- - expands to  the  current option flags (?)
+$! - process ID of the most recently executed background (asynchronous) command.
+$$ - process ID of the shell. In a () subshell, it expands to the process ID of the current shell, not the subshell.
+$? - exit status of the most recently executed foreground pipeline.
+$(pidof dd) - use text result the command (here: the process id) - equal to `pidof dd`.
+$((512*63)) - evaluate arithmetic expression
+if [[ $temp > 1000 ]]; then ...; fi - simple condition
+while kill -USR1 $PID; do sleep 15; done - while loop example.
+while [ 1 ]; do - infinite loop
+while [ $COUNTER -lt 60 ]; do - conditional loop
+for [start] [test] [next] [body] - for loop.
+trap [command] [signals] - catches keyboard sequences, e.g. for cleanup
+
+
+Programming
+
+ldd - prints list of shared libraries used by an executable
+
+
+Configuration
+
+ntpdate -u ntp.ubuntu.com - get time from the web
+update-alternatives --config java - select Java Virtual Machine (e.g. OpenJDK or Sun Java SE)
+setxkbmap de|us - set keyboard map
+export http_proxy='http://[login[:password]]@host:port'
+	export https_proxy='http://[login[:password]]@host:port'
+	export ftp_proxy='http://[login[:password]]@host:port' - setup proxy server, e.g. in /etc/bash.bashrc.
+
+
+Software Packages
+
+aptitude show [package name] - print install status and other info of the package
+
+
+
+
+Advanved
+
+System Info
+
+uname -a - print system information, e.g. kernel name, kernel version, hostname
+dmesg - print kernel ring buffer (bootup messages)
+lsb_release -a - print distribution specific information, e.g. release number, code name, distributor
+getconf GNU_LIBC_VERSION - print GLIBC version (short)
+	ldd --version - print GLIBC version (medium)
+	/lib/libc.so.6 - print GLIBC version (long)
+	
+dpkg --print-architecture - print architecture, e.g. i386 or amd64
+gnome-about --gnome-version - print GNOME version, distributor, and date
+kde-open --version - print KDE and Qt versions
+lshw -html > hardware.html - create overview of hardware
+	lshw -class display - shows technical info about graphics card
+hwinfo - probe for hardware
+	hwinfo --short - print nice overview
+	hwinfo --<item> - print details about one of these: all, bios, block, bluetooth, braille, bridge, camera, cdrom, chipcard, cpu, disk, dsl, dvb, fingerprint, floppy, framebuffer, gfxcard, hub, ide, isapnp, isdn, joystick, keyboard, memory, modem, monitor, mouse, netcard, network, partition, pci, pcmcia, pcmcia-ctrl, pppoe, printer, scanner, scsi, smp, sound, storage-ctrl, sys, tape, tv, usb, usb-ctrl, vbe, wlan, zip
+sudo dmidecode - DMI table decoder, shows various hardware info
+	-s [bios-vendor|bios-version|bios-release-date|
+	    system-manufacturer|system-product-name|system-version|system-serial-number|system-uuid|
+	    baseboard-manufacturer|baseboard-product-name|baseboard-version|baseboard-serial-number|baseboard-asset-tag|
+	    chassis-manufacturer|chassis-type|chassis-version|chassis-serial-number|chassis-asset-tag|
+	    processor-family|processor-manufacturer|processor-version|processor-frequency]
+	-t [bios|system|baseboard|chassis|processor|memory|cache|connector|slot]
+cpuid - print processor details
+pccardctl info - might show info for older PCMCIA cards
+hardinfo
+	- HardInfo can gather information about your system's hardware and operating system, perform benchmarks, and generate printable reports either in HTML or in plain text formats.
+Systeminformationen_ermitteln
+
+
+Mainboard
+...
+
+CPU
+
+dmidecode:
+	Socket Designation: Socket M2
+	Family: Athlon
+	Manufacturer: AMD
+	Signature: Family 16, Model 4, Stepping 2
+	Version: AMD Phenom(tm) II X3 720 Processor
+	Voltage: 1.3 V
+	External Clock: 200 MHz
+	Max Speed: 3200 MHz
+	Current Speed: 2800 MHz
+cat /proc/cpuinfo
+	vendor_id	: AuthenticAMD
+	cpu family	: 16
+	model		: 4
+	model name	: AMD Phenom(tm) II X3 720 Processor
+	stepping	: 2
+	cpu MHz		: 800.000
+	cache size	: 512 KB
+	cpu cores	: 3
+
+
+
+
+
+...
+
+
+Memory
+
+free - example:
+
+             total       used       free     shared    buffers     cached
+Mem:       4119584    3445656     673928          0     275400    1880120
+-/+ buffers/cache:    1290136    2829448
+Swap:      8301668          0    8301668
+cat /proc/meminfo - example:
+
+MemTotal:        4119584 kB
+MemFree:          672556 kB
+Buffers:          275516 kB
+Cached:          1880996 kB
+SwapTotal:       8301668 kB
+SwapFree:        8301668 kB
+...
+# lshw -class memory - for each bank:
+	bank:0
+	description:   SDRAM               DIMM 800 MHz (1.2 ns)
+	product:       PC100-322S
+	physical id:   0                   3
+	version:       0000,63 27,00
+	serial:        M3 66S3323CT0-C7A
+	slot:          DIMM0/J21           A3
+	size:          64MiB               2GiB
+	width:                             64 bits
+	clock:                             800MHz (1.2 ns)
+	cache:1
+	description: L2 Cache (unified)
+	physical id: 1
+	size: 1MiB
+	clock: 225MHz (4.4ns)
+	
+# dmidecode --quiet --type memory - memory controller, memory modules, physical memory array, memory devices
+
+
+Graphics
+...
+
+Network
+...
+
+Storage
+
+sudo fdisk -lu [image] - print overview of disks and partitions [or images]
+cat /proc/ide/hda/cache = 1961
+cat /proc/ide/hda/capacity = 40088160
+cat /proc/ide/hda/media = disk
+cat /proc/ide/hda/model = WDC WD205BA
+sudo hdparm -i /dev/sda - print info
+sudo hdparm -I /dev/sda - print more info
+
+
+Devices
+...
+
+Software
+
+uname -o - operating system: GNU/Linux
+uname -s - kernel name: Linux
+uname -r - kernel release: 2.6.28-19-generic
+uname -v - kernel version: #61-Ubuntu SMP Wed May 26 23:35:15 UTC 2010
+uname -m - machine hardware: i686
+uname -n - network hostname
+dpkg --print-architecture - package architecture: i386
+lsb_release -ds - distribution description: Ubuntu 9.04
+lsb_release -cs - distribution code: jaunty
+gnome-about --gnome-version - gnome about: Version: 2.26.1\nDistributor: Ubuntu\nErstellungsdatum: 06.05.2009
+kde-open --version - kde about: Qt: 4.5.0\nKDE: 4.2.4 (KDE 4.2.4)\nKIO Client: 2.0
+/etc/debian_version - squeeze/sid
+/etc/issue - Ubuntu 10.04.3 LTS \n \l
+
+
+Check Integrity
+
+memtest86+
+memtester 512M 1
+smartctl --test=long /dev/sda
+
+
+Check Performance
+
+# hdparm -t --direct /dev/sda - benchmark direct disk reads
+# hdparm -T /dev/sda - benchmark cached reads
+$ 7za b -- benchmark
+
+
+Modules
+
+lsmod - list kernel modules.
+modprobe <module> - add a loadable kernel module. Options: r: remove.
+modinfo [module] - show info about a kernel module.
+/etc/modules - contains modules loaded at boot.
+
+
+Backup
+
+partimage --nodesc save /dev/sda1 /media/backup/sda1_2010-08-31.partimg.gz - backup a partition
+	sudo partimage restore /dev/sda1 backup.partimg.gz - restore a partition
+tar --one-file-system -cpf /media/backup/system.tar * - backup root file system (if run from /) in single mode, or from live CD (then run from /mnt)
+	tar -xf /media/backup/system.tar - restore the files (run on newly created partition), then update fstab and delete /etc/udev/rules.d/70-persistent-cd.rules and 70-persistent-net.rules; then update grub using chroot
+rsync -ahrv --delete --delete-excluded --link-dest=../last / --files-from=backup-include.lst --exclude-from=backup-exclude.lst /media/backup/$(date +%Y-%m-%d) && ln -nsf /media/backup/$(date +%Y-%m-%d) /media/backup/last
+	- make a copy of the specified files using hardlinks where possible via the "last" target, then make the current backup the last one with a softlink
+Back in Time (rsync frontend, optional cronjob)
+
+
+Fault Recovery
+
+What to do if some application doesn't promptly respond? First, you should keep calm. Try to normally shut it down.
+	After a minute or so (depending on the system load) you might let the desktop environment kill the application via window decoration's close button.
+	You are likely to be asked if you really want to kill it, or to wait some more.
+Anyway, you can launch your favorite task manager like top on terminal or gnome-system-monitor that allows you to watch the resources and kill or terminate applications.
+If the graphical environment doesn't respond, then my next attempt would be to switch to a virtual console via CTRL-ALT-F1 or -F2, log in with superuser privileges, and to run top there.
+If you aren't familiar with the console or top or simply aren't in the mood to log in, you can simply press CTRL-ALT-DEL in a virtual console to initialize a soft reboot.
+A magic SysRq key combination (Alt + SysRq + some key) can send various commands to the kernel even if the system seems to be frozen.
+	A common idiom to perform a safe reboot of a Linux computer which has otherwise locked up, the QWERTY mnemonic "Raising Elephants Is So Utterly Boring", "Reboot Even If System Utterly Broken" or simply remembering the word "BUSIER" backwards, is often useful:
+	unRaw, tErminate, kIll, Sync, Unmount, reBoot.
+	Wait a few seconds each.
+	TODO: Does this work with AltGr+SysRq+Key in case Alt+Print is used for screen capture in GNOME?
+System Rescue CD
+
+
+Set root password
+
+on boot, in grub, edit command: add "1" to kernel line
+the kernel will boot up to single-user mode
+run the passwd command to set a new password
+
+
+Access from other system (e.g. Live CD)
+
+become root: sudo su
+find partition: fdisk -l
+mount partition: mkdir /media/sdb2; mount /dev/sdb2 /media/sdb2
+check content: ls -a /media/sdb2
+mount /dev: mount -o bind /dev /media/sdb2/dev
+mount /proc: mount -t proc /proc /media/sdb2/proc
+mount /sys: mount -o bind /sys /media/sdb2/sys
+change root: chroot /media/sdb2
+
+
+Run fsck on a TrueCrypt volume
+
+truecrypt -d crypted.tc - dismount if mounted
+truecrypt --filesystem=none crypted.tc - mount the volume without mounting its filesystem
+truecrypt -l - list mounted volumes
+	output will be: /dev/mapper/truecrypt0 (or similar)
+	
+sudo fsck -fC /dev/mapper/truecrypt0 - do the check
+truecrypt -d crypted.tc - dismount
+truecrypt --fs-options=rw,noatime crypted.tc mountpoint/ - remount
+
+
+Make a compressed image of a dmcrypt partition
+
+TODO
+
+
+Overwrite a disk with zeroes for secure deletion, and show a progress bar
+
+# dd if=/dev/zero bs=1M | pv -s $(blockdev --getsize64 /dev/sdc) -B 1M | dd of=/dev/sdc bs=1M
+You might want to use /dev/urandom instead of /dev/zero, but this would be much slower, and it doesn't make much sense.
+Alternatively, you could fully encrypt the disk and forget the key.
+for details, see Step-by-Step Secure Erasing of a Data Storage Device
+
+
+Data Recovery
+
+Recovery from Physically Damaged Drive
+
+apt-get install gddrescue - gddrescue with logfiles allows to be called multiple times and rescues only what is left untried; don't mistake for dd_rescue
+ddrescue -s50M /dev/hdc hdimage.bin logfile.log - rescue most important parts first: copy first 50 MB
+ddrescue -s1M -r3 -d /dev/hdc hdimage.bin logfile.log - rescue important, try hard: copy first 1 MB, max-retries 3 times, direct access
+ddrescue -i39G -s1G /dev/hdc hdimage.bin logfile.log - rescue end of disk (example disk would have a size of 40 GB)
+ddrescue -i19G -s2G /dev/hdc hdimage.bin logfile.log - rescue middle of disk (example disk would have a size of 40 GB)
+ddrescue -n /dev/hdc hdimage.bin logfile.log - rescue whole disk quickly: no-split (stop after trimming, saves much time)
+ddrescue -dr3 /dev/hdc hdimage.bin logfile.log - rescue whole disk thoroughly: direct access, max-retries 3
+ddrescue -dRT /dev/hdc hdimage.bin logfile.log - re-try everything exhaustively: direct access, re-trim, try-again
+then you can make a backup copy of the image and mount it
+see also: magicrescue to scan for lost files
+
+
+Move /home to another mountpoint
+
+check size of /home: du -sh /home
+create an empty formatted partition that is large enough
+log off, use terminal
+find new partition: fdisk -l
+mount new partition: mkdir /mnt/tmp; mount /dev/sda6 /mnt/tmp
+sync content: rsync -avx --progress /home/ /mnt/tmp (cp is faster but don't guarantees consistency)
+mount new /home: mount /dev/sda6 /home
+check result: du -sh /home; mount|grep /home
+unmount tmp: umount /home
+remove old data: rm -rf /home/* (don't remove the folder itself)
+get UUID of new partition: blkid|grep sda6
+enter line to /etc/fstab: UUID=f72aac23-092f-4484-b35c-f222c106d716   /home   ext3   defaults   0 2
+leave chroot: exit
+reboot
+
+
+Hide partion from Nautilus
+
+Idea: Nautilus shows those partitions that are mounted in /home or /media. To hide them, mount (or fake-mount) them elsewhere in /etc/fstab.
+UUID=12345 /mnt/dontmount1 ntfs-3g noauto 0 0
+
+
+Mount GMX Mediacenter
+
+# mount.davfs https://webdav.mc.gmx.net /mnt/gmx - you'll be asked for username and password (might use customer id)
+https://webdav.mc.gmx.net /mnt/gmx davfs user,noauto 0 0 - fstab entry
+https://webdav.mc.gmx.net  gmx-username  gmx-passwort - &tilde;/.davfs/secrets
+$ mount /mnt/gmx - should now be able to mount as user
+gmx-mediacanter mounten (linuxforen.de)
+
+
+SSH Tunneling
+
+kermit$ ssh -Cg -L 33306:jupiter:3306 localhost - tunnel from localhost:33306 to jupiter:3306.
+
+
+Internet Connection Sharing
+
+use PC as router (de)
+	start dhcp3 server; activate IP forwarding; configure firewall and NAT
+
+
+TV Cards
+
+alsamixer -c[MY_DEVICE_NUMBER] - to activate sound on Asus MyCinema P7131 Hybrid.
+
+
+Powersave
+
+/etc/fstab - prefer relatime over atime.
+cpufreq-info - list CPU frequency settings and capabilities.
+cpufreq-set - change CPU frequency settings. Examples: -g ondemand|performance|powersave. Recommended: ondemand.
+modprobe p4-clockmod - does NOT save power, only prevents overheating.
+desktop effects (compositing) do not use more power. (Good power management practices)
+Powersave heißt nicht Energie sparen
+
+
+SSD Optimization
+
+/etc/fstab:
+	noatime
+	tmpfs /tmp tmpfs defaults,noatime,mode=1777 0 0
+	
+Firefox:
+	enlarge ram cache: browser.cache.disk.enable = false
+	disable disk cache: browser.cache.memory.capacity ...
+	
+change scheduler: CFQ is good for HDD, deadline (or noop) are better for SSD:
+	/boot/grub/menu.lst - "kopt= ... elevator=deadline"
+	# echo 1 > /sys/block/sda/queue/iosched/fifo_batch
+	
+more: tombuntu.com
+
+
+Use old OSS application with PulseAudio
+
+padsp <program>
+
+
+Tweaks
+
+use relatime (or noatime) in /etc/fstab to speed up the hard drive
+disable subpixel-hinting, use "best form" instead
+disable unnecessary services
+Ubuntu: don't use default theme "Murrina" (Human, StormCloud) - better use Xfce or Mist theme - Linux für ältere Rechner optimieren
+Gnome:
+	/apps/gnome-power-manager/notify/low_power = false - don't warn on old battery;
+	/apps/gnome-power-manager/notify/perhaps_recall = false - dito;
+	/apps/metacity/general/reduced_resources = true - use wireframe instead of content while moving windows, and other;
+	/apps/update-notifier/auto_launch = false - disable update-notifier popup, show notification in panel instead;
+	/desktop/gnome/interface/enable_animations = false - don't use animations, e.g. on minimize window;
+	/desktop/gnome/interface/menus_have_icons = true - restore icons in menus (that are disabled by default in Ubuntu 9.10);
+	/desktop/gnome/interface/buttons_have_icons = true - dito;
+	/desktop/gnome/thumbnail_cache ... - limit size and age of thumbnails;
+	
+scale down Tracker:
+	uncheck "enable indexing"
+	set indexing speed to "slower"
+	check "minimize memory usage (slower indexing)"
+	add items to the list of ignored paths, if you never search them
+	uninstall tracker, if you don't need it ever: sudo apt-get remove tracker tracker-search-tool tracker-utils
+	
+add export MOZ_DISABLE_PANGO=1 to .bashrc to disable Pango font smoothing in Firefox (enabled by default in Ubuntu)
+Tuning (de)
+
+
+Network issues
+
+eth0: link is not ready - might come from a Windows network driver that is incorrectly disabling the network adapter on shutdown; solution: reboot and power off to re-init the network adapter.
+Speed limit for Apt to one source and to a maximum rate in kB/s:
+	/etc/apt/apt.conf
+	Acquire::Queue-mode "access";
+	Acquire::http::Dl-Limit "100";
+	
+Host name changed?
+	Check /etc/hostname and /etc/hosts.
+Network card and/or MAC address changed?
+	Check /etc/udev/rules.d/70-persistent-net.rules and /etc/network/interfaces.
+
+
+Misc Issues
+
+Flash Problems
+
+locate libflashplayer.so
+	should only have one out of /usr/lib/flashplugin-installer/ or /usr/lib/adobe-flashplugin/ or /usr/share/ubufox/plugins/ or ~/.mozilla/plugins or the like
+improve performance with ATI: AccelMethod = XAA (?)
+Flash 11.x requires CPU with SSE2 (since Pentium IV or Athlon 64): use 10.3 as long as it is supported
+	&rarr; download flashplayer_10_plugin_debug.tar.gz and extract libflashplayer.so to ~/.mozilla/plugins/
+
+
+
+
+
+File System Hierarchy
+
+Info
+
+Wikipedia - Filesystem_Hierarchy_Standard
+Ubuntuusers.de Wiki - Verzeichnisstruktur (de)
+
+
+/bin
+
+This folder contains the most basic applications that have to be present on every Linux system, like the shell, tools for file and process management, and for string manipulation.
+
+
+/boot
+
+/boot/grub/menu.lst - grub 1.x boot menu
+
+
+/dev
+
+/dev/fd - floppy drive
+/dev/hda - first hard disk drive
+/dev/null - data sink
+/dev/sdb3 - third partition on second scsi (or sata) disk drive
+/dev/shm - virtual ramdisk (tmpfs), default size is half of RAM
+/dev/urandom - unblocking random, faster than /dev/random, but much slower than /dev/zero
+/dev/zero - data source (binary zero)
+
+
+/etc
+
+/etc/apt/preferences - priorities of package, allows pinning of versions
+/etc/apt/sources.list - package sources; examples:
+	deb http://ftp.de.debian.org/debian woody main contrib non-free
+	deb file:///tmp/download ... ?
+	deb cdrom:[Ubuntu 9.04 _Jaunty Jackalope_ - Release i386 (20090420.1)]/ jaunty main restricted
+	
+/etc/conf.d/net - network configuration
+/etc/ddclient.conf - client for dynamic dns; example:
+	protocol=dyndns2, use=if, if=ppp0, server=members.dyndns.org, login=foo, password='bar', myaddress1.dyndns.org,myaddress2.dyndns.org
+	
+/etc/default/... - default configurations (?)
+/etc/environment - $PATH
+/etc/exports - nfs shared directories (?), e.g. "/home *.domain.de(rw)" - user id counts for access rights
+/etc/fstab - file system table
+/etc/gdm/PostSession/Default - run on gnome session end (user logout); e.g. 'truecrypt -d'
+/etc/hostname - name of the computer
+/etc/hosts - hostname-to-address mappings
+/etc/iftab - assigns persistent names to network interfaces. Example: eth0 mac 00:A0:24:51:8F:F4. (Ubuntu only till 7.04?)
+/etc/inittab - defines what each runlevel does (?)
+/etc/init.d/ - init scripts for running services. Examples:
+	sudo /etc/init.d/sshd [start|stop|restart]
+	sudo /etc/init.d/hal restart
+/etc/issue - is displayed on console login prompt (before a user logs on), can hold some escape sequences like \n=nodename; issues.net is used by SSH
+/etc/mke2fs.conf - default settings for new file systems
+/etc/modules - kernel modules loaded at boot, e.g. fuse, it87
+/etc/motd - is displayed on console login (after a user logs on), can hold some escape sequences like \n=nodename; is re-created on boot
+/etc/motd.tail - is appended to motd (optional)
+/etc/mtab - table of mounted file systems
+/etc/network/interfaces - network interfaces
+/etc/openoffice/sofficerc - set Logo=0 for speedup
+/etc/rc?.d/ - links used by init and managed by update-rc.d
+/etc/rc.local - is executed after each runlevel change (?)
+/etc/resolv.conf - address resolution, DNS server etc.
+/etc/ssh/sshd_config - sshd config; e.g. set 'PermitRootLogin no'
+/etc/skel/ - template for new user profiles
+/etc/sudoers - list of who is allowed to run what as super user
+	%admin ALL=NOPASSWD: /bin/mount    # allow members of group admin to not need a password (note that later entries override this)
+	%admin ALL=NOPASSWD: /bin/umount
+	%admin ALL=NOPASSWD: /usr/bin/truecrypt
+	
+/etc/sysfs.conf - tune hardware settings, e.g. CPU frequency scaling:
+	devices/system/cpu/cpu0/cpufreq/scaling_governor = ondemand
+	devices/system/cpu/cpu0/cpufreq/ondemand/up_threshold = 90	# default 95; 90 to better trigger flash videos in firefox (run with 'taskset -c 0')
+	
+/etc/udev/rules.d/70-persistent-net.rules - e.g. assign ETH0 to MAC address
+/etc/X11/xorg.conf - X configuration: monitors, graphics cards, keyboards, mice
+/etc/xdg/autostart - autostart .desktop files for all users.
+
+
+/lib
+
+This folder contains shared libraries for the essential programs that are required for booting up the machine.
+/lib/modules - kernel libraries
+
+
+/lost+found
+
+This folder takes fragments of files that are recovered after a crash.
+
+
+/media
+
+This folder holds dynamically mounted filesystems like CD-ROM or USB sticks.
+
+
+/mnt
+
+This folder holds temporary mounted partitions.
+
+
+/opt
+
+This folder contains large applications that are not handled by the package manager, and/or don't observe the standards hierarchy.
+
+
+/proc
+
+/proc/... - shows info about system
+	/proc/acpi/info - general ACPI info (e.g. version)
+	/proc/acpi/sleep - list of S-states the BIOS knows (e.g. S0 S3 S4 S5)
+	/proc/asound/cards
+	/proc/bus/... input|pccard|pci|usb
+	/proc/cmdline - contains the command line that Grub starts the kernel with
+	/proc/cpuinfo
+	/proc/dma
+	/proc/ide/hda/geometry
+	/proc/ide/hda/settings
+	/proc/interrupts
+	/proc/meminfo
+	/proc/mounts
+	/proc/partitions
+	/proc/scsi/scsi - also SATA
+	/proc/swaps
+	/proc/sys/dev/cdrom/info
+	/proc/uptime
+	/proc/version
+	
+
+
+/root
+
+This is the home directory of the superuser that must be located on the same filesystem as the root directory.
+
+
+/sbin
+
+This folder contains the most essential tools for system management that are usually run by superuser only.
+
+
+/sys
+
+/sys/block/sda/queue/scheduler - I/O scheduler
+/sys/devices/system/cpu/cpu0/cpufreq/* - CPU frequency stuff
+	/sys/devices/system/cpu/cpu0/cpufreq/cpuinfo_cur_freq - current frequency (kHz)
+	/sys/devices/system/cpu/cpu0/cpufreq/scaling_cur_freq - current frequency (kHz)
+	/sys/devices/system/cpu/cpu0/cpufreq/scaling_governor - current governor (recommended: ondemand)
+	/sys/devices/system/cpu/cpu0/cpufreq/stats/time_in_state - table of speed state (kHz) and time (s)
+/sys/... - ... ?
+
+
+/tmp
+
+This folder holds temporary files for all users. The sticky bit means that users are only allowed to access their own files.
+
+
+/usr
+
+/usr/bin - common applications
+/usr/include - source code header files of devel-packages
+/usr/lib - libraries of the common applications that are managed in /usr
+/usr/local - applications that are not handled by the package manager, e.g. self-compiled
+/usr/sbin - system management applications
+/usr/share - shared files, architecture-independent; icons, wallpapers, documentation, etc.
+/usr/share/application/*.desktop - application starters
+/usr/share/locale - localization files of the applications
+/usr/share/man - man-pages
+/usr/src - source code files of devel-packages
+
+
+/var
+
+/var/cache/apt/archives - apt package cache, use apt-get clean to delete all
+/var/lib/dpkg/available - list of all available packages
+/var/log/apt/history.log - APT history (TODO: is this Synapic's History?)
+/var/log/dpkg.log - DPKG log (TODO: is this written by CLI apt-get?)
+/var/log/messages - kernel messages
+/var/log/syslog - kernel messages (debian/ubuntu, mandriva)
+/var/www - web server files
+
+
+~
+
+~/.cache == $XDG_CACHE_HOME
+~/.cache/rhythmbox/jamendo/dbdump.xml - dump of Jamendo database
+~/.config == $XDG_CONFIG_HOME
+~/.config/autostart - autostart .desktop files
+~/.config/user-dirs.dirs - default directories (documents, pictures, music etc.)
+~/.local/share == $XDG_DATA_HOME
+~/.local/share/applications/*.desktop - application starters. Example:
+	[Desktop Entry]
+	Version=1.0
+	Type=Application
+	Exec=x11vnc -connect 123.456.78.9 -nopw
+	Name=Support from a Friend with VNC
+	Comment=Remote Control
+	Terminal=true
+	Icon=/usr/share/icons/Humanity/apps/48/vinagre.svg
+	
+~/.local/share/rhythmbox/rhythmdb.xml - Rhythmbox database
+~/.local/share/Trash/files - trash folder (Gnome only?)
+~/.profile - is executed at login (?)
+~/.nanorc - syntax highlight: include "/usr/share/nano/html.nanorc" (also e.g. c, perl, sh)
+ ...  - 
+
+
+
+
+Distribution Specific
+
+Ubuntu
+
+boot options:
+	maxcpus=X				- use X cpus
+	nosmp					- disable multicore support
+	noapic, noagp, noapm		- disable APIC, AGP, or power management
+	nolapic					- disable local APIC (?)
+	pci=noacpi				- disable ACPI during PCI configuration
+	acpi=off					- disable ACPI completely
+	acpi=force				- enable ACPI by force
+	vga=normal				- disable framebuffer
+	vga=...					- configure resolution of grub and console
+	ht=on					- enable hyper threading
+	pci=nomsi				- disable Message Signaled Interrupts (perhaps helps with SATA problems)
+	pci=bios					- ?
+	pci=routeirq				- IRQ auto routing
+	usb=bios					- ?
+	fb=false					- disable framebuffer
+	DEBCONF_DEBUG=5			- detailed error search (?)
+	BOOT_DEBUG=2|3			- error search during startup (?)
+	all_generic_ide			- use generic IDE driver
+	xforcevesa				- X server uses Vesa by force
+	nomodeset				- disable kernel mode setting (KMS), since Karmic
+	noplymouth				- disable plymouth, replaces nosplash, since Lucid
+	i915.modeset=0|1			- workaround for graphics boot issues with Lucid (set to 1 to activate KMS helps on some laptops, set to 0 for some nVidia?)
+	radeon.modeset=0			- workaround for graphics boot issues with Lucid and kernel mode setting)
+	i915.i915_enable_rc6=1	- enable Sandy Bridge energy saving RC6 (if BIOS is ok)
+	
+Turn off or limit the Recent Documents feature in Gnome
+Notebook-Harddrive-Bug
+Troubleshooting Adobe Flash in Ubuntu (2008)
+How to add Thunderbird to the Ubuntu Messaging Menu
+How to fix ubuntu 10.04 LTS (lucid) blank Screen at startup
+10 things to do after installing Ubuntu
+nice themes for ubuntu 10.04 lucid
+known ubuntu 10.4 lucid issues with workarounds
+how to install skype in Ubuntu from skype repository
+Important Tweaks/Things to do After install of Ubuntu 12.04 Precise Pangolin - e.g., activate hibernate
+Some More Tweaks for Ubuntu 12.04 Precise Pangolin
+Nautilus statt Thunar als Desktop unter XFCE
+Fix unable to shutdown / reboot / logout when OpenOffice Quickstarter is active:
+	sed -i '5s|true|false|g' /usr/lib/openoffice/basis3.*/share/registry/data/org/openoffice/Office/Recovery.xcu - change DocumentStoreUIEnabled in Recovery.xcu to false
+	clear /home/user/.openoffice.org/3/user/registry/cache
+	for LibreOffice: /usr/lib/libreoffice/basis3.3/share/registry/main.xcd
+	Bug #562027 in Launchpad
+/etc/default/acpi-support
+	ENABLE_LAPTOP_MODE=true	- # Switch to laptop-mode on battery power
+	   see also: /etc/laptop-mode/laptop-mode.conf
+	
+.hidden contains a list of files or folders to hide in Nautilus, e.g. lost+found
+manual upgrade: sudo do-release-upgrade (terminal), or gksudo "update-manager -c" (graphical)
+	Hint: it might be required to switch the default behavior for the release upgrader in /etc/update-manager/release-upgrades (Prompt=never|normal|lts) matching the current (old) installation, especially if an upgrade from a non-LTS version to an LTS version is to be done.0
+	
+Recommended packages installed by default: In accordance with the Debian Policy Manual
+	(which says "The 'Recommends' field should list packages that would be found together with this one in all but unusual installations"),
+	the package management system now installs packages listed in the Recommends: field of other installed packages as well as Depends: by default.
+	If you want to avoid this for specific packages, use apt-get --no-install-recommends;
+	if you want to make this permanent, set APT::Install-Recommends "false"; in /etc/apt/apt.conf.
+	Be aware that this may result in missing features in some programs.
+	(This change was made in Ubuntu 8.10.)
+	
+screen flicker on shutdown: set native resolution in usplash.conf, or activate splash if disabled.
+program not translated after upgrade: re-install language package.
+reset tracker: tracker-processes -r
+my potential post-installation package selection for Ubuntu Lucid:
+	Localization: firefox-locale-de (since ff9) language-support-de thunderbird-locale-de (already in default Lucid: language-pack-de language-pack-gnome-de language-support-writing-de openoffice.org-help-de)
+	System: backintime-gnome dkms galternatives gparted mesa-utils numlockx preload rcconf smart-notifier wine
+	Applications: audacity dia-gnome ekiga gnucash gpaint gramps inkscape libreoffice-pdfimport p7zip-full pdfshuffler ripperx scribus scribus-doc (already in default Lucid: openoffice.org-gtk)
+	Multimedia: adobe-flashplugin audacious-plugins-extra avidemux comix denemo exaile gnome-alsamixer gnome-mplayer gstreamer0.10-plugins-ugly lame mencoder mozilla-mplayer mozilla-plugin-vlc optipng totem-mozilla ubuntu-restricted-extras vlc
+	Network: amule ddclient dnsmasq filezilla nmap ntp pidgin pyNeighborhood samba squid thunderbird-gnome-support traceroute x11vnc xtightvncviewer
+	Advanced: dosbox ghex gufw leafpad ntfsprogs pdftk seahorse-plugins sun-java6-plugin sun-java6-jre tracker unace-nonfree virtualbox-ose xmp-audacious
+	Games small: ace-of-penguins atomix billard-gl glchess moon-lander pinball pioneers sopwith xfrisk
+	Games large: 0ad alien-arena beneath-a-steel-sky boswars extremetuxracer flightgear flight-of-the-amazon-queen freeciv-client-gtk freeciv-sound-standard lincity-ng megaglest nexuiz openarena pingus sauerbraten supertux supertuxkart torcs tremulous vegastrike warsow warzone2100 wesnoth widelands
+	Hardware: computertemp cpufrequtils cpuid hardinfo hardware-monitor hddtemp hwinfo inkblot lm-sensors lshw-gtk sensors-applet smartmontools sysfsutils x86info xmbmon xsensors
+	Developer: ant build-essential diff-ext doxygen geany graphviz kdiff3 meld netbeans rabbitvcs-nautilus rapidsvn rkward shed sloccount subversion sun-java6-jdk sun-java6-source texlive texlive-lang-german texlive-latex-extra texmaker
+	Geek: boinc conky human-icon-theme human-theme
+	Recovery: ddrescue partimage secure-delete testdisk
+	Xubuntu: catfish epiphany-browser gnome-disk-utility gnome-utils gthumb ristretto xfce4-datetime-plugin xfce4-goodies xubuntu-restricted-extras
+	Precise: gdebi gimp indicator-multiload lo-menubar synaptic
+	
+purge if not required:
+	Menu: indicator-me indicator-messages
+	Bluetooth: bluez bluez-alsa bluez-cups bluez-gnome bluez-gstreamer bluez-utils pulseaudio-module-bluetooth
+	Empathy: empathy empathy-common nautilus-sendto-empathy
+	Evolution: evolution evolution-common evolution-couchdb evolution-data-server evolution-exchange evolution-indicator evolution-plugins evolution-webcal
+	Gwibber: gwibber gwibber-service libgwibber0
+	Mono: f-spot gbrainy mono-2.0-gac mono-csharp-shell mono-gac mono-gmcs mono-runtime sysinfo tomboy
+	Hardware: brltty pcmciautils
+	
+additional package sources:
+	Medibuntu:		http://packages.medibuntu.org/						lucid	free non-free
+	Lucid-Bleed:		http://ppa.launchpad.net/lucid-bleed/ppa/ubuntu		lucid	main	-- abiword, audacity, avidemux, blender, ffmpeg, filezilla, gimp, inkscape, lame, mplayer, nano, pdfshuffler, pitivi, thunderbird, tightvnc, vlc, x264 ... and some more
+	Mediainfo:		http://ppa.launchpad.net/shiki/mediainfo/ubuntu		lucid	main
+	Pidgin:			http://ppa.launchpad.net/pidgin-developers/ppa/ubuntu	lucid	main
+	Shotwell:			http://ppa.launchpad.net/yorba/ppa/ubuntu				lucid	main
+	TV-Browser:		http://ppa.launchpad.net/blueyed/ppa/ubuntu			lucid	main
+	Back in Time:		http://ppa.launchpad.net/bit-team/stable/ubuntu		lucid	main
+	Wine:				http://ppa.launchpad.net/ubuntu-wine/ppa/ubuntu		lucid	main
+	DOS-Box:			http://ppa.launchpad.net/thir/ppa/ubuntu				lucid	main
+	Rabbit VCS:		http://ppa.launchpad.net/rabbitvcs/ppa/ubuntu			lucid	main
+	Geany:			http://ppa.launchpad.net/geany-dev/ppa/ubuntu			ludic	main
+	
+
+
+Xubuntu
+
+Setup "Start-Menu" key (Super_L) to open Xfce-Menu:
+	
+	create keyboard shortcut in xfce settings (will be "Super+Super_L")
+	edit ~/.config/xfce4/shortcuts/name_of_your_shortcuts.xml
+	remove "Super+" from the respective entry
+	open and close shortcut configuration, or restart X to activate
+	
+	Problem: the key doesn't work as modifiert (as in Super+e) any more.
+	Workaround: don't use Super_L for menu, but something like Super+w.
+	
+Enable Gigolo to open Thunar with doubleclick on mounted SMB volume:
+	
+	# apt-get install gvfs-fuse fuse-utils - install GVFS backend so that GVfs mounts the remote resources in ~/.gvfs
+	# gpasswd -a username fuse - add user to the fuse group
+	$ nano ~/.local/share/applications/defaults.list
+		x-directory/gnome-default-handler=Thunar.desktop
+		inode/directory=Thunar.desktop
+		x-directory/normal=Thunar.desktop - enable Thunar to open folders by gvfs-open
+	You might have to relaunch your session.
+	See Open resources in Thunar on Xfce 4.4 and 4.6 (uvena.de)
+	
+	
+
+
+Knoppix
+
+http://knopper.net/knoppix/
+most important boot options:
+	failsafe					- minimum hardware detection; if this does not run, the is almost no hope
+	knoppix 2				- runlevel 2, textmode only
+	knoppix lang=de			- specify language/keyboard
+	knoppix screen=1280x1024	- use specified screen resolution for X
+	knoppix xvrefresh=60		- use 60 Hz vertical refresh rate for X
+	knoppix fb1024x768		- use fixed framebuffer graphics
+	knoppix noapic			- disable apic
+	knoppix nousb nofirewire	- disable usb and firewire
+	knoppix vga=normal		- disable framebuffer mode
+	knoppix nodma			- disable dma (very slow)
+	knoppix noideraid		- disable raid detection (if raid available)
+	knoppix nopcmcia			- disable pcmcia detection (on laptops)
+	knoppix acpi=off			- disable acpi
+	knoppix pnpbios=off		- disable pnp bios initialization
+	full options: ftp://ftp.uni-kl.de/pub/linux/knoppix/knoppix-cheatcodes.txt
+	
+
+
+
+
+Game Equivalents/Clones
+
+
+Civilization: Freeciv
+Dune, Command & Conquer (Real-time Strategy): Bos Wars, Warzone 2100
+Lemmings: Pingus
+Raptor: Chromium
+Settlers: Pioneers
+(Shooter): Alien Arena, Nexuiz, Open Arena, Sauerbraten, Warsow
+Sim City: Lincity-NG
+(Turn-based Strategy): Battle for Wesnoth
+
+
+
+
+Links
+
+Linux
+
+Wikipedia - Portal: Linux
+Wikibooks - Linux-Kompendium
+LinuxWiki.de
+Selflinux.org
+Galileo Openbook - Linux: Das distributionsunabhängige Handbuch
+Galileo Openbook - Ubuntu GNU/Linux: Grundlagen, Anwendung, Administration
+Wie werde ich UNIX-Guru? - Einführung in UNIX, Linux und Co.
+Wikipedia - Filesystem Hierarchy Standard
+Linux.org
+Linux Standard Base (LSB)
+Wine HQ
+The Linux Documentation Project
+Golem.de - Durchblick im Linux-Dschungel
+Tabelle mit Entsprechungen/Ersatz/Ähnlichkeiten von Windows-Software gegenüber Linux
+
+
+Ubuntu
+
+Ubuntuusers - News, Forum, Wiki
+
+
+Hardware support
+
+ALSA SoundCard Matrix
+OpenPrinting - printer database and drivers
+SANE - scanner device support
+LinuxTV - tv/v4l device support
+TuxMobil - Linux With Laptops, Notebooks, PDAs, Mobile Phones, PMPs & GPS
+Linux on Laptops - Reports on running Linux on notebook or laptop computers
+de.comp.os.unix.linux.hardware
+
+
+Shopping
+
+Linux Users Welcome - Datenbank Linux-freundlicher Geschäfte
+
+
+Other
+
+VirtualBox Howto
+
+
+ 
+
+
+
+
+
+Copyright © 2007-2013 Nina Marwede
+  -   Last change: 2013-03-17
+
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+ 
+
+
+
+
+
+
