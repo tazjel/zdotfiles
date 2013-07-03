@@ -356,6 +356,8 @@ alias md='mkdir -p'
 alias rd=rmdir
 alias d='dirs -v | head -10'
 
+alias -g 'Gx'='--exclude-dir=cache .'
+alias 'GX'='grep -iaR "$1"--exclude-dir=cache'
 
 function wW_grep_logs(){
     grep "$1" */logs/*.log
