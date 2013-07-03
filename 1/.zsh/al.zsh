@@ -5,6 +5,7 @@
 # Tue Jun 11 02:55:36 AST 2013*/
 ########################################################
 # Author : AHMED BANI
+
 clear
 #echo -e "                  #########"
 echo -e "                    بسم الله الرحمن الرحيم"
@@ -275,7 +276,7 @@ alias gsd='git svn dcommit'
 alias gsl='git shortlog -nsw -e'
 alias gsr='git svn rebase'
 alias gss='git status -s'
-alias gst='git status'
+alias wst='git status'
 alias gt='git stash'
 alias gup='git pull --rebase'
 alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'

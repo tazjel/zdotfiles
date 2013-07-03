@@ -499,7 +499,3 @@ extract_url_links (){
 }
 
 
-
-alias "wwf"="cmdfu"
-
-alias "$1"="$2" 

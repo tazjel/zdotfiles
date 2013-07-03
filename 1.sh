@@ -1,7 +1,7 @@
 #!/bin/bash
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 
-#{{Menu
+#{{Capture
 
 ### 0 search apt-cache
 ### 1 search cmdfu ## commandlinefu
@@ -14,33 +14,66 @@
 ### sed stream
 ### sed stream}
 
-#Organize
-# wc cut sort uniq awk
+#{Organize
+#}
 
-#Review
-### If - while test
+#{Review
+### If - while test}
 
+#{User defined function
 
-#e-mail - deloploy
-
-#Inboxes
+function WW {
+    desc="ADD DESCRIPTION..."
+    if [ -n "$3" ]; then
+        desc="$3"
+    fi
+    echo "" >> $zal
+    echo "alias '$1'='$2'" >> $zal
+    source $zal
+    echo "" && echo "- Alias added  $1 = $2 " && echo "";
+}
+function glll {
+    cd $HOME/zdotfiles
+    git add -A
+    git commit -a
+    git push -all
+    git push origin --all && git push origin --tags
+}
+function zselect () {
+    select CHOICE in bob amy quit
+    done
+            case "$CHOICE" in
+                    "bob")
+                            echo "Bob was here"
+                            ;;
+                    "amy")
+                            echo "Amy was here"
+                            ;;
+                    "quit")
+                            exit
+                            ;;
+            esac
+    done
+}
+#}
+#{e-mail
+#}
+#{Inboxes
 ### Dir - files -DAL
-
+#}
 ## ----------------------------------
-# Step #1: Define variables
+#{ Step #1: Define variables
+# }----------------------------------
+
+#{Tasks
+#askapache : ahave apth check}
 # ----------------------------------
-
-#todo:mkdir -p ~/zdotfiles/.workflow/
-#askapache : ahave apth check
-
-
-# Step #2: User defined function
-# ----------------------------------
-
+#{Reminder
 znotify(){
     play ~/zdotfiles/References/notify.mp3
 }
 
+#}
 cmdfu(){
     # Search commandlinefu
     curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -
@@ -106,12 +139,8 @@ three () {
 
 show_menus() {
     clear
-    echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "~~~~~~~~~~~~~~~~~~~~~"
     echo "                            بسم الله الرحمن الرحيم"
     echo "ما شاء الله تبارك الله"
-    echo "~~~~~~~~~~~~~~~~~~~~~"
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " M A I N - M E N U"
     echo "~~~~~~~~~~~~~~~~~~~~~"
@@ -125,8 +154,6 @@ show_menus() {
     echo "8. WWW"
     echo "9. SSH | Git"
     echo "0. EXIT"
-    echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "~~~~~~~~~~~~~~~~~~~~~";
 }
 
 #
@@ -196,41 +223,4 @@ start_GUI () {
     done;
 }
 start_GUI
-
-function WW {
-    desc="ADD DESCRIPTION..."
-    if [ -n "$3" ]; then
-        desc="$3"
-    fi
-    echo "" >> $zal
-    echo "alias '$1'='$2'" >> $zal
-    source $zal
-    echo "" && echo "- Alias added  $1 = $2 " && echo "";
-}
-
-
-##########
-function glll {
-    cd $HOME/zdotfiles
-    git add -A
-    git commit -a
-    git push -all
-    git push origin --all && git push origin --tags
-}
-function zselect () {
-    select CHOICE in bob amy quit
-    done
-            case "$CHOICE" in
-                    "bob")
-                            echo "Bob was here"
-                            ;;
-                    "amy")
-                            echo "Amy was here"
-                            ;;
-                    "quit")
-                            exit
-                            ;;
-            esac
-    done
-}
 

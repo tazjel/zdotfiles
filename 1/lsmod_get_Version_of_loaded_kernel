@@ -1,0 +1,29 @@
+# commandlinefu.com by David Winterbottom
+
+# Get version of loaded kernel module
+lsmod | grep -io MODULENAME| xargs modinfo | grep -iw version
+
+# Short Information about loaded kernel modules
+lsmod | tail -n +2 | cut -d' ' -f1 | xargs modinfo | egrep '^file|^desc|^dep' | sed -e'/^dep/s/$/\n/g'
+
+# Draw kernel module dependancy graph.
+lsmod | awk 'BEGIN{print "digraph{"}{split($4, a, ","); for (i in a) print $1, "->", a[i]}END{print "}"}'|display
+
+
+# Draw kernel module dependancy graph.
+lsmod | perl -e 'print "digraph \"lsmod\" {";<>;while(<>){@_=split/\s+/; print "\"$_[0]\" -> \"$_\"\n" for split/,/,$_[3]}print "}"' | dot -Tpng | display -
+
+
+# write the output of a command to /var/log/user.log... each line will contain $USER, making this easy to grep for.
+log() { (echo "\$ $@";$@) | logger -t $USER; }
+
+# Short Information about loaded kernel modules
+modinfo $(cut -d' ' -f1 /proc/modules) | sed '/^dep/s/$/\n/; /^file\|^desc\|^dep/!d'
+
+# Short Information about loaded kernel modules
+lsmod | sed -e '1d' -e 's/\(\([^ ]*\) \)\{1\}.*/\2/' | xargs modinfo | sed -e '/^dep/s/$/\n/g' -e '/^file/b' -e '/^desc/b' -e '/^dep/b' -e d
+
+
+# Short Information about loaded kernel modules
+lsmod | cut -d' ' -f1 | xargs modinfo | egrep '^file|^desc|^dep' | sed -e'/^dep/s/$/\n/g'
+
