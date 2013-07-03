@@ -29,7 +29,6 @@ echo "backing up current zsh config"
 today=`date +%Y%m%d`
 for i in $HOME/.bash_profile $HOME/.zsh $HOME/.zshrc $HOME/.oh-my-zsh $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
-  #.bash_history .bash_logout .bash_profile .bashrc
 #########################################
 
 # clone or pull zdotfiles from github.com
@@ -55,6 +54,7 @@ echo "We are done. Please, check it out"
 ###########               VIM
 
 echo "Backup vimrc.local & vimrc.localw"
+
 for i in $HOME/.vimrc.local $HOME/.vimrc.localww $HOME/.vimrc.localw;  do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
 echo "Setting up symlinks for [ .vimrc.local & .vimrc.localw (Tips) ]"

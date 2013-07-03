@@ -4,7 +4,7 @@
 sudo apt-get install linux-headers-`uname -r`
 
 
-function ahave() 
+function ahave()
 { unset -v ahave; command command type $1 &>$N6 && ahave="yes" || return 1; }
 
 ###########
