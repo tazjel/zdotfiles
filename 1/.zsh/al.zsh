@@ -436,8 +436,6 @@ cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 
 
 
 ####################################################
-#wwww(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
-#
 function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
 
 #function ww_send_gmail
@@ -459,7 +457,7 @@ alias 'wX'='chmod -x'
 alias 'W'='echo'
 
 alias 'w-grep'='grep -vE "^$|^[\s]*[;#]"'
-
+alias 'wwww'='wfw'
 alias 'wws'='PS3="nter a number: "; select f in *;do $EDITOR $f; break; done'
 wwws () {
     PS3="Enter a number: "
