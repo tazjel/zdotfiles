@@ -99,7 +99,8 @@ nnoremap <silent> w0 :vsplit ~/zdotfiles/0/apt_install_packages.sh<CR>
 
 
 
-
+" Since I use linux, I want this
+let g:clipbrdDefaultReg = '+'
 
 
 
@@ -264,20 +265,10 @@ endfun
 "q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
 ":<C-F>           : history Window (exit CTRL-C)
                                 "F6
-" A function to save word under cursor to a file
+
 imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
 "---------------------------------------------------"
 
-let g:I=0
-function! INC(increment)
-    let g:I =g:I + a:increment
-    return g:
-endfunction
-" eg create list starting from 223 incrementing by 5 between markers a,b
-":let I=223
-":'a,'bs/^/\=INC(5)/
-"" create a(comand Abbreviations) map for INC
-cab viminc :let I=0 \| 'a,'bs/^/\=INC(1)/
 "----------------------------------------
 "" *generate a list of numbers*  23-64
 "o23<ESC>qqYp<C-A>q40@q
@@ -867,12 +858,12 @@ iab YDATETIME <c-r>=strftime(": %a %b %d, %Y %H:%M:%S %Z")<cr>
 "
 
 " first add a function that returns a time stamp in the desired format
-if !exists("*TimeStamp")
-    fun TimeStamp()
+"if !exists("*TimeStamp")
+    "fun TimeStamp()
 
-        return "Last-modified: " . strftime("%d %b %Y %X")
-    endfun
-endif
+        "return "Last-modified: " . strftime("%d %b %Y %X")
+    "endfun
+"endif
 
 
 
@@ -1003,3 +994,5 @@ set grepprg=ack-grep
 " match OverLength /\%81v.\+/
 
 "Reference https://github.com/signalpillar/dotfiles/blob/master/.vimrc
+
+colorscheme solarized
