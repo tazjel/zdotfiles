@@ -181,8 +181,11 @@ function glll {
 
       #git config --global http.sslVerify false
 alias wotgobblemem='ps -o time,ppid,pid,nice,pcpu,pmem,user,comm -A | sort -n -k 6 | tail -15'
-alias xclip='xclip -selection c'
 
+
+############ xclip
+alias xclip='xclip -selection c'
+alias -g 'wxc'='| xclip'
 alias 'n1'='dpkg --get-selections | grep linux-image'
 alias 'kla'="ls -a | grep '^\.'"
 alias 'klj'='ls -a | grep "^\.\(.*\)n$"'
@@ -290,6 +293,11 @@ alias ifconfig-ext='curl ifconfig.me'
 alias install='sudo apt-get install'
 alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 alias ips='ifconfig -a | grep -o '\''inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)'\'' | sed -e '\''s/inet6* //'\'
+
+
+### python
+#alias calc='python -ic "from math import *; from random import *"'
+
 alias ipy='python -c '\''import IPython; IPython.frontend.terminal.ipapp.launch_new_instance()'\'
 alias jpgtopdf='convert *.JPG "$(basename "$(pwd)").pdf"'
 alias k='gitk --all &'

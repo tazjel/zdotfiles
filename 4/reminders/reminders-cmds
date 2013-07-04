@@ -1,0 +1,50 @@
+# commandlinefu.com by David Winterbottom
+
+# Remove duplicate reminders in Outlook 2007
+outlook.exe /cleanreminders
+
+# Mnemonic for `nice` and `renice` command
+# Negative is Not Nice
+
+# Command line calculator
+alias calc='python -ic "from math import *; from random import *"'
+
+# SMS reminder
+echo 'mail -s "Call your wife" 13125551234@tmomail.net' |at now+15min
+
+# if you are alone and have to determine which switch port your server ends ... here we go
+for i in $(seq 300) ; do ethtool -s eth0 autoneg on ; sleep 2 ; done
+
+# Remind yourself every 15 minutes (repeated reminders)
+watch -n 900 "notify-send -t 10000 'Look away. Rest your eyes'"
+
+# I finally found out how to use notify-send with at or cron
+echo "export DISPLAY=:0; export XAUTHORITY=~/.Xauthority; notify-send test" | at now+1minute
+
+# Set a Reminder for yourself via the notification system
+sleep 6s && notify-send -t 10000 -u critical "remember to think" &
+
+# Juste a reminder that this works.
+true || false && echo true || echo false
+
+# set a reminder for 5 days in the future
+echo "DISPLAY=$DISPLAY xmessage setup suphp perms htscanner acct#101101 host2.domain.com" | at 23:00 Feb 8
+
+# displays a reminder message at the specified time
+echo "DISPLAY=$DISPLAY xmessage convert db to innodb" | at 00:00
+
+# Insert a comment on command line for reminder
+ls -alh #mycomment
+
+# Send Reminders from your Linux Server to Growl on a Mac
+remind -z1 -k'echo %s |ssh <user>@<host> "growlnotify"' ~/.reminders &
+
+# Inserts the results of an autocompletion in the command line
+ESC *
+
+# Remind yourself to leave in 15 minutes
+leave +15
+
+# See whether your compiled Apache is prefork or worker MPM
+/usr/sbin/httpd -l
+
