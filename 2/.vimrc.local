@@ -30,8 +30,8 @@ map ws :!rm ~/.vimswap/*<CR>
 "cab
 cab zz w! ~/zdotfiles/1/
 cab vv w! ~/zdotfiles/2/
-cab wx !chmod u+x<CR>
-cab wX !sh %<CR>
+cab wx :!chmod u+x<CR>
+cab wex !sh %<CR>
 cab abo vsplit ~/Dropbox/abobanirc
 "}
 "{cab maped to the [1-10] "

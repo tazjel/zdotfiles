@@ -4,7 +4,8 @@
 # Author : AHMED BANI
 # startup
 clear
-echo -e "                   بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
+echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
+echo -e "\t\t\t\t $(date)"
 ########################################################
 # <F0> git
 export N6=/dev/null
@@ -106,20 +107,22 @@ function zbp {
 done;
 }
 
-#
-
+# While you press the PS button to connect, run this on a different terminal:
+alias 'wsix_kill_blue'='sudo killall -KILL bluetoothd'
 alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
 
-function ww_sixad {
+function wsix_lsusb_dmesg_hcitool {
     lsusb;dmesg;hcitool dev;hcitool con;
     echo " بسم الله ما شاء الله"
 }
+
+
 
 alias __="sudo"
 
 #######################################
 
-alias 'w'='clear;ls -atr;pwd;date'
+alias 'w'='zsh;ls -alF;pwd;echo -e "\t\t\t$(date)"'
 
 alias 'ww'='vim'
 alias 'kk'='kate'
@@ -428,7 +431,7 @@ alias 'wf'='firefox -search'
 
 alias -g 'H'="--help"
 alias -g 'wH'="--help | grep "
-
+alias 'alal'='cmdfu'
 cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
 
 
@@ -571,14 +574,12 @@ compare_strings () {
 
 
 alias "wwf"="cmdfu"
-
-
 # list and get size
 alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"'
 # Recursively search your directory tree files for a string
 #
-
-
+convert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe
+    's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg'| sed -e 's/%//';}
 
 # List directories recursively showing its sizes using only ls and grep
 function Wll () {
@@ -608,6 +609,8 @@ functions wfbash() {
  #example : vimgrep pattern 'dir/**/*.c'
 #Installers
 function install_dropbox_cmd () {
+    '/tmp/a b'onvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
+    uonvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
     mkdir -p ~/bin
     wget -O ~/bin/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
     chmod +x ~/bin/dropbox.py
@@ -807,4 +810,14 @@ alias ':q'='exit'
 # Grep for regular expression globally, list files and positions.
 alias 'wfg'='find . -name "*.pbt" -exec grep -Hirn "declareObject.*Common_Down"
 {} \;'
+
+# Screencast of your PC Display with webm output
+#avconv -v warning -f alsa -ac 2 -i default -f x11grab -r 15 -s wxga -i :0.0 -acodec libvorbis -ab 320k -vcodec libvpx -qmax 2 -qmin 1 -threads auto -y -metadata title="Title here" ~/Video/AVCONV_REG.webm
+
+# Screencast of your PC Display with mp4 output
+#avconv -v warning -f alsa -i default -f x11grab -r 15 -s wxga -i :0.0 -vcodec libx264 -preset ultrafast -threads auto -y -metadata title="Title here" ~/Video/AVCONV_REG.mp4
+
+# Check if system is 32bit or 64bit
+#getconf LONG_BIT
+wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=ar&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ; }
 
