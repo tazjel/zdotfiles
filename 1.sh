@@ -1,5 +1,6 @@
 #!/bin/bash
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+
 #{ Step #1: Define variables
 # }----------------------------------
 znotify(){
@@ -54,11 +55,10 @@ three () {
     done
         pause
 }
-# {First Menu
+
 show_menus() {
     clear
     echo "                            بسم الله الرحمن الرحيم"
-    echo "ما شاء الله تبارك الله"
     echo "~~~~~~~~~~~~~~~~~~~~~"
     echo " M A I N - M E N U"
     echo "~~~~~~~~~~~~~~~~~~~~~"

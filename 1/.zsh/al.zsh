@@ -1,25 +1,17 @@
-#
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
-
-#
-# Tue Jun 11 02:55:36 AST 2013*/
+#Thu Jul  4 07:14:50 AST 2013
 ########################################################
 # Author : AHMED BANI
-
+# startup
 clear
-#echo -e "                  #########"
-echo -e "                    بسم الله الرحمن الرحيم"
-echo -e "                    ماشاءالله لاقوة الابالله"
-                    
+echo -e "                   بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
 ########################################################
 # <F0> git
 #
 ########################################################
 # Put readline into vi mode
 #set -o vigit config --global user.name
-#git config --global user.email
-
-#git config --global color.ui auto
+alias 'zzk'='kate ~/zdotfiles/1/.zsh/al.zsh'
 ########################################################
 # <F1>
 ########################################################
@@ -126,6 +118,8 @@ alias __="sudo"
 alias 'w'='clear;ls -atr;pwd;date'
 
 alias 'ww'='vim'
+alias 'kk'='kate'
+
 alias 'www'='cat'
 
 alias 'ppp'='sudo add-apt-repository $1'

@@ -31,7 +31,7 @@ map ws :!rm ~/.vimswap/*<CR>
 cab zz w! ~/zdotfiles/1/
 cab vv w! ~/zdotfiles/2/
 cab wx !chmod u+x<CR>
-cab wxx !sh %<CR>
+cab wX !sh %<CR>
 cab abo vsplit ~/Dropbox/abobanirc
 "}
 "{cab maped to the [1-10] "
@@ -95,8 +95,9 @@ nnoremap <F4> :verbose map
 
 nnoremap <silent> wk  :vsplit ~/zdotfiles/1/askapache-bash-profile.txt<CR>
 nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
-nnoremap <silent> w0 :vsplit ~/zdotfiles/0/apt_install_packages.sh<CR>
-
+"nnoremap <silent> w0 :vsplit ~/zdotfiles/0/apt_install_packages.sh<CR>
+nnoremap wba :!vim ftp://tazjel@baniop.com/public_html/<CR>
+nnoremap <silent> w0 :vsplit ~/Dropbox/A/.vimrc.local<CR>
 
 
 " Since I use linux, I want this
@@ -194,7 +195,6 @@ map <F10> :bp<cr>
 " Split the Line at Cursor
 nnoremap K i<cr><esc><right>
 "html substitute
-"%s/<[^>]*>//gi<cr>
 
 
 nnoremap <C-J> m`o<Esc>``
@@ -304,30 +304,6 @@ map ws :!rm ~/.vimswap/*<CR>
 map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
 ""close"
         "Save "
-"==================================="
-"            F[1-12]
-"==================================="
-"{
-cab zz w! ~/zdotfiles/1/
-cab vv w! ~/zdotfiles/2/
-cab wx !chmod u+x<CR>
-cab wxx !sh %<CR>
-"}
-
-"{cab maped to the [1-10] "
-cab w99 w! ~/zdotfiles/9/
-cab w88 w! ~/zdotfiles/8/
-cab w77 w! ~/zdotfiles/7/
-cab w66 w! ~/zdotfiles/6/
-cab w55 w! ~/zdotfiles/6/
-cab w44 w! ~/zdotfiles/5/
-cab w33 w! ~/zdotfiles/4/
-cab w22 w! ~/zdotfiles/2/
-cab w11 w! ~/zdotfiles/1/
-cab w00 w! ~/zdotfiles/0/
-"}
-
-" do not beep
 set t_vb=
 set novisualbell
 
@@ -335,9 +311,6 @@ map wy :set filetype=bash<CR>
 
 ""#map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
                     "F1
-
-                    "<F2>
-nnoremap <F2> :reg<CR>
 
  "Multiple Files Management (Essential)
 ":bn              : goto next buffer
@@ -349,7 +322,6 @@ nnoremap <F2> :reg<CR>
 ":badd file.c     : file from buffer list
 ":b3              : go to buffer 3 [C]
 ":b main          : go to buffer with main in name eg main.c (ultra)
-":sav php.html    : Save current file as php.html and "move" to php.html
 ":sav! %<.bak     : Save Current file to alternative extension (old way)
 ":sav! %:r.cfm    : Save Current file to alternative extension
 ":sav %:s/fred/joe/           : do a substitute on file name
@@ -408,8 +380,8 @@ map <C-F8><C-F8> :diffput<CR>
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
 " Split the Line at Cursor
 nnoremap K i<cr><esc><right>
-"html substitute
-"%s/<[^>]*>//gi<cr>
+" html substitute
+nnoremap xw :%s/<[^>]*>//gi<cr><CR>
 
 
 nnoremap <C-J> m`o<Esc>``
@@ -528,7 +500,6 @@ match WhitespaceEOL /\s\+$/
 """ DiffMode:							{{{2
 set diffopt=filler,context:4,iwhite	" options for using diff mode
 "set diffexpr		" expression used to obtain a diff file
-"set patchexpr		" expression usent="text/html; charset=UTF-8"><CR><TITLE></TITLE><CR></HEAD><CR><BODY><CR></BODY><CR></HTML><ESC>kkkkeela
 
 
 " set the commandheight
@@ -536,7 +507,6 @@ set cmdheight=2
 noremap wt :%s/[ ^I]*$//g
 set selectmode=mouse
 
-noremap wba :!vim ftp://tazjel@baniop.com/public_html/<CR>
 " do not keep a backup files
 set nobackup
 set nowritebackup
@@ -665,7 +635,6 @@ endif
 command! Q quit
 command! W write
 
-command -nargs=0 FormatXml :1,$!xmllint --format -<CR>
 
 " *****************************************************
 " C Y G W I N

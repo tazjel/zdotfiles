@@ -1,0 +1,6 @@
+So assuming the objective is to get both of these to run at 256 colors.
+
+Type these commands and post your results:
+1. "tput colors". This will report how many colors your terminal is using.
+2. "echo $TERM". This will tell you what terminal you are using.
+3. "echo $COLORTERM". If you are using a gnome you should see "gnome-terminal"
