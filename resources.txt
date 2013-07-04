@@ -1,0 +1,3 @@
+http://www.linuxcommand.org/learning_the_shell.php
+http://www.linuxcommand.org/writing_shell_scripts.php
+http://www.linuxcommand.org/script_library.php

@@ -1,0 +1,125 @@
+Ref: http://www.softsource.com.sg/2012/02/02/scripting-tips-1/
+Problem
+
+You have a script, and inside the script you call an external command. You want to know if the command has succeeded or failed, and take appropriate action. For example, you may want to know if the scp command that copies a local file to a remote destination was successful in the following example:
+$ cat utl_chk_scp.ksh
+#!/bin/ksh
+#
+# Copies a local file to a remote location.
+
+LOCAL_FILE=/opt/app/log.txt
+DEST_CONN=john@server1
+DEST_PATH=/opt/app/logs
+SCP=/usr/bin/scp
+
+echo “Performing scp of ${LOCAL_FILE} to ${DEST_CONN}:${DEST_PATH}”
+${SCP} -p -q ${LOCAL_FILE} ${DEST_CONN}:${DEST_PATH}
+
+
+Solution
+
+Obtain the exit code of the command from the shell variable $? .
+${SCP} -p -q ${LOCAL_FILE} ${DEST_CONN}:${DEST_PATH}
+
+# Check if the exit code from the previous scp command is 0
+# (for success) or not 0 (for failure).
+if [ $? -ne 0 ]; then
+echo “CRITICAL: Failed to scp ${LOCAL_FILE} to dest ${DEST_CONN}.”
+exit 1
+fi
+
+
+Discussion
+
+If the external command returns a message upon success or failure, then you can store the output of the external command into a variable using a backtick operator.
+OUTPUT_MSG=`command`
+
+Otherwise, you can capture the exit code of the command using the shell variable $? .
+
+This only works if the command adopts standard behaviour of returning an exit code of 0 when the command is successful, and non-zero when there are any errors during the execution of the command.
+
+For the above example:
+$ cat script.ksh
+#!/bin/ksh
+#
+# Copies a local file to a remote location.
+
+LOCAL_FILE=/opt/app/log.txt
+DEST_CONN=john@server1
+DEST_PATH=/opt/app/logs
+SCP=/usr/bin/scp
+
+echo “Performing scp of ${LOCAL_FILE} to ${DEST_CONN}:${DEST_PATH}”
+${SCP} -p -q ${LOCAL_FILE} ${DEST_CONN}:${DEST_PATH}
+
+if [ $? -ne 0 ]; then
+echo “CRITICAL: Failed to scp ${LOCAL_FILE} to dest ${DEST_CONN}.”
+exit 1
+fi
+exit 0
+
+It’s always a good practice to have your scripts return 1 or some non-zero value when there is an error, and 0 when the script has run successfully. That way, if this script is called from within another script, that script can also check the exit code to see if this script has executed successfully.
+
+Note that if you run multiple commands, then $? will store the exit code of the last command run. So if you wish to check for the success or failure of each command, you will need to test $? after each command has been executed.
+# Run 1st command.
+${SCP} -p -q ${LOCAL_FILE1} ${DEST_CONN1}:${DEST_PATH1}
+
+if [ $? -ne 0 ]; then
+echo “CRITICAL: Failed to scp ${LOCAL_FILE1} to dest ${DEST_CONN1}.”
+exit 1
+fi
+
+# Run 2nd command.
+${SCP} -p -q ${LOCAL_FILE2} ${DEST_CONN2}:${DEST_PATH2}
+
+if [ $? -ne 0 ]; then
+echo “CRITICAL: Failed to scp ${LOCAL_FILE2} to dest ${DEST_CONN2}.”
+exit 1
+fi
+
+This method also works if you have many functions in your script. In the following example, there are 3 functions, each will return 0 if the function runs successfully, and 1 if the function has an error. The main program calls each function in turn, and checks their exit code. If any of the function fails, the program exits with an exit code of 1.
+check_status() {
+# If success
+…
+return 0
+# else
+…
+return 1
+# fi
+}
+
+update_file() {
+# If success
+…
+return 0
+# else
+…
+return 1
+# fi
+}
+
+send_email() {
+# If success
+…
+return 0
+# else
+…
+return 1
+# fi
+}
+
+# Main program.
+check_status
+if [ $? -ne 0 ]; then
+exit 1;
+fi
+
+update_file
+if [ $? -ne 0 ]; then
+exit 1;
+fi
+
+send_email
+if [ $? -ne 0 ]; then
+exit 1;
+fi

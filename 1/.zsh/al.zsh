@@ -7,7 +7,11 @@ clear
 echo -e "                   بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
 ########################################################
 # <F0> git
-#
+export N6=/dev/null
+# ahave - Function to check if a program exists in path
+function ahave() 
+{ unset -v ahave; command command type $1 &>$N6 && ahave="yes" || return 1; }
+
 ########################################################
 # Put readline into vi mode
 #set -o vigit config --global user.name
@@ -520,6 +524,7 @@ alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'
 
 alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
 
+alias 'wph'='vim ~/zdotfiles/References/UNIX_Philosophy/make_a_for_everyone'
 alias 'wshut'='sudo shutdown -h now'
 
 alias 'whis'='cut -f2 -d";" ~/.zsh_history | grep "$1" | sort -u'
@@ -802,3 +807,4 @@ alias ':q'='exit'
 # Grep for regular expression globally, list files and positions.
 alias 'wfg'='find . -name "*.pbt" -exec grep -Hirn "declareObject.*Common_Down"
 {} \;'
+
