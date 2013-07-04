@@ -95,13 +95,13 @@ show_menu_two () {
     echo "0. Exit"
 }
 #}
-menu_read_options_two() {
+read_options() {
     local choice
     echo "==============="
     echo ""
     read -p "Enter:" choice
     case $choice in
-        1) two_one ;;
+        1) one ;;
         2) 2_two ;;
         3) 2_three ;;
         0) exit 0;;

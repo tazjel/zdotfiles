@@ -793,4 +793,12 @@ alias 'wen'='setxmap -layout us'
 #Enable Arabic . English alt shift
 alias 'wenar'setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
 
+# Check if a .no domain is available
+check_dns_no() { for i in $* ; do if `wget -O - -q http://www.norid.no/domenenavnbaser/whois/?query=$i.no | grep "no match" &>/dev/null` ; then echo $i.no "available" ; fi ; sleep 1 ;done }
 
+# alias to close terminal with :q
+alias ':q'='exit'
+
+# Grep for regular expression globally, list files and positions.
+alias 'wfg'='find . -name "*.pbt" -exec grep -Hirn "declareObject.*Common_Down"
+{} \;'
