@@ -136,7 +136,15 @@ start_GUI
 #}
 
 #{Review
+
+# Check if a string is into a variable
+#± var="w ww www";[[ ${var##*w*} != ${var} ]] && echo "yes"
+# export key-value pairs list as environment variables
+#while read line; do export $line; done < <(cat input)
+
+
 ### If - while test}
+
 ###}
 #{User defined function
 

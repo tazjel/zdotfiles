@@ -1,0 +1,47 @@
+# commandlinefu.com by David Winterbottom
+
+# sqlite3 cmd to extract Firefox bookmarks from places.sqlite
+sqlite3 ~/.mozilla/firefox/*default/places.sqlite "select a.url, a.title from moz_places a, moz_bookmarks b where a.id=b.fk and b.parent=2;"
+
+# Automatic Plesk login:
+https://yourserver.com:8443/login_up.php3?login_name=admin&passwd=yourpassword
+
+# convert chrome html export to folders, links and descriptions
+grep -E '<DT><A|<DT><H3' bookmarks.html | sed 's/<DT>//' | sed '/Bookmarks bar/d' | sed 's/ ADD_DATE=\".*\"//g' | sed 's/^[ \t]*//' | tr '<A HREF' '<a href'
+
+# bookmarklet for commandlinefu.com search
+echo "javascript:location.href='http://www.commandlinefu.com/commands/matching/'+encodeURIComponent('%s')+'/'+btoa('%s')+'/sort-by-votes'"
+
+# backup delicious bookmarks
+curl --user login:password -o DeliciousBookmarks.xml -O 'https://api.del.icio.us/v1/posts/all'
+
+# Directory bookmarks
+bm () { ... see description }
+
+# Directory bookmarks
+bm() { export BM${1?"bookmark name missing"}="$PWD" ; }; forget() { unset BM${1?"bookmark name missing"} ; }
+
+# Quick directory bookmarks
+to() { eval dir=\$$1; cd "$dir"; }
+
+# Delicious search with human readable output
+filterous -dntb --tag Bash < bookmarks.xml
+
+# List your installed Chromium extensions (with url to each page)
+for i in $(find ~/.config/chromium/*/Extensions -name 'manifest.json'); do n=$(grep -hIr name $i| cut -f4 -d '"'| sort);u="https://chrome.google.com/extensions/detail/";ue=$(basename $(dirname $(dirname $i))); echo -e "$n:\n$u$ue\n" ; done
+
+# Parse bookmarks and download youtube files
+sed 's+href="\([^"]*\)"+\n\1\n+g' bookmarks.html | grep '^http' |clive
+
+# get delicious bookmarks on your shell (text version :-))
+curl -u 'username'   https://api.del.icio.us/v1/posts/all   |  sed 's/^.*href=//g;s/>.*$//g;s/"//g' | awk '{print $1}' | grep 'http'
+
+# my command for downloading  delicious web links,
+wget -r --wait=5 --quota=5000m --tries=3 --directory-prefix=/home/erin/Documents/erins_webpages  --limit-rate=20k  --level=1 -k -p -erobots=off -np -N  --exclude-domains=del.icio.us,doubleclick.net -F -i ./delicious-20090629.htm
+
+# List last opened tabs in firefox browser
+F="$HOME/.moz*/fire*/*/session*.js" ; grep -Go 'entries:\[[^]]*' $F | cut -d[ -f2 | while read A ; do echo $A | sed s/url:/\n/g | tail -1 | cut -d\" -f2; done
+
+# Download all Delicious bookmarks
+curl -u username -o bookmarks.xml https://api.del.icio.us/v1/posts/all
+
