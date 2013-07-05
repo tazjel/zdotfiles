@@ -60,6 +60,8 @@ alias al='alias | grep'
 alias zz='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
+alias zza='kate $HOME/zdotfiles/1/.zsh/arabic_alias.zsh && source
+$HOME/zdotfiles/1/.zsh/arabic_alias.zsh'
 ########################################################
 # <F3>
 ########################################################
@@ -367,7 +369,8 @@ alias d='dirs -v | head -10'
 
 alias -g 'Gx'='--exclude-dir=cache .'
 alias 'GX'='grep -iaR "$1"--exclude-dir=cache'
-
+# USAGE: wG string string filename
+alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)"'
 function wW_grep_logs(){
     grep "$1" */logs/*.log
 }
@@ -456,7 +459,6 @@ alias 'wX'='chmod -x'
 
 alias 'W'='echo'
 
-alias 'w-grep'='grep -vE "^$|^[\s]*[;#]"'
 alias 'wwww'='wfw'
 alias 'wws'='PS3="nter a number: "; select f in *;do $EDITOR $f; break; done'
 wwws () {
@@ -690,6 +692,8 @@ alias 'wjs'='jstest --normal /dev/input/js0'
 # Find out the permissions of the current directory
 #ls -lad
 
+alias 'wfd'='find -maxdepth 1 -type d | while read dir; do echo $dir; echo cmd2;
+done'
 
 #{find search recursively
 function wfs_find_string () {

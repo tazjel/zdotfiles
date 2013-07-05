@@ -1,0 +1,77 @@
+# commandlinefu.com by David Winterbottom
+
+# english <--> german translation with dict.leo.org
+leo() { IFS=+; lang=en; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
+
+# Change a file to upper case
+tr a-z A-Z < file.txt
+
+# List all bash shortcuts
+bind -P
+
+# Say something out loud
+curl -A "Mozilla" "http://translate.google.com/translate_tts?tl=en&q=$(echo "$@" | sed 's/ /+/g')" | play -t mp3 -
+
+# Have Google Translate speak to you using your local speakers
+function say { mplayer -really-quiet "http://translate.google.com/translate_tts?tl=en&q=$1"; }
+
+# google tts
+say() { curl -sA Mozilla -d q=`python3 -c 'from urllib.parse import quote_plus; from sys import stdin; print(quote_plus(stdin.read()[:100]))' <<<"$@"` 'http://translate.google.com/translate_tts' | mpg123 -q -; }
+
+# Google text-to-speech in local language or language of choice
+say() { if [[ "${1}" =~ -[a-z]{2} ]]; then local lang=${1#-}; local text="${*#$1}"; else local lang=${LANG%_*}; local text="$*";fi; mplayer "http://translate.google.com/translate_tts?ie=UTF-8&tl=${lang}&q=${text}" &> /dev/null ; }
+
+# Google text-to-speech in mp3 format
+p=$(echo "hello world, how r u?"|sed 's/ /+/g');wget -U Mozilla -q -O - "$@" translate.google.com/translate_tts?tl=en\&q=$p|mpg123 -
+
+# Gets the english pronunciation of a phrase
+say() { local IFS=+;mplayer "http://translate.google.com/translate_tts?q=$*"; }
+
+# Gets the english pronunciation of a phrase
+say() { mplayer "http://translate.google.com/translate_tts?q=$1"; }
+
+# Gets the english pronunciation of a phrase
+say() { wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?tl=en&q=$1"; gnome-terminal -x bash -c "totem output.mp3"; sleep 4; totem --quit;}
+
+# Gets the english pronunciation of a phrase
+curl -A "Mozilla" "http://translate.google.com/translate_tts?tl=en&q=hello+world" | play -t mp3 -
+
+# Translates a phrase from English to Portuguese
+curl -s -A "Mozilla" "http://translate.google.com.br/translate_a/t?client=t&text=Hi+world&hl=pt-BR&sl=en&tl=pt&multires=1&ssel=0&tsel=0&sc=1" | awk -F'"' '{print $2}'
+
+# Gets the english pronunciation of a phrase
+curl -A "Mozilla" "http://translate.google.com/translate_tts?tl=en&q=hello+world" > hello.mp3
+
+# Timer with sound alarm
+say(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=en&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }; sleep 3s && say "wake up, you bastard"
+
+# Google text-to-speech in mp3 format
+say(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=en&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ;  }
+
+# Google text-to-speech in mp3 format
+wget -q -U Mozilla -O output.mp3 "http://translate.google.com/translate_tts?ie=UTF-8&tl=en&q=hello+world
+
+# Google Translate
+wget -U "Mozilla/5.0" -qO - "http://translate.google.com/translate_a/t?client=t&text=translation+example&sl=auto&tl=fr" | sed 's/\[\[\[\"//' | cut -d \" -f 1
+
+# translate with google, get all translations
+translate() { echo $1: $(wget -q -O - 'http://www.google.de/dictionary?source=translation&q='$1'&langpair=en|de' | grep '^<span class="dct-tt">.*</span>$' | sed 's!<span class="dct-tt">\(.*\)</span>!\1, !'); }
+
+# translates acronyms for you
+wtf is <acronym>
+
+# Replace spaces in filename
+ls | while read -r FILE; do mv -v "$FILE" `echo $FILE | tr -d ' '`; done
+
+# translate what is in the clipboard in english and write it to the terminal
+tw translate.google.com.de-en `xsel`
+
+# translate what is in the clipboard in english and write it to the terminal
+curl -s "http://ajax.googleapis.com/ajax/services/language/translate?langpair=|en&v=1.0&q=`xsel`" |cut -d \" -f 6
+
+# translate what is in the clipboard in english and write it to the terminal
+wget -qO - "http://ajax.googleapis.com/ajax/services/language/translate?langpair=|zh-cn&v=1.0&q=`xsel`" |cut -d \" -f 6
+
+# translate what is in the clipboard in english and write it to the terminal
+wget -qO - "http://ajax.googleapis.com/ajax/services/language/translate?langpair=|en&v=1.0&q=`xsel`" |cut -d \" -f 6
+

@@ -102,66 +102,6 @@ nnoremap <silent> w0 :vsplit ~/Dropbox/A/.vimrc.local<CR>
 
 " Since I use linux, I want this
 let g:clipbrdDefaultReg = '+'
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
 "nnoremap <silent> ww :vsplit ~/zdotfiles/2/.vimrc.localw<CR>
 nnoremap <silent> w2 :vsplit ~/zdotfiles/2/.vimrc.localw<CR>
@@ -201,28 +141,15 @@ nnoremap <C-J> m`o<Esc>``
 nnoremap <C-K> m`O<Esc>``
 
 
-
-
-
-
 map <S-Enter> O<Esc>j
 map <CR> o<Esc>k
-
-
 
 "!sed 's/<[^>]*>//g' %
 
 "find files
 
-" Recursively search your directory tree files for a string
-
-"alias gfind='find . -print0  | xargs -0 egrep -I '
-"map zz :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR><ESC>Gp<ESC><C-W><C-W>
-
 cab wz w ~/zdotfiles/1/
-
 cab wv w ~/zdotfiles/2/
-
 
 fun! RangerChooser()
     exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
@@ -245,68 +172,16 @@ fun! FindFiles()
     redraw!
 endfun
 
-"----------------------------------------
-"----------------------------------------
-"" Markers & moving about
-"'.               : jump to last modification line (SUPER)
-"`.               : jump to exact spot in last modification line
-"g;               : cycle thru recent changes (oldest first)
-"g,               : reverse direction
-":changes
-":h changelist    : help for above
-"<C-O>            : retrace your movements in file (starting from most recent)
-"<C-I>            : retrace your movements in file (reverse direction)
-":ju(mps)         : list of your movements
-":help jump-motions
-":history         : list of all your commands
-":his c           : commandline history
-":his s           : search history
-"q/               : Search history Window (puts you in full edit mode) (exit CTRL-C)
-"q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
-":<C-F>           : history Window (exit CTRL-C)
-                                "F6
 
-imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
-"---------------------------------------------------"
-
-"----------------------------------------
-"" *generate a list of numbers*  23-64
-"o23<ESC>qqYp<C-A>q40@q
-"----------------------------------------
-" : Pressing F5 lists all buffer, just type number
 set modifiable
-let g:is_bash=1
-ca w!! w !sudo tee "%"
-"map WW !sudo tee "%"
-
-"{
-
-"-----------------------------
-"   Pasteboard
-"-----------------------------
-"register :reg = line "
-"maps = line "
-"bookmarks"
-"marks
-"fold "!ls
-"auto complete"
-"tabs"
-"buffers"
-"windows"
-"set t_Co=256 "use 256 colours in terminal
-
-"}
-
-
+cab w!! w !sudo tee "%"
 map ws :!rm ~/.vimswap/*<CR>
 
 "Install unhtml
 map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
-""close"
-        "Save "
+
 set t_vb=
 set novisualbell
-
 map wy :set filetype=bash<CR>
 
 ""#map wf "{"<CR>#<CR>function<space>()<CR>{<CR><CR><CR>}<CR>"{"
@@ -512,10 +387,10 @@ set nobackup
 set nowritebackup
 
 set noswapfile
-" I like 4 spaces for indenting
+" 4 spaces for indenting
 set shiftwidth=4
 
-" I like 4 stops
+" 4 stops
 set tabstop=4
 
 " Replace tabs with spaces
@@ -578,11 +453,11 @@ set smartcase
 set scs
 
 " Set status line
-:set statusline=%<%f%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
-:hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
+set statusline=%<%f%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
+hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
 
 " GRB: clear the search buffer when hitting return
-:nnoremap <CR> :nohlsearch<CR>/<BS>
+nnoremap <CR> :nohlsearch<CR>/<BS>
 
 " Always display a status line at the bottom of the window
 set laststatus=2
@@ -605,9 +480,6 @@ set linebreak
 let java_highlight_all=1
 let java_highlight_debug=1
 
-
-
-
 let java_ignore_javadoc=1
 let java_highlight_functions=1
 let java_mark_braces_in_parens_as_errors=1
@@ -616,9 +488,6 @@ let java_mark_braces_in_parens_as_errors=1
 "let g:explVertical=1 " open vertical split winow
 "let g:explSplitRight=1 " Put new window to the right of the explorer
 "let g:explStartRight=0 " new windows go to right of explorer window
-
-
-
 
 "for the TOhtml command
 let html_use_css=1
@@ -634,8 +503,6 @@ endif
 " when capslock is pressed - standart commands works too
 command! Q quit
 command! W write
-
-
 " *****************************************************
 " C Y G W I N
 
@@ -649,7 +516,7 @@ command! W write
 
 "
 
-"set encoding=utf8
+set encoding=utf8
 "set fileencodings=utf8,cp1251
 
 
@@ -675,20 +542,6 @@ map <Leader>s :Sexplore<cr>
 
 vnoremap < <gv
 vnoremap > >gv
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 " Make p in Visual mode replace the selected text with the "" register.
 
@@ -719,10 +572,6 @@ map <c-a> ggVG
 
 " Undo in insert mode.
 imap <c-z> <c-o>u
-
-
-
-
 
 " ************************************************************************
 " B E G I N A U T O C O M M A N D S
@@ -797,8 +646,9 @@ endif
 " A B B R E V I A T I O N S
 
 "
-abbr #b /************************************************************************
-abbr #e ************************************************************************/
+abbr #b #!/bin/bash
+abbr #p #!/bin/Python 
+"# -*- coding: utf-8 -*-
 
 abbr hosts C:\WINNT\system32\drivers\etc\hosts
 
@@ -965,3 +815,30 @@ set grepprg=ack-grep
 "Reference https://github.com/signalpillar/dotfiles/blob/master/.vimrc
 
 colorscheme solarized
+
+
+"----------------------------------------
+"----------------------------------------
+"" Markers & moving about
+"'.               : jump to last modification line (SUPER)
+"`.               : jump to exact spot in last modification line
+"g ;               : cycle thru recent changes (oldest first)
+"g,               : reverse direction
+":changes
+":h changelist    : help for above
+"<C-O>            : retrace your movements in file (starting from most recent)
+"<C-I>            : retrace your movements in file (reverse direction)
+":ju(mps)         : list of your movements
+":help jump-motions
+":history         : list of all your commands
+":his c           : commandline history
+":his s           : search history
+"q/               : Search history Window (puts you in full edit mode) (exit CTRL-C)
+"q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
+":<C-F>           : history Window (exit CTRL-C)
+                                "F6
+
+imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
+"---------------------------------------------------"
+
+"let g:is_bash=1

@@ -6,3 +6,5 @@ alias "اكتب عربي"="vim -A"
 alias "اعد"="zsh"
 alias "نظف"="clear"
 alias "التاريخ"="clear"
+
+alias "التحديث"="agg"
