@@ -186,3 +186,5 @@ wthree () {
 function grep_zsh_history () {
     cut -f2 -d";" ~/.zsh_history | sort | uniq -c | sort -nr | grep $1;
 }
+# Check if variable is a number
+#± wnu () {if [[ "$1" =~ ^[0-9]+$ ]]; then echo "Is a number"; fi}

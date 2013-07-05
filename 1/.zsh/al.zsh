@@ -822,4 +822,5 @@ alias 'wfg'='find . -name "*.pbt" -exec grep -Hirn "declareObject.*Common_Down"
 # Check if system is 32bit or 64bit
 #getconf LONG_BIT
 wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=ar&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ; }
-
+# Print free RAM in MB
+# free -m | awk '/cache:/ {print $4}'
