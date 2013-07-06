@@ -832,9 +832,9 @@ wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?t
 
 
 
+
 #http://vlc.polyu.edu.hk/academicwriter/Frames/framesLinks.htm
 #http://owl.english.purdue.edu/owl/
  #lynx -dump http://www.phrasebank.manchester.ac.uk | awk '/http/{print $2}' | egrep "^https{0,1}"
 #○ wget --recursive --page-requisites --convert-links http://www.phrasebank.manchester.ac.uk
 
-vimhtml() { [[ -f "$1" ]] || return 1; vim +'syn on | run! syntax/2html.vim | wq | q' "$1";}
