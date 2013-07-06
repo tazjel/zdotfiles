@@ -3,7 +3,6 @@
 ########################################################
 # Author : AHMED BANI
 # startup
-clear
 echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
 echo -e "\t\t\t\t $(date)"
 ########################################################
@@ -124,7 +123,7 @@ alias __="sudo"
 
 #######################################
 
-alias 'w'='zsh;ls -alF;pwd;echo -e "\t\t\t$(date)"'
+alias 'w'='clear;ls -a;pwd;echo -e "\t\t\t$(date)"'
 
 alias 'ww'='vim'
 alias 'kk'='kate'
@@ -824,3 +823,18 @@ alias 'wfg'='find . -name "*.pbt" -exec grep -Hirn "declareObject.*Common_Down"
 wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=ar&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ; }
 # Print free RAM in MB
 # free -m | awk '/cache:/ {print $4}'
+
+# Unbelievable Shell Colors, Shading, Backgrounds, Effects for Non-X
+
+ #for c in `seq 0 255`;do t=5;[[ $c -lt 108 ]]&&t=0;for i in `seq $t 5`;do echo -e "\e[0;48;$i;${c}m|| $i:$c `seq -s+0 $(($COLUMNS/2))|tr -d '[0-9]'`\e[0m";done;done
+
+
+
+
+
+#http://vlc.polyu.edu.hk/academicwriter/Frames/framesLinks.htm
+#http://owl.english.purdue.edu/owl/
+ #lynx -dump http://www.phrasebank.manchester.ac.uk | awk '/http/{print $2}' | egrep "^https{0,1}"
+#○ wget --recursive --page-requisites --convert-links http://www.phrasebank.manchester.ac.uk
+
+vimhtml() { [[ -f "$1" ]] || return 1; vim +'syn on | run! syntax/2html.vim | wq | q' "$1";}

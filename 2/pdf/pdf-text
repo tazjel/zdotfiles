@@ -1,0 +1,24 @@
+context-doc-nonfree - ConTeXt documentation that is not DFSG free
+aephea - text-based authoring tool for HTML
+antiword - Converts MS Word files to text, PS and PDF
+context - powerful TeX format
+diffpdf - compare two PDF files textually or visually
+fig2ps - Converts xfig files into ps, eps or pdf files using LaTeX for processing text
+gpdftext - GTK+ text editor for ebook PDF files
+libghc-pango-dev - Binding to the Pango text rendering engine
+libghc-pango-doc - Binding to the Pango text rendering engine; documentation
+libghc-pango-prof - Binding to the Pango text rendering engine; profiling libraries
+libitext-java - Java Library to create and manipulate PDF on the fly
+libitext-java-gcj - Java Library to create and manipulate PDF on the fly
+libitext-rups-java - graphical tool for Reading and Updating PDF Syntax (RUPS)
+libitext1-java - Java Library to generate PDF on the Fly
+libitext5-java - Java Library to create and manipulate PDF on the fly
+libitext5-java-doc - Java Library to create and manipulate PDF on the fly (documentation)
+libtext-flow-perl - module providing generalized text wrapping
+libtext-pdf-perl - Relatively low-level interface for manipulating PDFs
+ne-doc - documentation for the ne text editor
+pstotext - Extract text from PostScript and PDF files
+python-pyth - Python text markup and conversion
+recoll - Personal full text search package with a Qt GUI
+retext - Simple text editor for Markdown and reStructuredText
+umlet - simple, text driven UML drawing tool
