@@ -1,4 +1,5 @@
-#!/usr/bin/env bash
+#!/bin/bash
+
 git config --global user.name "Ahmed Bani"
 git config --global user.email "tazjel@gmail.com"
 git config --global credential.helper cache
