@@ -838,3 +838,7 @@ wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?t
  #lynx -dump http://www.phrasebank.manchester.ac.uk | awk '/http/{print $2}' | egrep "^https{0,1}"
 #○ wget --recursive --page-requisites --convert-links http://www.phrasebank.manchester.ac.uk
 
+
+alias 'ww_check_bluetooth'='hciconfig' 
+
+

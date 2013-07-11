@@ -1,0 +1,15 @@
+Xubuntu 12.04 WARNING: gnome-keyring:: couldn’t connect to: /tmp/keyring-xxxxxx pkcs11: No such file or directory
+                 November 23rd, 2012 by technomage Leave a reply »
+
+
+                 If you upgraded Xubuntu to 12.04, and getting that error.
+                 Edit /etc/xdg/autostart/gnome-keyring-pkcs11.desktop file
+                 You need to edit it as root or using sudo.
+                 Look for a line that looks like :
+                 OnlyShowIn=GNOME;Unity;
+
+                 after ; (semicolon) … add XFCE
+                 so it looks like => OnlyShowIn=GNOME;Unity;XFCE;
+
+                 reboot the computer…
+

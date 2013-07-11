@@ -1,0 +1,14 @@
+http://freethoughtblogs.com/lousycanuck/2012/06/05/getting-a-ps3-controller-to-work-with-windows-and-linux-comparecontrast/
+
+ have an archive of a bunch of drivers, but this is the one I’ve used:
+ http://ps3.dashhacks.com/downloads/ps3-sixaxis-win32-driver
+ads/ps3-sixaxis-win32-driver
+
+1. Install the filter driver (libusb-win32-filter-bin-0.1.10.1.exe).
+2. Unpack ps3sixaxis_en.exe
+3. Plug the SIXAXIS into your PC.
+4. Run ps3sixaxis_en.exe once. (Whenever you connect it.)
+5. Push the PS button on the SIXAXIS once if it doesn’t see it straight away.
+!***Hurry up and press PS button immediately upon execution before the window closes.***!
+
+I find it helpful to have the controller CPL open to see if it takes. Also, to reassign keys.
