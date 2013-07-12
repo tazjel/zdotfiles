@@ -1,0 +1,38 @@
+# commandlinefu.com by David Winterbottom
+
+# Use wpa_supplicant to access a wifi AP without using a .conf file
+wpa_passphrase "ESSID" "Password" | wpa_supplicant -Dwext -iwlan0 -c/dev/stdin&
+
+# Pop up a Growl alert if Amtrak wifi doesn't know where to find The Google
+while [ 1 ]; do (ping -c 1 google.com || growlnotify -m 'ur wifiz, it has teh sad'); sleep 10; done
+
+# Continuously show wifi signal strength on a mac
+while i=1; do /System/Library/PrivateFrameworks/Apple80211.framework/Versions/Current/Resources/airport -I | grep CtlRSSI; sleep 0.5; done
+
+# place wifi card into monitor mode
+iwconfig wlan0 mode monitor
+
+# Generate a Random MAC address
+macchanger --random interface
+
+# Get current connected wireless network with nm-tools
+nm-tool 2>/dev/null|sed -n '/Type:[ ]*802.11 WiFi/,/IPv4 Settings/{ /State:[ ]*connected/,/IPv4 Settings/{ s/^[ ]*//;/^\*.*Infra/ { s/^*//;s/:.*//;p }}}'
+
+# Have an ssh session open forever
+autossh -M50000 -t server.example.com 'screen -raAd mysession'
+
+# Resets your MAC to a random MAC address to make you harder to find.
+ran=$(head /dev/urandom | md5sum); MAC=00:07:${ran:0:2}:${ran:3:2}:${ran:5:2}:${ran:7:2}; sudo ifconfig wlan0 down hw ether $MAC; sudo ifconfig wlan0 up; echo ifconfig wlan0:0
+
+# Monitoring wifi connection by watch command (refresh every 3s), displaying iw dump info and iwconfig on wireless interface "wlan0"
+watch -d -n 3 "iw dev wlan0 station dump; iwconfig wlan0"
+
+# Put the wireless card into monitor mode
+airmon-ng start <interface> <channel>
+
+# restart network manager
+sudo /etc/init.d/networking restart
+
+# Generat a Random MAC address
+MAC=`(date; cat /proc/interrupts) | md5sum | sed -r 's/^(.{10}).*$/\1/; s/([0-9a-f]{2})/\1:/g; s/:$//;'`
+
