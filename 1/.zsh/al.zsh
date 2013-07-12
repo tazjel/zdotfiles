@@ -829,7 +829,8 @@ wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?t
  #for c in `seq 0 255`;do t=5;[[ $c -lt 108 ]]&&t=0;for i in `seq $t 5`;do echo -e "\e[0;48;$i;${c}m|| $i:$c `seq -s+0 $(($COLUMNS/2))|tr -d '[0-9]'`\e[0m";done;done
 
 
-
+# Sort the size usage of a directory tree by gigabytes, kilobytes, megabytes, then bytes.
+dh() { du -ch --max-depth=1 "${@-.}"|sort -h }
 
 
 
@@ -837,4 +838,26 @@ wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?t
 #http://owl.english.purdue.edu/owl/
  #lynx -dump http://www.phrasebank.manchester.ac.uk | awk '/http/{print $2}' | egrep "^https{0,1}"
 #○ wget --recursive --page-requisites --convert-links http://www.phrasebank.manchester.ac.uk
+
+# Compare two directory trees.
+#diff <(cd dir1 && find . | sort) <(cd dir2 && find . | sort)
+
+# Sort lines using the Xth characted as the start of the sort string
+#sort -k1.x
+
+# sort lines by length
+#awk '{print length, $0;}' | sort -nr
+
+# Print the 10 deepest directory paths
+#find . -type d | perl -nle 'print s,/,/,g," $_"' | sort -n | tail
+
+# To get  internet connection information .
+#sudo /bin/netstat -tpee
+
+# Remove duplicate rows of an un-sorted file based on a single column
+#awk '{ if ($1 in stored_lines) x=1; else print; stored_lines[$1]=1 }' infile.txt > outfile.txt
+
+# Efficiently extract lines between markers
+#sed -n '/START/,${/STOP/q;p}'
+
 
