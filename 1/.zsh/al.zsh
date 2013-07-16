@@ -839,7 +839,6 @@ dh() { du -ch --max-depth=1 "${@-.}"|sort -h }
  #lynx -dump http://www.phrasebank.manchester.ac.uk | awk '/http/{print $2}' | egrep "^https{0,1}"
 #○ wget --recursive --page-requisites --convert-links http://www.phrasebank.manchester.ac.uk
 
-<<<<<<< HEAD
 
 alias 'ww_check_bluetooth'='hciconfig' 
 =======
@@ -863,6 +862,5 @@ alias 'ww_check_bluetooth'='hciconfig'
 
 # Efficiently extract lines between markers
 #sed -n '/START/,${/STOP/q;p}'
->>>>>>> d3013feed6b5c2889b272886a0afd60a611d112c
-
-
+alias 'wlen'="export LANG="en_US.UTF-8"
+alias 'wl'='locale'
