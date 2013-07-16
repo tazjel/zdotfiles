@@ -1,0 +1,22 @@
+
+: 1366388457:0;ag '^sed .' aliases_banK_sReplace_alias_added | sed 's/[#;].*//g'sed | 's/<[^>]*>//g'
+: 1366388498:0;ag 'sed ' aliases_banK_sReplace_alias_added | sed 's/[#;].*//g' | sed 's/<[^>]*>//g'
+: 1366509509:0;date --rfc-822|  awk '{print $5}' | sed 's/^.*:.*://g'
+: 1366532348:0;ag awk | sed 's/^  *>//g' | fold -s --width=$MAXWIDTH
+: 1366532550:0;ag awk | sed 's/^  *>//g' | sed -e 's/\./\. /g' -e 's/_/_ /g' | sed -e '/#/d' | tr -d '\n'
+: 1366532586:0;ag awk | sed 's/^  *>//g' | sed -e 's/\./\. /g' -e 's/_/_ /g' | sed -e '/#/d' | tr -d '\n' | sed -e '1,/^$/d' -e '/^[ ]*$/d'
+: 1366532598:0;ag awk | sed 's/^  *>//g' | sed -e 's/\./\. /g' -e 's/_/_ /g' |  sed -e '1,/^$/d' -e '/^[ ]*$/d'
+: 1366532607:0;ag awk | sed 's/^  *>//g' | sed -e '1,/^$/d' -e '/^[ ]*$/d'
+: 1366532651:0;ag awk | sed -e '1,/^$/d' -e '/^[aw ]*$/d'
+: 1366533991:0;sudo ag 'alias' /home | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | grep sed | sort -u  
+: 1366534131:0;sudo ag 'sed' /home | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | grep sed | sort -u | less
+: 1366534174:0;sudo ag -w 'sed' /home | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | grep sed | sort -u | less
+: 1366534561:0;ag 'alias' | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | grep sed  
+: 1366534969:0;ag --hidden 'alias' | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | sort -u | sed 's/^.*=//g'
+: 1366535361:0;ag 'html' | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | sort -u | sed 's/^.*=\[\/]//'
+: 1366535486:0;ag 'sed' | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | sort -u | sed 's/^.*=\[\/]//' | sed 's/<[^>]*>//g' 
+: 1366535520:0;ag 'tazjel' | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | sort -u | sed 's/^.*=\[\/]//' | sed 's/<[^>]*>//g' 
+: 1366535650:0;grep -RnisI tazjel
+: 1366535668:0;grep -RnisI tazjel | sed 's/^.*:.*://g' | sed 's/\"/\\\"/g' | sed 's/<[^>]*>//g' | sort -u | sed 's/^.*=\[\/]//' | sed 's/<[^>]*>//g' 
+: 1366538290:0;ssh-keygen -P '' -f ~/.ssh/id_rsa -b 2048; ssh-copy-id root@192.168.1.2; ssh root@192.168.1.2
+: 1366537537:0;__ nmap -sP 192.168.1.0/24 | awk '{print $1 , $2 , $3 }'

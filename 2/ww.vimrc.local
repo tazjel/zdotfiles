@@ -1,0 +1,109 @@
+"Modeline and Notes     Fold"
+">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>"
+"
+"   _____       _______        ___ __
+"  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
+"    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
+"    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
+"    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
+"
+"
+"   This is the personal .vimrc file of Ahmed Alghamdi.
+"   While much of it is beneficial for general use, I would
+"   recommend picking out the parts you want and understand.
+"
+"   This is a mirror of :http://spf13.com
+set foldmethod=manual
+set t_Co=256 "use 256 colours in terminal
+set nocompatible "necessary for project plugin
+set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
+"set clipboard=unnamedplus
+set encoding=utf-8
+
+
+
+nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
+
+vnoremap <Space> zf
+
+"-----------------------------
+"            wWw
+"-----------------------------
+
+"map Y y$
+map <C-c> "+y<CR>
+
+""""""""""""""
+"Save "
+nnoremap <silent> W :w<cr>
+"close"
+nnoremap <silent> ; :q!<cr>
+
+"==================================="
+"            F[1-12]
+"==================================="
+
+"find files
+fun! FindFiles()
+  let $filename = input("Enter file name to find: ")
+  let $error_file = $HOME."/.findfile.output"
+  silent! exe "!find . -iname \"".$filename."\" \| xargs file \| perl -pe 's/:/:1:/' > ".$error_file
+  cfile $error_file
+  copen
+  redraw!
+endfun
+
+"""""""""""""""""""""""""""""""""""""""
+"
+""nnoremap <-F3> :call FindFiles()<CR>
+
+"vnoremap <C-F3> y<C-W><C-W>G$]P<C-W><C-W>
+""verbose map "F4
+
+                                                "diff"
+map <F3> ]c
+map <s-F3> [c
+map <C-F3> dp
+map <M-F3> do
+
+                                                "commenter"
+""map <F1> ,cc
+map <F1> ,c<Space>
+
+
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+
+
+
+"F5
+"F6
+"F7
+"F8
+"F9
+"F10
+"F11
+"F12
+
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+
+
+ "substitute 
+
+"map <F7> :%s//gc<Left><Left><Left>
+"map <F8> :%s/<[^>]*>//gi<cr>
+
+
+"F5"
+    " source vimrc
+nnoremap <silent> <F5> :source ~/.vimrc.local<cr>
+nnoremap <silent> <C-F5> :vsplit ~/.vimrc.local<CR>
+nnoremap <silent> <S-F5> :SessionOpen zmap<CR>
+
+"F9"
+    " SessionOpen:
+nnoremap <silent> <C-F9> :SessionSave<CR>
+nnoremap <silent> <S-F9> :SessionList<CR>
+nnoremap <M-F9> :SessionOpen
+"nnoremap <C-F9> :SessionSaveAs
+

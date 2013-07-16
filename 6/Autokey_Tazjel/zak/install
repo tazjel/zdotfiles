@@ -1,0 +1,31 @@
+﻿
+32-bit:
+
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86" | tar xzf -
+
+64-bit:
+
+cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+
+Next, run the Dropbox daemon from the newly created .dropbox-dist folder.
+
+~/.dropbox-dist/dropboxd
+
+
+
+
+remove bluedevile
+sudo add-apt-repository ppa:cdekter/ppa
+
+The next command downloads the list of currently available software for all of the software packages available from the repositories you have configured, including AutoKey's. This might take a few minutes to finish.
+
+sudo apt-get update 
+sudo apt-get install autokey 
+
+Or you can do all this by simply running these commands:
+sudo add-apt-repository ppa:falk-t-j/qtsixa
+sudo apt-get update
+sudo apt-get install qtsixa onboard
+ 
+krusader -root-mode
+

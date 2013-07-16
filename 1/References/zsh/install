@@ -1,0 +1,9 @@
+ 960  . ~/.oh-my-zsh/tools/install.sh
+ 4964  mv ~/.oh-my-zsh ~/.bkup_oh-my-zsh
+ 4965  wget --no-check-certificate https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh -O - | sh
+ 5023  git clone https://github.com/tazjel/oh-my-zsh-powerline-theme.git
+
+ 5024  cd oh-my-zsh-powerline-theme
+ 5030  ./install_in_omz.sh
+ 5035  TERM="xterm-256color"
+ 5036  zsh
