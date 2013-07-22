@@ -841,7 +841,6 @@ dh() { du -ch --max-depth=1 "${@-.}"|sort -h }
 
 
 alias 'ww_check_bluetooth'='hciconfig' 
-=======
 # Compare two directory trees.
 #diff <(cd dir1 && find . | sort) <(cd dir2 && find . | sort)
 
@@ -862,5 +861,5 @@ alias 'ww_check_bluetooth'='hciconfig'
 
 # Efficiently extract lines between markers
 #sed -n '/START/,${/STOP/q;p}'
-alias 'wlen'="export LANG="en_US.UTF-8"
+alias 'wlen'='export LANG="en_US.UTF-8" '
 alias 'wl'='locale'
