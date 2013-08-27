@@ -26,3 +26,6 @@ git fetch upstream
 
 sh ~/zdotfiles/0/spf13.sh
 
+sudo apt-get install ubuntu-restricted-extras
+sudo apt-get install aptitude
+sudo apt-get install aptitude
