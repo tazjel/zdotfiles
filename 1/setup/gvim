@@ -1,0 +1,8 @@
+
+Change the following setting:
+
+text/plain=gedit.desktop
+
+to
+
+text/plain=gvim.desktop

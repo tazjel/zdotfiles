@@ -1,0 +1,20 @@
+Metadata-Version: 1.1
+Name: key-mon
+Version: 1.16
+Summary: A screencast utility that displays your keyboard and mouse status
+Home-page: http://code.google.com/p/key-mon
+Author: Scott Kirkwood
+Author-email: scott+keymon@forusers.com
+License: Apache 2.0
+Download-URL: http://key-mon.googlecode.com/files/key-mon-1.16.zip
+Description: Key-mon is useful for teaching since it shows the current status of your
+        keyboard and mouse and you use them in another application.  No longer do you need to say
+        'Now I'm pressing the Ctrl-D key', your students can just see the keystroke for themselves.
+Keywords: keyboard status monitor education
+Platform: POSIX
+Classifier: Development Status :: 5 - Production/Stable
+Classifier: Environment :: X11 Applications
+Classifier: Intended Audience :: Education
+Classifier: License :: OSI Approved :: Apache Software License
+Classifier: Operating System :: POSIX :: Linux
+Classifier: Topic :: Education :: Computer Aided Instruction (CAI)
