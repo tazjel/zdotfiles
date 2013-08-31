@@ -1,4 +1,3 @@
-
 wget http://www.web2py.com/examples/static/web2py_src.zip
 unzip web2py_src.zip
 
@@ -15,3 +14,8 @@ python -c "from gluon.main import save_password; save_password(raw_input('admin 
 #path = '/home/<username>/web2py'
 #if path not in sys.path: sys.path.append(path)
 #from wsgihandler import application # the web2py handler
+
+
+#wget http://web2py.googlecode.com/hg/scripts/setup-web2py-ubuntu.sh
+#chmod +x setup-web2py-ubuntu.sh
+#sudo ./setup-web2py-ubuntu.sh
