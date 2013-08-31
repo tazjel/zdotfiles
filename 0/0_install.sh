@@ -3,6 +3,22 @@
 sudo apt-get install ubuntu-restricted-extras
 sudo apt-get install -y vim zsh konsole xclip git-core openssh-server curl wget vim-gnome aptitude mercurial inkscape
 
+#!/usr/bin/env bash
+
+function installit {
+for i in bluemon\
+    vim \
+    konsole \
+    bluez-hcidump \
+    zsh; do
+        sudo apt-get install -y $i
+done;
+}
+installit
+echo "Done "
+
+
+
 # From : http://jetpackweb.com/blog/topics/linux/
 # Linux Tip: Keep track of packages you have installed
 # words by Brian Racer
