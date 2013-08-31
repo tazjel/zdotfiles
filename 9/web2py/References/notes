@@ -1,0 +1,1340 @@
+  
+
+# Here, we have to some notes made by Joe Dorocak aka Joe Codeswell from his website at http://joecodeswell.wordpress.com/web2py-notes/#Contents
+# Visit his website for more valuable help and support
+# Retrieved on : 31/08/2013
+
+
+Web2py Notes
+
+Contents:
+
+
+Samples
+DAL:  Define Table, Fields, DAL Basics, Validators, DAL Quick Reference, DAL Doctest Examples
+FORMs:  SQLFORM,CRUD & Manage
+Help and Resources
+URL Mapping
+Clips:  Bruno Rocha’s Minimum Layout, Make Download on the Fly
+Samples Back to Contents
+
+Run from cmd line
+
+cd \web2py
+python web2py.py -S myappname -M
+
+Markmin to html
+
+In controllers/default.py
+
+def my_action():
+    my_MM = '''## Sub Menu Structure for Add Table
+### Background
+Sub-menus are not appearing in Opera with Web2py v2.3.2. 
+
+AddTable:
+    - [[longTableForm %s]]   
+    - [[shortTableForm %s]]   
+    - [[shortTableAndFields %s]]   
+'''%(URL('default','add_long_tprops'),
+    URL('default','add_short_tprops'),
+    URL('default','add_short_tprops_and_fprops'),
+    )   
+
+    return dict(message=MARKMIN(my_MM))
+
+"Choice" Field
+
+Field('sharp_flat_pref', requires = IS_IN_SET(('sharp', 'flat', 'none')), 
+    comment='none->both'),
+
+
+Menu Example
+
+response.menu = [
+ (T('Home'), False, URL('default','index'), []),
+ (T('ContactUs'), False, URL('default','index'), [
+     (T('CU-00'), False, URL('default','update_t_contactus00'), []),
+     (T('CU-01'), False, URL('default','update_t_contactus01'), []),
+     (T('CU-02'), False, URL('default','update_t_contactus02'), []),
+     (T('CU-03'), False, URL('default','update_t_contactus03'), []),
+     (T('CU-04'), False, URL('default','update_t_contactus04'), []),
+     ]),
+ ]
+
+
+Email settings for gmail in db.py
+
+## configure email
+mail=auth.settings.mailer
+mail.settings.server = 'smtp.gmail.com:587'
+mail.settings.sender = 'myname@gmail.com'
+mail.settings.login = 'myname@gmail.com:my_pw'
+
+
+owner_id == auth.user_id
+
+Field('owner_id', db.auth_user, default=auth.user_id, 
+    readable=False, writable=False),
+
+
+
+DAL Back to Contents
+
+db = DAL('sqlite://storage.db') # The db object isA DAL instance connected to sqlite database
+
+
+db.define_table() Back to Contents
+
+db.define_table()
+[see web2py book chap-6 Find "DAL, Table, Field"]
+
+Here is a define_table() example 
+db = DAL('sqlite://storage.db') # db isA DAL instance connected to sqlite database
+# The following creates a table object in the DAL object named db
+db.define_table('person', Field('name'),Field('age'), format='%(age)s %(name)s %(id)s') 
+Example Notes:
+1. The id Field is implicitly, an auto-incremented field in each table.
+2. The format table spec, sets the representation for table records. The id field is the default.
+
+Here is the define_table() function signature
+# from web2py.gluon.dal
+define_table(self, tablename, *fields, **args)
+Where: 
+    1. *fields is a list of Field specs
+    2. **args is a dict whose keys are in the set TABLE_ARGS
+    3. >>> gluon.dal.TABLE_ARGS
+set(['polymodel',
+     'redefine',
+     'on_define',
+     'format',
+     'migrate',
+     'sequence_name',
+     'singular',
+     'fake_migrate',
+     'table_class',
+     'common_filter',
+     'trigger_name',
+     'plural',
+     'primarykey'])
+format seems to me to be the most important of the TABLE_ARGS 
+
+
+Fields Back to Contents
+
+Field Constructor Defaults
+
+Field(name, 'string', length=None, default=None,
+    required=False, requires='<default>',
+    ondelete='CASCADE', notnull=False, unique=False,
+    uploadfield=True, widget=None, label=None, comment=None,
+    writable=True, readable=True, update=None, authorize=None,
+    autodelete=False, represent=None, compute=None,
+    uploadfolder=os.path.join(request.folder,'uploads'),
+    uploadseparate=None,uploadfs=None)
+
+
+Field Types 	Default Field Validators
+string 	IS_LENGTH(length) default length is 512
+text 	IS_LENGTH(65536)
+blob 	None
+boolean 	None
+integer 	IS_INT_IN_RANGE(-1e100, 1e100)
+double 	IS_FLOAT_IN_RANGE(-1e100, 1e100)
+decimal(n,m) 	IS_DECIMAL_IN_RANGE(-1e100, 1e100)
+date 	IS_DATE()
+time 	IS_TIME()
+datetime 	IS_DATETIME()
+password 	None
+upload 	None
+reference <table> 	IS_IN_DB(db,'<table>.id')
+list:string 	None
+list:integer 	None
+list:reference <table> 	IS_IN_DB(db,'<table>.id',multiple=True)
+
+Field Notes:
+
+    To prevent a field from showingin forms: The following indicates that the field "uploader_id" should not be shown in forms, [writable=False] and not even in readonly forms, [readable=False]
+
+    db.spread.uploader_id.writable = db.spread.uploader_id.readable = False
+
+    I associate Validators with Fields so I am making Validators part of DAL as opposed to Forms which is the way the Book does it.
+
+
+DAL Basics Back to Contents
+
+Here are some basics related to DAL.
+
+Build a Table (DAL, Table, Field objects)
+
+db = DAL('sqlite://storage.db')              # you can use other db's
+db.define_table('person', Field('name'))     # person table has 2 fields == person.id & person.name
+
+Insert into person table Note: valid id's begin with 1
+db.person.insert(name="Alex")                # insert person.id == 1
+#output:
+1
+
+db.person.insert(name="Bob")                 # insert person.id == 2
+#output:
+2
+
+db.person.insert(name="Carl")                # insert person.id == 3
+#output:
+3
+
+
+Query, Set, Rows (The basic web2py DAL objects)
+
+person = db.person             # var_name 'person' IS_REF_TO Table
+name_field = person.name       # var_name 'name_field' IS_REF_TO name Field in person Table 
+q = name_field=='Alex'         # build Query using [==, !=, <, >, <=, >=, like, belongs, etc...]
+s = db(q)                      # define a Set (s)
+rows = s.select()              # fetch records (Rows) from a Set using select()
+
+# the rows object allows looping and Field designation
+for row in rows:               
+    print row.id, row.name
+#output:
+1 Alex
+
+# combine above statements into 1 
+for row in db(db.person.name=='Alex').select():         
+    print row.name
+#output:
+Alex
+
+# select command can take arguments
+for row in db().select(db.person.id, db.person.name):     
+    print row.name
+#output:
+Alex
+Bob
+Carl
+
+# table attribute ALL
+for row in db().select(db.person.ALL):              
+    print row.name
+#output:
+Alex
+Bob
+Carl
+
+# same as ALL different syntax
+for row in db(db.person.id > 0).select():    
+    print row.name
+#output:
+Alex
+Bob
+Carl
+
+Given a single row 
+row = rows[0]
+Here are some syntactic equivalents:
+row.name
+row['name']
+row('person.name')                     # good for selecting an expression instead of a column.
+# all above output:
+Alex
+
+
+DAL Shortcuts
+
+Quick row select
+my_row = db.person[id]                    #returns the Row with the given id
+my_row = db.person(id)
+my_row = db.person(db.person.id==id)
+# all above are same as:
+my_row = db(db.person.id==id).select().first()
+my_row = db.person(name='Carl')           # non id select
+
+
+Quick delete row
+del db.person[id]
+# above is same as:
+db(db.person.id==id).delete()
+
+Quick insert row
+db.person[0] = dict(name='Joe')
+# above is same as:
+db.person.insert(name='Joe')
+
+Quick update row
+db.person[id] = dict(name='NotJoe')
+# above is same as:
+db(db.person.id==id).update(name='NotJoe')
+
+
+Recursive select(s)
+
+New table "thing" referencing a "person"
+
+db.define_table('thing',
+    Field('name'),
+    Field('owner','reference person'))
+db.thing.insert(name="hammer",owner=1)
+db.thing.insert(name="nail",owner=1)
+db.thing.insert(name="bell",owner=2)
+db.thing.insert(name="clapper",owner=2)
+db.thing.insert(name="song",owner=3)
+db.thing.insert(name="lyrics",owner=3)
+
+select "forward"
+things = db(db.thing._id>0).select()          #simple select
+for thing in things: print thing.name, thing.owner.name
+#output:
+hammer Alex
+nail Alex
+bell Bob
+clapper Bob
+song Carl
+lyrics Carl
+
+select "backward"
+rows =  db(db.thing.owner==db.person.id).select(orderby=db.person.name)
+for row in rows:
+    print row.person.name, 'owns', row.thing.name
+#output:
+Alex owns hammer
+Alex owns nail
+Bob owns bell
+Bob owns clapper
+Carl owns song
+Carl owns lyrics
+
+TODO: Serializing Rows in views
+
+
+
+Validators Back to Contents
+
+As I said before, I associate Validators with Fields so I am making Validators part of DAL as opposed to Forms which is the way the Book does it.
+
+Validator List
+
+[see - web2py.gluon.validators ]
+
+
+CLEANUP()
+
+	
+
+IS_MATCH()
+
+	
+
+IS_DATE()
+
+	
+
+IS_DATETIME()
+
+IS_DECIMAL_IN_RANGE()
+
+	
+
+IS_EMAIL()
+
+	
+
+IS_EMPTY_OR()
+
+	
+
+IS_EQUAL_TO()
+
+IS_EXPR()
+
+	
+
+IS_FLOAT_IN_RANGE()
+
+	
+
+IS_GENERIC_URL()
+
+	
+
+IS_HTTP_URL()
+
+IS_IMAGE()
+
+	
+
+IS_INT_IN_RANGE()
+
+	
+
+IS_IN_DB()
+
+	
+
+IS_IN_SET()
+
+IS_IPV4()
+
+	
+
+IS_LENGTH()
+
+	
+
+IS_LIST_OF()
+
+	
+
+IS_LOWER()
+
+IS_NOT_EMPTY()
+
+	
+
+IS_NOT_IN_DB()
+
+	
+
+IS_SLUG()
+
+	
+
+IS_TIME()
+
+IS_UPLOAD_FILENAME()
+
+	
+
+IS_UPPER()
+
+	
+
+IS_URL()
+
+	
+
+Validator Notes
+
+[see Book - Validators] Validators are classes used to validate input fields (including forms generated from database tables).
+
+    Items listed at the end of Validators in the book:
+
+    CLEANUP - A Filter - removes all characters whose 
+    decimal ASCII codes are not in the list [10, 13, 32-127]
+
+    CRYPT - A Filter - performs a secure hash on the input and 
+    it is used to prevent passwords from being passed in the clear to the database.
+
+    Validator with FORMs:
+
+    INPUT(_name='a', requires=IS_INT_IN_RANGE(0, 10))
+
+    Validator with Fields:
+
+    db.define_table('person', Field('name'))db.person.name.requires = IS_NOT_EMPTY()
+
+    Multiple Validators:
+
+    db.person.name.requires = [IS_NOT_EMPTY(), IS_NOT_IN_DB(db, 'person.name')]
+
+    Override the Default Error Message:
+
+    db.comment.author.requires = IS_NOT_EMPTY(error_message=T('cannot be empty')
+
+
+DAL Quick Reference Back to Contents
+
+I found the "DAL Quick Reference" and "DAL Doctest Examples referred to here in a post by Iceberg on May 4, 2009 at 9:14 AM on the web2py-users Google group. It is a merged version of the old and new DAL information. I couldn't find it published anywhere so I published them on this blog, first in a post & now on this page, so I can refer to them. I hope they are beneficial to others.
+
+define_table, insert, count, delete, update
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+
+	
+
+db = SQLDB('postgres://user:password@hostname/db', pools=10)
+db.define_table('person',db.Field('name','string'))
+id= db.person.insert(name='max')
+query=(db.person.id==id)
+db(query).count()
+db(query).delete()
+db(query).update(name='Max')
+rows = db(query).select(orderby=db.person.name)
+for row in rows: print row.name
+
+
+Select Attributes
+
+1.
+
+	
+
+rows = db(query).select(*fields, orderby=..., left=..., groupby=..., having=..., limitby=..., cache=...)
+
+
+Shortcuts
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+
+	
+
+db['person']                   ### db.person
+db.person['name']              ### db.person.name
+db['person']['name']           ### db.person.name
+db.person[0]=dict(name='Max')  ### insert
+db.person[id]=dict(name='Max') ### update by db.person.id
+print db.person[id]            ### select by db.person.id
+del db.person[id]              ### delete by db.person.id
+
+
+Truncate and Drop a table
+
+1.
+2.
+
+	
+
+db.person.truncate()
+db.person.drop()
+
+
+Reference Fields Inner joins
+
+1.
+2.
+3.
+4.
+5.
+6.
+
+	
+
+db.define_table('dog',db.Field('name'))
+db.define_table('friendship', db.Field('person',db.person), db.Field('dog',db.dog))
+db.friendship.insert(person=id, dog=db.dog.insert(name='Snoopy'))
+friends=(db.person.id==db.friendship.person)&(db.dog.id==db.friendship.dog)
+rows = db(friends).select(db.person.name, db.dog.name)
+for row in rows: print row.person.name, 'is friend of', row.dog.name
+
+
+Left Outer Joins
+
+1.
+2.
+3.
+4.
+
+	
+
+query=(db.person.id>0)
+friends=(db.person.id==db.friendship.person)&(db.dog.id==db.friendship.dog)
+rows = db(query).select(db.person.name, db.dog.name, left=db.dog.on(friends))
+for row in rows: print row.person.name, 'is friend of', row.dog.name or 'nobody'
+
+
+Complex queries
+
+1.
+2.
+3.
+4.
+5.
+6.
+
+	
+
+query = (db.person.id==1)|((db.person.id==2)&(db.person.name=='Max'))
+query = (db.person.id==db.friendship.person)&(db.dog.id==db.friendship.dog)
+query = db.person.name.lower().like('m%')
+query = db.person.id.belongs(('max','Max','MAX'))
+query = db.person.birth.year()+1==2008
+rows = db(query).select()
+
+
+Nested selects
+
+1.
+
+	
+
+query = db.person.id.belongs(db()._select(db.friendship.person)
+
+
+Aggregates
+
+1.
+
+	
+
+rows=db(friends).select(db.person.name,db.dog.id.count(),groupby=db.dog.id)
+
+
+Aggregate functions db.table.field.count(), .max(), .min(), sum().
+
+Aliases
+
+1.
+2.
+3.
+4.
+5.
+
+	
+
+person=db.person
+friendship=db.friendship
+puppy=db.dog.with_alias('puppy')
+query=(puppy.id==friendhip.dog)&(friendship.person==person.id)
+rows=db().select(person.name,puppy.name,left=puppy.on(query))
+
+
+Caching
+
+1.
+
+	
+
+rows=db().select(db.person.ALL,cache=(cache.ram,3600))
+
+
+cache=(model,cache_timeout) where model can be cache.ram, cache.disk, cache.memcache or user defined caching model, cache_timeout is in seconds.
+
+CSV Input
+
+1.
+
+	
+
+db.person.import_from_csv_file(open(filename,'rb'))
+
+
+CSV Output
+
+1.
+
+	
+
+str(rows)
+
+
+HTML output
+
+1.
+
+	
+
+print rows.xml()
+
+
+Set field validators
+
+1.
+2.
+
+	
+
+db.person.name.requires=IS_NOT_IN_DB(db,db.person.name)
+db.friendship.person.requires=IS_IN_DB(db,db.person.id,'%(name)s')
+
+
+Generate and process a form from a model
+
+1.
+2.
+3.
+
+	
+
+form = SQLFORM(db.friendship)
+if form.accepts(request.vars, session): response.flash='record inserted'
+elif form.errors: response.flash='form errors'
+
+
+The form can then be displayed in a view with:
+
+1.
+
+	
+
+{{=form}}
+
+
+SQL + HTML Examples
+
+Given
+
+1.
+
+	
+
+rows=db().select(db.users.ALL)
+
+
+    SQLTABLE(rows) turns the rows into a CSS friendly table
+    SQLFORM(db.users) makes an input form for users
+    SQLFORM(db.users,rows[i]) makes an edit form for the user in rows[i]
+    SQLFORM(db.users,rows[i],deletable=True) makes an edit/delete form for the user in row[i]
+    SQLFORM(....,fields=['name','email']) allows to specify which fields should be displayed in the form. Only those fields will be validated.
+    SQLFORM(....,labels=['name':'Your Name']) allows to change the labels of the listed fields.
+
+
+A form=SQLFORM(…) object has one method of practical interest: form.accepts(request.vars,session) that processed the input variables (in request.vars) within the session and returns true if the form is valid, false otherwise. Processed variables are in form.vars and errors are in form.errors. The form is modified accordingly. If the form is accepted, accepts also perform the appropriate insert/update/delete in the database.
+
+Extended usage
+
+The DAL API are exposed in web2py models, controllers and views but you can access them anywhere with
+
+1.
+
+	
+
+from gluon.sql import *
+
+
+Examples of uri strings for SQLDB
+
+    sqlite://test.db
+    mysql://user:password@localhost/database
+    postgres://user:password@localhost/database
+    mssql://user:password@host/database
+    firebird://user:password@server:3050/database
+    oracle://user:password@database
+
+
+On Migrations
+
+Changing the list of fields or field types in a model, triggers an automatic migration, i.e. web2py generates SQL to alter the table accordingly. If the table does not exist it is created. Migration actions are logged in the file sql.log accessibled via the admin/design interface. Migration can be turned off on a per-table basis by passing migrate=False to define_table.
+
+DAL Doctest Examples Back to Contents
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+19.
+20.
+21.
+22.
+23.
+24.
+25.
+26.
+27.
+28.
+29.
+30.
+31.
+32.
+33.
+34.
+35.
+36.
+37.
+38.
+39.
+40.
+41.
+42.
+43.
+44.
+45.
+46.
+47.
+48.
+49.
+50.
+51.
+52.
+53.
+54.
+55.
+56.
+57.
+58.
+59.
+60.
+61.
+62.
+63.
+64.
+65.
+66.
+67.
+68.
+69.
+70.
+71.
+72.
+73.
+74.
+75.
+76.
+77.
+78.
+79.
+80.
+81.
+82.
+83.
+84.
+85.
+86.
+87.
+88.
+89.
+90.
+91.
+92.
+93.
+94.
+95.
+96.
+97.
+98.
+99.
+100.
+101.
+102.
+103.
+104.
+105.
+106.
+107.
+108.
+109.
+110.
+111.
+112.
+113.
+114.
+115.
+116.
+117.
+118.
+119.
+120.
+121.
+122.
+123.
+124.
+125.
+126.
+127.
+128.
+129.
+130.
+131.
+132.
+133.
+134.
+135.
+136.
+137.
+138.
+139.
+140.
+141.
+142.
+143.
+144.
+145.
+146.
+147.
+148.
+149.
+150.
+151.
+152.
+153.
+154.
+155.
+156.
+157.
+158.
+159.
+160.
+161.
+162.
+163.
+164.
+165.
+166.
+167.
+168.
+169.
+170.
+171.
+172.
+173.
+174.
+175.
+
+	
+
+    >>> db=SQLDB("sqlite://test.db")
+    >>> #OR db=SQLDB("mysql://username:password@host:port/dbname")
+    >>> #OR db=SQLDB("postgres://username:password@host:port/dbname")
+
+    # syntax: SQLField('fieldname','fieldtype',length=32,
+    #                   required=False, default=None,
+    #                   requires=[IS_EMAIL(error_message='invalid email')])
+
+    >>> tmp=db.define_table('users',
+          # But notice that SQLField(...) is depreciated and you'd better use db.Field(...) instead
+          SQLField('stringfield','string',length=32,required=True),
+          SQLField('booleanfield','boolean',default=False),
+          SQLField('passwordfield','password'),
+          SQLField('textfield','text'),
+          SQLField('blobfield','blob'),
+          SQLField('uploadfield','upload'),
+          SQLField('integerfield','integer'),
+          SQLField('doublefield','double'),
+          SQLField('datefield','date',default=datetime.date.today()),
+          SQLField('timefield','time'),
+          SQLField('datetimefield','datetime'),
+          migrate='test_user.table')
+
+   # Insert a field
+
+    >>> db.users.insert(stringfield='a',booleanfield=True,
+                       passwordfield='p',textfield='x',blobfield='x',
+                       uploadfield=None, integerfield=5,doublefield=3.14,
+                       datefield=datetime.date(2001,1,1),
+                       timefield=datetime.time(12,30,15),
+                       datetimefield=datetime.datetime(2002,2,2,12,30,15))
+    1
+
+    # Drop the table
+
+    >>> db.users.drop()
+
+    # Examples of insert, select, update, delete
+
+    >>> tmp=db.define_table('person',
+              SQLField('name'),
+              SQLField('birth','date'),
+              migrate='test_person.table')
+    >>> person_id=db.person.insert(name="Marco",birth='2005-06-22')
+    >>> person_id=db.person.insert(name="Massimo",birth='1971-12-21')
+    >>> len(db().select(db.person.ALL))
+    2
+    >>> me=db(db.person.id==person_id).select()[0] # test select
+    >>> me.name
+    'Massimo'
+    >>> db(db.person.name=='Massimo').update(name='massimo') # test update
+    >>> db(db.person.name=='Marco').delete() # test delete
+
+    Update a single record
+
+    >>> me.update_record(name="Max")
+    >>> me.name
+    'Max'
+
+    Examples of complex search conditions
+
+    >>> len(db((db.person.name=='Max')&(db.person.birth<'2003-01-01')).select())
+    1
+    >>> len(db((db.person.name=='Max')|(db.person.birth<'2003-01-01')).select())
+    1
+    >>> me=db(db.person.id==person_id).select(db.person.name)[0]
+    >>> me.name
+    'Max'
+
+    # Examples of search conditions using extract from date/datetime/time
+
+    >>> len(db(db.person.birth.month()==12).select())
+    1
+    >>> len(db(db.person.birth.year()>1900).select())
+    1
+
+    Example of usage of NULL
+
+    >>> len(db(db.person.birth==None).select()) ### test NULL
+    0
+    >>> len(db(db.person.birth!=None).select()) ### test NULL
+    1
+
+    # Examples of search conditions using lower, upper, and like
+
+    >>> len(db(db.person.name.upper()=='MAX').select())
+    1
+    >>> len(db(db.person.name.like('%ax')).select())
+    1
+    >>> len(db(db.person.name.upper().like('%AX')).select())
+    1
+    >>> len(db(~db.person.name.upper().like('%AX')).select())
+    0
+
+    # orderby, groupby and limitby
+
+    >>> people=db().select(db.person.name,orderby=db.person.name)
+    >>> order=db.person.name|~db.person.birth
+    >>> people=db().select(db.person.name,orderby=order)
+    >>> people=db().select(db.person.name,orderby=order,groupby=db.person.name)
+    >>> people=db().select(db.person.name,orderby=order,limitby=(0,100))
+
+    # Example of one 2 many relation
+
+    >>> tmp=db.define_table('dog',
+              SQLField('name'),
+              SQLField('birth','date'),
+              SQLField('owner',db.person),
+              migrate='test_dog.table')
+    >>> db.dog.insert(name='Snoopy',birth=None,owner=person_id)
+    1
+
+    # A simple JOIN
+
+    >>> len(db(db.dog.owner==db.person.id).select())
+    1
+
+    # Drop tables
+
+    >>> db.dog.drop()
+    >>> db.person.drop()
+
+    # Example of many 2 many relation and SQLSet
+
+    >>> tmp=db.define_table('author',SQLField('name'),
+                            migrate='test_author.table')
+    >>> tmp=db.define_table('paper',SQLField('title'),
+                            migrate='test_paper.table')
+    >>> tmp=db.define_table('authorship',
+            SQLField('author_id',db.author),
+            SQLField('paper_id',db.paper),
+            migrate='test_authorship.table')
+    >>> aid=db.author.insert(name='Massimo')
+    >>> pid=db.paper.insert(title='QCD')
+    >>> tmp=db.authorship.insert(author_id=aid,paper_id=pid)
+
+    # Define a SQLSet
+
+    >>> authored_papers=db((db.author.id==db.authorship.author_id)&
+                           (db.paper.id==db.authorship.paper_id))
+    >>> rows=authored_papers.select(db.author.name,db.paper.title)
+    >>> for row in rows: print row.author.name, row.paper.title
+    Massimo QCD
+
+    # Example of search condition using  belongs
+
+    >>> set=(1,2,3)
+    >>> rows=db(db.paper.id.belongs(set)).select(db.paper.ALL)
+    >>> print rows[0].title
+    QCD
+
+    # Example of search condition using nested select
+
+    >>> nested_select=db()._select(db.authorship.paper_id)
+    >>> rows=db(db.paper.id.belongs(nested_select)).select(db.paper.ALL)
+    >>> print rows[0].title
+    QCD
+
+    # Output in csv
+
+    >>> str(authored_papers.select(db.author.name,db.paper.title))
+    author.name,paper.title
+    Massimo,QCD
+
+    # Delete all leftover tables
+
+    >>> db.authorship.drop()
+    >>> db.author.drop()
+    >>> db.paper.drop()
+
+    # Commit or rollback your work
+
+    >>> db.commit() # or db.rollback()
+
+
+migrate can be False (do not create/alter tables), True (create/alter tables) or a filename (create/alter tables and store migration information in the file).
+
+Mind there are little idiosyncrasies like the fact that “user” is not a valid field name in PostgreSQL, or the fact that sqlite3 will ignore the type of a field and allow you to put anything in it despite the declared type. Every database backend has its own keywords that may conflict with your tablenames.
+
+FORMs Back to Contents
+
+SQLFORM Back to Contents
+
+[see Book - SQLFORM] The" Good" Book says: "SQLFORM is the single biggest time-saver object in web2py."
+
+Here's a simple SQLFORM MVC example. Given a Model and SQLFORM in a Controller, the Form is automatically generated in the View.
+
+The Model:
+
+1.
+2.
+
+	
+
+db = DAL('sqlite://storage.sqlite')
+db.define_table('person', Field('name', requires=IS_NOT_EMPTY())
+
+
+The Controller:
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+
+	
+
+def display_form():
+   form = SQLFORM(db.person)
+   if form.accepts(request.vars, session):
+       response.flash = 'form accepted'
+   elif form.errors:
+       response.flash = 'form has errors'
+   else:
+       response.flash = 'please fill out the form'
+   return dict(form=form)
+
+
+The generated serialized form in the View:
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+8.
+9.
+10.
+11.
+12.
+13.
+14.
+15.
+16.
+17.
+18.
+
+	
+
+<form enctype="multipart/form-data" action="" method="post">
+  <table>
+    <tr id="person_name__row">
+       <td><label id="person_name__label"
+                  for="person_name">Your name: </label></td>
+       <td><input type="text"
+                  name="name" value="" id="person_name" /></td>
+       <td></td>
+    </tr>
+    <tr id="submit_record__row">
+       <td></td>
+       <td><input value="Submit" type="submit" /></td>
+       <td></td>
+    </tr>
+  </table>
+  <input value="9038845529" type="hidden" name="_formkey" />
+  <input value="person" type="hidden" name="_formname" />
+</form>
+
+
+
+Note to Joe -> for examples to include here look in DAL Quick Reference at SQL + HTML Examples. Also look in book "SQLFORM in HTML" & "SQLFORM and Uploads".
+
+CRUD & Manage Back to Contents
+
+see [ book - CRUD ] Here is an example of CRUD usage in a single controller function:
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+
+	
+
+# assuming db.define_table('person', Field('name'))
+def people():
+    form = crud.create(db.person, next=URL('index'),
+           message=T("record created"))
+    persons = crud.select(db.person, fields=['name'],
+           headers={'person.name': 'Name'})
+    return dict(form=form, persons=persons)
+
+
+Here is another very generic controller function that lets you search, create and edit any records from any table where the tablename is passed request.args(0):
+
+1.
+2.
+3.
+4.
+5.
+6.
+7.
+
+	
+
+def manage():
+    table=db[request.args(0)]
+    form = crud.update(table,request.args(1))
+    table.id.represent = lambda id: \
+       A('edit:',id,_href=URL(args=(request.args(0),id)))
+    search, rows = crud.search(table)
+    return dict(form=form,search=search,rows=rows)
+
+
+Help and Resources Back to Contents
+
+Book        Official Web2py Book 
+
+All below from google.group.web2py: "Help and Resources" Sticky Post click
+--------------------------------------------------------------------
+
+Primary source of help: web2py groups
+-------------------------------------
+http://web2py.com/examples/default/usergroups
+
+Tips on searching the users group
+---------------------------------
+The search inside the google group does not work very well, instead use:
+http://groups.google.com/groups/advanced_search?safe=off&q=group:web2py
+http://dir.gmane.org/gmane.comp.python.web2py
+
+Resources
+---------
+
+web site    http://web2py.com
+demo        http://www.web2py.com/demo_admin
+download    http://web2py.com/examples/default/download
+docs        http://web2py.com/examples/default/documentation
+epydocs     http://web2py.com/examples/static/epydoc/index.html
+cheatsheet  http://web2py.com/examples/static/web2py_cheatsheet.pdf
+old FAQ     http://web2py.com/AlterEgo
+examples    http://web2py.com/examples/default/examples
+free apps   http://web2py.com/appliances
+plugins     http://web2py.com/plugins
+
+experts     http://experts4solutions.com/
+
+slices      http://www.web2pyslices.com/main/default/index
+videos      http://vimeo.com (search for web2py)
+chat        http://webchat.freenode.net/?channels=web2py
+slides      http://www.scribd.com/doc/16085263/web2py-slides-version-1644
+slides      http://web2py.com/examples/static/pyworks.pdf (v1.49)
+slides      http://web2py.com/examples/static/web2py_presentacion_es.pdf(v1.49 spanish)
+twitter     http://twitter.com/web2py
+blip        http://web2py.blip.pl/ (polish)
+
+
+URL Mapping Back to Contents
+
+URL Mapping from the Book Chapter 4 - Dispatching. These are the basics there's more detail in the book.
+
+The URL http://site.com/a/c/f maps to:
+
+The function f() in controller "c.py" in application "a".
+
+    If f is not present, web2py defaults to the index controller function.
+    If c is not present, web2py defaults to the default.py controller.
+    If a is not present, web2py defaults to the init application.
+    If there is no init application, web2py tries to run the welcome application.
+    The extension .html is optional.
+    The extension .html is assumed as default.
+    The extension determines the extension of the view that renders the output of the controller function f().
+    The extension allows the same content to be served in multiple formats (html, xml, json, rss, etc.).
+
+
+Web2py maps GET/POST requests of the form:
+
+http://site.com/a/c/f.html/x/y/z?p=1&q=2
+
+As before, to function f in controller "c.py" in application a
+
+and it stores the URL parameters in the requestvariable as follows:
+
+    request.args = ['x', 'y', 'z']
+    request.vars = {'p':1, 'q':2}
+    request.application = 'a'
+    request.controller = 'c'
+    request.function = 'f'
+
+    request.url = url of request
+    request.ajax = False  #by default
+    if request.ajax == True and wasInitiatedByAWeb2pyComponent:
+        request.cid = componentName
+
+
+
+Clips Back to Contents
+
+Bruno Rocha's Minimum Layout Back to Contents
+
+<html> 
+<head> 
+{{response.files.append(URL(...))}} <!-- Load css/js here -->
+{{include 'web2py_ajax.html'}} <!-- include this here -->
+</head> 
+
+<body> 
+
+<div class="container"> 
+ {{block header}} 
+ <header> {{=response.title}} </header>    
+ <!-- blocks create dynamic layouts -->
+ {{end}} 
+
+{{include}} <!-- views will be merged here -->
+
+</div> 
+
+{{block footer}} 
+<footer> Copyright 2011 </footer> 
+{{end}} 
+
+</body> 
+</html>
+
+
+Make Download on the Fly Back to Contents
+
+Thanks to Anthony for answering my question HERE.
+
+def make_dl(): 
+    import os 
+
+    myurl = URL('static', 'excel.txt') 
+    myfile = os.path.join(request.folder, 'static', 'excel.txt') 
+    f = open(myfile,'w') 
+    for i in range(20): 
+        f.write('This is a test %2s\n'%(i)) 
+    f.close() 
+
+    # '?attachment' forces download NOT streaming 
+    mylink  = XML(A('clickme to download',_href=myurl+'?attachment')) 
