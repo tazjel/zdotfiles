@@ -3,11 +3,14 @@ sudo add-apt-repository -y ppa:cdekter/ppa
 sudo apt-get update
 sudo apt-get install -y autokey 
 
+
 sudo add-apt-repository ppa:webupd8team/java -y
+sudo apt-get update
+sudo apt-get install oracle-java7-installer
+
 
 # Ref :
 # http://www.howtoforge.com/the-perfect-desktop-xubuntu-12.04-p2
-
 # http://xubuntu-chronicles.blogspot.com/2013/01/things-to-do-after-xubuntu-12041-lts.html
 
 sudo apt-get install xubuntu-restricted-extras
