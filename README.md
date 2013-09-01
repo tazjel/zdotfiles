@@ -1,14 +1,20 @@
+Conflict Analysis and Resolution
 
 ### بسم الله الرحمن الرحيم
 ### ماشاء الله لا قوة الا بالله
 
 النظام خاص لذوي الإحتياجات الخاصة
 إعداد وتنفيذ : احمد باني الغامدي
-Author : Ahmed Bani
 
-https://github.com/tazjel/zdotfiles
+Author : Ahmed Al-Ghamdi
+
 =========
 Work in progress
+
+=========
+
+To install run the following command : 
+wget -qO https://raw.github.com/tazjel/zdotfiles/master/0/install_ubuntu.sh | sh
 
 Quote of the day:
 The UNIX philosophy - "Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface."
@@ -46,5 +52,5 @@ zdotfiles
 
 # Clone zdotfiles
 git clone git://github.com/tazjel/zdotfiles.git
-## Use as Reference only!
+
 
