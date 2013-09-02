@@ -1,0 +1,11 @@
+#!/bin/sh
+# Date: 02/09/2013 
+# Author: Ahmed Al-Ghamdi
+
+
+
+Installing Wine 1.6 RC4 on Ubuntu and Linux Mint is easy, because it is available via PPA:
+
+$ sudo add-apt-repository ppa:ubuntu-wine/ppa
+$ sudo apt-get update
+$ sudo apt-get install wine1.6 winetricks
