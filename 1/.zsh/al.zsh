@@ -863,3 +863,25 @@ alias 'ww_check_bluetooth'='hciconfig'
 #sed -n '/START/,${/STOP/q;p}'
 alias 'wlen'='export LANG="en_US.UTF-8" '
 alias 'wl'='locale'
+
+
+
+
+
+#
+s() { pwd > ~/.save_dir ; }
+i() { cd "$(cat ~/.save_dir)" ; }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
