@@ -62,4 +62,7 @@ echo "Setting up symlinks for [ .vimrc.local & .vimrc.localw (Tips) ]"
 lnif $zendpath/2/.vimrc.local $HOME/.vimrc.local
 lnif $zendpath/2/.vimrc.localw $HOME/.vimrc.localw
 
+echo "zsh" >> ~/.bashrc
+
+
 echo "Done! Check your vimrc.local"
