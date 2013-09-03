@@ -1,5 +1,12 @@
 #!/usr/bin/env sh
 
+pull_kde=$HOME/.kde
+push_ Dropbox=$HOME/Dropbox
+
+A_Dropbox=$HOME/Dropbox/A/A
+
+#Backup
+# cp -R $Backup_kde 
 zendpath="$HOME/zdotfiles"
 
 warn() {
