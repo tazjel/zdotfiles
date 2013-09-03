@@ -1,7 +1,17 @@
 #!/usr/bin/env sh
 
-pull_kde=$HOME/.kde
-push_ Dropbox=$HOME/Dropbox
+
+#check MACHINE_TYPE
+if [ `getconf LONG_BIT` = "64" ]
+then
+    echo "I'm 64-bit"
+else
+    echo "I'm 32-bit"
+fi
+
+
+#pull_kde=$HOME/.kde
+#push_ Dropbox=$HOME/Dropbox
 
 A_Dropbox=$HOME/Dropbox/A/A
 
