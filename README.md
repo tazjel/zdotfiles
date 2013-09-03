@@ -14,7 +14,7 @@ Work in progress
 =========
 
 To install run the following command : 
-wget -qO https://raw.github.com/tazjel/zdotfiles/master/0/install_ubuntu.sh | sh
+wget -qO https://raw.github.com/tazjel/zdotfiles/master/0/apt/prepare_ubuntu.sh | sh
 
 Quote of the day:
 The UNIX philosophy - "Write programs that do one thing and do it well. Write programs to work together. Write programs to handle text streams, because that is a universal interface."

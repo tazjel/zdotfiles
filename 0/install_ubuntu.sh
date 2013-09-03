@@ -3,11 +3,11 @@ sudo apt-get update
 sudo apt-get install -y build-essential llvm clang \
   mono-runtime python2.7 python3.3 python-software-properties \
   perl ghc cabal-install golang-go golang-go \
-  golang-tools erlang gprolog g++ make quickly quickly-ubuntu-template
+  golang-tools erlang gprolog g++ make quickly quickly-ubuntu-template 
 
-sudo apt-get install -y tmux vim p7zip cmake curl wget exuberant-ctags htop zsh rlwrap
+sudo apt-get install -y easystroke tmux vim p7zip cmake curl wget exuberant-ctags htop zsh rlwrap
 
-sudo apt-get install -y postgresql
+sudo apt-get install -y postgresql python-setuptools
 
 sudo apt-get install -y subversion mercurial git cvs
 

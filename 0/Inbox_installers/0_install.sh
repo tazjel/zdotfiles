@@ -9,7 +9,6 @@ function installit {
 for i in bluemon\
     vim \
     konsole \
-    bluez-hcidump \
     zsh; do
         sudo apt-get install -y $i
 done;
