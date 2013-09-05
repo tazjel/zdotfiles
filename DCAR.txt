@@ -1,0 +1,23 @@
+DCAR 
+Conflicts Analysis & Resolution
+ZZZ 
+ZZ 
+ZZ 
+<script language="javascript" type="text/javascript">
+// <![CDATA[
+aaScriptCode
+FL 
+
+// ]]>
+</script>>>>
+<>>>
+<>>>
+" abani
+iabb <buffer> aaWW 
+\a
+\<esc>:cal S(1)<cr>
+FK 
+FL 
+FK <form id="aaId" action="aaAction" method="aaMethod[GET,POST]">
+aaFormCode
+</form>>>
