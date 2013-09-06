@@ -1,0 +1,7 @@
+colo <colourscheme1>  "default
+autocmd! BufEnter,BufNewFile *.html,*.vim,*xml colo <colourscheme2>
+autocmd! BufLeave *.html,*.vim,*xml colo <colourscheme1>
+
+And of course you can modify the list of file extensions as you wish. The colourscheme will be <colourscheme1> by default, or <colourscheme2> if you open (or switch to) any of the specified types, and will revert to <colourscheme1> when you open (or switch to) any other type within a Vim session.
+
+Hope this helps.

@@ -1,2 +1,4 @@
 
+ZZD 
+
 nnoremap <silent> wk  :vsplit ~/zdotfiles/1/bash.txt<CR>

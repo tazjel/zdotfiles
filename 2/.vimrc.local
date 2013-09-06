@@ -45,6 +45,7 @@ set showfulltag
 set splitright
 set showtabline=2 " always show tab bar
 set timeoutlen=250        " Time to wait after ESC (default causes an annoying delay)
+set hidden
 "set syntax=vim<CR>
 set termencoding=utf-8  " force terminal encoding
 "colorscheme solarized
@@ -53,6 +54,8 @@ set termencoding=utf-8  " force terminal encoding
 "colorscheme koehler
 "colorscheme peaksea
 " colorscheme mayansmoke
+
+"colorscheme peaksea
 """"""""""""""""""""""""""""
 "{"F1
 """"""""""""""""""""""""""""
@@ -226,27 +229,20 @@ map wy :set filetype=bash<CR>
 "{F13
 
 "{The w culture "
-
-
-y
-"File
-
-set hidden
-nnoremap <silent> ; :q!<CR>
-"nnoremap ,1 y:vsplit ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>i<CR>iiiiii<C-R>"p<Esc>p
-nnoremap ,0 y:vsplit ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>i<CR>iiiiii<C-R>"p<Esc>p
-vnoremap 1 : w! >> ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>
-
-
-com! -nargs=1 -range Sbak call MoveSelectedLinesToFile(<f-args>)
-fun! MoveSelectedLinesToFile(filename)
-    exec "'<,'>w! >>" . a:filename
-    norm gvd
-endfunc
-
 nnoremap <silent> W :w<CR>
+
 ca w!! w !sudo tee "%"
 map ws :!rm ~/.vimswap/*<CR>
+
+"{The 10th  culture "
+
+vnoremap 1 :w! >> ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>
+"}
+
+nnoremap <silent> ; :q!<CR>
+"nnoremap ,1 y:vsplit ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>i<CR>iiiiii<C-R>"p<Esc>p
+
+
 "}
 " {The Z culture
 "cab
@@ -393,7 +389,6 @@ endfun
 "}
 
 "white space
-"%s/[\r \t]\+$//
 "%s/[\r \t]\+$//
 "let g:BASH_SyntaxCheckOptionsGlob  = "-O extglob"
 
@@ -587,8 +582,8 @@ vnoremap > >gv
 vnoremap p <Esc>:let current_reg = @"<CR>gvs<C-R>=current_reg<CR><Esc>
 
 " Make tab in v mode work like I think it should (keep highlighting):
-vmap <tab> >gv
-vmap <s-tab> <gv
+"vmap <tab> >gv
+"vmap <s-tab> <gv
 
 " map ,L mz1G/Last modified:/e<Cr>CYDATETIME<Esc>`z
 
@@ -681,6 +676,7 @@ endif
 " ************************************************************************
 " A B B R E V I A T I O N S
 
+iabbrev $$ ${:}<left><left>
 "
 abbr #b #!/bin/bash
 abbr #p #!/bin/Python 
@@ -691,6 +687,8 @@ abbr #p #!/bin/Python
 " abbreviation to manually enter a timestamp. Just type YTS in insert mode
 
 iab YTS <C-R>=TimeStamp()<CR>
+
+
 
 " Date/Time stamps
 " %a - Day of the week
@@ -761,22 +759,6 @@ au FileType py set autoindent
 au FileType py set smartindent
 
 
-
-" Tab autocompletion
-imap <S-Tab> <c-r>=InsertTabWrapper("backward")<cr>
-imap <Tab> <c-r>=InsertTabWrapper("forward")<cr>
-
-function! InsertTabWrapper(direction)
-    let col = col('.') - 1
-    if !col || getline('.')[col - 1] !~ '\k'
-        return "\<tab>"
-    elseif "backward" == a:direction
-        return "\<c-p>"
-    else
-        return "\<c-n>"
-    endif
-endfunction
-
 set complete=""
 set complete+=.
 set complete+=k
@@ -832,7 +814,6 @@ vnoremap <silent> # :<C-U>
 "if has text : syntax=vim 
 "save phrase to 10 
 "
-colorscheme peaksea
 " Smart way to move between windows
 map <C-j> <C-W>j
 map <C-k> <C-W>k
@@ -1037,3 +1018,10 @@ function! <SID>BufcloseCloseIt()
      execute("bdelete! ".l:currentBufNum)
    endif
 endfunction
+
+
+colorscheme desert
+syntax on
+
+au BufRead,BufNewFile *.txt set filetype=txt
+au! Syntax newlang source ~/.vim/syntax/txt.vim
