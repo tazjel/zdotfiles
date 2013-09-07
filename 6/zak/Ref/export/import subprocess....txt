@@ -1,0 +1,71 @@
+import subprocess, threading, time, re 
+ 20   
+ 21  import common 
+ 22  if common.USING_QT: 
+ 23      from PyQt4.QtGui import QClipboard, QApplication 
+ 24  else: 
+ 25      import gtk 
+ 26  #import model 
+ 27   
+
+ 28 -class Keyboard: 
+
+ 29      """ 
+ 30      Provides access to the keyboard for event generation. 
+ 31      """ 
+ 32       
+
+ 33 -    def __init__(self, mediator): 
+
+ 34          self.mediator = mediator 
+
+ 35           
+
+ 36 -    def send_keys(self, keyString): 
+
+ 37          """ 
+ 38          Send a sequence of keys via keyboard events 
+ 39           
+ 40          Usage: C{keyboard.send_keys(keyString)} 
+ 41           
+ 42          @param keyString: string of keys (including special keys) to send 
+ 43          """ 
+ 44          self.mediator.interface.begin_send() 
+ 45          self.mediator.send_string(keyString.decode("utf-8")) 
+ 46          self.mediator.interface.finish_send() 
+
+ 47           
+
+ 48 -    def send_key(self, key, repeat=1): 
+
+ 49          """ 
+ 50          Send a keyboard event 
+ 51           
+ 52          Usage: C{keyboard.send_key(key, repeat=1)} 
+ 53           
+ 54          @param key: they key to be sent (e.g. "s" or "<enter>") 
+ 55          @param repeat: number of times to repeat the key event 
+ 56          """         
+ 57          for x in xrange(repeat): 
+ 58              self.mediator.send_key(key.decode("utf-8")) 
+ 59          self.mediator.flush() 
+
+ 60   
+
+ 61 -    def fake_keypress(self, key, repeat=1): 
+
+ 62          """ 
+ 63          Fake a keypress 
+ 64   
+ 65          Usage: C{keyboard.fake_keypress(key, repeat=1)} 
+ 66   
+ 67          Uses XTest to 'fake' a keypress. This is useful to send keypresses to some 
+ 68          applications which won't respond to keyboard.send_key() 
+ 69   
+ 70          @param key: they key to be sent (e.g. "s" or "<enter>") 
+ 71          @param repeat: number of times to repeat the key event 
+ 72          """ 
+ 73          for x in xrange(repeat): 
+ 74              self.mediator.fake_keypress(key.decode("utf-8")) 
+
+ 75           

@@ -1,0 +1,1 @@
+'Toy Stroy..(II) (1995)'.rstrip(')').rsplit('(',1)

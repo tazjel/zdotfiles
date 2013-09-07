@@ -1,0 +1,4 @@
+embed64
+embed64(filename=None, file=None, data=None, extension='image/gif') encodes the provided (binary) data into base64.
+
+filename: if provided, opens and reads this file in 'rb' mode. file: if provided, reads this file. data: if provided, uses the provided data.

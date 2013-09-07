@@ -1,6 +1,0 @@
-def method2():
-    form = FORM(#define your form here)
-
-    if form.accepts(request.vars, session):
-        #add in extra menu option
-        response.menu.append([T('Management Log'), False, URL(request.application, 'default', 'method2', vars=dict(filter_scenario = form.vars.my_dynamic_var)),])

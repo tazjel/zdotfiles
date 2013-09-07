@@ -1,4 +1,0 @@
- <div id=form>
-  <h2>New Task</h2>
-  {{=form}}
- </div>

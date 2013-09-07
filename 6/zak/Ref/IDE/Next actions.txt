@@ -1,0 +1,9 @@
+Enter phrase contents
+<P> Ali Applications</p>
+<K> Task to do Action  </K>
+<R> References <R>
+<P> List of Action 
+
+WW  = <P> </P>
+Ww  =<K> </K>
+wW = <R></R>

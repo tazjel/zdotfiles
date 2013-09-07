@@ -1,0 +1,10 @@
+cd %directory
+if [ -d .svn ] ; then
+  svn diff |kompare -o -
+elif [ -d CVS ] ; then
+  cvs diff -ub |kompare -o -
+elif [ -d .git ] ; then
+  git diff |kompare -o -
+else
+  kdialog --title Error --msgbox "The directory '%directory' does not appear to be under revision control."
+fi

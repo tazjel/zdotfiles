@@ -1,7 +1,0 @@
-For security,you may want to disable the user list at login screen so that no one can know how many users on this computer.Following command will disable the user list and make it like earlier Ubuntu version,need to type user-name and password to login.
-
-First,open a terminal window from Applications->Accessories menu.
-
-Then,execute following command:
-
-sudo gconftool-2 --direct --config-source xml:readwrite:/etc/gconf/gconf.xml.mandatory --type Boolean --set /apps/gdm/simple-greeter/disable_user_list True

@@ -1,9 +1,0 @@
-try: 
-    selection = clipboard.get_clipboard() 
-except: 
-    selection = "" 
-# clipboard won't update if selection empty 
-if clip_board == selection: 
-    selection = "" # problem if clipboard and selection are the same 
-# and not empty, but not the end of the world 
-# wrap and clean up 

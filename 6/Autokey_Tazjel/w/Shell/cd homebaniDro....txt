@@ -1,1 +1,0 @@
-cd /home/bani/Dropbox/@w2p/web2py && python2.5 web2py.py

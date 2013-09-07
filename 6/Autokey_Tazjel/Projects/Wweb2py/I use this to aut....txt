@@ -1,8 +1,0 @@
-I use this to automate a search on something Python-related that I
-have selected:
-
-text = clipboard.get_selection()
-window.activate("Firefox")
-if window.wait_for_focus(".*Firefox.*"):
-    keyboard.send_keys("<ctrl>+t")
-    keyboard.send_keys("<tab>python "+text+"<enter>")

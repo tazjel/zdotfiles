@@ -1,0 +1,1 @@
+python /home/bani/Downloads/pyjamas-0.8alpha1/bin/pyjsbuild TodoApp.py

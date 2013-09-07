@@ -1,1 +1,0 @@
-     --compare-dest=DIR      also compare destination files relative to DIR

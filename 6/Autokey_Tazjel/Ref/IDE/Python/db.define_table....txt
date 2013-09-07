@@ -1,3 +1,0 @@
-db.define_table('image',
-    Field('name'),
-    Field('file', 'upload'))

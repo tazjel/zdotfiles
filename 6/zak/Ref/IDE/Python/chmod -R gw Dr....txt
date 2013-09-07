@@ -1,0 +1,1 @@
+chmod -R +gw ~/Dropbox/webp2py

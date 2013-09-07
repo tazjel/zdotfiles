@@ -1,3 +1,0 @@
-Type following to list all your own running processes
-
-ps ux

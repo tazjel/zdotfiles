@@ -1,3 +1,0 @@
-Finally, I installed a small GUI tool called StartUp-Manger and fixed the problem by changing the grub resolution.
-
-sudo apt-get install startupmanager

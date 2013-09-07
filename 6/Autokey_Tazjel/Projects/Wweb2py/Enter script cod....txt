@@ -1,3 +1,0 @@
-#Enter script code
-# from applications.appname.modules import test 
-from gluon import *

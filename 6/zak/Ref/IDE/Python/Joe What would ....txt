@@ -1,0 +1,60 @@
+Joe, 
+What would you say, if I eliminated your bash script and it all wored 
+within your autokey script? 
+- Al 
+Try: 
+# print2file 
+import time 
+import subprocess 
+## Copyleft 2012/01/12 - JPmicrosystems GPL 
+## Change <ctrl>+p for Firefox and Thunderbird 
+## to print to file in a special print queue using 
+## numbered file names, 01, 02, ... so the print jobs stay in order 
+## Intended for use with duplexpr 
+## http://sourceforge.net/projects/duplexpr/ 
+## Depends on the bash script pqnext_py being in you PATH 
+## and executable. 
+## User must manually create print queue folder (~/pq) 
+## Hotkey <ctrl>+p 
+## Window Filter .*Mozilla.* 
+## Changes <ctrl>+p to 
+## Print to file and looks at the print queue (~/pq) 
+## Finds the last print file number and increments it by one 
+## Using pqnext_py and puts that in the Print to file name field 
+## Doesn't send final <Enter> so additional options like Print 
+Selection 
+## can be set by the user 
+##Fails if Loading file to print takes longer than the second delay 
+## Open the File menu 
+## (can't use <ctrl>+p because that's the hotkey) 
+keyboard.send_keys("<alt>+f") 
+time.sleep(1.0) 
+## Select Print 
+keyboard.send_keys("p") 
+time.sleep(2.0) 
+## tab to the printer selection list, then to the top of the list 
+## which is the Print to File selection 
+keyboard.send_keys("<tab><home>") 
+time.sleep(2.0) 
+## tab to the file name field and enter the print queue directory 
+path 
+keyboard.send_keys("<tab>pq/") 
+# we will store a number inside the scripts persistent memory to 
+# represent the number that was being previously written by the 
+# bash script, initiliazing to 0 if necessary 
+if not store.has_key("print_queue"): 
+    store.set_value("print_queue",0) 
+# now pull and use the print_queue variable 
+pq = store.get_value("print_queue") 
+# you can use format codes to pad in 0's if required. 
+# using the stored internal number you can easily get more than 99 if 
+not more 9999 
+# if so desired. 
+output = "subprocess.Popen([%d],stdout = subprocess.PIPE).communicate() 
+[0]" % pq 
+# increment the print queue and store it 
+pq = pq + 1 
+store.set_value("print_queue",pq) 
+## add the file name to the path and then press enter to complete the 
+dialog 
+keyboard.send_keys(output) 

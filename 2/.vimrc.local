@@ -65,7 +65,7 @@ map <F1> ,c<space>
 nnoremap <F2> :reg<CR>
 "vnoremap <silent> WW Y<C-W><C-W>Gp'[v'],c<Space><C-W><C-W>
 "vnoremap <silent> WW Y<C-W><C-W>Gp<C-W><C-W>
-vnoremap <silent>w2 <C-W><C-W>
+nnoremap <C-N> <C-W>n<C-W>L
 map Y y$
 
 let g:vimsyn_noerror= 1
@@ -144,7 +144,7 @@ map   <F6> :ls<CR>
 
 
 map <F7> :%s//gc<Left><Left><Left>
-map <F7> :%s//gc<Left><Left><Left>
+
 
 " F7 - go to next tab
 "map <F7> :tabn<cr>
@@ -153,12 +153,12 @@ map <F7> :%s//gc<Left><Left><Left>
 
 "}
 "{""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""" "F8
-map <F8> :diffthis<CR>
-map <F8> :diffthis<CR><ESC><C-W><C-W>:diffthisa<CR>
+"map <F8> :diffthis<CR>
+map <F8> :diffthis<CR><ESC><C-W><C-W>:diffthis<CR>
 
 map <F8><F8> :diffoff<CR>
-map <C-F8> :diffput<CR>
-map <C-F8><C-F8> :diffput<CR>
+map <C-Left> :diffput<CR>
+map <C-Right> :diffopt<CR>
 
 
 "map <silent> <F8>   :Explore<CR>
@@ -403,7 +403,7 @@ cab w2a vsp ~/zdotfiles/9/web2py_arabic_admin.py
 
 "let c_space_errors=1
 highlight WhitespaceEOL ctermbg=red guibg=red
-match WhitespaceEOL /\s\+$/
+"match WhitespaceEOL /\s\+$/
 """""""""""""""""""""""""""""""""""""""""""}}}
 
 """ DiffMode:							{{{2
@@ -585,9 +585,10 @@ vnoremap p <Esc>:let current_reg = @"<CR>gvs<C-R>=current_reg<CR><Esc>
 "vmap <tab> >gv
 "vmap <s-tab> <gv
 
-" map ,L mz1G/Last modified:/e<Cr>CYDATETIME<Esc>`z
 
-"map ,L :let @z=TimeStamp()<Cr>"zpa
+
+
+map ,L :let @z=TimeStamp()<Cr>"zpa
 "map ,datetime :let @z=strftime("%d %b %Y %X")<Cr>"zpa
 " Map <c-s> to write current buffer.
 
@@ -623,66 +624,19 @@ imap <c-z> <c-o>u
 
 " with comments, at 79 characters.
 au BufNewFile,BufEnter *.c,*.h,*.java,*.jsp set formatoptions-=t tw=79
-au BufNewFile,BufEnter,BufRead *.scala set ft=scala
+"# i , A B B R E V I A T I O N S
 
+iabbrev wza tazjel@gmail.com
 
-" GUI ONLY type stuff.
-if has("gui")
-
-  :menu &MyVim.Current\ File.Convert\ Format.To\ Dos :set fileformat=dos<cr> :w<cr>
-
-  :menu &MyVim.Current\ File.Convert\ Format.To\ Unix :set fileformat=unix<cr> :w<cr>
-
-  :menu &MyVim.Current\ File.Remove\ Trailing\ Spaces\ and\ Tabs :%s/[ ]*$//g<cr>
-
-  :menu &MyVim.Current\ File.Remove\ Ctrl-M :%s/^M//g<cr>
-  :menu &MyVim.Current\ File.Remove\ All\ Tabs :retab<cr>
-
-  :menu &MyVim.Current\ File.To\ HTML :runtime! syntax/2html.vim<cr>
-" these don't work for some reason
-
-":amenu &MyVim.Insert.Date<Tab>,date <Esc><Esc>:,date<Cr>
-":amenu &MyVim.Insert.Date\ &Time<Tab>,datetime <Esc><Esc>:let @z=YDATETIME<Cr>"zpa
-
-  :amenu &MyVim.Insert.Last\ &Modified<Tab>,L <Esc><Esc>:let @z=TimeStamp()<CR>"zpa
-  :amenu &MyVim.-SEP1- <nul>
-
-  :amenu &MyVim.&Global\ Settings.Toggle\ Display\ Unprintables<Tab>:set\ list! :set list!<CR>
-
-  :amenu &MyVim.-SEP2- <nul>
-  :amenu &MyVim.&Project :Project<CR>
-
-" hide the mouse when characters are typed
-
-" set the gui options to:
-" g: grey inactive menu items
-" m: display menu bar
-" r: display scrollbar on right side of window
-" b: display scrollbar at bottom of window
-
-" t: enable tearoff menus on Win32
-" T: enable toolbar on Win32
-  set go=gmr
-  colorscheme default
-"set guifont=Lucida_Console:h9:cANSI
-"set guifont=Monospace\ 9
-  set guifont=Monaco\ 10
-else
-  colorscheme default
-endif
-
-
-
-" ************************************************************************
-" A B B R E V I A T I O N S
+map <Del> D
 
 iabbrev $$ ${:}<left><left>
 "
 abbr #b #!/bin/bash
 abbr #p #!/bin/Python 
-"# -*- coding: utf-8 -*-
 
-"abbr hosts C:\WINNT\system32\drivers\etc\hosts
+
+
 
 " abbreviation to manually enter a timestamp. Just type YTS in insert mode
 
@@ -721,12 +675,6 @@ iab YDATETIME <c-r>=strftime(": %a %b %d, %Y %H:%M:%S %Z")<cr>
 
 " do not redraw, when running macros..lazyredraw
 set lz
-
-" F6 - go to previous tab
-"map <F6> :tabp<cr>
-"vmap <F6> <esc>:tabp<cr>i
-"imap <F6> <esc>:tabp<cr>i
-
 
 
 set complete=.,w,b,u,t,i
@@ -835,7 +783,7 @@ map <leader>tm :tabmove
 
 " Close the current buffer
 map <leader>bd :Bclose<cr>
-o
+
 
 
 " Opens a new tab with the current buffer's path
@@ -950,6 +898,7 @@ map <leader>s? z=
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 " Remove the Windows ^M - when the encodings gets messed up
 noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
+
 
 " Quickly open a buffer for scripbble
 map <leader>q :e ~/buffer<cr>

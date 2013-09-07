@@ -1,7 +1,0 @@
-cd %directory
-if [ -d CVS ] && grep %filename CVS/Entries > /dev/null ; then
-  cvs diff -ubB %filename > $(kde4-config --path tmp)%filename.diff 
-  kmail --composer --attach  $(kde4-config --path tmp)%filename.diff
-else
-  kdialog --title Error -msgbox "The file '%filename' is not in CVS"
-fi

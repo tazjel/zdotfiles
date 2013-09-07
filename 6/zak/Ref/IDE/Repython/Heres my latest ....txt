@@ -1,0 +1,60 @@
+Here's my latest version that works in python only - no bash script needed. 
+I'm sure someone who knows python will get a good laugh at the way it's 
+implemented (because I coded it using Google searches for syntax since I 
+still don't know python), but it works. 
+# print2file 
+import time 
+import os 
+## Copyleft 2012/01/31 - JPmicrosystems GPL 
+## Change <ctrl>+p for Firefox and Thunderbird 
+## to print to file in a special print queue using 
+## numbered file names, 01, 02, ... so the print jobs stay in order 
+## Intended for use with duplexpr 
+## http://sourceforge.net/projects/duplexpr/ 
+## User must manually create print queue folder (~/pq) 
+## Hotkey <ctrl>+p 
+## Window Filter .*Mozilla.* 
+## Changes <ctrl>+p to 
+## Print to file and looks at the print queue (~/pq) 
+## Finds the last print file number and increments it by one 
+## Doesn't send final <Enter> so additional options like Print Selection 
+## can be set by the user 
+##Fails if Loading file to print takes longer than the second delay 
+## Open the File menu 
+## (can't use <ctrl>+p because that's the hotkey) 
+keyboard.send_keys("<alt>+f") 
+time.sleep(1.0) 
+## Select Print 
+keyboard.send_keys("p") 
+time.sleep(2.0) 
+## tab to the printer selection list, then to the top of the list 
+## which is the Print to File selection 
+keyboard.send_keys("<tab><home>") 
+time.sleep(2.0) 
+## tab to the file name field and enter the print queue directory path 
+keyboard.send_keys("<tab>pq/") 
+## Set path to print queue 
+path = os.getenv("HOME") + '/pq' 
+## Get all the files in the print queue in a list 
+dirList=os.listdir(path) 
+## And sort it in reverse order 
+## So the largest numbered file is first 
+dirList.sort(reverse=True) 
+## If there aren't any files then 
+## Set last file to 0 
+## else, set it to the last file 
+if len(dirList) == 0: 
+   output = '0' 
+else: 
+   output = dirList[0] 
+## Increment the file number 
+output = str(int(output) + 1) 
+## If it's less than 2 characters long, 
+## Left pad it with a zero 
+## To maintain the sorting order 
+if len(output) < 2: 
+   output = '0' + output 
+## complete the file name field in the print dialog 
+## But don't send an enter so the user can select 
+## options before printing 
+keyboard.send_keys(output) 

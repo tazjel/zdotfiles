@@ -1,1 +1,0 @@
-"code": "choices = [\"sudo\", \"reboot\", \"apt-get install\", \"apt-get update\",\"gksudo nautilus\"]\noutput = system.exec_command(\"date\")\n\nretCode, choice = dialog.list_menu(choices)\nif choice == 1:\n     keyboard.send_keys(output)\nif retCode == 0:\n    keyboard.send_keys(choice)\n    \n", 

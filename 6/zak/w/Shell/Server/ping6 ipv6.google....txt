@@ -1,0 +1,1 @@
+ping6 ipv6.google.com -c 3

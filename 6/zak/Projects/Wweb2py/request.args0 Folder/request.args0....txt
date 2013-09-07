@@ -1,0 +1,1 @@
+{{=request.args(0).replace('_',' ').capitalize()}}

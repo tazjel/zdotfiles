@@ -1,5 +1,0 @@
-Copying file to host:
-scp SourceFile user@host:directory/TargetFile
-Copying file from host:
-scp user@host:directory/SourceFile TargetFile
-scp -r user@host:directory/SourceFile TargetFolder

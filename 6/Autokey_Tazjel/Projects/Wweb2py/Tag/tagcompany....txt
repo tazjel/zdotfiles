@@ -1,1 +1,0 @@
-{{=tag('company',company.id)}}

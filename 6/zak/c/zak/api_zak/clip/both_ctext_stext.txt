@@ -1,0 +1,2 @@
+ctext = clipboard.get_clipboard()
+stext = clipboard.get_selection()

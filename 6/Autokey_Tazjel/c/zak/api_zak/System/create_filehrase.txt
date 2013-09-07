@@ -1,8 +1,0 @@
-#  Create a file with contents	
-
-
-system.create_file(fileName, contents="")
-
-# Parameters:
-# fileName - full path to the file to be created
-# contents - contents to insert into the file

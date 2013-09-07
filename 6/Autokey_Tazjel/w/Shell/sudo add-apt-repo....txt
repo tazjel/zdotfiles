@@ -1,1 +1,0 @@
-sudo add-apt-repository ppa:falk-t-j/qtsixa

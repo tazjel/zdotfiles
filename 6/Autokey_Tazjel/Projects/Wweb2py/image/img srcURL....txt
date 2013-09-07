@@ -1,1 +1,0 @@
-<img src="{{=URL(r=request,c='static',f='collaboration.jpg')}}" style="border: 5px solid #666"/>

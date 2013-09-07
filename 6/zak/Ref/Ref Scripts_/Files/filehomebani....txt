@@ -1,0 +1,3 @@
+ "code": "# Enter script code\
+retCode, gitem = dialog.input_dialog(\"Add to groceries\", \"What would you like to pick up at the grocery store?\")\noutput = system.exec_command(\"date '+ - %a %b %d '\")\ngitem2 = \"\\n\" + gitem\nfileHandle = open ( '/home/bani/Dropbox/tasks.txt', 'a' )\nfileHandle.write (gitem2)\nfileHandle.write (output)\nfileHandle.close()\n", 
+                        "code": "# and I use this to open the file:\n\nkeyboard.send_key(\"<escape>\")\nimport subprocess\nsubprocess.call(['xdg-open', '/home/bani/Dropbox/tasks.txt'])\n\n", 

@@ -1,1 +1,0 @@
-[ -n "%selection" ] && kfmclient openURL "gg:%selection"

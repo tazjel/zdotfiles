@@ -1,0 +1,1 @@
+rows = db(db.car.model.like('%'+txt+'%')).select()

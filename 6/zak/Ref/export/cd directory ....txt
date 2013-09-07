@@ -1,0 +1,1 @@
+cd "%directory" && chmod u+x "%filename" && konsole -e "./%filename"

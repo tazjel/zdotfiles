@@ -1,0 +1,2 @@
+rsync -azv  /home/bani/.kde/share/apps/ktexteditor_snippets /home/bani/Dropbox/tools/kubuntu/kate/kate_2013
+

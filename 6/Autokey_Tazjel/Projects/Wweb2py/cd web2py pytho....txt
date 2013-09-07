@@ -1,1 +1,0 @@
-cd ~/web2py python web2py.py -i 0.0.0.0 -p 8080

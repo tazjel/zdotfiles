@@ -1,2 +1,0 @@
-def upload_image():
-    return dict(form=crud.create(db.image))

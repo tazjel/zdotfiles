@@ -1,0 +1,2 @@
+# sudo sixad -- start
+sudo sixad --boot-yes

@@ -1,0 +1,30 @@
+{
+    "usageCount": 15, 
+    "omitTrigger": false, 
+    "prompt": false, 
+    "description": "stext_wsplit_choose_list", 
+    "abbreviation": {
+        "wordChars": "[\\w]", 
+        "abbreviations": [], 
+        "immediate": false, 
+        "ignoreCase": false, 
+        "backspace": true, 
+        "triggerInside": false
+    }, 
+    "hotkey": {
+        "hotKey": "w", 
+        "modifiers": [
+            "<alt>", 
+            "<ctrl>", 
+            "<super>"
+        ]
+    }, 
+    "modes": [], 
+    "showInTrayMenu": true, 
+    "filter": {
+        "regex": null, 
+        "isRecursive": false
+    }, 
+    "type": "script", 
+    "store": {}
+}

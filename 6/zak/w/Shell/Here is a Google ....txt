@@ -1,0 +1,7 @@
+Here is a Google Documents plug-in for Ubuntu,to access your Google Documents on Ubuntu desktop via the default Nautilus file browser.
+
+In Ubuntu 9.10 and higher,you can install this small plug-in by following commands in Applications->Accessories->Terminal:
+
+sudo add-apt-repository ppa:doctormo/ppa
+sudo apt-get update
+sudo apt-get install gdocs-mount-gtk

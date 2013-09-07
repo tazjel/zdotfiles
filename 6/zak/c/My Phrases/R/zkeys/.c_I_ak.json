@@ -1,0 +1,30 @@
+{
+    "usageCount": 18, 
+    "omitTrigger": false, 
+    "prompt": false, 
+    "description": "c_I_ak", 
+    "abbreviation": {
+        "wordChars": "[\\w]", 
+        "abbreviations": [
+            null
+        ], 
+        "immediate": false, 
+        "ignoreCase": false, 
+        "backspace": true, 
+        "triggerInside": false
+    }, 
+    "hotkey": {
+        "hotKey": "<f4>", 
+        "modifiers": [
+            "<ctrl>"
+        ]
+    }, 
+    "modes": [], 
+    "showInTrayMenu": true, 
+    "filter": {
+        "regex": null, 
+        "isRecursive": false
+    }, 
+    "type": "script", 
+    "store": {}
+}

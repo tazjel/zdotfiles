@@ -1,0 +1,29 @@
+{
+    "usageCount": 27, 
+    "abbreviation": {
+        "wordChars": "[\\w]", 
+        "abbreviations": [
+            null
+        ], 
+        "immediate": false, 
+        "ignoreCase": false, 
+        "backspace": true, 
+        "triggerInside": false
+    }, 
+    "modes": [
+        3
+    ], 
+    "title": "Python", 
+    "hotkey": {
+        "hotKey": "<delete>", 
+        "modifiers": [
+            "<super>"
+        ]
+    }, 
+    "filter": {
+        "regex": null, 
+        "isRecursive": false
+    }, 
+    "type": "folder", 
+    "showInTrayMenu": false
+}

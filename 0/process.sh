@@ -43,9 +43,9 @@ echo "Thanks for installing zdotfiles"
 echo "backing up current zsh config"
 
 
-today=`date +%Y%m%d`
-for i in $HOME/.bash_profile $HOME/.zsh $HOME/.zshrc $HOME/.oh-my-zsh $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
+today=`date +%Y%m%d`;for i in $HOME/.bash_profile $HOME/.zsh $HOME/.zshrc $HOME/.oh-my-zsh $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
+for wi in  $HOME/.config/autokey/data  ; do [ -e $wi ] && -[ ! -L $i ] && mv $wi $wi.$wi && mv $wi $wi.$wi.$today; done
 #########################################
 
 # clone or pull zdotfiles from github.com

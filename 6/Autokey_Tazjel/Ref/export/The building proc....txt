@@ -1,6 +1,0 @@
-The building process should follow the usual
- ./configure
- make
- make install
-procedure. The plugin gets installed into
-/usr/local/lib/claws-mail/plugins/

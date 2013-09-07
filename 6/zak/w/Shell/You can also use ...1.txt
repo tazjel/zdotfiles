@@ -1,0 +1,20 @@
+You can also use this command to view processes details:
+
+top
+
+or
+
+ps aux
+
+And if you want to limit cpu usage of a process,first install cpulimit with this command:
+
+sudo aptitude install cpulimit
+
+Then,limit the process in following ways:
+limit the process with its name to 35%:
+
+cpulimit -e process_name -l 35
+
+limit the process with its ID to 35%:
+
+cpulimit -p ID_here -l 35

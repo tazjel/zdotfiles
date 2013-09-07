@@ -1,8 +1,0 @@
-{{extend 'layout.html'}}
-
-<script type="text/javascript" src="/{{=request.application}}/static/MochiKit/MochiKit.js"></script>
-<script type="text/javascript" src="/{{=request.application}}/static/PlotKit/Base.js"></script>
-<script type="text/javascript" src="/{{=request.application}}/static/PlotKit/Layout.js"></script>
-<script type="text/javascript" src="/{{=request.application}}/static/PlotKit/Canvas.js"></script>
-<script type="text/javascript" src="/{{=request.application}}/static/PlotKit/SweetCanvas.js"></script>
-<script type="text/javascript" src="/{{=request.application}}/static/PlotKit/EasyPlot.js"></script>

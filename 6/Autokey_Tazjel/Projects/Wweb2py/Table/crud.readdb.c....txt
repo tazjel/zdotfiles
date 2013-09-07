@@ -1,1 +1,0 @@
-{{=crud.read(db.company,company)}}

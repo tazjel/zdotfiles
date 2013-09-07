@@ -1,0 +1,25 @@
+{
+    "usageCount": 24, 
+    "abbreviation": {
+        "wordChars": "[\\w]", 
+        "abbreviations": [
+            "wwww"
+        ], 
+        "immediate": false, 
+        "ignoreCase": false, 
+        "backspace": true, 
+        "triggerInside": false
+    }, 
+    "modes": [], 
+    "title": "Shell", 
+    "hotkey": {
+        "hotKey": null, 
+        "modifiers": []
+    }, 
+    "filter": {
+        "regex": null, 
+        "isRecursive": false
+    }, 
+    "type": "folder", 
+    "showInTrayMenu": true
+}

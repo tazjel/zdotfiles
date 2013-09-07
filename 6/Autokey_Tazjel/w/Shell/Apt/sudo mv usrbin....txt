@@ -1,1 +1,0 @@
-sudo mv /usr/bin/sixpair /usr/sbin/sixpair

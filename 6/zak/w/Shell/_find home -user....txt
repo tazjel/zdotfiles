@@ -1,0 +1,60 @@
+ find /home -user joe
+
+Find every file under the directory /home owned by the user joe.
+
+ find /usr -name *stat
+
+Find every file under the directory /usr ending in "stat".
+
+ find /var/spool -mtime +60
+
+Find every file under the directory /var/spool that was modified more than 60 days ago.
+
+ find /tmp -name core -type f -print | xargs /bin/rm -f
+
+Find files named core in or below the directory /tmp and delete them. Note that this will work incorrectly if there are any filenames containing newlines, single or double quotes, or spaces.
+
+ find /tmp -name core -type f -print0 | xargs -0 /bin/rm -f
+
+Find files named core in or below the directory /tmp and delete them, processing filenames in such a way that file or directory names containing single or double quotes, spaces or newlines are correctly handled. The -name test comes before the -type test in order to avoid having to call stat(2) on every file.
+
+ find . -type f -exec file '{}' \;
+
+Runs `file' on every file in or below the current directory. Notice that the braces are enclosed in single quote marks to protect them from interpretation as shell script punctuation. The semicolon is similarly protected by the use of a backslash, though ';' could have been used in that case also.
+
+find / \( -perm -4000 -fprintf /root/suid.txt '%#m %u %p\n' \), \
+ \( -size +100M -fprintf /root/big.txt '%-10s %p\n' \)
+
+Traverse the filesystem just once, listing setuid files and directories into /root/suid.txt and large files into /root/big.txt.
+
+ find $HOME -mtime 0
+
+Search for files in your home directory which have been modified in the last twenty-four hours. This command works this way because the time since each file was last modified is divided by 24 hours and any remainder is discarded. That means that to match -mtime 0, a file will have to have a modification in the past which is less than 24 hours ago.
+
+ find . -perm 664
+
+Search for files which have read and write permission for their owner, and group, but which other users can read but not write to. Files which meet these criteria but have other permissions bits set (for example if someone can execute the file) will not be matched.
+
+ find . -perm -664
+
+Search for files which have read and write permission for their owner and group, and which other users can read, without regard to the presence of any extra permission bits (for example the executable bit). This will match a file which has mode 0777, for example.
+
+ find . -perm /222
+
+Search for files which are writable by somebody (their owner, or their group, or anybody else).
+
+ find . -perm /220
+ find . -perm /u+w,g+w
+ find . -perm /u=w,g=w
+
+All three of these commands do the same thing, but the first one uses the octal representation of the file mode, and the other two use the symbolic form. These commands all search for files which are writable by either their owner or their group. The files don't have to be writable by both the owner and group to be matched; either will do.
+
+ find . -perm -220
+ find . -perm -g+w,u+w
+
+Both these commands do the same thing; search for files which are writable by both their owner and their group.
+
+ find . -perm -444 -perm /222 ! -perm /111
+ find . -perm -a+r -perm /a+w ! -perm /a+x
+
+These two commands both search for files that are readable for everybody (-perm -444 or -perm -a+r), have at least on write bit set (-perm /222 or -perm /a+w) but are not executable for anybody (! -perm /111 and ! -perm /a+x respectively) 
