@@ -24,9 +24,7 @@ sh:1: permission denied: /home/ahmed/zdotfiles/2/english/english.snippet
 %s/^/snippetXXX/\$\{0\:\#\}/gc
 %s/^/snippet/\$\{0\:\#\}/gc
 
-/home/ahmed/zdotfiles/2
 %s:^:snippet\$\{0\:\#\}/gc
 %s/Y/\$\{3\:#\}/gc
 %s:^\w:snippet XXX\r\t$\{0\:\#\}/gc
 %s:^\w:snippet XXX\r\t:gc
-

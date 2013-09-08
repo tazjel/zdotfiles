@@ -23,7 +23,7 @@ echo "Thanks for installing spf13-vim"
 # Backup existing .vim stuff
 echo "backing up current vim config"
 today=`date +%Y%m%d`
-for i in $HOME/.vim $HOME/.vimrc $HOME/.gvimrc; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
+for i in $HOME/.config/autokey $HOME/.vim $HOME/.vimrc $HOME/.gvimrc; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
 endpath="$( cd "$( dirname "$0" )" && pwd)"
 branch="3.0"
@@ -58,3 +58,6 @@ system_shell=$SHELL
 export SHELL="/bin/sh"
 vim -u $endpath/.vimrc.bundles +BundleInstall! +BundleClean +qall
 export SHELL=$system_shell
+[ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
+
+

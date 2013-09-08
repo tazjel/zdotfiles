@@ -17,7 +17,7 @@ A_Dropbox=$HOME/Dropbox/A/A
 
 #Backup
 # cp -R $Backup_kde 
-zendpath="$HOME/zdotfiles"
+zendpath=$HOME/zdotfiles
 
 warn() {
     echo "$1" >&2
@@ -43,10 +43,9 @@ echo "Thanks for installing zdotfiles"
 echo "backing up current zsh config"
 
 
-today=`date +%Y%m%d`;for i in $HOME/.bash_profile $HOME/.zsh $HOME/.zshrc $HOME/.oh-my-zsh $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
+today=`date +%Y%m%d`
+for i in $HOME/.config/autokey $HOME/.bash_profile $HOME/.zsh $HOME/.zshrc $HOME/.oh-my-zsh $HOME/.zshenv; do [ -e $i ] && [ ! -L $i ] && mv $i $i.$today; done
 
-for wi in  $HOME/.config/autokey/data  ; do [ -e $wi ] && -[ ! -L $i ] && mv $wi $wi.$wi && mv $wi $wi.$wi.$today; done
-#########################################
 
 # clone or pull zdotfiles from github.com
 
@@ -66,6 +65,7 @@ echo "setting up symlinks"
 lnif $zendpath/1/.zsh/.zshrc $HOME/.zshrc
 lnif $zendpath/1/.zsh/.zshenv $HOME/.zshenv
 
+lnif $zendpath/6/autokey/ $HOME/.config/autokey
 echo "We are done. Please, check it out"
 
 ###########               VIM

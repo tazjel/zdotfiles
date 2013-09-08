@@ -65,7 +65,7 @@ map <F1> ,c<space>
 nnoremap <F2> :reg<CR>
 "vnoremap <silent> WW Y<C-W><C-W>Gp'[v'],c<Space><C-W><C-W>
 "vnoremap <silent> WW Y<C-W><C-W>Gp<C-W><C-W>
-nnoremap <C-N> <C-W>n<C-W>L
+nnoremap <C-n> <C-W>n<C-W>L
 map Y y$
 
 let g:vimsyn_noerror= 1
@@ -137,13 +137,22 @@ nnoremap <S-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
 "{               """""""""""""""""""<F6>
 
 "lists all buffer, just type number
-map   <F6> :ls<CR>
+nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
+nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
+
+nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
+"/home/ahmed/Dropbox/C/Foundation/wiki-Foundations.txt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 "}
 ""{""F7
 
+vnoremap <F7> :s/XXX/\$\{1\:#\}/g
 
-map <F7> :%s//gc<Left><Left><Left>
+
+"map <F7> :%s//gc<Left><Left><Left>
+
+
+
 
 
 " F7 - go to next tab
@@ -263,6 +272,7 @@ cab w33 w! ~/zdotfiles/4/
 cab w22 w! ~/zdotfiles/2/
 cab w11 w! ~/zdotfiles/1/
 cab w00 w! ~/zdotfiles/0/
+cab wdr w! ~/Dropbox/C/Foundation/
 "}
 "Install unhtml
 map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
