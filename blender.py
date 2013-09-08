@@ -1,12 +1,3 @@
-i" blender
-iabb <buffer> BB
-\import bpy<cr>
-\from mathutils import *<cr>
-\from math import *<cr>
-\from bpy.props import *<cr>
-\import os<cr>
-\import time
-\<esc>:cal S(1)<cr>mport bpy
 from mathutils import *
 from math import *
 from bpy.props import *
