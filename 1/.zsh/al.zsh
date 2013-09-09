@@ -1,15 +1,17 @@
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
-#Thu Jul  4 07:14:50 AST 2013
+# Last update
 ########################################################
 # Author : AHMED BANI
-# startup
+#
+# co
+# 
 echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
 echo -e "\t\t\t\t $(date)"
 ########################################################
 # <F0> git
 export N6=/dev/null
 # ahave - Function to check if a program exists in path
-function ahave() 
+function
 { unset -v ahave; command command type $1 &>$N6 && ahave="yes" || return 1; }
 
 ########################################################

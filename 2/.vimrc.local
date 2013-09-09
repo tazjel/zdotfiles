@@ -486,7 +486,7 @@ set incsearch
 " Show tab characters. Visual Whitespace.
 "set list
 "set listchars=tab:>.
-set listchars=nbsp:-,tab:>-,trail:~,extends:>,precedes:<,eol:$
+"set listchars=nbsp:-,tab:>-,trail:~,extends:>,precedes:<,eol:$
 
 " Make searches case-sensitive only if they contain upper-case characters
 set ignorecase
@@ -529,9 +529,9 @@ let java_highlight_functions=1
 let java_mark_braces_in_parens_as_errors=1
 
 " Commands for :Explore
-"let g:explVertical=1 " open vertical split winow
-"let g:explSplitRight=1 " Put new window to the right of the explorer
-"let g:explStartRight=0 " new windows go to right of explorer window
+let g:explVertical=1 " open vertical split winow
+let g:explSplitRight=1 " Put new window to the right of the explorer
+let g:explStartRight=0 " new windows go to right of explorer window
 
 "for the TOhtml command
 let html_use_css=1
@@ -539,7 +539,6 @@ let html_use_css=1
 " Switch syntax highlighting on, when the terminal has colors
 " Also switch on highlighting the last used search pattern.
 if &t_Co > 2 || has("gui_running")
-
   syntax on
   set hlsearch
 endif
@@ -578,9 +577,8 @@ command! CD cd %:p:h
 " ************************************************************************
 " K E Y M A P P I N G S
 "
-
-map <Leader>e :Explore<cr>
-map <Leader>s :Sexplore<cr>
+"map <Leader>e :Explore<cr>
+"map <Leader>s :Sexplore<cr>
 
 " pressing < or > will let you indent/unident selected lines
 
@@ -691,11 +689,28 @@ set complete=.,w,b,u,t,i
 
 
 
-" Folding
-"set foldmethod=indent
-set foldcolumn=2
+" Folding"{
+"----------------------------------------
+"zf1G      : fold everything before this line [N]
+" folding : hide sections to allow easier comparisons
+"zf}                               : fold paragraph using motion
+"v}zf                              : fold paragraph using visual
+"zf'a                              : fold to mark
+"zo                                : open fold
+"zc                                : re-close fold
+ "also visualise a section of code then type zf [N]
+":help folding
+"zfG      : fold everything after this line [N]
+"----------------"}
+
+imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
+
+
+
+"derset foldmethod=indent
+"set foldcolumn=2
 " open folding using space
-nmap <Space> zo
+"nmap <Space> zo
 
 " Syntax
 syntax on
@@ -774,7 +789,7 @@ vnoremap <silent> # :<C-U>
 "
 " Smart way to move between windows
 map <C-j> <C-W>j
-map <C-k> <C-W>k
+"map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
 
@@ -984,3 +999,9 @@ syntax on
 
 au BufRead,BufNewFile *.txt set filetype=txt
 au! Syntax newlang source ~/.vim/syntax/txt.vim
+
+
+
+
+
+
