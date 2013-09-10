@@ -1,0 +1,38 @@
+{{extend 'qastack_layout.html'}}
+{{include 'admin_common.html'}}
+
+<script type="text/javascript">
+<!--
+     document.getElementById('aadmin').className = 'active';
+//-->
+
+</script>
+
+<h2 class="fancy">User Administration</h2>
+
+<p>Users are ordered by Role hierarchy (Advanced roles first), please use your browser's Find command to locate a specific user if required.</p>
+
+{{if users:}}
+    <table cellspacing="0" cellpadding="0" style="width:100%;" class="ftable">
+    <tr class="shadedarker">
+        <th>Cnt</th>
+        <th>&nbsp;</th>
+        <th style="text-align:left;">Name</th>
+        <th style="text-align:left;">Email (User ID)</th>
+        <th>Role</th>
+        <th>Enabled</th>
+    </tr>
+    {{for idx, user in enumerate(users):}}
+        <tr {{if idx % 2:}}class="shadedark"{{else:}}class="shadelight"{{pass}} onmouseover="this.className='shadedarker';" onmouseout="this.className='{{if idx % 2:}}shadedark{{else:}}shadelight{{pass}}';">
+            <td style="text-align:center;">{{=idx + 1}}</td>
+            <td style="text-align:center;"><a href="{{=URL(r=request, c='admin', f='edit_user', args=[user.auth_users.id])}}" title="Edit User ID: {{=user.auth_users.id}}">[ Edit ]</a></td>
+            <td>{{=user_dict[user.auth_users.id]['user_real_name']}}</td>
+            <td><a href="mailto:{{=user.auth_users.auth_alias}}" title="Contact Via Email">{{=user.auth_users.auth_alias}}</a></td>
+            <td style="text-align:center;">{{=user.auth_roles.role_name}}</td>
+            <td style="text-align:center;">{{if user.auth_users.is_enabled:}}<span style="color:green;">Yes</span>{{else:}}<strong style="color:red;">No</strong>{{pass}}</td>
+        </tr>
+    {{pass}}
+    </table>
+{{else:}}
+    <p class="notification">No Users were found.</p>
+{{pass}}

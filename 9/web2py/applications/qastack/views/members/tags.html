@@ -1,0 +1,33 @@
+{{extend 'qastack_layout.html'}}
+
+<h2 class="fancy">{{=XML(T('Tags'))}}</h2>
+
+{{if view_info['errors']:}}
+    <p class="err">{{=XML(T('There was one or more messages generated while processing your request, please review the following'))}}</p>
+    <ul>
+        {{for error in view_info['errors']:}}
+            <li class="err">{{=XML(T(error))}}</li>
+        {{pass}}
+    </ul>
+{{pass}}
+
+<h3>{{=XML(T('Original Question'))}}</h3>
+
+<div class="paragraph-all">
+    <table cellspacing="1" cellpadding="1" style="width:100%;margin-bottom:10px;">
+        <thead>
+            <tr>
+                <th>{{=XML(T('Tagname'))}}</th>
+                <th>{{=XML(T('Count'))}}</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{for tag in tags:}}
+                <tr>
+                    <td>{{=tag.tagname}}</td>
+                    <td>{{=tag.tag_cnt}}</td>
+                </tr>
+            {{pass}}
+        </tbody>
+    </table>
+</div>

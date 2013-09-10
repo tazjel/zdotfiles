@@ -1,0 +1,48 @@
+{{extend 'qastack_layout.html'}}
+
+<h2 class="fancy">{{=XML(T('New account creation'))}}</h2>
+
+{{if custom_messages['errors']:}}
+    <p class="err">{{=XML(T('There was one or more errors while processing your request, please correct the following'))}}</p>
+    <ul>
+        {{for error in custom_messages['errors']:}}
+            <li class="err">{{=XML(T(error))}}</li>
+        {{pass}}
+    </ul>
+{{pass}}
+
+{{if custom_messages['allow_registration']:}}
+    <form id="login" method="post" action="">
+        <fieldset id="login_form_fields">
+            <input type="hidden" id="form_submitted" name="form_submitted" value="1" />
+            <table cellspacing="2" cellpadding="1">
+            <tbody>
+                <tr>
+                    <td><span class="err">*</span> {{=XML(T('Email'))}}:</td>
+                    <td><input type="text" id="auth_email" name="auth_alias" value="{{=request.vars.get('auth_alias', '')}}" style="width:200px;" /></td>
+                </tr>
+                <tr>
+                    <td><span class="err">*</span> {{=XML(T('Password'))}}:</td>
+                    <td><input type="password" id="auth_passwd" name="passwd" value="" style="width:200px;" /></td>
+                </tr>
+                <tr>
+                    <td><span class="err">*</span> {{=XML(T('Confirm Password'))}}:</td>
+                    <td><input type="password" id="auth_passwd_c" name="passwd_c" value="" style="width:200px;" /></td>
+                </tr>
+            </tbody>
+            </table>
+
+            <p class="err">* - {{=XML(T('Denotes a required field'))}}</p>
+
+            <input type="submit" id="register_b" name="register_b" value="{{=XML(T('Create Account'))}}" />
+            <input type="submit" id="cancel_b" name="cancel_b" value="{{=XML(T('Cancel'))}}" />
+
+        </fieldset>
+    </form>
+{{else:}}
+    <p class="error">{{=XML(T('Our Apologies'))}}.</p>
+
+    <p>{{=XML(T('Registrations are currently disabled'))}}.</p>
+
+    <p><a href="{{=URL(r=request, c='default', f='contact_admin')}}" title="{{=XML(T('Contact the Administrator directly'))}}">{{=XML(T('Contact the Administrator'))}}</a>.</p>
+{{pass}}

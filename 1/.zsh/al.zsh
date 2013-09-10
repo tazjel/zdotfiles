@@ -9,11 +9,15 @@ echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله و
 echo -e "\t\t\t\t $(date)"
 ########################################################
 # <F0> git
+function install_dropbox_cmd () {
+    '/tmp/a b'onvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
+    uonvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
+    mkdir -p ~/bin
+    wget -O ~/bin/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
+    chmod +x ~/bin/dropbox.py
+    . ~/bin/dropbox.py help
+}
 export N6=/dev/null
-# ahave - Function to check if a program exists in path
-function
-{ unset -v ahave; command command type $1 &>$N6 && ahave="yes" || return 1; }
-
 ########################################################
 # Put readline into vi mode
 #set -o vigit config --global user.name
@@ -83,6 +87,7 @@ i=0;while :; do i=$(expr "$i" + 1); scrot "$i".png; sleep 2; done;
 alias lh='ls -a | egrep "^\."'
 alias lhd='ls -A | egrep "^\."'
 #################################
+#<F4>
 function zbp {
     mkdir -p $HOME/Dropbox/zzz_bkp
     for xx in ~/.* ;do
@@ -627,14 +632,6 @@ functions wfbash() {
     #function vimgrep () { tmp="$@" ; vim -c "vimgrep $tmp | copen" ; }
  #example : vimgrep pattern 'dir/**/*.c'
 #Installers
-function install_dropbox_cmd () {
-    '/tmp/a b'onvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
-    uonvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
-    mkdir -p ~/bin
-    wget -O ~/bin/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
-    chmod +x ~/bin/dropbox.py
-    . ~/bin/dropbox.py help
-}
 ### {install spf13
 #https://github.com/spf13/spf13-vim
 warn() {
@@ -802,7 +799,7 @@ alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
 
 
 
-alias 'wak'='autokey -l' 
+alias 'w_ak'='autokey -l' 
 
 
 
@@ -891,6 +888,12 @@ i() { cd "$(cat ~/.save_dir)" ; }
 
 
 
-alias 'wk'='wwww $HOME/.config/autokey/data'
-alias 'wv'='wwww $HOME/.vim/bundle'
+alias 'wkl'='cd $HOME/.config/autokey/data;ls'
+alias 'wak'='vim $HOME/.config/autokey/data'
+
+alias 'wvb'='wwww $HOME/.vim/bundle'
+
+
+alias 'wdx'='docx2txt' 
+
 

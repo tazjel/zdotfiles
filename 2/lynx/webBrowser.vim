@@ -82,8 +82,8 @@ nmap <leader>wd :WebDump
 " nmap <s-delete> :exe 'WebBrowser www.wikipedia.com/wiki/"' . input("Wikipedia ") . '"'<cr>
 
 " Variables {{{1
-let s:lynxPath = 'c:\lynx\'
-let s:lynxExe = s:lynxPath . 'lynx.exe'
+let s:lynxPath = '/etc/lynx-cur/'
+let s:lynxExe = s:lynxPath . 'lynx'
 let s:lynxCfg = '-cfg=' . s:lynxPath . 'lynx.cfg'
 let s:lynxLss = '-lss=' . s:lynxPath . 'lynx.lss'
 let s:lynxCmd = s:lynxExe . ' ' . s:lynxCfg . ' ' . s:lynxLss

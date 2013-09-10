@@ -1,0 +1,15 @@
+QA-Stack INSTALLATION NOTES
+===========================
+
+1. Copy the latest code to the location of your choosing.
+2. Edit "qastack/models/db.py and point the database location to your database.
+   Make sure your database/users/permissions are properly set-up
+3. Access the main /qastack/default/index page.
+4. It is very important to write-down the initial user's credentials, so you
+   can log in as that user and perform administrative tasks.
+   
+For community help and information, please log in to the qa-stack forums
+located at:
+
+http://forum.qa-stack.com/
+

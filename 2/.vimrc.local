@@ -54,10 +54,11 @@ set termencoding=utf-8  " force terminal encoding
 "colorscheme koehler
 "colorscheme peaksea
 " colorscheme mayansmoke
-
+"colorscheme molokai"{
 "colorscheme peaksea
+colorscheme xoria256
 """"""""""""""""""""""""""""
-"{"F1
+"{"F1"}
 """"""""""""""""""""""""""""
 map <F1> ,c<space>
 "}
@@ -134,26 +135,96 @@ nnoremap <S-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
 "map <F5> <esc>:buffers<cr>
 "map <F5> <esc><esc>:buffers<cr>
 "}
-"{               """""""""""""""""""<F6>
+               """""""""""""""""""<F6>
+nmap <F2> 0v/{<CR>%zf
+"function ToggleFold()
+      "if foldlevel('.') == 0
+         "" No fold exists at the current line,
+         "" so create a fold based on braces
+         "let x = line('.')    " the current line number
+         "normal 0
+         "call search("{")
+         "normal %
+         "let y = line('.')    " the current line number
+         "" Create the fold from x to y
+         "execute x . "," . y . " fold"
+      "else
+         "" Delete the fold on the current line
+         "normal zd
+      "endif
+   "endfunction
 
+"nmap <space> :call ToggleFold()<CR>
+   
 "lists all buffer, just type number
+iabbrev CAR Conflict Analysis & Resolution
 nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
 nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
 
 nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
 "/home/ahmed/Dropbox/C/Foundation/wiki-Foundations.txt
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-"}
+
 ""{""F7
 
 vnoremap <F7> :s/XXX/\$\{1\:#\}/g
-
 
 "map <F7> :%s//gc<Left><Left><Left>
 
 
 
+vmap <space> zf
 
+   "function ToggleFold()
+      "if foldlevel('.') == 0
+         "" No fold exists at the current line,
+         "" so create a fold based on indentation
+
+         "let l_min = line('.')   " the current line number
+         "let l_max = line('$')   " the last line number
+         "let i_min = indent('.') " the indentation of the current line
+         "let l = l_min + 1
+
+         "" Search downward for the last line whose indentation > i_min
+         "while l <= l_max
+            "" if this line is not blank ...
+            "if strlen(getline(l)) > 0 && getline(l) !~ '^\s*$'
+               "if indent(l) <= i_min
+                  "" we've gone too far
+                  "let l = l - 1    " backtrack one line
+                  "break
+               "endif
+            "endif
+            "let l = l + 1
+         "endwhile
+
+         "" Clamp l to the last line
+         "if l > l_max
+            "let l = l_max
+         "endif
+
+         "" Backtrack to the last non-blank line
+         "while l > l_min
+            "if strlen(getline(l)) > 0 && getline(l) !~ '^\s*$'
+               "break
+            "endif
+            "let l = l - 1
+         "endwhile
+
+         ""execute "normal i" . l_min . "," . l . " fold"   " print debug info
+
+         "if l > l_min
+            "" Create the fold from l_min to l
+            "execute l_min . "," . l . " fold"
+         "endif
+      "else
+         "" Delete the fold on the current line
+         "normal zd
+      "endif
+   "endfunction
+
+"nmap <space> :call ToggleFold()<CR>"{
+"}
 
 " F7 - go to next tab
 "map <F7> :tabn<cr>
@@ -255,15 +326,36 @@ nnoremap <silent> ; :q!<CR>
 "}
 " {The Z culture
 "cab
-cab zz w! ~/zdotfiles/1/
+
+cabbrev fdf ~/Dropbox/C/Foundation/
+
+
+"$\{1\:#\}/gc
+"w! ~/zdotfiles/2/english/english.snippet
+"%s/X/\$\{1\:#\}/gc
+"%s/X/\$\{2\:#\}/gc
+"%s/Y/\$\{2\:#\}/gc
+"%s/Z/\$\{3\:#\}/gc
+
+cabbrev ws %s:^:snippet$\{0\:#\}:gc
+cabbrev wW r!echo""<left>
+cabbrev we !bash %
+cabbrev we !bash %
+
+
+cab zz w! ~/zdotfiles/1/.zsh
 cab vv w! ~/zdotfiles/2/
 cab wx :!chmod u+x<CR>
 cab wex !sh %<CR>
 cab abo vsplit ~/Dropbox/abobanirc
 "}
+"{cab maped for [qastack] "
+cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
+cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR> 
+cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
+cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
+
 "{cab maped to the [1-10] "
-cab w99 w! ~/zdotfiles/9/
-cab w88 w! ~/zdotfiles/8/
 cab w77 w! ~/zdotfiles/7/
 cab w66 w! ~/zdotfiles/6/
 cab w55 w! ~/zdotfiles/6/
@@ -285,7 +377,7 @@ map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml
 nnoremap Ki<cr><esc><right>
 
                     "w
-""""""""""""""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""""""""""""
     "Enter
 nnoremap <C-J> m`o<Esc>``
 nnoremap <C-K> m`O<Esc>``
@@ -317,6 +409,26 @@ fun! FindFiles()
 endfun
 
 """"""""""""""""""""""""""""""""""""""""""""""
+" Change the following paths to your lynx files:
+let s:lynxPath = '/etc/lynx-cur'
+let s:lynxExe = s:lynxPath . 'lynx'
+let s:lynxCfg = '-cfg=' . s:lynxPath . 'lynx.cfg'
+let s:lynxLss = '-lss=' . s:lynxPath . 'lynx.lss'
+let s:lynxCmd = s:lynxExe . ' ' . s:lynxCfg . ' ' . s:lynxLss
+let s:lynxDumpPath = '~/Documents/lynx/dump/'
+let s:lynxToolsPath = '~/Documents/lynx/tools/'
+"
+" Usage: {{{2
+" <leader>wb :WebBrowser (Open a new web browser tab with the address specified)
+" <leader>wc :exe 'WebBrowser "' . @* . '"'<cr> (Open a new web browser tab with the address in the clipboard)
+"(Do a google search using the specified search keywords and open the results in a new tab)
+"map <leader>wg :exe 'WebBrowser www.google.com/search?q="' . input("Google ") . '"'<cr>
+" <leader>wp :exe 'WebBrowser www.wikipedia.com/wiki/"' . input("Wikipedia ") . '"'<cr> (Do a wikipedia search using the specified search keywords and open the results in a new tab)
+" <leader>wd :WebDump (Downloads the specified webpage without opening it in vim)
+" <space>l (Open link)
+" <space>h (Previous page ("back button"))
+" <space>j (Highlight links and go to next link)
+" <space>k (Highlight links and go to previous link)
 
  "{Multiple Files Management (Essential)
 ":bn              : goto next buffer
@@ -702,10 +814,15 @@ set complete=.,w,b,u,t,i
 ":help folding
 "zfG      : fold everything after this line [N]
 "----------------"}
+iabbrev wf capture<CR>
+    \ Process<CR>
+    \ Organize<CR>
+"{
+nnoremap <space> za
+vnoremap <space> zf
 
-imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>kA
-
-
+set foldmethod=indent
+set foldnestmax=2
 
 "derset foldmethod=indent
 "set foldcolumn=2
@@ -994,7 +1111,7 @@ function! <SID>BufcloseCloseIt()
 endfunction
 
 
-colorscheme desert
+"colorscheme desert
 syntax on
 
 au BufRead,BufNewFile *.txt set filetype=txt

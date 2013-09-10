@@ -1,0 +1,145 @@
+{{extend 'qastack_layout.html'}}
+
+<h2 class="fancy">{{=XML(T('Edit Answer'))}}</h2>
+
+{{if view_info['errors']:}}
+    <p class="err">{{=XML(T('There was one or more messages generated while processing your request, please review the following'))}}</p>
+    <ul>
+        {{for error in view_info['errors']:}}
+            <li class="err">{{=XML(T(error))}}</li>
+        {{pass}}
+    </ul>
+{{pass}}
+
+<h3>Question</h3>
+
+<div class="paragraph-big">
+    <table cellspacing="1" cellpadding="1" style="width:100%;margin-bottom:10px;">
+        <tbody>
+            <tr>
+                <td style="text-align:center;vertical-align:top;width:100px;">
+                    <img src="{{=URL(r=request, c='static/images/medium', f='checkmark_disabled.png')}}"
+                    alt="{{=XML(T('Up/Down voting is unavailable on this page'))}}"
+                    title="{{=XML(T('Up/Down voting is unavailable on this page'))}}" /><br />
+                    <span class="votes-display">{{=question.votes_up - question.votes_dn}}</span><br />
+                    <img src="{{=URL(r=request, c='static/images/medium', f='x_disabled.png')}}"
+                    alt="{{=XML(T('Up/Down voting is unavailable on this page'))}}"
+                    title="{{=XML(T('Up/Down voting is unavailable on this page'))}}" />
+                </td>
+                <td style="vertical-align:top;">
+                    <div class="lsep">
+                        <div class="explain">
+                        {{if stackhelper.has_member_avatar(question.created_by):}}
+                            <img src="{{=URL(r=request, c='members', f='get_avatar_image', args=[question.created_by])}}"
+                                 alt=""
+                                 style="vertical-align:top;" />
+                        {{pass}}
+                        {{=XML(T('By'))}}: {{=stackhelper.get_member_property('m_display_name', question.created_by, 'Anonymous')}}
+                        ({{=stackhelper.get_user_role(question.created_by)}}),
+                        {{=XML(T('Created'))}}
+                        {{=prettydate(question.created_on, T)}},
+                        {{=XML(T('Updated'))}}
+                        {{=prettydate(question.modified_on, T)}}.</div>
+                        <div class="paragraph-all">
+                            {{=XML(parse_content(question.description))}}
+                        </div>
+                        <img src="{{=URL(r=request, c='static/images/small', f='tag.png')}}"
+                             alt="Tags"
+                             title="Tags"
+                             style="float:left;margin:0 5px 0 0;vertical-algin:middle;" />
+                        <div class="tags">
+                            {{for tag in tags:}}
+                                <a class="tag" href="{{=URL(r=request, c='default', f='index', args=['tags'], vars=dict(tag=tag.tagname))}}"
+                                   title="{{=tag.tagname}}">{{=tag.tagname}}</a>
+                            {{pass}}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<h3>Answer</h3>
+
+{{if can_edit:}}
+    <form id="edit_form" method="post" action="">
+        <fieldset id="ask_form_fields">
+            <input type="hidden" id="form_submitted" name="form_submitted" value="1" />
+            <input type="hidden" id="aid" name="aid" value="{{=answer.id}}" />
+            <table cellspacing="1" cellpadding="1" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="width:20%;">{{=XML(T('Answer'))}}:</td>
+                        <td style="width:80%;">
+                            <textarea id="description" name="description"
+                            cols="0" rows="0"
+                            style="width:80%;height:250px;">{{=request.vars.get('description', answer.description)}}</textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        
+        <div class="paragraph-all">
+            <input type="submit" id="update_answer" name="update_answer" value="{{=XML(T('Update Answer'))}}"
+                   onclick="return confirm('Please confirm you wish to edit this answer.');" />
+            <input type="submit" id="cancel_edit" name="cancel_edit" value="{{=XML(T('Cancel'))}}" />
+            {{if auth_user.is_admin():}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" id="hide_a" name="hide_a" value="Remove This Answer"
+                onclick="return confirm('WARNING: This answer and comments will be hidden from public view.\nIf this answer is marked as ANSWERED, the flag will also be removed\n\nPlease Confirm');" />
+            {{pass}}
+        </div>
+    
+        <div class="paragraph">
+            Basic html is allowed, use of <span class="explain">&lt;b&gt; &lt;i&gt;</span> ok to use, in addition, use the following <i>pseudo-code</i>
+            to highlight and nicely format your code if you post any code snippet <i>(Click to Insert)</i>:
+            <a href="javascript:void(0);" onclick="add_helper('[code-python][/code-python]');return false;" title="">[code-python]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c][/code-c]');return false;" title="">[code-c]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c++][/code-c++]');return false;" title="">[code-c++]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c#][/code-c#]');return false;" title="">[code-c#]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-php][/code-php]');return false;" title="">[code-php]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-java][/code-java]');return false;" title="">[code-java]</a>,
+            or
+            <a href="javascript:void(0);" onclick="add_helper('[code][/code]');return false;" title="">[code]</a>
+            (for a language not included in the previous code definitions).<br />Close your code snippet
+            with a matching <span class="explain">[/code-<i>language</i>]</span> if applicable or manually added.
+        </div>
+    
+    </form>
+    
+    <script type="text/javascript">
+    <!--
+        function add_helper(s_value) {
+            var oanswer = document.getElementById('description');
+    
+            // IE support
+            if (document.selection) {
+                oanswer.focus();
+                sel = document.selection.createRange();
+                sel.text = s_value;
+            }
+            // MOZILLA/NETSCAPE support
+            else if (oanswer.selectionStart || oanswer.selectionStart == 0) {
+                var start_pos = oanswer.selectionStart;
+                var end_pos = oanswer.selectionEnd;
+                oanswer.value = oanswer.value.substring(0, start_pos) + s_value + oanswer.value.substring(end_pos, oanswer.value.length);
+            } else {
+                oanswer.value += s_value;
+            }    
+        }
+        // Put the focus on the comment textarea
+        document.getElementById('description').focus();
+    //-->
+    </script>
+{{else:}}
+    <p class="error">Unable to edit answer, this may be due to the following reasons:</p>
+    <ul>
+        <li class="error">You are not authorized to edit this answer.</li>
+        <li class="error">This answer has been disabled by the System Administrator.</li>
+        <li class="error">This answer *is* an answer for this question.</li>
+    </ul>
+    <p><a href="javascript:void(0);" title="" onclick="history.go(-1);">Go Back</a></p>
+{{pass}}

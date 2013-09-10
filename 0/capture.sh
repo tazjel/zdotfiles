@@ -9,11 +9,7 @@ sudo apt-get install -y build-essential llvm clang \
   perl ghc cabal-install golang-go golang-go \
   golang-tools erlang gprolog g++ make quickly quickly-ubuntu-template 
 
-sudo apt-get install -y tmux vim p7zip cmake curl wget exuberant-ctags htop zsh rlwrap python-pip aptitude xclip unhtml
-m
-
-sudo apt-get install -y postgresql python-setuptools vim-gtk
-sudo apt-get install -y subversion mercurial git cvs blender
+sudo apt-get install -y tmux vim p7zip cmake curl wget exuberant-ctags htop zsh rlwrap python-pip aptitude xclip unhtml postgresql python-setuptools vim-gtk subversion mercurial git cvs blender 
 
 # java 7
 sudo add-apt-repository -y ppa:webupd8team/java

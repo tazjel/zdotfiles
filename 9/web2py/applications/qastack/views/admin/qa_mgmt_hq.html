@@ -1,0 +1,71 @@
+{{extend 'qastack_layout.html'}}
+{{include 'admin_common.html'}}
+
+<!--
+Named Anchors Specification:
+
+questionMain - Start of the question, top of page
+questionCommentsStart - Start of the comments section for the question
+answersMain - The start of the answers section
+answerXYZ - Each Answer with ID XYZ
+commentXYX - A specific anchor on a comment ID (comments are unique among questions and answers)
+//-->
+
+<script type="text/javascript">
+<!--
+     document.getElementById('aadmin').className = 'active';
+//-->
+
+</script>
+
+<h2 class="fancy">Administrative Messages - Q&amp;A Management - Hidden Questions</h2>
+
+<p><a href="{{=URL(r=request, c='admin', f='qa_mgmt')}}" title="">&lt;&lt; Back</a></p>
+
+{{if questions:}}
+    <table cellspacing="0" cellpadding="0" class="ftable">
+        <thead>
+            <tr class="shadedarker">
+                <th>&nbsp;</th>
+                <th>Title</th>
+                <th>Date</th>
+                <th>Creator</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{for idx,q in enumerate(questions):}}
+                <tr class="{{if idx%2:}}shadedark{{else:}}shadelight{{pass}}">
+                    <td style="text-align:center;">{{=idx+1}}</td>
+                    <td>
+                        <a href="{{=URL(r=request, c='default', f='view', args=[q.id])}}"
+                        title="">{{=q.title}}</a>
+                    </td>
+                    <td>{{=q.modified_on.strftime('%c')}}</td>
+                    <td style="text-align:center;">
+                        <a href="{{=URL(r=request, c='admin', f='edit_user', args=[q.created_by])}}"
+                        title="">{{=stackhelper.get_member_property('m_display_name', q.created_by, q.created_by)}}</a>
+                    </td>
+                    <td>
+                        <a href="{{=URL(r=request, c='admin', f='qa_mgmt_actions', vars=dict(action='release', action_type='question', question=q.id))}}"
+                           title="Make it publicly available"
+                           onclick="return confirm('This question and any dependencies (answers/comments) will become visible.\n\nPlease Confirm');"
+                           class="nolink"
+                        ><img src="{{=URL(r=request, c='static/images/small', f='checkmark.png')}}"
+                            alt="Restore"
+                            style="vertical-align:middle;" /></a>
+                        <a href="{{=URL(r=request, c='admin', f='qa_mgmt_actions', vars=dict(action='remove', action_type='question', question=q.id))}}"
+                           title="Remove from the system"
+                           onclick="return confirm('This question and any dependencies (answers/comments) will be permanently removed from the system.\n\nPlease Confirm');"
+                           class="nolink"
+                        ><img src="{{=URL(r=request, c='static/images/small', f='x.png')}}"
+                            alt="Remove Permanently"
+                            style="vertical-align:middle;" /></a>
+                    </td>
+                </tr>
+            {{pass}}
+        </tbody>
+    </table>
+{{else:}}
+    <p>No hidden questions found.</p>
+{{pass}}

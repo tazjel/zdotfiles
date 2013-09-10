@@ -1,0 +1,124 @@
+{{extend 'qastack_layout.html'}}
+
+<h2 class="fancy">{{=XML(T('Ask a Question'))}}</h2>
+
+{{if view_info['errors']:}}
+    <p class="err">{{=XML(T('There was one or more messages generated while processing your request, please review the following'))}}</p>
+    <ul>
+        {{for error in view_info['errors']:}}
+            <li class="err">{{=XML(T(error))}}</li>
+        {{pass}}
+    </ul>
+{{pass}}
+
+<form id="ask_form" method="post" action="">
+    <fieldset id="ask_form_fields">
+        <input type="hidden" id="form_submitted" name="form_submitted" value="1" />
+        <table cellspacing="1" cellpadding="1" style="width:100%;">
+            <tbody>
+                <tr>
+                    <td style="width:20%;">{{=XML(T('Question Title'))}}</td>
+                    <td style="width:80%;">
+                        <input type="text" id="question_title" name="question_title" value="{{=request.vars.get('question_title', '')}}"
+                               style="width:80%;" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{=XML(T('Your Question'))}}:</td>
+                    <td>
+                        <textarea id="question" name="question" cols="0" rows="0" style="width:80%;height:250px;">{{=request.vars.get('question', '')}}</textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <td>{{=XML(T('Tags'))}}:</td>
+                    <td>
+                        <input type="text" id="tags" name="tags" value="{{=request.vars.get('tags', '')}}"
+                               style="width:60%;" />
+                        <a href="javascript:void(0);" title="" onclick="return false;"
+                        class="help"><img src="{{=URL(r=request, c='static/images', f='questionmark.png')}}" alt=""
+                        style="vertical-align:middle;height:20px;width:20px;border:0;" /><div>Place as many tags as you think
+                        they are relevant to this question, please separate each tag by a comma.</div></a>
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="2">
+                        <input type="checkbox" id="subscribe" name="subscribe"
+                        {{if request.vars.form_submitted:}}
+                            {{if request.vars.subscribed:}}
+                                checked="checked"
+                            {{pass}}
+                        {{else:}}
+                            checked="checked"
+                        {{pass}} />
+                        <label for="subscribe">{{=XML(T('Subscribe to this question automatically'))}}</label>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </fieldset>
+
+    <div class="paragraph-all info">
+        Basic html is allowed, use of <span class="explain">&lt;b&gt; &lt;i&gt;</span> ok to use, in addition, use the following <i>pseudo-code</i>
+        to highlight and nicely format your code if you post any code snippet <i>(Click to Insert)</i>:
+        <a href="javascript:void(0);" onclick="add_helper('[code-python][/code-python]');return false;" title="">[code-python]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-c][/code-c]');return false;" title="">[code-c]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-c++][/code-c++]');return false;" title="">[code-c++]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-c#][/code-c#]');return false;" title="">[code-c#]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-php][/code-php]');return false;" title="">[code-php]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-java][/code-java]');return false;" title="">[code-java]</a>,
+        or
+        <a href="javascript:void(0);" onclick="add_helper('[code][/code]');return false;" title="">[code]</a>
+        (for a language not included in the previous code definitions).<br />Close your code snippet
+        with a matching <span class="explain">[/code-<i>language</i>]</span> if applicable or manually added.
+    </div>
+
+    <div class="paragraph">
+        <input type="submit" id="preview_question" name="preview_question" value="{{=XML(T('Preview Question'))}}" />
+        {{if view_info.get('can_post'):}}
+            <input type="submit" id="post_question" name="post_question" value="{{=XML(T('Post Question'))}}" />
+        {{pass}}
+    </div>
+</form>
+
+<h3 class="fancy"><a id="question_preview">{{=XML(T('Question Preview'))}}</a></h3>
+
+{{if view_info.get('question_preview'):}}
+    <h3>{{=XML(request.vars.question_title)}}</h3>
+    <div class="paragraph">
+        {{=XML(view_info['question_preview'])}}
+    </div>
+{{pass}}
+
+<script type="text/javascript">
+<!--
+    function add_helper(s_value) {
+        var oquestion = document.getElementById('question');
+
+        // IE support
+        if (document.selection) {
+            oquestion.focus();
+            sel = document.selection.createRange();
+            sel.text = s_value;
+        }
+        // MOZILLA/NETSCAPE support
+        else if (oquestion.selectionStart || oquestion.selectionStart == 0) {
+            var start_pos = oquestion.selectionStart;
+            var end_pos = oquestion.selectionEnd;
+            oquestion.value = oquestion.value.substring(0, start_pos) + s_value + oquestion.value.substring(end_pos, oquestion.value.length);
+        } else {
+            oquestion.value += s_value;
+        }
+
+        //document.getElementById('question').focus();
+    }
+
+    // This little snippet moves the cursor to the appropriate place on the page
+    var posted = {{if request.vars.form_submitted:}}true{{else:}}false{{pass}};
+    if (posted) {
+        var href = location.href.substring(0, location.href.indexOf('#'));
+        window.location = href + '#question_preview';
+    }
+    // Put the focus on the comment textarea
+    document.getElementById('question').focus();
+//-->
+</script>

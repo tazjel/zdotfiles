@@ -1,0 +1,83 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-us">
+<head>
+	<title>QA-Stack - Your questions, everyone's answers</title>
+	<meta http-equiv="Content-Type" content="application/xhtml+xml; charset=utf-8" />
+	<meta name="description" content="QA-Stack is a Questions and Answers site created in python using the web2py web application development framework" />
+	<meta name="keywords" content="qa-stack,q&amp;a,python,web2py,stack overflow,coding" />
+	<meta name="robots" content="index, follow" />
+	<link rel="shortcut icon" href="{{=URL(r=request,c='static/images',f='favicon.ico')}}" />
+    <link rel="stylesheet" href="{{=URL(r=request,c='static/css',f='qastack_stylesheet.css')}}" type="text/css" title="QA-Stack CSS" media="screen" />
+</head>
+<body>
+
+<div id="header">
+	<div><a href="{{=URL(r=request, c='default', f='index')}}"
+	        class="nolink"
+	        title="{{=XML(T('QA-Stack Homepage'))}}"><img src="{{=URL(r=request, c='static/images', f='qastack_logo.png')}}"
+			alt="QA-Stack.com" style="width:276px;height:60px;border:0;" /></a></div>
+	<p><em class="note">Your questions, Everyone's answers</em></p>
+	<ul>
+		<li><a id="aquestions" href="{{=URL(r=request, c='default', f='index')}}" title="{{=XML(T('Questions'))}}">Questions</a></li>
+		<li><a id="aunanswered" href="{{=URL(r=request, c='default', f='index', args=['unanswered'])}}" title="{{=XML(T('Unanswered'))}}">Unanswered</a></li>
+		<li><a id="afeatured" href="{{=URL(r=request, c='default', f='index', args=['featured'])}}" title="{{=XML(T('Featured'))}}">Featured</a></li>
+		{{if auth_user.is_auth():}}
+			<li><a id="asubscribed"
+				href="{{=URL(r=request,
+				c='default',
+				f='index',
+				args=['subscribed'])}}"
+				title="{{=XML(T('Subscribed'))}}">Subscribed</a></li>
+		{{pass}}
+		<li><a id="atags" href="{{=URL(r=request, c='default', f='tags')}}" title="{{=XML(T('Tags'))}}">Tags</a></li>
+		{{if auth_user.is_admin():}}
+			<li><a id="aadmin" href="{{=URL(r=request, c='admin', f='index')}}" title="{{=XML(T('Admin'))}}">Admin</a></li>
+		{{pass}}
+	</ul>
+	<form id="layoutdims" method="post" action="{{=URL(r=request, c='default', f='search')}}">
+		<fieldset>
+			{{if auth_user.is_auth():}}
+				<em>{{=auth_user()}} ({{=auth_user.get_role()}})</em> |
+				<a class="bold" title="{{=XML(T('Ask a Question'))}}" href="{{=URL(r=request, c='members', f='ask')}}">{{=XML(T('Ask a Question'))}}</a> |
+				<a title="{{=XML(T('Member Preferences'))}}" href="{{=URL(r=request, c='members', f='preferences')}}">{{=XML(T('Preferences'))}}</a> |
+				<a title="{{=XML(T('Logout'))}}" href="{{=URL(r=request, c='members', f='logout')}}">{{=XML(T('Logout'))}}</a> |
+			{{else:}}
+                <a title="{{=XML(T('Ask a Question'))}}" href="{{=URL(r=request, c='members', f='login', vars=dict(ask='yes'))}}">Ask a Question</a> |
+				<a title="{{=XML(T('Log In/Registering'))}}" href="{{=URL(r=request, c='members', f='login')}}">Login/Register</a> |
+			{{pass}}
+			<a title="{{=XML(T('about'))}}" href="{{=URL(r=request, c='default', f='about')}}">{{=XML(T('About'))}}</a> |
+			<input type="text" id="srch_txt" name="srch_txt" value="" style="width:200px;" />
+			<input type="submit" id="srch_btn" name="srch_btn" value="{{=XML(T('Tag Search'))}}" />
+		</fieldset>
+	</form>
+</div>
+
+<table class="main-layout" cellspacing="0" cellpadding="0">
+	<tbody>
+		<tr>
+			<td class="main-layout-left">
+				<!-- Column 1 start -->
+				<div class="main-layout-container">
+					{{ include }}
+				</div>
+				<!-- Column 1 end -->
+			</td>
+			<td class="main-layout-right">
+				<!-- Column 2 start -->
+				<div class="main-layout-container">
+					{{include 'qastack_sidenav.html'}}
+				</div>
+				<!-- Column 2 end -->
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<div id="footer">
+	<p>QA-Stack is Open Source distributed under the Simplified BSD License -
+	Version 1.0.0 (06-Mar-2012) | <a href="{{=URL(r=request, c='default', f='contact_admin')}}"
+	title="{{=XML(T('Contact Administrator'))}}">{{=XML(T('Contact Administrator'))}}</a></p>
+</div>
+
+</body>
+</html>

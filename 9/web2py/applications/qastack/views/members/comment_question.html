@@ -1,0 +1,151 @@
+{{extend 'qastack_layout.html'}}
+
+<h2 class="fancy">{{=XML(T('Comment Question'))}}</h2>
+
+{{if view_info['errors']:}}
+    <p class="err">{{=XML(T('There was one or more messages generated while processing your request, please review the following'))}}</p>
+    <ul>
+        {{for error in view_info['errors']:}}
+            <li class="err">{{=XML(T(error))}}</li>
+        {{pass}}
+    </ul>
+{{pass}}
+
+<div class="paragraph">
+    <table cellspacing="1" cellpadding="1" style="width:100%;margin-bottom:10px;">
+        <tbody>
+            <tr>
+                <td style="text-align:center;vertical-align:top;width:100px;">
+                    <a href="{{=URL(r=request, c='members', f='vote', args=['question', question.questions.id, 'up'])}}" class="nolink"
+                    title="{{=XML(T('Vote Up'))}}"><img src="{{=URL(r=request, c='static/images/medium', f='checkmark.png')}}"
+                    alt="{{=XML(T('Vote Up'))}}" /></a><br />
+                    <span class="votes-display">{{=question.questions.votes_up - question.questions.votes_dn}}</span><br />
+                    <a href="{{=URL(r=request, c='members', f='vote', args=['question', question.questions.id, 'down'])}}" class="nolink"
+                    title="{{=XML(T('Vote Down'))}}"><img src="{{=URL(r=request, c='static/images/medium', f='x.png')}}" alt="Vote Down" /></a>
+                </td>
+                <td style="vertical-align:top;">
+                    <div class="lsep">
+                        <span class="explain">{{=XML(T('By'))}}: {{=question.member_properties.property_value}}
+                        ({{=stackhelper.get_user_role(question.questions.modified_by)}}),
+                        {{=XML(T('On'))}}: {{=question.questions.modified_on.strftime('%c')}}</span>
+                        <br />
+                        <div class="paragraph-all">
+                            {{=XML(parse_content(question.questions.description))}}
+                        </div>
+                        <div class="tags">
+                            {{for tag in tags:}}
+                                <a class="tag" href="{{=URL(r=request, c='tags', f='index', args=[tag.tagname], vars=dict(qtype='t'))}}"
+                                   title="{{=tag.tagname}}">{{=tag.tagname}}</a>
+                            {{pass}}
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{if comments:}}
+        <table class="comment-table" cellspacing="1" cellpadding="1">
+            <tr>
+                <td colspan="2"><b>{{=XML(T('Comments'))}}</b></td>
+            </tr>
+            {{for comment in comments:}}
+                <tr>
+                    <td style="width:200px;vertical-align:top;">
+                        <div class="padme">
+                            {{=XML(T('By'))}}: {{=comment.member_properties.property_value}}
+                            ({{=stackhelper.get_user_role(comment.comments.modified_by)}})
+                            <br />{{=XML(T('On'))}}: {{=comment.comments.modified_on.strftime('%c')}}
+                            <br />{{=XML(T('Votes'))}}: {{=comment.comments.votes_up - comment.comments.votes_dn}}
+                        </div>
+                    </td>
+                    <td>
+                        <div class="padme">
+                            {{=XML(parse_content(comment.comments.description))}}
+                            <div style="text-align:right;">
+                                <a href="{{=URL(r=request, c='members', f='vote', args=['comment', comment.comments.id, 'up'])}}" class="nolink"
+                                title="{{=XML(T('Vote Up'))}}"><img src="{{=URL(r=request, c='static/images/small', f='checkmark.png')}}"
+                                alt="{{=XML(T('Vote Up'))}}" /></a>
+                                <a href="{{=URL(r=request, c='members', f='vote', args=['comment', comment.comments.id, 'down'])}}" class="nolink"
+                                title="{{=XML(T('Vote Down'))}}"><img src="{{=URL(r=request, c='static/images/small', f='x.png')}}" alt="{{=XML(T('Vote Down'))}}" /></a>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            {{pass}}
+        </table>
+    {{pass}}
+
+</div>
+
+<!-- Answer Add Form: Begin //-->
+<form id="comment_question_form" method="post" action="">
+    <fieldset id="comment_question_form_fields">
+        <input type="hidden" id="form_submitted" name="form_submitted" value="1" />
+        <input type="hidden" id="qid" name="qid" value="{{=question.questions.id}}" />
+        <h2><a name="add_comment" title="">{{=XML(T('Your Comment'))}}:</a></h2>
+        <div><textarea id="comment" name="comment" cols="0" rows="0"
+        style="width:800px;height:250px;">{{=request.vars.get('comment', '')}}</textarea></div>
+    </fieldset>
+
+    <div class="paragraph-all info">
+        Basic html is allowed, use of <span class="explain">&lt;b&gt; &lt;i&gt;</span> ok to use, in addition, use the following <i>pseudo-code</i>
+        to highlight and nicely format your code if you post any code snippet <i>(Click to Insert)</i>:
+        <a href="javascript:void(0);" onclick="add_helper('[code-python][/code-python]');return false;" title="">[code-python]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-c][/code-c]');return false;" title="">[code-c]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-c++][/code-c++]');return false;" title="">[code-c++]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-c#][/code-c#]');return false;" title="">[code-c#]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-php][/code-php]');return false;" title="">[code-php]</a>,
+        <a href="javascript:void(0);" onclick="add_helper('[code-java][/code-java]');return false;" title="">[code-java]</a>,
+        or
+        <a href="javascript:void(0);" onclick="add_helper('[code][/code]');return false;" title="">[code]</a>
+        (for a language not included in the previous code definitions).<br />Close your code snippet
+        with a matching <span class="explain">[/code-<i>language</i>]</span> if applicable or manually added.
+    </div>
+
+    <div class="paragraph">
+        <input type="submit" id="preview_comment" name="preview_comment"
+        value="{{=XML(T('Preview Comment'))}}" />
+        {{if view_info.get('can_post'):}}
+            <input type="submit" id="post_comment" name="post_comment"
+            value="{{=XML(T('Post Comment'))}}" />
+        {{pass}}
+        <input type="submit" id="cancel" name="cancel"
+        value="{{=XML(T('Cancel'))}}" />
+    </div>
+</form>
+
+{{if view_info.get('comment_preview'):}}
+    <h3 class="fancy">{{=XML(T('Comment Preview'))}}</h3>
+    <div class="paragraph">
+        {{=XML(view_info['comment_preview'])}}
+    </div>
+{{pass}}
+
+<script type="text/javascript">
+<!--
+    function add_helper(s_value) {
+        var ocomment = document.getElementById('comment');
+
+        // IE support
+        if (document.selection) {
+            ocomment.focus();
+            sel = document.selection.createRange();
+            sel.text = s_value;
+        }
+        // MOZILLA/NETSCAPE support
+        else if (ocomment.selectionStart || ocomment.selectionStart == 0) {
+            var start_pos = ocomment.selectionStart;
+            var end_pos = ocomment.selectionEnd;
+            ocomment.value = ocomment.value.substring(0, start_pos) + s_value + ocomment.value.substring(end_pos, ocomment.value.length);
+        } else {
+            ocomment.value += s_value;
+        }
+
+        //document.getElementById('comment').focus();
+    }
+    // Focus the cursor on the comment textbox control
+    document.getElementById('comment').focus();
+//-->
+</script>
+<!-- Answer Add Form: End //-->

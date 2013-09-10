@@ -1,0 +1,79 @@
+{{extend 'qastack_layout.html'}}
+
+{{if request.vars.tag:}}
+    <h3>{{=XML(T('Searching for tags named'))}} <em style="color:green;">{{=request.vars.tag}}</em></h3>
+{{pass}}
+
+<div id="sort-options-main">
+    <ul>
+        <li><a id="s_votes" href="{{=request.env.path_info}}?sort=s_votes" title="{{=XML(T('Most Voted'))}}">Most Voted</a></li>
+        <li><a id="s_dates" href="{{=request.env.path_info}}?sort=s_dates" title="{{=XML(T('Latest Questions'))}}">Latest</a></li>
+    </ul>
+</div>
+
+{{=XML(stackhelper.pagination_widget(view_info['question_cnt'], int(request.vars.get('start', 0)), 'questions', URL(r=request, c='default', f='index', args=request.args), 'sort=%s' % (request.vars.sort) if request.vars.sort is not None else None))}}
+
+{{if questions:}}
+    {{for q in questions:}}
+        <div class="question-main">
+            <div class="question">
+                <a title="{{=q['questions.title']}}" href="{{=URL(r=request, c='default', f='view', args=[q['questions.id']])}}">{{=q['questions.title']}}</a>
+                <div class="question-info">
+                    {{=XML(T('By'))}}: {{=q['member_properties.property_value']}}
+                    ({{=q['auth_roles.role_name']}}),
+                    {{=prettydate(q['questions.modified_on'], T)}}
+
+                </div>
+                {{if q['questions.is_featured']:}}
+                    <img src="{{=URL(r=request, c='static/images/small', f='shield_blue.png')}}"
+                    alt="{{=XML(T('Featured'))}}"
+                    title="{{=XML(T('Featured'))}}"
+                    style="float:left;margin:0;vertical-algin:middle;border:0;" />
+                {{pass}}
+                {{if q['questions.is_answered']:}}
+                    <img src="{{=URL(r=request, c='static/images/small', f='light_on.png')}}"
+                    alt="{{=XML(T('Answered Question'))}}"
+                    title="{{=XML(T('Answered Question'))}}"
+                    style="float:left;margin:0;vertical-algin:middle;border:0;" />
+                {{pass}}
+                {{if stackhelper.user_is_subscribed(q['questions.id'], auth_user.get_user_id()):}}
+                    <img src="{{=URL(r=request, c='static/images/small', f='heart.png')}}"
+                    alt="{{=XML(T('Subscribed'))}}"
+                    title="{{=XML(T('Subscribed'))}}"
+                    style="float:left;margin:0;vertical-algin:middle;border:0;" />
+                {{pass}}
+                {{if q['questions.is_closed']:}}
+                    <img src="{{=URL(r=request, c='static/images/small', f='lock_closed.png')}}"
+                    alt="{{=XML(T('Closed'))}}"
+                    title="{{=XML(T('Closed'))}}"
+                    style="float:left;margin:0;vertical-algin:middle;border:0;" />
+                {{pass}}
+                <img src="{{=URL(r=request, c='static/images/small', f='tag.png')}}"
+                alt="{{=XML(T('Tags'))}}"
+                title="{{=XML(T('Tags'))}}"
+                style="float:left;margin:0 5px 0 0;vertical-algin:middle;border:0;" />
+                <div class="tags">
+                    {{if q['tags']:}}
+                        {{for tag in q['tags']:}}
+                            <a class="tag" href="{{=URL(r=request, c='default', f='index', args=['tags'], vars=dict(tag=tag.tagname))}}" title="{{=tag.tagname}}">{{=tag.tagname}}</a>
+                        {{pass}}
+                    {{else:}}
+                        [NO_TAG]
+                    {{pass}}
+                </div>
+            </div>
+            <div class="answers">{{=q['answers_id_count']}}<div>{{=XML(T('answers'))}}{{if q['questions.is_answered']:}}<br />(answered){{pass}}</div></div>
+            <div class="votes">{{=(q['questions.votes_up'] - q['questions.votes_dn'])}}<div>{{=XML(T('votes'))}}</div></div>
+            <div class="views">{{=q['questions.views']}}<div>{{=XML(T('views'))}}</div></div>
+        </div>
+    {{pass}}
+{{else:}}
+    <h3>{{=XML(T('No questions have been posted yet'))}}</h3>
+{{pass}}
+
+<script type="text/javascript">
+<!--
+     document.getElementById('{{=nav_css}}').className = 'active';
+     document.getElementById('{{=sort_css}}').className = 'active';
+//-->
+</script>
