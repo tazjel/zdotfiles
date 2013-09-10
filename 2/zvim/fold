@@ -1,0 +1,267 @@
+Keywords for search engines: folding, text editors, outline, outlining, vim
+
+-------
+Folding
+-------
+
+Folding in a text editor allows portions of text to be collapsed (folded)
+to a single "meta line", or expanded (unfolded) back to their original state.
+When collapsed, a section might take up only one row of space,
+and be displayed using some summary information and/or the
+title or first line of the section.
+Folding is useful for composing and browsing outlines of documents,
+allowing writers and readers to collapse sections or subsections
+while rearranging them or drilling down selectively.
+Folding is also useful for writing and reading source code,
+allowing a programmer to temporarily collapse lengthy blocks of code
+to see the outer structure of an entire function or class, for example.
+It is natural to nest folds -- indeed, as Michael Haardt, author of Fe, puts it,
+"A folding editor extends the principle of tree structured directories
+to editing text files" [ http://www.moria.de/~michael/fe/folding.html ].
+
+
+
+---------------------------
+Historical notes on folding
+---------------------------
+
+Tom Locke claims that the idea of folding dates back to the 1980s
+[ http://www.geocrawler.com/mail/msg.php3?msg_id=5631492&list=797 ].
+THE, The Hessling Editor [ http://members.cox.net/dos/txted01.htm ,
+http://users.aol.com/dosware3/the.png ,
+http://hessling-editor.sourceforge.net/ ,
+http://www.lightlink.com/hessling/ ], was a DOS text editor
+that supported so-called SHADOW lines which summarized hidden text portions.
+According to Michael Haardt, "most folding editors [...]
+are inspired by the Inmos Transputer Development System"
+[ http://www.moria.de/~michael/fe/folding.html ].
+According to the help file for Andy's Editor,
+"Folding is an idea borrowed from the language occam by INMOS,
+although there is prior work in this area"
+[ http://www.nyangau.fsnet.co.uk/ae/folding.htm ].
+WoTUG's website states that "the original occam IDE, called TDS,
+enabled you to hide blocks of text behind a single comment line,
+enabling you to hide sections of the source in order to better see
+its structure. These blocks were called folds,
+and used an initial line of text formatted as a comment"
+[ http://www.wotug.org/occam/folding.shtml ].
+
+
+There's a video of work by Doug Engelbart from the 1960s
+which shows an indentation-based tree view where nodes (or sections)
+of the tree could be collapsed (folded) interactively.
+Reference:
+   Douglas C. Engelbart and William K. English
+   A Research Center for Augmenting Human Intellect
+   Video of public demonstration of NLS
+   December 9, 1968
+   Stanford Research Institute
+   Menlo Park, California
+   http://sloan.stanford.edu/mousesite/1968Demo.html
+
+
+See also http://www.softpanorama.org/Editors/index.shtml
+
+According to http://en.wikipedia.org/wiki/Folding_editor ,
+"The first folding editor was probably STET, an editor written for the VM/CMS
+operating system in 1977 by Mike Cowlishaw. STET is a text editor (for
+documentation, programs, etc.) which folds files on the basis of blocks of
+lines; any block of lines can be folded and replaced by a name line (which in
+turn can be part of a block which itself can then be folded).
+Folding editors appeared in the original occam IDE, called Inmos Transputer
+Development System."
+
+
+
+----------------------------
+Other names used for folding
+----------------------------
+
+Ted Nelson appears to use the term "Sandwich Subroutines" to describe
+subroutines that can be folded
+[ http://xanadu.com/zigzag/fw99/ZZcellProg.html ].
+Orkut Buyukkokten, Hector Garcia-Molina, and Andreas Paepcke described
+a technique they call "Accordion Summarization" whereby portions
+of a webpage can be shrunk or expanded
+["Accordion Summarization for End-Game Browsing on PDAs and Cellular Phones",
+CHI 2001], much like what folding affords.
+Visual SlickEdit, a text editor [ http://www.slickedit.com/ ],
+allows code blocks to be collapsed (or hidden) and expanded.
+
+
+
+--------------
+Folding in vim
+--------------
+
+A web search for "folding text editor" will reveal
+that many freely-available text editors support folding.
+vim 6.1 supports folding.
+You can try this out in vim by hitting the v key to enter visual mode,
+selecting some lines of text using the arrow keys, and then typing
+zf to create a fold.
+The selected text should have been collapsed into one summary line.
+You can then open, close, or delete the fold by typing
+zo, zc, or zd, respectively, when the cursor is over the fold.
+The letter "z" looks like a folded piece
+of paper, so isn't too hard to associate with folding.
+Folds can be nested,
+and you can also create a margin on the left of your terminal with
+   :set foldcolumn=5
+where you can see the opened/closed folds and their vertical extent.
+Do :help folding for more details.
+
+Note that the folds described here are not persistent across
+editing sessions.  However, you can save the folds described here
+(:help mkview) or use a different kind of fold that encodes its
+location in the file and is thus persistent (:help folding).
+
+
+
+-------------------------------------------
+Customizing the behaviour of folding in vim
+-------------------------------------------
+
+This section demonstrates different ways to customize vim
+to allow more convenient toggling of folds with a single keystroke.
+
+Add these lines to your ~/.vimrc file:
+   vmap <space> zf
+   nmap <space> zd
+and then restart vim.
+These two lines remap the space bar in visual mode and normal mode
+(do :help vmap or :help nmap for more information).
+Normal mode is also known as command mode.
+With this mapping, to create a fold, you can hit v to enter visual mode
+(or Shift-v to enter line-oriented visual mode),
+select some lines with the arrow keys, and hit spacebar to
+collapse the selected lines.
+To expand the lines, put the cursor over the fold and hit spacebar
+(in vim terminology, this deletes the fold).
+
+(Side note: you may want to change the look of collapsed folds.
+My ~/.vimrc contains the lines
+   highlight Folded ctermfg=yellow ctermbg=NONE
+   set foldtext=getline(v:foldstart)
+which you may prefer.  Play around with these options and consult
+:help folding for more information.)
+
+
+
+It would be nice if, when creating folds, rather than manually
+specifying the extent of the text to fold with the arrow keys,
+the extent of a fold could be inferred based on the structure of the text.
+Here's an alternative set of lines you can add to your ~/.vimrc file:
+   vmap <space> zf
+   nmap <space> zd
+   nmap <F2> 0v/{<CR>%zf
+With this configuration, hitting the spacebar in visual or normal
+mode will create or delete a fold as before.
+In addition, hitting F2 in normal mode will create a fold with an
+inferred extent.  Specifically, F2 will cause vim to
+move the cursor to the start of the current line (0),
+enter visual mode (v), search forward for the first opening brace (/{<CR>),
+jump to the matching closing brace (%), and fold the selected text (zf).
+Thus, compound statements in C/C++ programs, or other blocks of text
+that are delimited with braces, can be folded by moving to the start of
+the block and hitting F2.
+
+
+
+There's a way to pack all of the above functionality into just one key,
+such as the spacebar, without having to also use another key such as F2.
+The following achieves this using a vim function:
+   vmap <space> zf
+
+   " inspired by Max Ischenko's http://www.vim.org/tips/tip.php?tip_id=108
+   function ToggleFold()
+      if foldlevel('.') == 0
+         " No fold exists at the current line,
+         " so create a fold based on braces
+         let x = line('.')    " the current line number
+         normal 0
+         call search("{")
+         normal %
+         let y = line('.')    " the current line number
+         " Create the fold from x to y
+         execute x . "," . y . " fold"
+      else
+         " Delete the fold on the current line
+         normal zd
+      endif
+   endfunction
+
+   nmap <space> :call ToggleFold()<CR>
+Hitting spacebar in visual mode creates a fold as before.
+Hitting spacebar in normal mode will either
+(i) create a fold, whose extent is inferred from braces,
+or (ii) if a fold already exists, delete that fold.
+For help on how the above function works, and hints on how you
+might modify it, do :help function, :help foldlevel, etc.
+
+
+
+Rather than using braces to infer the extent of folds,
+we might want to instead use indentation.
+This is often more general than using braces,
+since programming languages that use braces to delimit
+compound statements usually have a conventional indentation
+style that also encodes the nested structure of code.
+Furthermore, some languages, such as Python, use indentation
+without braces to indicate compound statements.
+Using indentation to infer fold extents is also useful
+in plain text files that don't necessarily contain source code.
+Here's a configuration that implements this behaviour:
+   vmap <space> zf
+
+   function ToggleFold()
+      if foldlevel('.') == 0
+         " No fold exists at the current line,
+         " so create a fold based on indentation
+
+         let l_min = line('.')   " the current line number
+         let l_max = line('$')   " the last line number
+         let i_min = indent('.') " the indentation of the current line
+         let l = l_min + 1
+
+         " Search downward for the last line whose indentation > i_min
+         while l <= l_max
+            " if this line is not blank ...
+            if strlen(getline(l)) > 0 && getline(l) !~ '^\s*$'
+               if indent(l) <= i_min
+                  " we've gone too far
+                  let l = l - 1    " backtrack one line
+                  break
+               endif
+            endif
+            let l = l + 1
+         endwhile
+
+         " Clamp l to the last line
+         if l > l_max
+            let l = l_max
+         endif
+
+         " Backtrack to the last non-blank line
+         while l > l_min
+            if strlen(getline(l)) > 0 && getline(l) !~ '^\s*$'
+               break
+            endif
+            let l = l - 1
+         endwhile
+
+         "execute "normal i" . l_min . "," . l . " fold"   " print debug info
+
+         if l > l_min
+            " Create the fold from l_min to l
+            execute l_min . "," . l . " fold"
+         endif
+      else
+         " Delete the fold on the current line
+         normal zd
+      endif
+   endfunction
+
+   nmap <space> :call ToggleFold()<CR>
+Now try collapsing/expanding sections of the
+vim code examples in this file using the spacebar :)

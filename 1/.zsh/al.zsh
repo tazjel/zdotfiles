@@ -897,3 +897,7 @@ alias 'wvb'='wwww $HOME/.vim/bundle'
 alias 'wdx'='docx2txt' 
 
 
+
+alias 'دف'='glll' 
+
+

@@ -63,7 +63,8 @@ colorscheme xoria256
 map <F1> ,c<space>
 "}
 "{<F2>
-nnoremap <F2> :reg<CR>
+"nnoremap <F2> :reg<CR>
+nmap <F2> 0v)<CR>%zf
 "vnoremap <silent> WW Y<C-W><C-W>Gp'[v'],c<Space><C-W><C-W>
 "vnoremap <silent> WW Y<C-W><C-W>Gp<C-W><C-W>
 nnoremap <C-n> <C-W>n<C-W>L
@@ -136,7 +137,6 @@ nnoremap <S-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
 "map <F5> <esc><esc>:buffers<cr>
 "}
                """""""""""""""""""<F6>
-nmap <F2> 0v/{<CR>%zf
 "function ToggleFold()
       "if foldlevel('.') == 0
          "" No fold exists at the current line,
