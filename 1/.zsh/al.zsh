@@ -788,13 +788,13 @@ alias 'wen'='setxmap -layout us'
 #Enable Arabic . English alt shift
 
 # Check if a .no domain is available
-check_dns_no() { for i in $* ; do if `wget -O - -q http://www.norid.no/domenenavnbaser/whois/?query=$i.no | grep "no match" &>/dev/null` ; then echo $i.no "available" ; fi ; sleep 1 ;done }
+#check_dns_no() { for i in $* ; do if `wget -O - -q http://www.norid.no/domenenavnbaser/whois/?query=$i.no | grep "no match" &>/dev/null` ; then echo $i.no "available" ; fi ; sleep 1 ;done }
 
 # alias to close terminal with :q
-alias ':q'='exit'
-function wfs_find_string_txt () {find . -name '*.txt' -exec grep "$@" '{}' ';'} 
+#alias ':q'='exit'
+#function wfs_find_string_txt () {find . -name '*.txt' -exec grep "$@" '{}' ';'}
 #getconf LONG_BIT
-wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=ar&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ; }
+#wsay(){ mplayer -user-agent Mozilla "http://translate.google.com/translate_tts?tl=ar&q=$(echo $* | sed 's#\ #\+#g')" > /dev/null 2>&1 ; }
 # Print free RAM in MB
 # free -m | awk '/cache:/ {print $4}'
 
@@ -893,8 +893,16 @@ alias 'نصب'='wi'
 
 alias 'القران'='cd' 
 
+alias 'p'='path'
 
 
-alias 'p'='path' 
+
+
+
+alias 'wb'='blender --debug' 
+
+
+
+alias 'wb'='blender --debug' 
 
 
