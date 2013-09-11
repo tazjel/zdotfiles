@@ -61,10 +61,13 @@ colorscheme xoria256
 "{"F1"}
 """"""""""""""""""""""""""""
 map <F1> ,c<space>
+map <S-F1> ,c<space>
+
 "}
 "{<F2>
-"nnoremap <F2> :reg<CR>
-nmap <F2> 0v)<CR>%zf
+nnoremap <F2> :reg<CR>
+nnoremap <S-F2> :marks<CR>
+"nmap <F2> 0v)<CR>%zf
 "vnoremap <silent> WW Y<C-W><C-W>Gp'[v'],c<Space><C-W><C-W>
 "vnoremap <silent> WW Y<C-W><C-W>Gp<C-W><C-W>
 nnoremap <C-n> <C-W>n<C-W>L
@@ -94,8 +97,8 @@ map <C-c> "+y<CR>
 
 map <F3> :ls<CR>:sb
 map <s-F3> [c
-map <S-Right> dp
-map <S-Left> do
+"map <S-Right> dp
+"map <S-Left> do
 "}
 "{F4
 """"""""""""""""""""""""""""""""""""""
@@ -156,14 +159,6 @@ nnoremap <S-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
 
 "nmap <space> :call ToggleFold()<CR>
    
-"lists all buffer, just type number
-iabbrev CAR Conflict Analysis & Resolution
-nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
-nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
-
-nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
-"/home/ahmed/Dropbox/C/Foundation/wiki-Foundations.txt
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 ""{""F7
 
@@ -386,7 +381,7 @@ nnoremap <C-K> m`O<Esc>``
 
 """"""""""""""""""""""""""""""""""""""""""""""
 
-fun! RangerChooser()
+fun! RangerChooser()"{
     exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
     if filereadable('/tmp/chosenfile')
         exec 'edit ' . system('cat /tmp/chosenfile')
@@ -395,29 +390,24 @@ fun! RangerChooser()
     redraw!
 endfun
 map ,r :call RangerChooser()<CR>
-
-""""""""""""""""""""""""""""""""""""""""""""""
-
-""""""""""""""""""""""""""""""""""""""""""""""
-fun! FindFiles()
+"}
+fun! FindFiles()"{
     let $filename = input("Enter file name to find: ")
     let $error_file = $HOME."/.findfile.output"
     silent! exe "!find . -iname \"".$filename."\" \| xargs file \| perl -pe 's/:/:1:/' > ".$error_file
     cfile $error_file
     copen
     redraw!
-endfun
+endfun"}
+ "Change the following paths to your lynx files:"{
+"let s:lynxPath = '/etc/lynx-cur'
+"let s:lynxExe = s:lynxPath . 'lynx'
+"let s:lynxCfg = '-cfg=' . s:lynxPath . 'lynx.cfg'
+"let s:lynxLss = '-lss=' . s:lynxPath . 'lynx.lss'
+"let s:lynxCmd = s:lynxExe . ' ' . s:lynxCfg . ' ' . s:lynxLss
+"let s:lynxDumpPath = '~/Documents/lynx/dump/'
+"let s:lynxToolsPath = '~/Documents/lynx/tools/'"}
 
-""""""""""""""""""""""""""""""""""""""""""""""
-" Change the following paths to your lynx files:
-let s:lynxPath = '/etc/lynx-cur'
-let s:lynxExe = s:lynxPath . 'lynx'
-let s:lynxCfg = '-cfg=' . s:lynxPath . 'lynx.cfg'
-let s:lynxLss = '-lss=' . s:lynxPath . 'lynx.lss'
-let s:lynxCmd = s:lynxExe . ' ' . s:lynxCfg . ' ' . s:lynxLss
-let s:lynxDumpPath = '~/Documents/lynx/dump/'
-let s:lynxToolsPath = '~/Documents/lynx/tools/'
-"
 " Usage: {{{2
 " <leader>wb :WebBrowser (Open a new web browser tab with the address specified)
 " <leader>wc :exe 'WebBrowser "' . @* . '"'<cr> (Open a new web browser tab with the address in the clipboard)
@@ -456,7 +446,6 @@ let s:lynxToolsPath = '~/Documents/lynx/tools/'
 ":scrollbind      : in each split window
 "}
 
-nnoremap w9 :e! /home/www-data/web2py/applications/zIST/views/default/index.html<CR>
 
 " Split the Line at Cursor
 nnoremap K i<cr><esc><right>
@@ -507,7 +496,8 @@ endfun
 "tabs"
 "buffers"
 "windows"
-
+map <F11> <C-N> 
+"nmap <S-Down> V)<CR>
 "}
 
 "white space
@@ -814,26 +804,39 @@ set complete=.,w,b,u,t,i
 ":help folding
 "zfG      : fold everything after this line [N]
 "----------------"}
-iabbrev wf capture<CR>
-    \ Process<CR>
-    \ Organize<CR>
+iabbrev wf Capture<CR>
+    \Process<CR>
+    \Organize<CR>
+    \Review<CR>
+    \Done<CR>
+
+iabbrev w10 0<CR>
+    \1<CR>
+    \2<CR>
+    \3<CR>
+    \4<CR>
+    \5<CR>
+    \6<CR>
+    \7<CR>
+    \8<CR>
+    \9<CR>
+    \10<CR>
 "{
 nnoremap <space> za
 vnoremap <space> zf
 
-set foldmethod=indent
-set foldnestmax=2
-
-"derset foldmethod=indent
-"set foldcolumn=2
-" open folding using space
 "nmap <Space> zo
+
+"set foldmethod=indent
+set foldnestmax=2
+set foldcolumn=2
+" open folding using space
 
 " Syntax
 syntax on
 
 " GRB: Always source python.vim for Python files
-"au FileType python source ~/.vim/scripts/python.vim
+au FileType python source ~/.vim/scripts/python.vim
 
 " GRB: Use custom python.vim syntax file
 "au! Syntax python source ~/.vim/syntax/python.vim
@@ -854,13 +857,14 @@ set complete+=.
 set complete+=k
 set complete+=b
 set complete+=t
-"set completeopt-=preview
-"set completeopt+=longest
+set completeopt-=preview
+set completeopt+=longest
+
 
 autocmd BufRead *.py set smartindent
 set cinwords=if,elif,else,for,while,try,except,finally,def,class
 
-let g:Tlist_Ctags_Cmd="D:/opt/ctags58/ctags.exe"
+"let g:Tlist_Ctags_Cmd="D:/opt/ctags58/ctags.exe"
 let g:Tlist_Show_One_File=1
 let g:Tlist_GainFocus_On_ToggleOpen = 1
 let g:Tlist_Auto_Update = 1
@@ -895,20 +899,13 @@ vnoremap <silent> # :<C-U>
 " Set ACK to be grep within vim
 
 " Mark text width indication to 80 chars left
-" highlight OverLength ctermbg=red ctermfg=white guibg=#ffd9d9
-" match OverLength /\%81v.\+/
+highlight OverLength ctermbg=red ctermfg=white guibg=#ffd9d9
 
-"Reference https://github.com/signalpillar/dotfiles/blob/master/.vimrc
-
-            "Next actions
-"if has text : syntax=vim 
-"save phrase to 10 
-"
 " Smart way to move between windows
-map <C-j> <C-W>j
-"map <C-k> <C-W>k
-map <C-h> <C-W>h
-map <C-l> <C-W>l
+map <C-UP> <C-W>k
+map <C-Right> <C-W>l
+map <C-Left> <C-W>h
+map <C-Down> <C-W>j
 
 
 
@@ -1116,9 +1113,11 @@ syntax on
 
 au BufRead,BufNewFile *.txt set filetype=txt
 au! Syntax newlang source ~/.vim/syntax/txt.vim
+" Conflict Analysis & Resolution 
+iabbrev www Conflict Analysis & Resolution
+nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
+nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
 
-
-
-
-
-
+nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
+"/home/ahmed/Dropbox/C/Foundation/wiki-Foundations.txt
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""

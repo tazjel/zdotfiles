@@ -1,50 +1,68 @@
 # vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
-# Last update
+#
 ########################################################
 # Author : AHMED BANI
 #
-# co
-# 
-echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
+#
+    #<F0> Git
+    #<F1> Path
+    #<F2> Document
+    #<F3> Directories
+    #<F4> History
+    #<F5> Now
+    #<F6> Next
+    #<F7> Root
+    #<F8> Others
+    #<F9> SSH
+    #<F10> Git 
+    #<F11> References
+    #<F12> Projects
+
+
+    #work-flow# {
+    Capture ()
+    {
+    }
+    Process ()
+    {
+    }
+    Organize()
+    {
+    }
+    Review()
+    {
+    }
+    Done (){
+    {
+    }
+
+    Reminder ()
+    {
+    }
+    Calendar () 
+    {
+    }
+    Next_Actions ()
+    {
+    }
+    Projects ()
+    {
+    }
+    References ()
+    {
+    }
+
+echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"# }
 echo -e "\t\t\t\t $(date)"
 ########################################################
-# <F0> git
-function install_dropbox_cmd () {
-    '/tmp/a b'onvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
-    uonvert_path2uri () { echo -n 'file://'; echo -n "$1" | perl -pe 's/([^a-zA-Z0-9_\/.])/sprintf("%%%.2x", ord($1))/eg' ;} 
-    mkdir -p ~/bin
-    wget -O ~/bin/dropbox.py "http://www.dropbox.com/download?dl=packages/dropbox.py"
-    chmod +x ~/bin/dropbox.py
-    . ~/bin/dropbox.py help
-}
 export N6=/dev/null
 ########################################################
-# Put readline into vi mode
-#set -o vigit config --global user.name
-alias 'zzk'='kate ~/zdotfiles/1/.zsh/al.zsh'
-########################################################
-# <F1>
-########################################################
-#setxkbmap -v -rules xfree86 -model pc104 -layout "us,ar" -option "grp:alt_shift_toggle" -option "grp_led:caps"
+
+#setxkbmap -v -rules xfree86 -model pc104 -layout "us,ar" -option "grp:alt_shift_toggle" -option "grp_led:caps"# {
 setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
 setxkbmap -option ctrl:nocaps
-############## 
-#{Bindkey
-
-# Make HOME and END work reasonably
-#case $TERM in
-    #xterm*)
-    #bindkey "^[[F" end-of-line
-    #bindkey "^[[H" beginning-of-line 
-    #;;
-#esac
-
-#bindkey '\e[1~' beginning-of-line       # Home
-#bindkey '\e[4~' end-of-line             # End
-#bindkey '\e[3~' delete-char             # Del
-#bindkey '\e[2~' overwrite-mode          # Insert 
-#bindkey -v
-#}##########################################
+#alias 'wenar'setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
+############## # {
 alias "سم"="alias"
 alias "قل"="echo"
 alias "اكتب"="vim"
@@ -55,6 +73,7 @@ alias "نظف"="clear"
 alias "بحث"="grep -iaR"
 alias "التاريخ"="date"
 #############################################
+# }# }
 
 alias 'wml'='env SHELL=zsh mlterm --meta=esc --metakey=alt -E ar.SA.UTF-8 -f=green -b=black -0=green -R=30-40'
 #env SHELL=zsh mlterm  --meta=esc --metakey=alt
@@ -65,19 +84,16 @@ alias al='alias | grep'
 alias z='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
-alias zza='kate $HOME/zdotfiles/1/.zsh/arabic_alias.zsh && source
-$HOME/zdotfiles/1/.zsh/arabic_alias.zsh'
 ########################################################
 # <F3>
 ########################################################
 
 
-#mkdir ~/images/shots/
+#mkdir ~/images/shots/# {
 #
 function sw () {
     today=`date +%Y_%m_%d_%h_%s`
-    scrot '$today_srot.png' -e 'mv $f ~/images/shots/'
-}
+    scrot '$today_srot.png' -e 'mv $f ~/images/shots/'# }
 function wsw() {
     today=`date +%d_%s`;echo $today; scrot "$today"_shot.png -e 'mv $f ~/images/shots/';ls ~/images/shots
 }
@@ -467,23 +483,19 @@ cmdfu(){ curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 
 ####################################################
 function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
 
-#function ww_send_gmail
+#function ww_send_gmail# {
 ##{
 #echo "Your Email :  " && read Email;
 #echo " Enter Password : " && read pw;
 #echo "Send To : " && read mailto ;
 #curl --url "smtps://smtp.gmail.com:465" --ssl-reqd --mail-from "$(echo $Email)" --mail-rcpt "$(echo $mailto)" --upload-file mail.txt --user "$(echo $Email):$(echo $pw)" --insecure;
 #}
+## }
 #
-#
-########################3
+
 #
 alias 'wx'='chmod +x'
-
 alias 'wX'='chmod -x'
-
-
-
 alias 'wws'='PS3="nter a number: "; select f in *;do $EDITOR $f; break; done'
 wwws () {
     PS3="Enter a number: "
@@ -508,7 +520,6 @@ alias 'wlz'='ls -a | grep zsh'
 
 alias 'wdev'='hcitool dev'
 
-alias '1'='ls'
 
 alias 'wwraw'='sudo sixad-raw /dev/'
 
@@ -543,36 +554,24 @@ function Wbkp {
     done;
 }
 
-
 alias 'wt'='cd ~/tst'
-
 
 alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'
 
 alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
 
-alias 'wph'='vim ~/zdotfiles/References/UNIX_Philosophy/make_a_for_everyone'
 alias 'wshut'='sudo shutdown -h now'
-
 alias 'whis'='cut -f2 -d";" ~/.zsh_history | grep "$1" | sort -u'
 
-
-
-
-alias 'wmp3_notify'='play ~/zdotfiles/References/notify.mp3'
-
-alias 'wr'='xd=$(date +%s); rec -c 2 -r 44100 -s -t wav ~/Dropbox/tools/zfile$xd.wav'
-
-alias 'wp'='play ~/Dropbox/tools/zfile$xd.wav'
-
+#alias 'wmp3_notify'='play ~/zdotfiles/References/notify.mp3'
 
 # get a random number in bash
 alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
 #
-#rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d<]*/
-
-alias 'ww_permission'='sudo chown abobani:abobani -Rv /home/abobani/**/*'
-
+#rec -r 44100 -p | sox -p "audio_name-$(date '+%Y-%m-%d').ogg" silence -l 1 00:00:00.5 -45d -1 00:00:00.5 -45d<]*/# {
+#alias 'wr'='xd=$(date +%s); rec -c 2 -r 44100 -s -t wav ~/Dropbox/tools/zfile$xd.wav'
+#alias 'wp'='play ~/Dropbox/tools/zfile$xd.wav'
+# }
 alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'
 
 extract_url_links (){
@@ -617,12 +616,7 @@ alias 'wst_string'="read -d '' iz <<"zx""
 
 alias 'wask'='vim ~/zdotfiles/1/askapache-bash-profile.txt'
 alias 'wjprayer'='wf "jeddah prayer time"'
-
-
-
 alias 'wfbash'="#\bash \command line filetype:bash @$"
-
-
 alias 'wfbash'='firefox -search bash command line "$@"'
 functions wfbash() {
     firefox -search
@@ -655,15 +649,9 @@ lnif() {
 #}
 #
 
-#Set the permissions so you can execute the CLI interface:
 
-#Getting Started
 
-#Start off by printing the help menu:
 alias 'wdr'='~/bin/dropbox.py'
-
-
-
 
 alias 'wj'='joy2key'
 
@@ -684,16 +672,11 @@ alias 'wjs'='jstest --normal /dev/input/js0'
 # Discover the process start time
 #ps -eo pid,lstart,cmd
 #
-#stat -f -L -c %T YOUR_FILE_OR_DIRECTORY
 
 #
-# List mp3 files with less than 320 kbps bitrate.
-## Delete a file securely by overwriting its contents
 #shred -v filename
 
 #<F5>
-# Show who is logged on and find out what they are doing
-#watch w
 
 # find established tcp connections without using netstat!!
 #lsof -i -n | grep ESTABLISHED
@@ -797,26 +780,12 @@ alias gfind='find . -print0  | xargs -0 egrep -I '
 
 alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
 
-
-
 alias 'w_ak'='autokey -l' 
-
-
-
 alias 'w7'='ssh' 
-
-
-
 alias 'wib'='ssh root@192.168.1.$(echo "$1")'
-
-
-
-
 alias 'war'='setxmap -layout ar'
 alias 'wen'='setxmap -layout us'
-
 #Enable Arabic . English alt shift
-alias 'wenar'setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
 
 # Check if a .no domain is available
 check_dns_no() { for i in $* ; do if `wget -O - -q http://www.norid.no/domenenavnbaser/whois/?query=$i.no | grep "no match" &>/dev/null` ; then echo $i.no "available" ; fi ; sleep 1 ;done }
@@ -899,5 +868,33 @@ alias 'wdx'='docx2txt'
 
 
 alias 'دف'='glll' 
+alias 'كيفك'='gst' 
+
+alias 'اسحب'='gpo' 
+
+
+
+alias 'من'='who' 
+
+
+
+alias 'ما'='ls' 
+
+
+
+
+alias 'برامج'='acs' 
+
+
+
+alias 'نصب'='wi' 
+
+
+
+alias 'القران'='cd' 
+
+
+
+alias 'p'='path' 
 
 
