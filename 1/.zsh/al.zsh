@@ -246,11 +246,12 @@ set_xkeyboard() {
     alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
     alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
     alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
-    alias 'wWw'='/usr/bin/python ~/lias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
+    alias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
     alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
     alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
-    alias '00'=$HOME/zdotfiles
+    alias '00'='$HOME/zdotfiles'
     alias 'z'='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
+
 # <F0> git
 
     alias g=git
