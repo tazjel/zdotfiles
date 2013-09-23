@@ -84,31 +84,8 @@ set_xkeyboard() {
     alias 'wak'='vim $HOME/.config/autokey/data'
     alias 'wkl'='cd $HOME/.config/autokey/data;ls'
     alias 'wvb'='wwww $HOME/.vim/bundle'
-    alias h='cd $HOME'
-    alias zzzz=' vim $HOME/.zshrc && source $HOME/.zshrc'
-#zdotfiles
-    alias '11'='clear;pwd;cd ~/zdotfiles/1;ls -X'
-    alias '111'='vim ~/zdotfiles/1.sh'
-    alias '1111'='bash ~/zdotfiles/1.sh'
-    alias '22'='clear;pwd;cd ~/zdotfiles/2;ls -X'
-    alias '33'='clear;pwd;cd ~/zdotfiles/3;ls -X'
-    alias '44'='clear;pwd;cd ~/zdotfiles/4;ls -X'
-    alias '55'='clear;pwd;cd ~/zdotfiles/5;ls -X'
-    alias '66'='clear;pwd;cd ~/zdotfiles/6;ls -X'
-    alias '77'='clear;pwd;cd ~/zdotfiles/7;ls -X'
-    alias '88'='clear;pwd;cd ~/zdotfiles/8;ls -X'
-    alias '99'='cd ~/zdotfiles/Projects/web2py'
-    alias '99'='clear;pwd;cd ~/zdotfiles/9;ls -X'
-    alias '99_welcome/controllers/default'='cd $HOME/zdotfiles/Projects/web2py/web2py/applications/welcome/controllers'
-    alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
-    alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
-    alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
-    alias 'wWw'='/usr/bin/python ~/lias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
-    alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
-    alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
-    alias 00=$HOME/zdotfiles
-    alias z='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
-    zal=~/zdotfiles/1/.zsh/al.zsh
+    alias 'h'='cd $HOME'
+    alias 'zzzz'=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
     alias 'cdx'='cd ~/Dropbox/'
     alias 'w7'='ssh'
@@ -132,8 +109,9 @@ set_xkeyboard() {
     alias 'rmm'='rm -rf'
     alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
     alias 'w7'='ssh'
-    alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)"'
-    alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
+    alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)" '
+    alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail
+ $2'
     alias 'wX'='chmod -x'
     alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
     alias 'w_ak'='autokey -l'
@@ -251,6 +229,28 @@ set_xkeyboard() {
     alias ftx='find . -name "*[txt]" -exec grep -is /dev/null $1 {} \;'
     alias fwn='find -wholename'
 
+#zdotfiles
+    alias '11'='clear;pwd;cd ~/zdotfiles/1;ls -X'
+    alias '111'='vim ~/zdotfiles/1.sh'
+    alias '1111'='bash ~/zdotfiles/1.sh'
+    alias '22'='clear;pwd;cd ~/zdotfiles/2;ls -X'
+    alias '33'='clear;pwd;cd ~/zdotfiles/3;ls -X'
+    alias '44'='clear;pwd;cd ~/zdotfiles/4;ls -X'
+    alias '55'='clear;pwd;cd ~/zdotfiles/5;ls -X'
+    alias '66'='clear;pwd;cd ~/zdotfiles/6;ls -X'
+    alias '77'='clear;pwd;cd ~/zdotfiles/7;ls -X'
+    alias '88'='clear;pwd;cd ~/zdotfiles/8;ls -X'
+    alias '99'='cd ~/zdotfiles/Projects/web2py'
+    alias '99'='clear;pwd;cd ~/zdotfiles/9;ls -X'
+    alias '99_welcome/controllers/default'='cd $HOME/zdotfiles/Projects/web2py/web2py/applications/welcome/controllers'
+    alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
+    alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
+    alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
+    alias 'wWw'='/usr/bin/python ~/lias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
+    alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
+    alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
+    alias '00'=$HOME/zdotfiles
+    alias 'z'='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 # <F0> git
 
     alias g=git
@@ -410,6 +410,9 @@ function wW_grep_logs(){
     grep "$1" */logs/*.log
 }
 function WW {
+
+    zal='~/zdotfiles/1/.zsh/al.zsh'
+
     desc="ADD DESCRIPTION..."
     if [ -n "$3" ]; then
         desc="$3"
