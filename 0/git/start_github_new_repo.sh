@@ -4,7 +4,7 @@ gurl='https://github.com/'$username
 
 repo='new_repo'
 mkdir $repo
-cd $repo 
+cd $repo
 git init
 touch README
 git add README

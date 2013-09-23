@@ -2,6 +2,20 @@
 ########################################################
 # Author : AHMED BANI
 
+
+
+# F0
+#git
+setup_git() {
+    git config --global push.default current
+}
+
+
+
+
+
+
+
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
