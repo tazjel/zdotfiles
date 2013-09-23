@@ -1,0 +1,30 @@
+2013-09-21 22:37:54,691 INFO - root - Initialising application
+2013-09-21 22:37:54,699 INFO - root - Initialise global hotkeys
+2013-09-21 22:37:54,699 INFO - config-manager - No configuration found - creating new one
+2013-09-21 22:37:54,702 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-09-21 22:37:54,702 INFO - config-manager - Persisting configuration
+2013-09-21 22:37:54,702 INFO - config-manager - Finished persisting configuration - no errors
+2013-09-21 22:37:54,703 INFO - service - Starting service
+2013-09-21 22:37:54,900 INFO - interface - XRecord interface thread starting
+2013-09-21 22:37:54,901 INFO - service - Service now marked as running
+2013-09-21 22:37:54,995 INFO - root - Displaying configuration window
+2013-09-22 01:18:18,765 INFO - root - Initialising application
+2013-09-22 01:18:18,777 INFO - root - Initialise global hotkeys
+2013-09-22 01:18:18,777 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-09-22 01:18:18,999 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-09-22 01:18:19,000 INFO - config-manager - Successfully loaded configuration
+2013-09-22 01:18:19,000 INFO - service - Starting service
+2013-09-22 01:18:19,309 INFO - interface - XRecord interface thread starting
+2013-09-22 01:18:19,310 INFO - service - Service now marked as running
+2013-09-22 01:18:19,538 INFO - root - Displaying configuration window
+2013-09-22 01:21:33,289 INFO - root - Displaying configuration window
+2013-09-22 01:21:39,553 INFO - root - Displaying configuration window
+2013-09-22 01:21:44,104 INFO - root - Displaying configuration window
+2013-09-22 01:21:45,981 INFO - root - Displaying configuration window
+2013-09-22 01:21:49,066 INFO - root - Displaying configuration window
+2013-09-22 01:21:59,478 INFO - root - Shutting down
+2013-09-22 01:21:59,479 INFO - service - Service shutting down
+2013-09-22 01:22:00,480 INFO - config-manager - Persisting configuration
+2013-09-22 01:22:00,481 INFO - config-manager - Backing up existing config file
+2013-09-22 01:22:00,482 INFO - config-manager - Finished persisting configuration - no errors
+2013-09-22 01:22:01,483 INFO - inotify - Shutting down file monitor

@@ -6,7 +6,7 @@
 #Created by Julian Gagnon
 
 #Setting the variable
-username=""                        #Input Gmail username here.
+username="tazjel"                        #Input Gmail username here.
 
 #OBD (On Bash Display)
 clear

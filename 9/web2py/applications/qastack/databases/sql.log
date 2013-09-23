@@ -1,0 +1,153 @@
+timestamp: 2013-09-22T23:12:50.036430
+CREATE TABLE auth_roles(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role_name CHAR(128),
+    role_min_score INTEGER,
+    color_designation TEXT
+);
+success!
+timestamp: 2013-09-22T23:12:50.163720
+CREATE TABLE auth_users(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    auth_alias CHAR(255),
+    auth_passwd CHAR(255),
+    auth_created_on TIMESTAMP,
+    auth_modified_on TIMESTAMP,
+    is_enabled CHAR(1),
+    auth_role_id INTEGER REFERENCES auth_roles (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-09-22T23:12:50.450849
+CREATE TABLE system_properties(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    property_name CHAR(128),
+    property_desc TEXT,
+    property_value TEXT
+);
+success!
+timestamp: 2013-09-22T23:12:50.588145
+CREATE TABLE member_properties_skel(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    property_name CHAR(128),
+    property_desc TEXT,
+    member_editable CHAR(1),
+    sort_order INTEGER
+);
+success!
+timestamp: 2013-09-22T23:12:50.759617
+CREATE TABLE member_properties(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    auth_user INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    property_id INTEGER REFERENCES member_properties_skel (id) ON DELETE CASCADE,
+    property_value CHAR(255)
+);
+success!
+timestamp: 2013-09-22T23:12:50.863387
+CREATE TABLE member_avatars(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    content_type CHAR(128),
+    auth_user_id INTEGER,
+    avatar_image BLOB,
+    avatar_active CHAR(1)
+);
+success!
+timestamp: 2013-09-22T23:12:50.968522
+CREATE TABLE questions(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    title CHAR(255),
+    description TEXT,
+    created_by INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    votes_up INTEGER,
+    votes_dn INTEGER,
+    is_answered CHAR(1),
+    is_closed CHAR(1),
+    is_featured CHAR(1),
+    is_visible CHAR(1),
+    views INTEGER
+);
+success!
+timestamp: 2013-09-22T23:12:51.104505
+CREATE TABLE answers(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question_id INTEGER REFERENCES questions (id) ON DELETE CASCADE,
+    description TEXT,
+    votes_up INTEGER,
+    votes_dn INTEGER,
+    created_by INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    is_answer CHAR(1),
+    is_visible CHAR(1),
+    is_outstanding CHAR(1)
+);
+success!
+timestamp: 2013-09-22T23:12:51.241554
+CREATE TABLE comments(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    c_type TEXT,
+    qa_id INTEGER,
+    description TEXT,
+    votes_up INTEGER,
+    votes_dn INTEGER,
+    created_by INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    modified_on TIMESTAMP,
+    is_visible CHAR(1)
+);
+success!
+timestamp: 2013-09-22T23:12:51.420562
+CREATE TABLE score_log(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    l_type CHAR(512),
+    subtype CHAR(512),
+    qac_id INTEGER,
+    points INTEGER,
+    sender INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    created_on TIMESTAMP
+);
+success!
+timestamp: 2013-09-22T23:12:51.591348
+CREATE TABLE tags(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    tagname CHAR(255),
+    is_enabled CHAR(1)
+);
+success!
+timestamp: 2013-09-22T23:12:51.696601
+CREATE TABLE question_tags(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    question_id INTEGER REFERENCES questions (id) ON DELETE CASCADE,
+    tag_id INTEGER REFERENCES tags (id) ON DELETE CASCADE
+);
+success!
+timestamp: 2013-09-22T23:12:51.800808
+CREATE TABLE question_subscriptions(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    auth_user_id INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    question_id INTEGER REFERENCES questions (id) ON DELETE CASCADE,
+    is_active CHAR(1)
+);
+success!
+timestamp: 2013-09-22T23:12:51.938666
+CREATE TABLE subscriptions_notification(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    subscription_id INTEGER REFERENCES question_subscriptions (id) ON DELETE CASCADE,
+    created_on TIMESTAMP,
+    processed_on TIMESTAMP
+);
+success!
+timestamp: 2013-09-22T23:12:52.042969
+CREATE TABLE admin_messages(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    auth_user_id INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
+    subject CHAR(255),
+    message TEXT,
+    creation_date TIMESTAMP,
+    read_flag CHAR(1)
+);
+success!

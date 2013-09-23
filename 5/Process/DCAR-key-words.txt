@@ -1,5 +1,7 @@
-# Shebang. Executing bash via /usr/bin/env makes scripts more portable.
-snippet #!
+#
+snippet CAR
+    Conflict Analysis and Resolution
+
 	#!/usr/bin/env bash
 
 snippet if
@@ -41,7 +43,7 @@ snippet go
 # Set SCRIPT_DIR variable to directory script is located.
 snippet sdir
 	SCRIPT_DIR="$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )"
-# getopt
+# getopts
 snippet getopt
 	__ScriptVersion="${1:version}"
 
