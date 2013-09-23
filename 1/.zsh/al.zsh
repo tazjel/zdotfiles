@@ -3,17 +3,37 @@
 # Author : AHMED BANI
 
 
+# Zero Dimension : Repository
 
-# F0
-#git
-setup_git() {
+setup_git_push_default() {
     git config --global push.default current
 }
 
 
+git_config_global() {
+    git config --global user.name 'Ahmed Al-Ghamdi'
+    git config --global user.email 'tazjel@gmail.com'
+    git config --list
+    git config --global color.ui auto
+    git config --global credential.helper cache
+    git config --global credential.helper 'cache --timeout=3600'
+}
 
+ssh-keygen_rsa() {
+    ssh-keygen -t rsa -C 'tazjel@gmail.com'
+    xclip -sel clip < ~/.ssh/id_rsa.pub
+    ssh -T git@github.com
+}
 
+git_clone() {
+    git clone git@github.com:tazjel/zdotfiles.git
+    cd zdotfiles
+    git remote add upstream git@github.com:tazjel/zdotfiles.git
+    git remote set-url origin git@github.com:tazjel/zdotfiles.git
+    git fetch upstream
+}
 
+############################
 
 
 is_linux() {
@@ -230,6 +250,9 @@ set_xkeyboard() {
     alias fsh='find . -name "*[sh]" -exec grep -is /dev/null $1 {} \;'
     alias ftx='find . -name "*[txt]" -exec grep -is /dev/null $1 {} \;'
     alias fwn='find -wholename'
+
+# <F0> git
+
     alias g=git
     alias ga='git add'
     alias gb='git branch'

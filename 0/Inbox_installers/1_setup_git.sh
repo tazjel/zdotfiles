@@ -1,7 +1,7 @@
 #!/bin/bash
 git_config_global ()
 {
-    git config --global user.name 'Ahmed at zDell'
+    git config --global user.name 'Ahmed Al-Ghamdi'
     git config --global user.email 'tazjel@gmail.com'
     git config --list
     git config --global color.ui auto
@@ -19,11 +19,9 @@ ssh-keygen_rsa ()
 
 git_clone ()
 {
-git clone git@github.com:tazjel/zdotfiles.git
-cd zdotfiles
-git remote add upstream git@github.com:tazjel/zdotfiles.git
-git remote set-url origin git@github.com:tazjel/zdotfiles.git
-git fetch upstream
+    git clone git@github.com:tazjel/zdotfiles.git
+    cd zdotfiles
+    git remote add upstream git@github.com:tazjel/zdotfiles.git
+    git remote set-url origin git@github.com:tazjel/zdotfiles.git
+    git fetch upstream
 }
-sh ~/zdotfiles/0/spf13.sh
-
