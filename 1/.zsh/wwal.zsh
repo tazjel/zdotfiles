@@ -412,7 +412,7 @@ function wW_grep_logs(){
 }
 function WW {
 
-    zal=~/zdotfiles/1/.zsh/al.zsh
+    zal='~/zdotfiles/1/.zsh/al.zsh'
 
     desc="ADD DESCRIPTION..."
     if [ -n "$3" ]; then
@@ -573,6 +573,14 @@ ww_colors_term()
 # ARG1 -gt ARG2
 # ARG1 -ge ARG2
 ############################################################################################################################################################
+wbook(){
+    egrep "$1" /home/ahmed/Dropbox/C/Foundation/books.txt | grep -oG ").\(.*\)" | sed 's/).\s\+\(.*\)/\1/g'
+}
+
+fbook(){
+    egrep "$1" /home/ahmed/Dropbox/C/Foundation/book-DCAR
+}
+
 
 ######################################## Main
 
@@ -580,55 +588,3 @@ ww_colors_term()
 star_Level_one
 echo -e "\t\t\t\t $(date)"
 easystroke show
-
-############################################################################################################################################################
-
-alias 'wbook_Press'='wbook Press'
-
-wbook() {
-    egrep "$1" /home/ahmed/Dropbox/C/Foundation/books.txt | grep -oG ").\(.*\)" | sed 's/).\s\+\(.*\)/\1/g'
-}
-
-fbook() {
-    egrep "$1" /home/ahmed/Dropbox/C/Foundation/book-DCAR
-}
-
-
-wy_readline() {
-    tail -F /var/log/nginx/access.log | python -c 'exec("import sys,time\nl=0\ne=int(time.time())\nfor line in sys.stdin:\n\tt = int(time.time())\n\tl += 1\n\tif t > e:\n\t\te = t\n\t\tprint l\n\t\tl = 0")'
-}
-
-wy_append_line(){
-    # Append the line # -*- coding: utf-8 -*- to a file
-    sed -i -e '1i \# -*- coding: utf-8 -*-'
-}
-
-
-# Fetch the current human population of Earth
-dcar_human_population(){
-    curl -s http://www.census.gov/popclock/data/population/world | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["world"]["population"]'
-}
-
-# Stream (almost) any music track in mplayer
-#python2 -c 'import urllib2 as u, sys as s, json as j, subprocess as p;p.call(["mplayer", u.urlopen(j.loads(u.urlopen("http://ex.fm/api/v3/song/search/%s" % "+".join(s.argv[1:])).read())["songs"][0]["url"]).geturl().split("#")[0]])' michael jackson beat it
-
-
-# Dropbox login using only curl, sed and bash
-#link=https://www.dropbox.com/login ; curl -b a -c cookie -d "t=$(curl -c a $link | sed -rn 's/.*TOKEN: "([^"]*).*/\1/p')&login_email=me%40yahoo.com&login_password=my_passwd" $link
-
-# english <--> german translation with dict.leo.org
-#leo() { lang=en; IFS=+; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
-
-# Google verbatim search on your terminal
-#function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
-
-# Search google.com on your terminal
-#Q="YOURSEARCH"; GOOG_URL="http://www.google.com/search?q="; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}\"${Q/\ /+}\"" | grep -oP '\/url\?q=.+?&amp' | sed 's/\/url?q=//;s/&amp//'); echo -e "${stream//\%/\x}"
-
-
-# Fetches a Reddit user's ($USER) link karma
-#curl -s http://www.reddit.com/user/$USER/about.json | tr "," "\n" | grep "link_karma" | tr ": " "\n" | grep -E "[0-9]+" | sed s/"^"/"Link Karma: "/
-
-# check your up to date delicious links.
-#curl -k https://Username:Password@api.del.icio.us/v1/posts/all?red=api | xml2| \grep '@href' | cut -d\= -f 2- | sort | uniq | linkchecker -r0 --stdin --complete -v -t 50 -F blacklist
-

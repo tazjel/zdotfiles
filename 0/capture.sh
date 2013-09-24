@@ -3,7 +3,7 @@
 # Author: Ahmed
 
 sudo apt-get update
-
+#krusader
 sudo apt-get install -y build-essential llvm clang \
   mono-runtime python2.7 python3.3 python-software-properties \
   perl ghc cabal-install golang-go golang-go \
