@@ -115,7 +115,7 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="__getitem__"></a><span class="summary-sig-name">__getitem__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>)</span></td>
+        <span class="summary-sig-arg">k</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Row.__getitem__">source&nbsp;code</a></span>
             
@@ -149,12 +149,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="__delitem__"></a><span class="summary-sig-name">__delitem__</span>(<span class="summary-sig-arg">object</span>,
-        <span class="summary-sig-arg">name</span>)</span><br />
-      Delete a named attribute on an object; delattr(x, 'y') is equivalent 
-      to ``del x.y''.</td>
+          <td><span class="summary-sig"><a name="__delitem__"></a><span class="summary-sig-name">__delitem__</span>(<span class="summary-sig-arg">...</span>)</span><br />
+      x.__delattr__('name') &lt;==&gt; del x.name</td>
           <td align="right" valign="top">
-            
+            <span class="codelink"><a href="gluon.dal-pysrc.html">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -169,7 +167,7 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="__call__"></a><span class="summary-sig-name">__call__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>)</span></td>
+        <span class="summary-sig-arg">k</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Row.__getitem__">source&nbsp;code</a></span>
             
@@ -351,10 +349,10 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.Row-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+          <td><span class="summary-sig"><a href="gluon.dal.Row-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
       str(x)</td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#Row.__str__">source&nbsp;code</a></span>
+            <span class="codelink"><a href="gluon.dal-pysrc.html#Row.__repr__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -368,8 +366,8 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.Row-class.html#__repr__" class="summary-sig-name">__repr__</a>(<span class="summary-sig-arg">self</span>)</span><br />
-      repr(x)</td>
+          <td><span class="summary-sig"><a href="gluon.dal.Row-class.html#__str__" class="summary-sig-name">__str__</a>(<span class="summary-sig-arg">self</span>)</span><br />
+      str(x)</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Row.__repr__">source&nbsp;code</a></span>
             
@@ -404,6 +402,23 @@ object --+
           <td><span class="summary-sig"><a name="__long__"></a><span class="summary-sig-name">__long__</span>(<span class="summary-sig-arg">self</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Row.__long__">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a name="__getattr__"></a><span class="summary-sig-name">__getattr__</span>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">k</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="gluon.dal-pysrc.html#Row.__getitem__">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -510,8 +525,8 @@ object --+
         <span class="summary-sig-arg">colnames</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">serialize</span>=<span class="summary-sig-default">True</span>,
         <span class="summary-sig-arg">**kwargs</span>)</span><br />
-      serializes the table to a JSON list of objects kwargs are passed to 
-      .as_dict method only &quot;object&quot; mode supported for single row</td>
+      serializes the row to a JSON object kwargs are passed to .as_dict 
+      method only &quot;object&quot; mode supported</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Row.as_json">source&nbsp;code</a></span>
             
@@ -607,30 +622,6 @@ object --+
   </dl>
 </td></tr></table>
 </div>
-<a name="__str__"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
-    <br /><em class="fname">(Informal representation operator)</em>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#Row.__str__">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <p>str(x)</p>
-  <dl class="fields">
-    <dt>Overrides:
-        object.__str__
-        <dd><em class="note">(inherited documentation)</em></dd>
-    </dt>
-  </dl>
-</td></tr></table>
-</div>
 <a name="__repr__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -646,10 +637,34 @@ object --+
     </td>
   </tr></table>
   
-  <p>repr(x)</p>
+  <p>str(x)</p>
   <dl class="fields">
     <dt>Overrides:
         object.__repr__
+        <dd><em class="note">(inherited documentation)</em></dd>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="__str__"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">__str__</span>(<span class="sig-arg">self</span>)</span>
+    <br /><em class="fname">(Informal representation operator)</em>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#Row.__repr__">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  <p>str(x)</p>
+  <dl class="fields">
+    <dt>Overrides:
+        object.__str__
         <dd><em class="note">(inherited documentation)</em></dd>
     </dt>
   </dl>
@@ -674,10 +689,11 @@ object --+
     </td>
   </tr></table>
   
-  <p>serializes the table to a JSON list of objects kwargs are passed to 
-  .as_dict method only &quot;object&quot; mode supported for single row</p>
+  <p>serializes the row to a JSON object kwargs are passed to .as_dict 
+  method only &quot;object&quot; mode supported</p>
   <p>serialize = False used by Rows.as_json TODO: return array mode with 
   query column order</p>
+  <p>mode and colnames are not implemented</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -714,7 +730,7 @@ object --+
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:48 2013
+    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:09 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

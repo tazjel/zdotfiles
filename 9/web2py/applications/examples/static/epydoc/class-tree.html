@@ -106,6 +106,12 @@
     </li>
     </ul>
     </li>
+    <li> <strong class="uidlink">pickle.Pickler</strong>
+    <ul>
+    <li> <strong class="uidlink"><a href="gluon.globals.SortingPickler-class.html" onclick="show_private();">gluon.globals.SortingPickler</a></strong>
+    </li>
+    </ul>
+    </li>
     <li> <strong class="uidlink">google.appengine.ext.db.Property</strong>
     </li>
     <li> <strong class="uidlink">Queue.Queue</strong>:
@@ -137,7 +143,7 @@
     <li> <strong class="uidlink">exceptions.BaseException</strong>:
       <em class="summary">Common base class for all exceptions</em>
     <ul>
-    <li> <strong class="uidlink"><a href="exceptions.Exception-class.html">exceptions.Exception</a></strong>:
+    <li> <strong class="uidlink">exceptions.Exception</strong>:
       <em class="summary">Common base class for all non-exit exceptions.</em>
     <ul>
     <li> <strong class="uidlink"><a href="gluon.rocket.BadRequest-class.html" onclick="show_private();">gluon.rocket.BadRequest</a></strong>:
@@ -172,8 +178,6 @@
     </li>
     </ul>
     </li>
-    <li> <strong class="uidlink"><a href="gluon.http.HTTP-class.html">gluon.http.HTTP</a></strong>
-    </li>
     </ul>
     </li>
     <li> <strong class="uidlink"><a href="gluon.validators.CRYPT-class.html">gluon.validators.CRYPT</a></strong>:
@@ -197,6 +201,8 @@ CacheOnDisk.</em>
     <li> <strong class="uidlink"><a href="gluon.cache.CacheAction-class.html" onclick="show_private();">gluon.cache.CacheAction</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="gluon.rocket.ChunkedReader-class.html" onclick="show_private();">gluon.rocket.ChunkedReader</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="gluon.tools.Config-class.html" onclick="show_private();">gluon.tools.Config</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="gluon.rocket.Connection-class.html" onclick="show_private();">gluon.rocket.Connection</a></strong>
     </li>
@@ -418,13 +424,20 @@ CacheOnDisk.</em>
     </li>
     <li> <strong class="uidlink"><a href="gluon.widget.IO-class.html">gluon.widget.IO</a></strong>
     </li>
+    <li> <strong class="uidlink"><a href="gluon.validators.IS_LIST_OF_EMAILS-class.html">gluon.validators.IS_LIST_OF_EMAILS</a></strong>:
+      <em class="summary">use as follows:...</em>
+    </li>
     <li> <strong class="uidlink"><a href="gluon.validators.IS_STRONG-class.html">gluon.validators.IS_STRONG</a></strong>:
       <em class="summary">example:</em>
     </li>
     <li> <strong class="uidlink"><a href="gluon.validators.LazyCrypt-class.html" onclick="show_private();">gluon.validators.LazyCrypt</a></strong>:
       <em class="summary">Stores a lazy password hash</em>
     </li>
+    <li> <strong class="uidlink"><a href="gluon.dal.LazyReferenceGetter-class.html" onclick="show_private();">gluon.dal.LazyReferenceGetter</a></strong>
+    </li>
     <li> <strong class="uidlink"><a href="gluon.dal.LazySet-class.html" onclick="show_private();">gluon.dal.LazySet</a></strong>
+    </li>
+    <li> <strong class="uidlink"><a href="gluon.main.LazyWSGI-class.html">gluon.main.LazyWSGI</a></strong>
     </li>
     <li> <strong class="uidlink"><a href="gluon.compileapp.LoadFactory-class.html">gluon.compileapp.LoadFactory</a></strong>:
       <em class="summary">Attention: this helper is new and experimental</em>
@@ -804,7 +817,10 @@ given criteria.</em>
     <li> <strong class="uidlink"><a href="gluon.html.XHTML-class.html">gluon.html.XHTML</a></strong>:
       <em class="summary">This is XHTML version of the HTML helper.</em>
     </li>
-    <li> <strong class="uidlink"><a href="gluon.html.__tag__-class.html" onclick="show_private();">gluon.html.__tag__</a></strong>
+    <li> <strong class="uidlink"><a href="gluon.html.__TRHEAD__-class.html" onclick="show_private();">gluon.html.__TRHEAD__</a></strong>:
+      <em class="summary">__TRHEAD__ Component, internal only</em>
+    </li>
+    <li> <strong class="uidlink"><a href="gluon.html.__tag_div__-class.html" onclick="show_private();">gluon.html.__tag_div__</a></strong>
     </li>
     </ul>
     </li>
@@ -822,7 +838,8 @@ given criteria.</em>
     </li>
     <li> <strong class="uidlink">threading._Verbose</strong>
     <ul>
-    <li> <strong class="uidlink">threading.Thread</strong>
+    <li> <strong class="uidlink">threading.Thread</strong>:
+      <em class="summary">A class that represents a thread of control.</em>
     <ul>
     <li> <strong class="uidlink"><a href="gluon.rocket.Listener-class.html" onclick="show_private();">gluon.rocket.Listener</a></strong>:
       <em class="summary">The Listener class is a class responsible for accepting connections
@@ -864,7 +881,7 @@ given criteria.</em>
         unicode.</em>
     <ul>
     <li> <strong class="uidlink">str</strong>:
-      <em class="summary">str(object) -&gt; string</em>
+      <em class="summary">str(object='') -&gt; string</em>
     <ul>
     <li> <strong class="uidlink"><a href="gluon.utf8.Utf8-class.html">gluon.utf8.Utf8</a></strong>:
       <em class="summary">Class for utf8 string storing and manipulations</em>
@@ -901,8 +918,7 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
         response.write(   ) can be used to write in the output html</em>
     </li>
     <li> <strong class="uidlink"><a href="gluon.globals.Session-class.html">gluon.globals.Session</a></strong>:
-      <em class="summary">defines the session object and the default values of its members 
-        (None)</em>
+      <em class="summary">defines the session object and the default values of its members (None)</em>
     </li>
     <li> <strong class="uidlink"><a href="gluon.storage.Settings-class.html">gluon.storage.Settings</a></strong>
     <ul>
@@ -922,7 +938,7 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
     </ul>
     </li>
     <li> <strong class="uidlink"><a href="int-class.html">int</a></strong>:
-      <em class="summary">int(x[, base]) -&gt; integer</em>
+      <em class="summary">int(x=0) -&gt; int or long int(x, base=10) -&gt; int or long</em>
     <ul>
     <li> <strong class="uidlink"><a href="gluon.dal.Reference-class.html">gluon.dal.Reference</a></strong>
     </li>
@@ -945,7 +961,7 @@ dict(**kwargs) -&gt; new dictionary initialized with the name=value pairs
     </ul>
     </li>
     <li> <strong class="uidlink">long</strong>:
-      <em class="summary">long(x[, base]) -&gt; integer</em>
+      <em class="summary">long(x=0) -&gt; long long(x, base=10) -&gt; long</em>
     <ul>
     <li> <strong class="uidlink"><a href="gluon.dal.Reference-class.html" onclick="show_private();">gluon.dal.Reference</a></strong>
     </li>
@@ -1007,7 +1023,7 @@ as the T object
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:44 2013
+    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:05 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

@@ -76,7 +76,7 @@ object --+
 
   or
 
-  db = DAL({&quot;uri&quot;: ..., &quot;items&quot;: ...}) # experimental
+  db = DAL(**{&quot;uri&quot;: ..., &quot;tables&quot;: [...]...}) # experimental
 
   db.define_table('tablename', Field('fieldname1'),
                                Field('fieldname2'))
@@ -158,7 +158,8 @@ object --+
         <span class="summary-sig-arg">lazy_tables</span>=<span class="summary-sig-default">False</span>,
         <span class="summary-sig-arg">db_uid</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">do_connect</span>=<span class="summary-sig-default">True</span>,
-        <span class="summary-sig-arg">after_connection</span>=<span class="summary-sig-default">None</span>)</span><br />
+        <span class="summary-sig-arg">after_connection</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">tables</span>=<span class="summary-sig-default">None</span>)</span><br />
       Creates a new Database Abstraction Layer instance.</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#DAL.__init__">source&nbsp;code</a></span>
@@ -179,7 +180,7 @@ object --+
         <span class="summary-sig-arg">path</span>,
         <span class="summary-sig-arg">migrate</span>=<span class="summary-sig-default">False</span>,
         <span class="summary-sig-arg">fake_migrate</span>=<span class="summary-sig-default">False</span>,
-        <span class="summary-sig-arg">items</span>=<span class="summary-sig-default">None</span>)</span></td>
+        <span class="summary-sig-arg">tables</span>=<span class="summary-sig-default">None</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#DAL.import_table_definitions">source&nbsp;code</a></span>
             
@@ -276,8 +277,7 @@ object --+
         <tr>
           <td><span class="summary-sig"><a name="as_dict"></a><span class="summary-sig-name">as_dict</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">flat</span>=<span class="summary-sig-default">False</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
-        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#DAL.as_dict">source&nbsp;code</a></span>
             
@@ -294,8 +294,7 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="as_xml"></a><span class="summary-sig-name">as_xml</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
-        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#DAL.as_xml">source&nbsp;code</a></span>
             
@@ -312,8 +311,7 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="as_json"></a><span class="summary-sig-name">as_json</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
-        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#DAL.as_json">source&nbsp;code</a></span>
             
@@ -330,8 +328,7 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="as_yaml"></a><span class="summary-sig-name">as_yaml</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
-        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#DAL.as_yaml">source&nbsp;code</a></span>
             
@@ -667,6 +664,8 @@ object --+
         <span class="summary-sig-arg">id_map</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">null</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">&lt;NULL&gt;</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">unique</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">uuid</code><code class="variable-quote">'</code></span>,
+        <span class="summary-sig-arg">map_tablenames</span>=<span class="summary-sig-default">None</span>,
+        <span class="summary-sig-arg">ignore_missing_tables</span>=<span class="summary-sig-default">False</span>,
         <span class="summary-sig-arg">*args</span>,
         <span class="summary-sig-arg">**kwargs</span>)</span></td>
           <td align="right" valign="top">
@@ -937,7 +936,8 @@ Returns a dictionary with uri as key with timings and defined tables
         <span class="sig-arg">lazy_tables</span>=<span class="sig-default">False</span>,
         <span class="sig-arg">db_uid</span>=<span class="sig-default">None</span>,
         <span class="sig-arg">do_connect</span>=<span class="sig-default">True</span>,
-        <span class="sig-arg">after_connection</span>=<span class="sig-default">None</span>)</span>
+        <span class="sig-arg">after_connection</span>=<span class="sig-default">None</span>,
+        <span class="sig-arg">tables</span>=<span class="sig-default">None</span>)</span>
     <br /><em class="fname">(Constructor)</em>
   </h3>
   </td><td align="right" valign="top"
@@ -957,7 +957,7 @@ Keyword arguments:
         experimental: you can specify a dictionary as uri
         parameter i.e. with
         db = DAL({&quot;uri&quot;: &quot;sqlite://storage.sqlite&quot;,
-                  &quot;items&quot;: {...}, ...})
+                  &quot;tables&quot;: {...}, ...})
 
         for an example of dict input you can check the output
         of the scaffolding db model with
@@ -1268,7 +1268,7 @@ def index():
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:46 2013
+    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:08 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

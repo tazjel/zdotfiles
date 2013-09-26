@@ -262,7 +262,7 @@
         <span class="summary-sig-arg">pool_size</span>=<span class="summary-sig-default">0</span>,
         <span class="summary-sig-arg">folder</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">db_codec</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
+        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
         <span class="summary-sig-arg">driver_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">adapter_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">do_connect</span>=<span class="summary-sig-default">True</span>,
@@ -433,7 +433,10 @@
       <code><a href="gluon.dal.BaseAdapter-class.html#get_table">get_table</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#id_query">id_query</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#insert">insert</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#isOperationalError">isOperationalError</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#isProgrammingError">isProgrammingError</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#is_numerical_type">is_numerical_type</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#log">log</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#log_execute">log_execute</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#migrate_table">migrate_table</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#parse">parse</a></code>,
@@ -457,6 +460,7 @@
       <code><a href="gluon.dal.BaseAdapter-class.html#rollback">rollback</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#rollback_prepared">rollback_prepared</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#rowslice">rowslice</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#save_dbt">save_dbt</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#select">select</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#smart_adapt">smart_adapt</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#table_alias">table_alias</a></code>,
@@ -582,13 +586,15 @@ on)s',
     <td colspan="2" class="summary">
     <p class="indent-wrapped-lines"><b>Inherited from <code><a href="gluon.dal.BaseAdapter-class.html" onclick="show_private();">BaseAdapter</a></code></b>:
       <code><a href="gluon.dal.BaseAdapter-class.html#FALSE">FALSE</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#QUOTE_TEMPLATE">QUOTE_TEMPLATE</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#TRUE">TRUE</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#T_SEP">T_SEP</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#can_select_for_update">can_select_for_update</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#connection">connection</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#dbpath">dbpath</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#driver">driver</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#driver_name">driver_name</a></code>,
-      <code><a href="gluon.dal.BaseAdapter-class.html#maxcharlength">maxcharlength</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#folder">folder</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#native_json">native_json</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#support_distributed_transaction">support_distributed_transaction</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#uploads_in_blob">uploads_in_blob</a></code>
@@ -870,7 +876,7 @@ on)s',
         <span class="sig-arg">pool_size</span>=<span class="sig-default">0</span>,
         <span class="sig-arg">folder</span>=<span class="sig-default">None</span>,
         <span class="sig-arg">db_codec</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
+        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
         <span class="sig-arg">driver_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">adapter_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">do_connect</span>=<span class="sig-default">True</span>,
@@ -1104,7 +1110,7 @@ re.compile(r'<code class="re-group">[^</code>\'<code class="re-group">]</code><c
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:48 2013
+    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:09 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

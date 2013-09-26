@@ -104,7 +104,7 @@
         <span class="summary-sig-arg">pool_size</span>=<span class="summary-sig-default">0</span>,
         <span class="summary-sig-arg">folder</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">db_codec</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
+        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
         <span class="summary-sig-arg">driver_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">adapter_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">do_connect</span>=<span class="summary-sig-default">True</span>,
@@ -197,25 +197,6 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#insert" class="summary-sig-name">insert</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">table</span>,
-        <span class="summary-sig-arg">fields</span>,
-        <span class="summary-sig-arg">safe</span>=<span class="summary-sig-default">None</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.insert">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#create_table" class="summary-sig-name">create_table</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">table</span>,
         <span class="summary-sig-arg">migrate</span>=<span class="summary-sig-default">True</span>,
@@ -268,6 +249,43 @@
       
     </td>
   </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#drop" class="summary-sig-name">drop</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">table</span>,
+        <span class="summary-sig-arg">mode</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.drop">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+      <table width="100%" cellpadding="0" cellspacing="0" border="0">
+        <tr>
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#truncate" class="summary-sig-name">truncate</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">table</span>,
+        <span class="summary-sig-arg">mode</span>,
+        <span class="summary-sig-arg">safe</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td align="right" valign="top">
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.truncate">source&nbsp;code</a></span>
+            
+          </td>
+        </tr>
+      </table>
+      
+    </td>
+  </tr>
 <tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
@@ -309,16 +327,17 @@
       
     </td>
   </tr>
-<tr>
+<tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#INVERT" class="summary-sig-name">INVERT</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">first</span>)</span></td>
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#_insert" class="summary-sig-name" onclick="show_private();">_insert</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">table</span>,
+        <span class="summary-sig-arg">fields</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.INVERT">source&nbsp;code</a></span>
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._insert">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -332,30 +351,12 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#drop" class="summary-sig-name">drop</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#insert" class="summary-sig-name">insert</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">table</span>,
-        <span class="summary-sig-arg">mode</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.drop">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#truncate" class="summary-sig-name">truncate</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">table</span>,
-        <span class="summary-sig-arg">mode</span>,
+        <span class="summary-sig-arg">fields</span>,
         <span class="summary-sig-arg">safe</span>=<span class="summary-sig-default">None</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.truncate">source&nbsp;code</a></span>
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.insert">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -363,18 +364,18 @@
       
     </td>
   </tr>
-<tr>
+<tr class="private">
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="oupdate"></a><span class="summary-sig-name">oupdate</span>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#_update" class="summary-sig-name" onclick="show_private();">_update</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">tablename</span>,
         <span class="summary-sig-arg">query</span>,
         <span class="summary-sig-arg">fields</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.oupdate">source&nbsp;code</a></span>
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._update">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -408,12 +409,11 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#_update" class="summary-sig-name" onclick="show_private();">_update</a>(<span class="summary-sig-arg">self</span>,
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#_delete" class="summary-sig-name" onclick="show_private();">_delete</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">tablename</span>,
-        <span class="summary-sig-arg">query</span>,
-        <span class="summary-sig-arg">fields</span>)</span></td>
+        <span class="summary-sig-arg">query</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._update">source&nbsp;code</a></span>
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._delete">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -440,18 +440,17 @@
       
     </td>
   </tr>
-<tr class="private">
+<tr>
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#_delete" class="summary-sig-name" onclick="show_private();">_delete</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">tablename</span>,
-        <span class="summary-sig-arg">filter</span>,
-        <span class="summary-sig-arg">safe</span>=<span class="summary-sig-default">None</span>)</span></td>
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#bulk_insert" class="summary-sig-name">bulk_insert</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">table</span>,
+        <span class="summary-sig-arg">items</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._delete">source&nbsp;code</a></span>
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.bulk_insert">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -465,11 +464,10 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#bulk_insert" class="summary-sig-name">bulk_insert</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">table</span>,
-        <span class="summary-sig-arg">items</span>)</span></td>
+          <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#INVERT" class="summary-sig-name">INVERT</a>(<span class="summary-sig-arg">self</span>,
+        <span class="summary-sig-arg">first</span>)</span></td>
           <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.bulk_insert">source&nbsp;code</a></span>
+            <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.INVERT">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -556,7 +554,7 @@
         <tr>
           <td><span class="summary-sig"><a href="gluon.dal.MongoDBAdapter-class.html#EQ" class="summary-sig-name">EQ</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">first</span>,
-        <span class="summary-sig-arg">second</span>)</span></td>
+        <span class="summary-sig-arg">second</span>=<span class="summary-sig-default">None</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.EQ">source&nbsp;code</a></span>
             
@@ -907,8 +905,7 @@
       <code><a href="gluon.dal.NoSQLAdapter-class.html#rowslice">rowslice</a></code>
       </p>
     <div class="private">    <p class="indent-wrapped-lines"><b>Inherited from <code><a href="gluon.dal.NoSQLAdapter-class.html" onclick="show_private();">NoSQLAdapter</a></code></b> (private):
-      <code><a href="gluon.dal.NoSQLAdapter-class.html#_count" onclick="show_private();">_count</a></code>,
-      <code><a href="gluon.dal.NoSQLAdapter-class.html#_insert" onclick="show_private();">_insert</a></code>
+      <code><a href="gluon.dal.NoSQLAdapter-class.html#_count" onclick="show_private();">_count</a></code>
       </p></div>
     <p class="indent-wrapped-lines"><b>Inherited from <code><a href="gluon.dal.BaseAdapter-class.html" onclick="show_private();">BaseAdapter</a></code></b>:
       <code><a href="gluon.dal.BaseAdapter-class.html#ALLOW_NULL">ALLOW_NULL</a></code>,
@@ -933,7 +930,10 @@
       <code><a href="gluon.dal.BaseAdapter-class.html#file_open">file_open</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#find_driver">find_driver</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#get_table">get_table</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#isOperationalError">isOperationalError</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#isProgrammingError">isProgrammingError</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#is_numerical_type">is_numerical_type</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#log">log</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#parse">parse</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#parse_blob">parse_blob</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#parse_boolean">parse_boolean</a></code>,
@@ -948,6 +948,7 @@
       <code><a href="gluon.dal.BaseAdapter-class.html#parse_list_strings">parse_list_strings</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#parse_time">parse_time</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#parse_value">parse_value</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#save_dbt">save_dbt</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#select_limitby">select_limitby</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#sequence_name">sequence_name</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#smart_adapt">smart_adapt</a></code>,
@@ -1084,13 +1085,15 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
       </p>
     <p class="indent-wrapped-lines"><b>Inherited from <code><a href="gluon.dal.BaseAdapter-class.html" onclick="show_private();">BaseAdapter</a></code></b>:
       <code><a href="gluon.dal.BaseAdapter-class.html#FALSE">FALSE</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#QUOTE_TEMPLATE">QUOTE_TEMPLATE</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#TRUE">TRUE</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#T_SEP">T_SEP</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#commit_on_alter_table">commit_on_alter_table</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#connection">connection</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#dbpath">dbpath</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#driver">driver</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#driver_name">driver_name</a></code>,
-      <code><a href="gluon.dal.BaseAdapter-class.html#maxcharlength">maxcharlength</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#folder">folder</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#support_distributed_transaction">support_distributed_transaction</a></code>
       </p>
     <p class="indent-wrapped-lines"><b>Inherited from <code><a href="gluon.dal.ConnectionPool-class.html" onclick="show_private();">ConnectionPool</a></code></b>:
@@ -1156,7 +1159,7 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
         <span class="sig-arg">pool_size</span>=<span class="sig-default">0</span>,
         <span class="sig-arg">folder</span>=<span class="sig-default">None</span>,
         <span class="sig-arg">db_codec</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
+        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
         <span class="sig-arg">driver_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">adapter_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">do_connect</span>=<span class="sig-default">True</span>,
@@ -1271,31 +1274,6 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
   </dl>
 </td></tr></table>
 </div>
-<a name="insert"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">insert</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">table</span>,
-        <span class="sig-arg">fields</span>,
-        <span class="sig-arg">safe</span>=<span class="sig-default">None</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.insert">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  
-  <dl class="fields">
-    <dt>Overrides:
-        <a href="gluon.dal.BaseAdapter-class.html#insert">BaseAdapter.insert</a>
-    </dt>
-  </dl>
-</td></tr></table>
-</div>
 <a name="create_table"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1372,6 +1350,55 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
   </dl>
 </td></tr></table>
 </div>
+<a name="drop"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">drop</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">table</span>,
+        <span class="sig-arg">mode</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.drop">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="gluon.dal.BaseAdapter-class.html#drop">BaseAdapter.drop</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="truncate"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">truncate</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">table</span>,
+        <span class="sig-arg">mode</span>,
+        <span class="sig-arg">safe</span>=<span class="sig-default">None</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.truncate">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="gluon.dal.BaseAdapter-class.html#truncate">BaseAdapter.truncate</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
 <a name="_select"></a>
 <div class="private">
 <table class="details" border="1" cellpadding="3"
@@ -1425,74 +1452,76 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
   </dl>
 </td></tr></table>
 </div>
-<a name="INVERT"></a>
-<div>
+<a name="_insert"></a>
+<div class="private">
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">INVERT</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">first</span>)</span>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_insert</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">table</span>,
+        <span class="sig-arg">fields</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.INVERT">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._insert">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   
   <dl class="fields">
     <dt>Overrides:
-        <a href="gluon.dal.BaseAdapter-class.html#INVERT">BaseAdapter.INVERT</a>
+        <a href="gluon.dal.BaseAdapter-class.html#_insert" onclick="show_private();">BaseAdapter._insert</a>
     </dt>
   </dl>
 </td></tr></table>
 </div>
-<a name="drop"></a>
+<a name="insert"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">drop</span>(<span class="sig-arg">self</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">insert</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">table</span>,
-        <span class="sig-arg">mode</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string"></code><code class="variable-quote">'</code></span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.drop">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  
-  <dl class="fields">
-    <dt>Overrides:
-        <a href="gluon.dal.BaseAdapter-class.html#drop">BaseAdapter.drop</a>
-    </dt>
-  </dl>
-</td></tr></table>
-</div>
-<a name="truncate"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">truncate</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">table</span>,
-        <span class="sig-arg">mode</span>,
+        <span class="sig-arg">fields</span>,
         <span class="sig-arg">safe</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.truncate">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.insert">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   
   <dl class="fields">
     <dt>Overrides:
-        <a href="gluon.dal.BaseAdapter-class.html#truncate">BaseAdapter.truncate</a>
+        <a href="gluon.dal.BaseAdapter-class.html#insert">BaseAdapter.insert</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="_update"></a>
+<div class="private">
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_update</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">tablename</span>,
+        <span class="sig-arg">query</span>,
+        <span class="sig-arg">fields</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._update">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="gluon.dal.BaseAdapter-class.html#_update" onclick="show_private();">BaseAdapter._update</a>
     </dt>
   </dl>
 </td></tr></table>
@@ -1523,27 +1552,26 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
   </dl>
 </td></tr></table>
 </div>
-<a name="_update"></a>
+<a name="_delete"></a>
 <div class="private">
 <table class="details" border="1" cellpadding="3"
        cellspacing="0" width="100%" bgcolor="white">
 <tr><td>
   <table width="100%" cellpadding="0" cellspacing="0" border="0">
   <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">_update</span>(<span class="sig-arg">self</span>,
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">_delete</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">tablename</span>,
-        <span class="sig-arg">query</span>,
-        <span class="sig-arg">fields</span>)</span>
+        <span class="sig-arg">query</span>)</span>
   </h3>
   </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._update">source&nbsp;code</a></span>&nbsp;
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._delete">source&nbsp;code</a></span>&nbsp;
     </td>
   </tr></table>
   
   
   <dl class="fields">
     <dt>Overrides:
-        <a href="gluon.dal.BaseAdapter-class.html#_update" onclick="show_private();">BaseAdapter._update</a>
+        <a href="gluon.dal.BaseAdapter-class.html#_delete" onclick="show_private();">BaseAdapter._delete</a>
     </dt>
   </dl>
 </td></tr></table>
@@ -1573,31 +1601,6 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
   </dl>
 </td></tr></table>
 </div>
-<a name="_delete"></a>
-<div class="private">
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">_delete</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">tablename</span>,
-        <span class="sig-arg">filter</span>,
-        <span class="sig-arg">safe</span>=<span class="sig-default">None</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter._delete">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  
-  <dl class="fields">
-    <dt>Overrides:
-        <a href="gluon.dal.BaseAdapter-class.html#_delete" onclick="show_private();">BaseAdapter._delete</a>
-    </dt>
-  </dl>
-</td></tr></table>
-</div>
 <a name="bulk_insert"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -1618,6 +1621,29 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
   <dl class="fields">
     <dt>Overrides:
         <a href="gluon.dal.BaseAdapter-class.html#bulk_insert">BaseAdapter.bulk_insert</a>
+    </dt>
+  </dl>
+</td></tr></table>
+</div>
+<a name="INVERT"></a>
+<div>
+<table class="details" border="1" cellpadding="3"
+       cellspacing="0" width="100%" bgcolor="white">
+<tr><td>
+  <table width="100%" cellpadding="0" cellspacing="0" border="0">
+  <tr valign="top"><td>
+  <h3 class="epydoc"><span class="sig"><span class="sig-name">INVERT</span>(<span class="sig-arg">self</span>,
+        <span class="sig-arg">first</span>)</span>
+  </h3>
+  </td><td align="right" valign="top"
+    ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.INVERT">source&nbsp;code</a></span>&nbsp;
+    </td>
+  </tr></table>
+  
+  
+  <dl class="fields">
+    <dt>Overrides:
+        <a href="gluon.dal.BaseAdapter-class.html#INVERT">BaseAdapter.INVERT</a>
     </dt>
   </dl>
 </td></tr></table>
@@ -1726,7 +1752,7 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
   <tr valign="top"><td>
   <h3 class="epydoc"><span class="sig"><span class="sig-name">EQ</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">first</span>,
-        <span class="sig-arg">second</span>)</span>
+        <span class="sig-arg">second</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
     ><span class="codelink"><a href="gluon.dal-pysrc.html#MongoDBAdapter.EQ">source&nbsp;code</a></span>&nbsp;
@@ -2247,7 +2273,7 @@ der to work.'}"><code class="variable-group">{</code><code class="variable-quote
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:47 2013
+    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:09 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

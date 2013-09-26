@@ -1,0 +1,219 @@
+(dp1
+S'output'
+p2
+S'Unable to open included view file: /home/ahmed/zdotfiles/9/web2py/applications/qastack/views/web2py_ajax.html'
+p3
+sS'layer'
+p4
+S"'layout.html'"
+p5
+sS'code'
+p6
+S'<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">\n<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="{{=T.accepted_language or \'en\'}}">\n  <head>\n    <title>{{=response.title or request.application}}</title>\n    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />     \n    {{response.files.append(URL(request.application,\'static\',\'base.css\'))}}\n    {{include \'web2py_ajax.html\'}}\n  </head>\n  <body>\n    <div class="wrapper">\n      <table class="layout">\n        <tr>\n          <td colspan="3"  class="header">\n            <h1>\n              {{=A(response.title or request.application, _href=URL(request.application,\'default\',\'index\'))}}\n            </h1>\n            \n            <h3>{{=response.subtitle or \'\'}}</h3>\n          </td>\n        </tr>\n        <tr>\n          <td colspan="3" class="statusbar">\n            {{=\'/\'.join([\'\',request.application,request.controller,request.function]+request.args)}}\n          </td>\n        </tr>\n        <tr>\n          <td class="width10em column1">\n            {{if response.menu_auth:}}\n            <h2>{{=T(\'Authentication\')}}</h2>\n            {{=MENU(response.menu_auth)}}\n            {{pass}}\n            {{if response.menu:}}\n            <h2>{{=T(\'Main Menu\')}}</h2>\n            {{=MENU(response.menu)}}\n            {{pass}}\n            {{if response.menu_edit:}}\n            <h2>{{=T(\'Edit This App\')}}</h2>\n            {{=MENU(response.menu_edit)}}\n            {{pass}}\n            <br />\n          </td>\n          <td class="expandable column2">\n            <div class="flash">{{=response.flash or \'\'}}</div>\n            {{include}}\n          </td>\n          <!--\n               <td class="width10em column3">\n                 <h2>Right Column</h2>\n               </td>\n          //-->\n        </tr>\n        <tr>\n          <td colspan="10" class="footer">\n            <p>\n            {{=T(\'Copyright\')}} &copy; 2009 -\n            {{=T(\'Powered by\')}} <a href="http://www.web2py.com">web2py</a>\n            </p>\n          </td>\n        </tr>\n      </table>\n    </div>\n  </body>\n</html>\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__getslice__'
+p12
+S"<method-wrapper '__getslice__' of exceptions.IOError object>"
+p13
+sS'__str__'
+p14
+S"<method-wrapper '__str__' of exceptions.IOError object>"
+p15
+sS'__reduce__'
+p16
+S'<built-in method __reduce__ of exceptions.IOError object>'
+p17
+sS'__dict__'
+p18
+S'{}'
+p19
+sS'__sizeof__'
+p20
+S'<built-in method __sizeof__ of exceptions.IOError object>'
+p21
+sS'__init__'
+p22
+S"<method-wrapper '__init__' of exceptions.IOError object>"
+p23
+sS'__setattr__'
+p24
+S"<method-wrapper '__setattr__' of exceptions.IOError object>"
+p25
+sS'__reduce_ex__'
+p26
+S'<built-in method __reduce_ex__ of exceptions.IOError object>'
+p27
+sS'__new__'
+p28
+S'<built-in method __new__ of type object>'
+p29
+sS'errno'
+p30
+S'2'
+sS'__format__'
+p31
+S'<built-in method __format__ of exceptions.IOError object>'
+p32
+sS'__class__'
+p33
+S"<type 'exceptions.IOError'>"
+p34
+sS'filename'
+p35
+S"'/home/ahmed/zdotfiles/9/web2py/applications/qastack/views/web2py_ajax.html'"
+p36
+sS'__doc__'
+p37
+S"'I/O operation failed.'"
+p38
+sS'__getitem__'
+p39
+S"<method-wrapper '__getitem__' of exceptions.IOError object>"
+p40
+sS'__setstate__'
+p41
+S'<built-in method __setstate__ of exceptions.IOError object>'
+p42
+sS'__getattribute__'
+p43
+S"<method-wrapper '__getattribute__' of exceptions.IOError object>"
+p44
+sS'args'
+p45
+S"(2, 'No such file or directory')"
+p46
+sS'__subclasshook__'
+p47
+S'<built-in method __subclasshook__ of type object>'
+p48
+sS'__unicode__'
+p49
+S'<built-in method __unicode__ of exceptions.IOError object>'
+p50
+sS'strerror'
+p51
+S"'No such file or directory'"
+p52
+sS'__delattr__'
+p53
+S"<method-wrapper '__delattr__' of exceptions.IOError object>"
+p54
+sS'__repr__'
+p55
+S"<method-wrapper '__repr__' of exceptions.IOError object>"
+p56
+sS'__hash__'
+p57
+S"<method-wrapper '__hash__' of exceptions.IOError object>"
+p58
+ssS'evalue'
+p59
+S"[Errno 2] No such file or directory: '/home/ahmed/zdotfiles/9/web2py/applications/qastack/views/web2py_ajax.html'"
+p60
+sS'frames'
+p61
+(lp62
+(dp63
+S'file'
+p64
+S'/home/ahmed/zdotfiles/9/web2py/gluon/template.py'
+p65
+sS'dump'
+p66
+(dp67
+S'builtinopen'
+p68
+S'<built-in function open>'
+p69
+sS'fileobj'
+p70
+S'undefined'
+p71
+sS'filepath'
+p72
+S"'/home/ahmed/zdotfiles/9/web2py/applications/qastack/views/web2py_ajax.html'"
+p73
+ssS'lnum'
+p74
+I443
+sS'lines'
+p75
+(dp76
+I438
+S'        # Get the path of the file on the system.'
+p77
+sI439
+S'        filepath = self.path and os.path.join(self.path, filename) or filename'
+p78
+sI440
+S''
+sI441
+S'        # try to read the text.'
+p79
+sI442
+S'        try:'
+p80
+sI443
+S"            fileobj = open(filepath, 'rb')"
+p81
+sI444
+S'            text = fileobj.read()'
+p82
+sI445
+S'            fileobj.close()'
+p83
+sI446
+S'        except IOError:'
+p84
+sI447
+S"            self._raise_error('Unable to open included view file: ' + filepath)"
+p85
+ssS'call'
+p86
+S"(self=<gluon.template.TemplateParser object>, filename='web2py_ajax.html')"
+p87
+sS'func'
+p88
+S'_get_file_text'
+p89
+sasS'pyver'
+p90
+S'Python 2.7.4: /usr/bin/python (prefix: /usr)'
+p91
+sS'etype'
+p92
+S"<type 'exceptions.IOError'>"
+p93
+sS'date'
+p94
+S'Thu Sep 26 07:38:15 2013'
+p95
+sS'locals'
+p96
+(dp97
+S'self'
+p98
+S'<gluon.template.TemplateParser object>'
+p99
+sg35
+S"'web2py_ajax.html'"
+p100
+sS'context'
+p101
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, 'CENTER': <class 'gluon.html.CENTER'>, ...}"
+p102
+sS'filepath'
+p103
+S"'/home/ahmed/zdotfiles/9/web2py/applications/qastack/views/web2py_ajax.html'"
+p104
+sssS'traceback'
+p105
+S'Traceback (most recent call last):\n  File "/home/ahmed/zdotfiles/9/web2py/gluon/template.py", line 443, in _get_file_text\n    fileobj = open(filepath, \'rb\')\nIOError: [Errno 2] No such file or directory: \'/home/ahmed/zdotfiles/9/web2py/applications/qastack/views/web2py_ajax.html\'\n'
+p106
+s.

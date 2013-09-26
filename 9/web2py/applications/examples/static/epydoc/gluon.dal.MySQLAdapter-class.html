@@ -315,7 +315,7 @@
         <span class="summary-sig-arg">pool_size</span>=<span class="summary-sig-default">0</span>,
         <span class="summary-sig-arg">folder</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">db_codec</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
+        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
         <span class="summary-sig-arg">driver_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">adapter_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">do_connect</span>=<span class="summary-sig-default">True</span>,
@@ -432,7 +432,10 @@
       <code><a href="gluon.dal.BaseAdapter-class.html#get_table">get_table</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#id_query">id_query</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#insert">insert</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#isOperationalError">isOperationalError</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#isProgrammingError">isProgrammingError</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#is_numerical_type">is_numerical_type</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#log">log</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#log_execute">log_execute</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#migrate_table">migrate_table</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#parse">parse</a></code>,
@@ -455,6 +458,7 @@
       <code><a href="gluon.dal.BaseAdapter-class.html#represent_exceptions">represent_exceptions</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#rollback">rollback</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#rowslice">rowslice</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#save_dbt">save_dbt</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#select">select</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#select_limitby">select_limitby</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#sequence_name">sequence_name</a></code>,
@@ -545,14 +549,7 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="drivers"></a><span class="summary-name">drivers</span> = <code title="('MySQLdb', 'pymysql')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">MySQLdb</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">pymysql</code><code class="variable-quote">'</code><code class="variable-group">)</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="maxcharlength"></a><span class="summary-name">maxcharlength</span> = <code title="255">255</code>
+        <a name="drivers"></a><span class="summary-name">drivers</span> = <code title="('MySQLdb', 'pymysql', 'mysqlconnector')"><code class="variable-group">(</code><code class="variable-quote">'</code><code class="variable-string">MySQLdb</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">pymysql</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">mysqlconnector</code><code class="variable-quote">'</code><code class="variable-group">)</code></code>
     </td>
   </tr>
 <tr>
@@ -588,6 +585,13 @@ ete_action)s',
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
+        <a name="QUOTE_TEMPLATE"></a><span class="summary-name">QUOTE_TEMPLATE</span> = <code title="'`%s`'"><code class="variable-quote">'</code><code class="variable-string">`%s`</code><code class="variable-quote">'</code></code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
         <a href="gluon.dal.MySQLAdapter-class.html#REGEX_URI" class="summary-name">REGEX_URI</a> = <code title="re.compile(r'^(?P&lt;user&gt;[^:@]+)(:(?P&lt;password&gt;[^@]*))?@(?P&lt;host&gt;[^:/]+)\
 (:(?P&lt;port&gt;[0-9]+))?/(?P&lt;db&gt;[^\?]+)(\?set_encoding=(?P&lt;charset&gt;\w+))?$\
 ')">re.compile(r'^<code class="re-group">(?P&lt;</code><code class="re-ref">user</code><code class="re-group">&gt;</code><code class="re-group">[</code><code class="re-op">^</code>:@<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code><code class="re-group">(</code>:<code class="re-group">(?P&lt;</code><code class="re-ref">password</code><code class="re-group">&gt;</code><code class="re-group">[^</code>@<code class="re-group">]</code><code class="re-op">*</code><code class="variable-ellipsis">...</code></code>
@@ -601,8 +605,10 @@ ete_action)s',
       <code><a href="gluon.dal.BaseAdapter-class.html#T_SEP">T_SEP</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#can_select_for_update">can_select_for_update</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#connection">connection</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#dbpath">dbpath</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#driver">driver</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#driver_name">driver_name</a></code>,
+      <code><a href="gluon.dal.BaseAdapter-class.html#folder">folder</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#native_json">native_json</a></code>,
       <code><a href="gluon.dal.BaseAdapter-class.html#uploads_in_blob">uploads_in_blob</a></code>
       </p>
@@ -948,7 +954,7 @@ ete_action)s',
         <span class="sig-arg">pool_size</span>=<span class="sig-default">0</span>,
         <span class="sig-arg">folder</span>=<span class="sig-default">None</span>,
         <span class="sig-arg">db_codec</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
+        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
         <span class="sig-arg">driver_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">adapter_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">do_connect</span>=<span class="sig-default">True</span>,
@@ -1112,7 +1118,7 @@ re.compile(r'^<code class="re-group">(?P&lt;</code><code class="re-ref">user</co
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:47 2013
+    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:09 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

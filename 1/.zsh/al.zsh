@@ -607,11 +607,8 @@ wy_append_line(){
 
 # Fetch the current human population of Earth
 dcar_human_population(){
-    curl -s http://www.census.gov/popclock/data/population/world | python -c 'import json,sys;obj=json.load(sys.stdin);print obj["world"]["population"]'
 }
 
-# Stream (almost) any music track in mplayer
-#python2 -c 'import urllib2 as u, sys as s, json as j, subprocess as p;p.call(["mplayer", u.urlopen(j.loads(u.urlopen("http://ex.fm/api/v3/song/search/%s" % "+".join(s.argv[1:])).read())["songs"][0]["url"]).geturl().split("#")[0]])' michael jackson beat it
 
 
 # Dropbox login using only curl, sed and bash
@@ -632,12 +629,7 @@ dcar_human_population(){
 
 # check your up to date delicious links.
 #curl -k https://Username:Password@api.del.icio.us/v1/posts/all?red=api | xml2| \grep '@href' | cut -d\= -f 2- | sort | uniq | linkchecker -r0 --stdin --complete -v -t 50 -F blacklist
-#cat bash-if-test | python -c 'exec("import sys,os\nfor line in sys.stdin:\n\tprint line")'
-
-
-
-alias 'ww_convert'='Convert_MW' 
-
-
-alias 'www_cut_audio_video'='cut;audio;video' 
+wgp() {
+    python -c 'exec("import sys,os\nfor line in sys.stdin:\n\tprint line")'
+}
 

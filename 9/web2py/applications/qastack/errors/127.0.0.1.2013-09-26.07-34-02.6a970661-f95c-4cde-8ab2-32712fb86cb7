@@ -1,0 +1,497 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.TypeError'> expected string or buffer"
+p3
+sS'layer'
+p4
+S'/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py'
+p5
+sS'code'
+p6
+S'# -*- coding: utf-8 -*-\n\n#########################################################################\n## This is a samples controller\n## - index is the default action of any application\n## - user is required for authentication and authorization\n## - download is for downloading files uploaded in the db (does streaming)\n## - call exposes all registered services (none by default)\n#########################################################################\n\nimport datetime\nimport hashlib\nimport base64\n\nfrom gluon.contrib.login_methods.email_auth import email_auth\n\n# IDE "helper" not part of the framework\nif False:\n    from gluon.globals import *\n    from gluon.html import *\n    from gluon.http import *\n    #from gluon.sqlhtml import SQLFORM, SQLTABLE, form_factory\n    session = Session()\n    request = Request()\n    response = Response()\n    # The following three lines are application-specific and used just so\n    # komodo (edit) (or even other IDEs sich as Wing) "finds" the methods\n    # for my classes, this does not have anyhing to do with the web2py\n    # framework itself, as I am already instantiating "auth_user",\n    # "stackhelper" etc in one of my models...\n    from qastack.models import db\n    from qastack.modules.CustomAuthentication import CustomAuthentication \\\n        as auth_user\n    from qastack.modules.QAStackHelper import QAStackHelper as stackhelper\n\n#get tags \n\ndef getwords(text, splitchars=\' \\t|!?.;:,"_\'):\n    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)\n    for word in words_iter:\n        yield word.group()\n\n\ndef zindex():\n    with open(\'/home/ahmed/tst/zwiki-Foundations.txt\', \'r\') as file:\n        options = [x for x in getwords(file)]\n    return dict(options=options)\n\n    \n            \n            \n\ndef index():\n    """\n    Main application index (entry point) page\n    """\n    if session.RUN_ONCE is None:\n        view_info = {}\n        view_info.update({\'errors\': []})\n        req = request.vars\n        args = request.args\n        nav_css = \'aquestions\'\n        # Some needed system information (think about caching this and\n        # update every 4 hours or so..)\n        num_recs = int(\n            stackhelper.get_system_property(\'s_questions_per_page\', 30))\n        mode = \'\'\n        try:\n            offset = int(req.start)\n        except:\n            offset = 0\n        try:\n            mode = args[0]\n            nav_css = \'a%s\' % (mode)\n        except:\n            pass\n        sort_css = \'s_dates\' if req.sort is None else req.sort\n\n        # Constraints:\n        # Sort (qsort):\n        # Latest == order by questions.modified_on DESC\n        # Most Voted = order by questions.votes_up DESC\n        # Featured = where questions.is_featured == \'T\'\n        #\n        # Type (qtype)\n        # Questions = (no constraints)\n        # Unanswered = where questions.is_answered == \'F\'\n        qsort = req.sort # Latest, Most Voted (Sub Tabs)\n        # qtype = req.qtype - Questions, Unanswered (Main Tabs)\n\n        sql_order = \'questions.modified_on DESC\'\n        if qsort == \'s_votes\': # "most voted"\n            sql_order = \'questions.votes_up DESC\'\n\n        qtype = \'\'\n        if len(args) > 0:\n            qtype_arg = args[0]\n            if qtype_arg == \'unanswered\':\n                qtype = \'u\'\n            elif qtype_arg == \'featured\':\n                qtype = \'f\'\n            elif qtype_arg == \'subscribed\':\n                qtype = \'s\'\n        sql_where = []\n        extra_tables = [\'\'] # <-- Important\n        if qtype == \'u\': # Unanswered\n            sql_where.append("questions.is_answered = \'F\'")\n        elif qtype == \'f\': # Featured\n            sql_where.append("questions.is_featured = \'T\'")\n        elif qtype == \'s\': # Subscribed\n            sql_where.append("questions.id = "\n                             "question_subscriptions.question_id")\n            sql_where.append("question_subscriptions.is_active = \'T\'")\n            sql_where.append("question_subscriptions.auth_user_id = "\n                             "%s" % (auth_user.get_user_id() or 0))\n            extra_tables.append(\'question_subscriptions\')\n\n        # Tag Handling\n        srch_tag = \'\'\n        tag_table = \'\'\n        if mode == \'tags\':\n            srch_tag = req.get(\'tag\', \'qa-stack\') # /default/index/tags?tag=meh\n            # get the "id" of this tag..\n            sql_tags = db(\n                db.tags.tagname.like(\'%s%%\' % (srch_tag))).select(db.tags.id)\n            tags = \',\'.join([str(tag.id) for tag in sql_tags]) # \'1,5,7,9,etc\'\n\n            sql_where.append(\'question_tags.question_id = questions.id\')\n            sql_where.append(\'question_tags.tag_id in (%s)\' %\n                             (tags if tags else 0))\n            extra_tables.append(\'question_tags\')\n\n        sql_where_str = \'\'\n        if sql_where:\n            sql_where_str = "\\nand %s" % (\' and \'.join(sql_where))\n        # Grab questions\n        sql_cnt = """\n        select\n            count(questions.id)\n        from\n            questions\n            %s\n        where\n            questions.is_visible=\'T\'\n            %s\n        """ % (\',\'.join(extra_tables), sql_where_str)\n        question_cnt = db.executesql(sql_cnt)[0][0]\n        view_info[\'question_cnt\'] = question_cnt\n        sql = """\n        select\n            questions.title,\n            questions.created_on,\n            questions.modified_on,\n            questions.views,\n            questions.votes_up,\n            questions.votes_dn,\n            questions.is_answered,\n            questions.is_featured,\n            member_properties.property_value,\n            COUNT(answers.id),\n            auth_roles.role_name,\n            questions.is_closed,\n            questions.id,\n            auth_users.auth_alias,\n            auth_users.id\n        from\n            questions LEFT JOIN answers ON answers.question_id=questions.id,\n            auth_users,\n            member_properties,\n            member_properties_skel,\n            auth_roles\n            %s\n        where\n            questions.is_visible=\'T\'\n            AND member_properties.auth_user=questions.created_by\n            AND member_properties.property_id=member_properties_skel.id\n            AND member_properties_skel.property_name=\'m_display_name\'\n            AND auth_roles.id=auth_users.auth_role_id\n            AND auth_users.id=questions.created_by\n            %s\n        group by\n            questions.id\n        order by\n            %s\n            limit %s offset %s\n        """ % (\',\'.join(extra_tables), sql_where_str, sql_order, num_recs,\n               offset)\n        questions = []\n        all_questions = db.executesql(sql)\n        if all_questions:\n            for q in all_questions:\n                questions.append({\n                    \'questions.title\': q[0],\n                    \'questions.created_on\': q[1],\n                    \'questions.modified_on\': q[2],\n                    \'questions.views\': q[3],\n                    \'questions.votes_up\': q[4],\n                    \'questions.votes_dn\': q[5],\n                    \'questions.is_answered\': (True if q[6] == \'T\' else False),\n                    \'questions.is_featured\': (True if q[7] == \'T\' else False),\n                    \'member_properties.property_value\': q[8],\n                    \'answers_id_count\': q[9],\n                    \'auth_roles.role_name\': q[10],\n                    \'questions.is_closed\': (True if q[11] == \'T\' else False),\n                    \'questions.id\': q[12],\n                    \'tags\': None,\n                    \'auth_users.auth_alias\': q[13],\n                    \'auth_users.id\': q[14]})\n        # Get tags for questions\n        for q in questions:\n            tags = db(\n                (db.questions.id==db.question_tags.question_id) &\n                (db.question_tags.tag_id==db.tags.id) &\n                (db.questions.id==q[\'questions.id\'])).select(\n                db.tags.tagname)\n            #raise ValueError, tags\n            if tags:\n                q[\'tags\'] = tags\n\n        return dict(view_info=view_info,\n                    questions=questions,\n                    nav_css=nav_css,\n                    sort_css=sort_css)\n    else:\n        # So apparently we have a new system install, redirect to the\n        # appropriate page:\n        redirect(URL(r=request, c=\'default\', f=\'runonce\'))\n\n\ndef view():\n    """ The default page when viewing a question """\n    # We need to pull here several important things: Questions, comments for\n    # questions, answers, comments for answers..\n    view_info = {\'errors\': []}\n\n    req = request.vars\n    qid = req.qid if req.qid is not None else request.args[0] # Question ID\n\n    # Read the question here to see if the user is allowed to access it\n    question = db(db.questions.id==qid).select(db.questions.ALL)\n    user_id = auth_user.get_user_id()\n    if not question or (\n        not question[0].is_visible and not auth_user.is_admin()):\n        # Only admins may see hidden questions..\n        redirect(URL(r=request, c=\'default\', f=\'unauthorized\'))\n\n    featured_votes = db(\n        (db.score_log.l_type==\'Q\') &\n        (db.score_log.subtype==\'featuredrequest\') &\n        (db.score_log.qac_id==qid)).count()\n    view_info.update(dict(featured_votes=featured_votes))\n\n    offensive_votes = db(\n        (db.score_log.l_type==\'Q\') &\n        (db.score_log.subtype==\'offensiverequest\') &\n        (db.score_log.qac_id==qid)).count()\n    view_info.update(dict(offensive_votes=offensive_votes))\n\n    # This controls if the user is subscribed or not to this question\n    view_info[\'is_subscribed\'] = False\n    if auth_user.is_auth():\n        if stackhelper.user_is_subscribed(qid, user_id):\n            view_info[\'is_subscribed\'] = True\n\n    # Only the following roles can add comments\n    can_comment = auth_user.has_role(\'Reviewer,TeamLead,Manager,SysAdmin\')\n    view_info[\'can_comment\'] = can_comment\n    if req.form_submitted:\n        view_info[\'form_submitted\'] = True\n        preview_answer = req.preview_answer\n        post_answer = req.post_answer\n        answer = req.get(\'answer\', \'\').strip()\n        view_info[\'answer\'] = answer\n        if preview_answer is not None:\n            view_info[\'preview_answer\'] = preview_answer\n        else:\n            # Posting an answer to this question here\n            if answer:\n                modified_by = user_id\n                db.answers.insert(question_id=qid,\n                                  description=answer,\n                                  created_by=modified_by,\n                                  created_on=request.now,\n                                  modified_by=modified_by,\n                                  is_outstanding=False,\n                                  votes_up=0,\n                                  votes_dn=0,\n                                  is_visible=True,\n                                  is_answer=False,\n                                  modified_on=request.now)\n                # Update the original question\'s last update date/user\n                db(db.questions.id==qid).update(modified_by=modified_by,\n                                                modified_on=request.now)\n                # Also, increment the number of answers this user has posted\n                stackhelper.increment_member_property(\'m_answers\',\n                                                      modified_by,\n                                                      1)\n            else:\n                view_info[\'errors\'].append(\n                    \'Please add a valid answer to continue\')\n    else:\n        # Update the page views for this question, only\n        # if the page is viewed via GET\n        view_rec = db(db.questions.id==qid).select(db.questions.views)[0]\n        db(db.questions.id==qid).update(views=view_rec.views+1)\n\n    question = db(\n        (db.questions.id==qid) &\n        (db.questions.created_by==db.member_properties.auth_user) &\n        (db.member_properties.property_id==db.member_properties_skel.id) &\n        (db.member_properties_skel.property_name==\'m_display_name\')).select(\n        db.questions.ALL,\n        db.member_properties.property_value)[0]\n    tags = db(\n        (db.questions.id==db.question_tags.question_id) &\\\n        (db.question_tags.tag_id==db.tags.id) &\\\n        (db.questions.id==question.questions.id)).select(\n        db.tags.tagname)\n    q_comments = db(\n        (db.comments.c_type==\'Q\') &\n        (db.comments.qa_id==qid) &\n        (db.comments.is_visible==True) &\n        (db.comments.created_by==db.member_properties.auth_user) &\n        (db.member_properties.property_id==db.member_properties_skel.id) &\n        (db.member_properties_skel.property_name==\\\n         \'m_display_name\')).select(db.comments.ALL,\n        db.member_properties.property_value,\n        orderby=db.comments.modified_on)\n    answers = db(\n        (db.answers.question_id==qid) &\n        (db.answers.is_visible==True) &\n        (db.answers.created_by==db.member_properties.auth_user) &\n        (db.member_properties.property_id==db.member_properties_skel.id) &\n        (db.member_properties_skel.property_name==\'m_display_name\')).select(\n        db.answers.ALL,\n        db.member_properties.property_value,\n        orderby=~db.answers.is_answer|~db.answers.modified_on)\n    # Now every different proposed answer can have comments,\n    # so I need the comments for each answer if applicable)\n    comments_a = {}\n    for answer in answers:\n        comments = db(\n            (db.comments.c_type==\'A\') &\n            (db.comments.qa_id==answer.answers.id) &\n            (db.comments.is_visible==True) &\n            (db.comments.created_by==db.member_properties.auth_user) &\n            (db.member_properties.property_id==db.member_properties_skel.id) &\n            (db.member_properties_skel.property_name==\\\n             \'m_display_name\')).select(\n            db.comments.ALL,\n            db.member_properties.property_value,\n            orderby=db.comments.modified_on)\n        if comments:\n            comments_a.update({answer.answers.id: comments})\n    return dict(\n        question=question,\n        tags=tags,\n        q_comments=q_comments,\n        answers=answers,\n        comments_a=comments_a,\n        can_comment=can_comment,\n        view_info=view_info)\n\ndef tags():\n    """ Returns a simple list of all the most popular tags """\n    view_info = {}\n    view_info.update(dict(errors=[]))\n    tag_cnt = db.question_tags.id.count()\n    tags = db(db.tags.id==db.question_tags.tag_id).select(\n        db.tags.tagname,\n        tag_cnt,\n        groupby=db.tags.id,\n        orderby=~tag_cnt,\n        limitby=(0, 30))\n    return dict(tags=tags,\n                view_info=view_info)\n\n\ndef search():\n    srch_txt = request.vars.srch_txt\n    if len(srch_txt.strip()):\n        url = URL(r=request, c=\'default\', f=\'index\', args=[\'tags\'],\n                  vars=dict(tag=srch_txt))\n    else:\n        url = URL(r=request, c=\'default\', f=\'index\')\n    redirect(url)\n\n\ndef about():\n    return dict()\n\n\ndef faq():\n    return dict()\n\n\ndef bad_resource():\n    """\n    Possibly extend this to include meaningful information why the call\n    to this method was made. """\n    return dict()\n\n\ndef download():\n    """\n    allows downloading of uploaded files\n    http://..../[app]/default/download/[filename]\n    """\n    return response.download(request, db)\n\n\ndef call():\n    """\n    exposes services. for example:\n    http://..../[app]/default/call/jsonrpc\n    decorate with @services.jsonrpc the functions to expose\n    supports xml, json, xmlrpc, jsonrpc, amfrpc, rss, csv\n    """\n    session.forget()\n    return service()\n\n\ndef contact_admin():\n    """ Contact Admin - This can allow anonymous users to post spam,\n    so for them, I\'ll add some "poor man\'s captcha" """\n    view_info = {}\n    view_info[\'errors\'] = []\n    captcha = stackhelper.gen_pwd()\n    view_info[\'anon_captcha\'] = captcha\n    view_info[\'anon_captcha_base64\'] = base64.standard_b64encode(captcha)\n    req = request.vars\n    if req.form_submitted:\n        if req.send_b:\n            if req.subject and req.message:\n                if auth_user.is_auth() or\\\n                (not auth_user.is_auth() and\\\n                 base64.standard_b64encode(req.captcha_response) == req.c):\n                    db.admin_messages.insert(\n                        auth_user_id=auth_user.get_user_id(),\n                        subject=parse_content(req.subject),\n                        message=parse_content(req.message),\n                        creation_date=request.now,\n                        read_flag=False)\n                    redirect(URL(r=request, c=\'default\', f=\'index\'))\n                else:\n                    view_info[\'errors\'].append(\n                        \'Invalid humanity challenge response, please try \'\n                        \'again\')\n                    return dict(request=request, view_info=view_info)\n            else:\n                view_info[\'errors\'].append(\n                    \'Both Subject and Message are required fields\')\n                return dict(request=request, view_info=view_info)\n        else:\n            redirect(URL(r=request, c=\'default\', f=\'index\'))\n    else:\n        return dict(request=request, view_info=view_info)\n\n\ndef runonce():\n    if session.RUN_ONCE is not None:\n        tmp_username = session[\'NEW_USER\']\n        tmp_passwd = session[\'NEW_USER_PASSWD\']\n        # Remove these values from the session now..\n        session.RUN_ONCE = None\n        session.NEW_USER_PASSWD = None\n        session.RUN_ONCE = None\n        return dict(tmp_username=tmp_username, tmp_passwd=tmp_passwd)\n    else:\n        # Just die silently..\n        redirect(URL(r=request, c=\'default\', f=\'index\'))\n\n\ndef unauthorized():\n    return dict()\n\nresponse._vars=response._caller(zindex)\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.TypeError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.TypeError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.TypeError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.TypeError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.TypeError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.TypeError object>'
+p23
+sS'args'
+p24
+S"('expected string or buffer',)"
+p25
+sS'__reduce__'
+p26
+S'<built-in method __reduce__ of exceptions.TypeError object>'
+p27
+sS'__str__'
+p28
+S"<method-wrapper '__str__' of exceptions.TypeError object>"
+p29
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.TypeError object>'
+p31
+sS'__getattribute__'
+p32
+S"<method-wrapper '__getattribute__' of exceptions.TypeError object>"
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.TypeError'>"
+p35
+sS'__unicode__'
+p36
+S'<built-in method __unicode__ of exceptions.TypeError object>'
+p37
+sS'__delattr__'
+p38
+S"<method-wrapper '__delattr__' of exceptions.TypeError object>"
+p39
+sS'__subclasshook__'
+p40
+S'<built-in method __subclasshook__ of type object>'
+p41
+sS'__repr__'
+p42
+S"<method-wrapper '__repr__' of exceptions.TypeError object>"
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.TypeError object>'
+p47
+sS'__doc__'
+p48
+S"'Inappropriate argument type.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.TypeError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S'expected string or buffer'
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\xb5T\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top">ajax</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">application</td><td valign="top">:</td><td><div>qastack</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">args</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">body</td><td valign="top">:</td><td><div>&lt;cStringIO.StringO object at 0x7fd3703327a0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cid</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">client</td><td valign="top">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">controller</td><td valign="top">:</td><td><div>default</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cookies</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">session_id_admin</td><td valign="top">:</td><td><div>127.0.0.1-3b997cc5-86e4-4791-bb26-23af77f96f49<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id_qastack</td><td valign="top">:</td><td><div>127.0.0.1-fab5952e-07bf-4c95-98a0-0a013de490b6<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id_welcome</td><td valign="top">:</td><td><div>127.0.0.1-1a07d3d6-dfbf-44cd-a20d-9e0529cb0397<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">env</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">app_folders</td><td valign="top">:</td><td><div>set([&#x27;/home/ahmed/zdotfiles/9/web2py/applications/admin/&#x27;, &#x27;/home/ahmed/zdotfiles/9/web2py/applications/qastack/&#x27;, &#x27;/home/ahmed/zdotfiles/9/web2py/applications/welcome/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">applications_parent</td><td valign="top">:</td><td><div>/home/ahmed/zdotfiles/9/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_args</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_options</td><td valign="top">:</td><td><div>&lt;Values at 0x19a29e0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;127.0.1.1&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;zedu&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/ahmed/zdotfiles/9/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;winservice&#x27;: &#x27;&#x27;, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;profiler_filename&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;scheduler_groups&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;interfaces&#x27;: None, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">db_sessions</td><td valign="top">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">debugging</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">gluon_parent</td><td valign="top">:</td><td><div>/home/ahmed/zdotfiles/9/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_accept</td><td valign="top">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_accept_encoding</td><td valign="top">:</td><td><div>gzip,deflate,sdch</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_accept_language</td><td valign="top">:</td><td><div>ar,en-US;q=0.8,en;q=0.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_connection</td><td valign="top">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_cookie</td><td valign="top">:</td><td><div>session_id_welcome=127.0.0.1-1a07d3d6-dfbf-44cd-a20d-9e0529cb0397; session_id_qastack=127.0.0.1-fab5952e-07bf-4c95-98a0-0a013de490b6; session_id_admin=127.0.0.1-3b997cc5-86e4-4791-bb26-23af77f96f49</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_host</td><td valign="top">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_referer</td><td valign="top">:</td><td><div>http://127.0.0.1:8000/admin/default/edit/qastack/controllers/default.py?id=controllers__default__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">http_user_agent</td><td valign="top">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_jython</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_pypy</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">local_hosts</td><td valign="top">:</td><td><div><table><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>zedu</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path_info</td><td valign="top">:</td><td><div>/qastack/default/zindex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">query_string</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">remote_addr</td><td valign="top">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">remote_port</td><td valign="top">:</td><td><div>34588</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">request_method</td><td valign="top">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">request_uri</td><td valign="top">:</td><td><div>/qastack/default/zindex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">script_name</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_name</td><td valign="top">:</td><td><div>zedu</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_port</td><td valign="top">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_protocol</td><td valign="top">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">server_software</td><td valign="top">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">web2py_path</td><td valign="top">:</td><td><div>/home/ahmed/zdotfiles/9/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">web2py_version</td><td valign="top">:</td><td><div>2.5.1-stable+timestamp.2013.06.06.15.39.19</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_errors</td><td valign="top">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7fd3b12cd1e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_file_wrapper</td><td valign="top">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x1ca0600&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_input</td><td valign="top">:</td><td><div>&lt;socket._fileobject object at 0x7fd38c7258d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_multiprocess</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_multithread</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_run_once</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_url_scheme</td><td valign="top">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi_version</td><td valign="top">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">extension</td><td valign="top">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">folder</td><td valign="top">:</td><td><div>/home/ahmed/zdotfiles/9/web2py/applications/qastack/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">function</td><td valign="top">:</td><td><div>zindex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">get_vars</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">global_settings</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">app_folders</td><td valign="top">:</td><td><div>set([&#x27;/home/ahmed/zdotfiles/9/web2py/applications/admin/&#x27;, &#x27;/home/ahmed/zdotfiles/9/web2py/applications/qastack/&#x27;, &#x27;/home/ahmed/zdotfiles/9/web2py/applications/welcome/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">applications_parent</td><td valign="top">:</td><td><div>/home/ahmed/zdotfiles/9/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_args</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cmd_options</td><td valign="top">:</td><td><div>&lt;Values at 0x19a29e0: {&#x27;verbose&#x27;: False, &#x27;ip&#x27;: &#x27;127.0.0.1&#x27;, &#x27;with_scheduler&#x27;: False, &#x27;ips&#x27;: [&#x27;127.0.1.1&#x27;], &#x27;shutdown_timeout&#x27;: 5, &#x27;taskbar&#x27;: False, &#x27;with_coverage&#x27;: False, &#x27;port&#x27;: 8000, &#x27;maxthreads&#x27;: None, &#x27;softcron&#x27;: False, &#x27;server_name&#x27;: &#x27;zedu&#x27;, &#x27;bpython&#x27;: False, &#x27;nogui&#x27;: False, &#x27;pid_filename&#x27;: &#x27;httpserver.pid&#x27;, &#x27;extcron&#x27;: False, &#x27;runcron&#x27;: False, &#x27;run_system_tests&#x27;: False, &#x27;test&#x27;: None, &#x27;folder&#x27;: &#x27;/home/ahmed/zdotfiles/9/web2py&#x27;, &#x27;config&#x27;: &#x27;&#x27;, &#x27;minthreads&#x27;: None, &#x27;winservice&#x27;: &#x27;&#x27;, &#x27;shell&#x27;: None, &#x27;run&#x27;: &#x27;&#x27;, &#x27;log_filename&#x27;: &#x27;httpserver.log&#x27;, &#x27;debuglevel&#x27;: 30, &#x27;args&#x27;: [&#x27;&#x27;], &#x27;socket_timeout&#x27;: 5, &#x27;ssl_ca_certificate&#x27;: None, &#x27;scheduler&#x27;: None, &#x27;profiler_filename&#x27;: None, &#x27;ssl_private_key&#x27;: &#x27;&#x27;, &#x27;scheduler_groups&#x27;: None, &#x27;password&#x27;: &#x27;&lt;ask&gt;&#x27;, &#x27;request_queue_size&#x27;: 5, &#x27;ssl_certificate&#x27;: &#x27;&#x27;, &#x27;cronjob&#x27;: False, &#x27;numthreads&#x27;: None, &#x27;quiet&#x27;: False, &#x27;interfaces&#x27;: None, &#x27;import_models&#x27;: False, &#x27;timeout&#x27;: 10, &#x27;plain&#x27;: False, &#x27;nobanner&#x27;: False}&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">db_sessions</td><td valign="top">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">debugging</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">gluon_parent</td><td valign="top">:</td><td><div>/home/ahmed/zdotfiles/9/web2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_jython</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_pypy</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">local_hosts</td><td valign="top">:</td><td><div><table><tr><td><div>127.0.1.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>zedu</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">web2py_version</td><td valign="top">:</td><td><div>2.5.1-stable+timestamp.2013.06.06.15.39.19</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_https</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_local</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">is_restful</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">now</td><td valign="top">:</td><td><div>datetime.datetime(2013, 9, 26, 7, 34, 2, 448891)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">post_vars</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">raw_args</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">raw_extension</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">url</td><td valign="top">:</td><td><div>/qastack/default/zindex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">utcnow</td><td valign="top">:</td><td><div>datetime.datetime(2013, 9, 26, 4, 34, 2, 448913)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">uuid</td><td valign="top">:</td><td><div>qastack/127.0.0.1.2013-09-26.07-34-02.6a970661-f95c-4cde-8ab2-32712fb86cb7</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">vars</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">environ</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">HTTP_ACCEPT</td><td valign="top">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_ACCEPT_ENCODING</td><td valign="top">:</td><td><div>gzip,deflate,sdch</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_ACCEPT_LANGUAGE</td><td valign="top">:</td><td><div>ar,en-US;q=0.8,en;q=0.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_CONNECTION</td><td valign="top">:</td><td><div>keep-alive</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_COOKIE</td><td valign="top">:</td><td><div>session_id_welcome=127.0.0.1-1a07d3d6-dfbf-44cd-a20d-9e0529cb0397; session_id_qastack=127.0.0.1-fab5952e-07bf-4c95-98a0-0a013de490b6; session_id_admin=127.0.0.1-3b997cc5-86e4-4791-bb26-23af77f96f49</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_HOST</td><td valign="top">:</td><td><div>127.0.0.1:8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_REFERER</td><td valign="top">:</td><td><div>http://127.0.0.1:8000/admin/default/edit/qastack/controllers/default.py?id=controllers__default__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">HTTP_USER_AGENT</td><td valign="top">:</td><td><div>Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.76 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">PATH_INFO</td><td valign="top">:</td><td><div>/qastack/default/zindex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">QUERY_STRING</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REMOTE_ADDR</td><td valign="top">:</td><td><div>127.0.0.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REMOTE_PORT</td><td valign="top">:</td><td><div>34588</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REQUEST_METHOD</td><td valign="top">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">REQUEST_URI</td><td valign="top">:</td><td><div>/qastack/default/zindex</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SCRIPT_NAME</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_NAME</td><td valign="top">:</td><td><div>zedu</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_PORT</td><td valign="top">:</td><td><div>8000</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_PROTOCOL</td><td valign="top">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">SERVER_SOFTWARE</td><td valign="top">:</td><td><div>Rocket 1.2.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.errors</td><td valign="top">:</td><td><div>&lt;open file &#x27;&lt;stderr&gt;&#x27;, mode &#x27;w&#x27; at 0x7fd3b12cd1e0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.file_wrapper</td><td valign="top">:</td><td><div>&lt;class wsgiref.util.FileWrapper at 0x1ca0600&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.input</td><td valign="top">:</td><td><div>&lt;cStringIO.StringO object at 0x7fd3703327a0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.multiprocess</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.multithread</td><td valign="top">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.run_once</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.url_scheme</td><td valign="top">:</td><td><div>http</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">wsgi.version</td><td valign="top">:</td><td><div>1</div></td></tr></table></div></td></tr></table></div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/home/ahmed/zdotfiles/9/web2py/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, 'CENTER': <class 'gluon.html.CENTER'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 0x7fd38c73b930, file "/...cations/qastack/controllers/default.py", line 11>'
+p69
+ssS'lnum'
+p70
+I212
+sS'lines'
+p71
+(dp72
+I207
+S'    try:'
+p73
+sI208
+S'        if isinstance(code, types.CodeType):'
+p74
+sI209
+S'            ccode = code'
+p75
+sI210
+S'        else:'
+p76
+sI211
+S'            ccode = compile2(code, layer)'
+p77
+sI212
+S'        exec ccode in environment'
+p78
+sI213
+S'    except HTTP:'
+p79
+sI214
+S'        raise'
+p80
+sI215
+S'    except RestrictedError:'
+p81
+sI216
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p82
+ssS'call'
+p83
+S"(code='# -*- coding: utf-8 -*-\\n\\n#######################... dict()\\n\\nresponse._vars=response._caller(zindex)\\n', environment={'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, 'CENTER': <class 'gluon.html.CENTER'>, ...}, layer='/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py')"
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py'
+p88
+sg64
+(dp89
+sg70
+I477
+sg71
+(dp90
+I466
+S'        session.NEW_USER_PASSWD = None'
+p91
+sI467
+S'        session.RUN_ONCE = None'
+p92
+sI468
+S'        return dict(tmp_username=tmp_username, tmp_passwd=tmp_passwd)'
+p93
+sI469
+S'    else:'
+p94
+sI470
+S'        # Just die silently..'
+p95
+sI471
+S"        redirect(URL(r=request, c='default', f='index'))"
+p96
+sI472
+S''
+sI473
+S''
+sI474
+S'def unauthorized():'
+p97
+sI475
+S'    return dict()'
+p98
+ssg83
+S'()'
+p99
+sg85
+S'<module>'
+p100
+sa(dp101
+g62
+S'/home/ahmed/zdotfiles/9/web2py/gluon/globals.py'
+p102
+sg64
+(dp103
+S'self'
+p104
+S'undefined'
+p105
+sS'f'
+S'<function zindex>'
+p106
+ssg70
+I194
+sg71
+(dp107
+I192
+S"        self.delimiters = ('{{', '}}')"
+p108
+sI193
+S'        self._vars = None'
+p109
+sI194
+S'        self._caller = lambda f: f()'
+p110
+sI195
+S'        self._view_environment = None'
+p111
+sI196
+S'        self._custom_commit = None'
+p112
+sI197
+S'        self._custom_rollback = None'
+p113
+sI198
+S''
+sI189
+S'        self.menu = []             # used by the default view layout'
+p114
+sI190
+S'        self.files = []            # used by web2py_ajax.html'
+p115
+sI191
+S'        self.generic_patterns = []  # patterns to allow generic views'
+p116
+ssg83
+S'(f=<function zindex>)'
+p117
+sg85
+S'<lambda>'
+p118
+sa(dp119
+g62
+S'/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py'
+p120
+sg64
+(dp121
+S'x'
+g105
+sS'options'
+p122
+g105
+sS'file'
+p123
+S"<closed file '/home/ahmed/tst/zwiki-Foundations.txt', mode 'r'>"
+p124
+sS'global getwords'
+p125
+S'<function getwords>'
+p126
+ssg70
+I46
+sg71
+(dp127
+I41
+S'        yield word.group()'
+p128
+sI42
+S''
+sI43
+S''
+sI44
+S'def zindex():'
+p129
+sI45
+S"    with open('/home/ahmed/tst/zwiki-Foundations.txt', 'r') as file:"
+p130
+sI46
+S'        options = [x for x in getwords(file)]'
+p131
+sI47
+S'    return dict(options=options)'
+p132
+sI48
+S''
+sI49
+S''
+sI50
+S''
+ssg83
+S'()'
+p133
+sg85
+S'zindex'
+p134
+sa(dp135
+g62
+S'/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py'
+p136
+sg64
+(dp137
+S'c'
+S"'_'"
+p138
+sS'words_iter'
+p139
+g105
+sS'text'
+p140
+S"<closed file '/home/ahmed/tst/zwiki-Foundations.txt', mode 'r'>"
+p141
+sS're.finditer'
+p142
+S'<function finditer>'
+p143
+sS'"".join'
+p144
+g105
+sS'splitchars'
+p145
+S'\' \\t|!?.;:,"_\''
+p146
+sS'global re'
+p147
+S"<module 're' from '/usr/lib/python2.7/re.pyc'>"
+p148
+ssg70
+I39
+sg71
+(dp149
+I34
+S'    from qastack.modules.QAStackHelper import QAStackHelper as stackhelper'
+p150
+sI35
+S''
+sI36
+S'#get tags'
+p151
+sI37
+S''
+sI38
+S'def getwords(text, splitchars=\' \\t|!?.;:,"_\'):'
+p152
+sI39
+S'    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)'
+p153
+sI40
+S'    for word in words_iter:'
+p154
+sI41
+S'        yield word.group()'
+p155
+sI42
+S''
+sI43
+S''
+ssg83
+S'(text=<closed file \'/home/ahmed/tst/zwiki-Foundations.txt\', mode \'r\'>, splitchars=\' \\t|!?.;:,"_\')'
+p156
+sg85
+S'getwords'
+p157
+sa(dp158
+g62
+S'/usr/lib/python2.7/re.py'
+p159
+sg64
+(dp160
+S'pattern'
+p161
+S'\'([^ ^\\t^|^!^?^.^;^:^,^"^_]+)\''
+p162
+sS'global _compile'
+p163
+S'<function _compile>'
+p164
+sS'flags'
+p165
+S'0'
+sS'string'
+p166
+S"<closed file '/home/ahmed/tst/zwiki-Foundations.txt', mode 'r'>"
+p167
+sS').finditer'
+p168
+g105
+ssg70
+I186
+sg71
+(dp169
+I181
+S'    def finditer(pattern, string, flags=0):'
+p170
+sI182
+S'        """Return an iterator over all non-overlapping matches in the'
+p171
+sI183
+S'        string.  For each match, the iterator returns a match object.'
+p172
+sI184
+S''
+sI185
+S'        Empty matches are included in the result."""'
+p173
+sI186
+S'        return _compile(pattern, flags).finditer(string)'
+p174
+sI187
+S''
+sI188
+S'def compile(pattern, flags=0):'
+p175
+sI189
+S'    "Compile a regular expression pattern, returning a pattern object."'
+p176
+sI190
+S'    return _compile(pattern, flags)'
+p177
+ssg83
+S'(pattern=\'([^ ^\\t^|^!^?^.^;^:^,^"^_]+)\', string=<closed file \'/home/ahmed/tst/zwiki-Foundations.txt\', mode \'r\'>, flags=0)'
+p178
+sg85
+S'finditer'
+p179
+sasS'pyver'
+p180
+S'Python 2.7.4: /usr/bin/python (prefix: /usr)'
+p181
+sS'session'
+p182
+g57
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp183
+sS'etype'
+p184
+S"<type 'exceptions.TypeError'>"
+p185
+sS'date'
+p186
+S'Thu Sep 26 07:34:02 2013'
+p187
+sS'response'
+p188
+g57
+(S's\xdb\x18\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top">body</td><td valign="top">:</td><td><div>&lt;cStringIO.StringO object at 0x7fd370332490&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">cookies</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">session_id_qastack</td><td valign="top">:</td><td><div>127.0.0.1-fab5952e-07bf-4c95-98a0-0a013de490b6<table><tr><td style="font-weight:bold;vertical-align:top">comment</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">domain</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">expires</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">httponly</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">max-age</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">path</td><td valign="top">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">secure</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">version</td><td valign="top">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">delimiters</td><td valign="top">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">files</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">flash</td><td valign="top">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">generic_patterns</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">headers</td><td valign="top">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top">X-Powered-By</td><td valign="top">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">menu</td><td valign="top">:</td><td><div><table><tr><td><div><table><tr><td><div>Index</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/qastack/default/index</div></td></tr><tr><td><div><table></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">menu_edit</td><td valign="top">:</td><td><div><table><tr><td><div><table><tr><td><div>Edit</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/design/qastack</div></td></tr><tr><td><div><table><tr><td><div><table><tr><td><div>Controller</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/qastack/controllers/default.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>View</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/qastack/views/default/zindex.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Layout</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/qastack/views/layout.html</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Stylesheet</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/qastack/static/base.css</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>DB Model</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/qastack/models/db.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Menu Model</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/admin/default/edit/qastack/models/menu.py</div></td></tr></table></div></td></tr><tr><td><div><table><tr><td><div>Database</div></td></tr><tr><td><div>False</div></td></tr><tr><td><div>/qastack/appadmin/index</div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">meta</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">models_to_run</td><td valign="top">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^default/\\w+\\.py$</div></td></tr><tr><td><div>^default/zindex/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">postprocessing</td><td valign="top">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_cookie_expires</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_data_name</td><td valign="top">:</td><td><div>session_data_qastack</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_file</td><td valign="top">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_filename</td><td valign="top">:</td><td><div>/home/ahmed/zdotfiles/9/web2py/applications/qastack/sessions/127.0.0.1-fab5952e-07bf-4c95-98a0-0a013de490b6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id</td><td valign="top">:</td><td><div>127.0.0.1-fab5952e-07bf-4c95-98a0-0a013de490b6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_id_name</td><td valign="top">:</td><td><div>session_id_qastack</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_new</td><td valign="top">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">session_storage_type</td><td valign="top">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">status</td><td valign="top">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">subtitle</td><td valign="top">:</td><td><div>customize me!</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">title</td><td valign="top">:</td><td><div>qastack</div></td></tr><tr><td style="font-weight:bold;vertical-align:top">view</td><td valign="top">:</td><td><div>default/zindex.html</div></td></tr></table></div>'
+tRp189
+sS'locals'
+p190
+(dp191
+S'pattern'
+p192
+S'\'([^ ^\\t^|^!^?^.^;^:^,^"^_]+)\''
+p193
+sS'flags'
+p194
+S'0'
+sS'string'
+p195
+S"<closed file '/home/ahmed/tst/zwiki-Foundations.txt', mode 'r'>"
+p196
+sssS'traceback'
+p197
+S'Traceback (most recent call last):\n  File "/home/ahmed/zdotfiles/9/web2py/gluon/restricted.py", line 212, in restricted\n    exec ccode in environment\n  File "/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py", line 477, in <module>\n  File "/home/ahmed/zdotfiles/9/web2py/gluon/globals.py", line 194, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py", line 46, in zindex\n    options = [x for x in getwords(file)]\n  File "/home/ahmed/zdotfiles/9/web2py/applications/qastack/controllers/default.py", line 39, in getwords\n    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)\n  File "/usr/lib/python2.7/re.py", line 186, in finditer\n    return _compile(pattern, flags).finditer(string)\nTypeError: expected string or buffer\n'
+p198
+s.
