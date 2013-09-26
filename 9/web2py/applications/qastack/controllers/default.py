@@ -33,7 +33,7 @@ if False:
         as auth_user
     from qastack.modules.QAStackHelper import QAStackHelper as stackhelper
 
-#get tags 
+#get tags
 
 def getwords(text, splitchars=' \t|!?.;:,"_'):
     words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
@@ -47,9 +47,9 @@ def zindex():
         options = [x for x in getwords(string)]
     return dict(options=options)
 
-    
-            
-            
+
+
+
 
 def index():
     """

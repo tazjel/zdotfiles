@@ -532,7 +532,7 @@ ww_colors_term()
     # ! EXPR  -  True if EXPR is false.
     # EXPR1 -a EXPR2  -  True if both EXPR1 and EXPR2 are true.
     # EXPR1 -o EXPR2  -  True if either EXPR1 or EXPR2 is true.
-    
+
     # File type tests
     # -b FILE  -  True if FILE exists and is a block special device.
     # -c FILE  -  True if FILE exists and is a character special device.
@@ -542,7 +542,7 @@ ww_colors_term()
     # -p FILE  -  True if FILE exists and is a named pipe.
     # -S FILE  -  True if FILE exists and is a socket.
     # -t FD  -  True if FD is a file descriptor that is associated with a terminal.
-    
+
     # Access permission tests
     # -g FILE  -  True if FILE exists and has its set-group-id bit set.
     # -k FILE  -  True if FILE has its "sticky" bit set.
@@ -552,21 +552,21 @@ ww_colors_term()
     # -x FILE  -  True if FILE exists and is executable.
     # -O FILE  -  True if FILE exists and is owned by the current effective user id.
     # -G FILE  -  True if FILE exists and is owned by the current effective group id.
-    
+
     # File characteristic tests
     # -e FILE  -  True if FILE exists.
     # -s FILE  -  True if FILE exists and has a size greater than zero.
     # FILE1 -nt FILE2  -  True if FILE1 is newer (according to modification date) than FILE2, or if FILE1 exists and FILE2 does not.
     # FILE1 -ot FILE2  -  True if FILE1 is older (according to modification date) than FILE2, or if FILE2 exists and FILE1 does not.
     # FILE1 -ef FILE2  -  True if FILE1 and FILE2 have the same device and inode numbers,  i.e., if they are hard links to each other.
-    
+
     # String tests
     # -z STRING  -  True if the length of STRING is zero.
     # -n STRING
     # STRING  -  True if the length of STRING is nonzero.
     # STRING1 = STRING2  -  True if the strings are equal.
     # STRING1 != STRING2  -  True if the strings are not equal.
-    
+
     # Numeric tests
     # ARG1 -eq ARG2
     # ARG1 -ne ARG2
@@ -633,3 +633,4 @@ wgp() {
     python -c 'exec("import sys,os\nfor line in sys.stdin:\n\tprint line")'
 }
 
+bash ~/zdotfiles/4/time/zprayertime.sh
