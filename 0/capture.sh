@@ -3,14 +3,12 @@
 # Author: Ahmed
 
 sudo apt-get update
-#krusader
 sudo apt-get install -y build-essential llvm clang \
   mono-runtime python2.7 python3.3 python-software-properties \
   perl ghc cabal-install golang-go golang-go \
   golang-tools erlang gprolog g++ make quickly quickly-ubuntu-template
 
-sudo apt-get install -y tmux vim p7zip cmake curl wget exuberant-ctags htop zsh rlwrap python-pip aptitude xclip unhtml postgresql python-setuptools vim-gtk subversion mercurial git cvs blender
-
+sudo apt-get install -y tmux vim p7zip cmake curl wget exuberant-ctags htop zsh rlwrap python-pip aptitude xclip unhtml postgresql python-setuptools vim-gtk subversion mercurial git cvs blender krusader
 java_7()
 {
 sudo add-apt-repository -y ppa:webupd8team/java
@@ -18,7 +16,7 @@ sudo apt-get update
 sudo apt-get install -y oracle-java7-installer
 }
 
-sublime_text 2()
+sublime_text()
 {
     sudo add-apt-repository -y ppa:webupd8team/sublime-text-2
     sudo apt-get update
@@ -36,13 +34,12 @@ install_rvm_and_ruby()
 {
 curl -L https://get.rvm.io | bash -s stable --rails --autolibs=enabled
 }
-{
-nodejs_and_coffee-script()
-sudo add-apt-repository -y ppa:chris-lea/node.js
-sudo apt-get update
-sudo apt-get install nodejs -y
-sudo npm install -g mocha cucumber coffee-script iced-coffee-script
 
+install_node() {
+    sudo add-apt-repository -y ppa:chris-lea/node.js
+    sudo apt-get update
+    sudo apt-get install nodejs -y
+    sudo npm install -g mocha cucumber coffee-script iced-coffee-script
 }
 
 

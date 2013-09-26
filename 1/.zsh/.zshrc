@@ -10,4 +10,5 @@ source $HOME/zdotfiles/1/.zsh/setopt.zsh
 source $HOME/zdotfiles/1/.zsh/zsh_hooks.zsh
 source $HOME/zdotfiles/1/.zsh/arabic_alias.zsh
 
+source $HOME/zdotfiles/1/.zsh/DCAR.zsh
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting

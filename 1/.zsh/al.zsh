@@ -81,7 +81,7 @@ set_xkeyboard() {
 
 ########################################################
 # Path
-    alias 'p'='path'
+    alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
     alias 'cdx'='cd ~/Dropbox/'
     alias 'cdd'='cd ~/Downloads'
     alias 'cdc'='cd $HOME/Dropbox/C/Foundation'
@@ -633,4 +633,6 @@ wgp() {
     python -c 'exec("import sys,os\nfor line in sys.stdin:\n\tprint line")'
 }
 
-bash ~/zdotfiles/4/time/zprayertime.sh
+#bash ~/zdotfiles/4/time/zprayertime.sh
+
+
