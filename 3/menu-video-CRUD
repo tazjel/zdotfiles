@@ -1,0 +1,110 @@
+#!/bin/bash
+
+Projects() {
+    Create a project
+    }
+        Capture
+            Read it
+            Assign Tag
+                Suggest a Tag
+            Show
+                Confirm
+        Process
+            Play
+                Timeline
+                    TAGS
+                    Menu
+            1-10
+            CRUD
+                cut
+                read
+                undate
+                Delete
+        Orginize
+            Template
+                    Colors
+                TEXT
+                Audio
+                Images
+                Logo
+                3D
+                Effects
+                Filters
+                    Zoom
+                Motion
+                    Slow Motion
+                    Fast Motion
+
+            Backgrounds
+            Menu
+                Apply
+                CRUD
+                Prview
+        Review
+        Short Scene
+            Timeline
+        Do
+            Short
+            Long
+            Reminder
+            Auto-Save
+            Upload_youtube(){
+            # Create an animated gif from a Youtube video
+            youtube-dl -o bun.flv http://www.youtube.com/watch?v=SfPLcQhXpCc; mplayer bun.flv -ss 03:16 -endpos 5 -vo jpeg:outdir=bun:quality=100:smooth=30:progressive -vf scale=320:240 -nosound; convert -delay 4 -loop 0 bun/*.jpg bun.gif
+}
+References
+    Inboxes:
+        References Sample_Materials
+        Cutomers Projects
+        Materials
+            Video
+
+            # Get video information with ffmpeg
+                mp4box -info  video.mp4
+
+
+
+                Convert
+                Effects
+                    Fade
+                            # Create a transition between two videos
+                            melt a.mp4 out=49 -track -blank 24 b.mp4 -transition luma in=25 out=49 a_track=0 b_track=1 -consumer avformat:out.mp4
+
+                            # Add fade in/out to first & last 25 frames of a video
+                            melt colour:black out=24 vid.mp4 -mix 25 -mixer luma colour:black out=24 -mix 25 -mixer luma -consumer avformat:out.mp4
+            Pictures
+            Audio
+                #Extract raw audio from video*/
+                    ffmpeg -i source.mpg -f s16le -acodec pcm_s16le audio.raw
+
+                Convert
+            Text
+                Arabic
+                English
+            3D
+                Earth
+                Scenes
+                End
+                Random Second
+                Introduction
+                    Earth
+                    Enviorment
+                        Pollotion
+                        Sustainability
+                    City
+                    Building
+                        School
+                        Business
+                        Masjed
+                    Rooms
+                    Outside
+                        End
+                    Earth
+
+Products :
+    Mesures
+        Specification
+            File extinsion
+            Apple
+                AVI
+                MP4

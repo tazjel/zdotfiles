@@ -4,6 +4,9 @@
 
 
 # Zero Dimension : Repository
+# Eighth Dimension : web
+
+alias 'wxd'='lynx -dump'
 
 setup_git_push_default() {
     git config --global push.default current
@@ -39,6 +42,7 @@ git_clone() {
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
+        easystroke show
     fi
 }
 
@@ -59,6 +63,7 @@ star_Level_one() {
 
 set_xkeyboard() {
     if [[ $(uname) = "Linux" ]];then
+    easystroke show
     setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
     setxkbmap -option ctrl:nocaps
     fi
@@ -382,8 +387,9 @@ function sw ()
 function wsw() {
     today=`date +%d_%s`;echo $today; scrot "$today"_shot.png -e 'mv $f ~/images/shots/';ls ~/images/shots
 }
+
 function wpw_capture_pic_every_2 () {
-i=0;while :; do i=$(expr "$i" + 1); scrot "$i".png; sleep 2; done;
+    i=0;while :; do i=$(expr "$i" + 1); scrot "$i".png; sleep 2; done;
 }
 function zbp {
     mkdir -p $HOME/Dropbox/zzz_bkp
@@ -516,62 +522,58 @@ ww_colors_term()
     "\e[m"; done; done | column -c $((COLUMNS*2))
 }
 
-
-
     # bash defines the following built-in commands:
     #   :, ., [, alias, bg, bind, break, builtin, case, cd, command, compgen, complete, continue, declare, dirs
     #   disown, echo, enable, eval, exec, exit, export, fc, fg, getopts, hash, help, history, if, jobs, kill,
     #   let, local, logout, popd, printf, pushd, pwd, read, readonly, return, set, shift, shopt, source, suspend
     #   test, times, trap, type, typeset, ulimit, umask, unalias, unset, until, wait, while
 
-
-
 # Connectives for `test'
-# ! EXPR  -  True if EXPR is false.
-# EXPR1 -a EXPR2  -  True if both EXPR1 and EXPR2 are true.
-# EXPR1 -o EXPR2  -  True if either EXPR1 or EXPR2 is true.
-
-# File type tests
-# -b FILE  -  True if FILE exists and is a block special device.
-# -c FILE  -  True if FILE exists and is a character special device.
-# -d FILE  -  True if FILE exists and is a directory.
-# -f FILE  -  True if FILE exists and is a regular file.
-# -L FILE  -  True if FILE exists and is a symbolic link.
-# -p FILE  -  True if FILE exists and is a named pipe.
-# -S FILE  -  True if FILE exists and is a socket.
-# -t FD  -  True if FD is a file descriptor that is associated with a terminal.
-
-# Access permission tests
-# -g FILE  -  True if FILE exists and has its set-group-id bit set.
-# -k FILE  -  True if FILE has its "sticky" bit set.
-# -r FILE  -  True if FILE exists and is readable.
-# -u FILE  -  True if FILE exists and has its set-user-id bit set.
-# -w FILE  -  True if FILE exists and is writable.
-# -x FILE  -  True if FILE exists and is executable.
-# -O FILE  -  True if FILE exists and is owned by the current effective user id.
-# -G FILE  -  True if FILE exists and is owned by the current effective group id.
-
-# File characteristic tests
-# -e FILE  -  True if FILE exists.
-# -s FILE  -  True if FILE exists and has a size greater than zero.
-# FILE1 -nt FILE2  -  True if FILE1 is newer (according to modification date) than FILE2, or if FILE1 exists and FILE2 does not.
-# FILE1 -ot FILE2  -  True if FILE1 is older (according to modification date) than FILE2, or if FILE2 exists and FILE1 does not.
-# FILE1 -ef FILE2  -  True if FILE1 and FILE2 have the same device and inode numbers,  i.e., if they are hard links to each other.
-
-# String tests
-# -z STRING  -  True if the length of STRING is zero.
-# -n STRING
-# STRING  -  True if the length of STRING is nonzero.
-# STRING1 = STRING2  -  True if the strings are equal.
-# STRING1 != STRING2  -  True if the strings are not equal.
-
-# Numeric tests
-# ARG1 -eq ARG2
-# ARG1 -ne ARG2
-# ARG1 -lt ARG2
-# ARG1 -le ARG2
-# ARG1 -gt ARG2
-# ARG1 -ge ARG2
+    # ! EXPR  -  True if EXPR is false.
+    # EXPR1 -a EXPR2  -  True if both EXPR1 and EXPR2 are true.
+    # EXPR1 -o EXPR2  -  True if either EXPR1 or EXPR2 is true.
+    
+    # File type tests
+    # -b FILE  -  True if FILE exists and is a block special device.
+    # -c FILE  -  True if FILE exists and is a character special device.
+    # -d FILE  -  True if FILE exists and is a directory.
+    # -f FILE  -  True if FILE exists and is a regular file.
+    # -L FILE  -  True if FILE exists and is a symbolic link.
+    # -p FILE  -  True if FILE exists and is a named pipe.
+    # -S FILE  -  True if FILE exists and is a socket.
+    # -t FD  -  True if FD is a file descriptor that is associated with a terminal.
+    
+    # Access permission tests
+    # -g FILE  -  True if FILE exists and has its set-group-id bit set.
+    # -k FILE  -  True if FILE has its "sticky" bit set.
+    # -r FILE  -  True if FILE exists and is readable.
+    # -u FILE  -  True if FILE exists and has its set-user-id bit set.
+    # -w FILE  -  True if FILE exists and is writable.
+    # -x FILE  -  True if FILE exists and is executable.
+    # -O FILE  -  True if FILE exists and is owned by the current effective user id.
+    # -G FILE  -  True if FILE exists and is owned by the current effective group id.
+    
+    # File characteristic tests
+    # -e FILE  -  True if FILE exists.
+    # -s FILE  -  True if FILE exists and has a size greater than zero.
+    # FILE1 -nt FILE2  -  True if FILE1 is newer (according to modification date) than FILE2, or if FILE1 exists and FILE2 does not.
+    # FILE1 -ot FILE2  -  True if FILE1 is older (according to modification date) than FILE2, or if FILE2 exists and FILE1 does not.
+    # FILE1 -ef FILE2  -  True if FILE1 and FILE2 have the same device and inode numbers,  i.e., if they are hard links to each other.
+    
+    # String tests
+    # -z STRING  -  True if the length of STRING is zero.
+    # -n STRING
+    # STRING  -  True if the length of STRING is nonzero.
+    # STRING1 = STRING2  -  True if the strings are equal.
+    # STRING1 != STRING2  -  True if the strings are not equal.
+    
+    # Numeric tests
+    # ARG1 -eq ARG2
+    # ARG1 -ne ARG2
+    # ARG1 -lt ARG2
+    # ARG1 -le ARG2
+    # ARG1 -gt ARG2
+    # ARG1 -ge ARG2
 ############################################################################################################################################################
 
 ######################################## Main
@@ -579,7 +581,6 @@ ww_colors_term()
 # Start-up
 star_Level_one
 echo -e "\t\t\t\t $(date)"
-easystroke show
 
 ############################################################################################################################################################
 
@@ -631,4 +632,12 @@ dcar_human_population(){
 
 # check your up to date delicious links.
 #curl -k https://Username:Password@api.del.icio.us/v1/posts/all?red=api | xml2| \grep '@href' | cut -d\= -f 2- | sort | uniq | linkchecker -r0 --stdin --complete -v -t 50 -F blacklist
+#cat bash-if-test | python -c 'exec("import sys,os\nfor line in sys.stdin:\n\tprint line")'
+
+
+
+alias 'ww_convert'='Convert_MW' 
+
+
+alias 'www_cut_audio_video'='cut;audio;video' 
 
