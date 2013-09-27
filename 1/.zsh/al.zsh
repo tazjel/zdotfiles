@@ -1,11 +1,15 @@
 #!/bin/zsh
 ########################################################
 # Author : AHMED BANI
-
-
 # Zero Dimension : Repository
 # Eighth Dimension : web
+#
 
+# <F8>
+
+www_wget() {
+    wget --recursive  --page-requisites --convert-links
+}
 alias 'wxd'='lynx -dump'
 
 setup_git_push_default() {
@@ -81,6 +85,7 @@ set_xkeyboard() {
 
 ########################################################
 # Path
+alias 'wsr'='cd ~/src'
     alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
     alias 'cdx'='cd ~/Dropbox/'
     alias 'cdd'='cd ~/Downloads'
@@ -92,6 +97,42 @@ set_xkeyboard() {
     alias 'h'='cd $HOME'
     alias 'zzzz'=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
+##########################
+
+
+#sudo apt-add-repository --remove
+    alias 'Ww_apt-cache_search_xfce4'='apt-cache search xfce4'
+    alias 'Ww_aptitude'='sudo aptitude -f'
+    alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
+    alias 'ppa'='sudo add-apt-repository $1'
+    alias 'ppr'='sudo add-apt-repository --remove $1'
+    alias 'wi'='sudo apt-get install'
+    alias 'wwww_clean_history_get_install'="lg install | sed 's/install//g' | sed 's/^ //g' | sed 's/sudo aptitude//g' | sed 's/^[ ]apt-get//g'| sed 's/^alg.*$//g"
+    alias acs='apt-cache search'
+    alias acsh='apt-cache show'
+    alias agdu='sudo apt-get dist-upgrade'
+    alias agi='sudo apt-get install'
+    alias agr='sudo apt-get remove'
+    alias agu='sudo apt-get update'
+    alias cpf='sudo aptitude clean && sudo aptitude purge && sudo aptitude -f install'
+    alias install='sudo apt-get install'
+    alias remove='sudo apt-get remove'
+
+#ls-files
+##########3                     ######################################
+#
+#
+#
+######################################################################
+
+
+
+#############################
+#
+#
+#
+#
+###########################################################
     alias 'cdx'='cd ~/Dropbox/'
     alias 'w7'='ssh'
     alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)"'
@@ -164,6 +205,7 @@ set_xkeyboard() {
     alias 'wwww_clean_history_get_install'="lg install | sed 's/install//g' | sed 's/^ //g' | sed 's/sudo aptitude//g' | sed 's/^[ ]apt-get//g'| sed 's/^alg.*$//g"
     alias 'wwww_which_ubuntu_dist'='cat /etc/issue'
     alias 'wx'='chmod +x'
+
     alias 'x'='exit'
     alias 'اسحب'='gpo'
     alias 'اعد'='__r'
@@ -179,6 +221,7 @@ set_xkeyboard() {
     alias -g 'wxc'='| xclip'
     alias -g G='| grep'
     alias -g Gh='--help | grep'
+
     alias -g wv='| vim -'
     alias ......='cd ../../../../../'
     alias .....='cd ../../../../'
@@ -258,7 +301,6 @@ set_xkeyboard() {
     alias 'z'='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 
 # <F0> git
-
     alias g=git
     alias ga='git add'
     alias gb='git branch'
@@ -311,6 +353,10 @@ set_xkeyboard() {
     alias gup='git pull --rebase'
     alias gwc='git whatchanged -p --abbrev-commit --pretty=medium'
     alias gx='gitx --all'
+
+
+    #
+#ls-files
     alias heroku='nocorrect heroku'
     alias hh='history -$1 | grep'
     alias hh='history | grep --color=auto'
@@ -634,8 +680,4 @@ wgp() {
 }
 
 #bash ~/zdotfiles/4/time/zprayertime.sh
-
-
-
-alias 'wsr'='cd ~/src'
 
