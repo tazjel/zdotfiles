@@ -636,3 +636,6 @@ wgp() {
 #bash ~/zdotfiles/4/time/zprayertime.sh
 
 
+
+alias 'wsr'='cd ~/src'
+
