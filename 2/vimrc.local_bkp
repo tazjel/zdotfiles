@@ -53,7 +53,6 @@
         set timeoutlen=250        " Time to wait after ESC (default causes an annoying delay)
         set hidden
         set termencoding=utf-8  " force terminal encoding
-
     "bog
     "colorscheme p256-grayvim
         "colorscheme blazer
@@ -517,9 +516,9 @@ set smartindent
     imap <c-z> <c-o>u
 " ************************************************************************
 " B E G I N A U T O C O M M A N D S
-    au BufNewFile,BufEnter *.c,*.h,*.java,*.jsp set formatoptions-=t tw=79
+    "au BufNewFile,BufEnter *.c,*.h,*.java,*.jsp set formatoptions-=t tw=79
     "i , A B B R E V I A T I O N S
-    map <Del> D
+    "map <Del> D
 
 "iabbrev $$ ${:}<left><left>
     abbr #b #!/bin/bash
