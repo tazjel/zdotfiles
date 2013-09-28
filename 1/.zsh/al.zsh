@@ -5,6 +5,34 @@
 # Eighth Dimension : web
 #
 
+if [ "$TERM" = "linux" ]; then
+echo -en "\e]P0000000" #black
+    echo -en "\e]P8555753" #darkgrey
+    echo -en "\e]P1a40000" #darkred
+    echo -en "\e]P9cc0000" #red
+    echo -en "\e]P24e9a06" #darkgreen
+    echo -en "\e]PA73d216" #green
+    echo -en "\e]P3edd400" #brown
+    echo -en "\e]PBffc123" #yellow
+# echo -en "\e]PBc4a000" #yellow
+    echo -en "\e]P4204a87" #darkblue
+    echo -en "\e]PC3465a4" #blue
+    echo -en "\e]P5ce5c00" #darkmagenta
+    echo -en "\e]PDf57900" #magenta
+# echo -en "\e]P6038e82" #darkcyan
+# echo -en "\e]PE05d2c1" #cyan
+    echo -en "\e]P689b6e2" #darkcyan
+    echo -en "\e]PE46a4ff" #cyan
+    echo -en "\e]P7babdb6" #lightgrey
+    echo -en "\e]PFd3d7cf" #white
+    clear #for background artifacting
+fi
+
+
+
+
+
+
 # <F8>
 
 www_wget() {
@@ -42,11 +70,19 @@ git_clone() {
 
 ############################
 
-
+set_xkeyboard() {
+    if [[ $(uname) = "Linux" ]];then
+    easystroke show
+    setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
+    setxkbmap -option ctrl:nocaps
+    fi
+}
+set_xkeyboard
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
         easystroke show
+        set_xkeyboard
     fi
 }
 
@@ -65,13 +101,6 @@ star_Level_one() {
 
     setopt AUTO_CD
 
-set_xkeyboard() {
-    if [[ $(uname) = "Linux" ]];then
-    easystroke show
-    setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
-    setxkbmap -option ctrl:nocaps
-    fi
-}
 # Arabic aliases
         alias "سم"="alias"
         alias "قل"="echo"

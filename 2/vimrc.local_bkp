@@ -26,7 +26,6 @@
         nnoremap <space> za
         vnoremap <space> zf
 
-
     "set
         set t_vb=
         set novisualbell

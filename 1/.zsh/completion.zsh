@@ -37,4 +37,4 @@ zstyle ':completion:*:scp:*' tag-order files users 'hosts:-host hosts:-domain:do
 zstyle ':completion:*:scp:*' group-order files all-files users hosts-domain hosts-host hosts-ipaddr
 zstyle ':completion:*:ssh:*' tag-order users 'hosts:-host hosts:-domain:domain hosts:-ipaddr"IP\ Address *'
 zstyle ':completion:*:ssh:*' group-order hosts-domain hosts-host users hosts-ipaddr
-zstyle '*' single-ignored show 
+zstyle '*' single-ignored show

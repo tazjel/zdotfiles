@@ -1,32 +1,47 @@
-    "
-    "   _____       _______        ___ __
-    "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
-    "    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
-    "    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
-    "    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
-    "
-    "   This is the personal .vimrc file of Ahmed Alghamdi.
 
-    "   While much of it is beneficial for general use, I would
-    "   recommend picking out the parts you want and understand.
-    "
-    """""""""""""""""""""""""""""""""""""""""""""""""
-    " set
-    """""""""""""""""""""""""""""""""""""""""""""""""
 colorscheme random
+set t_Co=256
+" Enable CursorLine
+ "used for visual selections.
 
-" set {folding
+set mouse=a
+
+set cursorline
+
+" Default Colors for CursorLine
+highlight  CursorLine ctermbg=Black ctermfg=None
+"
+" Change Color when entering Insert Mode
+autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+
+" Revert Color to default when leaving Insert Mode
+autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
+
+" This creates a keyword ERROR and puts it in the highlight group called logError
+syn keyword logError ERROR
+" Link just links logError to the colouring for error
+hi link logError Error
+
+hi def logTime guibg=green guifg=white
+
+syntax enable
+set background=dark
+"let g:solarized_termcolors=256
+let g:Powerline_symbols = 'fancy'
+"
+"
+" set folding
     setlocal foldmethod=expr
     setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
+
     set foldtext=getline(v:foldstart)
     set fillchars=fold:\ "(there's a space after that \)
     highlight Folded ctermfg=DarkGreen ctermbg=Black
     nnoremap <silent> ; :q!<CR>
     map W :w!<CR>
-"Fold
+"Fold {Conflict Analysis & Resolution }
     nnoremap <space> za
     vnoremap <space> zf
-    ###################
 "<F11>
     "  <F[1-12]>
         " <F1>
@@ -48,7 +63,7 @@ colorscheme random
             nnoremap <S-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
         " <F7>
                     vnoremap <f7> :s/xxx/\$\{1\:#\}/g
-        colorscheme random
+        "colorscheme random
             abbreviate CAR Conflict Analysis & Resolution
                 "abbreviate CAR Conflict Analysis & Resolution
                 "abbreviate CAR Conflict Analysis & Resolution
@@ -157,13 +172,8 @@ cab wex !sh %<CR>
     nnoremap xw :%s/<[^>]*>//gi<cr><CR>
     "!sed 's/<[^>]*>//g' %
 
-    "map <S-Enter> O<Esc>j
-        noremap wt :%s/[ ^I]*$//g
-    " keep 1000 lines of command line history
     set history=1000
     " show the cursor position all the time
-    set ruler
-
 "iabbrev $$ ${:}<left><left>
     abbr #b #!/bin/bash
     abbr #p #!/bin/Python
@@ -176,9 +186,3 @@ cab wex !sh %<CR>
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
     " => Spell checking
     """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " Pressing ,ss will toggle and untoggle spell checking
-        map <leader>ss :setlocal spell!<cr>
-        " txt
-            au BufRead,BufNewFile *.txt set filetype=txt
-            au! Syntax newlang source ~/.vim/syntax/txt.vim
-

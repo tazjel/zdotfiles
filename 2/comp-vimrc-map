@@ -1,0 +1,52 @@
+
+" Using templates
+" function! LoadTemplate(extension)
+" silent! :execute '0r $HOME/.vim/templates/' . a:extension . '.tpl'
+" silent! execute 'source $HOME/.vim/templates/' . a:extension .
+" '.patterns.tpl'
+" endfunction
+"
+" autocmd BufNewFile * silent! call LoadTemplate('%:e')
+
+" Map Ctrl+j for jumping between templates placeholders
+nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
+inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
+
+" Match template placeholders
+" match Todo /<+.\++>/
+
+" Taglist management
+" set tags=/path/to/tags
+nmap <F7> <C-]>
+nmap <S-F7> <C-T>
+nmap <A-F7> :ptselect<cr>
+nmap <F8> :tnext<cr>
+nmap <C-F8> :tprev<cr>
+
+" Working with dictionaries
+" set dictionary+=/path/to/dictionary/file/with/words
+
+" Omnicompletion
+" set omnifunc=MyCompleteFunction
+
+" Extending CleverTab and map Tab to autocompletion
+function! SuperCleverTab()
+" check if at beginning of line or after a space
+  if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+    return "\<Tab>"
+  else
+" do we have omni completion available
+    if &omnifunc != ''
+" use omni-completion 1. priority
+      return "\<C-X>\<C-O>"
+    elseif &dictionary != ''
+" no omni-completion, try dictionary completion
+      return "\<C-K>"
+    else
+" use known-word completion
+      return "\<C-N>"
+    endif
+  endif
+endfunction
+" bind funciton to the tab key
+inoremap <Tab> <C-R>=SuperCleverTab()<cr>
