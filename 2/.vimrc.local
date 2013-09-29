@@ -4,10 +4,6 @@ set t_Co=256
 " Enable CursorLine
  "used for visual selections.
 
-"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
-	"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
-	"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 set mouse=a
 
 set cursorline
@@ -29,8 +25,8 @@ hi link logError Error
 hi def logTime guibg=green guifg=white
 
 syntax enable
-set background=dark
-"let g:solarized_termcolors=256
+"set background=dark
+let g:solarized_termcolors=256
 let g:Powerline_symbols = 'fancy'
 "
 "
@@ -62,17 +58,13 @@ let g:Powerline_symbols = 'fancy'
             nnoremap <F4> :verbos map
             nnoremap <S-F4> :let @*=colors_name<CR>
         " <F5>
-            nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
-            nnoremap <C-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
-            nnoremap <S-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
+            nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+            nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
+            nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
         " <F7>
                     vnoremap <f7> :s/xxx/\$\{1\:#\}/g
         "colorscheme random
             abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
                 nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
                 nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
                 nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
@@ -88,6 +80,8 @@ let g:Powerline_symbols = 'fancy'
             nnoremap <M-F9> :sessionopen
             nnoremap <C-F9> :SessionSaveAs
         " <F10>
+            "
+            nnoremap <silent> <F10> :SessionList<CR>
             "
         " <F11>
             """""""""""""""""""""""""""""""""""""""""
@@ -186,6 +180,3 @@ cab wex !sh %<CR>
     " Undo in insert mode.
     imap <c-z> <c-o>u
     map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Spell checking
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
