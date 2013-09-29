@@ -1,5 +1,5 @@
 # ("Author's Name", "Author's Name")
-# 
+#
 retCode, name = dialog.input_dialog("Author's Name", "Author's Name")
 if retCode == 0:
     retCode, date = dialog.input_dialog("Year Published ?", "Year Published")

@@ -1,0 +1,210 @@
+absentee
+absenteeism
+absenteeism rate
+accident at work - industrial injury
+applicant - candidate
+application form
+to apply for a job
+to appoint a person
+apprenticeship
+aptitude test
+to ask for a rise
+assessment of applicants
+assistant
+back pay
+bargaining power
+basic salary
+to be dismissed - to be fired
+to be laid off
+to be on probation - to be on trial
+to be on strike
+to be out of work
+business hours - office hours
+Christmas bonus
+clerical work - office work
+company bargaining - company negotiation
+compensation for permanent disability
+concealed work - moonlighting
+contractual situation
+cost of living allowance
+credentials
+day shift
+direct labour
+disability pension
+disciplinary measure - disciplinary sanction
+to dismiss - to fire
+overtime pay
+overtime work
+part-time
+part-time job
+partial disability
+pay
+pay formula - retribution diagram
+pay increase for merit
+payroll - payroll ledger
+payslip
+pension
+pension fund
+period of notice
+permanent disability
+permanent job - steady job
+permanent staff
+personnel - staff
+personnel department
+personnel requirements
+planner
+prevention
+production bonus
+professional qualifications
+professional training
+programmer
+public holiday (GB) - national holiday (US)
+purchasing manager
+re-employment
+redundancy payment
+refresher course
+relationship management
+remuneration
+resign (chairman) - to give notice (employee)
+resignation (chairman) - notice (employee)
+to retire
+	dismissal
+dismissal for cause
+dismissal without notice
+early retirement
+employer
+employment agency
+employment card - working papers
+employment contract - labour contract
+employment for a trial period
+employment office
+employment rate
+executive cadres
+executive personnel
+exit permit
+experienced person
+family allowances
+to fill a vacancy
+freelance
+full-time employment
+full employment
+full time
+general strike
+to go on strike
+gross wages and salaries
+have an accident at work
+health care
+higher education - advanced education
+to hold a position
+holiday (GB) - vacation (US)
+human relations - human relationships
+independent unions
+index-linked wages
+indirect labour
+industrial relations (GB) - labor relations (US)
+industrial tribunal - labour court
+retirement
+retirement age
+right to strike
+to risk indemnity
+role clash
+salaried workers - employees
+salary
+salary range - wage band
+seasonal employment
+seasonal workers
+secondary job
+to secure employment
+to select candidates
+senior clerk - senior employee
+severance pay - dismissal pay
+short-term employment
+sick leave
+skilled labour
+skilled work
+skilled workers
+social costs
+social insurance - national insurance
+social security
+sole director
+staff costs - personnel costs
+to strike
+striker
+to take measures
+to take one's holidays
+temporary disability
+temporary staff
+the job is still vacant
+top manager
+total disability
+trade-union (GB) - labor union (US)
+	internal regulations
+to interview
+irregular work - discontinuous work
+job - employment
+job application
+job description
+job evaluation
+job satisfaction
+job security
+job sharing
+junior clerk - junior employee
+labor costs
+labor disputes
+labor force - manpower
+labor market
+labor mobility
+labor relations - trade-union relations
+labor retraining
+labor supply
+learning by doing - learning by practice
+leave
+letter of appointment
+lock-out
+management training
+managing director
+middle management
+minimum rate of pay
+motivation
+night shift
+occupation - employment
+office hours
+office manager
+office staff - office personnel
+on the job training
+outsourcing
+to train
+training
+training period
+trial period
+under contract
+underemployed
+unemployment
+unemployment benefits
+union dues - union subscription
+union officer - trade unionist
+unjustified dismissal
+unpaid leave
+unskilled labour
+unskilled worker
+vacancy - vacant position
+wage-cost spiral
+wage-earning workers
+wage-packet (GB) - pay envelope (US)
+wage bargaining - pay negotiations
+wage ceiling
+wage claims
+wage dynamics
+wage freeze
+wage indexation scale
+wage pressures
+welfare contributions
+to work at home
+work overtime
+work sheet
+worker - blue-collar worker
+working day
+working hour
+workload
+workplace
+workshift 

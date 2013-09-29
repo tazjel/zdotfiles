@@ -100,40 +100,6 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="isOperationalError"></a><span class="summary-sig-name">isOperationalError</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">exception</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#BaseAdapter.isOperationalError">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="isProgrammingError"></a><span class="summary-sig-name">isProgrammingError</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">exception</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#BaseAdapter.isProgrammingError">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a name="id_query"></a><span class="summary-sig-name">id_query</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">table</span>)</span></td>
           <td align="right" valign="top">
@@ -276,32 +242,13 @@
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.BaseAdapter-class.html#log" class="summary-sig-name">log</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">message</span>,
-        <span class="summary-sig-arg">table</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Logs migrations</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#BaseAdapter.log">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a href="gluon.dal.BaseAdapter-class.html#__init__" class="summary-sig-name">__init__</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">db</span>,
         <span class="summary-sig-arg">uri</span>,
         <span class="summary-sig-arg">pool_size</span>=<span class="summary-sig-default">0</span>,
         <span class="summary-sig-arg">folder</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">db_codec</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
+        <span class="summary-sig-arg">credential_decoder</span>=<span class="summary-sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
         <span class="summary-sig-arg">driver_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">adapter_args</span>=<span class="summary-sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="summary-sig-arg">do_connect</span>=<span class="summary-sig-default">True</span>,
@@ -402,24 +349,6 @@
         <span class="summary-sig-arg">fake_migrate</span>=<span class="summary-sig-default">False</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#BaseAdapter.migrate_table">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
-          <td><span class="summary-sig"><a name="save_dbt"></a><span class="summary-sig-name">save_dbt</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">table</span>,
-        <span class="summary-sig-arg">sql_fields_current</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#BaseAdapter.save_dbt">source&nbsp;code</a></span>
             
           </td>
         </tr>
@@ -2413,6 +2342,13 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
+        <a name="maxcharlength"></a><span class="summary-name">maxcharlength</span> = <code title="32768">32768</code>
+    </td>
+  </tr>
+<tr>
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
         <a name="commit_on_alter_table"></a><span class="summary-name">commit_on_alter_table</span> = <code title="False">False</code>
     </td>
   </tr>
@@ -2441,22 +2377,6 @@
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
-        <a name="dbpath"></a><span class="summary-name">dbpath</span> = <code title="None">None</code><br />
-      hash(x)
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="folder"></a><span class="summary-name">folder</span> = <code title="None">None</code><br />
-      hash(x)
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
         <a name="TRUE"></a><span class="summary-name">TRUE</span> = <code title="'T'"><code class="variable-quote">'</code><code class="variable-string">T</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
@@ -2472,13 +2392,6 @@
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a name="T_SEP"></a><span class="summary-name">T_SEP</span> = <code title="' '"><code class="variable-quote">'</code><code class="variable-string"> </code><code class="variable-quote">'</code></code>
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a name="QUOTE_TEMPLATE"></a><span class="summary-name">QUOTE_TEMPLATE</span> = <code title="'&quot;%s&quot;'"><code class="variable-quote">'</code><code class="variable-string">&quot;%s&quot;</code><code class="variable-quote">'</code></code>
     </td>
   </tr>
 <tr>
@@ -2548,29 +2461,6 @@ lete_action)s',
   </td>
 </tr>
 </table>
-<a name="log"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">log</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">message</span>,
-        <span class="sig-arg">table</span>=<span class="sig-default">None</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#BaseAdapter.log">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <p>Logs migrations</p>
-  <p>It will not log changes if logfile is not specified. Defaults to 
-  sql.log</p>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
 <a name="__init__"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -2584,7 +2474,7 @@ lete_action)s',
         <span class="sig-arg">pool_size</span>=<span class="sig-default">0</span>,
         <span class="sig-arg">folder</span>=<span class="sig-default">None</span>,
         <span class="sig-arg">db_codec</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">UTF-8</code><code class="variable-quote">'</code></span>,
-        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x1e0e938&gt;</span>,
+        <span class="sig-arg">credential_decoder</span>=<span class="sig-default">&lt;function IDENTITY at 0x2449ed8&gt;</span>,
         <span class="sig-arg">driver_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">adapter_args</span>=<span class="sig-default"><code class="variable-group">{</code><code class="variable-group">}</code></span>,
         <span class="sig-arg">do_connect</span>=<span class="sig-default">True</span>,
@@ -2682,7 +2572,7 @@ lete_action)s',
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:08 2013
+    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:46 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

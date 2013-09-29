@@ -1,3 +1,4 @@
+
 def hello1():
     """ simple page without template """
 

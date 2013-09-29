@@ -1,7 +1,0 @@
-{{extend 'layout.html'}}
-<h1>This is the default/zindex.html template</h1>
-
-{{=[x for x in options]}}
-
-
-{{=BEAUTIFY(response._vars)}}

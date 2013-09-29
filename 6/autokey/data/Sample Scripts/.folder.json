@@ -1,5 +1,5 @@
 {
-    "usageCount": 0, 
+    "usageCount": 1, 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -11,13 +11,15 @@
     "modes": [], 
     "title": "Sample Scripts", 
     "hotkey": {
-        "hotKey": null, 
-        "modifiers": []
+        "hotKey": "<delete>", 
+        "modifiers": [
+            "<ctrl>"
+        ]
     }, 
     "filter": {
         "regex": null, 
         "isRecursive": false
     }, 
     "type": "folder", 
-    "showInTrayMenu": false
+    "showInTrayMenu": true
 }

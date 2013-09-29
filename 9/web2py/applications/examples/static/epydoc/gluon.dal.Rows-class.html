@@ -381,8 +381,7 @@ if db(db.x).isempty(): [db.x.insert(number=i) for i in range(10)]</td>
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="group_by_value"></a><span class="summary-sig-name">group_by_value</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">*fields</span>,
-        <span class="summary-sig-arg">**args</span>)</span><br />
+        <span class="summary-sig-arg">field</span>)</span><br />
       regroups the rows, by one of the fields</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Rows.group_by_value">source&nbsp;code</a></span>
@@ -399,30 +398,10 @@ if db(db.x).isempty(): [db.x.insert(number=i) for i in range(10)]</td>
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a href="gluon.dal.Rows-class.html#render" class="summary-sig-name">render</a>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">i</span>=<span class="summary-sig-default">None</span>,
-        <span class="summary-sig-arg">fields</span>=<span class="summary-sig-default">None</span>)</span><br />
-      Takes an index and returns a copy of the indexed row with values
-transformed via the &quot;represent&quot; attributes of the associated fields.</td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#Rows.render">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a href="gluon.dal.Rows-class.html#as_list" class="summary-sig-name">as_list</a>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">compact</span>=<span class="summary-sig-default">True</span>,
         <span class="summary-sig-arg">storage_to_dict</span>=<span class="summary-sig-default">True</span>,
-        <span class="summary-sig-arg">datetime_to_str</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">datetime_to_str</span>=<span class="summary-sig-default">True</span>,
         <span class="summary-sig-arg">custom_types</span>=<span class="summary-sig-default">None</span>)</span><br />
       returns the data as a list or dictionary.</td>
           <td align="right" valign="top">
@@ -444,7 +423,7 @@ transformed via the &quot;represent&quot; attributes of the associated fields.</
         <span class="summary-sig-arg">key</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">id</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">compact</span>=<span class="summary-sig-default">True</span>,
         <span class="summary-sig-arg">storage_to_dict</span>=<span class="summary-sig-default">True</span>,
-        <span class="summary-sig-arg">datetime_to_str</span>=<span class="summary-sig-default">False</span>,
+        <span class="summary-sig-arg">datetime_to_str</span>=<span class="summary-sig-default">True</span>,
         <span class="summary-sig-arg">custom_types</span>=<span class="summary-sig-default">None</span>)</span><br />
       returns the data as a dictionary of dictionaries 
       (storage_to_dict=True) or records (False)</td>
@@ -525,9 +504,7 @@ transformed via the &quot;represent&quot; attributes of the associated fields.</
           <td><span class="summary-sig"><a name="as_json"></a><span class="summary-sig-name">as_json</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">mode</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">object</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">None</span>)</span><br />
-      serializes the rows to a JSON list or object with objects 
-      mode='object' is not implemented (should return a nested object 
-      structure)</td>
+      serializes the table to a JSON list of objects</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Rows.as_json">source&nbsp;code</a></span>
             
@@ -563,9 +540,7 @@ transformed via the &quot;represent&quot; attributes of the associated fields.</
           <td><span class="summary-sig"><a name="json"></a><span class="summary-sig-name">json</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">mode</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">object</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">default</span>=<span class="summary-sig-default">None</span>)</span><br />
-      serializes the rows to a JSON list or object with objects 
-      mode='object' is not implemented (should return a nested object 
-      structure)</td>
+      serializes the table to a JSON list of objects</td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Rows.as_json">source&nbsp;code</a></span>
             
@@ -749,38 +724,6 @@ for row in db(db.x).select():
   </dl>
 </td></tr></table>
 </div>
-<a name="render"></a>
-<div>
-<table class="details" border="1" cellpadding="3"
-       cellspacing="0" width="100%" bgcolor="white">
-<tr><td>
-  <table width="100%" cellpadding="0" cellspacing="0" border="0">
-  <tr valign="top"><td>
-  <h3 class="epydoc"><span class="sig"><span class="sig-name">render</span>(<span class="sig-arg">self</span>,
-        <span class="sig-arg">i</span>=<span class="sig-default">None</span>,
-        <span class="sig-arg">fields</span>=<span class="sig-default">None</span>)</span>
-  </h3>
-  </td><td align="right" valign="top"
-    ><span class="codelink"><a href="gluon.dal-pysrc.html#Rows.render">source&nbsp;code</a></span>&nbsp;
-    </td>
-  </tr></table>
-  
-  <pre class="literalblock">
-
-Takes an index and returns a copy of the indexed row with values
-transformed via the &quot;represent&quot; attributes of the associated fields.
-
-If no index is specified, a generator is returned for iteration
-over all the rows.
-
-fields -- a list of fields to transform (if None, all fields with
-          &quot;represent&quot; attributes will be transformed).
-
-</pre>
-  <dl class="fields">
-  </dl>
-</td></tr></table>
-</div>
 <a name="as_list"></a>
 <div>
 <table class="details" border="1" cellpadding="3"
@@ -791,7 +734,7 @@ fields -- a list of fields to transform (if None, all fields with
   <h3 class="epydoc"><span class="sig"><span class="sig-name">as_list</span>(<span class="sig-arg">self</span>,
         <span class="sig-arg">compact</span>=<span class="sig-default">True</span>,
         <span class="sig-arg">storage_to_dict</span>=<span class="sig-default">True</span>,
-        <span class="sig-arg">datetime_to_str</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">datetime_to_str</span>=<span class="sig-default">True</span>,
         <span class="sig-arg">custom_types</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
@@ -801,7 +744,7 @@ fields -- a list of fields to transform (if None, all fields with
   
   <p>returns the data as a list or dictionary. :param storage_to_dict: when
   True returns a dict, otherwise a list(default True) :param 
-  datetime_to_str: convert datetime fields as strings (default False)</p>
+  datetime_to_str: convert datetime fields as strings (default True)</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -817,7 +760,7 @@ fields -- a list of fields to transform (if None, all fields with
         <span class="sig-arg">key</span>=<span class="sig-default"><code class="variable-quote">'</code><code class="variable-string">id</code><code class="variable-quote">'</code></span>,
         <span class="sig-arg">compact</span>=<span class="sig-default">True</span>,
         <span class="sig-arg">storage_to_dict</span>=<span class="sig-default">True</span>,
-        <span class="sig-arg">datetime_to_str</span>=<span class="sig-default">False</span>,
+        <span class="sig-arg">datetime_to_str</span>=<span class="sig-default">True</span>,
         <span class="sig-arg">custom_types</span>=<span class="sig-default">None</span>)</span>
   </h3>
   </td><td align="right" valign="top"
@@ -830,7 +773,7 @@ fields -- a list of fields to transform (if None, all fields with
   <p>:param key: the name of the field to be used as dict key, normally the
   id :param compact: ? (default True) :param storage_to_dict: when True 
   returns a dict, otherwise a list(default True) :param datetime_to_str: 
-  convert datetime fields as strings (default False)</p>
+  convert datetime fields as strings (default True)</p>
   <dl class="fields">
   </dl>
 </td></tr></table>
@@ -904,7 +847,7 @@ export data to csv, the first line contains the column names
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:09 2013
+    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:48 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

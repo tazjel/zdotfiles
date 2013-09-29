@@ -143,9 +143,8 @@ object --+
           <td><span class="summary-sig"><a name="_enable_record_versioning"></a><span class="summary-sig-name">_enable_record_versioning</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">archive_db</span>=<span class="summary-sig-default">None</span>,
         <span class="summary-sig-arg">archive_name</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">%(tablename)s_archive</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">is_active</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">is_active</code><code class="variable-quote">'</code></span>,
         <span class="summary-sig-arg">current_record</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">current_record</code><code class="variable-quote">'</code></span>,
-        <span class="summary-sig-arg">current_record_label</span>=<span class="summary-sig-default">None</span>)</span></td>
+        <span class="summary-sig-arg">is_active</span>=<span class="summary-sig-default"><code class="variable-quote">'</code><code class="variable-string">is_active</code><code class="variable-quote">'</code></span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Table._enable_record_versioning">source&nbsp;code</a></span>
             
@@ -248,7 +247,7 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="__call__"></a><span class="summary-sig-name">__call__</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">key</span>=<span class="summary-sig-default">&lt;function &lt;lambda&gt; at 0x19ca848&gt;</span>,
+        <span class="summary-sig-arg">key</span>=<span class="summary-sig-default">&lt;function &lt;lambda&gt; at 0x21b0938&gt;</span>,
         <span class="summary-sig-arg">**kwargs</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Table.__call__">source&nbsp;code</a></span>
@@ -590,26 +589,8 @@ object --+
     </td><td class="summary">
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
-          <td><span class="summary-sig"><a name="validate_and_update"></a><span class="summary-sig-name">validate_and_update</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">_key</span>=<span class="summary-sig-default">&lt;function &lt;lambda&gt; at 0x19ca848&gt;</span>,
-        <span class="summary-sig-arg">**fields</span>)</span></td>
-          <td align="right" valign="top">
-            <span class="codelink"><a href="gluon.dal-pysrc.html#Table.validate_and_update">source&nbsp;code</a></span>
-            
-          </td>
-        </tr>
-      </table>
-      
-    </td>
-  </tr>
-<tr>
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-      <table width="100%" cellpadding="0" cellspacing="0" border="0">
-        <tr>
           <td><span class="summary-sig"><a name="update_or_insert"></a><span class="summary-sig-name">update_or_insert</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">_key</span>=<span class="summary-sig-default">&lt;function &lt;lambda&gt; at 0x19ca848&gt;</span>,
+        <span class="summary-sig-arg">_key</span>=<span class="summary-sig-default">&lt;function &lt;lambda&gt; at 0x21b0938&gt;</span>,
         <span class="summary-sig-arg">**values</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Table.update_or_insert">source&nbsp;code</a></span>
@@ -704,7 +685,8 @@ object --+
         <tr>
           <td><span class="summary-sig"><a name="as_dict"></a><span class="summary-sig-name">as_dict</span>(<span class="summary-sig-arg">self</span>,
         <span class="summary-sig-arg">flat</span>=<span class="summary-sig-default">False</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Table.as_dict">source&nbsp;code</a></span>
             
@@ -721,7 +703,8 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="as_xml"></a><span class="summary-sig-name">as_xml</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Table.as_xml">source&nbsp;code</a></span>
             
@@ -738,7 +721,8 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="as_json"></a><span class="summary-sig-name">as_json</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Table.as_json">source&nbsp;code</a></span>
             
@@ -755,7 +739,8 @@ object --+
       <table width="100%" cellpadding="0" cellspacing="0" border="0">
         <tr>
           <td><span class="summary-sig"><a name="as_yaml"></a><span class="summary-sig-name">as_yaml</span>(<span class="summary-sig-arg">self</span>,
-        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>)</span></td>
+        <span class="summary-sig-arg">sanitize</span>=<span class="summary-sig-default">True</span>,
+        <span class="summary-sig-arg">field_options</span>=<span class="summary-sig-default">True</span>)</span></td>
           <td align="right" valign="top">
             <span class="codelink"><a href="gluon.dal-pysrc.html#Table.as_yaml">source&nbsp;code</a></span>
             
@@ -1077,7 +1062,7 @@ Will keep the id numbers in restored table.
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:09 2013
+    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:48 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

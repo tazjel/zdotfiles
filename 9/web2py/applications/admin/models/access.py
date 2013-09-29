@@ -49,7 +49,7 @@ def verify_password(password):
     session.pam_user = None
     if DEMO_MODE:
         return True
-    elif not _config.get('password'):
+    elif not 'password' in _config:
         return False
     elif _config['password'].startswith('pam_user:'):
         session.pam_user = _config['password'][9:].strip()

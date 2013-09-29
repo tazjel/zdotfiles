@@ -1,5 +1,0 @@
-
-alias zza='kate $HOME/zdotfiles/1/.zsh/arabic_alias.zsh && source
-
-alias 'zzk'='kate ~/zdotfiles/1/.zsh/al.zsh'
-$HOME/zdotfiles/1/.zsh/arabic_alias.zsh'

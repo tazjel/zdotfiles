@@ -1,5 +1,0 @@
-set t_Co=256
-
-syntax enable
-set background=dark
-let g:solarized_termcolors=256

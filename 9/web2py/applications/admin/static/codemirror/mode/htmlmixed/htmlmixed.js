@@ -1,66 +1,45 @@
 CodeMirror.defineMode("htmlmixed", function(config, parserConfig) {
   var htmlMode = CodeMirror.getMode(config, {name: "xml", htmlMode: true});
+  var jsMode = CodeMirror.getMode(config, "javascript");
   var cssMode = CodeMirror.getMode(config, "css");
 
-  var scriptTypes = [], scriptTypesConf = parserConfig && parserConfig.scriptTypes;
-  scriptTypes.push({matches: /^(?:text|application)\/(?:x-)?(?:java|ecma)script$|^$/i,
-                    mode: CodeMirror.getMode(config, "javascript")});
-  if (scriptTypesConf) for (var i = 0; i < scriptTypesConf.length; ++i) {
-    var conf = scriptTypesConf[i];
-    scriptTypes.push({matches: conf.matches, mode: conf.mode && CodeMirror.getMode(config, conf.mode)});
-  }
-  scriptTypes.push({matches: /./,
-                    mode: CodeMirror.getMode(config, "text/plain")});
-
   function html(stream, state) {
-    var tagName = state.htmlState.tagName;
     var style = htmlMode.token(stream, state.htmlState);
-    if (tagName == "script" && /\btag\b/.test(style) && stream.current() == ">") {
-      // Script block: mode to change to depends on type attribute
-      var scriptType = stream.string.slice(Math.max(0, stream.pos - 100), stream.pos).match(/\btype\s*=\s*("[^"]+"|'[^']+'|\S+)[^<]*$/i);
-      scriptType = scriptType ? scriptType[1] : "";
-      if (scriptType && /[\"\']/.test(scriptType.charAt(0))) scriptType = scriptType.slice(1, scriptType.length - 1);
-      for (var i = 0; i < scriptTypes.length; ++i) {
-        var tp = scriptTypes[i];
-        if (typeof tp.matches == "string" ? scriptType == tp.matches : tp.matches.test(scriptType)) {
-          if (tp.mode) {
-            state.token = script;
-            state.localMode = tp.mode;
-            state.localState = tp.mode.startState && tp.mode.startState(htmlMode.indent(state.htmlState, ""));
-          }
-          break;
-        }
+    if (style == "tag" && stream.current() == ">" && state.htmlState.context) {
+      if (/^script$/i.test(state.htmlState.context.tagName)) {
+        state.token = javascript;
+        state.localState = jsMode.startState(htmlMode.indent(state.htmlState, ""));
+        state.mode = "javascript";
       }
-    } else if (tagName == "style" && /\btag\b/.test(style) && stream.current() == ">") {
-      state.token = css;
-      state.localMode = cssMode;
-      state.localState = cssMode.startState(htmlMode.indent(state.htmlState, ""));
+      else if (/^style$/i.test(state.htmlState.context.tagName)) {
+        state.token = css;
+        state.localState = cssMode.startState(htmlMode.indent(state.htmlState, ""));
+        state.mode = "css";
+      }
     }
     return style;
   }
   function maybeBackup(stream, pat, style) {
     var cur = stream.current();
-    var close = cur.search(pat), m;
+    var close = cur.search(pat);
     if (close > -1) stream.backUp(cur.length - close);
-    else if (m = cur.match(/<\/?$/)) {
-      stream.backUp(cur.length);
-      if (!stream.match(pat, false)) stream.match(cur[0]);
-    }
     return style;
   }
-  function script(stream, state) {
+  function javascript(stream, state) {
     if (stream.match(/^<\/\s*script\s*>/i, false)) {
       state.token = html;
-      state.localState = state.localMode = null;
+      state.localState = null;
+      state.mode = "html";
       return html(stream, state);
     }
     return maybeBackup(stream, /<\/\s*script\s*>/,
-                       state.localMode.token(stream, state.localState));
+                       jsMode.token(stream, state.localState));
   }
   function css(stream, state) {
     if (stream.match(/^<\/\s*style\s*>/i, false)) {
       state.token = html;
-      state.localState = state.localMode = null;
+      state.localState = null;
+      state.mode = "html";
       return html(stream, state);
     }
     return maybeBackup(stream, /<\/\s*style\s*>/,
@@ -70,13 +49,13 @@ CodeMirror.defineMode("htmlmixed", function(config, parserConfig) {
   return {
     startState: function() {
       var state = htmlMode.startState();
-      return {token: html, localMode: null, localState: null, htmlState: state};
+      return {token: html, localState: null, mode: "html", htmlState: state};
     },
 
     copyState: function(state) {
       if (state.localState)
-        var local = CodeMirror.copyState(state.localMode, state.localState);
-      return {token: state.token, localMode: state.localMode, localState: local,
+        var local = CodeMirror.copyState(state.token == css ? cssMode : jsMode, state.localState);
+      return {token: state.token, localState: local, mode: state.mode,
               htmlState: CodeMirror.copyState(htmlMode, state.htmlState)};
     },
 
@@ -85,19 +64,21 @@ CodeMirror.defineMode("htmlmixed", function(config, parserConfig) {
     },
 
     indent: function(state, textAfter) {
-      if (!state.localMode || /^\s*<\//.test(textAfter))
+      if (state.token == html || /^\s*<\//.test(textAfter))
         return htmlMode.indent(state.htmlState, textAfter);
-      else if (state.localMode.indent)
-        return state.localMode.indent(state.localState, textAfter);
+      else if (state.token == javascript)
+        return jsMode.indent(state.localState, textAfter);
       else
-        return CodeMirror.Pass;
+        return cssMode.indent(state.localState, textAfter);
     },
 
-    electricChars: "/{}:",
+    compareStates: function(a, b) {
+      if (a.mode != b.mode) return false;
+      if (a.localState) return CodeMirror.Pass;
+      return htmlMode.compareStates(a.htmlState, b.htmlState);
+    },
 
-    innerMode: function(state) {
-      return {state: state.localState || state.htmlState, mode: state.localMode || htmlMode};
-    }
+    electricChars: "/{}:"
   };
 }, "xml", "javascript", "css");
 

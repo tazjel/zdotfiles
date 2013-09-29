@@ -1,6 +1,5 @@
 import time
 
-response.view = 'cache_examples/generic.html'
 
 def cache_in_ram():
     """cache the output of the lambda function in ram"""

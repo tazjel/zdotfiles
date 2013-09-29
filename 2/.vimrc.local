@@ -3,7 +3,6 @@ colorscheme random
 set t_Co=256
 " Enable CursorLine
  "used for visual selections.
-
 set mouse=a
 
 set cursorline

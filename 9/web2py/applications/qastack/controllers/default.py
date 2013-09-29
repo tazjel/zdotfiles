@@ -33,23 +33,6 @@ if False:
         as auth_user
     from qastack.modules.QAStackHelper import QAStackHelper as stackhelper
 
-#get tags
-
-def getwords(text, splitchars=' \t|!?.;:,"_'):
-    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
-    for word in words_iter:
-        yield word.group()
-
-
-def zindex():
-    with open('/home/ahmed/tst/zwiki-Foundations.txt', 'r') as file:
-        string = file.read()
-        options = [x for x in getwords(string)]
-    return dict(options=options)
-
-
-
-
 
 def index():
     """

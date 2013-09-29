@@ -213,7 +213,7 @@ help(Field)
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="int-class.html" class="summary-name" onclick="show_private();">long</a><br />
-      int(x=0) -&gt; int or long int(x, base=10) -&gt; int or long
+      int(x[, base]) -&gt; integer
     </td>
   </tr>
 <tr class="private">
@@ -584,13 +584,6 @@ the records are identified by the query=Query(...) object.
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="gluon.dal.RecordDeleter-class.html" class="summary-name" onclick="show_private();">RecordDeleter</a>
-    </td>
-  </tr>
-<tr class="private">
-    <td width="15%" align="right" valign="top" class="summary">
-      <span class="summary-type">&nbsp;</span>
-    </td><td class="summary">
-        <a href="gluon.dal.LazyReferenceGetter-class.html" class="summary-name" onclick="show_private();">LazyReferenceGetter</a>
     </td>
   </tr>
 <tr class="private">
@@ -1257,6 +1250,13 @@ the records are identified by the query=Query(...) object.
     <td width="15%" align="right" valign="top" class="summary">
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
+        <a name="MAXCHARLENGTH"></a><span class="summary-name">MAXCHARLENGTH</span> = <code title="32768">32768</code>
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
         <a href="gluon.dal-module.html#DEFAULTLENGTH" class="summary-name" onclick="show_private();">DEFAULTLENGTH</a> = <code title="{'blob': 2147483648,
  'password': 512,
  'string': 512,
@@ -1312,11 +1312,11 @@ the records are identified by the query=Query(...) object.
         <a href="gluon.dal-module.html#TABLE_ARGS" class="summary-name" onclick="show_private();">TABLE_ARGS</a> = <code title="set(['actual_name',
      'common_filter',
      'fake_migrate',
-     'fields',
      'format',
      'migrate',
      'on_define',
      'plural',
+     'polymodel',
 ..."><code class="variable-group">set([</code><code class="variable-quote">'</code><code class="variable-string">actual_name</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">common_filter</code><code class="variable-quote">'</code><code class="variable-op">, </code><code class="variable-quote">'</code><code class="variable-string">fake_migrat</code><code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
@@ -1355,6 +1355,13 @@ the records are identified by the query=Query(...) object.
     </td><td class="summary">
         <a name="simplejson"></a><span class="summary-name">simplejson</span> = <code title="None">None</code><br />
       hash(x)
+    </td>
+  </tr>
+<tr class="private">
+    <td width="15%" align="right" valign="top" class="summary">
+      <span class="summary-type">&nbsp;</span>
+    </td><td class="summary">
+        <a name="have_validators"></a><span class="summary-name">have_validators</span> = <code title="True">True</code>
     </td>
   </tr>
 <tr class="private">
@@ -1411,7 +1418,7 @@ the records are identified by the query=Query(...) object.
       <span class="summary-type">&nbsp;</span>
     </td><td class="summary">
         <a href="gluon.dal-module.html#REGEX_UPLOAD_PATTERN" class="summary-name" onclick="show_private();">REGEX_UPLOAD_PATTERN</a> = <code title="re.compile(r'(?P&lt;table&gt;[\w-]+)\.(?P&lt;field&gt;[\w-]+)\.(?P&lt;uuidkey&gt;[\w-]+)\
-(\.(?P&lt;name&gt;\w+))?\.\w+$')">re.compile(r'<code class="re-group">(?P&lt;</code><code class="re-ref">table</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>\.<code class="re-group">(?P&lt;</code><code class="re-ref">fie</code><code class="variable-ellipsis">...</code></code>
+\.(?P&lt;name&gt;\w+)\.\w+$')">re.compile(r'<code class="re-group">(?P&lt;</code><code class="re-ref">table</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>\.<code class="re-group">(?P&lt;</code><code class="re-ref">fie</code><code class="variable-ellipsis">...</code></code>
     </td>
   </tr>
 <tr class="private">
@@ -1508,7 +1515,6 @@ h|year|month|day|hour|minute|second))?(\.not)?\}$')">re.compile(r'^\{<code class
         <a href="gluon.dal-module.html#DRIVERS" class="summary-name" onclick="show_private();">DRIVERS</a> = <code title="['SQLite(sqlite3)',
  'MySQL(pymysql)',
  'MySQL(MySQLdb)',
- 'MySQL(mysqlconnector)',
  'PostgreSQL(psycopg2)',
  'PostgreSQL(pg8000)',
  'MongoDB(pymongo)',
@@ -1653,8 +1659,8 @@ Insert a field
  Examples of insert, select, update, delete
 
  &gt;&gt;&gt; tmp = db.define_table('person',              Field('name'),              Field('birth','date'),              migrate='test_person.table')
- &gt;&gt;&gt; person_id = db.person.insert(name='Marco',birth='2005-06-22')
- &gt;&gt;&gt; person_id = db.person.insert(name='Massimo',birth='1971-12-21')
+ &gt;&gt;&gt; person_id = db.person.insert(name=&quot;Marco&quot;,birth='2005-06-22')
+ &gt;&gt;&gt; person_id = db.person.insert(name=&quot;Massimo&quot;,birth='1971-12-21')
 
  commented len(db().select(db.person.ALL))
  commented 2
@@ -1912,11 +1918,11 @@ Insert a field
 <code class="variable-group">set([</code><code class="variable-quote">'</code><code class="variable-string">actual_name</code><code class="variable-quote">'</code><code class="variable-op">,</code>
      <code class="variable-quote">'</code><code class="variable-string">common_filter</code><code class="variable-quote">'</code><code class="variable-op">,</code>
      <code class="variable-quote">'</code><code class="variable-string">fake_migrate</code><code class="variable-quote">'</code><code class="variable-op">,</code>
-     <code class="variable-quote">'</code><code class="variable-string">fields</code><code class="variable-quote">'</code><code class="variable-op">,</code>
      <code class="variable-quote">'</code><code class="variable-string">format</code><code class="variable-quote">'</code><code class="variable-op">,</code>
      <code class="variable-quote">'</code><code class="variable-string">migrate</code><code class="variable-quote">'</code><code class="variable-op">,</code>
      <code class="variable-quote">'</code><code class="variable-string">on_define</code><code class="variable-quote">'</code><code class="variable-op">,</code>
      <code class="variable-quote">'</code><code class="variable-string">plural</code><code class="variable-quote">'</code><code class="variable-op">,</code>
+     <code class="variable-quote">'</code><code class="variable-string">polymodel</code><code class="variable-quote">'</code><code class="variable-op">,</code>
 <code class="variable-ellipsis">...</code>
 </pre></td></tr></table>
 </dd>
@@ -1961,8 +1967,8 @@ Insert a field
   <dl class="fields">
     <dt>Value:</dt>
       <dd><table><tr><td><pre class="variable">
-re.compile(r'<code class="re-group">(?P&lt;</code><code class="re-ref">table</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>\.<code class="re-group">(?P&lt;</code><code class="re-ref">field</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>\.<code class="re-group">(?P&lt;</code><code class="re-ref">uuidkey</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code><code class="re-group"></code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
-<code class="re-group">(</code>\.<code class="re-group">(?P&lt;</code><code class="re-ref">name</code><code class="re-group">&gt;</code>\w<code class="re-op">+</code><code class="re-group">)</code><code class="re-group">)</code><code class="re-op">?</code>\.\w<code class="re-op">+</code>$')
+re.compile(r'<code class="re-group">(?P&lt;</code><code class="re-ref">table</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>\.<code class="re-group">(?P&lt;</code><code class="re-ref">field</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code>\.<code class="re-group">(?P&lt;</code><code class="re-ref">uuidkey</code><code class="re-group">&gt;</code><code class="re-group">[</code>\w-<code class="re-group">]</code><code class="re-op">+</code><code class="re-group">)</code><span class="variable-linewrap"><img src="crarr.png" alt="\" /></span>
+\.<code class="re-group">(?P&lt;</code><code class="re-ref">name</code><code class="re-group">&gt;</code>\w<code class="re-op">+</code><code class="re-group">)</code>\.\w<code class="re-op">+</code>$')
 </pre></td></tr></table>
 </dd>
   </dl>
@@ -2022,7 +2028,6 @@ h<code class="re-op">|</code>year<code class="re-op">|</code>month<code class="r
 <code class="variable-group">[</code><code class="variable-quote">'</code><code class="variable-string">SQLite(sqlite3)</code><code class="variable-quote">'</code><code class="variable-op">,</code>
  <code class="variable-quote">'</code><code class="variable-string">MySQL(pymysql)</code><code class="variable-quote">'</code><code class="variable-op">,</code>
  <code class="variable-quote">'</code><code class="variable-string">MySQL(MySQLdb)</code><code class="variable-quote">'</code><code class="variable-op">,</code>
- <code class="variable-quote">'</code><code class="variable-string">MySQL(mysqlconnector)</code><code class="variable-quote">'</code><code class="variable-op">,</code>
  <code class="variable-quote">'</code><code class="variable-string">PostgreSQL(psycopg2)</code><code class="variable-quote">'</code><code class="variable-op">,</code>
  <code class="variable-quote">'</code><code class="variable-string">PostgreSQL(pg8000)</code><code class="variable-quote">'</code><code class="variable-op">,</code>
  <code class="variable-quote">'</code><code class="variable-string">MongoDB(pymongo)</code><code class="variable-quote">'</code><code class="variable-op">,</code>
@@ -2116,7 +2121,7 @@ h<code class="re-op">|</code>year<code class="re-op">|</code>month<code class="r
 <table border="0" cellpadding="0" cellspacing="0" width="100%%">
   <tr>
     <td align="left" class="footer">
-    Generated by Epydoc 3.0.1 on Sun Sep 22 01:44:06 2013
+    Generated by Epydoc 3.0.1 on Thu Jun  6 15:39:45 2013
     </td>
     <td align="right" class="footer">
       <a target="mainFrame" href="http://epydoc.sourceforge.net"

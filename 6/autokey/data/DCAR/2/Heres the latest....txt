@@ -1,0 +1,3 @@
+Here’s the latest version of the Python CLI definition and synonym grabber that I coded. It’s pretty convenient.
+
+The code isn’t meant to be anything spectacular, it’s basically “throw-away” code that has a convenient usage. It gets the job done (sloppily).
