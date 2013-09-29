@@ -1,7 +1,6 @@
-#!/bin/bash
+import re
 
-#function zsed_read() {
-read -d '' za << __AAsed
+xp = """
     sed G
     sed '/^$/d;G'
     sed 'G;G'
@@ -115,4 +114,14 @@ read -d '' za << __AAsed
     sed '/./{H;d;};x;s/\n/={NL}=/g' file | sort | sed '1s/={NL}=//;s/={NL}=/\n/g'
     sed '10q' filename              # same effect, avoids a useless "cat"
     sed '10q' filename > newfile    # redirects output to disk
-__AAsed
+    """
+#get tags
+
+def getwords(text, splitchars=' \t|!?.;:,"_'):
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+    for word in words_iter:
+        yield word.group()
+
+
+options = [x for x in getwords(xp)]
+print(options)

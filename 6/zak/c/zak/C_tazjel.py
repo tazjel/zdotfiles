@@ -13,7 +13,7 @@ wtitle = window.get_active_title()
 
 
 
-#get tags 
+#get tags
 
 def getwords(text, splitchars=' \t|!?.;:,"_'):
     words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
@@ -23,11 +23,11 @@ def getwords(text, splitchars=' \t|!?.;:,"_'):
 options = [x for x in getwords(stext)]
 
 
-                                        ####get link 
+                                        ####get link
 
 keyboard.send_keys("<f6>")
 keyboard.send_keys("<ctrl>+x")
-#time.sleep(0.01) 
+#time.sleep(0.01)
 wtext = clipboard.get_clipboard()
 
 wwtext = """Title = "%wtitle".  Retrieved %wdate.  ,From  <a href="%wtext"""
@@ -38,32 +38,32 @@ ctext)
 
 
 
-                                       ####get            
+                                       ####get
                         #http://127.0.0.1/tazjel/members/ask #get link members
 
 keyboard.send_keys("<ctrl>+t")
 
-time.sleep(0.01) 
+time.sleep(0.01)
 keyboard.send_keys("http://127.0.0.1/tazjel/members/ask")
 # http://tazjel.com/welcome/members/ask
 keyboard.send_keys("<enter>")
                             #  post  stext
 
-clipboard.fill_clipboard(stext) 
+clipboard.fill_clipboard(stext)
 time.sleep(0.1)
 keyboard.send_keys("<ctrl>+v")
 time.sleep(0.1)
 
 #  post  wtext
 
-clipboard.fill_clipboard(wwtext) 
+clipboard.fill_clipboard(wwtext)
 time.sleep(0.1)
 keyboard.send_keys("<ctrl>+v")
 time.sleep(0.1)
 
 #  post  ctext
 
-clipboard.fill_clipboard(ctext) 
+clipboard.fill_clipboard(ctext)
 
 keyboard.send_keys("<shift>+<tab>")
 time.sleep(0.1)
@@ -80,7 +80,7 @@ time.sleep(0.1)
 
 if retCode == 0:
     ws = ','.join(choice)
-    clipboard.fill_clipboard(ws) 
+    clipboard.fill_clipboard(ws)
     time.sleep(0.1)
     keyboard.send_keys("<ctrl>+v")
 

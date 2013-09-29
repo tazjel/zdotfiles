@@ -26,7 +26,7 @@ then
       exit -1
     fi
   else
-    echo "Could not install msttcorefonts package" 
+    echo "Could not install msttcorefonts package"
     exit -1
   fi
 else

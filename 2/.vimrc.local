@@ -4,6 +4,10 @@ set t_Co=256
 " Enable CursorLine
  "used for visual selections.
 
+"imap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+	"smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+	"\ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
 set mouse=a
 
 set cursorline
@@ -78,7 +82,6 @@ let g:Powerline_symbols = 'fancy'
             map <f8><f8> :diffoff<cr>
             set diffopt=filler,context:4,iwhite	" options for using diff mode
 
-            " set the commandheight
         " <F9>
             nnoremap <silent> <F9> :SessionList<CR>
             nnoremap <silent> <S-F9> :SessionSave<CR>
