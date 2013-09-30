@@ -1,34 +1,31 @@
-
+"DCAR colorscheme
+"key = ['borland']
 colorscheme random
 set t_Co=256
-" Enable CursorLine
+"Enable CursorLine
+    "    set cursorline
+    "Default Colors for CursorLine
+    "    highlight  CursorLine ctermbg=Black ctermfg=None
+
+    "Change Color when entering Insert Mode
+    "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+
+    "Revert Color to default when leaving Insert Mode
+    "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
+
+    "This creates a keyword ERROR and puts it in the highlight group called logError
+    "    syn keyword logError ERROR
+    "Link just links logError to the colouring for error
+    "    hi link logError Error
+
+    "    hi def logTime guibg=green guifg=white
+set background=dark
+let g:solarized_termcolors=256
+"let g:Powerline_symbols = 'fancy'
+"
+"
  "used for visual selections.
 set mouse=a
-
-set cursorline
-
-" Default Colors for CursorLine
-highlight  CursorLine ctermbg=Black ctermfg=None
-"
-" Change Color when entering Insert Mode
-autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
-
-" Revert Color to default when leaving Insert Mode
-autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
-
-" This creates a keyword ERROR and puts it in the highlight group called logError
-syn keyword logError ERROR
-" Link just links logError to the colouring for error
-hi link logError Error
-
-hi def logTime guibg=green guifg=white
-
-syntax enable
-"set background=dark
-let g:solarized_termcolors=256
-let g:Powerline_symbols = 'fancy'
-"
-"
 " set folding
     setlocal foldmethod=expr
     setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
@@ -57,9 +54,13 @@ let g:Powerline_symbols = 'fancy'
             nnoremap <F4> :verbos map
             nnoremap <S-F4> :let @*=colors_name<CR>
         " <F5>
-            nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+
             nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
+            nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+            nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
+
             nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
+            "
         " <F7>
                     vnoremap <f7> :s/xxx/\$\{1\:#\}/g
         "colorscheme random
