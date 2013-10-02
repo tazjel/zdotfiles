@@ -1,8 +1,0 @@
-
-#command to configure git push to only push your current branch.
-
-git config --global push.default current
-#Try running 
-#git config --get-all push.default
-w
-
