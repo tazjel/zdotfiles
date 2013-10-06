@@ -115,17 +115,18 @@ set mouse=a
             cabbrev fdf ~/Dropbox/C/Foundation/
 
                 "$\{1\:#\}/gc
-                "w! ~/zdotfiles/2/english/english.snippet
+                "w! ~/zdotfiles/s/2/english/english.snippet
                     "%s/X/\$\{1\:#\}/gc
                     "%s/X/\$\{2\:#\}/gc
             "%s/Y/\$\{2\:#\}/gc
             "%s/Z/\$\{3\:#\}/gc
 
-            cabbrev ws %s:^:snippet$\{0\:#\}:gc
+            "cabbrev ws %s:^:snippet$\{0\:#\}:gc
             cabbrev wW r!echo""<left>
 
+            cabbrev ws %s:^\(.*\):snippet\t\1\/\n\t\1:gc
 
-
+"%s:^\(.*\)\.\(.*\):snippet   \1\2\r   \0:g
 
         cabbrev wsh !bash %
 
@@ -180,3 +181,44 @@ cab wex !sh %<CR>
     " Undo in insert mode.
     imap <c-z> <c-o>u
     map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
+
+
+
+" wget www.gutenberg.org/dirs/etext02/mthes10.zip
+"
+" Download the thesaurus
+" unzip
+" Add this to vimrc
+
+set thesaurus+=/home/ahmed/mthesaur.txt
+
+
+
+function! SilentFileGrep( leader, file )
+    try
+        exe 'vimgrep /^\s*' . a:leader . '.*/j ' . a:file
+    catch /.*/
+        echo "no matches"
+    endtry
+endfunction
+
+
+function! LineCompleteFromFile(findstart,base)
+    if a:findstart
+     "column to begin searching from (first non-whitespace column):
+        return match(getline("."),'\S')
+     else
+        " grep the file and build list of results:
+        let path = $HOME/Dropbox/all_txt.txt
+        call SilentFileGrep( a:base, path )
+        let matches = []
+        for thismatch in getqflist()
+            " trim leading whitespace
+             call add(matches, matchstr(thismatch.text,'\S.*'))
+        endfor
+        call setqflist([])
+        return matches
+    endif
+endfunction
+""
+set completefunc=LineCompleteFromFile
