@@ -10,12 +10,8 @@ w! ~/zdotfiles/2/english/english.snippet
 %s/Z/\$\{3\:#\}/gc
 
 
-%s/Z/\$\{sh:1: permission denied: /home/ahmed/zdotfiles/2/english/english.snippet
 
-ush:1: permission denied: /home/ahmed/zdotfiles/2/english/english.snippet
-%s/Z/\$\{sh:1: permission denied: /home/ahmed/zdotfiles/2/english/english.snippet
 
-sh:1: permission denied: /home/ahmed/zdotfiles/2/english/english.snippet
 
 %s/^/snippet\s\s\s\s\sXXX/\$\{0\:#\}/gc
 

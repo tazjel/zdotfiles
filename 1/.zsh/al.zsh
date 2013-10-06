@@ -682,3 +682,6 @@ wgp() {
 
 #bash ~/zdotfiles/4/time/zprayertime.sh
 
+
+alias 'www_get_website'='wget --recursive --page-requisites --convert-links' 
+
