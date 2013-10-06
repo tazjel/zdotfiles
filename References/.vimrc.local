@@ -1,0 +1,143 @@
+set nocompatible "necessary for project plugin
+set encoding=utf-8
+
+set foldmethod=manual
+"set t_Co=256 "use 256 colours in terminal
+set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
+
+"-----------------------------
+"   Pasteboard         wWw
+"-----------------------------
+
+"map Y y$
+map <C-c> "+y<CR>
+
+vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
+"References
+"vnoremap  y<C-W><C-W>G$P<C-W><C-W>
+
+""""""""""""""
+        "Save "
+
+nnoremap <silent> W :w<CR>
+"close"
+nnoremap <silent> ; :q!<CR>
+
+"==================================="
+"            F[1-12]
+"==================================="
+
+                    "F1
+map <F1> \c<space>
+
+                    "<F2>
+nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
+
+                    "F3
+map <F3> ]c
+map <s-F3> [c
+map <S-Right> dp
+map <M-F3> do
+
+                     "<F4> :verbose map 
+
+nnoremap <F4> :verbose map 
+
+                                                "commenter"
+
+                                "F5
+
+nnoremap <F5> :source %<CR>
+
+"nnoremap <S-F5> :vsplit $HOME/.vimrc.local<CR>
+"F5"
+    " source vimrc
+nnoremap <silent> <F5> :source ~/.vimrc.local<CR>
+nnoremap <silent> <C-F5> :vsplit ~/.vimrc.local<CR>
+nnoremap <silent> <S-F5> :SessionSaveAs 
+nnoremap <silent> <M-S-F5> :SessionList<CR>
+                                "F7
+"map   <F6>>   :w<CR>:!perl -c %<CR>
+
+map   <F6> :ls<CR>:e # : Pressing F5 lists all buffer, just type number
+map <F7> :%s//gc<Left><Left><Left>
+"F8
+map <F8> :diffthis<CR>
+
+map <F8><F8> :diffoff<CR>
+map <C-F8> :diffput<CR>
+map <C-F8><C-F8> :diffput<CR>
+"F9
+"F9"
+    " SessionOpen:
+nnoremap <silent> <F9> :SessionSave<CR>
+nnoremap <silent> <S-F9> :SessionList<CR>
+nnoremap <M-F9> :SessionOpen
+nnoremap <C-F9> :SessionSaveAs
+
+"F10
+"F11
+"F12
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
+
+ "substitute 
+"%s/<[^>]*>//gi<cr>
+
+"find files
+fun! FindFiles()
+    let $filename = input("Enter file name to find: ")
+    let $error_file = $HOME."/.findfile.output"
+    silent! exe "!find . -iname \"".$filename."\" \| xargs file \| perl -pe 's/:/:1:/' > ".$error_file
+    cfile $error_file
+    copen
+    redraw!
+endfun
+
+"----------------------------------------
+ "A function to save word under cursor to a file
+"function! SaveWord()
+   "normal yiw
+   "exe ':!echo '.@0.' >> word.txt'
+"endfunction
+"map ,p :call SaveWord()
+"----------------------------------------
+ "function to delete duplicate lines
+"function! Del()
+ "if getline(".") == getline(line(".") - 1)
+   "norm dd
+ "endif
+"endfunction
+
+":g/^/ call Del()
+"---
+"----------------------------------------
+"" Markers & moving about
+"'.               : jump to last modification line (SUPER)
+"`.               : jump to exact spot in last modification line
+"g;               : cycle thru recent changes (oldest first)
+"g,               : reverse direction 
+":changes
+":h changelist    : help for above
+"<C-O>            : retrace your movements in file (starting from most recent)
+"<C-I>            : retrace your movements in file (reverse direction)
+":ju(mps)         : list of your movements
+":help jump-motions
+":history         : list of all your commands
+":his c           : commandline history
+":his s           : search history
+"q/               : Search history Window (puts you in full edit mode) (exit CTRL-C)
+"q:               : commandline history Window (puts you in full edit mode) (exit CTRL-C)
+":<C-F>           : history Window (exit CTRL-C)
+                                "F6
+"nnoremap <F6> :set arabic<CR>
+"nnoremap <S-F6>:set noarabic<CR>
+"nnoremap <S-F6> :set rightleft<CR>
+"nnoremap <C-F6> :set norightleft<CR>
+
+" A function to save word under cursor to a file
+function! SaveWord()
+   normal yiw
+   exe ':!echo '.@0.' >> $HOME/zdotfiles/w/vim_tips.txt'
+endfunction
+map <C-F6> :call SaveWord()<CR>
+

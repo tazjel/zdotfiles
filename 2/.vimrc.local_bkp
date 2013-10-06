@@ -1,0 +1,172 @@
+"DCAR colorscheme
+"key = ['borland']
+colorscheme random
+set t_Co=256
+set background=dark
+let g:solarized_termcolors=256
+"let g:Powerline_symbols = 'fancy'
+"
+"
+ "used for visual selections.
+set mouse=a
+" set folding
+    setlocal foldmethod=expr
+    setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
+
+    set foldtext=getline(v:foldstart)
+    set fillchars=fold:\ "(there's a space after that \)
+    highlight Folded ctermfg=DarkGreen ctermbg=Black
+    nnoremap <silent> ; :q!<CR>
+    map W :w!<CR>
+"Fold {Conflict Analysis & Resolution }
+    nnoremap <space> za
+    vnoremap <space> zf
+"<F11>
+    "  <F[1-12]>
+        " <F1>
+            map <F1> ,c<space>
+            map <S-F1> ,c<space>
+        " <F2>
+            nnoremap <F2> :reg<CR>
+            nnoremap <S-F2> :marks<CR>
+        " <F3>
+            " Fold
+                map <F3> :ls<CR>:sb
+        " <F4>
+            "UndotreeToggle
+            nnoremap <F4> :verbos map
+            nnoremap <S-F4> :let @*=colors_name<CR>
+        " <F5>
+
+            nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
+            nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+            nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
+
+            nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
+            "
+        " <F7>
+                    vnoremap <f7> :s/xxx/\$\{1\:#\}/g
+        "colorscheme random
+            abbreviate CAR Conflict Analysis & Resolution
+                nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
+                nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
+                nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
+                "g/^$/;/^$/-1!sort
+        " <F8>
+            map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
+            map <f8><f8> :diffoff<cr>
+            set diffopt=filler,context:4,iwhite	" options for using diff mode
+
+        " <F9>
+            nnoremap <silent> <F9> :SessionList<CR>
+            nnoremap <silent> <S-F9> :SessionSave<CR>
+            nnoremap <M-F9> :sessionopen
+            nnoremap <C-F9> :SessionSaveAs
+        " <F10>
+            "
+            nnoremap <silent> <F10> :SessionList<CR>
+            "
+        " <F11>
+            """""""""""""""""""""""""""""""""""""""""
+        " <F12>
+    cabbrev ss %s/\s\+$//gc
+    cabbrev ws s/\s/_/gc
+
+        nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
+        nnoremap <silent> w2 :vsplit ~/zdotfiles/2/.vimrc.local<CR
+
+        nnoremap <silent> ww :vsplit ~/Dropbox/DCAR/Phrasebank.txt<CR>
+
+        "imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>ka
+        cab w!! w !sudo tee "%"
+        map ws :!rm ~/.vimswap/*<cr>
+        "install unhtml
+        "map wh :!rm ~/tst/vhtml<cr>:r!unhtml % > ~/tst/vhtml<cr><esc>:vsplit ~/tst/vhtml<cr>
+    " The W culture "
+
+                    map ws :!rm ~/.vimswap/*<cr>
+
+
+                    "vnoremap 1 :w! >> ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>
+
+                nnoremap <silent> ; :q!<CR>
+            "nnoremap ,1 y:vsplit ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>i<CR>iiiiii<C-R>"p<Esc>p
+
+            cabbrev fdf ~/Dropbox/C/Foundation/
+
+                "$\{1\:#\}/gc
+                "w! ~/zdotfiles/2/english/english.snippet
+                    "%s/X/\$\{1\:#\}/gc
+                    "%s/X/\$\{2\:#\}/gc
+            "%s/Y/\$\{2\:#\}/gc
+            "%s/Z/\$\{3\:#\}/gc
+
+            cabbrev ws %s:^:snippet$\{0\:#\}:gc
+            cabbrev wW r!echo""<left>
+
+
+
+
+        cabbrev wsh !bash %
+
+        cab zz e ~/zdotfiles/1/.zsh
+        cab vv w! ~/zdotfiles/2/
+        cab wx :!chmod u+x<CR>
+cab wex !sh %<CR>
+            cab abo vsplit ~/Dropbox/abobanirc
+
+    " [QA-Stack]
+    cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
+    cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR>
+    cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
+    cabbrev W !echo""<left>
+
+"maped to the [1-10]
+        cab w10 w! ~/zdotfiles/10/
+        cab w99 w! ~/zdotfiles/9/
+        cab w88 w! ~/zdotfiles/8/
+        cab w77 w! ~/zdotfiles/7/
+        cab w66 w! ~/zdotfiles/6/
+        cab w55 w! ~/zdotfiles/5/
+        cab w44 w! ~/zdotfiles/4/
+        cab w33 w! ~/zdotfiles/3/
+        cab w22 w! ~/zdotfiles/2/
+        cab w11 w! ~/zdotfiles/1/
+        cab w00 w! ~/zdotfiles/0/
+
+    cab wdr w! ~/Dropbox/DCAR
+
+    "html substitute
+        "!sed 's/<[^>]*>//g' %
+
+" Split the Line at Cursor
+    nnoremap K i<cr><esc><right>
+
+    "Enter
+            nnoremap <C-Up> m`o<Esc>``
+            nnoremap <C-Down> m`O<Esc>``
+
+    nnoremap xw :%s/<[^>]*>//gi<cr><CR>
+
+    "!sed 's/<[^>]*>//g' %
+
+    set history=1000
+    "
+    " show the cursor position all the time
+"iabbrev $$ ${:}<left><left>
+    abbr #b #!/bin/bash
+    abbr #p #!/bin/Python
+    "
+    " Select all.
+    map <c-a> ggVG
+
+    " Undo in insert mode.
+    imap <c-z> <c-o>u
+    map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
+    "
+"# BundleInstall
+
+let zBundle_list = ['linediff','github-vim Search','web2py',]
+
+let z1j0th = ['linediff','github-vim Search','web2py',]
+let zcocoldgreenlors = ['molokai','coldgreen']
