@@ -19,7 +19,7 @@ set t_Co=256
     "    hi link logError Error
 
     "    hi def logTime guibg=green guifg=white
-set background=dark
+"set background=dark
 let g:solarized_termcolors=256
 "let g:Powerline_symbols = 'fancy'
 "
@@ -193,10 +193,9 @@ cab wex !sh %<CR>
 set thesaurus+=/home/ahmed/mthesaur.txt
 
 
-
 function! SilentFileGrep( leader, file )
     try
-        exe 'vimgrep /*.*' . a:leader . '.*.*/j ' . a:file
+        exe 'vimgrep /*.*' . a:leader . '.*.*/j' . a:file
     catch /.*/
         echo "no matches"
     endtry
@@ -224,8 +223,6 @@ endfunction
 ""
 set completefunc=LineCompleteFromFile
 
-
-
 "sorting with external sort
     ":%!sort -u       : use an external program to filter content
     ":'a,'b!sort -u   : use an external program to filter content
@@ -233,3 +230,10 @@ set completefunc=LineCompleteFromFile
     ":g/^$/;/^$/-1!sort : Sort each block (note the crucial ;)
     "" Sorting with internal Sorting
     ":sort /.*\%2v/   : sort all lines on second column [N]"
+
+
+" reading Ms-Word documents, requires antiword (not docx)
+"autocmd BufReadPre *.doc set ro
+"autocmd BufReadPre *.doc set hlsearch!
+"autocmd BufReadPost *.doc %!antiword "%"
+"autocmd BufReadPost *.docx %!docx2txt < %

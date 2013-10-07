@@ -1,11 +1,10 @@
 #!/bin/zsh
 ########################################################
 # Author : AHMED BANI
-# Zero Dimension : Repository
-# Eighth Dimension : web
+#
+#
 #
 
-# <F8>
 
 www_wget() {
     wget --recursive  --page-requisites --convert-links
@@ -44,11 +43,12 @@ git_clone() {
 
 set_xkeyboard() {
     if [[ $(uname) = "Linux" ]];then
-    easystroke show
-    setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
-    setxkbmap -option ctrl:nocaps
+        easystroke show
+        setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
+        setxkbmap -option ctrl:nocaps
     fi
 }
+
 set_xkeyboard
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
@@ -652,9 +652,6 @@ wy_append_line(){
 }
 
 
-# Fetch the current human population of Earth
-dcar_human_population(){
-}
 
 
 
@@ -683,5 +680,5 @@ wgp() {
 #bash ~/zdotfiles/4/time/zprayertime.sh
 
 
-alias 'www_get_website'='wget --recursive --page-requisites --convert-links' 
+alias 'www_get_website'='wget --recursive --page-requisites --convert-links'
 
