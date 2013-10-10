@@ -5,6 +5,17 @@
 #
 #
 
+# bash find function
+Wfind (); { ls $1 | while read line; do [[ -d $1/$line ]] && find $1/$line $2 || echo $1/$line | grep $2; done; }
+
+
+
+# Replace all the spaces in all the filenames of the current directory and including directories with underscores.
+www_rename(){
+    ls -1 | while read file; do
+        new_file=$(echo $file | sed s/\ /_/g)
+        mv "$file" "$new_file"; done
+}
 
 www_wget() {
     wget --recursive  --page-requisites --convert-links
@@ -681,4 +692,8 @@ wgp() {
 
 
 alias 'www_get_website'='wget --recursive --page-requisites --convert-links'
+
+
+alias 'wmd'='cd /media/ahmed/Transcend/backup/tst'
+alias 'wres'='rename "s/ /_/g" *.*'
 

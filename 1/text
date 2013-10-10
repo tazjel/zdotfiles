@@ -1,0 +1,11 @@
+
+# Join lines
+cat file | tr "\n" " "
+
+# find .txt files inside a directory and replace every occurrance of a word inside them via sed
+find . -name '*.txt' -exec sed -ir 's/this/that/g' {} \;
+# Apply permissions only to files
+chmod 644 $(find . -type f)
+
+# List just the executable files (or directories) in current directory
+ls *(.x)
