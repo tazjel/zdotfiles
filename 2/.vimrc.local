@@ -2,6 +2,9 @@
 "key = ['borland']
 colorscheme random
 set t_Co=256
+set spelllang=en
+"
+"
 "Enable CursorLine
     "    set cursorline
     "Default Colors for CursorLine
@@ -19,13 +22,16 @@ set t_Co=256
     "    hi link logError Error
 
     "    hi def logTime guibg=green guifg=white
-"set background=dark
+set background=dark
 let g:solarized_termcolors=256
 "let g:Powerline_symbols = 'fancy'
 "
 "
  "used for visual selections.
-set mouse=a
+
+
+set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
+"set mouse=a
 " set folding
     setlocal foldmethod=expr
     setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
@@ -41,11 +47,11 @@ set mouse=a
 "<F11>
     "  <F[1-12]>
         " <F1>
-            map <F1> ,c<space>
-            map <S-F1> ,c<space>
+            map <F1> \c<space>
+            map <S-F1> :reg
         " <F2>
-            nnoremap <F2> :reg<CR>
-            nnoremap <S-F2> :marks<CR>
+            nnoremap <F2> :reg
+            nnoremap <S-F2> :marks
         " <F3>
             " Fold
                 map <F3> :ls<CR>:sb
@@ -68,6 +74,12 @@ set mouse=a
                 nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
                 nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
                 nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
+                "
+                ".w! >> ~/Dropbox/DCAR/zconflict   line.snip  vsplit line.snip
+
+                nnoremap 11 :.w! >> ~/Dropbox/DCAR/snippets/t11_CAR.snip<CR>
+                nnoremap t11 :vsplit ~/Dropbox/DCAR/snippets/t11_CAR.snip<CR>
+                "
                 "g/^$/;/^$/-1!sort
         " <F8>
             map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
@@ -143,12 +155,13 @@ cab wex !sh %<CR>
     cabbrev W !echo""<left>
 
 "maped to the [1-10]
+        cab w88 w! ~/zdotfiles/8/
         cab w77 w! ~/zdotfiles/7/
         cab w66 w! ~/zdotfiles/6/
-        cab w55 w! ~/zdotfiles/6/
-        cab w44 w! ~/zdotfiles/5/
-        cab w33 w! ~/zdotfiles/4/
-            cab w22 w! ~/zdotfiles/2/
+        cab w55 w! ~/zdotfiles/5/
+        cab w44 w! ~/zdotfiles/4/
+        cab w33 w! ~/zdotfiles/3/
+        cab w22 w! ~/zdotfiles/2/
         cab w11 w! ~/zdotfiles/1/
     cab w00 w! ~/zdotfiles/0/
 
@@ -170,17 +183,19 @@ cab wex !sh %<CR>
     nnoremap xw :%s/<[^>]*>//gi<cr><CR>
     "!sed 's/<[^>]*>//g' %
 
-    set history=1000
+    set history=9000
     " show the cursor position all the time
 "iabbrev $$ ${:}<left><left>
+
     abbr #b #!/bin/bash
-    abbr #p #!/bin/Python
+    abbr #p #!/bin/python
+    "
     " Select all.
     map <c-a> ggVG
 
     " Undo in insert mode.
     imap <c-z> <c-o>u
-    map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
+    map <F11> y<C-W>n<C-W>Lp:w ~/Dropbox/1/
 
 
 
@@ -219,7 +234,7 @@ function! LineCompleteFromFile(findstart,base)
         return matches
     endif
 endfunction
-"
+" conf:
 ""
 set completefunc=LineCompleteFromFile
 

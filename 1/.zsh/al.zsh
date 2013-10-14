@@ -4,7 +4,10 @@
 #
 #
 #
-
+#<F9>
+#
+wwib(){xp="$@";ssh root@192.168.1.${xp}}
+#
 # bash find function
 Wfind (); { ls $1 | while read line; do [[ -d $1/$line ]] && find $1/$line $2 || echo $1/$line | grep $2; done; }
 
@@ -98,7 +101,7 @@ star_Level_one() {
 ########################################################
 # Path
 alias 'wsr'='cd ~/src'
-    alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
+    #alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
     alias 'cdx'='cd ~/Dropbox/'
     alias 'cdd'='cd ~/Downloads'
     alias 'cdc'='cd $HOME/Dropbox/C/Foundation'
@@ -696,4 +699,13 @@ alias 'www_get_website'='wget --recursive --page-requisites --convert-links'
 
 alias 'wmd'='cd /media/ahmed/Transcend/backup/tst'
 alias 'wres'='rename "s/ /_/g" *.*'
+
+
+alias 'wmm'='/media/ahmed/Transcend/backup/tst/Projects'
+
+
+alias 'www_easy_enable'='easystroke enable'
+
+
+alias 'www_easystroke_disable'='easystroke disable'
 

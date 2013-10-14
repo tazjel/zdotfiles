@@ -10,7 +10,7 @@
 #   # vim:set filetype=python.web2py:
 #
 # For autoload set in html files (templates web2py):
-#   {{# vim:set filetype=html.web2py: }} 
+#   {{# vim:set filetype=html.web2py: }}
 
 # ============================================================================
 #  COMPLETE API
@@ -32,18 +32,18 @@
 #   XML, URL, BEAUTIFY
 #
 # <url:#HTTP Building Objects>
-#   A, B, BODY, BR, CENTER, CODE, DIV, EM, EMBED, FIELDSET, FORM, 
-#   H1, H3, H3, H4, H5, H6, HEAD, HR, HTML, IFRAME, IMG, INPUT, 
-#   LABEL, LI, LINK, OL, UL, MENU, META, OBJECT, ON, OPTION, P, PRE, 
+#   A, B, BODY, BR, CENTER, CODE, DIV, EM, EMBED, FIELDSET, FORM,
+#   H1, H3, H3, H4, H5, H6, HEAD, HR, HTML, IFRAME, IMG, INPUT,
+#   LABEL, LI, LINK, OL, UL, MENU, META, OBJECT, ON, OPTION, P, PRE,
 #   SCRIPT, SELECT, SPAN, STYLE,  TABLE,  TD, TAG, TBODY,
 #   TEXTAREA, TFOOT, TH, THEAD, TITLE, TR, TT
 #
 # <url:#Validator Objects>
-#   IS_ALPHANUMERIC, IS_DATE, IS_DATETIME, 
+#   IS_ALPHANUMERIC, IS_DATE, IS_DATETIME,
 #   IS_DATE_IN_RANGE, IS_DATETIME_IN_RANGE, IS_DECIMAL_IN_RANGE, IS_EMAIL,
 #   IS_EXPR, IS_FLOAT_IN_RANGE, IS_IMAGE, IS_INT_IN_RANGE, IS_IN_SET,
-#   IS_IPV4, IS_LENGTH, IS_LOWER, IS_MATCH, IS_EMPTY_OR, IS_NOT_EMPTY, 
-#   IS_TIME, IS_URL, IS_UPLOAD_FILENAME, IS_LIST_OF, IS_UPPER, 
+#   IS_IPV4, IS_LENGTH, IS_LOWER, IS_MATCH, IS_EMPTY_OR, IS_NOT_EMPTY,
+#   IS_TIME, IS_URL, IS_UPLOAD_FILENAME, IS_LIST_OF, IS_UPPER,
 #   IS_SLUG, IS_STRONG, CLEANUP, CRYPT, IS_IN_DB, IS_NOT_IN_DB
 #
 # <url:#Database API>
@@ -102,7 +102,7 @@ snippet xml__
 	XML(${1:text}, sanitize=${2:False}, permitted_tags=['a','b','blockquote','br/','i','li','ol','ul','p','cite','code','pre','img/',], allowed_attributes={'a': ['href', 'title'], 'img': ['src': 'alt'], 'blockquote': ['type']})${3}
 snippet helpers_ XML
 	XML(${1:text}, sanitize=${2:False}, permitted_tags=['a','b','blockquote','br/','i','li','ol','ul','p','cite','code','pre','img/',], allowed_attributes={'a': ['href', 'title'], 'img': ['src': 'alt'], 'blockquote': ['type']})${3}
-## BEAUTIFY 
+## BEAUTIFY
 snippet beautify_
 	BEAUTIFY(${1:*components}${2})${3}
 snippet beautify__
@@ -399,82 +399,82 @@ snippet table__
 	TABLE(${1:*components}, ${2:**attributes})${3}
 snippet helpers_ TABLE
 	TABLE(${1:*components}, ${2:**attributes})${3}
-## I 
+## I
 snippet i_
 	I(${1:*components})${2}
 snippet i__
 	I(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ I 
+snippet helpers_ I
 	I(${1:*components}, ${2:**attributes})${3}
-## IFRAME 
+## IFRAME
 snippet iframe_
 	IFRAME(${1:*components})${2}
 snippet iframe__
 	IFRAME(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ IFRAME 
+snippet helpers_ IFRAME
 	IFRAME(${1:*components}, ${2:**attributes})${3}
-## INPUT 
+## INPUT
 snippet input_
 	INPUT(${1:*components})${2}
 snippet input__
 	INPUT(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ INPUT 
+snippet helpers_ INPUT
 	INPUT(${1:*components}, ${2:**attributes})${3}
-## TEXTAREA 
+## TEXTAREA
 snippet textarea_
 	TEXTAREA(${1:*components})${2}
 snippet textarea__
 	TEXTAREA(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ TEXTAREA 
+snippet helpers_ TEXTAREA
 	TEXTAREA(${1:*components}, ${2:**attributes})${3}
-## OPTION 
+## OPTION
 snippet option_
 	OPTION(${1:*components})${2}
 snippet option__
 	OPTION(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ OPTION 
+snippet helpers_ OPTION
 	OPTION(${1:*components}, ${2:**attributes})${3}
-## OBJECT 
+## OBJECT
 snippet object_
 	OBJECT(${1:*components})${2}
 snippet object__
 	OBJECT(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ OBJECT 
+snippet helpers_ OBJECT
 	OBJECT(${1:*components}, ${2:**attributes})${3}
-## SELECT 
+## SELECT
 snippet select_
 	SELECT(${1:*components})${2}
 snippet select__
 	SELECT(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ SELECT 
+snippet helpers_ SELECT
 	SELECT(${1:*components}, ${2:**attributes})${3}
-## FIELDSET 
+## FIELDSET
 snippet fieldset_
 	FIELDSET(${1:*components})${2}
 snippet fieldset__
 	FIELDSET(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ FIELDSET 
+snippet helpers_ FIELDSET
 	FIELDSET(${1:*components}, ${2:**attributes})${3}
-## LEGEND 
+## LEGEND
 snippet legend_
 	LEGEND(${1:*components})${2}
 snippet legend__
 	LEGEND(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ LEGEND 
+snippet helpers_ LEGEND
 	LEGEND(${1:*components}, ${2:**attributes})${3}
-## FORM 
+## FORM
 snippet form_
 	FORM(${1:*components})${2}
 snippet form__
 	FORM(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ FORM 
+snippet helpers_ FORM
 	FORM(${1:*components}, ${2:**attributes})${3}
-## MENU 
+## MENU
 snippet menu_
 	MENU(${1:*components})${2}
 snippet menu__
 	MENU(${1:*components}, ${2:**attributes})${3}
-snippet helpers_ MENU 
+snippet helpers_ MENU
 	MENU(${1:*components}, ${2:**attributes})${3}
 # ============================================================================
 # Validator Objects
@@ -782,4 +782,4 @@ snippet block_
 		${1}
 	}}
 snippet #_
-{{# ${1:comment} }}${2} 
+{{# ${1:comment} }}${2}

@@ -123,5 +123,11 @@ def getwords(text, splitchars=' \t|!?.;:,"_'):
         yield word.group()
 
 
-options = [x for x in getwords(xp)]
+#options = [x for x in getwords(xp)]
+#print(options)
+
+#f = open('/home/ahmed/.vimrc.localw').readlines()
+f = open('/home/ahmed/.vimrc.localw').read()
+
+options = [x for x in getwords(f)]
 print(options)
