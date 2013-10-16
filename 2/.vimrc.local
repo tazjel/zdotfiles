@@ -41,7 +41,10 @@ set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
     highlight Folded ctermfg=DarkGreen ctermbg=Black
     nnoremap <silent> ; :q!<CR>
     map W :w!<CR>
-"Fold {Conflict Analysis & Resolution }
+    "
+    "
+"Fold; {Conflict Analysis & Resolution }
+
     nnoremap <space> za
     vnoremap <space> zf
 "<F11>
@@ -70,6 +73,9 @@ set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
         " <F7>
                     vnoremap <f7> :s/xxx/\$\{1\:#\}/g
         "colorscheme random
+
+"%s/.*\(\conflict\).*\(.*?\)//gc
+
             abbreviate CAR Conflict Analysis & Resolution
                 nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
                 nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>

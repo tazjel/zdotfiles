@@ -4,8 +4,22 @@
 #
 #
 #
+#
+#<F0>
+AK="$HOME/.config/autokey/data"
+DB="$HOME/Dropbox"
+DL="$HOME/Downloads"
+
 #<F9>
 #
+#
+#<F6>
+www_ak_add() {
+    echo "$1" > $HOME/.config/autokey/data/MyPhrases/ww/"$2"
+}
+
+
+
 wwib(){xp="$@";ssh root@192.168.1.${xp}}
 #
 # bash find function
@@ -437,6 +451,46 @@ alias 'wsr'='cd ~/src'
 # F2
 ########################################################
 # <F3>
+wg_txt() {
+    find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep --color=always -Hn "$1" {} \;
+}
+
+
+
+
+alias 'wgt'='grep --color=always -nr "$1" --include=*txt'
+#
+## extract email adresses from some file (or any other pattern)
+#grep -aEio '([[:alnum:]_.-]+@[[:alnum:]_.-]+?\.[[:alpha:].]{2,6})'
+#
+## Escape literal string for inclusion in an egrep regex
+#egrep_escape() {  echo "$1" |sed -re 's/([\\.*+?(|)^$[])/\\\1/g' -e 's/\{/[{]/g';  }
+
+
+
+ # Multiline unique paragraph sort; with case insensitive option (-i)
+#gawk 'BEGIN {RS="\n\n"; if (ARGV[1]=="-i")IGNORECASE=1;ARGC=1}{if (IGNORECASE)Text[tolower($0)]=$0;else Text[$0]=$0 };END {N=asort(Text);for(i=1;i<=N;i++)printf "%s\n\n",Text[i]}' -i<Test.txt
+
+ # Multiline paragraph sort; with case insensitive option (-i)
+#gawk 'BEGIN {RS="\n\n"; if (ARGV[1]=="-i"){IGNORECASE=1; ARGC=1}};{Text[NR]=$0};END {asort(Text);for (i=1;i<=NR;i++) printf "%s\n\n",Text[i] }' -i<Zip.txt
+
+ #File without comments or blank lines.
+#gawk '!/^[\t\ ]*#/{print $0}' filename | strings
+
+
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
+#
 ########################################################
 alias "wwf"="cmdfu"
 
@@ -501,18 +555,18 @@ function ww-bluetooth_restart {
 }
 function cmdfu() {
     curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
-    function google() {
-    Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q=';
-    AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\
-        /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||');
-    echo -e "${stream//\%/\x}";x }
+
+
+
 wwws () {
     PS3="Enter a number: "
-    select f in '$1';do
+    select f in $1;do
         echo $f;
         break;
     done;
 }
+
+
 function wwrename {
     for file in * ; do
     mv "$file" `echo "$file" | tr ' ' '_' | tr '[A-Z]' '[a-z]'`;
@@ -595,14 +649,14 @@ ww_colors_term()
     # EXPR1 -o EXPR2  -  True if either EXPR1 or EXPR2 is true.
 
     # File type tests
-    # -b FILE  -  True if FILE exists and is a block special device.
-    # -c FILE  -  True if FILE exists and is a character special device.
-    # -d FILE  -  True if FILE exists and is a directory.
-    # -f FILE  -  True if FILE exists and is a regular file.
-    # -L FILE  -  True if FILE exists and is a symbolic link.
-    # -p FILE  -  True if FILE exists and is a named pipe.
-    # -S FILE  -  True if FILE exists and is a socket.
-    # -t FD  -  True if FD is a file descriptor that is associated with a terminal.
+        # -b FILE  -  True if FILE exists and is a block special device.
+        # -c FILE  -  True if FILE exists and is a character special device.
+        # -d FILE  -  True if FILE exists and is a directory.
+        # -f FILE  -  True if FILE exists and is a regular file.
+        # -L FILE  -  True if FILE exists and is a symbolic link.
+        # -p FILE  -  True if FILE exists and is a named pipe.
+        # -S FILE  -  True if FILE exists and is a socket.
+        # -t FD  -  True if FD is a file descriptor that is associated with a terminal.
 
     # Access permission tests
     # -g FILE  -  True if FILE exists and has its set-group-id bit set.
@@ -635,7 +689,6 @@ ww_colors_term()
     # ARG1 -le ARG2
     # ARG1 -gt ARG2
     # ARG1 -ge ARG2
-############################################################################################################################################################
 
 ######################################## Main
 
@@ -709,3 +762,9 @@ alias 'www_easy_enable'='easystroke enable'
 
 alias 'www_easystroke_disable'='easystroke disable'
 
+
+alias 'wgc'='git clone'
+
+
+
+alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
