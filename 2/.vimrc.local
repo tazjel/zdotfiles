@@ -74,7 +74,6 @@ set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
                     vnoremap <f7> :s/xxx/\$\{1\:#\}/g
         "colorscheme random
 
-"%s/.*\(\conflict\).*\(.*?\)//gc
 
             abbreviate CAR Conflict Analysis & Resolution
                 nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
@@ -99,8 +98,7 @@ set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
             nnoremap <C-F9> :SessionSaveAs
         " <F10>
             "
-            nnoremap <silent> <F10> :SessionList<CR>
-            "
+            nnoremap <silent> <F10> :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
         " <F11>
             """""""""""""""""""""""""""""""""""""""""
         " <F12>
@@ -240,8 +238,6 @@ function! LineCompleteFromFile(findstart,base)
         return matches
     endif
 endfunction
-" conf:
-""
 set completefunc=LineCompleteFromFile
 
 "sorting with external sort
