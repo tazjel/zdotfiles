@@ -285,4 +285,10 @@ set completefunc=LineCompleteFromFile
 "autocmd BufReadPre *.doc set ro
 "autocmd BufReadPre *.doc set hlsearch!
 "autocmd BufReadPost *.doc %!antiword "%"
-"autocmd BufReadPost *.docx %!docx2txt < %
+autocmd BufReadPre *.txt set syntax=python
+autocmd BufReadPost *.txt set syntax=python
+autocmd FileType *.txt exec('set fileformats=unix')
+autocmd FileType *.txt exec('set syntax=python')
+
+imap <C-s> <C-o>:w<CR>
+map <C-s> :w<CR>

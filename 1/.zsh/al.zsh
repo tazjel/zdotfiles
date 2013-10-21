@@ -509,7 +509,7 @@ function wpw_capture_pic_every_2 () {
 function zbp {
     mkdir -p $HOME/Dropbox/zzz_bkp
     for xx in ~/.* ;do
-    rsync -avz --progress $HOME/.* $HOME/Dropbox/zzz_bkp
+    rsync -avz --progress --exclude=.cache --exclude=~/.config/chromium --exclude=~/.config/google-chrome/ $HOME/.* /media/ahmed/Transcend/backup/newbkp
     echo $xx
 done;
 }
