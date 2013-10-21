@@ -75,16 +75,19 @@ set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
         "colorscheme random
 
 
+
             abbreviate CAR Conflict Analysis & Resolution
-                nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
-                nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
-                nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
+                "nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
+                "nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
+                "nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
                 "
                 ".w! >> ~/Dropbox/DCAR/zconflict   line.snip  vsplit line.snip
 
-                nnoremap 11 :.w! >> ~/Dropbox/DCAR/snippets/t11_CAR.snip<CR>
-                nnoremap t11 :vsplit ~/Dropbox/DCAR/snippets/t11_CAR.snip<CR>
+                "nnoremap 11 :.w! >> ~/Dropbox/11_CAR.snip<CR>
+                "nnoremap t11 :vsplit ~/Dropbox/11_CAR.snip<CR>
                 "
+                vnoremap <F6> :w! >> ~/Dropbox/11_CAR.snip<CR>
+                nnoremap <silent> <C-F6> :vsplit ~/Dropbox/11_CAR.snip<CR>
                 "g/^$/;/^$/-1!sort
         " <F8>
             map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
@@ -98,7 +101,36 @@ set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
             nnoremap <C-F9> :SessionSaveAs
         " <F10>
             "
-            nnoremap <silent> <F10> :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
+
+                vnoremap <F10> :w! >> ~/Dropbox/car_10
+                nnoremap <silent> <C-F10> :vsplit ~/Dropbox/car_10<CR>
+
+function! RangeChooser()
+    let temp = tempname()
+    " The option "--choosefiles" was added in ranger 1.5.1. Use the next line
+    " with ranger 1.4.2 through 1.5.0 instead.
+    "exec 'silent !ranger --choosefile=' . shellescape(temp)
+    exec 'silent !ranger --choosefiles=' . shellescape(temp)
+    if !filereadable(temp)
+        " Nothing to read.
+        return
+    endif
+    let names = readfile(temp)
+    if empty(names)
+        " Nothing to open.
+        return
+    endif
+    " Edit the first item.
+    exec 'edit ' . fnameescape(names[0])
+    " Add any remaning items to the arg list/buffer list.
+    for name in names[1:]
+        exec 'argadd ' . fnameescape(name)
+    endfor
+endfunction
+command! -bar RangerChooser call RangeChooser()
+nnoremap <leader>r :<C-U>RangerChooser<CR>
+
+            "nnoremap <silent> <F10> :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
         " <F11>
             """""""""""""""""""""""""""""""""""""""""
         " <F12>
