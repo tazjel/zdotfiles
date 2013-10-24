@@ -393,9 +393,23 @@ alias 'wsr'='cd ~/src'
     alias ifconfig-ext='curl ifconfig.me'
     alias install='sudo apt-get install'
     alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
+
+
     alias ips='ifconfig -a | grep -o '\''inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)'\'' | sed -e '\''s/inet6* //'\'
+
     alias ipy='python -c '\''import IPython; IPython.frontend.terminal.ipapp.launch_new_instance()'\'
     alias jpgtopdf='convert *.JPG "$(basename "$(pwd)").pdf"'
+
+
+wwww_grep_pdf(){
+    for i in *.pdf; do echo --------$i-------; echo
+        pdftotext $i - | grep -i $1
+    done
+}
+
+
+
+
     alias k9='kill -9'
     alias k='gitk --all &'
     alias l.='ls -d .* --color=auto'

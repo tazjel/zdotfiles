@@ -1,0 +1,16 @@
+
+" A function to save word under cursor to a file
+function! SaveWord()
+   normal yiw
+   exe ':!echo '.@0.' >> word.txt'
+endfunction
+map ,p :call SaveWord()
+----------------------------------------
+" function to delete duplicate lines
+function! Del()
+ if getline(".") == getline(line(".") - 1)
+   norm dd
+ endif
+endfunction
+
+:g/^/ call Del()

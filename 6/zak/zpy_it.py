@@ -8,12 +8,12 @@ def gen_find(filepat,top):
         for name in fnmatch.filter(filelist,filepat):
             yield os.path.join(path,name)
 
-# Example use
+ #Example use
 
-if __name__ == '__main__':
-    lognames = gen_find("w","www")
-    for name in lognames:
-        print name
+#if __name__ == '__main__':
+    #lognames = gen_find("w","www")
+    #for name in lognames:
+        #print name
 
 import re
 pat = re.compile(r"(\S+)|(<[^>]*>)")

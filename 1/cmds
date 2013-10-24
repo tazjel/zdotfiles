@@ -1,0 +1,3 @@
+# See how many more processes are allowed, awesome!
+echo $(( `ulimit -u` - `find /proc -maxdepth 1 \( -user $USER -o -group $GROUPNAME \) -type d|wc -l` ))
+

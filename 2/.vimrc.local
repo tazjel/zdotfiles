@@ -29,8 +29,31 @@ let g:solarized_termcolors=256
 "
  "used for visual selections.
 
+" Tabs and indents.
+set autoindent smartindent                      " auto indent
+set expandtab smarttab                          " tab
+set tabstop=4 shiftwidth=4
 
-set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
+set noswapfile nobackup nowritebackup autoread  " no backups and auto-read
+
+set showmatch matchtime=3 matchpairs+=<:>       " parenthesis matching
+set timeout timeoutlen=5000 ttimeoutlen=100
+set history=1000
+set shortmess=aTI                               " no greeting message
+
+
+
+
+
+set splitbelow splitright                       " splitting direction
+" Use clipboard register
+if has('unnamedplus')
+  set clipboard& clipboard+=unnamedplus
+else
+  set clipboard& clipboard+=unnamed
+endif
+
+
 "set mouse=a
 " set folding
     setlocal foldmethod=expr
@@ -224,8 +247,7 @@ cab wex !sh %<CR>
 "iabbrev $$ ${:}<left><left>
 
     abbr #b #!/bin/bash
-    abbr #p #!/bin/python
-    "
+    abbr #p #!/usr/bin/python
     " Select all.
     map <c-a> ggVG
 
@@ -242,34 +264,34 @@ cab wex !sh %<CR>
 " Add this to vimrc
 
 set thesaurus+=/home/ahmed/mthesaur.txt
-
+set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
 
 function! SilentFileGrep( leader, file )
     try
-        exe 'vimgrep /*.*' . a:leader . '.*.*/j' . a:file
+        exe 'vimgrep /^s*' . a:leader . '.*/j ' . a:file
     catch /.*/
         echo "no matches"
     endtry
 endfunction
 
-
 function! LineCompleteFromFile(findstart,base)
     if a:findstart
-     "column to begin searching from (first non-whitespace column):
-        return match(getline("."),'\S')
-     else
+        " column to begin searching from (first non-whitespace column):
+        return match(getline("."),'S')
+    else
         " grep the file and build list of results:
-        let path = $HOME/Dropbox/all_txt.txt
+        let path=/home/ahmed/Dropbox/10th_Dim
         call SilentFileGrep( a:base, path )
         let matches = []
         for thismatch in getqflist()
             " trim leading whitespace
-             call add(matches, matchstr(thismatch.text,'\S.*'))
+            call add(matches, matchstr(thismatch.text,'S.*'))
         endfor
         call setqflist([])
         return matches
     endif
 endfunction
+
 set completefunc=LineCompleteFromFile
 
 "sorting with external sort
