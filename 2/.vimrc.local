@@ -274,13 +274,15 @@ function! SilentFileGrep( leader, file )
     endtry
 endfunction
 
+        "let path=/home/ahmed/Dropbox/10th_Dim
+
 function! LineCompleteFromFile(findstart,base)
     if a:findstart
         " column to begin searching from (first non-whitespace column):
         return match(getline("."),'S')
     else
         " grep the file and build list of results:
-        let path=/home/ahmed/Dropbox/10th_Dim
+        let path+=/home/ahmed/alltxt/*
         call SilentFileGrep( a:base, path )
         let matches = []
         for thismatch in getqflist()

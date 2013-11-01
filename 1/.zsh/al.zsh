@@ -10,6 +10,12 @@ AK="$HOME/.config/autokey/data"
 DB="$HOME/Dropbox"
 DL="$HOME/Downloads"
 
+############################  SETUP PARAMETERS
+    app_name='zdotfiles'
+    git_uri='https://github.com/tazjel/zdotfiles.git'
+    git_branch='master'
+    debug_mode='0'
+    fork_maintainer='0'
 #<F9>
 #
 #
@@ -779,6 +785,13 @@ alias 'www_easystroke_disable'='easystroke disable'
 
 alias 'wgc'='git clone'
 
+
+############################  SETUP PARAMETERS
+    app_name='zdotfiles'
+    git_uri='https://github.com/tazjel/zdotfiles.git'
+    git_branch='master'
+    debug_mode='0'
+    fork_maintainer='0'
 
 
 alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
