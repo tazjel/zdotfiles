@@ -1,1 +1,0 @@
-if [[ -e ~/zdotfiles/0/1_install_A_packages.sh ]] ;then echo '1'; else echo '2';fi

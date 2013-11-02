@@ -1,5 +1,5 @@
-"DCAR colorscheme
-"key = ['borland']
+set t_ut=
+set term=screen-256color
 colorscheme random
 set t_Co=256
 set spelllang=en
@@ -38,7 +38,7 @@ set noswapfile nobackup nowritebackup autoread  " no backups and auto-read
 
 set showmatch matchtime=3 matchpairs+=<:>       " parenthesis matching
 set timeout timeoutlen=5000 ttimeoutlen=100
-set history=1000
+set history=10000
 set shortmess=aTI                               " no greeting message
 
 
@@ -46,6 +46,7 @@ set shortmess=aTI                               " no greeting message
 
 
 set splitbelow splitright                       " splitting direction
+"
 " Use clipboard register
 if has('unnamedplus')
   set clipboard& clipboard+=unnamedplus
@@ -54,14 +55,17 @@ else
 endif
 
 
-"set mouse=a
 " set folding
     setlocal foldmethod=expr
     setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
 
     set foldtext=getline(v:foldstart)
     set fillchars=fold:\ "(there's a space after that \)
+
+
     highlight Folded ctermfg=DarkGreen ctermbg=Black
+
+
     nnoremap <silent> ; :q!<CR>
     map W :w!<CR>
     "
@@ -70,6 +74,9 @@ endif
 
     nnoremap <space> za
     vnoremap <space> zf
+    "
+    "
+    "
 "<F11>
     "  <F[1-12]>
         " <F1>
@@ -255,7 +262,7 @@ cab wex !sh %<CR>
     imap <c-z> <c-o>u
     map <F11> y<C-W>n<C-W>Lp:w ~/Dropbox/1/
 
-
+"let s:wdir = $HOME."/workspace"
 
 " wget www.gutenberg.org/dirs/etext02/mthes10.zip
 "
@@ -264,35 +271,41 @@ cab wex !sh %<CR>
 " Add this to vimrc
 
 set thesaurus+=/home/ahmed/mthesaur.txt
+
+"<C-x><C-k>
 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
+"
+"
+"set path+=$HOME/all_txt.txt
 
 function! SilentFileGrep( leader, file )
     try
-        exe 'vimgrep /^s*' . a:leader . '.*/j ' . a:file
+        exe 'vimgrep /^\s*' . a:leader . '.*/j ' . a:file
     catch /.*/
         echo "no matches"
     endtry
 endfunction
 
-        "let path=/home/ahmed/Dropbox/10th_Dim
+
 
 function! LineCompleteFromFile(findstart,base)
     if a:findstart
         " column to begin searching from (first non-whitespace column):
-        return match(getline("."),'S')
+        return match(getline("."),'\S')
     else
         " grep the file and build list of results:
-        let path+=/home/ahmed/alltxt/*
+        let path = $HOME."/workspace/all_txt.txt"
         call SilentFileGrep( a:base, path )
         let matches = []
         for thismatch in getqflist()
             " trim leading whitespace
-            call add(matches, matchstr(thismatch.text,'S.*'))
+            call add(matches, matchstr(thismatch.text,'\S.*'))
         endfor
         call setqflist([])
         return matches
     endif
 endfunction
+
 
 set completefunc=LineCompleteFromFile
 

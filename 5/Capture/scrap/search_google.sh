@@ -1,6 +1,6 @@
 #!/bin/bash
 
-q=""
+q="who"
 i=0
 for var in "$@"
 do

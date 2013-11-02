@@ -716,6 +716,8 @@ ww_colors_term()
 star_Level_one
 echo -e "\t\t\t\t $(date)"
 
+cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
+
 ############################################################################################################################################################
 
 alias 'wbook_Press'='wbook Press'

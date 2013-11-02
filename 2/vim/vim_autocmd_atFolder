@@ -1,7 +1,0 @@
-autocmd BufRead,BufNewFile ~/bin/* call SetBinOptions()
-
-function SetBinOptions() {
-    setlocal number
-    setlocal nowrap
-    ...
-}
