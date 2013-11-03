@@ -1,0 +1,1132 @@
+<?xml version="1.0" encoding="ascii" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+
+<script language="javascript" type="text/javascript">
+
+function astext(node)
+{
+    return node.innerHTML.replace(/(<([^>]+)>)/ig,"")
+                         .replace(/&gt;/ig, ">")
+                         .replace(/&lt;/ig, "<")
+                         .replace(/&quot;/ig, '"')
+                         .replace(/&amp;/ig, "&");
+}
+
+function copy_notify(node, bar_color, data)
+{
+    // The outer box: relative + inline positioning.
+    var box1 = document.createElement("div");
+    box1.style.position = "relative";
+    box1.style.display = "inline";
+    box1.style.top = "2em";
+    box1.style.left = "1em";
+  
+    // A shadow for fun
+    var shadow = document.createElement("div");
+    shadow.style.position = "absolute";
+    shadow.style.left = "-1.3em";
+    shadow.style.top = "-1.3em";
+    shadow.style.background = "#404040";
+    
+    // The inner box: absolute positioning.
+    var box2 = document.createElement("div");
+    box2.style.position = "relative";
+    box2.style.border = "1px solid #a0a0a0";
+    box2.style.left = "-.2em";
+    box2.style.top = "-.2em";
+    box2.style.background = "white";
+    box2.style.padding = ".3em .4em .3em .4em";
+    box2.style.fontStyle = "normal";
+    box2.style.background = "#f0e0e0";
+
+    node.insertBefore(box1, node.childNodes.item(0));
+    box1.appendChild(shadow);
+    shadow.appendChild(box2);
+    box2.innerHTML="Copied&nbsp;to&nbsp;the&nbsp;clipboard: " +
+                   "<pre class='copy-notify'>"+
+                   data+"</pre>";
+    setTimeout(function() { node.removeChild(box1); }, 1000);
+
+    var elt = node.parentNode.firstChild;
+    elt.style.background = "#ffc0c0";
+    setTimeout(function() { elt.style.background = bar_color; }, 200);
+}
+
+function copy_codeblock_to_clipboard(node)
+{
+    var data = astext(node)+"\n";
+    if (copy_text_to_clipboard(data)) {
+        copy_notify(node, "#40a060", data);
+    }
+}
+
+function copy_doctest_to_clipboard(node)
+{
+    var s = astext(node)+"\n   ";
+    var data = "";
+
+    var start = 0;
+    var end = s.indexOf("\n");
+    while (end >= 0) {
+        if (s.substring(start, start+4) == ">>> ") {
+            data += s.substring(start+4, end+1);
+        }
+        else if (s.substring(start, start+4) == "... ") {
+            data += s.substring(start+4, end+1);
+        }
+        /*
+        else if (end-start > 1) {
+            data += "# " + s.substring(start, end+1);
+        }*/
+        // Grab the next line.
+        start = end+1;
+        end = s.indexOf("\n", start);
+    }
+    
+    if (copy_text_to_clipboard(data)) {
+        copy_notify(node, "#4060a0", data);
+    }
+}
+    
+function copy_text_to_clipboard(data)
+{
+    if (window.clipboardData) {
+        window.clipboardData.setData("Text", data);
+        return true;
+     }
+    else if (window.netscape) {
+        // w/ default firefox settings, permission will be denied for this:
+        netscape.security.PrivilegeManager
+                      .enablePrivilege("UniversalXPConnect");
+    
+        var clip = Components.classes["@mozilla.org/widget/clipboard;1"]
+                      .createInstance(Components.interfaces.nsIClipboard);
+        if (!clip) return;
+    
+        var trans = Components.classes["@mozilla.org/widget/transferable;1"]
+                       .createInstance(Components.interfaces.nsITransferable);
+        if (!trans) return;
+    
+        trans.addDataFlavor("text/unicode");
+    
+        var str = new Object();
+        var len = new Object();
+    
+        var str = Components.classes["@mozilla.org/supports-string;1"]
+                     .createInstance(Components.interfaces.nsISupportsString);
+        var datacopy=data;
+        str.data=datacopy;
+        trans.setTransferData("text/unicode",str,datacopy.length*2);
+        var clipid=Components.interfaces.nsIClipboard;
+    
+        if (!clip) return false;
+    
+        clip.setData(trans,null,clipid.kGlobalClipboard);
+        return true;
+    }
+    return false;
+}
+//-->
+</script>
+<meta http-equiv="Content-Type" content="text/html; charset=ascii" />
+<meta name="generator" content="Docutils 0.5: http://docutils.sourceforge.net/" />
+<title>Taggers</title>
+<style type="text/css">
+
+/*
+:Author: Edward Loper, James Curran
+:Copyright: This stylesheet has been placed in the public domain.
+
+Stylesheet for use with Docutils.
+
+This stylesheet defines new css classes used by NLTK.
+
+It uses a Python syntax highlighting scheme that matches
+the colour scheme used by IDLE, which makes it easier for
+beginners to check they are typing things in correctly.
+*/
+
+/* Include the standard docutils stylesheet. */
+@import url(default.css);
+
+/* Custom inline roles */
+span.placeholder    { font-style: italic; font-family: monospace; }
+span.example        { font-style: italic; }
+span.emphasis       { font-style: italic; }
+span.termdef        { font-weight: bold; }
+/*span.term           { font-style: italic; }*/
+span.category       { font-variant: small-caps; }
+span.feature        { font-variant: small-caps; }
+span.fval           { font-style: italic; }
+span.math           { font-style: italic; }
+span.mathit         { font-style: italic; }
+span.lex            { font-variant: small-caps; }
+span.guide-linecount{ text-align: right; display: block;}
+
+/* Python souce code listings */
+span.pysrc-prompt   { color: #9b0000; }
+span.pysrc-more     { color: #9b00ff; }
+span.pysrc-keyword  { color: #e06000; }
+span.pysrc-builtin  { color: #940094; }
+span.pysrc-string   { color: #00aa00; }
+span.pysrc-comment  { color: #ff0000; }
+span.pysrc-output   { color: #0000ff; }
+span.pysrc-except   { color: #ff0000; }
+span.pysrc-defname  { color: #008080; }
+
+
+/* Doctest blocks */
+pre.doctest         { margin: 0; padding: 0; font-weight: bold; }
+div.doctest         { margin: 0 1em 1em 1em; padding: 0; }
+table.doctest       { margin: 0; padding: 0;
+                      border-top: 1px solid gray;
+                      border-bottom: 1px solid gray; }
+pre.copy-notify     { margin: 0; padding: 0.2em; font-weight: bold;
+                      background-color: #ffffff; }
+
+/* Python source listings */
+div.pylisting       { margin: 0 1em 1em 1em; padding: 0; }
+table.pylisting     { margin: 0; padding: 0;
+                      border-top: 1px solid gray; }
+td.caption { border-top: 1px solid black; margin: 0; padding: 0; }
+.caption-label { font-weight: bold;  }
+td.caption p { margin: 0; padding: 0; font-style: normal;}
+
+table tr td.codeblock { 
+  padding: 0.2em ! important; margin: 0;
+  border-left: 1px solid gray;
+  border-right: 2px solid gray;
+  border-top: 0px solid gray;
+  border-bottom: 1px solid gray;
+  font-weight: bold; background-color: #eeffee;
+}
+
+table tr td.doctest  { 
+  padding: 0.2em; margin: 0;
+  border-left: 1px solid gray;
+  border-right: 2px solid gray;
+  border-top: 0px solid gray;
+  border-bottom: 1px solid gray;
+  font-weight: bold; background-color: #eeeeff;
+}
+
+td.codeblock table tr td.copybar {
+    background: #40a060; border: 1px solid gray;
+    font-family: monospace; padding: 0; margin: 0; }
+td.doctest table tr td.copybar {
+    background: #4060a0; border: 1px solid gray;
+    font-family: monospace; padding: 0; margin: 0; }
+
+td.pysrc { padding-left: 0.5em; }
+
+img.callout { border-width: 0px; }
+
+table.docutils {
+    border-style: solid;
+    border-width: 1px;
+    margin-top: 6px;
+    border-color: grey;
+    border-collapse: collapse; }
+
+table.docutils th {
+    border-style: none;
+    border-width: 1px;
+    border-color: grey;
+    padding: 0 .5em 0 .5em; }
+
+table.docutils td {
+    border-style: none;
+    border-width: 1px;
+    border-color: grey; 
+    padding: 0 .5em 0 .5em; }
+
+table.footnote td { padding: 0; }
+table.footnote { border-width: 0; }
+table.footnote td { border-width: 0; }
+table.footnote th { border-width: 0; }
+
+table.noborder { border-width: 0; }
+
+table.example pre { margin-top: 4px; margin-bottom: 0; }
+
+/* For figures & tables */
+p.caption { margin-bottom: 0; }
+div.figure { text-align: center; }
+
+/* The index */
+div.index { border: 1px solid black;
+            background-color: #eeeeee; }
+div.index h1 { padding-left: 0.5em; margin-top: 0.5ex;
+               border-bottom: 1px solid black; }
+ul.index { margin-left: 0.5em; padding-left: 0; }
+li.index { list-style-type: none; }
+p.index-heading { font-size: 120%; font-style: italic; margin: 0; }
+li.index ul { margin-left: 2em; padding-left: 0; }
+
+/* 'Note' callouts */
+div.note
+{
+  border-right:   #87ceeb 1px solid;
+  padding-right: 4px;
+  border-top: #87ceeb 1px solid;
+  padding-left: 4px;
+  padding-bottom: 4px;
+  margin: 2px 5% 10px;
+  border-left: #87ceeb 1px solid;
+  padding-top: 4px;
+  border-bottom: #87ceeb 1px solid;
+  font-style: normal;
+  font-family: verdana, arial;
+  background-color: #b0c4de;
+}
+
+table.avm { border: 0px solid black; width: 0; }
+table.avm tbody tr {border: 0px solid black; }
+table.avm tbody tr td { padding: 2px; }
+table.avm tbody tr td.avm-key { padding: 5px; font-variant: small-caps; }
+table.avm tbody tr td.avm-eq { padding: 5px; }
+table.avm tbody tr td.avm-val { padding: 5px; font-style: italic; }
+p.avm-empty { font-style: normal; }
+table.avm colgroup col { border: 0px solid black; }
+table.avm tbody tr td.avm-topleft 
+    { border-left: 2px solid #000080; border-top: 2px solid #000080; }
+table.avm tbody tr td.avm-botleft 
+    { border-left: 2px solid #000080; border-bottom: 2px solid #000080; }
+table.avm tbody tr td.avm-topright
+    { border-right: 2px solid #000080; border-top: 2px solid #000080; }
+table.avm tbody tr td.avm-botright
+    { border-right: 2px solid #000080; border-bottom: 2px solid #000080; }
+table.avm tbody tr td.avm-left
+    { border-left: 2px solid #000080; }
+table.avm tbody tr td.avm-right
+    { border-right: 2px solid #000080; }
+table.avm tbody tr td.avm-topbotleft
+    { border: 2px solid #000080; border-right: 0px solid black; }
+table.avm tbody tr td.avm-topbotright
+    { border: 2px solid #000080; border-left: 0px solid black; }
+table.avm tbody tr td.avm-ident
+    { font-size: 80%; padding: 0; padding-left: 2px; vertical-align: top; }
+.avm-pointer
+{ border: 1px solid #008000; padding: 1px; color: #008000; 
+  background: #c0ffc0; font-style: normal; }
+
+table.gloss { border: 0px solid black; width: 0; }
+table.gloss tbody tr { border: 0px solid black; }
+table.gloss tbody tr td { border: 0px solid black; }
+table.gloss colgroup col { border: 0px solid black; }
+table.gloss p { margin: 0; padding: 0; }
+
+table.rst-example { border: 1px solid black; }
+table.rst-example tbody tr td { background: #eeeeee; }
+table.rst-example thead tr th { background: #c0ffff; }
+td.rst-raw { width: 0; }
+
+/* Used by nltk.org/doc/test: */
+div.doctest-list { text-align: center; }
+table.doctest-list { border: 1px solid black;
+  margin-left: auto; margin-right: auto;
+}
+table.doctest-list tbody tr td { background: #eeeeee;
+  border: 1px solid #cccccc; text-align: left; }
+table.doctest-list thead tr th { background: #304050; color: #ffffff;
+  border: 1px solid #000000;}
+table.doctest-list thead tr a { color: #ffffff; }
+span.doctest-passed { color: #008000; }
+span.doctest-failed { color: #800000; }
+
+</style>
+</head>
+<body>
+<div class="document" id="taggers">
+<h1 class="title">Taggers</h1>
+
+<div class="section" id="overview">
+<h1>1&nbsp;&nbsp;&nbsp;Overview</h1>
+<p>The <tt class="doctest"><span class="pre">nltk.tag</span></tt> module defines functions and classes for manipulating
+<em>tagged tokens</em>, which combine a basic token value with a tag.  <em>Tags</em>
+are case-sensitive strings that identify some property of a token,
+such as its part of speech.  Tagged tokens are encoded as tuples
+<tt class="doctest"><span class="pre">(tag, token)</span></tt>.  For example, the following tagged token combines
+the word <tt class="doctest"><span class="pre"><span class="pysrc-string">'fly'</span></span></tt> with a noun part of speech tag (<tt class="doctest"><span class="pre"><span class="pysrc-string">'NN'</span></span></tt>):</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>tagged_tok = (<span class="pysrc-string">'fly'</span>, <span class="pysrc-string">'NN'</span>)</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>An off-the-shelf tagger is available.  It uses the Penn Treebank tagset:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">from</span> nltk <span class="pysrc-keyword">import</span> pos_tag, word_tokenize
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>pos_tag(word_tokenize(<span class="pysrc-string">&quot;John's big idea isn't all that bad.&quot;</span>)) 
+<span class="pysrc-output">[('John', 'NNP'), (&quot;'s&quot;, 'POS'), ('big', 'JJ'), ('idea', 'NN'), ('is',</span>
+<span class="pysrc-output">'VBZ'), (&quot;n't&quot;, 'RB'), ('all', 'DT'), ('that', 'DT'), ('bad', 'JJ'),</span>
+<span class="pysrc-output">('.', '.')]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="string-representation-for-tagged-tokens">
+<h1>2&nbsp;&nbsp;&nbsp;String Representation for Tagged Tokens</h1>
+<p>Tagged tokens are often written using the form <tt class="doctest"><span class="pre"><span class="pysrc-string">'fly/NN'</span></span></tt>.  The
+<cite>nltk.tag</cite> module provides utility functions to convert between this
+string representation and the tuple representation:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">import</span> nltk.tag
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> nltk.tag.tuple2str(tagged_tok)
+<span class="pysrc-output">fly/NN</span>
+<span class="pysrc-output"></span><span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> nltk.tag.str2tuple(<span class="pysrc-string">'the/DT'</span>)
+<span class="pysrc-output">('the', 'DT')</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>To convert an entire sentence from the string format to the tuple
+format, we simply tokenize the sentence and then apply <tt class="doctest"><span class="pre">str2tuple</span></tt>
+to each word:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>sent = <span class="pysrc-string">'The/DT cat/NN sat/VBD on/IN the/DT mat/NN ./.'</span>
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>[nltk.tag.str2tuple(w) <span class="pysrc-keyword">for</span> w <span class="pysrc-keyword">in</span> sent.split()] 
+<span class="pysrc-output">[('The', 'DT'), ('cat', 'NN'), ('sat', 'VBD'), ('on', 'IN'),</span>
+<span class="pysrc-output"> ('the', 'DT'), ('mat', 'NN'), ('.', '.')]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Similarly, we can convert from a list of tagged tuples to a single
+string by combining <tt class="doctest"><span class="pre">tuple2str</span></tt> with the string <tt class="doctest"><span class="pre">join</span></tt> method:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>sent = [(<span class="pysrc-string">'The'</span>, <span class="pysrc-string">'DT'</span>), (<span class="pysrc-string">'cat'</span>, <span class="pysrc-string">'NN'</span>), (<span class="pysrc-string">'yawned'</span>, <span class="pysrc-string">'VBD'</span>)]
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-string">' '</span>.join([nltk.tag.tuple2str(w) <span class="pysrc-keyword">for</span> w <span class="pysrc-keyword">in</span> sent])
+<span class="pysrc-output">'The/DT cat/NN yawned/VBD'</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="id1">
+<h1>3&nbsp;&nbsp;&nbsp;Taggers</h1>
+<p>The <tt class="doctest"><span class="pre">nltk.tag</span></tt> module defines several <em>taggers</em>, which take a token
+list (typically a sentence), assign a tag to each token, and return
+the resulting list tagged of tagged tokens.  Most of the taggers
+defined in the <tt class="doctest"><span class="pre">nltk.tag</span></tt> module are built automatically based on a
+training corpus.  For example, the unigram tagger tags each word <em>w</em>
+by checking what the most frequent tag for <em>w</em> was in a training
+corpus:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-comment"># Load the brown corpus.</span>
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">from</span> nltk.corpus <span class="pysrc-keyword">import</span> brown
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>brown_news_tagged = brown.tagged_sents(categories=<span class="pysrc-string">'news'</span>)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>brown_news_text = brown.sents(categories=<span class="pysrc-string">'news'</span>)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>tagger = nltk.UnigramTagger(brown_news_tagged[:500])
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>tagger.tag(brown_news_text[501]) 
+<span class="pysrc-output">[('Mitchell', 'NP'), ('decried', None), ('the', 'AT'), ('high', 'JJ'),</span>
+<span class="pysrc-output">('rate', 'NN'), ('of', 'IN'), ('unemployment', None), ...]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Note that words that the tagger has not seen before, such as
+<em>decried</em>, receive a tag of <tt class="doctest"><span class="pre">None</span></tt>.</p>
+<p>In the examples below, we'll look at developing automatic
+part-of-speech taggers based on the Brown Corpus.  Here are the
+training &amp; test sets we'll use:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>brown_train = brown_news_tagged[100:]
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>brown_test = brown_news_tagged[:100]
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>test_sent = nltk.tag.untag(brown_test[0])</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>(Note that these are on the small side, to make the tests run faster
+-- for real-world use, you would probably want to train on more data.)</p>
+<div class="section" id="default-tagger">
+<h2>3.1&nbsp;&nbsp;&nbsp;Default Tagger</h2>
+<p>The simplest tagger is the <tt class="doctest"><span class="pre">DefaultTagger</span></tt>, which just applies the
+same tag to all tokens:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>default_tagger = nltk.DefaultTagger(<span class="pysrc-string">'XYZ'</span>)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>default_tagger.tag(<span class="pysrc-string">'This is a test'</span>.split())
+<span class="pysrc-output">[('This', 'XYZ'), ('is', 'XYZ'), ('a', 'XYZ'), ('test', 'XYZ')]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Since <tt class="doctest"><span class="pre"><span class="pysrc-string">'NN'</span></span></tt> is the most frequent tag in the Brown corpus, we can
+use a tagger that assigns 'NN' to all words as a baseline.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>default_tagger = nltk.DefaultTagger(<span class="pysrc-string">'NN'</span>)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>default_tagger.tag(test_sent) 
+<span class="pysrc-output">[('The', 'NN'), ('Fulton', 'NN'), ('County', 'NN'), ('Grand', 'NN'), ('Jury', 'NN'),</span>
+<span class="pysrc-output">('said', 'NN'), ('Friday', 'NN'), ('an', 'NN'), ('investigation', 'NN'), ('of', 'NN'),</span>
+<span class="pysrc-output">(&quot;Atlanta's&quot;, 'NN'), ('recent', 'NN'), ('primary', 'NN'), ('election', 'NN'),</span>
+<span class="pysrc-output">('produced', 'NN'), ('``', 'NN'), ('no', 'NN'), ('evidence', 'NN'), (&quot;''&quot;, 'NN'),</span>
+<span class="pysrc-output">('that', 'NN'), ('any', 'NN'), ('irregularities', 'NN'), ('took', 'NN'),</span>
+<span class="pysrc-output">('place', 'NN'), ('.', 'NN')]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Using this baseline, we achieve about a fairly low accuracy:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'Accuracy: %4.1f%%'</span> % (
+<span class="pysrc-more">... </span>    100.0 * default_tagger.evaluate(brown_test))
+<span class="pysrc-output">Accuracy: 14.6%</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="regexp-tagger">
+<h2>3.2&nbsp;&nbsp;&nbsp;Regexp Tagger</h2>
+<p>The <cite>RegexpTagger</cite> class assigns tags to tokens by comparing their
+word strings to a series of regular expressions.  The following tagger
+uses word suffixes to make guesses about the correct Brown Corpus part
+of speech tag:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>regexp_tagger = nltk.RegexpTagger(
+<span class="pysrc-more">... </span>    [(r<span class="pysrc-string">'^-?[0-9]+(.[0-9]+)?$'</span>, <span class="pysrc-string">'CD'</span>),   <span class="pysrc-comment"># cardinal numbers</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'(The|the|A|a|An|an)$'</span>, <span class="pysrc-string">'AT'</span>),   <span class="pysrc-comment"># articles</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'.*able$'</span>, <span class="pysrc-string">'JJ'</span>),                <span class="pysrc-comment"># adjectives</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'.*ness$'</span>, <span class="pysrc-string">'NN'</span>),                <span class="pysrc-comment"># nouns formed from adjectives</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'.*ly$'</span>, <span class="pysrc-string">'RB'</span>),                  <span class="pysrc-comment"># adverbs</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'.*s$'</span>, <span class="pysrc-string">'NNS'</span>),                  <span class="pysrc-comment"># plural nouns</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'.*ing$'</span>, <span class="pysrc-string">'VBG'</span>),                <span class="pysrc-comment"># gerunds</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'.*ed$'</span>, <span class="pysrc-string">'VBD'</span>),                 <span class="pysrc-comment"># past tense verbs</span>
+<span class="pysrc-more">... </span>     (r<span class="pysrc-string">'.*'</span>, <span class="pysrc-string">'NN'</span>)                      <span class="pysrc-comment"># nouns (default)</span>
+<span class="pysrc-more">... </span>])
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>regexp_tagger.tag(test_sent) 
+<span class="pysrc-output">[('The', 'AT'), ('Fulton', 'NN'), ('County', 'NN'), ('Grand', 'NN'), ('Jury', 'NN'),</span>
+<span class="pysrc-output">('said', 'NN'), ('Friday', 'NN'), ('an', 'AT'), ('investigation', 'NN'), ('of', 'NN'),</span>
+<span class="pysrc-output">(&quot;Atlanta's&quot;, 'NNS'), ('recent', 'NN'), ('primary', 'NN'), ('election', 'NN'),</span>
+<span class="pysrc-output">('produced', 'VBD'), ('``', 'NN'), ('no', 'NN'), ('evidence', 'NN'), (&quot;''&quot;, 'NN'),</span>
+<span class="pysrc-output">('that', 'NN'), ('any', 'NN'), ('irregularities', 'NNS'), ('took', 'NN'),</span>
+<span class="pysrc-output">('place', 'NN'), ('.', 'NN')]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>This gives us a higher score than the default tagger, but accuracy is
+still fairly low:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'Accuracy: %4.1f%%'</span> % (
+<span class="pysrc-more">... </span>    100.0 * regexp_tagger.evaluate(brown_test))
+<span class="pysrc-output">Accuracy: 33.1%</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="unigram-tagger">
+<h2>3.3&nbsp;&nbsp;&nbsp;Unigram Tagger</h2>
+<p>As mentioned above, the <cite>UnigramTagger</cite> class finds the most likely
+tag for each word in a training corpus, and then uses that information
+to assign tags to new tokens.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>unigram_tagger = nltk.UnigramTagger(brown_train)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>unigram_tagger.tag(test_sent) 
+<span class="pysrc-output">[('The', 'AT'), ('Fulton', None), ('County', 'NN-TL'), ('Grand', 'JJ-TL'),</span>
+<span class="pysrc-output">('Jury', 'NN-TL'), ('said', 'VBD'), ('Friday', 'NR'), ('an', 'AT'),</span>
+<span class="pysrc-output">('investigation', 'NN'), ('of', 'IN'), (&quot;Atlanta's&quot;, 'NP$'), ('recent', 'JJ'),</span>
+<span class="pysrc-output">('primary', 'NN'), ('election', 'NN'), ('produced', 'VBD'), ('``', '``'),</span>
+<span class="pysrc-output">('no', 'AT'), ('evidence', 'NN'), (&quot;''&quot;, &quot;''&quot;), ('that', 'CS'), ('any', 'DTI'),</span>
+<span class="pysrc-output">('irregularities', None), ('took', 'VBD'), ('place', 'NN'), ('.', '.')]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>This gives us a significantly higher accuracy score than the default
+tagger or the regexp tagger:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'Accuracy: %4.1f%%'</span> % (
+<span class="pysrc-more">... </span>    100.0 * unigram_tagger.evaluate(brown_test))
+<span class="pysrc-output">Accuracy: 85.6%</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>As was mentioned above, the unigram tagger will assign a tag of
+<tt class="doctest"><span class="pre">None</span></tt> to any words that it never saw in the training data.  We can
+avoid this problem by providing the unigram tagger with a <em>backoff
+tagger</em>, which will be used whenever the unigram tagger is unable to
+choose a tag:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>unigram_tagger_2 = nltk.UnigramTagger(brown_train, backoff=regexp_tagger)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'Accuracy: %4.1f%%'</span> % (
+<span class="pysrc-more">... </span>    100.0 * unigram_tagger_2.evaluate(brown_test))
+<span class="pysrc-output">Accuracy: 88.2%</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Using a backoff tagger has another advantage, as well -- it allows us
+to build a more compact unigram tagger, because the unigram tagger
+doesn't need to explicitly store the tags for words that the backoff
+tagger would get right anyway.  We can see this by using the <cite>size()</cite>
+method, which reports the number of words that a unigram tagger has
+stored the most likely tag for.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> unigram_tagger.size()
+<span class="pysrc-output">14262</span>
+<span class="pysrc-output"></span><span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> unigram_tagger_2.size()
+<span class="pysrc-output">8722</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="bigram-tagger">
+<h2>3.4&nbsp;&nbsp;&nbsp;Bigram Tagger</h2>
+<p>The bigram tagger is similar to the unigram tagger, except that it
+finds the most likely tag for each word, <em>given the preceding tag</em>.
+(It is called a &quot;bigram&quot; tagger because it uses two pieces of
+information -- the current word, and the previous tag.)  When
+training, it can look up the preceding tag directly.  When run on new
+data, it works through the sentence from left to right, and uses the
+tag that it just generated for the preceding word.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>bigram_tagger = nltk.BigramTagger(brown_train, backoff=unigram_tagger_2)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> bigram_tagger.size()
+<span class="pysrc-output">3379</span>
+<span class="pysrc-output"></span><span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'Accuracy: %4.1f%%'</span> % (
+<span class="pysrc-more">... </span>    100.0 * bigram_tagger.evaluate(brown_test))
+<span class="pysrc-output">Accuracy: 89.6%</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="trigram-tagger-n-gram-tagger">
+<h2>3.5&nbsp;&nbsp;&nbsp;Trigram Tagger &amp; N-Gram Tagger</h2>
+<p>Similarly, the trigram tagger finds the most likely tag for a word,
+<em>given the preceding two tags</em>; and the n-gram tagger finds the most
+likely tag for a word, <em>given the preceding n-1 tags</em>.  However, these
+higher-order taggers are only likely to improve performance if there
+is a large amount of training data available; otherwise, the sequences
+that they consider do not occur often enough to gather reliable
+statistics.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>trigram_tagger = nltk.TrigramTagger(brown_train, backoff=bigram_tagger)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> trigram_tagger.size()
+<span class="pysrc-output">1495</span>
+<span class="pysrc-output"></span><span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'Accuracy: %4.1f%%'</span> % (
+<span class="pysrc-more">... </span>    100.0 * trigram_tagger.evaluate(brown_test))
+<span class="pysrc-output">Accuracy: 89.0%</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="brill-tagger">
+<h2>3.6&nbsp;&nbsp;&nbsp;Brill Tagger</h2>
+<p>The Brill Tagger starts by running an initial tagger, and then
+improves the tagging by applying a list of transformation rules.
+These transformation rules are automatically learned from the training
+corpus, based on one or more &quot;rule templates.&quot;</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">from</span> nltk.tag.brill <span class="pysrc-keyword">import</span> *
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>templates = [
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateTagsRule, (1,1)),
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateTagsRule, (2,2)),
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateTagsRule, (1,2)),
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateTagsRule, (1,3)),
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateWordsRule, (1,1)),
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateWordsRule, (2,2)),
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateWordsRule, (1,2)),
+<span class="pysrc-more">... </span>    SymmetricProximateTokensTemplate(ProximateWordsRule, (1,3)),
+<span class="pysrc-more">... </span>    ProximateTokensTemplate(ProximateTagsRule, (-1, -1), (1,1)),
+<span class="pysrc-more">... </span>    ProximateTokensTemplate(ProximateWordsRule, (-1, -1), (1,1)),
+<span class="pysrc-more">... </span>    ]
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>trainer = FastBrillTaggerTrainer(initial_tagger=unigram_tagger_2,
+<span class="pysrc-more">... </span>                                 templates=templates, trace=3,
+<span class="pysrc-more">... </span>                                 deterministic=True)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>brill_tagger = trainer.train(brown_train, max_rules=10)  
+<span class="pysrc-output">Training Brill tagger on 4523 sentences...</span>
+<span class="pysrc-output">Finding initial useful rules...</span>
+<span class="pysrc-output">    Found 75359 useful rules.</span>
+<span class="pysrc-output"></span>
+<span class="pysrc-output">           B      |</span>
+<span class="pysrc-output">   S   F   r   O  |        Score = Fixed - Broken</span>
+<span class="pysrc-output">   c   i   o   t  |  R     Fixed = num tags changed incorrect -&gt; correct</span>
+<span class="pysrc-output">   o   x   k   h  |  u     Broken = num tags changed correct -&gt; incorrect</span>
+<span class="pysrc-output">   r   e   e   e  |  l     Other = num tags changed incorrect -&gt; incorrect</span>
+<span class="pysrc-output">   e   d   n   r  |  e</span>
+<span class="pysrc-output">------------------+-------------------------------------------------------</span>
+<span class="pysrc-output"> 354 354   0   3  | TO -&gt; IN if the tag of the following word is 'AT'</span>
+<span class="pysrc-output"> 110 110   0   4  | TO -&gt; IN if the tag of the following word is 'NP'</span>
+<span class="pysrc-output">  91 127  36   6  | VB -&gt; NN if the tag of words i-2...i-1 is 'AT'</span>
+<span class="pysrc-output">  89 158  69   7  | NP -&gt; NP-TL if the tag of the following word is</span>
+<span class="pysrc-output">                  |   'NN-TL'</span>
+<span class="pysrc-output">  82 143  61   3  | NN -&gt; VB if the tag of the preceding word is 'TO'</span>
+<span class="pysrc-output">  71 116  45   2  | TO -&gt; IN if the tag of words i+1...i+2 is 'NNS'</span>
+<span class="pysrc-output">  67  70   3   0  | VBN -&gt; VBD if the tag of the preceding word is</span>
+<span class="pysrc-output">                  |   'NP'</span>
+<span class="pysrc-output">  59  62   3   2  | CS -&gt; QL if the text of words i+1...i+3 is 'as'</span>
+<span class="pysrc-output">  56  56   0   1  | NN -&gt; VB if the tag of the preceding word is 'MD'</span>
+<span class="pysrc-output">  55  59   4   0  | VBD -&gt; VBN if the tag of words i-2...i-1 is 'BEDZ'</span>
+<span class="pysrc-output"></span><span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'Accuracy: %4.1f%%'</span> % (
+<span class="pysrc-more">... </span>    100.0 * brill_tagger.evaluate(brown_test))
+<span class="pysrc-output">Accuracy: 89.3%</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="hmm-tagger">
+<h2>3.7&nbsp;&nbsp;&nbsp;HMM Tagger</h2>
+<p>The HMM tagger uses a hidden markov model to find the most likely tag
+sequence for each sentence.  (Note: this requires numpy.)</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">from</span> nltk.tag.hmm <span class="pysrc-keyword">import</span> *</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Demo code lifted more or less directly from the HMM class.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>symbols = [<span class="pysrc-string">'up'</span>, <span class="pysrc-string">'down'</span>, <span class="pysrc-string">'unchanged'</span>]
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>states = [<span class="pysrc-string">'bull'</span>, <span class="pysrc-string">'bear'</span>, <span class="pysrc-string">'static'</span>]</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">def</span> <span class="pysrc-defname">probdist</span>(<span class="pysrc-builtin">values</span>, samples):
+<span class="pysrc-more">... </span>    d = {}
+<span class="pysrc-more">... </span>    <span class="pysrc-keyword">for</span> value, item <span class="pysrc-keyword">in</span> zip(<span class="pysrc-builtin">values</span>, samples):
+<span class="pysrc-more">... </span>        d[item] = value
+<span class="pysrc-more">... </span>    return DictionaryProbDist(d)</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">def</span> <span class="pysrc-defname">conditionalprobdist</span>(array, conditions, samples):
+<span class="pysrc-more">... </span>    d = {}
+<span class="pysrc-more">... </span>    <span class="pysrc-keyword">for</span> <span class="pysrc-builtin">values</span>, condition <span class="pysrc-keyword">in</span> zip(array, conditions):
+<span class="pysrc-more">... </span>        d[condition] = probdist(<span class="pysrc-builtin">values</span>, samples)
+<span class="pysrc-more">... </span>    return DictionaryConditionalProbDist(d)</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>A = array([[0.6, 0.2, 0.2], [0.5, 0.3, 0.2], [0.4, 0.1, 0.5]], float64)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>A = conditionalprobdist(A, states, states)</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>B = array([[0.7, 0.1, 0.2], [0.1, 0.6, 0.3], [0.3, 0.3, 0.4]], float64)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>B = conditionalprobdist(B, states, symbols)</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>pi = array([0.5, 0.2, 0.3], float64)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>pi = probdist(pi, states)</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>model = HiddenMarkovModelTagger(symbols=symbols, states=states,
+<span class="pysrc-more">... </span>                                transitions=A, outputs=B, priors=pi)</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>test = [<span class="pysrc-string">'up'</span>, <span class="pysrc-string">'down'</span>, <span class="pysrc-string">'up'</span>]
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>sequence = [(t, None) <span class="pysrc-keyword">for</span> t <span class="pysrc-keyword">in</span> test]</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'%.3f'</span> % (model.probability(sequence))
+<span class="pysrc-output">0.051</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Check the test sequence by hand -- calculate the joint probability for
+each possible state sequence, and verify that they're equal to what
+the model gives; then verify that their total is equal to what the
+model gives for the probability of the sequence w/ no states specified.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>seqs = [zip(test, [a,b,c]) <span class="pysrc-keyword">for</span> a <span class="pysrc-keyword">in</span> states
+<span class="pysrc-more">... </span>        <span class="pysrc-keyword">for</span> b <span class="pysrc-keyword">in</span> states <span class="pysrc-keyword">for</span> c <span class="pysrc-keyword">in</span> states]
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>total = 0
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">for</span> seq <span class="pysrc-keyword">in</span> seqs:
+<span class="pysrc-more">... </span>    <span class="pysrc-comment"># Calculate the probability by hand:</span>
+<span class="pysrc-more">... </span>    expect = pi.prob(seq[0][1])
+<span class="pysrc-more">... </span>    <span class="pysrc-keyword">for</span> (o,s) <span class="pysrc-keyword">in</span> seq:
+<span class="pysrc-more">... </span>        expect *= B[s].prob(o)
+<span class="pysrc-more">... </span>    <span class="pysrc-keyword">for</span> i <span class="pysrc-keyword">in</span> range(1, len(seq)):
+<span class="pysrc-more">... </span>        expect *= A[seq[i-1][1]].prob(seq[i][1])
+<span class="pysrc-more">... </span>    <span class="pysrc-comment"># Check that it matches the model:</span>
+<span class="pysrc-more">... </span>    assert abs(expect-model.probability(seq)) &lt; 1e-10
+<span class="pysrc-more">... </span>    total += model.probability(seq)
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>assert abs(total-model.probability(sequence)) &lt; 1e-10</pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Find the most likely set of tags for the test sequence.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>model.tag(test)
+<span class="pysrc-output">[('up', 'bull'), ('down', 'bear'), ('up', 'bull')]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>Find some entropy values.  These are all in base 2 (i.e., bits).</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'%.3f'</span> % (model.entropy(sequence))
+<span class="pysrc-output">3.401</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">print</span> <span class="pysrc-string">'%.3f'</span> % (model._exhaustive_entropy(sequence))
+<span class="pysrc-output">3.401</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>model.point_entropy(sequence)
+<span class="pysrc-output">array([ 0.99392864,  1.54508687,  0.97119001])</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>model._exhaustive_point_entropy(sequence)
+<span class="pysrc-output">array([ 0.99392864,  1.54508687,  0.97119001])</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+</div>
+<div class="section" id="regression-tests">
+<h1>4&nbsp;&nbsp;&nbsp;Regression Tests</h1>
+<div class="section" id="taggeri-interface">
+<h2>4.1&nbsp;&nbsp;&nbsp;TaggerI Interface</h2>
+<p>The <cite>TaggerI</cite> interface defines two methods: <cite>tag</cite> and <cite>batch_tag</cite>:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>nltk.usage(nltk.TaggerI)
+<span class="pysrc-output">TaggerI supports the following operations:</span>
+<span class="pysrc-output">  - self.batch_tag(sentences)</span>
+<span class="pysrc-output">  - self.evaluate(gold)</span>
+<span class="pysrc-output">  - self.tag(tokens)</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+<p>The <cite>TaggerI</cite> interface should not be directly instantiated:</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>nltk.TaggerI().tag(test_sent)
+<span class="pysrc-except">Traceback (most recent call last):</span>
+<span class="pysrc-except">  . . .</span>
+<span class="pysrc-except">NotImplementedError</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+<div class="section" id="sequential-taggers">
+<h2>4.2&nbsp;&nbsp;&nbsp;Sequential Taggers</h2>
+<dl class="docutils">
+<dt>Add tests for:</dt>
+<dd><ul class="first last simple">
+<li>make sure backoff is being done correctly.</li>
+<li>make sure ngram taggers don't use previous sentences for context.</li>
+<li>make sure ngram taggers see 'beginning of the sentence' as a
+unique context</li>
+<li>make sure regexp tagger's regexps are tried in order</li>
+<li>train on some simple examples, &amp; make sure that the size &amp; the
+generated models are correct.</li>
+<li>make sure cutoff works as intended</li>
+<li>make sure that ngram models only exclude contexts covered by the
+backoff tagger if the backoff tagger gets that context correct at
+<em>all</em> locations.</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id2">
+<h2>4.3&nbsp;&nbsp;&nbsp;Brill Tagger</h2>
+<blockquote>
+<ul class="simple">
+<li>test that fast &amp; normal trainers get identical results when
+deterministic=True is used.</li>
+<li>check on some simple examples to make sure they're doing the
+right thing.</li>
+</ul>
+</blockquote>
+<p>Make sure that get_neighborhoods is implemented correctly -- in
+particular, given <em>index</em>, it should return the indices <em>i</em> such that
+applicable_rules(token, i, ...) depends on the value of the
+<em>index</em>th token.  There used to be a bug where this was swapped --
+i.e., it calculated the values of <em>i</em> such that
+applicable_rules(token, index, ...) depended on <em>i</em>.</p>
+<div class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" class="doctest" width="95%">
+<tr><td class="doctest">
+<table border="0" cellpadding="0" cellspacing="0" width="100%">
+<tr><td width="1" class="copybar"
+        onclick="javascript:copy_doctest_to_clipboard(this.nextSibling);"
+        >&nbsp;</td>
+<td class="pysrc"><pre class="doctest">
+<span class="pysrc-prompt">&gt;&gt;&gt; </span>t = ProximateTokensTemplate(ProximateWordsRule, (2,3))
+<span class="pysrc-prompt">&gt;&gt;&gt; </span><span class="pysrc-keyword">for</span> i <span class="pysrc-keyword">in</span> range(10):
+<span class="pysrc-more">... </span>    <span class="pysrc-keyword">print</span> sorted(t.get_neighborhood(<span class="pysrc-string">'abcdefghijkl'</span>, i))
+<span class="pysrc-output">[0]</span>
+<span class="pysrc-output">[1]</span>
+<span class="pysrc-output">[0, 2]</span>
+<span class="pysrc-output">[0, 1, 3]</span>
+<span class="pysrc-output">[1, 2, 4]</span>
+<span class="pysrc-output">[2, 3, 5]</span>
+<span class="pysrc-output">[3, 4, 6]</span>
+<span class="pysrc-output">[4, 5, 7]</span>
+<span class="pysrc-output">[5, 6, 8]</span>
+<span class="pysrc-output">[6, 7, 9]</span></pre>
+</td>
+</tr></table></td></tr>
+</table></div>
+</div>
+</div>
+</div>
+</body>
+</html>

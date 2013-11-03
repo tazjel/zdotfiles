@@ -19,7 +19,6 @@ When web2py is running on Google App Engine,
 caching will be provided by the GAE memcache
 (see gluon.contrib.gae_memcache)
 """
-import traceback
 import time
 import portalocker
 import shelve
@@ -30,7 +29,7 @@ import re
 import hashlib
 import datetime
 try:
-    import settings
+    from gluon import settings
     have_settings = True
 except ImportError:
     have_settings = False
@@ -68,7 +67,7 @@ class CacheAbstract(object):
 
     def __init__(self, request=None):
         """
-        Paremeters
+        Parameters
         ----------
         request:
             the global request object
@@ -278,10 +277,11 @@ class CacheOnDisk(CacheAbstract):
                 storage = shelve.open(self.shelve_name)
             except:
                 logger.error('corrupted cache file %s, will try rebuild it'
-                             % (self.shelve_name))
+                             % self.shelve_name)
                 storage = None
-            if not storage and os.path.exists(self.shelve_name):
-                os.unlink(self.shelve_name)
+            if storage is None:
+                if os.path.exists(self.shelve_name):
+                    os.unlink(self.shelve_name)
                 storage = shelve.open(self.shelve_name)
             if not CacheAbstract.cache_stats_name in storage.keys():
                 storage[CacheAbstract.cache_stats_name] = {
@@ -423,7 +423,7 @@ class Cache(object):
         """
         # GAE will have a special caching
         if have_settings and settings.global_settings.web2py_runtime_gae:
-            from contrib.gae_memcache import MemcacheClient
+            from gluon.contrib.gae_memcache import MemcacheClient
             self.ram = self.disk = MemcacheClient(request)
         else:
             # Otherwise use ram (and try also disk)
@@ -479,7 +479,6 @@ class Cache(object):
                     if not session_ and public_:
                         cache_control += ', public'
                         expires = (current.request.utcnow + datetime.timedelta(seconds=time_expire)).strftime('%a, %d %b %Y %H:%M:%S GMT')
-                        vary = None
                     else:
                         cache_control += ', private'
                         expires = 'Fri, 01 Jan 1990 00:00:00 GMT'

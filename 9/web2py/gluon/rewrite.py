@@ -22,10 +22,10 @@ import logging
 import traceback
 import threading
 import urllib
-from storage import Storage, List
-from http import HTTP
-from fileutils import abspath, read_file
-from settings import global_settings
+from gluon.storage import Storage, List
+from gluon.http import HTTP
+from gluon.fileutils import abspath, read_file
+from gluon.settings import global_settings
 
 isdir = os.path.isdir
 isfile = os.path.isfile
@@ -41,9 +41,6 @@ regex_redirect = re.compile(r'(\d+)->(.*)')
 regex_full_url = re.compile(
     r'^(?P<scheme>http|https|HTTP|HTTPS)\://(?P<host>[^/]*)(?P<uri>.*)')
 regex_version = re.compile(r'^(_[\d]+\.[\d]+\.[\d]+)$')
-# pattern to replace spaces with underscore in URL
-#   also the html escaped variants '+' and '%20' are covered
-regex_space = re.compile('(\+|\s|%20)+')
 
 # pattern to find valid paths in url /application/controller/...
 #   this could be:
@@ -56,7 +53,7 @@ regex_space = re.compile('(\+|\s|%20)+')
 #   apps in routes_apps_raw must parse raw_args into args
 
 regex_url = re.compile('^/((?P<a>\w+)(/(?P<c>\w+)(/(?P<z>(?P<f>\w+)(\.(?P<e>[\w.]+))?(?P<s>.*)))?)?)?$')
-regex_args = re.compile('^[/\w@=-]*(\.[/\w@=-]+)*$')
+regex_args = re.compile('[^\w/.@=-]')
 
 
 def _router_default():
@@ -244,21 +241,15 @@ def try_rewrite_on_error(http_response, request, environ, ticket=None):
                     url = path_info + '?' + query_string
                     message = 'You are being redirected <a href="%s">here</a>'
                     return HTTP(303, message % url, Location=url), environ
-                else:
-                    error_raising_path = environ['PATH_INFO']
-                    # Rewrite routes_onerror path.
-                    path_info = '/' + path_info.lstrip(
-                        '/')  # add leading '/' if missing
+                elif not environ.get('__ROUTES_ONERROR__', False):
+                    # wsgibase will be called recursively with
+                    # the routes_onerror path.
+                    environ['__ROUTES_ONERROR__'] = True # limit recursion
+                    path_info = '/' + path_info.lstrip('/')
                     environ['PATH_INFO'] = path_info
-                    error_handling_path = \
-                        url_in(request, environ)[2]['PATH_INFO']
-                    # Avoid infinite loop.
-                    if error_handling_path != error_raising_path:
-                        # wsgibase will be called recursively with the routes_onerror path.
-                        environ['PATH_INFO'] = path_info
-                        environ['QUERY_STRING'] = query_string
-                        environ['WEB2PY_STATUS_CODE'] = status
-                        return None, environ
+                    environ['QUERY_STRING'] = query_string
+                    environ['WEB2PY_STATUS_CODE'] = status
+                    return None, environ
     # do nothing!
     return http_response, environ
 
@@ -631,8 +622,8 @@ def regex_url_in(request, environ):
     # serve if a static file
     # ##################################################
 
-    path = request.env.path_info.replace('\\', '/') or '/'
-    path = regex_space.sub('_', path)
+    path = urllib.unquote(request.env.path_info) or '/'
+    path = path.replace('\\', '/')
     if path.endswith('/') and len(path) > 1:
         path = path[:-1]
     match = regex_url.match(path)
@@ -643,7 +634,9 @@ def regex_url_in(request, environ):
         request.raw_args = request.raw_args[1:]
     if match.group('c') == 'static':
         application = match.group('a')
-        version, filename = None, match.group('z')
+        version, filename = None, match.group('z').replace(' ','_')
+        if not filename:
+            raise HTTP(404)
         items = filename.split('/', 1)
         if regex_version.match(items[0]):
             version, filename = items
@@ -665,10 +658,9 @@ def regex_url_in(request, environ):
         if request.application in routes.routes_apps_raw:
             # application is responsible for parsing args
             request.args = None
-        elif not regex_args.match(request.raw_args):
-            invalid_url(routes)
         elif request.raw_args:
-            request.args = List(request.raw_args.split('/'))
+            args = regex_args.sub('_',request.raw_args)
+            request.args = List(args.split('/'))
         else:
             request.args = List([])
     return (None, None, environ)

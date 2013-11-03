@@ -1,0 +1,9 @@
+{{extend 'qastack_layout.html'}}
+
+<h2 class="fancy">{{=XML(T('Invalid Access'))}}</h2>
+
+<p>{{=XML(T('The resource you tried to access cannot be executed the way it was called. Please contact the site administrator'))}}.</p>
+
+<p><a href="{{=URL(r=request, c='default', f='index')}}"
+title="{{=XML(T('Home Page'))}}">{{=XML(T('Home Page'))}}</a></p>
+

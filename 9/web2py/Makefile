@@ -1,7 +1,7 @@
 all:
-	echo "The Makefile is used to build the distribution."
-	echo "In order to run web2py you do not need to make anything."
-	echo "just run web2py.py"
+	@echo "The Makefile is used to build the distribution."
+	@echo "In order to run web2py you do not need to make anything."
+	@echo "just run web2py.py"
 clean:
 	rm -f httpserver.log 
 	rm -f parameters*.py 
@@ -20,7 +20,7 @@ clean:
 epydoc:
 	### build epydoc
 	rm -f -r applications/examples/static/epydoc/ 
-	epydoc --config epydoc.conf
+	epydoc --config extras/epydoc/epydoc.conf
 	cp applications/examples/static/title.png applications/examples/static/epydoc
 tests:
 	python web2py.py --run_system_tests
@@ -30,7 +30,7 @@ update:
 	echo "remember that pymysql was tweaked"
 src:
 	### Use semantic versioning
-	echo 'Version 2.5.1-stable+timestamp.'`date +%Y.%m.%d.%H.%M.%S` > VERSION
+	echo 'Version 2.7.4-stable+timestamp.'`date +%Y.%m.%d.%H.%M.%S` > VERSION
 	### rm -f all junk files
 	make clean
 	### clean up baisc apps
@@ -54,7 +54,7 @@ src:
 	### build web2py_src.zip
 	echo '' > NEWINSTALL
 	mv web2py_src.zip web2py_src_old.zip | echo 'no old'
-	cd ..; zip -r web2py/web2py_src.zip web2py/gluon/*.py web2py/gluon/contrib/* web2py/splashlogo.gif web2py/*.py web2py/README.markdown  web2py/LICENSE web2py/CHANGELOG web2py/NEWINSTALL web2py/VERSION web2py/Makefile web2py/epydoc.css web2py/epydoc.conf web2py/app.example.yaml web2py/logging.example.conf web2py/queue.example.yaml web2py/MANIFEST.in web2py/w2p_apps web2py/w2p_clone web2py/w2p_run web2py/web2py.cio web2py/web2py.gif web2py/scripts/*.sh web2py/scripts/*.py web2py/applications/admin web2py/applications/examples/ web2py/applications/welcome web2py/applications/__init__.py web2py/site-packages/__init__.py web2py/gluon/tests/*.sh web2py/gluon/tests/*.py
+	cd ..; zip -r web2py/web2py_src.zip web2py/web2py.py web2py/anyserver.py web2py/gluon/*.py web2py/gluon/contrib/* web2py/extras/* web2py/handlers/* web2py/examples/* web2py/README.markdown  web2py/LICENSE web2py/CHANGELOG web2py/NEWINSTALL web2py/VERSION web2py/MANIFEST.in web2py/scripts/*.sh web2py/scripts/*.py web2py/applications/admin web2py/applications/examples/ web2py/applications/welcome web2py/applications/__init__.py web2py/site-packages/__init__.py web2py/gluon/tests/*.sh web2py/gluon/tests/*.py
 
 mdp:
 	make src
@@ -67,28 +67,26 @@ app:
 	#find gluon -path '*.pyc' -exec cp {} ../web2py_osx/site-packages/{} \;
 	#cd ../web2py_osx/site-packages/; zip -r ../site-packages.zip *
 	#mv ../web2py_osx/site-packages.zip ../web2py_osx/web2py/web2py.app/Contents/Resources/lib/python2.7
-	find gluon -path '*.py' -exec cp {} ../web2py_osx/web2py/web2py.app/Contents/Resources/{} \;	
+	find gluon -path '*.py' -exec cp -R {} ../web2py_osx/web2py/web2py.app/Contents/Resources/{} \;	
 	cp README.markdown ../web2py_osx/web2py/web2py.app/Contents/Resources
 	cp NEWINSTALL ../web2py_osx/web2py/web2py.app/Contents/Resources
 	cp LICENSE ../web2py_osx/web2py/web2py.app/Contents/Resources
 	cp VERSION ../web2py_osx/web2py/web2py.app/Contents/Resources
 	cp CHANGELOG ../web2py_osx/web2py/web2py.app/Contents/Resources
-	cp splashlogo.gif ../web2py_osx/web2py/web2py.app/Contents/Resources
-	cp options_std.py ../web2py_osx/web2py/web2py.app/Contents/Resources
-	cp routes.example.py ../web2py_osx/web2py/web2py.app/Contents/Resources
-	cp router.example.py ../web2py_osx/web2py/web2py.app/Contents/Resources
-	cp app.example.yaml ../web2py_osx/web2py/web2py.app/Contents/Resources
-	cp queue.example.yaml ../web2py_osx/web2py/web2py.app/Contents/Resources
+	cp -r extras ../web2py_osx/web2py/web2py.app/Contents/Resources
+	cp -r examples ../web2py_osx/web2py/web2py.app/Contents/Resources
+	cp -r handlers ../web2py_osx/web2py/web2py.app/Contents/Resources
 	cp -r applications/admin ../web2py_osx/web2py/web2py.app/Contents/Resources/applications
 	cp -r applications/welcome ../web2py_osx/web2py/web2py.app/Contents/Resources/applications
 	cp -r applications/examples ../web2py_osx/web2py/web2py.app/Contents/Resources/applications
 	cp applications/__init__.py ../web2py_osx/web2py/web2py.app/Contents/Resources/applications
 	cd ../web2py_osx; zip -r web2py_osx.zip web2py
+		
 	mv ../web2py_osx/web2py_osx.zip .
 win:
 	python2.7 -c 'import compileall; compileall.compile_dir("gluon/")'
 	#cd ../web2py_win/library/; unzip ../library.zip
-	find gluon -path '*.pyc' -exec cp {} ../web2py_win/library/{} \;
+	find gluon -path '*.pyc' -exec cp -R {} ../web2py_win/library/{} \;
 	cd ../web2py_win/library/; zip -r ../library.zip *
 	mv ../web2py_win/library.zip ../web2py_win/web2py
 	cp README.markdown ../web2py_win/web2py/
@@ -96,15 +94,12 @@ win:
 	cp LICENSE ../web2py_win/web2py/
 	cp VERSION ../web2py_win/web2py/
 	cp CHANGELOG ../web2py_win/web2py/
-	cp splashlogo.gif ../web2py_win/web2py/
-	cp options_std.py ../web2py_win/web2py/
-	cp routes.example.py ../web2py_win/web2py/
-	cp router.example.py ../web2py_win/web2py/
-	cp app.example.yaml ../web2py_win/web2py/
-	cp queue.example.yaml ../web2py_win/web2py/
-	cp -r applications/admin ../web2py_win/web2py/applications
-	cp -r applications/welcome ../web2py_win/web2py/applications
-	cp -r applications/examples ../web2py_win/web2py/applications
+	cp -R extras ../web2py_win/web2py/
+	cp -R examples ../web2py_win/web2py/
+	cp -R handlers ../web2py_win/web2py/
+	cp -R applications/admin ../web2py_win/web2py/applications
+	cp -R applications/welcome ../web2py_win/web2py/applications
+	cp -R applications/examples ../web2py_win/web2py/applications
 	cp applications/__init__.py ../web2py_win/web2py/applications
 	cd ../web2py_win; zip -r web2py_win.zip web2py
 	mv ../web2py_win/web2py_win.zip .

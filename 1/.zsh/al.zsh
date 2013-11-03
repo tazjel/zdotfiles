@@ -256,7 +256,7 @@ alias 'wsr'='cd ~/src'
     alias -g 'wxc'='| xclip'
     alias -g G='| grep'
     alias -g Gh='--help | grep'
-
+    alias -g 'wcl'='| wc -l'
     alias -g wv='| vim -'
     alias ......='cd ../../../../../'
     alias .....='cd ../../../../'

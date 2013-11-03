@@ -1,0 +1,603 @@
+/* General styles */
+body {
+    margin:0;
+    padding:0;
+    border:0;  /* This removes the border around the viewport in old versions of IE */
+    width:100%;
+    background:#fff;
+    min-width:600px;    	/* Minimum width of layout - remove line if not required */
+    /* The min-width property does not work in old versions of Internet Explorer */
+    font-size:90%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+a {
+    color:#369;
+}
+a:hover {
+    color:#fff;
+    background:#369;
+    text-decoration:none;
+}
+a.bold {
+    color:#369;
+    font-weight:bold;
+}
+a.bold:hover {
+    color:#fff;
+    background:#369;
+    text-decoration:none;
+    font-weight:bold;
+}
+
+a.nolink:active, a.nolink:link, a.nolink:hover {
+    text-decoration:none;
+    background-color:transparent;
+}
+
+h1, h2, h3 {
+    margin:.8em 0 .2em 0;
+    padding:0;
+}
+
+h2.fancy {
+    border-bottom:1px solid #c8c8c8;
+    margin-bottom:20px;
+}
+
+h3.fancy {
+    border-bottom:1px solid #c8c8c8;
+    margin-bottom:20px;
+    /*color:#888888;*/
+}
+
+p {
+    margin:.4em 0 .8em 0;
+    padding:0;
+}
+
+.votes-display {
+    font-size:130%;
+    font-weight:bold;
+}
+
+img {
+    border:0;
+}
+
+div.sidenav {
+    margin:15px 0 15px 0;
+    font-size:85%;
+    line-height:200%;
+}
+
+/* Header styles */
+#header {
+    clear:both;
+    float:left;
+    width:100%;
+}
+#header {
+    border-bottom:1px solid #000;
+}
+#header p,
+#header h1,
+#header h2 {
+    padding:.4em 15px 0 15px;
+    margin:0;
+}
+#header ul {
+    clear:left;
+    float:left;
+    width:100%;
+    list-style:none;
+    margin:10px 0 0 0;
+    padding:0;
+}
+#header ul li {
+    display:inline;
+    list-style:none;
+    margin:0;
+    padding:0;
+}
+#header ul li a {
+    display:block;
+    float:left;
+    margin:0 0 0 1px;
+    padding:3px 10px;
+    text-align:center;
+    background:#eee;
+    color:#000;
+    text-decoration:none;
+    position:relative;
+    left:15px;
+    line-height:1.3em;
+}
+#header ul li a:hover {
+    background:#369;
+    color:#fff;
+}
+#header ul li a.active,
+#header ul li a.active:hover {
+    color:#fff;
+    background:#000;
+    font-weight:bold;
+}
+#header ul li a span {
+    display:block;
+}
+/* 'widths' sub menu */
+#layoutdims {
+    clear:both;
+    background:#eee;
+    border-top:4px solid #000;
+    margin:0;
+    padding:6px 15px !important;
+    text-align:right;
+}
+/* column container */
+.colmask {
+    position:relative;	/* This fixes the IE7 overflow hidden bug */
+    clear:both;
+    float:left;
+    width:100%;			/* width of whole page */
+    overflow:hidden;		/* This chops off any overhanging divs */
+}
+/* common column settings */
+.colright,
+.colmid,
+.colleft {
+    float:left;
+    width:100%;
+    position:relative;
+}
+.col1,
+.col2,
+.col3 {
+    float:left;
+    position:relative;
+    padding:0 0 1em 0;
+    overflow:hidden;
+}
+/* 2 Column (right menu) settings */
+.rightmenu {
+    background:#eee;		/* right column background colour */
+}
+.rightmenu .colleft {
+    right:25%;			/* right column width */
+    background:#fff;		/* left column background colour */
+}
+.rightmenu .col1 {
+    width:71%;			/* left column content width (left column width minus left and right padding) */
+    left:27%;			/* (right column width) plus (left column left padding) */
+}
+.rightmenu .col2 {
+    width:21%;			/* right column content width (right column width minus left and right padding) */
+    left:31%;			/* (right column width) plus (left column left and right padding) plus (right column left padding) */
+}
+/* Footer styles */
+#footer {
+    clear:both;
+    float:left;
+    width:100%;
+    border-top:1px solid #000;
+}
+#footer p {
+    padding:5px;
+    margin:0;
+    text-align:right;
+    font-size:85%;
+}
+
+/* Q&A Specific */
+.question-main {
+    margin:10px 0 10px 0;
+    width:100%;
+    border-bottom:1px solid #cacaca;
+    display: inline-block;
+    display: block;
+    overflow:hidden;
+    padding-bottom:5px;
+}
+
+.question {
+    float:left;
+    width:70%;
+}
+
+.question a {
+    color:#369;
+    font-weight:bold;
+    font-size:100%;
+    vertical-align:middle;
+}
+
+.question a:hover {
+    color:#fff;
+    background:#369;
+    text-decoration:none;
+    font-weight:bold;
+    font-size:100%;
+    vertical-align:middle;
+}
+
+.question .question-info {
+    margin-top:5px;
+    color: #999999;
+    font-size:90%;
+    font-style: italic;
+}
+
+.question .tags {
+    margin-top:5px;
+    color: #999999;
+    font-size:90%;
+}
+
+a.tag, a.tag:hover {
+    background-color:#eaeaea;
+    font-weight:normal;
+    text-decoration:none;
+    color:#555555;
+    border-top:1px solid #999999;
+    border-left:4px solid #999999;
+    border-right:1px solid #999999;
+    border-bottom:1px solid #999999;
+    padding:0 5px 0 5px;
+    font-size:90%;
+}
+
+.answers {
+    float:left;
+    width:9%;
+    text-align:center;
+    font-weight:bold;
+    font-size:120%;
+}
+
+.answers div {
+    color: #aaaaaa;
+    font-size: 70%;
+    font-weight:normal;
+}
+
+.votes {
+    float:left;
+    width:9%;
+    text-align:center;
+    font-weight:bold;
+    font-size:120%;
+}
+
+.votes div {
+    color: #aaaaaa;
+    font-size: 70%;
+    font-weight:normal;
+}
+
+.views {
+    float:left;
+    width:9%;
+    text-align:center;
+    font-weight:bold;
+    font-size:120%;
+}
+
+.views div {
+    color: #aaaaaa;
+    font-size: 70%;
+    font-weight:normal;
+}
+
+fieldset {
+    border:0;
+    margin:0;
+    padding:0;
+}
+
+div.hr {
+    height:1px;
+    background-color:#c8c8c8;
+    width:100%;
+    margin:5px auto 15px auto;
+    clear:both;
+}
+
+div.hr hr {
+    display: none;
+}
+
+/* Oprions for Sorting the main page */
+#sort-options-main {
+    width:100%;
+    padding:0;
+    margin:20px 0 25px 0;
+    color:#fff;
+    white-space:nowrap;
+    list-style-type:none;
+    border-bottom:1px solid #000000;
+    display: inline-block;
+    display: block;
+    overflow:hidden;
+    /* text-align:center; */
+}
+
+#sort-options-main li {
+    display:inline;
+}
+
+#sort-options-main li a
+{
+    padding:0.2em 1em;
+    background:#eeeeee;
+    color:#000;
+    text-decoration:none;
+    float:right;
+    /* border:1px solid #000; */
+    border-top: 1px solid #000000;
+    border-left: 1px solid #000000;
+    border-right: 1px solid #000000;
+}
+
+#sort-options-main li a:hover {
+    background:#336699;
+    color:#fff;
+}
+
+#sort-options-main li a.active,
+#sort-options-main li a.active:hover {
+    color:#fff;
+    background:#000;
+    font-weight:bold;
+}
+
+div.paragraph, div.paragraph-bottom {
+    margin-bottom:20px;
+}
+
+div.paragraph-big {
+    margin-bottom:40px;
+}
+
+div.paragraph-all {
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+div.paragraph-top {
+    margin-top:20px;
+}
+
+div.info, p.info {
+    font-size:90%;
+    font-weight:bold;
+    color:teal;
+    /*  border-bottom:1px solid teal; */
+}
+
+div.info-pretty {
+    font-size:90%;
+    text-align:left;
+    margin-bottom:15px;
+    border-top:1px solid #cacaca;
+    border-bottom:1px solid #cacaca;
+    background-color:#fafafa;
+    margin:5px 0 5px 0;
+}
+
+div.info-pretty div {
+    margin:5px 0 5px 0;
+}
+
+span.explain {
+    color:#0000eb;
+    font-size:90%;
+    font-weight:bold;
+}
+
+div.explain {
+    color:#0000eb;
+    font-size:90%;
+    font-weight:bold;
+    vertical-align:top;
+}
+
+table.comment-table {
+    margin-left:110px;
+    margin-top:20px;
+    margin-bottom:30px;
+    background-color:transparent;
+    width:85%;
+}
+
+table.comment-table td {
+    font-size:85%;
+    color:#333333;
+    background-color:transparent;
+    padding-top:5px;
+    padding-bottom:25px;
+    border-bottom:1px solid #cacaca;
+}
+
+table.comment-table th {
+    font-size:85%;
+    color:#333333;
+    background-color:#fafafa;
+    border-top:1px solid #cacaca;
+    border-bottom:1px solid #cacaca;
+}
+
+div.padme {
+    margin:10px;
+}
+
+div.pad-comment {
+    margin:10px 0 10px 0;
+}
+
+.note {
+    font-size:100%;
+    color:#808080;
+}
+
+.notification {
+    font-size:100%;
+    color:teal;
+    font-weight:bold;
+}
+
+div.answered {
+    color:#ffffff;
+    background-color:#669999;
+    margin-bottom:10px;
+    font-size:120%;
+    font-weight:bold;
+    border-top:1px solid #eee8aa;
+    border-bottom:1px solid #eee8aa;
+}
+
+.err {
+    font-weight:bold;
+    color:red;
+}
+
+div.error2 {
+    background-color:red;
+    color:yellow;
+    font-weight:bold;
+    border:1px solid black;
+    padding:3px;
+    text-align:center;
+}
+
+.disabled-bold {
+    font-weight:bold;
+    color:#808080;
+}
+
+div.lsep {
+    margin-left:10px;
+}
+
+/* Tooltips */
+
+a.help {
+    /*border-bottom: 1px dashed brown;*/
+    text-decoration: none;
+}
+
+a.help:hover {
+    position: relative;
+}
+
+a.help div {
+    display: none;
+}
+
+a.help:hover div {
+    display: block;
+    position: absolute;
+    top: 0;
+    left:10px;
+    width:250px;
+    /* formatting only styles */
+    color:black;
+    font-size:12px;
+    padding: 5px;
+    margin: 10px;
+    z-index: 100;
+    background-color: #f0f0f0;
+    border: 1px dotted #c0c0c0;
+    opacity: 0.9;
+    /* end formatting */
+}
+
+/* Custom Layouts to overcome shortcomings from the original design */
+
+table.main-layout {
+    width:100%;
+    clear:both;
+    vertical-align:top;
+}
+
+td.main-layout-left {
+    width:75%;
+    vertical-align:top;
+}
+
+td.main-layout-right {
+    width:25%;
+    background-color:#eeeeee;
+    vertical-align:top;
+}
+
+div.main-layout-container {
+    margin:15px;
+}
+
+/* My Own Version of a "3D" table */
+
+table.ftable {
+    border-color: #cacaca;
+    border-top-style: solid;
+    border-right-style: solid;
+    border-bottom-style: solid;
+    border-left-style: solid;
+    border-top-width: 1px;
+    border-right-width: 1px;
+    border-bottom-width: 1px;
+    border-left-width: 1px;
+    font-size: 100%;
+}
+
+table.ftable td, table.ftable th {
+    border-top-color: #ffffff;
+    border-top-style: solid;
+    border-top-width: 1px;
+    border-right-color: #cacaca;
+    border-right-style: solid;
+    border-right-width: 1px;
+    border-bottom-color: #cacaca;
+    border-bottom-style: solid;
+    border-bottom-width: 1px;
+    padding:5px;
+}
+
+tr.shadelight {
+    border: 1px outset #ffffff;
+    color: #751a1a;
+    background-color: #ffffff;
+    margin-top: -1em;
+    margin-bottom: -1em;
+}
+
+tr.shadedark {
+    border: 1px outset #ffffff;
+    color: #751a1a;
+    background-color: #fafafa;
+    margin-top: -1em;
+    margin-bottom: -1em;
+}
+
+tr.shadedarker {
+    border: 1px outset #ffffff;
+    color: #751a1a;
+    background-color: #eaeaea;
+    margin-top: -1em;
+    margin-bottom: -1em;
+}
+
+.quick-alert {
+    font-size: larger;
+    margin:1em 0;
+    padding: .5em;
+    background-color: teal;
+    border: 1px solid #a00;
+    color: yellow;
+    font-weight: bold;
+    display: none;
+    position:fixed;
+    top:5px;
+    right:20px;
+    z-index:10000;
+    text-align:center;
+Ê}

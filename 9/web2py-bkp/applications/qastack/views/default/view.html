@@ -1,0 +1,505 @@
+{{extend 'qastack_layout.html'}}
+
+<!--
+Named Anchors Specification:
+
+questionMain - Start of the question, top of page
+questionCommentsStart - Start of the comments section for the question
+answersMain - The start of the answers section
+answerXYZ - Each Answer with ID XYZ
+commentXYX - A specific anchor on a comment ID (comments are unique among questions and answers)
+//-->
+
+<script type="text/javascript" src="{{=URL(r=request,c='static/js',f='jquery.js')}}"></script>
+
+<script type="text/javascript">
+<!--
+    function ajaxSubmit(url, qa_elem, add_val) {
+        /*
+         url is the URL to process
+         qa_elem is the elem_id that will increment or decrement
+         add_val will be +1 or -1 depending if it is upvote or dnvote
+        */
+        var request = new XMLHttpRequest();
+        request.open("GET", url);
+        request.onreadystatechange = function() {
+            if (request.readyState == 4 && request.status == 200) {
+                document.getElementById('dyn_msg').innerText = request.responseText;
+                // Only update the counts if we know for a fact that there
+                // were no errors reported.
+                if (request.responseText == '') {
+                    var cur_val_o = document.getElementById(qa_elem);
+                    var cur_val = parseInt(cur_val_o.innerText);
+                    cur_val_o.innerText = cur_val + add_val;
+                    document.getElementById('dyn_msg').innerText = "Vote count has been updated " + cur_val_o.innerText + " points.";
+                }
+                reportMsg();
+            }
+        }
+        //alert(request.readyState + "|" + request.status);
+        request.send();
+    }
+
+    function reportMsg() {
+        var d = $('#dyn_msg');
+        var position = d.position();
+        $(document).ready(function() {
+            $('#dyn_msg')
+            .insertAfter( $(this) )
+            .fadeIn('slow')
+            .animate({opacity: 1.0}, 1000)
+            .fadeOut('slow');
+        });
+    }
+//-->
+</script>
+
+<div id="dyn_msg" class="quick-alert"></div>
+
+{{if not question.questions.is_visible:}}
+    <div class="error2">This Question is marked as HIDDEN - For Administration use Only</div>
+{{pass}}
+
+{{if view_info['errors']:}}
+    <p class="err">{{=XML(T('There was one or more messages generated while processing your request, please review the following'))}}</p>
+    <ul>
+        {{for error in view_info['errors']:}}
+            <li class="err">{{=XML(T(error))}}</li>
+        {{pass}}
+    </ul>
+{{pass}}
+
+{{if request.vars.get('err', '0') != '0':}}
+    <p class="err"><a name="error">{{=XML(T('An error or warning has been generated, please read below'))}}:</a></p>
+    <p class="err">
+        {{=XML(T(request.vars.get('error_code')))}}.
+    </p>
+{{pass}}
+
+{{if auth_user.is_auth():}}
+    <div class="info-pretty">
+        <div>
+            {{if view_info['is_subscribed']:}}
+                <a href="{{=URL(r=request, c='members', f='unsubscribe', args=[question.questions.id])}}"
+                   title="{{=XML(T('Unsubscribe from this Question'))}}"
+                   class="bold">{{=XML(T('Unsubscribe'))}}</a>
+            {{else:}}
+                <a href="{{=URL(r=request, c='members', f='subscribe', args=[question.questions.id])}}"
+                   title="{{=XML(T('Subscribe to this Question'))}}"
+                   class="bold">{{=XML(T('Subscribe'))}}</a>
+            {{pass}} |
+            <!-- More "admin" options can be specified in this section //-->
+            <a href="#add_answer" title="{{=XML(T('Answer this Question'))}}"
+               class="bold">{{=XML(T('Answer'))}}</a>
+            {{if can_comment:}} |
+                <a href="{{=URL(r=request,
+                                c='members',
+                                f='comment_question',
+                                anchor='add_comment',
+                                args=[question.questions.id])}}"
+                   title="{{=XML(T('Comment on this Question'))}}"
+                   class="bold">{{=XML(T('Comment Question'))}}</a>
+            {{pass}}
+            {{if auth_user.has_role('TeamLead,Manager,SysAdmin'):}}
+                |
+                {{if view_info.get('featured_votes', 0) >= 3:}}
+                    <span class="disabled-bold">{{=XML(T('Featured Question'))}}</span>
+                {{else:}}
+                    <a href="{{=URL(r=request, c='members', f='flag', args=['question', question.questions.id, 'featured'], vars=dict(qid=question.questions.id))}}"
+                        title="{{=XML(T('Award Featured Status'))}}"
+                        class="bold">{{=XML(T('Award Featured Status'))}}
+                        ({{=view_info.get('featured_votes', '??')}})</a>
+                {{pass}}
+            {{pass}}
+            {{if auth_user.has_role('TeamLead,Manager,SysAdmin,Reviewer'):}}
+                |
+                {{if view_info.get('offensive_votes', 0) >= 3:}}
+                    <span class="disabled-bold">{{=XML(T('Offensive Question'))}}</span>
+                {{else:}}
+                    <a href="{{=URL(r=request, c='members', f='flag', args=['question', question.questions.id, 'offensive'], vars=dict(qid=question.questions.id))}}"
+                    title="{{=XML(T('Vote for Offensive Content'))}}"
+                    class="bold">{{=XML(T('Offensive Question'))}}
+                    ({{=view_info.get('offensive_votes', '??')}})</a>
+                {{pass}}
+            {{pass}}
+        </div>
+    </div>
+{{pass}}
+
+<h2 class="fancy">{{if question.questions.is_featured:}}
+    <img src="{{=URL(r=request, c='static/images/medium', f='shield_blue.png')}}"
+    alt="{{=XML(T('Featured'))}}"
+    title="{{=XML(T('Featured'))}}"
+    style="float:left;margin:0;vertical-algin:middle;" />
+{{pass}}
+&nbsp;<a name="questionMain">{{=question.questions.title}}</a></h2>
+
+<div class="paragraph-big">
+    <table cellspacing="1" cellpadding="1" style="width:100%;margin-bottom:10px;">
+        <tbody>
+            <tr>
+                <td style="text-align:center;vertical-align:top;width:100px;">
+                    {{if stackhelper.user_can_vote():}}
+                        <a href="javascript:void(0);"
+                        class="nolink"
+                        onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['question', question.questions.id, 'up', question.questions.id], vars=dict(from_ajax=1))}}', 'q_votes_display', 1);return false;"
+                        title="{{=XML(T('Vote Up'))}}"><img src="{{=URL(r=request, c='static/images/medium', f='checkmark.png')}}"
+                        alt="{{=XML(T('Vote Up'))}}"
+                        title="{{=XML(T('Vote Up'))}}" /></a><br />
+                        <span class="votes-display" id="q_votes_display">{{=question.questions.votes_up - question.questions.votes_dn}}</span><br />
+                        <a href="javascript:void(0);"
+                        onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['question', question.questions.id, 'down', question.questions.id], vars=dict(from_ajax=1))}}', 'q_votes_display', -1);return false;"
+                        class="nolink"
+                        title="{{=XML(T('Vote Down'))}}"><img src="{{=URL(r=request, c='static/images/medium', f='x.png')}}"
+                        alt="{{=XML(T('Vote Down'))}}"
+                        title="{{=XML(T('Vote Down'))}}" /></a>
+                    {{else:}}
+                        <img src="{{=URL(r=request, c='static/images/medium', f='checkmark_disabled.png')}}"
+                        alt="{{=XML(T('Not enough credits to upvote'))}}"
+                        title="{{=XML(T('Not enough credits to upvote'))}}" /><br />
+                        <span class="votes-display">{{=question.questions.votes_up - question.questions.votes_dn}}</span><br />
+                        <img src="{{=URL(r=request, c='static/images/medium', f='x_disabled.png')}}"
+                        alt="{{=XML(T('Not enough credits to downvote'))}}"
+                        title="{{=XML(T('Not enough credits to downvote'))}}" />
+                    {{pass}}
+                </td>
+                <td style="vertical-align:top;">
+                    <div class="lsep">
+                        <div class="explain">
+                            {{if stackhelper.has_member_avatar(question.questions.created_by):}}
+                                <img src="{{=URL(r=request, c='members', f='get_avatar_image', args=[question.questions.created_by])}}"
+                                     alt=""
+                                     style="vertical-align:top;" />
+                            {{pass}}
+                            {{=XML(T('By'))}}: {{=question.member_properties.property_value}}
+                            ({{=stackhelper.get_user_role(question.questions.created_by)}}),
+                            {{=XML(T('Created'))}}
+                            {{=prettydate(question.questions.created_on, T)}},
+                            {{=XML(T('Updated'))}}
+                            {{=prettydate(question.questions.modified_on, T)}}.
+                        </div>
+                        <div class="paragraph-all">
+                            {{=XML(parse_content(question.questions.description))}}
+                        </div>
+                        <img src="{{=URL(r=request, c='static/images/small', f='tag.png')}}"
+                             alt="Tags"
+                             title="Tags"
+                             style="float:left;margin:0 5px 0 0;vertical-algin:middle;" />
+                        <div class="tags">
+                            {{for tag in tags:}}
+                                <a class="tag" href="{{=URL(r=request, c='default', f='index', args=['tags'], vars=dict(tag=tag.tagname))}}"
+                                   title="{{=tag.tagname}}">{{=tag.tagname}}</a>
+                            {{pass}}
+                        </div>
+                    </div>
+                    {{if can_comment:}}
+                        <div class="paragraph-top">
+                            <a href="{{=URL(r=request,
+                                c='members',
+                                f='comment_question',
+                                anchor='add_comment',
+                                args=[question.questions.id])}}"
+                                title="{{=XML(T('Comment on this Question'))}}"
+                                class="bold">{{=XML(T('Comment on this Question'))}}</a>
+                            <!-- if the user has permissions to edit questions
+                            (being an admin, etc, or the logged in user is the
+                            creator of this question, then he can edit this) //-->
+                            | <a href="{{=URL(r=request, c='members', f='edit_question', args=[question.questions.id])}}" title="" class="bold"
+                            title="{{=XML(T('Edit Question'))}}">{{=XML(T('Edit Question'))}}</a>
+                        </div>
+                    {{pass}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    {{if q_comments:}}
+        <table class="comment-table" cellspacing="0" cellpadding="0">
+            <thead>
+                <tr>
+                    <th><div style="margin:5px 0 5px 0;"><b><a name="questionCommentsStart">{{=XML(T('Comments For Question'))}}</a></b></div></th>
+                </tr>
+            </thead>
+            <tbody>
+            {{for comment in q_comments:}}
+                <tr>
+                    <td>
+                        <div style="font-weight:bold;">
+                            {{if stackhelper.user_can_vote():}}
+                                <a href="javascript:void(0);"
+                                class="nolink"
+                                onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['comment', comment.comments.id, 'up', question.questions.id], vars=dict(from_ajax=1))}}', 'c_votes_display_{{=comment.comments.id}}', 1);return false;"
+                                title="{{=XML(T('Vote Up'))}}"><img src="{{=URL(r=request, c='static/images/small', f='checkmark.png')}}"
+                                style="vertical-align:middle;"
+                                alt="{{=XML(T('Vote Up'))}}"
+                                title="{{=XML(T('Vote Up'))}}" /></a>
+                                <a href="javascript:void(0);"
+                                class="nolink"
+                                onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['comment', comment.comments.id, 'down', question.questions.id], vars=dict(from_ajax=1))}}', 'c_votes_display_{{=comment.comments.id}}', -1);return false;"
+                                title="{{=XML(T('Vote Down'))}}"><img src="{{=URL(r=request, c='static/images/small', f='x.png')}}" style="vertical-align:middle;"
+                                alt="{{=XML(T('Vote Down'))}}"
+                                title="{{=XML(T('Vote Down'))}}" /></a>
+                            {{else:}}
+                                <img src="{{=URL(r=request, c='static/images/small', f='checkmark_disabled.png')}}" style="vertical-align:middle;"
+                                alt="{{=XML(T('Not enough credits to upvote'))}}" />
+                                <img src="{{=URL(r=request, c='static/images/small', f='x_disabled.png')}}"
+                                style="vertical-align:middle;"
+                                alt="{{=XML(T('Not enough Credits to downvote'))}}"
+                                title="{{=XML(T('Not enough Credits to downvote'))}}" />
+                            {{pass}}
+                            <a name="comment{{=comment.comments.id}}">{{=XML(T('By'))}}: {{=comment.member_properties.property_value}}
+                            ({{=stackhelper.get_user_role(comment.comments.modified_by)}})</a>,
+                            {{=XML(T('Updated'))}}
+                            {{=prettydate(comment.comments.modified_on, T)}},
+                            {{=XML(T('Votes'))}}: <span id="c_votes_display_{{=comment.comments.id}}">{{=comment.comments.votes_up - comment.comments.votes_dn}}</span>
+                            {{if auth_user.is_auth():}} |
+                                <a title=""
+                                href="{{=URL(r=request, c='members', f='flag_entry', args=[comment.comments.id, question.questions.id, 'comment'])}}"
+                                onclick="return confirm('This will flag this comment for removal by the administrators\n\nPlease Confirm.');"
+                                class="bold">Report as Offensive</a>
+                            {{pass}}
+                        </div>
+                        <div class="pad-comment">{{=XML(parse_content(comment.comments.description))}}</div>
+                    </td>
+                </tr>
+            {{pass}}
+            </tbody>
+        </table>
+    {{pass}}
+
+</div>
+
+<h2 class="fancy"><a name="answersMain">{{=len(answers)}} {{=XML(T('Responses'))}}</a></h2>
+
+{{if answers:}}
+    <table cellspacing="1" cellpadding="1" style="width:100%;margin-bottom:10px;">
+        <tbody>
+            {{for answer in answers:}}
+                <tr>
+                    <td style="text-align:center;vertical-align:top;width:100px;{{if answer.answers.is_answer:}}border-top:2px solid #bababa;border-left:2px solid #bababa;border-bottom:2px solid #eaeaea;border-right:2px solid #eaeaea;background-color:#fafafa;{{pass}}">
+                        {{if stackhelper.user_can_vote():}}
+                            <a href="javascript:void(0);"
+                            class="nolink"
+                            onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['answer', answer.answers.id, 'up', question.questions.id], vars=dict(from_ajax=1))}}', 'answer_{{=answer.answers.id}}', 1);return false;"
+                            title="{{=XML(T('Vote Up'))}}"><img src="{{=URL(r=request, c='static/images/medium', f='checkmark.png')}}"
+                            alt="{{=XML(T('Vote Up'))}}"
+                            title="{{=XML(T('Vote Up'))}}" /></a><br />
+                            <span class="votes-display" id="answer_{{=answer.answers.id}}">{{=answer.answers.votes_up - answer.answers.votes_dn}}</span><br />
+                            <a href="javascript:void(0);"
+                            class="nolink"
+                            onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['answer', answer.answers.id, 'down', question.questions.id], vars=dict(from_ajax=1))}}', 'answer_{{=answer.answers.id}}', -1);return false;"
+                            title="{{=XML(T('Vote Down'))}}"><img src="{{=URL(r=request, c='static/images/medium', f='x.png')}}"
+                            alt="{{=XML(T('Vote Down'))}}"
+                            title="{{=XML(T('Vote Down'))}}" /></a>
+                        {{else:}}
+                            <img src="{{=URL(r=request, c='static/images/medium', f='checkmark_disabled.png')}}"
+                            alt="{{=XML(T('Not enough credits to upvote'))}}" /><br />
+                            <span class="votes-display">{{=answer.answers.votes_up - answer.answers.votes_dn}}</span><br />
+                            <img src="{{=URL(r=request, c='static/images/medium', f='x_disabled.png')}}"
+                            alt="{{=XML(T('Not enough credits to downvote'))}}"
+                            title="{{=XML(T('Not enough credits to downvote'))}}" />
+                        {{pass}}
+                    </td>
+                    <td style="vertical-align:top;">
+                        <div class="lsep">
+                            {{if answer.answers.is_answer:}}
+                                <div class="info-pretty">
+                                    <div style="font-size:120%;font-weight:bold;text-align:center;">{{=XML(T('Accepted Answer'))}}</div>
+                                </div>
+                            {{pass}}
+                            <!-- owner, admin or member options... //-->
+                            <div class="info" style="margin-bottom:10px;">
+                                {{if auth_user.has_role('Reviewer,TeamLead,Manager,SysAdmin'):}}
+                                    <a href="{{=URL(r=request, c='members', f='comment_answer',
+                                       args=[question.questions.id, answer.answers.id],
+                                       anchor='add_comment')}}"
+                                       class="bold"
+                                       title="{{=XML(T('Comment this Answer'))}}">{{=XML(T('Comment this Answer'))}}</a>
+                                {{pass}}
+                                {{if (auth_user.has_role('Manager,SysAdmin') or auth_user.get_user_id() == question.questions.created_by) and not answer.answers.is_answer:}}
+                                    |
+                                    <a href="{{=URL(r=request, c='members', f='toggle_answer', args=[answer.answers.id, question.questions.id])}}"
+                                       title="{{=XML(T('Accept this Answer'))}}"
+                                       onclick="return confirm('This will change the answer status for this question, Please Confirm');"
+                                       class="bold">{{=XML(T('Accept this Answer'))}}</a>
+                                {{pass}}
+                                {{if auth_user.has_role('Manager,SysAdmin') or (auth_user.get_user_id() == answer.answers.created_by and not answer.answers.is_answer):}}
+                                    |
+                                    <a href="{{=URL(r=request, c='members', f='edit_answer', args=[answer.answers.id])}}"
+                                       title="{{=XML(T('Edit this Answer'))}}"
+                                       class="bold">{{=XML(T('Edit this Answer'))}}</a>
+                                {{pass}}
+                                {{if auth_user.is_auth():}}
+                                    |
+                                    <a title=""
+                                    href="{{=URL(r=request, c='members', f='flag_entry', args=[answer.answers.id, question.questions.id, 'answer'])}}"
+                                    onclick="return confirm('This will flag this answer for removal by the administrators\n\nPlease Confirm.');"
+                                    class="bold">Report as Offensive</a>
+                                {{pass}}
+                            </div>
+                            <span class="explain"><a name="answer{{=answer.answers.id}}">{{=XML(T('By'))}}: {{=answer.member_properties.property_value}}
+                            ({{=stackhelper.get_user_role(answer.answers.modified_by)}}),
+                            {{=prettydate(answer.answers.created_on)}}</a></span>
+                            <div class="paragraph"><!-- pygmentize //-->
+                                {{=XML(parse_content(answer.answers.description))}}
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                {{if comments_a.has_key(answer.answers.id):}}
+                    <tr>
+                        <td colspan="2">
+                            <table class="comment-table" cellspacing="0" cellpadding="0">
+                                <thead>
+                                    <tr>
+                                        <th><div style="margin:5px 0 5px 0;"><b><a name="commentsAnswerStart">{{=XML(T('Comments For Answer'))}}</a></b></div></th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                {{for comment in comments_a[answer.answers.id]:}}
+                                    <tr>
+                                        <td>
+                                            <div style="font-weight:bold;">
+                                                {{if stackhelper.user_can_vote():}}
+                                                    <a href="javascript:void(0);"
+                                                    class="nolink"
+                                                    onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['comment', comment.comments.id, 'up', question.questions.id], vars=dict(from_ajax=1))}}', 'c_votes_display_{{=comment.comments.id}}', 1);return false;"
+                                                    title="{{=XML(T('Vote Up'))}}"><img src="{{=URL(r=request, c='static/images/small', f='checkmark.png')}}"
+                                                    alt="{{=XML(T('Vote Up'))}}"
+                                                    title="{{=XML(T('Vote Up'))}}" /></a>
+                                                    <a href="javascript:void(0);"
+                                                    class="nolink"
+                                                    onclick="ajaxSubmit('{{=URL(r=request, c='members', f='vote', args=['comment', comment.comments.id, 'down', question.questions.id], vars=dict(from_ajax=1))}}', 'c_votes_display_{{=comment.comments.id}}', -1);return false;"
+                                                    title="{{=XML(T('Vote Down'))}}"><img src="{{=URL(r=request, c='static/images/small', f='x.png')}}"
+                                                    alt="{{=XML(T('Vote Down'))}}"
+                                                    title="{{=XML(T('Vote Down'))}}" /></a>
+                                                {{else:}}
+                                                    <img src="{{=URL(r=request, c='static/images/small', f='checkmark_disabled.png')}}"
+                                                    alt="{{=XML(T('Not enough credits to upvote'))}}" />
+                                                    <img src="{{=URL(r=request, c='static/images/small', f='x_disabled.png')}}"
+                                                    alt="{{=XML(T('Not enough Credits to downvote'))}}"
+                                                    title="{{=XML(T('Not enough Credits to downvote'))}}" />
+                                                {{pass}}
+                                                <a name="comment{{=comment.comments.id}}">{{=XML(T('By'))}}: {{=comment.member_properties.property_value}}
+                                                ({{=stackhelper.get_user_role(comment.comments.modified_by)}})</a>,
+                                                {{=XML(T('Updated'))}}: {{=prettydate(comment.comments.modified_on, T)}},
+                                                {{=XML(T('Votes'))}}: <span id="c_votes_display_{{=comment.comments.id}}">{{=comment.comments.votes_up - comment.comments.votes_dn}}</span>
+                                                {{if auth_user.has_role('Manager,SysAdmin') or auth_user.get_user_id() == comment.comments.created_by:}}
+                                                    | <a href="{{=URL(r=request, c='members', f='edit_comment', args=[comment.comments.id, question.questions.id])}}"
+                                                    class="bold"
+                                                    title="{{=XML(T('Edit this comment'))}}">{{=XML(T('Edit this comment'))}}</a>
+                                                {{pass}}
+                                                {{if auth_user.is_auth():}}|
+                                                    <a title=""
+                                                    href="{{=URL(r=request, c='members', f='flag_entry', args=[comment.comments.id, question.questions.id, 'comment'])}}"
+                                                    onclick="return confirm('This will flag this comment for removal by the administrators\n\nPlease Confirm.');"
+                                                    class="bold">Report as Offensive</a>
+                                                {{pass}}
+                                            </div>
+                                            <div class="pad-comment">{{=XML(parse_content(comment.comments.description))}}</div>
+                                        </td>
+                                    </tr>
+                                {{pass}}
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                {{pass}}
+                <tr><td colspan="2"><div class="hr"><hr /></div></td></tr>
+            {{pass}}
+        </tbody>
+    </table>
+{{else:}}
+    <p><em>{{=XML(T('This question does not have any answers yet'))}}.</em></p>
+{{pass}}
+
+<div class="paragraph">
+    <h3><a href="{{=URL(r=request, c='default', f='index')}}"
+    title="{{=XML(T('Back to Home Page'))}}">{{=XML(T('Back to Home Page'))}}</a></h3>
+</div>
+
+{{if auth_user.is_auth():}}
+    <!-- Answer Add Form: Begin //-->
+    <form id="answer_question_form" method="post" action="">
+        <fieldset id="answer_question_form_fields">
+            <input type="hidden" id="form_submitted" name="form_submitted" value="1" />
+            <input type="hidden" id="qid" name="qid" value="{{=question.questions.id}}" />
+            <h2><a name="add_answer" title="">{{=XML(T('Your Answer'))}}:</a></h2>
+            <div><textarea id="answer" name="answer" cols="0" rows="0" style="width:800px;height:250px;">{{=request.vars.get('answer', '')}}</textarea></div>
+        </fieldset>
+
+        <div class="paragraph-all info">
+            Basic html is allowed, use of <span class="explain">&lt;b&gt; &lt;i&gt;</span> ok to use, in addition, use the following <i>pseudo-code</i>
+            to highlight and nicely format your code if you post any code snippet <i>(Click to Insert)</i>:
+            <a href="javascript:void(0);" onclick="add_helper('[code-python][/code-python]');return false;" title="">[code-python]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c][/code-c]');return false;" title="">[code-c]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c++][/code-c++]');return false;" title="">[code-c++]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c#][/code-c#]');return false;" title="">[code-c#]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-php][/code-php]');return false;" title="">[code-php]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-java][/code-java]');return false;" title="">[code-java]</a>,
+            or
+            <a href="javascript:void(0);" onclick="add_helper('[code][/code]');return false;" title="">[code]</a>
+            (for a language not included in the previous code definitions).<br />Close your code snippet
+            with a matching <span class="explain">[/code-<i>language</i>]</span> if applicable or manually added.
+        </div>
+
+        <div class="paragraph">
+            <input type="submit" id="preview_answer" name="preview_answer" value="{{=XML(T('Preview Answer'))}}" />
+            {{if view_info.get('form_submitted'):}}
+                <input type="submit" id="post_answer" name="post_answer" value="{{=XML(T('Post Answer'))}}" />
+            {{pass}}
+        </div>
+    </form>
+
+    {{if view_info.get('preview_answer'):}}
+        <h3 class="fancy"><a name="answer_preview" title="">{{=XML(T('Answer Preview'))}}</a></h3>
+        <div class="paragraph">
+            {{=XML(parse_content(view_info['answer']))}}
+        </div>
+    {{pass}}
+
+    <script type="text/javascript">
+    <!--
+        function add_helper(s_value) {
+            var oquestion = document.getElementById('answer');
+
+            // IE support
+            if (document.selection) {
+                oquestion.focus();
+                sel = document.selection.createRange();
+                sel.text = s_value;
+            }
+            // MOZILLA/NETSCAPE support
+            else if (oquestion.selectionStart || oquestion.selectionStart == 0) {
+                var start_pos = oquestion.selectionStart;
+                var end_pos = oquestion.selectionEnd;
+                oquestion.value = oquestion.value.substring(0, start_pos) + s_value + oquestion.value.substring(end_pos, oquestion.value.length);
+            } else {
+                oquestion.value += s_value;
+            }
+
+            //document.getElementById('question').focus();
+        }
+    //-->
+    </script>
+    <!-- Answer Add Form: End //-->
+{{else:}}
+    <p style="text-align:center;margin-top:30px;">{{=XML(T('You may post an answer by signing in or registering for an account'))}}
+    <a href="{{=URL(r=request, c='members', f='login')}}" title="{{=XML(T('Log In/Registering'))}}" class="bold">Here</a></p>
+{{pass}}
+
+<script type="text/javascript">
+<!--
+    // This little snippet moves the cursor to the appropriate place on the page
+    var posted = {{if view_info.get('preview_answer'):}}true{{else:}}false{{pass}};
+    if (posted) {
+        window.location.hash = 'answer_preview';
+    }
+    {{if request.vars.get('anchor', '') != '':}}
+    window.location.hash = '{{=request.vars['anchor']}}';
+    {{pass}}
+
+    // Highlight the "Questions" tab
+    document.getElementById('aquestions').className = 'active';
+//-->
+</script>

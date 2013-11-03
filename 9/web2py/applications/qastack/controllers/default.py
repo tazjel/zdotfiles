@@ -33,6 +33,10 @@ if False:
         as auth_user
     from qastack.modules.QAStackHelper import QAStackHelper as stackhelper
 
+#np_extractor = NPExtractor(sentence)
+def windex():
+      return dict() 
+    
 
 def index():
     """

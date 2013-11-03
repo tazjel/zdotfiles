@@ -1,0 +1,95 @@
+{{extend 'qastack_layout.html'}}
+
+<h2 class="fancy">{{=XML(T('Edit Comment'))}}</h2>
+
+{{if view_info['errors']:}}
+    <p class="err">{{=XML(T('There was one or more messages generated while processing your request, please review the following'))}}</p>
+    <ul>
+        {{for error in view_info['errors']:}}
+            <li class="err">{{=XML(T(error))}}</li>
+        {{pass}}
+    </ul>
+{{pass}}
+
+<h3>Comment</h3>
+
+{{if can_edit:}}
+    <form id="edit_form" method="post">
+        <fieldset id="ask_form_fields">
+            <input type="hidden" id="form_submitted" name="form_submitted" value="1" />
+            <input type="hidden" id="cid" name="cid" value="{{=cid}}" />
+            <input type="hidden" id="qid" name="qid" value="{{=qid}}" />
+            <table cellspacing="1" cellpadding="1" style="width:100%;">
+                <tbody>
+                    <tr>
+                        <td style="width:20%;">{{=XML(T('Comment'))}}:</td>
+                        <td style="width:80%;">
+                            <textarea id="description" name="description"
+                            cols="0" rows="0"
+                            style="width:80%;height:250px;">{{=request.vars.get('description', comment.description)}}</textarea>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </fieldset>
+        
+        <div class="paragraph-all">
+            <input type="submit" id="update_comment" name="update_comment" value="{{=XML(T('Update Comment'))}}"
+                   onclick="return confirm('Please confirm you wish to edit this comment.');" />
+            <input type="submit" id="cancel_edit" name="cancel_edit" value="{{=XML(T('Cancel'))}}" />
+            {{if auth_user.is_admin():}}
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="submit" id="hide_c" name="hide_c" value="Remove This Comment"
+                onclick="return confirm('WARNING: This comment will be hidden from public view.\n\nPlease Confirm');" />
+            {{pass}}
+        </div>
+    
+        <div class="paragraph">
+            Basic html is allowed, use of <span class="explain">&lt;b&gt; &lt;i&gt;</span> ok to use, in addition, use the following <i>pseudo-code</i>
+            to highlight and nicely format your code if you post any code snippet <i>(Click to Insert)</i>:
+            <a href="javascript:void(0);" onclick="add_helper('[code-python][/code-python]');return false;" title="">[code-python]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c][/code-c]');return false;" title="">[code-c]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c++][/code-c++]');return false;" title="">[code-c++]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-c#][/code-c#]');return false;" title="">[code-c#]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-php][/code-php]');return false;" title="">[code-php]</a>,
+            <a href="javascript:void(0);" onclick="add_helper('[code-java][/code-java]');return false;" title="">[code-java]</a>,
+            or
+            <a href="javascript:void(0);" onclick="add_helper('[code][/code]');return false;" title="">[code]</a>
+            (for a language not included in the previous code definitions).<br />Close your code snippet
+            with a matching <span class="explain">[/code-<i>language</i>]</span> if applicable or manually added.
+        </div>
+    
+    </form>
+    
+    <script type="text/javascript">
+    <!--
+        function add_helper(s_value) {
+            var oanswer = document.getElementById('description');
+    
+            // IE support
+            if (document.selection) {
+                oanswer.focus();
+                sel = document.selection.createRange();
+                sel.text = s_value;
+            }
+            // MOZILLA/NETSCAPE support
+            else if (oanswer.selectionStart || oanswer.selectionStart == 0) {
+                var start_pos = oanswer.selectionStart;
+                var end_pos = oanswer.selectionEnd;
+                oanswer.value = oanswer.value.substring(0, start_pos) + s_value + oanswer.value.substring(end_pos, oanswer.value.length);
+            } else {
+                oanswer.value += s_value;
+            }    
+        }
+        // Put the focus on the comment textarea
+        document.getElementById('description').focus();
+    //-->
+    </script>
+{{else:}}
+    <p class="error">Unable to edit comment, this may be due to the following reasons:</p>
+    <ul>
+        <li class="error">You are not authorized to edit this comment.</li>
+        <li class="error">This comment has been disabled by the System Administrator.</li>
+    </ul>
+    <p><a href="javascript:void(0);" title="" onclick="history.go(-1);">Go Back</a></p>
+{{pass}}
