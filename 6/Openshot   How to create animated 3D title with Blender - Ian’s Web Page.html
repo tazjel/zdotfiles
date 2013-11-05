@@ -1,0 +1,2276 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr" lang="fr" dir="ltr">
+	<head>
+	
+	<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+	<meta name="revisit-after" content="30 days" />
+	<meta name="robots" content="index,follow" />
+	<meta name="generator" content="SPIP 2.1.23 [20601] - Sarka-SPIP 3.0.8 [54368]" />
+	<meta name="author" content="Collectif Sarka-SPIP" />
+	<meta name="copyright" content="Copyright Ian’s Web Page" />
+	<meta name="distribution" content="global" />
+	<meta name="description" content="Réaliser des titres animés pour OpenShot à l’aide de Blender Retrouvez les explications complètes dans Linux Pratique (...)" />
+	
+
+	
+	
+	
+	
+	<link rel="stylesheet" type="text/css" media="all" href="plugins/auto/sarkaspip_3/css/raz.css" />
+	
+	<link rel="stylesheet" type="text/css" media="all" href="plugins/auto/sarkaspip_3/css/layouts/layout13.css" />
+	
+	<link rel="stylesheet" type="text/css" media="all" href="prive/spip_style.css" />
+	<link rel="stylesheet" type="text/css" media="all" href="squelettes-dist/spip_formulaires.css" />
+	
+	<link rel="stylesheet" type="text/css" media="all" href="http://www.morere.eu/spip.php?page=style.css" />
+	
+	<link rel="stylesheet" href="plugins/auto/sarkaspip_3/css/impression.css" type="text/css" media="print" />
+
+	
+	<link rel="shortcut icon" href="plugins/auto/sarkaspip_3/images/favicon.ico" />
+	
+	<link rel="alternate" type="application/rss+xml" title="Syndiquer tout le site" href="http://www.morere.eu/spip.php?page=backend" />
+	
+
+	<title>Openshot : How to create animated 3D title with Blender - Ian’s Web Page</title>
+	
+	
+	<link rel='stylesheet' type='text/css' media='all' href='extensions/porte_plume/css/barre_outils.css' />
+<link rel='stylesheet' type='text/css' media='all' href='http://www.morere.eu/spip.php?page=barre_outils_icones.css' />
+
+<!-- Debut CS -->
+<link rel="stylesheet" href="local/couteau-suisse/header.css" type="text/css" media="all" />
+<!-- Fin CS -->
+
+<link rel="stylesheet" href="plugins/auto/rainette/rainette.css" type="text/css" media="all" /><link rel="stylesheet" href="http://www.morere.eu/plugins/auto/thickbox2/thickbox.css" type="text/css" media="all" />
+<script src="prive/javascript/jquery.js" type="text/javascript"></script>
+
+<script src="prive/javascript/jquery.form.js" type="text/javascript"></script>
+
+<script src="prive/javascript/ajaxCallback.js" type="text/javascript"></script>
+
+<script src="prive/javascript/jquery.cookie.js" type="text/javascript"></script>
+<!-- insert_head --><!--[if lt IE 7]>
+	<script src='extensions/msie_compat/javascript/jquery.ifixpng.js'></script>
+	<script type='text/javascript'>//<![CDATA[
+		jQuery.ifixpng('rien.gif');		
+		function fixie() {
+			jQuery('img').ifixpng();
+		}
+		$(document).ready(function() { fixie(); });
+		onAjaxLoad(fixie);	
+	//]]></script>
+<![endif]-->
+<script type='text/javascript' src='extensions/porte_plume/javascript/xregexp-min.js'></script>
+<script type='text/javascript' src='extensions/porte_plume/javascript/jquery.markitup_pour_spip.js'></script>
+<script type='text/javascript' src='extensions/porte_plume/javascript/jquery.previsu_spip.js'></script>
+<script type='text/javascript' src='http://www.morere.eu/spip.php?page=porte_plume_start.js&amp;lang=fr'></script>
+
+<!-- Debut CS -->
+<script src="local/couteau-suisse/header.js" type="text/javascript"></script>
+<!-- Fin CS -->
+
+<script src="http://www.morere.eu/plugins/auto/sarkaspip_3/scripts/menu_deroulant_vertical.js" type="text/javascript"></script><script src="http://www.morere.eu/plugins/auto/sarkaspip_3/scripts/jcarousellite_1.0.1.js" type="text/javascript"></script><script src="http://www.morere.eu/plugins/auto/sarkaspip_3/scripts/jquery.mousewheel.js" type="text/javascript"></script><script src="http://www.morere.eu/plugins/auto/sarkaspip_3/scripts/jquery.corner.js" type="text/javascript"></script><script src="http://www.morere.eu/spip.php?page=sarkaspip_coins.js" type="text/javascript"></script><script src='http://www.morere.eu/plugins/auto/thickbox2/javascript/thickbox.js' type='text/javascript'></script><script type="text/javascript"><!--
+// Inside the function "this" will be "document" when called by ready() 
+// and "the ajaxed element" when called because of onAjaxLoad 
+var init_f = function() {
+	if (jQuery("a.thickbox,a[type='image/jpeg'],a[type='image/png'],a[type='image/gif']",this).addClass("thickbox").size()) {
+		TB_chemin_animation = "http://www.morere.eu/plugins/auto/thickbox2/circle_animation.gif";
+		TB_chemin_close = "http://www.morere.eu/plugins/auto/thickbox2/close.gif";
+		TB_chemin_css = "http://www.morere.eu/plugins/auto/thickbox2/thickbox.css";
+		TB_init(this);
+	};
+}
+//onAjaxLoad is defined in private area only
+if(typeof onAjaxLoad == "function") onAjaxLoad(init_f);
+if (window.jQuery) jQuery(document).ready(init_f);
+// --></script>
+	
+	</head>
+<body dir="ltr">
+<div id="container">
+	<div id="header">
+		
+		<div class="bandeau_haut">	
+	
+	<div class="nav_bandeau">  
+    	<!-- Navigation dans les langues -->
+		 
+			<div class="nav_langue">
+		<ul>
+
+			<li class="on">
+				&#91;<a rel="start" href="spip.php?article168&amp;lang=fr" title="fran&#231;ais">fr</a>&#93;
+			</li>
+
+		</ul>
+	</div>		
+        <!-- Navigation dans les raccourcis -->
+		
+        <!-- Navigation dans les raccourcis -->
+		
+	</div>
+	
+	 
+		
+	
+	<a class="site_logo" href="http://www.morere.eu" title="Accueil du site"><img class='spip_logos' alt="" src="local/cache-vignettes/L36xH36/siteon0-e5814.png" width='36' height='36' style='height:36px;width:36px;' /></a>
+	<div class="site_nom">
+		 
+		   <h1><a href="http://www.morere.eu" title="Accueil du site">Ian’s Web Page</a></h1>
+		
+	   <h2><table width="100%" cellpadding="4"><tr valign="middle"><td align="left">pour partager expériences et codes sources...   <a href="http://www.morere.eu/spip.php?page=backend"> <img src="http://www.morere.eu/IMG/rss.png"></a></td> 		</tr> </table>	 </h2>
+	</div>
+	<br class="nettoyeur" />
+	
+</div>
+
+
+
+
+
+ 
+	<div class="bandeau_chemin">
+	 
+		<div class="recherche_chemin">
+			
+			<div class="formulaire_spip formulaire_recherche" id="formulaire_recherche">
+<form action="http://www.morere.eu/spip.php?page=recherche" method="get"><div>
+	<input name="page" value="recherche" type="hidden" />
+	
+	<label for="recherche">Rechercher&nbsp;:</label>
+	<input type="text" class="text" size="10" name="recherche" id="recherche" accesskey="4" /><input type="submit" class="submit" value="&gt;&gt;" title="Rechercher" />
+</div></form>
+</div>
+			<span>Rechercher dans le site</span>
+		</div>
+	
+		
+
+	<div class="chemin">
+	<a href="http://www.morere.eu">Accueil du site</a>
+
+	
+		&gt;
+		 
+			 
+				<a href="spip.php?rubrique9" title="Se rendre sur la page de cette rubrique">Linux / Logiciels Libres</a>			
+			
+		
+	
+		&gt;
+		 
+			 
+				<a href="spip.php?rubrique47" title="Se rendre sur la page de cette rubrique">Blender</a>			
+			
+		
+
+	</div>
+
+</div>	</div>
+	
+	<div id="wrapper">
+		<div id="content">
+			
+			<div id="article" class="article">
+				
+				<div class="titre"><h1>Openshot&nbsp;: How to create animated 3D title with Blender</h1></div>
+	
+	
+	<div class="description">
+	 
+		
+	
+
+	
+
+	 
+		<div class="cartouche">
+		
+		
+		
+		 
+			
+		
+		jeudi&nbsp;1er novembre 2012 <br />
+
+		
+		par &nbsp;<span class="vcard author"><a class="url fn spip_in" href="spip.php?auteur1">Yann</a></span> <br />
+
+		
+		 
+			popularit&eacute;&nbsp;:&nbsp;100%
+		
+
+		
+		
+		
+		
+		
+		
+	</div>
+		<br class="nettoyeur" />
+		<div class="logo gauche"><img class='spip_logos' alt="" src="local/cache-vignettes/L73xH73/rubon47-9b134.jpg" width='73' height='73' onmouseover="this.src='local/cache-vignettes/L73xH73/ruboff47-de65f.jpg'" onmouseout="this.src='local/cache-vignettes/L73xH73/rubon47-9b134.jpg'" style='height:73px;width:73px;' /></div>
+	
+		
+		<div class="texte"><div class="cs_sommaire cs_sommaire_avec_fond" id="outil_sommaire">
+  <div class="cs_sommaire_inner">
+    <div class="cs_sommaire_titre_avec_fond">&nbsp; Sommaire &nbsp;</div>
+    <ul>
+      
+<li><a  title="R&#233;aliser des titres anim&#233;s pour OpenShot &#224; l&#39;aide de Blender" href="/spip.php?article169#outil_sommaire_0">Réaliser des titres animés&nbsp;(...)</a></li>
+<li><a  title="Zip file of the animated title" href="/spip.php?article169#outil_sommaire_1">Zip file of the animated&nbsp;(...)</a></li>
+<li><a  title="Animation Idea and automation" href="/spip.php?article169#outil_sommaire_2">Animation Idea and automation</a></li>
+<li><a  title="Soft text animation and automation" href="/spip.php?article169#outil_sommaire_3">Soft text animation and&nbsp;(...)</a></li>
+<li><a  title="Integration" href="/spip.php?article169#outil_sommaire_4">Integration</a></li>
+    </ul>
+  </div>
+</div><h3 class="spip" id="outil_sommaire_0"><a title="Sommaire" href="/spip.php?article169#outil_sommaire" class="sommaire_ancre">&nbsp;</a>Réaliser des titres animés pour OpenShot à l&#8217;aide de Blender</h3>
+<p>Retrouvez les explications complètes dans Linux Pratique 77</p>
+
+<table class="spip">
+<tr class='row_even'>
+<td>  <span class='spip_document_570 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/jpg/lp77-50.jpg" class="thickbox" title="JPEG - 29.6 ko">
+				<img src="IMG/jpg/lp77-50.jpg" width="113" height="150" alt="JPEG - 29.6 ko" />
+			</a>
+		
+		
+		
+		
+	</span>  </td>
+<td> <span class='spip_document_571 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/jpg/lp77-51.jpg" class="thickbox" title="JPEG - 26.1 ko">
+				<img src="IMG/jpg/lp77-51.jpg" width="113" height="150" alt="JPEG - 26.1 ko" />
+			</a>
+		
+		
+		
+		
+	</span>  </td></tr>
+</table>
+<p><a href="http://www.ed-diamond.com/feuille_lpra77/index.html" class='spip_out' rel='external'>http://www.ed-diamond.com/feuille_lpra77/index.html</a></p>
+
+<h3 class="spip" id="outil_sommaire_1"><a title="Sommaire" href="/spip.php?article169#outil_sommaire" class="sommaire_ancre">&nbsp;</a>Zip file of the animated title</h3>
+<table class="spip">
+<thead><tr class='row_first'><th scope='col'> Softtext.zip </th></tr></thead>
+<tbody>
+<tr class='row_odd'>
+<td> <dl class='spip_document_547 spip_documents spip_documents_center'>
+	<dt><a href="IMG/zip/softtext.zip" title='Zip - 154.9 ko' type="application/zip"><img src='prive/vignettes/zip.png' width='52' height='52' alt='Zip - 154.9 ko' /></a></dt>
+</dl>
+</td></tr>
+</tbody>
+</table>
+<h3 class="spip" id="outil_sommaire_2"><a title="Sommaire" href="/spip.php?article169#outil_sommaire" class="sommaire_ancre">&nbsp;</a>Animation Idea and automation</h3>
+<p>The first thing to do consists in creating an title animation with Blender. You can grab ideas all over the net. Just make a beautiful title in 3D wich is animated <img alt=":-)" title=":-)" class="no_image_filtrer format_png" src="http://www.morere.eu/plugins/auto/couteau_suisse/img/smileys/sourire.png" width="19" height="19"/>.</p>
+
+<p>After that, you need to automate it using the API of blender. You can read lots of tutorial, watch amazing videos too. This is the big part of the work&nbsp;: create and automate.</p>
+
+<p>It remains the integration in Openshot. That&#8217;s I&#8217;m going to explain here, based on an example.</p>
+
+<h3 class="spip" id="outil_sommaire_3"><a title="Sommaire" href="/spip.php?article169#outil_sommaire" class="sommaire_ancre">&nbsp;</a>Soft text animation and automation</h3>
+<p><strong>Blender capture of the working blend file</strong></p>
+
+<p>The chosen animation on this example, is made of a falling text on a rough surface. The text is made of a soft material. So when reaching the ground, the text bounces and trembles before stopping. In the simulation, we can add a cylinder to show more physical effects.</p>
+
+<p><span class='spip_document_539 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/png/soft_text_creation.png" class="thickbox" title="PNG - 396.5 ko">
+				<img src="IMG/png/soft_text_creation.png" width="150" height="92" alt="PNG - 396.5 ko" />
+			</a>
+		
+		
+		
+		
+	</span></p>
+
+<p><span class='spip_document_540 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/png/soft_text_creation2.png" class="thickbox" title="PNG - 329.7 ko">
+				<img src="IMG/png/soft_text_creation2.png" width="150" height="120" alt="PNG - 329.7 ko" />
+			</a>
+		
+		
+		
+		
+	</span></p>
+
+<p><strong>Source code of the automation (using Blender API)</strong></p>
+
+<p>In this source code, we manage the possibility to hide the red cylinder and its physical effect on our soft text. The control variable is name &#8220;cylinder&#8221;</p>
+
+<div class="coloration_code"><div class="spip_python code"><span style="color: #ff7700;font-weight:bold;">import</span> bpy<br />
+<span style="color: #ff7700;font-weight:bold;">from</span> bpy.<span style="color: black;">props</span> <span style="color: #ff7700;font-weight:bold;">import</span> <span style="color: #66cc66;">*</span><br />
+<span style="color: #ff7700;font-weight:bold;">from</span> <span style="color: #dc143c;">math</span> <span style="color: #ff7700;font-weight:bold;">import</span> pi<br />
+&nbsp;<br />
+cylinder =<span style="color: #483d8b;">'1'</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;">#http://www.sebastianbauer.name/archive/117</span><br />
+<span style="color: #ff7700;font-weight:bold;">def</span> moveToLayer<span style="color: black;">&#40;</span> <span style="color: #008000;">object</span>, layer <span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; layers = <span style="color: black;">&#91;</span><span style="color: #008000;">False</span><span style="color: black;">&#93;</span><span style="color: #66cc66;">*</span><span style="color: #ff4500;">20</span><br />
+&nbsp; &nbsp; layers<span style="color: black;">&#91;</span>layer<span style="color: black;">&#93;</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; <span style="color: #008000;">object</span>.<span style="color: black;">layers</span> = layers<br />
+&nbsp;<br />
+<span style="color: #ff7700;font-weight:bold;">def</span> createSoftText<span style="color: black;">&#40;</span>title,extrude,bevel_depth,spacemode,textsize,width,font<span style="color: black;">&#41;</span>:<br />
+&nbsp;<br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> cylinder==<span style="color: #483d8b;">'1'</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide_render</span> = <span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide</span> = <span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting Ground</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#if bpy.data.objects['Ground'].modifiers.keys()[0] != 'Collision':</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">modifiers</span>.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'Collision'</span><span style="color: black;">&#41;</span> == -<span style="color: #ff4500;">1</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#print(&quot;collision &nbsp;= empty&quot;)</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">&quot;COLLISION&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">else</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">print</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">&quot;OK&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">else</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting Cylinder</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">modifiers</span>.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'Collision'</span><span style="color: black;">&#41;</span> <span style="color: #66cc66;">!</span>= -<span style="color: #ff4500;">1</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_remove</span><span style="color: black;">&#40;</span>modifier=<span style="color: #483d8b;">&quot;Collision&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide_render</span> = <span style="color: #008000;">True</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">text_add</span><span style="color: black;">&#40;</span>view_align=<span style="color: #008000;">False</span>, enter_editmode=<span style="color: #008000;">False</span>,location=<span style="color: black;">&#40;</span><span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span><span style="color: black;">&#41;</span>, rotation=<span style="color: black;">&#40;</span><span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; ActiveObjectText = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; newtext = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#erasing previous objects</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">name</span> <span style="color: #66cc66;">!</span>= <span style="color: #483d8b;">'Text'</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting and erasing Text</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Text'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">delete</span><span style="color: black;">&#40;</span>use_global=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#need to delete other objects</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting and erasing Turbulence field</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Enveloppe2'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">delete</span><span style="color: black;">&#40;</span>use_global=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting newText</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= newtext<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#naming/renaming the text</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">name</span> = <span style="color: #483d8b;">'Text'</span><span style="color: #66cc66;">;</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Text'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#rotating text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> <span style="color: #808080; font-style: italic;">#xaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> &nbsp;<span style="color: #808080; font-style: italic;">#yaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> &nbsp;<span style="color: #808080; font-style: italic;">#zaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=-<span style="color: #ff4500;">9.75</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">5</span> <span style="color: #808080; font-style: italic;">#dur to shadow on the ground</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#changing text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">body</span> = title<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#centering text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">align</span>= spacemode<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#extrude text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">extrude</span>=extrude<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bevel text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">bevel_depth</span> = bevel_depth<br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">bevel_resolution</span> = <span style="color: #ff4500;">5</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#text size</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">size</span> = textsize<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">data</span>.<span style="color: black;">space_character</span> = width<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">data</span>.<span style="color: black;">font</span> = font<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#convert to mesh to apply effect</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">convert</span><span style="color: black;">&#40;</span>target=<span style="color: #483d8b;">'MESH'</span>, keep_original=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#put origin to center of text</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='MEDIAN')</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Don't use Median, because it does not always put the origin to the center!</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">origin_set</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'GEOMETRY_ORIGIN'</span>, center=<span style="color: #483d8b;">'BOUNDS'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#affect material</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">materials</span>.<span style="color: black;">append</span><span style="color: black;">&#40;</span>bpy.<span style="color: black;">data</span>.<span style="color: black;">materials</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MAT_PRE_Obsidian'</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#copy the pre loopecut cube</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#obsolete</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.select_name(name='Enveloppe')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Enveloppe'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#activate in 3D</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">duplicate</span><span style="color: black;">&#40;</span>linked=<span style="color: #008000;">False</span>, mode=<span style="color: #483d8b;">'TRANSLATION'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={&quot;linked&quot;:False, &quot;mode&quot;:'TRANSLATION'}, TRANSFORM_OT_translate={&quot;value&quot;:(0, 0, 0), &quot;constraint_axis&quot;:(False, False, False), &quot;constraint_orientation&quot;:'GLOBAL', &quot;mirror&quot;:False, &quot;proportional&quot;:'DISABLED', &quot;proportional_edit_falloff&quot;:'SMOOTH', &quot;proportional_size&quot;:1, &quot;snap&quot;:False, &quot;snap_target&quot;:'CLOSEST', &quot;snap_point&quot;:(0, 0, 0), &quot;snap_align&quot;:False, &quot;snap_normal&quot;:(0, 0, 0), &quot;texture_space&quot;:False, &quot;release_confirm&quot;:False})</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">name</span> = <span style="color: #483d8b;">'Enveloppe2'</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">draw_type</span> = <span style="color: #483d8b;">'WIRE'</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">hide_render</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#need to be on the visible layer to do duplication?</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#moving object</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=-<span style="color: #ff4500;">9.75</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">5</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># mo &nbsp; ve to layer 0 (first one)</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#moveToLayer(ActiveObjectEnveloppe,0)</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#adjust size of existed envelope to text</span><br />
+&nbsp; &nbsp; IncrementX = <span style="color: #ff4500;">0.3</span><br />
+&nbsp; &nbsp; IncrementY = <span style="color: #ff4500;">0.3</span><br />
+&nbsp; &nbsp; IncrementZ = <span style="color: #ff4500;">0.15</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">dimensions</span> = <span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>+IncrementX<span style="color: black;">&#41;</span>,<span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>+IncrementY<span style="color: black;">&#41;</span>, <span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>+IncrementZ<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN', center='MEDIAN')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">origin_set</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'GEOMETRY_ORIGIN'</span>, center=<span style="color: #483d8b;">'BOUNDS'</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'SOFT_BODY'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#link text to enveloppe</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#obsolete</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.select_name(name='Enveloppe')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = ActiveObjectText<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#activate in 3D</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'MESH_DEFORM'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#configuring mesh deform</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">modifiers</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MeshDeform'</span><span style="color: black;">&#93;</span>.<span style="color: #008000;">object</span> = ActiveObjectEnveloppe<br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">modifiers</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MeshDeform'</span><span style="color: black;">&#93;</span>.<span style="color: black;">precision</span> = <span style="color: #ff4500;">6</span> <span style="color: #808080; font-style: italic;">#&lt;6 does not work!!! grid precision?</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#binding text to cube</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">meshdeform_bind</span><span style="color: black;">&#40;</span>modifier=<span style="color: #483d8b;">&quot;MeshDeform&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#softbody configuration</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">use_goal</span>=<span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">use_stiff_quads</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">plastic</span>=<span style="color: #ff4500;">10</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">data</span>.<span style="color: black;">update</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: black;">ptcache</span>.<span style="color: black;">free_bake_all</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span> &nbsp; <span style="color: #808080; font-style: italic;"># erase baked dynamics</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: black;">ptcache</span>.<span style="color: black;">bake_all</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span> <span style="color: #808080; font-style: italic;"># bake dynamics : take time but needed before rendering animation</span><br />
+&nbsp;<br />
+&nbsp;<br />
+font = bpy.<span style="color: black;">data</span>.<span style="color: black;">fonts</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;Bfont&quot;</span><span style="color: black;">&#93;</span> <span style="color: #808080; font-style: italic;">#don't forget to save datablock with Bfont :-)</span><br />
+extrude = <span style="color: #ff4500;">0.1</span><br />
+bevel_depth = <span style="color: #ff4500;">0.01</span><br />
+spacemode = <span style="color: #483d8b;">'CENTER'</span><br />
+text_size = <span style="color: #ff4500;">1.0</span><br />
+width = <span style="color: #ff4500;">1.0</span><br />
+title=<span style="color: #483d8b;">&quot;OpenShot 1.4.3&quot;</span><br />
+&nbsp;<br />
+createSoftText<span style="color: black;">&#40;</span>title,extrude,bevel_depth,spacemode,text_size,width,font<span style="color: black;">&#41;</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/5a7f72cd93cf47762776c770a5a0814c.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p><strong>Result image (number 85 in animation)</strong></p>
+
+<p><span class='spip_document_541 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/png/result.png" class="thickbox" title="PNG - 786.6 ko">
+				<img src="IMG/png/result.png" width="150" height="85" alt="PNG - 786.6 ko" />
+			</a>
+		
+		
+		
+		
+	</span></p>
+
+<p><strong>Making of</strong></p>
+
+<center>
+<object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/KxW25ilyjc0?version=3&amp;hl=fr_FR&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/KxW25ilyjc0?version=3&amp;hl=fr_FR&amp;rel=0" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+</center>
+<center>
+<object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/aL2VqshFPmk?version=3&amp;hl=fr_FR&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/aL2VqshFPmk?version=3&amp;hl=fr_FR&amp;rel=0" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+</center>
+<h3 class="spip" id="outil_sommaire_4"><a title="Sommaire" href="/spip.php?article169#outil_sommaire" class="sommaire_ancre">&nbsp;</a>Integration</h3>
+<p><strong>How it works</strong></p>
+
+<p>Now the animation is full fonctionning in Blender (You can try it with the blend file embedded in the ZIP archive). We have to use it with Openshot. Before we need to understand how an animation made with Blender can be used in Openshot.</p>
+
+<p>For that, Openshot use the following synoptic&nbsp;:</p>
+
+<p><span class='spip_document_542 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/png/synoptic.png" class="thickbox" title="PNG - 570.3 ko">
+				<img src="IMG/png/synoptic.png" width="150" height="49" alt="PNG - 570.3 ko" />
+			</a>
+		
+		
+		
+		
+	</span></p>
+
+<p>Openshot uses 4 files to be able to propose to the user a new 3D title&nbsp;:</p>
+
+<ul class="spip"><li> An icon file which represents the final render of the title in th e Openshot GUI</li><li> An XML file which contains the GUI interface for configuring the 3D title</li><li> A blender file, the main file, which will be use by Blender to generate the animation</li><li> An python file which contains the core code for modifying the blender file according to configuration made by the user in the GUI. All the modification will be given to the blend file when rendering.
+These files are located in different directories under /usr/share/pyshared/openshot/blender&nbsp;:</li></ul>
+<div class="coloration_code"><div class="spip_bash code">$ <span style="color: #c20cb9; font-weight: bold;">tree</span> <span style="color: #660033;">-d</span> <span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>share<span style="color: #000000; font-weight: bold;">/</span>pyshared<span style="color: #000000; font-weight: bold;">/</span>openshot<span style="color: #000000; font-weight: bold;">/</span>blender<br />
+<span style="color: #000000; font-weight: bold;">/</span>usr<span style="color: #000000; font-weight: bold;">/</span>share<span style="color: #000000; font-weight: bold;">/</span>pyshared<span style="color: #000000; font-weight: bold;">/</span>openshot<span style="color: #000000; font-weight: bold;">/</span>blender<br />
+├── blend<br />
+├── earth<br />
+├── icons<br />
+└── scripts<br />
+&nbsp;<br />
+<span style="color: #000000;">4</span> directories</div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/e48e31c206a751e59bbbc43b2b69a154.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>The &#171;&nbsp;blender&nbsp;&#187; directory contains the &#171;&nbsp;XML&nbsp;&#187; files of the titles GUI configurators. The &#171;&nbsp;blend&nbsp;&#187; directory contains originals Blender files which embed animation on a generic text. The &#171;&nbsp;earth&nbsp;&#187; directory contains NASA images for the realistic earth title. The &#8220;icons&#8221; directory contains icons  for the title GUI. The &#8220;scripts&#8221; directory contains python files which link Openshot to Blender for rendering. Theses files are the most difficult to write. They contains all the automation of the animation, and the Blender API commands which modify the original blender file to suit the user&#8217;s configuration.</p>
+
+<p>So we need to create these files for our soft text animation.</p>
+
+<p>When the 3D Title is configured, you can launched rendering. At this time, Openshot is calling Blender in commandline mode like that&nbsp;:</p>
+
+<div class="coloration_code"><div class="spip_bash code">Blender <span style="color: #7a0874; font-weight: bold;">command</span>: <span style="color: #000000; font-weight: bold;">/</span>home<span style="color: #000000; font-weight: bold;">/</span>yann<span style="color: #000000; font-weight: bold;">/</span>Téléchargements<span style="color: #000000; font-weight: bold;">/</span>blender-<span style="color: #000000;">2.62</span>-linux-glibc27-x86_64<span style="color: #000000; font-weight: bold;">/</span>blender <span style="color: #660033;">-b</span> <span style="color: #ff0000;">'/usr/lib/pymodules/python2.7/openshot/blender/blend/explode.blend'</span> <span style="color: #660033;">-P</span> <span style="color: #ff0000;">'/home/yann/.openshot/blender/cdd6b89e-1439-11e2-a257-0024d6b0a314/explode.py'</span><br />
+update_image: <span style="color: #000000; font-weight: bold;">/</span>home<span style="color: #000000; font-weight: bold;">/</span>yann<span style="color: #000000; font-weight: bold;">/</span>.openshot<span style="color: #000000; font-weight: bold;">/</span>blender<span style="color: #000000; font-weight: bold;">/</span>cdd6b89e-1439-11e2-a257-0024d6b0a314<span style="color: #000000; font-weight: bold;">/</span>TitleFileName0075.png<br />
+Blender render thread finished</div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/32eb3fe1c71280c0d5e07dbc5afdaefa.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>Blender is run with two parameters&nbsp;:</p>
+
+<ul class="spip"><li> &#171;&nbsp;-b&nbsp;&#187; indicates the blend file to use and render in background. This option allows to use Openshot during the render&nbsp;; </li><li> &#171;&nbsp;-P&nbsp;&#187; indicates the python script to be executed with the blend file.</li></ul>
+<p>The sample image is written in a subdirectory of your home &#171;&nbsp;/.openshot/blender&nbsp;&#187;.</p>
+
+<p><strong>Creation from previous animation</strong></p>
+
+<p>Except for the icon file, we will use existing files from the Openshot distribution software to create the new ones.</p>
+
+<p>Here is our new icon&nbsp;: <span class='spip_document_543 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/png/title_icon.png" class="thickbox" title="PNG - 61 ko">
+				<img src="IMG/png/title_icon.png" width="150" height="85" alt="PNG - 61 ko" />
+			</a>
+		
+		
+		
+		
+	</span></p>
+
+<p>Other file are created by copying existing files&nbsp;:</p>
+<div class="coloration_code"><div class="spip_bash code">$ <span style="color: #c20cb9; font-weight: bold;">cp</span> <span style="color: #000000; font-weight: bold;">/</span>home<span style="color: #000000; font-weight: bold;">/</span>yann<span style="color: #000000; font-weight: bold;">/</span>Documents<span style="color: #000000; font-weight: bold;">/</span>articles_lpmag<span style="color: #000000; font-weight: bold;">/</span>article_titre_openshot<span style="color: #000000; font-weight: bold;">/</span>images<span style="color: #000000; font-weight: bold;">/</span>title_icon.png .<span style="color: #000000; font-weight: bold;">/</span>icons<span style="color: #000000; font-weight: bold;">/</span>softtext.png<br />
+$ <span style="color: #c20cb9; font-weight: bold;">cp</span> fly_by_1.xml softtext.xml<br />
+$ <span style="color: #c20cb9; font-weight: bold;">cp</span> <span style="color: #000000; font-weight: bold;">/</span>home<span style="color: #000000; font-weight: bold;">/</span>yann<span style="color: #000000; font-weight: bold;">/</span>blender<span style="color: #000000; font-weight: bold;">/</span>softtext<span style="color: #000000; font-weight: bold;">/</span>mysofttext_openshot.blend blend<span style="color: #000000; font-weight: bold;">/</span>softtext.blend<br />
+$ <span style="color: #c20cb9; font-weight: bold;">cp</span> scripts<span style="color: #000000; font-weight: bold;">/</span>fly_by_1.py scripts<span style="color: #000000; font-weight: bold;">/</span>softtext.py</div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/e84fe74ddb288bef182873c8d742d38c.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p><strong>Modification of the XML file for interface</strong></p>
+
+<p>We modify the head of the file to suit the new animation&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code"><span style="color: #66cc66;">&lt;?</span><span style="color: #dc143c;">xml</span> version=<span style="color: #483d8b;">&quot;1.0&quot;</span> encoding=<span style="color: #483d8b;">&quot;UTF-8&quot;</span> standalone=<span style="color: #483d8b;">&quot;no&quot;</span><span style="color: #66cc66;">?&gt;</span><br />
+<span style="color: #66cc66;">&lt;!</span>DOCTYPE openshot-effect<span style="color: #66cc66;">&gt;</span><br />
+<span style="color: #66cc66;">&lt;</span>effect<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>title translatable=<span style="color: #483d8b;">&quot;True&quot;</span><span style="color: #66cc66;">&gt;</span>Falling Soft Text<span style="color: #66cc66;">&lt;</span>/title<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>description translatable=<span style="color: #483d8b;">&quot;True&quot;</span><span style="color: #66cc66;">&gt;</span>The soft boby title <span style="color: #ff7700;font-weight:bold;">is</span> on the ground<span style="color: #66cc66;">&lt;</span>/description<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>icon<span style="color: #66cc66;">&gt;</span>softtext.<span style="color: black;">png</span><span style="color: #66cc66;">&lt;</span>/icon<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>category<span style="color: #66cc66;">&gt;</span>Video<span style="color: #66cc66;">&lt;</span>/category<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>service<span style="color: #66cc66;">&gt;</span>softtext.<span style="color: black;">blend</span><span style="color: #66cc66;">&lt;</span>/service<span style="color: #66cc66;">&gt;</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/15c59f3a4173a03f4901157c2a8e8fc3.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>And in order to manage the cylinder in the animation, we add a dropdown menu in th e GUI&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code">&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>param name=<span style="color: #483d8b;">&quot;cylinder_on_off&quot;</span> <span style="color: #008000;">type</span>=<span style="color: #483d8b;">&quot;dropdown&quot;</span> title=<span style="color: #483d8b;">&quot;Display Cylinder&quot;</span> description=<span style="color: #483d8b;">&quot;&quot;</span><span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>values<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>value name=<span style="color: #483d8b;">&quot;Yes&quot;</span> num=<span style="color: #483d8b;">&quot;1&quot;</span>/<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>value name=<span style="color: #483d8b;">&quot;No&quot;</span> num=<span style="color: #483d8b;">&quot;0&quot;</span>/<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>/values<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>default<span style="color: #66cc66;">&gt;</span><span style="color: #ff4500;">1</span><span style="color: #66cc66;">&lt;</span>/default<span style="color: #66cc66;">&gt;</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/8202ada74b4c50ac44148600c96b8b40.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>Finally modify the animation duration to fit you blend file animation length&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code">&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>param name=<span style="color: #483d8b;">&quot;end_frame&quot;</span> <span style="color: #008000;">type</span>=<span style="color: #483d8b;">&quot;spinner&quot;</span> title=<span style="color: #483d8b;">&quot;End Frame&quot;</span> description=<span style="color: #483d8b;">&quot;&quot;</span><span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>min<span style="color: #66cc66;">&gt;</span><span style="color: #ff4500;">144</span><span style="color: #66cc66;">&lt;</span>/min<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>max<span style="color: #66cc66;">&gt;</span><span style="color: #ff4500;">144</span><span style="color: #66cc66;">&lt;</span>/max<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>default<span style="color: #66cc66;">&gt;</span><span style="color: #ff4500;">144</span><span style="color: #66cc66;">&lt;</span>/default<span style="color: #66cc66;">&gt;</span><br />
+&nbsp; &nbsp; <span style="color: #66cc66;">&lt;</span>/param<span style="color: #66cc66;">&gt;</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/dcfb043604e9a355d7a2767a559f5e7b.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>Even if the new title is not yet operational, you can see the new GUI for our sofftext by launching Openshot&nbsp;:</p>
+
+<p><span class='spip_document_544 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/png/softbody_gui.png" class="thickbox" title="PNG - 65.6 ko">
+				<img src="IMG/png/softbody_gui.png" width="150" height="126" alt="PNG - 65.6 ko" />
+			</a>
+		
+		
+		
+		
+	</span></p>
+
+<p><strong>Modification of the python script</strong></p>
+
+<p>We need to modify the python script to match the new 3D title.</p>
+
+<p>This file is globally divided in 3 parts&nbsp;:</p>
+
+<ul class="spip"><li> Inclusions and funtions&nbsp;;</li><li> Initialisation of all the parameters&nbsp;;</li><li> Modification of the Blender file parameters from the Openshot GUI.</li></ul>
+<p>Just after the &#8220;loadfont&#8221; function we put our &#8220;createSoftText&#8221; function</p>
+
+<div class="coloration_code"><div class="spip_python code"><span style="color: #ff7700;font-weight:bold;">def</span> createSoftText<span style="color: black;">&#40;</span>title,extrude,bevel_depth,spacemode,textsize,width,font<span style="color: black;">&#41;</span>:<br />
+&nbsp;<br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> cylinder==<span style="color: #483d8b;">'1'</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide_render</span> = <span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide</span> = <span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting Ground</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#if bpy.data.objects['Ground'].modifiers.keys()[0] != 'Collision':</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">modifiers</span>.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'Collision'</span><span style="color: black;">&#41;</span> == -<span style="color: #ff4500;">1</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#print(&quot;collision &nbsp;= empty&quot;)</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">&quot;COLLISION&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#else:</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#print(&quot;OK&quot;)</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">else</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting Cylinder</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">modifiers</span>.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'Collision'</span><span style="color: black;">&#41;</span> <span style="color: #66cc66;">!</span>= -<span style="color: #ff4500;">1</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_remove</span><span style="color: black;">&#40;</span>modifier=<span style="color: #483d8b;">&quot;Collision&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide_render</span> = <span style="color: #008000;">True</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">text_add</span><span style="color: black;">&#40;</span>view_align=<span style="color: #008000;">False</span>, enter_editmode=<span style="color: #008000;">False</span>,location=<span style="color: black;">&#40;</span><span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span><span style="color: black;">&#41;</span>, rotation=<span style="color: black;">&#40;</span><span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; ActiveObjectText = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; newtext = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#erasing previous objects</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">name</span> <span style="color: #66cc66;">!</span>= <span style="color: #483d8b;">'Text'</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting and erasing Text</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Text'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">delete</span><span style="color: black;">&#40;</span>use_global=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#need to delete other objects</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting and erasing Turbulence field</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Enveloppe2'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">delete</span><span style="color: black;">&#40;</span>use_global=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting newText</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= newtext<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#naming/renaming the text</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">name</span> = <span style="color: #483d8b;">'Text'</span><span style="color: #66cc66;">;</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Text'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#rotating text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> <span style="color: #808080; font-style: italic;">#xaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> &nbsp;<span style="color: #808080; font-style: italic;">#yaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> &nbsp;<span style="color: #808080; font-style: italic;">#zaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=-<span style="color: #ff4500;">9.75</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">5</span> <span style="color: #808080; font-style: italic;">#dur to shadow on the ground</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#changing text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">body</span> = title<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#centering text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">align</span>= spacemode<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#extrude text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">extrude</span>=extrude<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bevel text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">bevel_depth</span> = bevel_depth<br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">bevel_resolution</span> = <span style="color: #ff4500;">5</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#text size</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">size</span> = textsize<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">data</span>.<span style="color: black;">space_character</span> = width<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">data</span>.<span style="color: black;">font</span> = font<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#convert to mesh to apply effect</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">convert</span><span style="color: black;">&#40;</span>target=<span style="color: #483d8b;">'MESH'</span>, keep_original=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#put origin to center of text</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='MEDIAN')</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Don't use Median, because it does not always put the origin to the center!</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">origin_set</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'GEOMETRY_ORIGIN'</span>, center=<span style="color: #483d8b;">'BOUNDS'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#affect material</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">materials</span>.<span style="color: black;">append</span><span style="color: black;">&#40;</span>bpy.<span style="color: black;">data</span>.<span style="color: black;">materials</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MAT_PRE_Obsidian'</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#copy the pre loopecut cube</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#obsolete</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.select_name(name='Enveloppe')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Enveloppe'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#activate in 3D</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">duplicate</span><span style="color: black;">&#40;</span>linked=<span style="color: #008000;">False</span>, mode=<span style="color: #483d8b;">'TRANSLATION'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={&quot;linked&quot;:False, &quot;mode&quot;:'TRANSLATION'}, TRANSFORM_OT_translate={&quot;value&quot;:(0, 0, 0), &quot;constraint_axis&quot;:(False, False, False), &quot;constraint_orientation&quot;:'GLOBAL', &quot;mirror&quot;:False, &quot;proportional&quot;:'DISABLED', &quot;proportional_edit_falloff&quot;:'SMOOTH', &quot;proportional_size&quot;:1, &quot;snap&quot;:False, &quot;snap_target&quot;:'CLOSEST', &quot;snap_point&quot;:(0, 0, 0), &quot;snap_align&quot;:False, &quot;snap_normal&quot;:(0, 0, 0), &quot;texture_space&quot;:False, &quot;release_confirm&quot;:False})</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">name</span> = <span style="color: #483d8b;">'Enveloppe2'</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">draw_type</span> = <span style="color: #483d8b;">'WIRE'</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">hide_render</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#need to be on the visible layer to do duplication?</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#moving object</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=-<span style="color: #ff4500;">9.75</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">5</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># mo &nbsp; ve to layer 0 (first one)</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#moveToLayer(ActiveObjectEnveloppe,0)</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#adjust size of existed envelope to text</span><br />
+&nbsp; &nbsp; IncrementX = <span style="color: #ff4500;">0.3</span><br />
+&nbsp; &nbsp; IncrementY = <span style="color: #ff4500;">0.3</span><br />
+&nbsp; &nbsp; IncrementZ = <span style="color: #ff4500;">0.15</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">dimensions</span> = <span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>+IncrementX<span style="color: black;">&#41;</span>,<span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>+IncrementY<span style="color: black;">&#41;</span>, <span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>+IncrementZ<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN', center='MEDIAN')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">origin_set</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'GEOMETRY_ORIGIN'</span>, center=<span style="color: #483d8b;">'BOUNDS'</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'SOFT_BODY'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#link text to enveloppe</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#obsolete</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.select_name(name='Enveloppe')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = ActiveObjectText<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#activate in 3D</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'MESH_DEFORM'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#configuring mesh deform</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">modifiers</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MeshDeform'</span><span style="color: black;">&#93;</span>.<span style="color: #008000;">object</span> = ActiveObjectEnveloppe<br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">modifiers</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MeshDeform'</span><span style="color: black;">&#93;</span>.<span style="color: black;">precision</span> = <span style="color: #ff4500;">6</span> <span style="color: #808080; font-style: italic;">#&lt;6 does not work!!! grid precision?</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#binding text to cube</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">meshdeform_bind</span><span style="color: black;">&#40;</span>modifier=<span style="color: #483d8b;">&quot;MeshDeform&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#softbody configuration</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">use_goal</span>=<span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">use_stiff_quads</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">plastic</span>=<span style="color: #ff4500;">10</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">data</span>.<span style="color: black;">update</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: black;">ptcache</span>.<span style="color: black;">free_bake_all</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span> &nbsp; <span style="color: #808080; font-style: italic;"># erase baked dynamics</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: black;">ptcache</span>.<span style="color: black;">bake_all</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span> <span style="color: #808080; font-style: italic;"># bake dynamics : take time but needed before rendering animation</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/4c273dc5f1517d7eab982721e2bc0fb3.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p><strong>Important&nbsp;: The two last lines bakes all the physics stuff which can be long. But if you don&#8217;t do that, your sample image will be false, because the history of the animation is not taken into account while Openshot makes render only for one frame for sample images.</strong></p>
+
+<p>After that, we need to add the new cylinder variable in the params area&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code"><span style="color: #808080; font-style: italic;"># Init all of the variables needed by this script. &nbsp;Because Blender executes</span><br />
+<span style="color: #808080; font-style: italic;"># this script, OpenShot will inject a dictionary of the required parameters</span><br />
+<span style="color: #808080; font-style: italic;"># before this script is executed.</span><br />
+params = <span style="color: black;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'title'</span> : <span style="color: #483d8b;">'Oh Yeah! OpenShot!'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'extrude'</span> : <span style="color: #ff4500;">0.05</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'bevel_depth'</span> : <span style="color: #ff4500;">0.01</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'spacemode'</span> : <span style="color: #483d8b;">'CENTER'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'text_size'</span> : <span style="color: #ff4500;">1</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'width'</span> : <span style="color: #ff4500;">1.0</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'fontname'</span> : <span style="color: #483d8b;">'Bfont'</span>,<br />
+&nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'color'</span> : <span style="color: black;">&#91;</span><span style="color: #ff4500;">0.8</span>,<span style="color: #ff4500;">0.8</span>,<span style="color: #ff4500;">0.8</span><span style="color: black;">&#93;</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'alpha'</span> : <span style="color: #ff4500;">1.0</span>,<br />
+&nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'output_path'</span> : <span style="color: #483d8b;">'/tmp/'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'fps'</span> : <span style="color: #ff4500;">24</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'quality'</span> : <span style="color: #ff4500;">90</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'file_format'</span> : <span style="color: #483d8b;">'PNG'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'color_mode'</span> : <span style="color: #483d8b;">'RGBA'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'horizon_color'</span> : <span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'resolution_x'</span> : <span style="color: #ff4500;">1920</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'resolution_y'</span> : <span style="color: #ff4500;">1080</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'resolution_percentage'</span> : <span style="color: #ff4500;">100</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'start_frame'</span> : <span style="color: #ff4500;">20</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'end_frame'</span> : <span style="color: #ff4500;">25</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'animation'</span> : <span style="color: #008000;">True</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: black;">&#125;</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/783813de363d7e323ce7202848bdf36c.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>The next step, is made of comments. We need to comment some old python stuff on unused text object&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code"><span style="color: #808080; font-style: italic;">#text_object = bpy.data.curves[&quot;txtName1&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.extrude = params[&quot;extrude&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.bevel_depth = params[&quot;bevel_depth&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.body = params[&quot;title&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.align = params[&quot;spacemode&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.size = params[&quot;text_size&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.space_character = params[&quot;width&quot;]</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/b43a22896cbcab7711b6fefd79d6190f.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>Same thing for the font which is managed by the function now&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code"><span style="color: #808080; font-style: italic;"># set the font</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.font = font</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/703665d64033042428b18b02597b650e.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>Next we call the main function with the GUI parameters&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code"><span style="color: #808080; font-style: italic;"># function call createSoftText(title,extrude,bevel_depth,spacemode,textsize,width,font,cylinder)</span><br />
+createSoftText<span style="color: black;">&#40;</span>params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;title&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;extrude&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;bevel_depth&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;spacemode&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;text_size&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;width&quot;</span><span style="color: black;">&#93;</span>, font, params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;cylinder_on_off&quot;</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/5b2ec9a240ef8b65c78a87ceaf89d453.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>Finally, we ajust the material pointer to the our text material in the blend file&nbsp;:</p>
+<div class="coloration_code"><div class="spip_python code"><span style="color: #808080; font-style: italic;"># Change the material settings (color, alpha, etc...)</span><br />
+<span style="color: #808080; font-style: italic;">#material_object = bpy.data.materials[&quot;Material.001&quot;]</span><br />
+material_object = bpy.<span style="color: black;">data</span>.<span style="color: black;">materials</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MAT_PRE_Obsidian'</span><span style="color: black;">&#93;</span> <span style="color: #808080; font-style: italic;">#match the text material in Blend file</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/2e15aae6393eef9f55a9085c619436cc.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>Here the full code of the softtext.py file</p>
+
+<div class="coloration_code"><div class="spip_python code"><span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;OpenShot Video Editor is a program that creates, modifies, and edits video files.</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; Copyright (C) 2009 &nbsp;Jonathan Thomas</span><br />
+<span style="color: #808080; font-style: italic;">#</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;This file is part of OpenShot Video Editor (http://launchpad.net/openshot/).</span><br />
+<span style="color: #808080; font-style: italic;">#</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;OpenShot Video Editor is free software: you can redistribute it and/or modify</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;it under the terms of the GNU General Public License as published by</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;the Free Software Foundation, either version 3 of the License, or</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;(at your option) any later version.</span><br />
+<span style="color: #808080; font-style: italic;">#</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;OpenShot Video Editor is distributed in the hope that it will be useful,</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;but WITHOUT ANY WARRANTY; without even the implied warranty of</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. &nbsp;See the</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;GNU General Public License for more details.</span><br />
+<span style="color: #808080; font-style: italic;">#</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;You should have received a copy of the GNU General Public License</span><br />
+<span style="color: #808080; font-style: italic;"># &nbsp; &nbsp;along with OpenShot Video Editor. &nbsp;If not, see &lt;http://www.gnu.org/licenses/&gt;.</span><br />
+&nbsp;<br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Import Blender's python API. &nbsp;This only works when the script is being</span><br />
+<span style="color: #808080; font-style: italic;"># run from the context of Blender. &nbsp;Blender contains it's own version of Python</span><br />
+<span style="color: #808080; font-style: italic;"># with this library pre-installed.</span><br />
+<span style="color: #ff7700;font-weight:bold;">import</span> bpy<br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Load a font</span><br />
+<span style="color: #ff7700;font-weight:bold;">def</span> load_font<span style="color: black;">&#40;</span>font_path<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; <span style="color: #483d8b;">&quot;&quot;&quot; Load a new TTF font into Blender, and return the font object &quot;&quot;&quot;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># get the original list of fonts (before we add a new one)</span><br />
+&nbsp; &nbsp; original_fonts = bpy.<span style="color: black;">data</span>.<span style="color: black;">fonts</span>.<span style="color: black;">keys</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># load new font</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: black;">font</span>.<span style="color: #008000;">open</span><span style="color: black;">&#40;</span>filepath=font_path<span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># get the new list of fonts (after we added a new one)</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">for</span> font_name <span style="color: #ff7700;font-weight:bold;">in</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">fonts</span>.<span style="color: black;">keys</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> font_name <span style="color: #ff7700;font-weight:bold;">not</span> <span style="color: #ff7700;font-weight:bold;">in</span> original_fonts:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">return</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">fonts</span><span style="color: black;">&#91;</span>font_name<span style="color: black;">&#93;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># no new font was added</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">return</span> <span style="color: #008000;">None</span><br />
+&nbsp;<br />
+<span style="color: #ff7700;font-weight:bold;">def</span> createSoftText<span style="color: black;">&#40;</span>title,extrude,bevel_depth,spacemode,textsize,width,font,cylinder<span style="color: black;">&#41;</span>:<br />
+&nbsp; &nbsp; <span style="color: #483d8b;">&quot;&quot;&quot; Create an animated falling softbody text &quot;&quot;&quot;</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> cylinder==<span style="color: #483d8b;">'1'</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide_render</span> = <span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide</span> = <span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting Ground</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#if bpy.data.objects['Ground'].modifiers.keys()[0] != 'Collision':</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">modifiers</span>.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'Collision'</span><span style="color: black;">&#41;</span> == -<span style="color: #ff4500;">1</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#print(&quot;collision &nbsp;= empty&quot;)</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">&quot;COLLISION&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#else:</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#print(&quot;OK&quot;)</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">else</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting Cylinder</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">modifiers</span>.<span style="color: black;">find</span><span style="color: black;">&#40;</span><span style="color: #483d8b;">'Collision'</span><span style="color: black;">&#41;</span> <span style="color: #66cc66;">!</span>= -<span style="color: #ff4500;">1</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_remove</span><span style="color: black;">&#40;</span>modifier=<span style="color: #483d8b;">&quot;Collision&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Cylinder'</span><span style="color: black;">&#93;</span>.<span style="color: black;">hide_render</span> = <span style="color: #008000;">True</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">text_add</span><span style="color: black;">&#40;</span>view_align=<span style="color: #008000;">False</span>, enter_editmode=<span style="color: #008000;">False</span>,location=<span style="color: black;">&#40;</span><span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span><span style="color: black;">&#41;</span>, rotation=<span style="color: black;">&#40;</span><span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span>, <span style="color: #ff4500;">0</span><span style="color: black;">&#41;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; ActiveObjectText = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; newtext = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#erasing previous objects</span><br />
+&nbsp; &nbsp; <span style="color: #ff7700;font-weight:bold;">if</span> bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">name</span> <span style="color: #66cc66;">!</span>= <span style="color: #483d8b;">'Text'</span>:<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting and erasing Text</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Text'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">delete</span><span style="color: black;">&#40;</span>use_global=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#need to delete other objects</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting and erasing Turbulence field</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Enveloppe2'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">delete</span><span style="color: black;">&#40;</span>use_global=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#selecting newText</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> &nbsp;= newtext<br />
+&nbsp; &nbsp; &nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#naming/renaming the text</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">name</span> = <span style="color: #483d8b;">'Text'</span><span style="color: #66cc66;">;</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = bpy.<span style="color: black;">data</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Text'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#rotating text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> <span style="color: #808080; font-style: italic;">#xaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> &nbsp;<span style="color: #808080; font-style: italic;">#yaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">rotation_euler</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0.0</span> &nbsp;<span style="color: #808080; font-style: italic;">#zaxis</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=-<span style="color: #ff4500;">9.75</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">5</span> <span style="color: #808080; font-style: italic;">#dur to shadow on the ground</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#changing text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">body</span> = title<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#centering text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">align</span>= spacemode<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#extrude text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">extrude</span>=extrude<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bevel text</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">bevel_depth</span> = bevel_depth<br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">bevel_resolution</span> = <span style="color: #ff4500;">5</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#text size</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">size</span> = textsize<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">data</span>.<span style="color: black;">space_character</span> = width<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: black;">data</span>.<span style="color: black;">font</span> = font<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#convert to mesh to apply effect</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">convert</span><span style="color: black;">&#40;</span>target=<span style="color: #483d8b;">'MESH'</span>, keep_original=<span style="color: #008000;">False</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#put origin to center of text</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.origin_set(type='ORIGIN_GEOMETRY', center='MEDIAN')</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Don't use Median, because it does not always put the origin to the center!</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">origin_set</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'GEOMETRY_ORIGIN'</span>, center=<span style="color: #483d8b;">'BOUNDS'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#affect material</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">data</span>.<span style="color: black;">materials</span>.<span style="color: black;">append</span><span style="color: black;">&#40;</span>bpy.<span style="color: black;">data</span>.<span style="color: black;">materials</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MAT_PRE_Obsidian'</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#copy the pre loopecut cube</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#obsolete</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.select_name(name='Enveloppe')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'Enveloppe'</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#activate in 3D</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">duplicate</span><span style="color: black;">&#40;</span>linked=<span style="color: #008000;">False</span>, mode=<span style="color: #483d8b;">'TRANSLATION'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.duplicate_move(OBJECT_OT_duplicate={&quot;linked&quot;:False, &quot;mode&quot;:'TRANSLATION'}, TRANSFORM_OT_translate={&quot;value&quot;:(0, 0, 0), &quot;constraint_axis&quot;:(False, False, False), &quot;constraint_orientation&quot;:'GLOBAL', &quot;mirror&quot;:False, &quot;proportional&quot;:'DISABLED', &quot;proportional_edit_falloff&quot;:'SMOOTH', &quot;proportional_size&quot;:1, &quot;snap&quot;:False, &quot;snap_target&quot;:'CLOSEST', &quot;snap_point&quot;:(0, 0, 0), &quot;snap_align&quot;:False, &quot;snap_normal&quot;:(0, 0, 0), &quot;texture_space&quot;:False, &quot;release_confirm&quot;:False})</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe = bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">name</span> = <span style="color: #483d8b;">'Enveloppe2'</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">draw_type</span> = <span style="color: #483d8b;">'WIRE'</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">hide_render</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#need to be on the visible layer to do duplication?</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#moving object</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">0</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>=-<span style="color: #ff4500;">9.75</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">location</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>=<span style="color: #ff4500;">5</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># mo &nbsp; ve to layer 0 (first one)</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#moveToLayer(ActiveObjectEnveloppe,0)</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#adjust size of existed envelope to text</span><br />
+&nbsp; &nbsp; IncrementX = <span style="color: #ff4500;">0.3</span><br />
+&nbsp; &nbsp; IncrementY = <span style="color: #ff4500;">0.3</span><br />
+&nbsp; &nbsp; IncrementZ = <span style="color: #ff4500;">0.15</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">dimensions</span> = <span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>+IncrementX<span style="color: black;">&#41;</span>,<span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">1</span><span style="color: black;">&#93;</span>+IncrementY<span style="color: black;">&#41;</span>, <span style="color: black;">&#40;</span>ActiveObjectText.<span style="color: black;">dimensions</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">2</span><span style="color: black;">&#93;</span>+IncrementZ<span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.origin_set(type='GEOMETRY_ORIGIN', center='MEDIAN')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">origin_set</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'GEOMETRY_ORIGIN'</span>, center=<span style="color: #483d8b;">'BOUNDS'</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'SOFT_BODY'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#link text to enveloppe</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">select_all</span><span style="color: black;">&#40;</span>action=<span style="color: #483d8b;">'DESELECT'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#obsolete</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#bpy.ops.object.select_name(name='Enveloppe')</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span> = ActiveObjectText<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#activate in 3D</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">objects</span>.<span style="color: black;">active</span>.<span style="color: #dc143c;">select</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">modifier_add</span><span style="color: black;">&#40;</span><span style="color: #008000;">type</span>=<span style="color: #483d8b;">'MESH_DEFORM'</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#configuring mesh deform</span><br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">modifiers</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MeshDeform'</span><span style="color: black;">&#93;</span>.<span style="color: #008000;">object</span> = ActiveObjectEnveloppe<br />
+&nbsp; &nbsp; ActiveObjectText.<span style="color: black;">modifiers</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MeshDeform'</span><span style="color: black;">&#93;</span>.<span style="color: black;">precision</span> = <span style="color: #ff4500;">6</span> <span style="color: #808080; font-style: italic;">#&lt;6 does not work!!! grid precision?</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#binding text to cube</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: #008000;">object</span>.<span style="color: black;">meshdeform_bind</span><span style="color: black;">&#40;</span>modifier=<span style="color: #483d8b;">&quot;MeshDeform&quot;</span><span style="color: black;">&#41;</span><br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;">#softbody configuration</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">use_goal</span>=<span style="color: #008000;">False</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">use_stiff_quads</span> = <span style="color: #008000;">True</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">soft_body</span>.<span style="color: black;">plastic</span>=<span style="color: #ff4500;">10</span><br />
+&nbsp; &nbsp; ActiveObjectEnveloppe.<span style="color: black;">data</span>.<span style="color: black;">update</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: black;">ptcache</span>.<span style="color: black;">free_bake_all</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span> &nbsp; <span style="color: #808080; font-style: italic;"># erase baked dynamics</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">ops</span>.<span style="color: black;">ptcache</span>.<span style="color: black;">bake_all</span><span style="color: black;">&#40;</span><span style="color: black;">&#41;</span> <span style="color: #808080; font-style: italic;"># bake dynamics : take time but needed before rendering animation</span><br />
+&nbsp;<br />
+&nbsp;<br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Debug Info:</span><br />
+<span style="color: #808080; font-style: italic;"># ./blender -b test.blend -P demo.py</span><br />
+<span style="color: #808080; font-style: italic;"># -b = background mode</span><br />
+<span style="color: #808080; font-style: italic;"># -P = run a Python script within the context of the project file</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Init all of the variables needed by this script. &nbsp;Because Blender executes</span><br />
+<span style="color: #808080; font-style: italic;"># this script, OpenShot will inject a dictionary of the required parameters</span><br />
+<span style="color: #808080; font-style: italic;"># before this script is executed.</span><br />
+params = <span style="color: black;">&#123;</span><br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'title'</span> : <span style="color: #483d8b;">'Oh Yeah! OpenShot!'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'extrude'</span> : <span style="color: #ff4500;">0.1</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'bevel_depth'</span> : <span style="color: #ff4500;">0.02</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'spacemode'</span> : <span style="color: #483d8b;">'CENTER'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'text_size'</span> : <span style="color: #ff4500;">1.5</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'width'</span> : <span style="color: #ff4500;">1.0</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'fontname'</span> : <span style="color: #483d8b;">'Bfont'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'cylinder_on_off'</span> : <span style="color: #483d8b;">'1'</span>,<br />
+&nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'color'</span> : <span style="color: black;">&#91;</span><span style="color: #ff4500;">0.8</span>,<span style="color: #ff4500;">0.8</span>,<span style="color: #ff4500;">0.8</span><span style="color: black;">&#93;</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'alpha'</span> : <span style="color: #ff4500;">1.0</span>,<br />
+&nbsp;<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'output_path'</span> : <span style="color: #483d8b;">'/tmp/'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'fps'</span> : <span style="color: #ff4500;">24</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'quality'</span> : <span style="color: #ff4500;">90</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'file_format'</span> : <span style="color: #483d8b;">'PNG'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'color_mode'</span> : <span style="color: #483d8b;">'RGBA'</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'horizon_color'</span> : <span style="color: black;">&#91;</span><span style="color: #ff4500;">0.57</span>, <span style="color: #ff4500;">0.57</span>, <span style="color: #ff4500;">0.57</span><span style="color: black;">&#93;</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'resolution_x'</span> : <span style="color: #ff4500;">1920</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'resolution_y'</span> : <span style="color: #ff4500;">1080</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'resolution_percentage'</span> : <span style="color: #ff4500;">100</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'start_frame'</span> : <span style="color: #ff4500;">20</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'end_frame'</span> : <span style="color: #ff4500;">25</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <span style="color: #483d8b;">'animation'</span> : <span style="color: #008000;">True</span>,<br />
+&nbsp; &nbsp; &nbsp; &nbsp; <span style="color: black;">&#125;</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;">#INJECT_PARAMS_HERE</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># The remainder of this script will modify the current Blender .blend project</span><br />
+<span style="color: #808080; font-style: italic;"># file, and adjust the settings. &nbsp;The .blend file is specified in the XML file</span><br />
+<span style="color: #808080; font-style: italic;"># that defines this template in OpenShot.</span><br />
+<span style="color: #808080; font-style: italic;">#----------------------------------------------------------------------------</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Modify Text / Curve settings</span><br />
+<span style="color: #808080; font-style: italic;">#print (bpy.data.curves.keys())</span><br />
+<span style="color: #808080; font-style: italic;">#text_object = bpy.data.curves[&quot;txtName1&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.extrude = params[&quot;extrude&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.bevel_depth = params[&quot;bevel_depth&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.body = params[&quot;title&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.align = params[&quot;spacemode&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.size = params[&quot;text_size&quot;]</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.space_character = params[&quot;width&quot;]</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Get font object</span><br />
+font = <span style="color: #008000;">None</span><br />
+<span style="color: #ff7700;font-weight:bold;">if</span> params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;fontname&quot;</span><span style="color: black;">&#93;</span> <span style="color: #66cc66;">!</span>= <span style="color: #483d8b;">&quot;Bfont&quot;</span>:<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Add font so it's available to Blender</span><br />
+&nbsp; &nbsp; font = load_font<span style="color: black;">&#40;</span>params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;fontname&quot;</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span><br />
+<span style="color: #ff7700;font-weight:bold;">else</span>:<br />
+&nbsp; &nbsp; <span style="color: #808080; font-style: italic;"># Get default font</span><br />
+&nbsp; &nbsp; font = bpy.<span style="color: black;">data</span>.<span style="color: black;">fonts</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;Bfont&quot;</span><span style="color: black;">&#93;</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># set the font</span><br />
+<span style="color: #808080; font-style: italic;">#text_object.font = font</span><br />
+<span style="color: #808080; font-style: italic;"># function call createSoftText(title,extrude,bevel_depth,spacemode,textsize,width,font,cylinder)</span><br />
+createSoftText<span style="color: black;">&#40;</span>params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;title&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;extrude&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;bevel_depth&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;spacemode&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;text_size&quot;</span><span style="color: black;">&#93;</span>,params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;width&quot;</span><span style="color: black;">&#93;</span>, font, params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;cylinder_on_off&quot;</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Change the material settings (color, alpha, etc...)</span><br />
+<span style="color: #808080; font-style: italic;">#material_object = bpy.data.materials[&quot;Material.001&quot;]</span><br />
+material_object = bpy.<span style="color: black;">data</span>.<span style="color: black;">materials</span><span style="color: black;">&#91;</span><span style="color: #483d8b;">'MAT_PRE_Obsidian'</span><span style="color: black;">&#93;</span> <span style="color: #808080; font-style: italic;">#match the text material in Blend file</span><br />
+material_object.<span style="color: black;">diffuse_color</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;diffuse_color&quot;</span><span style="color: black;">&#93;</span><br />
+material_object.<span style="color: black;">specular_color</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;specular_color&quot;</span><span style="color: black;">&#93;</span><br />
+material_object.<span style="color: black;">specular_intensity</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;specular_intensity&quot;</span><span style="color: black;">&#93;</span><br />
+material_object.<span style="color: black;">alpha</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;alpha&quot;</span><span style="color: black;">&#93;</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Set the render options. &nbsp;It is important that these are set</span><br />
+<span style="color: #808080; font-style: italic;"># to the same values as the current OpenShot project. &nbsp;These</span><br />
+<span style="color: #808080; font-style: italic;"># params are automatically set by OpenShot</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">filepath</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;output_path&quot;</span><span style="color: black;">&#93;</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">fps</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;fps&quot;</span><span style="color: black;">&#93;</span><br />
+<span style="color: #ff7700;font-weight:bold;">try</span>:<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">file_format</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;file_format&quot;</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">color_mode</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;color_mode&quot;</span><span style="color: black;">&#93;</span><br />
+<span style="color: #ff7700;font-weight:bold;">except</span>:<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">image_settings</span>.<span style="color: black;">file_format</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;file_format&quot;</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">image_settings</span>.<span style="color: black;">color_mode</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;color_mode&quot;</span><span style="color: black;">&#93;</span><br />
+bpy.<span style="color: black;">data</span>.<span style="color: black;">worlds</span><span style="color: black;">&#91;</span><span style="color: #ff4500;">0</span><span style="color: black;">&#93;</span>.<span style="color: black;">horizon_color</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;horizon_color&quot;</span><span style="color: black;">&#93;</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">resolution_x</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;resolution_x&quot;</span><span style="color: black;">&#93;</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">resolution_y</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;resolution_y&quot;</span><span style="color: black;">&#93;</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">resolution_percentage</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;resolution_percentage&quot;</span><span style="color: black;">&#93;</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">frame_start</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;start_frame&quot;</span><span style="color: black;">&#93;</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">frame_end</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;end_frame&quot;</span><span style="color: black;">&#93;</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Animation Speed (use Blender's time remapping to slow or speed up animation)</span><br />
+animation_speed = <span style="color: #008000;">int</span><span style="color: black;">&#40;</span>params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;animation_speed&quot;</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span> &nbsp; &nbsp;<span style="color: #808080; font-style: italic;"># time remapping multiplier</span><br />
+new_length = <span style="color: #008000;">int</span><span style="color: black;">&#40;</span>params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;end_frame&quot;</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span> <span style="color: #66cc66;">*</span> animation_speed &nbsp; &nbsp;<span style="color: #808080; font-style: italic;"># new length (in frames)</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">frame_end</span> = new_length<br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">frame_map_old</span> = <span style="color: #ff4500;">1</span><br />
+bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">render</span>.<span style="color: black;">frame_map_new</span> = animation_speed<br />
+<span style="color: #ff7700;font-weight:bold;">if</span> params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;start_frame&quot;</span><span style="color: black;">&#93;</span> == params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;end_frame&quot;</span><span style="color: black;">&#93;</span>:<br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">frame_start</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;end_frame&quot;</span><span style="color: black;">&#93;</span><br />
+&nbsp; &nbsp; bpy.<span style="color: black;">context</span>.<span style="color: black;">scene</span>.<span style="color: black;">frame_end</span> = params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;end_frame&quot;</span><span style="color: black;">&#93;</span><br />
+&nbsp;<br />
+<span style="color: #808080; font-style: italic;"># Render the current animation to the params[&quot;output_path&quot;] folder</span><br />
+bpy.<span style="color: black;">ops</span>.<span style="color: black;">render</span>.<span style="color: black;">render</span><span style="color: black;">&#40;</span>animation=params<span style="color: black;">&#91;</span><span style="color: #483d8b;">&quot;animation&quot;</span><span style="color: black;">&#93;</span><span style="color: black;">&#41;</span></div><div class='code_download'
+		style='text-align: right;'>
+		<a href='local/cache-code/3e580287f590b1abb035382e7d709330.txt'
+		style='font-family: verdana, arial, sans; font-weight: bold; font-style: normal;'>T&eacute;l&eacute;charger</a></div></div>
+<p>And now the result in Openshot&nbsp;:</p>
+
+<p><span class='spip_document_545 spip_documents spip_documents_center'>
+		
+		 
+			<a href="IMG/png/softbody_gui_final.png" class="thickbox" title="PNG - 117.6 ko">
+				<img src="IMG/png/softbody_gui_final.png" width="150" height="126" alt="PNG - 117.6 ko" />
+			</a>
+		
+		
+		
+		
+	</span></p>
+<center>
+<object width="560" height="315"><param name="movie" value="http://www.youtube.com/v/YJL2OyoQQCA?version=3&amp;hl=fr_FR&amp;rel=0"></param><param name="allowFullScreen" value="true"></param><param name="allowscriptaccess" value="always"></param><embed src="http://www.youtube.com/v/YJL2OyoQQCA?version=3&amp;hl=fr_FR&amp;rel=0" type="application/x-shockwave-flash" width="560" height="315" allowscriptaccess="always" allowfullscreen="true"></embed></object>
+</center></div>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+
+		
+		<br class="nettoyeur" />
+	</div>		
+				
+					
+				
+				 
+					
+				
+				
+				
+				
+				
+							</div>
+			
+			
+			 
+				
+				 
+    			
+    				
+			
+ 			
+
+		</div>
+	</div>
+	
+	<div id="navigation">
+		
+		<div class='ajaxbloc env-O2XC6fELIBQcbDA8gbsD9v5Ho8u7C5FNcpSGvnAh99ujtxtlw+y/ocZGybpmdAakdIQ5quGrKVhjghlRY5QWJs8KGc1UPqrBdMOsCpAdGNqD2IyZsFGZS+c8OT10KnMCT+HGu/rKiqf4PxG/KxmeS6Wbh5I='>
+
+
+
+	<div id="noisette_publications" class="noisette">
+		<h1 class="intitule">Publications</h1>
+
+	
+		<div class="contenu">
+			<h2 class="titre_bloc">Derniers articles publi&eacute;s</h2>
+			<div class="liste"><ul>
+	
+				<li><a class="titre" href="spip.php?article172" title="Se rendre sur la page de cet article">
+					Votre Intro à la MGM
+				</a></li>
+	
+				<li><a class="titre" href="spip.php?article170" title="Se rendre sur la page de cet article">
+					Programmation Gtk3/Gtkmm/Glade/Gtkbuilder avec Eclipse
+				</a></li>
+	
+				<li><a class="titre" href="spip.php?article169" title="Se rendre sur la page de cet article">
+					Openshot&nbsp;: How to create animated 3D title with Blender
+				</a></li>
+	
+				<li><a class="titre" href="spip.php?article168" title="Se rendre sur la page de cet article">
+					Borne Arcade MAME&nbsp;: MAMECAB
+				</a></li>
+	
+				<li><a class="titre" href="spip.php?article167" title="Se rendre sur la page de cet article">
+					Animated titles for OpenShot
+				</a></li>
+	
+			</ul></div>
+		</div>
+	
+
+	</div>
+
+</div><!-- ajaxbloc -->
+
+
+
+
+ 
+	<div id="menu_rubriques" class="noisette menu_rub1">
+	<ul class="menulist">
+
+		<li class="smenu">
+			 <a href="spip.php?rubrique1">Home</a>
+			
+			
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique3">Flavigny sur Ozerain</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique11">Site d’Alésia</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique5">Courban</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+		 
+		</li>
+
+		<li class="smenu">
+			 <a href="spip.php?rubrique4">Perso</a>
+			
+			
+				<ul>
+			
+				<li class="smenu">
+					 <a href="spip.php?rubrique20">Albums Photos</a>
+					
+				 
+					
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique32">Erwan</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique39">Maël</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique30">Vidéos d’Erwan</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique31">Motos</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique38">Vidéos</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique7">Amiga</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+		 
+		</li>
+
+		<li class="smenu">
+			 <a href="spip.php?rubrique6">Recherche / Enseignement</a>
+			
+			
+				<ul>
+			
+				<li class="smenu">
+					 <a href="spip.php?rubrique13">Recherche</a>
+					
+				 
+					
+				<ul>
+			
+				<li class="smenu">
+					 <a href="spip.php?rubrique18">Thèse</a>
+					
+				 
+					
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique15">Ma Thèse</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique19">Enseignant-Chercheur</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+				</li>
+				
+			
+				<li class="smenu">
+					 <a href="spip.php?rubrique14">Enseignement</a>
+					
+				 
+					
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique16">Monitorat - ATER</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li class="smenu">
+					 <a href="spip.php?rubrique21">Enseignant-Chercheur</a>
+					
+				 
+					
+				<ul>
+			
+				<li class="smenu">
+					 <a href="spip.php?rubrique22">Premier Cycle</a>
+					
+				 
+					
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique23">Deug STPI - Génie Informatique</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+				</li>
+				
+			
+				<li class="smenu">
+					 <a href="spip.php?rubrique24">Second Cycle</a>
+					
+				 
+					
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique25">MST 1 Télécom</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique26">MST 2 Télécom</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique27">Licence EEA</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique29">IUP GSI Option TI</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique28">Maîtrise EEA</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+				</li>
+				
+			
+				</ul>
+			
+				</li>
+				
+			
+				</ul>
+			
+				</li>
+				
+			
+				</ul>
+			
+		 
+		</li>
+
+		<li class="smenu">
+			 <a href="spip.php?rubrique8">LyX/LaTeX</a>
+			
+			
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique17">LaTeX</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+		 
+		</li>
+
+		<li class="smenu">
+			 <a href="spip.php?rubrique9">Linux / Logiciels Libres</a>
+			
+			
+				<ul>
+			
+				<li>
+					 <a href="spip.php?rubrique34">GNU/Linux</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique35">Logiciels Libres</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique47">Blender</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique48">Scilab</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				<li>
+					 <a href="spip.php?rubrique36">Matériels</a>
+					
+				
+					
+				
+					
+				</li>
+				
+			
+				</ul>
+			
+		 
+		</li>
+
+		<li>
+			 <a href="spip.php?rubrique10">Liens</a>
+			
+			
+		
+			
+		
+		</li>
+
+	</ul> <!-- menulist -->
+</div> <!-- menu_rub1 -->
+
+
+ 
+	<div id="menu_raccourcis" class="noisette nav2"><ul>
+	
+
+
+	<li class="raccourci_nav1"><a href="http://www.morere.eu/spip.php?page=herbier">Sites favoris</a></li>
+		
+
+
+
+
+		<li class="raccourci_nav1"><a href="http://www.morere.eu/spip.php?page=site">Sur le Web</a></li>
+		
+
+
+
+
+
+ 
+	</ul>
+</div>
+ 
+	<div id="nav_visiteur" class="noisette nav2">
+	<ul>
+		
+		 
+			 
+			<li class="raccourci_nav1"><a href="http://www.morere.eu/spip.php?page=contact">Contact</a></li>
+				
+		
+		
+		
+			
+		
+		
+		
+		 
+			
+			<li class="raccourci_nav1"><a href="http://www.morere.eu/spip.php?page=login-public&amp;url=.%2F">Connexion</a></li>
+		</ul>
+		
+		
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	
+
+
+
+ 
+	
+
+
+
+ 
+	<div id="noisette_statistiques" class="noisette">
+	<h1 class="intitule">Statistiques</h1>
+	<div class="contenu">
+		
+			<h2 class="titre_bloc">Derni&egrave;re mise &agrave; jour</h2>
+		
+			<div class="texte">lundi&nbsp;4 novembre 2013</div>
+		
+		
+	</div>
+
+	<div class="contenu">
+		<h2 class="titre_bloc">Publication</h2>
+		<div class="texte">
+			                                                                                                                                                   
+				146 Articles<br />
+			Aucun album photo<br />
+			       
+				6 Br&egrave;ves<br />
+			     
+				4 Sites Web<br />
+			  
+				1 Auteur<br />
+		</div>
+	</div>
+	
+	<div class="contenu">
+		<h2 class="titre_bloc">Visites</h2>
+		<div class="texte">
+			72&nbsp;aujourd'hui<br />
+			71&nbsp;hier<br />
+			28022&nbsp;depuis le d&eacute;but<br />
+			
+			 
+				5&nbsp;visiteurs actuellement connect&eacute;s
+			
+		</div>
+	</div>
+</div>
+ 
+	<div id="noisette_hitparade" class="noisette">
+	 
+		<h1 class="intitule">Top Articles</h1>
+	
+	<div class="contenu">
+		<h2 class="titre_bloc">Les plus populaires</h2>
+		<div class="liste"><ul>
+
+			<li><a class="titre" href="spip.php?article169" title="100&nbsp;%&nbsp;">
+				Openshot&nbsp;: How to create animated 3D title with Blender
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article165" title="73&nbsp;%&nbsp;">
+				Une cabane dans un arbre
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article168" title="63&nbsp;%&nbsp;">
+				Borne Arcade MAME&nbsp;: MAMECAB
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article153" title="18&nbsp;%&nbsp;">
+				Application GUI avec Scilab
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article140" title="12&nbsp;%&nbsp;">
+				Triumph Speed Triple 2008
+			</a></li>
+
+		</ul></div>
+	</div>	
+	 
+		<div class="contenu">
+		<h2 class="titre_bloc">Au hasard</h2>
+		<div class="liste"><ul>
+
+			<li><a class="titre" href="spip.php?article55">
+				Tds d&#8217;informatique industrielle (programmation C/C++)
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article106">
+				Premier Anniversaire (Privé)
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article40">
+				Courban en hiver
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article74">
+				Serveur de Sauvegarde
+			</a></li>
+
+			<li><a class="titre" href="spip.php?article13">
+				Eglise Sainte Trinité
+			</a></li>
+
+		</ul></div>
+	</div>	
+</div>
+
+
+ 
+	<div id="noisette_badges" class="noisette">
+	<div class="badges">
+		 
+			<a id="logo_xhtml" href="http://validator.w3.org/check?uri=referer" title="V&eacute;rifier la validit&eacute; XHTML de cette page">&nbsp;</a>
+		
+		 
+			<a id="logo_rss" href="./spip.php?page=backend" title="Syndiquer tout le site">&nbsp;</a>
+		
+		 
+			<a id="logo_sarkaspip" href="http://www.sarka-spip.net" title="Squelette">&nbsp;</a>
+		
+		 
+			<a id="logo_spip" href="http://spip.net" title="Site r&eacute;alis&eacute; avec SPIP">&nbsp;</a>
+		
+		
+		<br class="nettoyeur" />
+	</div>
+</div>	</div>
+	
+	<div id="extra">
+		
+		<div id="nav_recherche" class="noisette">
+		<h1 class="intitule">Rechercher</h1>
+		
+	
+		
+		
+		 
+			<div class="nav_recherche contenu ">
+	<h2 class="titre_bloc">sur le web</h2>
+	<a href="http://www.google.fr"><img class="moteur" src="plugins/auto/sarkaspip_3/images/logo-google.gif" alt="Google" /></a>
+	<div class="formulaire_spip formulaire_recherche" id="google">
+		
+		<form method="get" action="http://www.google.fr/search">
+			<div>
+				<label for="q">Rechercher&nbsp;:</label>
+				<input type="text" name="q" id="q" class="text" size="10" maxlength="255" value="Saisir le(s) mot(s)" onfocus="this.value='';" />
+				<input type="hidden" name="hl" value="fr" />
+				<input type="image" src="squelettes-dist/rechercher.gif" class="submit" value="" />
+			</div>
+		</form>
+	</div>
+</div>		
+		
+		
+		
+	</div>
+
+
+
+
+
+
+
+
+ 
+	<div id="noisette_navigation" class="noisette">
+	<h1 class="intitule">Navigation</h1>
+		
+				
+		<div class='ajaxbloc env-GyDA6bEbIBQiM4s9RPS2iU7mCa+4/sn0ymnw7U05X1WKmhKnXH8P6L0LJPWELzaOkYd1zoNVIdJoOgbvzEMMqrhVm4v51fYFg9nrrJdKLDHtfAskb8kkom/kLtarMaBLgKJFXlmEKCM4+I3Umid8rFueSONVI2axZpCh/uIZJsraJv2pNhD+CeuTtQ=='>
+
+
+
+
+	
+	<a name='pagination_article_rubrique_numerotes' id='pagination_article_rubrique_numerotes'></a>
+	<div class="contenu">
+		<h2 class="titre_bloc">Articles de la rubrique</h2>
+		<div class="liste"><ul>
+	
+			<li><a class="titre" href="spip.php?article172" title="Se rendre sur la page de cet article">
+				Votre Intro à la MGM
+			</a></li>
+	
+			<li><span class="titre">
+				Openshot&nbsp;: How to create animated 3D title with Blender
+			</span></li>
+	
+			<li><a class="titre" href="spip.php?article167" title="Se rendre sur la page de cet article">
+				Animated titles for OpenShot
+			</a></li>
+	
+			<li><a class="titre" href="spip.php?article166" title="Se rendre sur la page de cet article">
+				Sound Visualizer
+			</a></li>
+	
+			<li><a class="titre" href="spip.php?article141" title="Se rendre sur la page de cet article">
+				Ldraw Importer pour Blender
+			</a></li>
+	
+			<li><a class="titre" href="spip.php?article154" title="Se rendre sur la page de cet article">
+				Une terre photoréaliste
+			</a></li>
+	
+			<li><a class="titre" href="spip.php?article156" title="Se rendre sur la page de cet article">
+				Dices
+			</a></li>
+	
+			<li><a class="titre" href="spip.php?article155" title="Se rendre sur la page de cet article">
+				Générique StarWars / SoftWars
+			</a></li>
+	
+			<li><a class="titre" href="spip.php?article157" title="Se rendre sur la page de cet article">
+				SoundLike&nbsp;: Textes, textures et éclairages
+			</a></li>
+	
+			<li><a class="titre" href="spip.php?article158" title="Se rendre sur la page de cet article">
+				Text Explode Addon
+			</a></li>
+	
+		</ul></div>
+		<div class="pagination"><strong class='on'>0</strong>
+<span class='sep separateur'>|</span>
+
+
+<a href='spip.php?article169&amp;debut_article_rubrique_numerotes=10#pagination_article_rubrique_numerotes' class='lien_pagination' rel='nofollow'>10</a></div>
+	</div>
+	
+
+		
+</div><!-- ajaxbloc -->		
+		</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	 
+		<div id="noisette_rainette" class="noisette">
+	<h1 class="intitule">M&eacute;t&eacute;o</h1>
+	<div class="contenu">
+		<h2 class="titre_bloc">Metz, France</h2>
+		<div class="texte">
+			<div class="conteneur_selection">
+				<div id="slide_selection" style="width: 1344px;">
+				<div class="pave-prevision">
+	<p class="maj">
+		Conditions m&eacute;t&eacute;o &agrave;&nbsp;14h25<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature">
+		<img src="local/cache-vignettes/L80xH80/11-fa0bf.png" alt="Averses" title="Averses" width='80' height='80' style='height:80px;width:80px;' />
+		<p>12°C</p>
+	</div>
+	<br class="nettoyeur" />
+	<div class="resume">
+		Averses
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 19&nbsp;km/h - sud sud-ouest
+			</li>
+			<li>
+				<span>Pression</span>
+				 : 986&nbsp;mbar →
+			</li>
+		</ul>
+	</div>
+	<div class="liens">	
+		Pr&eacute;visions <a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -168}); return false;" title="Pr&eacute;visions du jour">>></a>
+	</div>
+</div>
+				<div class="pave-prevision">
+	<p class="maj">
+		Pr&eacute;visions du&nbsp;4 novembre<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature previsions">	
+		<img src="local/cache-vignettes/L80xH80/11-fa0bf.png" alt="Averses" title="Averses" width='80' height='80' style='height:80px;width:80px;' />
+		<p>Max&nbsp;11°C<br/>
+		Min&nbsp;2°C
+		</p>							
+	</div>								
+	<br class="nettoyeur"/>	
+	<div class="resume">
+		Averses
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 32&nbsp;km/h
+			</li>
+			<li>
+				<span>Risque de precip.</span>
+				 : %
+			</li>
+		</ul>
+	</div>	
+	<div class="liens">
+	 	  
+		<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: 0 }); return false;" title="Conditions du jour"><<</a>&nbsp;Conditions
+		&nbsp;|&nbsp;
+		Pr&eacute;visions&nbsp;<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -336 }); return false;" title="Jour suivant">>></a>
+	 
+	
+
+	
+	
+	
+	</div>
+</div><div class="pave-prevision">
+	<p class="maj">
+		Pr&eacute;visions du&nbsp;5 novembre<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature previsions">	
+		<img src="local/cache-vignettes/L80xH80/12-87e20.png" alt="Averses" title="Averses" width='80' height='80' style='height:80px;width:80px;' />
+		<p>Max&nbsp;9°C<br/>
+		Min&nbsp;8°C
+		</p>							
+	</div>								
+	<br class="nettoyeur"/>	
+	<div class="resume">
+		Averses
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 24&nbsp;km/h
+			</li>
+			<li>
+				<span>Risque de precip.</span>
+				 : 70%
+			</li>
+		</ul>
+	</div>	
+	<div class="liens">
+	 
+	 	
+		
+		
+		 
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -168 }); return false;" title="Jour pr&eacute;c&eacute;dent"><<</a>
+			&nbsp;Pr&eacute;visions&nbsp;
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -504 }); return false;" title="Jour suivant">>></a>
+		
+	
+
+	
+	
+	
+	</div>
+</div><div class="pave-prevision">
+	<p class="maj">
+		Pr&eacute;visions du&nbsp;6 novembre<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature previsions">	
+		<img src="local/cache-vignettes/L80xH80/39-d96dd.png" alt="Orage épars" title="Orage épars" width='80' height='80' style='height:80px;width:80px;' />
+		<p>Max&nbsp;13°C<br/>
+		Min&nbsp;12°C
+		</p>							
+	</div>								
+	<br class="nettoyeur"/>	
+	<div class="resume">
+		Orage épars
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 23&nbsp;km/h
+			</li>
+			<li>
+				<span>Risque de precip.</span>
+				 : 30%
+			</li>
+		</ul>
+	</div>	
+	<div class="liens">
+	 
+	 	
+		
+		
+		 
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -336 }); return false;" title="Jour pr&eacute;c&eacute;dent"><<</a>
+			&nbsp;Pr&eacute;visions&nbsp;
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -672 }); return false;" title="Jour suivant">>></a>
+		
+	
+
+	
+	
+	
+	</div>
+</div><div class="pave-prevision">
+	<p class="maj">
+		Pr&eacute;visions du&nbsp;7 novembre<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature previsions">	
+		<img src="local/cache-vignettes/L80xH80/11-fa0bf.png" alt="Averses" title="Averses" width='80' height='80' style='height:80px;width:80px;' />
+		<p>Max&nbsp;15°C<br/>
+		Min&nbsp;11°C
+		</p>							
+	</div>								
+	<br class="nettoyeur"/>	
+	<div class="resume">
+		Averses
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 26&nbsp;km/h
+			</li>
+			<li>
+				<span>Risque de precip.</span>
+				 : 30%
+			</li>
+		</ul>
+	</div>	
+	<div class="liens">
+	 
+	 	
+		
+		
+		 
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -504 }); return false;" title="Jour pr&eacute;c&eacute;dent"><<</a>
+			&nbsp;Pr&eacute;visions&nbsp;
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -840 }); return false;" title="Jour suivant">>></a>
+		
+	
+
+	
+	
+	
+	</div>
+</div><div class="pave-prevision">
+	<p class="maj">
+		Pr&eacute;visions du&nbsp;8 novembre<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature previsions">	
+		<img src="local/cache-vignettes/L80xH80/11-fa0bf.png" alt="Averses" title="Averses" width='80' height='80' style='height:80px;width:80px;' />
+		<p>Max&nbsp;13°C<br/>
+		Min&nbsp;6°C
+		</p>							
+	</div>								
+	<br class="nettoyeur"/>	
+	<div class="resume">
+		Averses
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 14&nbsp;km/h
+			</li>
+			<li>
+				<span>Risque de precip.</span>
+				 : 60%
+			</li>
+		</ul>
+	</div>	
+	<div class="liens">
+	 
+	 	
+		
+		
+		 
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -672 }); return false;" title="Jour pr&eacute;c&eacute;dent"><<</a>
+			&nbsp;Pr&eacute;visions&nbsp;
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -1008 }); return false;" title="Jour suivant">>></a>
+		
+	
+
+	
+	
+	
+	</div>
+</div><div class="pave-prevision">
+	<p class="maj">
+		Pr&eacute;visions du&nbsp;9 novembre<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature previsions">	
+		<img src="local/cache-vignettes/L80xH80/39-d96dd.png" alt="Orage épars" title="Orage épars" width='80' height='80' style='height:80px;width:80px;' />
+		<p>Max&nbsp;11°C<br/>
+		Min&nbsp;6°C
+		</p>							
+	</div>								
+	<br class="nettoyeur"/>	
+	<div class="resume">
+		Orage épars
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 14&nbsp;km/h
+			</li>
+			<li>
+				<span>Risque de precip.</span>
+				 : 40%
+			</li>
+		</ul>
+	</div>	
+	<div class="liens">
+	 
+	 	
+		
+		
+		 
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -840 }); return false;" title="Jour pr&eacute;c&eacute;dent"><<</a>
+			&nbsp;Pr&eacute;visions&nbsp;
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -1176 }); return false;" title="Jour suivant">>></a>
+		
+	
+
+	
+	
+	
+	</div>
+</div><div class="pave-prevision">
+	<p class="maj">
+		Pr&eacute;visions du&nbsp;10 novembre<br />
+		par weather.com&reg;
+	</p>
+	<div class="temperature previsions">	
+		<img src="local/cache-vignettes/L80xH80/11-fa0bf.png" alt="Averses" title="Averses" width='80' height='80' style='height:80px;width:80px;' />
+		<p>Max&nbsp;10°C<br/>
+		Min&nbsp;4°C
+		</p>							
+	</div>								
+	<br class="nettoyeur"/>	
+	<div class="resume">
+		Averses
+		<ul>
+			<li>
+				<span>Vent</span>
+				 : 19&nbsp;km/h
+			</li>
+			<li>
+				<span>Risque de precip.</span>
+				 : 40%
+			</li>
+		</ul>
+	</div>	
+	<div class="liens">
+	 
+	 	
+		 
+			<a class="lien-selection" href="#" onclick="$('#slide_selection').animate({marginLeft: -1008 }); return false;" title="Jour pr&eacute;c&eacute;dent"><<</a> Pr&eacute;visions
+		
+		
+		
+	
+
+	
+	
+	
+	</div>
+</div>				
+				</div>
+			</div>
+			<br class="nettoyeur"/>	
+		</div>
+		<br class="nettoyeur"/>	
+	</div>
+</div>	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+	 
+			
+
+ <div id="noisette_breves" class="noisette">
+		<h1><a class="intitule" href="http://www.morere.eu/spip.php?page=breve">Br&egrave;ves</a></h1>	
+		 <div class="contenu mixte">
+
+		<h2><a class="titre" href="spip.php?breve24" title="Voir la br&egrave;ve compl&egrave;te">
+		25 f&eacute;vrier 2011&nbsp;-&nbsp;Scilab&nbsp;: Application GUI
+	</a></h2>
+	<div class="introduction">Application GUI dans Scilab : Étude des systèmes automatiques. Systèmes  Linéaires</div>
+
+		<h2><a class="titre" href="spip.php?breve28" title="Voir la br&egrave;ve compl&egrave;te">
+		9 janvier 2011&nbsp;-&nbsp;Modèle 3D dans Scilab
+	</a></h2>
+	<div class="introduction">Afficher des patchs dans Scilab à partir de Modèle 3D blender. Modèle 3D dans&nbsp;(...)</div>
+
+		<h2><a class="titre" href="spip.php?breve27" title="Voir la br&egrave;ve compl&egrave;te">
+		2 octobre 2010&nbsp;-&nbsp;Plugins LDraw pour Blender 2.49
+	</a></h2>
+	<div class="introduction">Importez vos modèles LEGO (MLCad et autres) dans blender grâce au plugin d’importation&nbsp;(...)</div>
+
+		 </div>
+	</div>	</div>
+	
+	<div id="footer">
+		
+		<div class="pied_bas">
+
+	<div class="copyright">&copy;&nbsp;2003-2013&nbsp;Ian’s Web Page</div>	<div class="credits"><a href="http://www.morere.eu/spip.php?page=plan&amp;tri=par_rubrique">Plan du site</a>&nbsp;|&nbsp;<a href="http://www.morere.eu/spip.php?page=backend">
+<img src="http://www.morere.eu/IMG/subscribe-rss.png"></a>&nbsp;|&nbsp;<a href="#header" title="Retour en haut de la page" rel="nofollow">Haut &uarr;</a></div>	
+
+</div>
+
+<!-- SPIP-CRON --><div style="background-image: url('http://morere.eu/spip.php?action=cron');"></div>	</div>
+
+</div>
+</body>
+</html>
+
+

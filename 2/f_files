@@ -1,0 +1,19 @@
+
+" Return: all the files in dir not filtred by "filter"
+function s:filesIn(dir, filter)
+  let files = split(globpath(a:dir, '*'), '\n')
+  let files = filter(files, a:filter)
+
+  let ret = []
+  for path in files
+    let name = path[len(a:dir)+1:]
+
+    if name[-3:] ==? ".py"
+      let name = name[:-4]
+    endif
+
+    call add(ret, name)
+  endfor
+
+  return sort(ret)
+endfunction

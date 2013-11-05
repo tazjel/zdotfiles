@@ -1,0 +1,10 @@
+" Split the filename and the directories in path
+"  Return: [path to the directory, filename]
+function s:splitLastFile(path)
+  let pos = strridx(a:path, '/')
+  if pos == -1
+    return ['', a:path]
+  else
+    return [strpart(a:path, 0, pos), a:path[pos+1:]]
+  endif
+endfunction

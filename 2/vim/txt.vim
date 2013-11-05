@@ -64,7 +64,7 @@ syn region txtComments  start="\/\*"    end="\*\/"      contains=@txtAlwaysConta
 
 syn region txtDelims    matchgroup=txtOperator start="<"        end=">"         contains=@txtContains,@txtAlwaysContains oneline
 syn region txtDelims    matchgroup=txtOperator start="{"        end="}"         contains=@txtContains,@txtAlwaysContains oneline
-syn region txtDelims    matchgroup=txtOperator start="\["       end="\]"                contains=@txtContains,@txtAlwaysContains oneline 
+syn region txtDelims    matchgroup=txtOperator start="\["       end="\]"                contains=@txtContains,@txtAlwaysContains oneline
 
 syn match txtLink       "\(http\|https\|ftp\)\(\w\|[\-&=,?\:\.\/]\)*"   contains=txtOperator
 
@@ -88,7 +88,7 @@ syn case match
 
 " This creates a match on the date and puts in the highlight group called logDate.  The
 " nextgroup and skipwhite makes vim look for logTime after the match
-syn match logDate /^\d\{4}-\d\{2}-\d\{2}/ 
+syn match logDate /^\d\{4}-\d\{2}-\d\{2}/
 
 " This creates a match on the time (but only if it follows the date)
 syn match logTime /\d\{2}:\d\{2}:\d\{2},\d\{3}/

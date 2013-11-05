@@ -77,7 +77,7 @@ git_clone() {
 
 set_xkeyboard() {
     if [[ $(uname) = "Linux" ]];then
-        easystroke show
+        #easystroke show
         setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
         setxkbmap -option ctrl:nocaps
     fi
@@ -87,7 +87,7 @@ set_xkeyboard
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
-        easystroke show
+        #easystroke show
         set_xkeyboard
     fi
 }

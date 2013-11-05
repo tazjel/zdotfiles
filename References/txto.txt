@@ -3,6 +3,3 @@ Coding Style: Readability Counts
 Programs must be written for people to read, and only incidentally for machines to execute.
 
 —Abelson & Sussman, Structure and Interpretation of Computer Programs
-
-
-
