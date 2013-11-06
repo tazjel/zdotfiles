@@ -269,6 +269,10 @@ iabbrev $$ ${0: <F2>}<left><left>
 " unzip
 " Add this to vimrc
 
+"1 set thesaurus+=/home/ahmed/mthesaur.txt
+"2 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
+
+
 set thesaurus+=/home/ahmed/mthesaur.txt
 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
 
@@ -288,7 +292,7 @@ function! LineCompleteFromFile(findstart,base)
         return match(getline("."),'S')
     else
         " grep the file and build list of results:
-        let path= /home/ahmed/alltxt/AleuBaak_psu_0180E_10435.txt
+        let path= /home/ahmed/
         call SilentFileGrep( a:base, path )
         let matches = []
         for thismatch in getqflist()
@@ -427,23 +431,26 @@ endfunction
 """"""""""
 map ,l :call LoadTemplate()
 
+    "silent! 0r ~/.vim/skel/tmpl.%:e
 "map ,w
 " TEMPLATES
 function! LoadTemplate()
     " load a template based on the file extension
-    silent! 0r ~/.vim/skel/tmpl.%:e
+    silent! .r ~/.vim/skel/tmpl.%:e
 
     " Replace some placeholders
-    %s/%FILENAME%/\=expand("%:t")/g
+    "%s/FILENAME%/\=expand("%:t")/g
+    "%s/%DATE%/\=strftime("%b %d, %Y")/g
     %s/%DATE%/\=strftime("%b %d, %Y")/g
 
     " This last one deletes the placeholder
     " %START% then leaves the cursor there.
-    %s/%START%//g
+    "%s/%START%//g
 endfunction
 
-"autocmd! BufNewFile * call LoadTemplate()
-"autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
+autocmd! BufNewFile * call LoadTemplate()
+"
+autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
 autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
 
 map ص C
@@ -456,4 +463,22 @@ endfunction
 
 
  "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
+noremap <CR> :
+
+" nice bash-like filename auto-complete
+set wildmode=longest,list,full
+set wildmenu
+
+nnoremap gl :set operatorfunc=GoogleOperator<cr>g@
+vnoremap gl :<c-u>call GoogleOperator(visualmode())<cr>
+
+function! GoogleOperator(type)
+  let saved_register = @@
+endfunction
+
+map <Leader>w <c-w>v<c-w>l
+map <Leader>sh <c-w>s<c-w>j
+nmap ,, :e.<CR>
+nnoremap <leader>z zMzvzz
+
 
