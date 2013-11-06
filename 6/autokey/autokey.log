@@ -2508,3 +2508,340 @@ ValueError: invalid literal for int() with base 10: ''
 2013-09-27 10:23:27,348 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-09-27 10:23:38,285 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-09-27 10:24:23,726 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 10:03:13,144 INFO - root - Initialising application
+2013-11-05 10:03:13,154 INFO - root - Initialise global hotkeys
+2013-11-05 10:03:13,154 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 10:03:13,173 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 10:03:13,178 INFO - config-manager - Successfully loaded configuration
+2013-11-05 10:03:13,178 INFO - service - Starting service
+2013-11-05 10:03:13,245 INFO - interface - XRecord interface thread starting
+2013-11-05 10:03:13,245 INFO - service - Service now marked as running
+2013-11-05 11:25:46,084 INFO - root - Initialising application
+2013-11-05 11:25:46,136 INFO - root - Initialise global hotkeys
+2013-11-05 11:25:46,136 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 11:25:46,226 INFO - root - Initialising application
+2013-11-05 11:25:46,226 INFO - root - Initialising application
+2013-11-05 11:25:46,233 INFO - root - Initialise global hotkeys
+2013-11-05 11:25:46,233 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 11:25:46,234 INFO - root - Initialise global hotkeys
+2013-11-05 11:25:46,234 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 11:25:56,548 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:25:56,548 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:25:56,548 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:25:56,551 INFO - config-manager - Successfully loaded configuration
+2013-11-05 11:25:56,551 INFO - service - Starting service
+2013-11-05 11:25:56,553 INFO - config-manager - Successfully loaded configuration
+2013-11-05 11:25:56,553 INFO - config-manager - Successfully loaded configuration
+2013-11-05 11:25:56,553 INFO - service - Starting service
+2013-11-05 11:25:56,553 INFO - service - Starting service
+2013-11-05 11:25:57,058 INFO - interface - XRecord interface thread starting
+2013-11-05 11:25:57,059 INFO - interface - XRecord interface thread starting
+2013-11-05 11:25:57,059 INFO - service - Service now marked as running
+2013-11-05 11:25:57,059 INFO - service - Service now marked as running
+2013-11-05 11:25:57,061 INFO - interface - XRecord interface thread starting
+2013-11-05 11:25:57,061 INFO - service - Service now marked as running
+2013-11-05 11:35:56,971 INFO - root - Shutting down
+2013-11-05 11:35:56,972 INFO - service - Service shutting down
+2013-11-05 11:35:57,735 INFO - config-manager - Persisting configuration
+2013-11-05 11:35:57,736 INFO - config-manager - Backing up existing config file
+2013-11-05 11:35:57,737 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-05 11:35:57,974 INFO - inotify - Shutting down file monitor
+2013-11-05 11:35:58,113 INFO - root - Shutting down
+2013-11-05 11:35:58,113 INFO - service - Service shutting down
+2013-11-05 11:35:58,783 INFO - config-manager - Persisting configuration
+2013-11-05 11:35:58,784 INFO - config-manager - Backing up existing config file
+2013-11-05 11:35:58,785 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-05 11:35:58,976 INFO - inotify - Shutting down file monitor
+2013-11-05 11:36:00,240 INFO - config-manager - Reloading global configuration
+2013-11-05 11:36:00,241 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:36:00,241 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 11:36:01,242 INFO - config-manager - Reloading global configuration
+2013-11-05 11:36:01,243 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:36:01,243 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 11:36:04,749 INFO - config-manager - Reloading global configuration
+2013-11-05 11:36:04,750 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:36:04,750 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 11:36:05,752 INFO - config-manager - Reloading global configuration
+2013-11-05 11:36:05,752 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:36:05,753 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 11:42:06,273 INFO - root - Displaying configuration window
+2013-11-05 11:46:15,639 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:46:23,816 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:47:28,014 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:47:34,520 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:47:38,627 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 11:48:33,573 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 15:40:47,256 INFO - root - Initialising application
+2013-11-05 15:40:47,256 INFO - root - Initialising application
+2013-11-05 15:40:47,268 INFO - root - Initialising application
+2013-11-05 15:40:47,287 INFO - root - Initialise global hotkeys
+2013-11-05 15:40:47,287 INFO - root - Initialise global hotkeys
+2013-11-05 15:40:47,287 INFO - root - Initialise global hotkeys
+2013-11-05 15:40:47,287 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 15:40:47,287 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 15:40:47,287 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 15:40:53,942 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 15:40:53,942 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 15:40:53,942 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 15:40:53,947 INFO - config-manager - Successfully loaded configuration
+2013-11-05 15:40:53,947 INFO - config-manager - Successfully loaded configuration
+2013-11-05 15:40:53,947 INFO - config-manager - Successfully loaded configuration
+2013-11-05 15:40:53,947 INFO - service - Starting service
+2013-11-05 15:40:53,947 INFO - service - Starting service
+2013-11-05 15:40:53,947 INFO - service - Starting service
+2013-11-05 15:40:54,302 INFO - interface - XRecord interface thread starting
+2013-11-05 15:40:54,303 INFO - service - Service now marked as running
+2013-11-05 15:40:54,312 INFO - interface - XRecord interface thread starting
+2013-11-05 15:40:54,313 INFO - service - Service now marked as running
+2013-11-05 15:40:54,313 INFO - interface - XRecord interface thread starting
+2013-11-05 15:40:54,314 INFO - service - Service now marked as running
+2013-11-05 17:05:42,519 INFO - root - Shutting down
+2013-11-05 17:05:42,521 INFO - service - Service shutting down
+2013-11-05 17:05:43,501 INFO - config-manager - Persisting configuration
+2013-11-05 17:05:43,501 INFO - config-manager - Backing up existing config file
+2013-11-05 17:05:43,502 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-05 17:05:43,523 INFO - inotify - Shutting down file monitor
+2013-11-05 17:05:45,526 INFO - config-manager - Reloading global configuration
+2013-11-05 17:05:45,526 INFO - config-manager - Reloading global configuration
+2013-11-05 17:05:45,526 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 17:05:45,526 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 17:05:45,527 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 17:05:45,527 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 17:05:46,528 INFO - config-manager - Reloading global configuration
+2013-11-05 17:05:46,528 INFO - config-manager - Reloading global configuration
+2013-11-05 17:05:46,528 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 17:05:46,528 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 17:05:46,528 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 17:05:46,528 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 17:05:51,832 INFO - root - Shutting down
+2013-11-05 17:05:51,834 INFO - service - Service shutting down
+2013-11-05 17:05:52,746 INFO - config-manager - Persisting configuration
+2013-11-05 17:05:52,746 INFO - config-manager - Backing up existing config file
+2013-11-05 17:05:52,747 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-05 17:05:52,834 INFO - inotify - Shutting down file monitor
+2013-11-05 17:05:54,837 INFO - config-manager - Reloading global configuration
+2013-11-05 17:05:54,838 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 17:05:54,838 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 17:05:55,840 INFO - config-manager - Reloading global configuration
+2013-11-05 17:05:55,840 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 17:05:55,841 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 19:21:42,634 INFO - root - Displaying configuration window
+2013-11-05 19:21:47,249 INFO - root - Displaying configuration window
+2013-11-05 19:22:53,455 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:23:09,554 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:23:54,108 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:23:54,611 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:24:30,714 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:24:31,216 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:25:24,274 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:25:24,776 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:25:26,280 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:25:26,782 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 19:34:20,173 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:07:18,597 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:09:28,826 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:09:39,921 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:10:05,289 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:10:33,151 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:10:43,442 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:10:45,964 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:10:45,965 INFO - config-manager - Persisting configuration
+2013-11-05 20:10:45,965 INFO - config-manager - Backing up existing config file
+2013-11-05 20:10:45,991 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-05 20:10:51,246 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:11:30,563 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:11:35,620 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:11:38,917 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 20:12:50,809 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 21:55:47,554 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 22:08:12,363 INFO - root - Displaying configuration window
+2013-11-05 23:24:03,495 INFO - root - Initialising application
+2013-11-05 23:24:03,496 INFO - root - Initialising application
+2013-11-05 23:24:03,496 INFO - root - Initialising application
+2013-11-05 23:24:03,608 INFO - root - Initialise global hotkeys
+2013-11-05 23:24:03,608 INFO - root - Initialise global hotkeys
+2013-11-05 23:24:03,608 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 23:24:03,608 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 23:24:03,609 INFO - root - Initialise global hotkeys
+2013-11-05 23:24:03,609 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-05 23:24:14,362 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 23:24:14,362 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 23:24:14,362 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 23:24:14,366 INFO - config-manager - Successfully loaded configuration
+2013-11-05 23:24:14,366 INFO - config-manager - Successfully loaded configuration
+2013-11-05 23:24:14,366 INFO - service - Starting service
+2013-11-05 23:24:14,366 INFO - config-manager - Successfully loaded configuration
+2013-11-05 23:24:14,366 INFO - service - Starting service
+2013-11-05 23:24:14,366 INFO - service - Starting service
+2013-11-05 23:24:14,948 INFO - interface - XRecord interface thread starting
+2013-11-05 23:24:14,949 INFO - interface - XRecord interface thread starting
+2013-11-05 23:24:14,949 INFO - interface - XRecord interface thread starting
+2013-11-05 23:24:14,949 INFO - service - Service now marked as running
+2013-11-05 23:24:14,949 INFO - service - Service now marked as running
+2013-11-05 23:24:14,950 INFO - service - Service now marked as running
+2013-11-05 23:40:09,030 INFO - root - Shutting down
+2013-11-05 23:40:09,031 INFO - service - Service shutting down
+2013-11-05 23:40:09,522 INFO - config-manager - Persisting configuration
+2013-11-05 23:40:09,522 INFO - config-manager - Backing up existing config file
+2013-11-05 23:40:09,559 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-05 23:40:10,560 INFO - inotify - Shutting down file monitor
+2013-11-05 23:40:10,618 INFO - root - Shutting down
+2013-11-05 23:40:10,619 INFO - service - Service shutting down
+2013-11-05 23:40:10,839 INFO - config-manager - Persisting configuration
+2013-11-05 23:40:10,839 INFO - config-manager - Backing up existing config file
+2013-11-05 23:40:10,840 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-05 23:40:11,035 INFO - inotify - Shutting down file monitor
+2013-11-05 23:40:11,537 INFO - config-manager - Reloading global configuration
+2013-11-05 23:40:11,538 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 23:40:11,538 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 23:40:12,539 INFO - config-manager - Reloading global configuration
+2013-11-05 23:40:12,540 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 23:40:12,540 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 23:40:15,545 INFO - config-manager - Reloading global configuration
+2013-11-05 23:40:15,545 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 23:40:15,546 INFO - config-manager - Successfully reloaded global configuration
+2013-11-05 23:40:16,547 INFO - config-manager - Reloading global configuration
+2013-11-05 23:40:16,547 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-05 23:40:16,548 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 00:34:07,024 INFO - root - Displaying configuration window
+2013-11-06 01:13:43,115 INFO - root - Initialising application
+2013-11-06 01:13:43,115 INFO - root - Initialising application
+2013-11-06 01:13:43,194 INFO - root - Initialising application
+2013-11-06 01:13:43,298 INFO - root - Initialise global hotkeys
+2013-11-06 01:13:43,298 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 01:13:43,298 INFO - root - Initialise global hotkeys
+2013-11-06 01:13:43,298 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 01:13:43,299 INFO - root - Initialise global hotkeys
+2013-11-06 01:13:43,299 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 01:13:55,273 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 01:13:55,273 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 01:13:55,273 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 01:13:55,276 INFO - config-manager - Successfully loaded configuration
+2013-11-06 01:13:55,276 INFO - config-manager - Successfully loaded configuration
+2013-11-06 01:13:55,276 INFO - config-manager - Successfully loaded configuration
+2013-11-06 01:13:55,276 INFO - service - Starting service
+2013-11-06 01:13:55,276 INFO - service - Starting service
+2013-11-06 01:13:55,276 INFO - service - Starting service
+2013-11-06 01:13:56,101 INFO - interface - XRecord interface thread starting
+2013-11-06 01:13:56,101 INFO - interface - XRecord interface thread starting
+2013-11-06 01:13:56,103 INFO - service - Service now marked as running
+2013-11-06 01:13:56,102 INFO - service - Service now marked as running
+2013-11-06 01:13:56,102 INFO - interface - XRecord interface thread starting
+2013-11-06 01:13:56,104 INFO - service - Service now marked as running
+2013-11-06 02:04:52,077 INFO - root - Initialising application
+2013-11-06 02:04:52,127 INFO - root - Initialise global hotkeys
+2013-11-06 02:04:52,127 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 02:04:52,309 INFO - root - Initialising application
+2013-11-06 02:04:52,309 INFO - root - Initialising application
+2013-11-06 02:04:52,316 INFO - root - Initialise global hotkeys
+2013-11-06 02:04:52,316 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 02:04:52,316 INFO - root - Initialise global hotkeys
+2013-11-06 02:04:52,317 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 02:05:05,604 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:05:05,604 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:05:05,604 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:05:05,608 INFO - config-manager - Successfully loaded configuration
+2013-11-06 02:05:05,608 INFO - config-manager - Successfully loaded configuration
+2013-11-06 02:05:05,608 INFO - service - Starting service
+2013-11-06 02:05:05,608 INFO - service - Starting service
+2013-11-06 02:05:05,608 INFO - config-manager - Successfully loaded configuration
+2013-11-06 02:05:05,608 INFO - service - Starting service
+2013-11-06 02:05:06,276 INFO - interface - XRecord interface thread starting
+2013-11-06 02:05:06,277 INFO - interface - XRecord interface thread starting
+2013-11-06 02:05:06,277 INFO - service - Service now marked as running
+2013-11-06 02:05:06,277 INFO - service - Service now marked as running
+2013-11-06 02:05:06,278 INFO - interface - XRecord interface thread starting
+2013-11-06 02:05:06,278 INFO - service - Service now marked as running
+2013-11-06 02:17:39,107 INFO - root - Shutting down
+2013-11-06 02:17:39,108 INFO - service - Service shutting down
+2013-11-06 02:17:39,246 INFO - config-manager - Persisting configuration
+2013-11-06 02:17:39,246 INFO - config-manager - Backing up existing config file
+2013-11-06 02:17:39,247 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-06 02:17:39,609 INFO - inotify - Shutting down file monitor
+2013-11-06 02:17:41,612 INFO - config-manager - Reloading global configuration
+2013-11-06 02:17:41,612 INFO - config-manager - Reloading global configuration
+2013-11-06 02:17:41,612 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:17:41,612 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:17:41,612 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 02:17:41,612 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 02:17:42,614 INFO - config-manager - Reloading global configuration
+2013-11-06 02:17:42,614 INFO - config-manager - Reloading global configuration
+2013-11-06 02:17:42,615 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:17:42,615 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:17:42,615 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 02:17:42,615 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 02:17:43,554 INFO - root - Shutting down
+2013-11-06 02:17:43,555 INFO - service - Service shutting down
+2013-11-06 02:17:43,742 INFO - config-manager - Persisting configuration
+2013-11-06 02:17:43,742 INFO - config-manager - Backing up existing config file
+2013-11-06 02:17:43,743 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-06 02:17:44,118 INFO - inotify - Shutting down file monitor
+2013-11-06 02:17:46,121 INFO - config-manager - Reloading global configuration
+2013-11-06 02:17:46,121 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:17:46,121 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 02:17:47,123 INFO - config-manager - Reloading global configuration
+2013-11-06 02:17:47,123 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 02:17:47,123 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 09:43:47,205 INFO - root - Initialising application
+2013-11-06 09:43:47,205 INFO - root - Initialising application
+2013-11-06 09:43:47,205 INFO - root - Initialising application
+2013-11-06 09:43:47,267 INFO - root - Initialise global hotkeys
+2013-11-06 09:43:47,267 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 09:43:47,267 INFO - root - Initialise global hotkeys
+2013-11-06 09:43:47,267 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 09:43:47,267 INFO - root - Initialise global hotkeys
+2013-11-06 09:43:47,267 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 09:43:56,407 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:43:56,407 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:43:56,407 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:43:56,627 INFO - config-manager - Successfully loaded configuration
+2013-11-06 09:43:56,627 INFO - service - Starting service
+2013-11-06 09:43:56,629 INFO - config-manager - Successfully loaded configuration
+2013-11-06 09:43:56,629 INFO - service - Starting service
+2013-11-06 09:43:56,630 INFO - config-manager - Successfully loaded configuration
+2013-11-06 09:43:56,630 INFO - service - Starting service
+2013-11-06 09:43:57,259 INFO - interface - XRecord interface thread starting
+2013-11-06 09:43:57,260 INFO - service - Service now marked as running
+2013-11-06 09:43:57,268 INFO - interface - XRecord interface thread starting
+2013-11-06 09:43:57,269 INFO - interface - XRecord interface thread starting
+2013-11-06 09:43:57,269 INFO - service - Service now marked as running
+2013-11-06 09:43:57,269 INFO - service - Service now marked as running
+2013-11-06 09:44:33,955 INFO - root - Displaying configuration window
+2013-11-06 09:45:31,687 INFO - root - Shutting down
+2013-11-06 09:45:31,687 INFO - service - Service shutting down
+2013-11-06 09:45:32,600 INFO - config-manager - Persisting configuration
+2013-11-06 09:45:32,600 INFO - config-manager - Backing up existing config file
+2013-11-06 09:45:32,600 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-06 09:45:32,689 INFO - inotify - Shutting down file monitor
+2013-11-06 09:45:34,353 INFO - root - Shutting down
+2013-11-06 09:45:34,353 INFO - service - Service shutting down
+2013-11-06 09:45:34,603 INFO - config-manager - Persisting configuration
+2013-11-06 09:45:34,603 INFO - config-manager - Backing up existing config file
+2013-11-06 09:45:34,604 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-06 09:45:34,692 INFO - config-manager - Reloading global configuration
+2013-11-06 09:45:34,692 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:45:34,692 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 09:45:34,693 INFO - inotify - Shutting down file monitor
+2013-11-06 09:45:34,693 INFO - config-manager - Reloading global configuration
+2013-11-06 09:45:34,693 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:45:34,693 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 09:45:35,695 INFO - config-manager - Reloading global configuration
+2013-11-06 09:45:35,695 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:45:35,696 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 09:45:37,348 INFO - root - Shutting down
+2013-11-06 09:45:37,349 INFO - service - Service shutting down
+2013-11-06 09:45:38,351 INFO - config-manager - Persisting configuration
+2013-11-06 09:45:38,351 INFO - config-manager - Backing up existing config file
+2013-11-06 09:45:38,352 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-06 09:45:38,701 INFO - config-manager - Reloading global configuration
+2013-11-06 09:45:38,701 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:45:38,702 INFO - config-manager - Successfully reloaded global configuration
+2013-11-06 09:45:38,703 INFO - inotify - Shutting down file monitor
+2013-11-06 09:45:44,187 INFO - root - Initialising application
+2013-11-06 09:45:44,193 INFO - root - Initialise global hotkeys
+2013-11-06 09:45:44,194 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-06 09:45:44,206 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-06 09:45:44,268 INFO - config-manager - Successfully loaded configuration
+2013-11-06 09:45:44,268 INFO - service - Starting service
+2013-11-06 09:45:44,314 INFO - interface - XRecord interface thread starting
+2013-11-06 09:45:44,315 INFO - service - Service now marked as running

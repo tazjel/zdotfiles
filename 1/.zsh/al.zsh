@@ -256,7 +256,7 @@ alias 'wsr'='cd ~/src'
     alias -g 'wxc'='| xclip'
     alias -g G='| grep'
     alias -g Gh='--help | grep'
-    alias -g 'wcl'='| wc -l'
+alias -g 'wcl'='wc -l'
     alias -g wv='| vim -'
     alias ......='cd ../../../../../'
     alias .....='cd ../../../../'
@@ -794,6 +794,11 @@ alias 'wgc'='git clone'
     git_branch='master'
     debug_mode='0'
     fork_maintainer='0'
+
+
+AA() {
+    grep -Iishyr "\(Ramsbotham\|McDonald\|Miall\|Hugh\|Oliver\|Woodhouse\|Lederach\|Druckman\|eds\|Pruitt\|Kim\|Sung\|Cloke\|Kenneth\|Diamond\|Tidwell\|Alan\|Burton\|Cheldelin\)" .
+}
 
 
 alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'

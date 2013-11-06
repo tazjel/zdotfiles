@@ -1,8 +1,5 @@
 {
     "usageCount": 0, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": " No contents!", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -11,17 +8,16 @@
         "backspace": true, 
         "triggerInside": false
     }, 
+    "modes": [], 
+    "title": "News", 
     "hotkey": {
         "hotKey": null, 
         "modifiers": []
     }, 
-    "modes": [], 
-    "showInTrayMenu": false, 
-    "matchCase": false, 
     "filter": {
         "regex": null, 
         "isRecursive": false
     }, 
-    "type": "phrase", 
-    "sendMode": "kb"
+    "type": "folder", 
+    "showInTrayMenu": false
 }

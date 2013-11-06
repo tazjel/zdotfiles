@@ -2,7 +2,7 @@
     "usageCount": 0, 
     "omitTrigger": false, 
     "prompt": false, 
-    "description": "Here\u2019s the latest...", 
+    "description": "Have you ever", 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 

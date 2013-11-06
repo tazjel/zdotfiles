@@ -1,8 +1,5 @@
 {
-    "usageCount": 2, 
-    "omitTrigger": false, 
-    "prompt": false, 
-    "description": "Abbreviation from selection", 
+    "usageCount": 0, 
     "abbreviation": {
         "wordChars": "[\\w]", 
         "abbreviations": [], 
@@ -11,16 +8,16 @@
         "backspace": true, 
         "triggerInside": false
     }, 
+    "modes": [], 
+    "title": "apologise", 
     "hotkey": {
         "hotKey": null, 
         "modifiers": []
     }, 
-    "modes": [], 
-    "showInTrayMenu": false, 
     "filter": {
         "regex": null, 
         "isRecursive": false
     }, 
-    "type": "script", 
-    "store": {}
+    "type": "folder", 
+    "showInTrayMenu": false
 }

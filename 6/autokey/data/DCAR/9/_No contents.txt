@@ -1,1 +1,0 @@
-wtext = clipboard.get_clipboard()
