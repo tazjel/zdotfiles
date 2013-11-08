@@ -8,15 +8,11 @@
         "backspace": true, 
         "triggerInside": false
     }, 
-    "modes": [
-        3
-    ], 
-    "title": "email", 
+    "modes": [], 
+    "title": "book_review", 
     "hotkey": {
-        "hotKey": "<delete>", 
-        "modifiers": [
-            "<alt>"
-        ]
+        "hotKey": null, 
+        "modifiers": []
     }, 
     "filter": {
         "regex": null, 

@@ -2845,3 +2845,57 @@ ValueError: invalid literal for int() with base 10: ''
 2013-11-06 09:45:44,268 INFO - service - Starting service
 2013-11-06 09:45:44,314 INFO - interface - XRecord interface thread starting
 2013-11-06 09:45:44,315 INFO - service - Service now marked as running
+2013-11-07 17:43:09,998 INFO - root - Displaying configuration window
+2013-11-07 17:48:19,190 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:48:28,110 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:49:19,687 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:49:26,755 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:49:58,160 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:50:04,842 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:50:04,843 INFO - config-manager - Persisting configuration
+2013-11-07 17:50:04,844 INFO - config-manager - Backing up existing config file
+2013-11-07 17:50:04,846 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 17:50:13,803 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:50:13,804 INFO - config-manager - Persisting configuration
+2013-11-07 17:50:13,804 INFO - config-manager - Backing up existing config file
+2013-11-07 17:50:13,806 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 17:51:16,805 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:51:46,321 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 17:51:46,327 INFO - config-manager - Persisting configuration
+2013-11-07 17:51:46,328 INFO - config-manager - Backing up existing config file
+2013-11-07 17:51:46,331 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:17:00,708 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:17:17,339 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:17:31,609 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:17:52,827 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:18:23,594 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:18:34,162 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:18:42,381 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:18:42,383 INFO - config-manager - Persisting configuration
+2013-11-07 18:18:42,383 INFO - config-manager - Backing up existing config file
+2013-11-07 18:18:42,385 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:18:46,026 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:18:46,028 INFO - config-manager - Persisting configuration
+2013-11-07 18:18:46,028 INFO - config-manager - Backing up existing config file
+2013-11-07 18:18:46,030 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:18:59,888 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:18:59,891 INFO - config-manager - Persisting configuration
+2013-11-07 18:18:59,892 INFO - config-manager - Backing up existing config file
+2013-11-07 18:18:59,896 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:19:03,264 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:19:03,270 INFO - config-manager - Persisting configuration
+2013-11-07 18:19:03,270 INFO - config-manager - Backing up existing config file
+2013-11-07 18:19:03,272 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:19:07,527 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:19:07,530 INFO - config-manager - Persisting configuration
+2013-11-07 18:19:07,531 INFO - config-manager - Backing up existing config file
+2013-11-07 18:19:07,532 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:19:10,630 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:19:10,633 INFO - config-manager - Persisting configuration
+2013-11-07 18:19:10,634 INFO - config-manager - Backing up existing config file
+2013-11-07 18:19:10,635 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:19:15,227 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-07 18:19:15,229 INFO - config-manager - Persisting configuration
+2013-11-07 18:19:15,229 INFO - config-manager - Backing up existing config file
+2013-11-07 18:19:15,231 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-07 18:19:29,138 INFO - config-manager - Configuration changed - rebuilding in-memory structures

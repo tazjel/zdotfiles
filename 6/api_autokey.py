@@ -1,13 +1,4 @@
 #!/bin/Python
-
-engine
-    engine.create_abbreviation(folder, description, abbr, contents) Create a text abbreviation
-    engine.create_hotkey(folder, description, modifiers, key, contents) Create a text hotkey
-    engine.create_phrase(folder, description, contents) Create a text phrase
-    engine.get_folder(title) Retrieve a folder by its title
-    engine.get_macro_arguments() Get the arguments supplied to the current script via its macro
-    engine.run_script(description) Run an existing script using its description to look it up
-    engine.set_return_value(val) Store a return value to be used by a phrase macro
 keyboard
     keyboard.fake_keypress(key, repeat=1) Fake a keypress
     keyboard.press_key(key) Send a key down event

@@ -407,12 +407,23 @@ alias -g 'wcl'='wc -l'
     alias jpgtopdf='convert *.JPG "$(basename "$(pwd)").pdf"'
 
 
-wwww_grep_pdf(){
+wwww_pdf(){
     for i in *.pdf; do echo --------$i-------; echo
         pdftotext $i - | grep -i $1
     done
 }
 
+# find and grep Word docs
+#find . -iname '*filename*.doc' | { while read line; do antiword "$line"; done; } | grep -C4 search_term;
+
+# compare two Microsoft Word documents
+#meld <(antiword microsoft_word_a.doc) <(antiword microsoft_word_b.doc)
+
+wwww_doc(){
+    for i in *.doc; do echo --------$i-------; echo
+        catdoc $i - | grep -i $1
+    done
+}
 
 
 

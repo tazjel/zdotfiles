@@ -1,4 +1,3 @@
-"DCAR colorscheme
 "key = ['borland']
 colorscheme random
 set t_Co=256
@@ -95,7 +94,9 @@ endif
             nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
             "
         " <F7>
+    imap <F7> <C-X><C-l>
                     vnoremap <f7> :s/xxx/\$\{1\:#\}/g
+                    "
         "colorscheme random
 
 
@@ -250,7 +251,7 @@ cab wex !sh %<CR>
 
     set history=9000
     " show the cursor position all the time
-iabbrev $$ ${0: <F2>}<left><left>
+iabbrev $$ ${0: }<left><left>
 
     abbr #b #!/bin/bash
     abbr #p #!/usr/bin/env python
@@ -259,21 +260,18 @@ iabbrev $$ ${0: <F2>}<left><left>
 
     " Undo in insert mode.
     imap <c-z> <c-o>u
-    map <F11> y<C-W>n<C-W>Lp:w ~/Dropbox/1/
-
-
-
-" wget www.gutenberg.org/dirs/etext02/mthes10.zip
-"
-" Download the thesaurus
-" unzip
-" Add this to vimrc
+    "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
+    map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
+    "map <F11> y<C-W>n<C-W>Lp: ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/CAR.snip
+    "
+" " Download the thesaurus " unzip " Add this to vimrc
+    " wget www.gutenberg.org/dirs/etext02/mthes10.zip
 
 "1 set thesaurus+=/home/ahmed/mthesaur.txt
 "2 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
 
 
-set thesaurus+=/home/ahmed/mthesaur.txt
+set thesaurus+=/home/ahmed/Dropbox/DCAR/_phrase.snip
 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
 
 function! SilentFileGrep( leader, file )
@@ -323,7 +321,6 @@ set completefunc=LineCompleteFromFile
 "autocmd FileType *.txt exec('set fileformats=unix')
 "autocmd FileType *.txt exec('set syntax= text')
 """""
-au Syntax txt  runtime! syntax/txt.vim
 
 """""""
 imap <C-s> <C-o>:w<CR>
@@ -401,10 +398,8 @@ func! S2C(str) " Put string on clipboard
     call P(a:str)
     call Cut()
 endf
-""""""""""
-"
-"
-""""
+
+
 
 function! SaveLine()
    call CPL()
@@ -429,11 +424,62 @@ endfunction
 ":g/^/ call Del()
 
 """"""""""
-map ,l :call LoadTemplate()
 
-    "silent! 0r ~/.vim/skel/tmpl.%:e
-"map ,w
-" TEMPLATES
+autocmd! BufNewFile *py call LoadTemplate()
+autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
+autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
+
+"au Syntax txt  runtime! syntax/txt.vim
+
+    "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r__AA\1/g
+ "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
+
+
+
+
+noremap <CR> :
+
+"
+" nice bash-like filename auto-complete
+set wildmode=longest,list,full
+set wildmenu
+
+nnoremap gl :set operatorfunc=GoogleOperator<cr>g@
+vnoremap gl :<c-u>call GoogleOperator(visualmode())<cr>
+
+
+
+map <Leader>w <c-w>v<c-w>l
+map <Leader>sh <c-w>s<c-w>j
+
+nmap ,, :e.<CR>
+
+
+
+nnoremap 8 zMzvzz
+nnoremap 9 zM
+nnoremap 0 zR
+"""""""""""""|"""""""""""
+
+
+function! neocomplcache#util#dup_filter(list) "{{{
+  let dict = {}
+  for keyword in a:list
+    if !has_key(dict, keyword.word)
+      let dict[keyword.word] = keyword
+    endif
+  endfor
+
+  return values(dict)
+endfunction"}}}
+let pos = [line('.'), col('.')]
+let saved_register = @@
+
+function! AA()
+    :g/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/
+endfunction
+
+
 function! LoadTemplate()
     " load a template based on the file extension
     silent! .r ~/.vim/skel/tmpl.%:e
@@ -448,37 +494,62 @@ function! LoadTemplate()
     "%s/%START%//g
 endfunction
 
-autocmd! BufNewFile * call LoadTemplate()
-"
-autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
-autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
+map ,l :call LoadTemplate()
+
+    "silent! 0r ~/.vim/skel/tmpl.%:e
+"map ,w
+" TEMPLATES
+"
+nnoremap ,w  ddGop
 
 map ص C
 
-    "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/__AA\1/g
+"\%[]	A sequence of optionally matched atoms.  This always matches.
+"
+      ":%s/,/^V^M/g
+      "globally replace commas with newlines (yes, I know this
+        "looks like it would insert DOS carriage returns, but it only inserts the
+        "newlines on Unix)
+      ":%s/\s*$//
+      "strip blanks from end of lines
+      ":%s/^.\{30}//
+      "remove the first 30 characters from each line
+      ":%s/[ ^I]*$/!d
+      "remove trailing whitespace (where ^I
+        "is produced by pressing the tab key)
+      ":%s/.*/\L&/
+      "convert the entire file to lowercase.
+      ":s/.*/\u&/
+      "convert the first character of line to uppercase.
+      ":%s/\&lt;./\u&amp;/g
+        "convert the first character of each word to uppercase
+          "\&lt; matches the start of a word;
+            ". therefore matches the first character of a word;
+            "\u tells Vi(m) to uppercase the next character in the substitution
+            "string;
+            "&amp; means substitute whatever was matched on the lhs;
+"%s/\(^.*install\) \(.*$\)/\2/g
 
-function! AA()
-    :g/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/
+    " source: http://vim.wikia.com/wiki/VimTip102
+    " Let <Tab> do all the autocompletion
+
+function! Smart_TabComplete()
+    let line = getline('.') 					" curline
+    let substr = strpart(line, -1, col('.'))	" from start to cursor
+    let substr = matchstr(substr, "[^ \t]*$")	" word till cursor
+    if (strlen(substr)==0)						" nothing to match on empty string
+        return "\<tab>"
+    endif
+    let has_period = match(substr, '\.') != -1	" position of period, if any
+    let has_slash = match(substr, '\/') != -1	" position of slash, if any
+    if (!has_period && !has_slash)
+        return "\<C-X>\<C-P>"					" existing text matching
+    elseif ( has_slash )
+        return "\<C-X>\<C-F>"					" file matching
+    else
+        return "\<C-X>\<C-l>"					" plugin matching
+    endif
 endfunction
 
-
- "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
-noremap <CR> :
-
-" nice bash-like filename auto-complete
-set wildmode=longest,list,full
-set wildmenu
-
-nnoremap gl :set operatorfunc=GoogleOperator<cr>g@
-vnoremap gl :<c-u>call GoogleOperator(visualmode())<cr>
-
-function! GoogleOperator(type)
-  let saved_register = @@
-endfunction
-
-map <Leader>w <c-w>v<c-w>l
-map <Leader>sh <c-w>s<c-w>j
-nmap ,, :e.<CR>
-nnoremap <leader>z zMzvzz
-
+inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 
