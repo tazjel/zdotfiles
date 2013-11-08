@@ -62,7 +62,7 @@ def policy_uncertainty():
 
 def policy_announcement():
   """
-  Don't announce your work. 
+  Don't announce your work.
   Bad: "In this paper, I will discuss how ABC..."
   Good: "ABC has made a significant impact on the teenage population due to its..."
   """

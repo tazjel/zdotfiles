@@ -13,12 +13,8 @@ DL="$HOME/Downloads"
 ############################  SETUP PARAMETERS
     app_name='zdotfiles'
     git_uri='https://github.com/tazjel/zdotfiles.git'
-    git_branch='master'
-    debug_mode='0'
-    fork_maintainer='0'
-#<F9>
-#
-#
+    git_branch='master
+
 #<F6>
 www_ak_add() {
     echo "$1" > $HOME/.config/autokey/data/MyPhrases/ww/"$2"
@@ -28,8 +24,12 @@ www_ak_add() {
 
 wwib(){xp="$@";ssh root@192.168.1.${xp}}
 #
+
 # bash find function
-Wfind (); { ls $1 | while read line; do [[ -d $1/$line ]] && find $1/$line $2 || echo $1/$line | grep $2; done; }
+
+Wfind (); { ls *txt | while read line; do
+    cat $line | grep $1; done;
+}
 
 
 
@@ -330,6 +330,8 @@ alias -g 'wcl'='wc -l'
     alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
     alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
     alias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
+#alias 'web2py'='cd ~/web2py && python web2py.py -a "w" -i 127.0.0.1 -p 8001'
+
     alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
     alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
     alias '00'='$HOME/zdotfiles'
@@ -813,3 +815,6 @@ AA() {
 
 
 alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
+
+alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
+

@@ -2899,3 +2899,232 @@ ValueError: invalid literal for int() with base 10: ''
 2013-11-07 18:19:15,229 INFO - config-manager - Backing up existing config file
 2013-11-07 18:19:15,231 INFO - config-manager - Finished persisting configuration - no errors
 2013-11-07 18:19:29,138 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 07:44:13,275 INFO - root - Initialising application
+2013-11-08 07:44:13,275 INFO - root - Initialising application
+2013-11-08 07:44:13,275 INFO - root - Initialising application
+2013-11-08 07:44:13,399 INFO - root - Initialise global hotkeys
+2013-11-08 07:44:13,399 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 07:44:13,399 INFO - root - Initialise global hotkeys
+2013-11-08 07:44:13,399 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 07:44:13,399 INFO - root - Initialise global hotkeys
+2013-11-08 07:44:13,399 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 07:44:24,680 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 07:44:24,680 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 07:44:24,680 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 07:44:24,684 INFO - config-manager - Successfully loaded configuration
+2013-11-08 07:44:24,684 INFO - config-manager - Successfully loaded configuration
+2013-11-08 07:44:24,685 INFO - config-manager - Successfully loaded configuration
+2013-11-08 07:44:24,685 INFO - service - Starting service
+2013-11-08 07:44:24,685 INFO - service - Starting service
+2013-11-08 07:44:24,685 INFO - service - Starting service
+2013-11-08 07:44:25,449 INFO - interface - XRecord interface thread starting
+2013-11-08 07:44:25,450 INFO - service - Service now marked as running
+2013-11-08 07:44:25,455 INFO - interface - XRecord interface thread starting
+2013-11-08 07:44:25,455 INFO - interface - XRecord interface thread starting
+2013-11-08 07:44:25,455 INFO - service - Service now marked as running
+2013-11-08 07:44:25,456 INFO - service - Service now marked as running
+2013-11-08 11:18:59,066 INFO - root - Shutting down
+2013-11-08 11:18:59,068 INFO - service - Service shutting down
+2013-11-08 11:18:59,574 INFO - config-manager - Persisting configuration
+2013-11-08 11:18:59,574 INFO - config-manager - Backing up existing config file
+2013-11-08 11:18:59,577 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 11:19:00,579 INFO - inotify - Shutting down file monitor
+2013-11-08 11:19:00,959 INFO - root - Shutting down
+2013-11-08 11:19:00,960 INFO - service - Service shutting down
+2013-11-08 11:19:01,577 INFO - config-manager - Persisting configuration
+2013-11-08 11:19:01,577 INFO - config-manager - Backing up existing config file
+2013-11-08 11:19:01,578 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 11:19:01,581 INFO - inotify - Shutting down file monitor
+2013-11-08 11:19:02,080 INFO - config-manager - Reloading global configuration
+2013-11-08 11:19:02,081 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 11:19:02,081 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 11:19:03,083 INFO - config-manager - Reloading global configuration
+2013-11-08 11:19:03,083 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 11:19:03,084 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 11:19:06,089 INFO - config-manager - Reloading global configuration
+2013-11-08 11:19:06,089 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 11:19:06,090 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 11:19:07,091 INFO - config-manager - Reloading global configuration
+2013-11-08 11:19:07,092 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 11:19:07,092 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 19:11:54,693 INFO - root - Initialising application
+2013-11-08 19:11:54,700 INFO - root - Initialise global hotkeys
+2013-11-08 19:11:54,700 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 19:11:54,957 ERROR - root - Error communicating with Dbus service
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/qtapp.py", line 118, in __verifyNotRunning
+    dbusService = bus.get_object("org.autokey.Service", "/AppService")
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 241, in get_object
+    follow_name_owner_changes=follow_name_owner_changes)
+  File "/usr/lib/python2.7/dist-packages/dbus/proxies.py", line 248, in __init__
+    self._named_service = conn.activate_name_owner(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 180, in activate_name_owner
+    self.start_service_by_name(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 278, in start_service_by_name
+    'su', (bus_name, flags)))
+  File "/usr/lib/python2.7/dist-packages/dbus/connection.py", line 651, in call_blocking
+    message, timeout)
+DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.autokey.Service was not provided by any .service files
+2013-11-08 19:11:58,976 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 19:11:58,980 INFO - config-manager - Successfully loaded configuration
+2013-11-08 19:11:58,981 INFO - service - Starting service
+2013-11-08 19:11:59,122 INFO - interface - XRecord interface thread starting
+2013-11-08 19:11:59,122 INFO - service - Service now marked as running
+2013-11-08 19:12:25,173 INFO - root - Displaying configuration window
+2013-11-08 19:19:31,864 ERROR - root - Error communicating with Dbus service
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/qtapp.py", line 118, in __verifyNotRunning
+    dbusService = bus.get_object("org.autokey.Service", "/AppService")
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 241, in get_object
+    follow_name_owner_changes=follow_name_owner_changes)
+  File "/usr/lib/python2.7/dist-packages/dbus/proxies.py", line 248, in __init__
+    self._named_service = conn.activate_name_owner(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 180, in activate_name_owner
+    self.start_service_by_name(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 278, in start_service_by_name
+    'su', (bus_name, flags)))
+  File "/usr/lib/python2.7/dist-packages/dbus/connection.py", line 651, in call_blocking
+    message, timeout)
+DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.autokey.Service was not provided by any .service files
+2013-11-08 19:19:33,848 ERROR - root - Error communicating with Dbus service
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/qtapp.py", line 118, in __verifyNotRunning
+    dbusService = bus.get_object("org.autokey.Service", "/AppService")
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 241, in get_object
+    follow_name_owner_changes=follow_name_owner_changes)
+  File "/usr/lib/python2.7/dist-packages/dbus/proxies.py", line 248, in __init__
+    self._named_service = conn.activate_name_owner(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 180, in activate_name_owner
+    self.start_service_by_name(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 278, in start_service_by_name
+    'su', (bus_name, flags)))
+  File "/usr/lib/python2.7/dist-packages/dbus/connection.py", line 651, in call_blocking
+    message, timeout)
+DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.autokey.Service was not provided by any .service files
+2013-11-08 19:19:47,683 ERROR - root - Error communicating with Dbus service
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/qtapp.py", line 118, in __verifyNotRunning
+    dbusService = bus.get_object("org.autokey.Service", "/AppService")
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 241, in get_object
+    follow_name_owner_changes=follow_name_owner_changes)
+  File "/usr/lib/python2.7/dist-packages/dbus/proxies.py", line 248, in __init__
+    self._named_service = conn.activate_name_owner(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 180, in activate_name_owner
+    self.start_service_by_name(bus_name)
+  File "/usr/lib/python2.7/dist-packages/dbus/bus.py", line 278, in start_service_by_name
+    'su', (bus_name, flags)))
+  File "/usr/lib/python2.7/dist-packages/dbus/connection.py", line 651, in call_blocking
+    message, timeout)
+DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.autokey.Service was not provided by any .service files
+2013-11-08 19:22:14,811 INFO - root - Initialising application
+2013-11-08 19:22:14,811 INFO - root - Initialising application
+2013-11-08 19:22:14,811 INFO - root - Initialising application
+2013-11-08 19:22:14,882 INFO - root - Initialise global hotkeys
+2013-11-08 19:22:14,883 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 19:22:14,883 INFO - root - Initialise global hotkeys
+2013-11-08 19:22:14,883 INFO - root - Initialise global hotkeys
+2013-11-08 19:22:14,883 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 19:22:14,883 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 19:22:25,484 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 19:22:25,484 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 19:22:25,484 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 19:22:25,488 INFO - config-manager - Successfully loaded configuration
+2013-11-08 19:22:25,488 INFO - config-manager - Successfully loaded configuration
+2013-11-08 19:22:25,488 INFO - config-manager - Successfully loaded configuration
+2013-11-08 19:22:25,488 INFO - service - Starting service
+2013-11-08 19:22:25,488 INFO - service - Starting service
+2013-11-08 19:22:25,488 INFO - service - Starting service
+2013-11-08 19:22:26,041 INFO - interface - XRecord interface thread starting
+2013-11-08 19:22:26,042 INFO - service - Service now marked as running
+2013-11-08 19:22:26,042 INFO - interface - XRecord interface thread starting
+2013-11-08 19:22:26,043 INFO - service - Service now marked as running
+2013-11-08 19:22:26,045 INFO - interface - XRecord interface thread starting
+2013-11-08 19:22:26,047 INFO - service - Service now marked as running
+2013-11-08 20:28:23,868 INFO - root - Displaying configuration window
+2013-11-08 20:28:26,214 INFO - root - Shutting down
+2013-11-08 20:28:26,217 INFO - service - Service shutting down
+2013-11-08 20:28:27,096 INFO - config-manager - Persisting configuration
+2013-11-08 20:28:27,096 INFO - config-manager - Backing up existing config file
+2013-11-08 20:28:27,098 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 20:28:28,100 INFO - inotify - Shutting down file monitor
+2013-11-08 20:28:29,219 INFO - config-manager - Reloading global configuration
+2013-11-08 20:28:29,219 INFO - config-manager - Reloading global configuration
+2013-11-08 20:28:29,220 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:28:29,220 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:28:29,220 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:28:29,220 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:28:30,222 INFO - config-manager - Reloading global configuration
+2013-11-08 20:28:30,222 INFO - config-manager - Reloading global configuration
+2013-11-08 20:28:30,223 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:28:30,223 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:28:30,224 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:28:30,224 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:29:29,522 INFO - root - Shutting down
+2013-11-08 20:29:29,524 INFO - service - Service shutting down
+2013-11-08 20:29:29,614 INFO - config-manager - Persisting configuration
+2013-11-08 20:29:29,614 INFO - config-manager - Backing up existing config file
+2013-11-08 20:29:29,615 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 20:29:30,024 INFO - inotify - Shutting down file monitor
+2013-11-08 20:29:31,222 INFO - root - Shutting down
+2013-11-08 20:29:31,223 INFO - service - Service shutting down
+2013-11-08 20:29:31,704 INFO - config-manager - Persisting configuration
+2013-11-08 20:29:31,704 INFO - config-manager - Backing up existing config file
+2013-11-08 20:29:31,705 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 20:29:32,027 INFO - config-manager - Reloading global configuration
+2013-11-08 20:29:32,027 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:29:32,028 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:29:32,029 INFO - inotify - Shutting down file monitor
+2013-11-08 20:36:10,079 INFO - root - Initialising application
+2013-11-08 20:36:10,079 INFO - root - Initialising application
+2013-11-08 20:36:10,117 INFO - root - Initialise global hotkeys
+2013-11-08 20:36:10,117 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 20:36:10,117 INFO - root - Initialise global hotkeys
+2013-11-08 20:36:10,118 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 20:36:10,139 INFO - root - Initialising application
+2013-11-08 20:36:10,145 INFO - root - Initialise global hotkeys
+2013-11-08 20:36:10,145 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-08 20:36:21,892 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:36:21,892 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:36:21,892 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:36:21,896 INFO - config-manager - Successfully loaded configuration
+2013-11-08 20:36:21,896 INFO - config-manager - Successfully loaded configuration
+2013-11-08 20:36:21,896 INFO - config-manager - Successfully loaded configuration
+2013-11-08 20:36:21,896 INFO - service - Starting service
+2013-11-08 20:36:21,896 INFO - service - Starting service
+2013-11-08 20:36:21,896 INFO - service - Starting service
+2013-11-08 20:36:22,494 INFO - interface - XRecord interface thread starting
+2013-11-08 20:36:22,495 INFO - service - Service now marked as running
+2013-11-08 20:36:22,497 INFO - interface - XRecord interface thread starting
+2013-11-08 20:36:22,497 INFO - interface - XRecord interface thread starting
+2013-11-08 20:36:22,497 INFO - service - Service now marked as running
+2013-11-08 20:36:22,498 INFO - service - Service now marked as running
+2013-11-08 20:42:47,856 INFO - root - Shutting down
+2013-11-08 20:42:47,857 INFO - service - Service shutting down
+2013-11-08 20:42:48,855 INFO - config-manager - Persisting configuration
+2013-11-08 20:42:48,856 INFO - config-manager - Backing up existing config file
+2013-11-08 20:42:48,857 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 20:42:48,859 INFO - inotify - Shutting down file monitor
+2013-11-08 20:42:50,862 INFO - config-manager - Reloading global configuration
+2013-11-08 20:42:50,862 INFO - config-manager - Reloading global configuration
+2013-11-08 20:42:50,863 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:42:50,863 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:42:50,863 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:42:50,863 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:42:50,990 INFO - root - Shutting down
+2013-11-08 20:42:50,991 INFO - service - Service shutting down
+2013-11-08 20:42:51,455 INFO - config-manager - Persisting configuration
+2013-11-08 20:42:51,456 INFO - config-manager - Backing up existing config file
+2013-11-08 20:42:51,456 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 20:42:51,864 INFO - config-manager - Reloading global configuration
+2013-11-08 20:42:51,864 INFO - config-manager - Reloading global configuration
+2013-11-08 20:42:51,865 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:42:51,865 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-08 20:42:51,865 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:42:51,865 INFO - config-manager - Successfully reloaded global configuration
+2013-11-08 20:42:51,866 INFO - inotify - Shutting down file monitor
+2013-11-08 20:42:52,330 INFO - root - Shutting down
+2013-11-08 20:42:52,330 INFO - service - Service shutting down
+2013-11-08 20:42:52,817 INFO - config-manager - Persisting configuration
+2013-11-08 20:42:52,817 INFO - config-manager - Backing up existing config file
+2013-11-08 20:42:52,818 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-08 20:42:52,868 INFO - inotify - Shutting down file monitor

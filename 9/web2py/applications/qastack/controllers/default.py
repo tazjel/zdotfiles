@@ -12,6 +12,7 @@ import datetime
 import hashlib
 import base64
 
+from textblob import TextBlob
 from gluon.contrib.login_methods.email_auth import email_auth
 
 # IDE "helper" not part of the framework
@@ -33,10 +34,6 @@ if False:
         as auth_user
     from qastack.modules.QAStackHelper import QAStackHelper as stackhelper
 
-#np_extractor = NPExtractor(sentence)
-def windex():
-      return dict() 
-    
 
 def index():
     """
@@ -375,11 +372,31 @@ def search():
 
 
 def about():
-    return dict()
+    essays = [line.strip() for line in open(os.path.join("/home/ahmed/Dropbox/DCAR/essay-w")).readlines()]
+    essays = ''.join(essays)
+    essays = parse_content(essays)
+    #essay = TextBlob(essays)
+    return dict(essays=essays)
+############
 
+#blob.tags           # [(u'The', u'DT'), (u'titular', u'JJ'),
+                    #  (u'threat', u'NN'), (u'of', u'IN'), ...]
+
+#blob.noun_phrases   # WordList(['titular threat', 'blob',
+                    #            'ultimate movie monster',
+                    #            'amoeba-like mass', ...])
+
+#for sentence in blob.sentences:
+    #print(sentence.sentiment)  # returns (polarity, subjectivity)
+# (0.060, 0.605)
+# (-0.341, 0.767)
+
+#blob.translate(to="es")  # 'La amenaza titular de The Blob...'
+########
 
 def faq():
-    return dict()
+    essays = [line.strip() for line in open(os.path.join("/home/ahmed/Dropbox/DCAR/essay-w")).readlines()]
+    return dict(essays=essays)
 
 
 def bad_resource():

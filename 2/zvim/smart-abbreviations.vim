@@ -5,7 +5,6 @@ function! s:AbbrAsk(abbr, expansion)
 endfunction
 
 iabbr <expr> david <SID>AbbrAsk('David Morcillo Muñoz', 'David Morcillo Muñoz')
-cabbr csd colorscheme desert
 
 " Using placeholders
 iabbr for( for(!cursor!;<+++>;<+++>){<cr><+++><cr>}<Esc>:call search('!cursor!','b')<cr>cf!

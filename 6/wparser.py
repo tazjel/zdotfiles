@@ -1,3 +1,4 @@
+# coding: utf8
 # Provides a secure html/xhtml parser for the system
 # Use from your controllers:
 # text = parse_content(text)
@@ -22,7 +23,7 @@ except ImportError:
     IS_PYGMENTS = False
     raise ValueError(sys.path)
 
-class StrippingParser(sgmllib.SGMLParser):
+class wStrippingParser(sgmllib.SGMLParser):
     # These are the HTML tags that we will leave intact
     valid_tags = ('a', 'b', 'i', 'u',)
     tolerate_missing_closing_tags = ('br',)
@@ -76,8 +77,8 @@ class StrippingParser(sgmllib.SGMLParser):
     def get_html(self):
         html = ' '.join(self.result)
         return html
-       
-        
+
+
 def handle_pygments(pat, content, pygments_lexer):
     if IS_PYGMENTS:
         data = pat.search(content)
@@ -91,17 +92,17 @@ def handle_pygments(pat, content, pygments_lexer):
                 code_found = code_found[1:]
             if code_found.endswith('\n'):
                 code_found = code_found[:-1]
-                
+
             content = content[:data.start(0)] + code_found + content[data.end(0):]
             data = pat.search(content)
     else:
         content = '[PYGMENTS_ERROR] - %s' % content
     return content
-    
-def parse_content(content, mode="removeall"):
+
+def wparse_content(content, mode="removeall"):
     """ Parse the messages """
     if content.strip():
-        parser = StrippingParser(mode)
+        parser = wStrippingParser(mode)
         new_content = content
         parser.feed(new_content)
         parser.close()
@@ -144,15 +145,63 @@ def parse_content(content, mode="removeall"):
             if clean_content.find('[code]') >= 0:
                 clean_content = clean_content.replace('[code]', '<pre>')
                 clean_content = clean_content.replace('[/code]', '</pre>')
-            if clean_content.find('Conflict') >= 0:
-                clean_content = clean_content.replace('Conflict', '<b>Conflict</b>')
-                clean_content = clean_content.replace('conflict', '<b>Conflict Analysis & Resolution</b>')
-
         except NameError:
             # pygments not installed, return content as original text
             pass
-        
+
     else:
         clean_content = ''
     clean_content = clean_content.replace('\n', '<br />')
     return clean_content
+
+import sys, os, operator
+import check_speech, policy_rules
+
+# sys.argv.append("../_Report/src/main.tex") # For testing purpose...
+
+#if __name__ == "__main__":
+  #if len(sys.argv) < 2:
+    #print("Usage: %s [option] <textfile>" % os.path.basename(sys.argv[0]))
+    #print("")
+    #print("  -h, --help  Show this help screen.")
+    #print("")
+    #sys.exit(-1)
+
+#if sys.argv[1] == "--help" or sys.argv[1] == "-h":
+
+print(getattr(check_speech, "__doc__"))
+print("")
+print("Policy rules")
+print("============")
+print("")
+
+for Def in dir(policy_rules):
+    Fun = getattr(policy_rules, Def)
+    if callable(Fun) and Def.startswith("policy_"):
+        print("%s: %s" % (Def, getattr(Fun, "__doc__")))
+    sys.exit(0)
+
+try:
+    File = open("/home/ahmed/Dropbox/11_CAR.snip", "rb")
+    FileContent = File.read()
+    File.close()
+except IOError:
+    print("Could not open file!")
+#print("%s: Could not open file!" % sys.argv[1])
+sys.exit(-1)
+
+Founds = []
+for Def in dir(policy_rules):
+    Fun = getattr(policy_rules, Def)
+    if callable(Fun) and Def.startswith("policy_"):
+        for RegExp in Fun():
+            for Match in RegExp.finditer(FileContent):
+                Line = FileContent.count("\n", 0, Match.start(0)) + 1
+                Policy = Def.replace("policy_", "").replace("_", " ").capitalize()
+                Pattern = RegExp.pattern
+                Text = Match.group(0).replace(os.linesep, " ")
+                Founds.append((Line, Policy, Pattern, Text))
+
+Founds.sort(key=operator.itemgetter(0))
+for Found in Founds:
+    print("%4d %-18s ...%s..." % (Found[0], Found[1]+":", Found[3]))

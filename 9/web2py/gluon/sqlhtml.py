@@ -21,7 +21,7 @@ from gluon.html import FORM, INPUT, LABEL, OPTION, SELECT, COL, COLGROUP
 from gluon.html import TABLE, THEAD, TBODY, TR, TD, TH, STYLE
 from gluon.html import URL, truncate_string, FIELDSET
 from gluon.dal import DAL, Field, Table, Row, CALLABLETYPES, smart_query, \
-    bar_encode, Reference, REGEX_TABLE_DOT_FIELD, Expression
+    bar_encode, Reference, REGEX_TABLE_DOT_FIELD, Expression, SQLCustomType
 from gluon.storage import Storage
 from gluon.utils import md5_hash
 from gluon.validators import IS_EMPTY_OR, IS_NOT_EMPTY, IS_LIST_OF, IS_DATE, \
@@ -1685,7 +1685,10 @@ class SQLFORM(FORM):
             name = str(field).replace('.', '-')
             # treat ftype 'decimal' as 'double'
             # (this fixes problems but needs refactoring!
-            ftype = field.type.split(' ')[0]
+            if isinstance(field.type, SQLCustomType):
+                            ftype = field.type.type.split(' ')[0]
+            else:
+                ftype = field.type.split(' ')[0]
             if ftype.startswith('decimal'): ftype = 'double'
             elif ftype=='bigint': ftype = 'integer'
             elif ftype.startswith('big-'): ftype = ftype[4:]
@@ -2297,14 +2300,18 @@ class SQLFORM(FORM):
             headcols.append(TH(header, _class=ui.get('default')))
 
         toadd = []
+        left_cols = 0
+        right_cols = 0
         if links and links_in_grid:
             for link in links:
                 if isinstance(link, dict):
                     toadd.append(TH(link['header'], _class=ui.get('default')))
             if links_placement in ['right', 'both']:
                 headcols.extend(toadd)
+                right_cols += len(toadd)
             if links_placement in ['left', 'both']:
                 linsert(headcols, 0, toadd)
+                left_cols += len(toadd)
 
         # Include extra column for buttons if needed.
         include_buttons_column = (details or editable or deletable or
@@ -2313,8 +2320,10 @@ class SQLFORM(FORM):
         if include_buttons_column:
             if buttons_placement in ['right', 'both']:
                 headcols.append(TH(_class=ui.get('default','')))
+                right_cols += 1
             if buttons_placement in ['left', 'both']:
                 headcols.insert(0, TH(_class=ui.get('default','')))
+                left_cols += 1
 
         head = TR(*headcols, **dict(_class=ui.get('header')))
 
@@ -2411,10 +2420,14 @@ class SQLFORM(FORM):
             limitby = None
 
         if rows:
-            cols = [COL(_id=str(c).replace('.','-'),data={'position':i+1}) 
+            cols = [COL(_id=str(c).replace('.', '-'),
+                        data={'column': left_cols + i + 1}) 
                     for i,c in enumerate(columns)]
             n = len(head.components)
-            cols += [COL(data={'position':i+1}) for i in range(len(cols),n)]
+            cols = [COL(data={'column': i + 1}) for i in range(left_cols)] + \
+                   cols + \
+                   [COL(data={'column': left_cols + len(cols) + i + 1})
+                    for i in range(right_cols)]
             htmltable = TABLE(COLGROUP(*cols),THEAD(head))
             tbody = TBODY()
             numrec = 0
@@ -2892,11 +2905,11 @@ class SQLTABLE(TABLE):
                 field = sqlrows.db[t][f]
                 headers[c] = field.label
         if colgroup:
-            cols = [COL(_id=c.replace('.','-'),data={'position':i+1}) 
-                    for i,c in enumerate(columns)]
+            cols = [COL(_id=c.replace('.', '-'), data={'column': i + 1}) 
+                    for i, c in enumerate(columns)]
             if extracolumns:
-                cols += [COL(data={'position':len(cols)+i+1})
-                         for i,c in enumerate(extracolumns)]
+                cols += [COL(data={'column': len(cols) + i + 1})
+                         for i, c in enumerate(extracolumns)]
             components.append(COLGROUP(*cols))
             
         if headers is None:

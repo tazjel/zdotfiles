@@ -1,16 +1,16 @@
 #!/usr/bin/env python
 
 """
-This script checks your wording and speech in a scientific paper. 
-It shows you some hints what might be wrong. Not every hit is really bad. 
+This script checks your wording and speech in a scientific paper.
+It shows you some hints what might be wrong. Not every hit is really bad.
 There could be a lot of false positives and vice versa.
 
-This should be common rules for writing scientific papers, but when english 
-is not your mother tongue or native language, some phrases can just hop 
+This should be common rules for writing scientific papers, but when english
+is not your mother tongue or native language, some phrases can just hop
 through. Also when you are tired you tend to write sloppy.
 
 The results are better, if you do not break your text lines in your document
-by yourself, but rather use something like smart or soft line breaks. Also try 
+by yourself, but rather use something like smart or soft line breaks. Also try
 to apply it on pure text, not marked up (LaTeX).
 """
 
@@ -38,12 +38,12 @@ if __name__ == "__main__":
     print("Policy rules")
     print("============")
     print("")
-    for Def in dir(policy_rules): 
+    for Def in dir(policy_rules):
       Fun = getattr(policy_rules, Def)
       if callable(Fun) and Def.startswith("policy_"):
         print("%s: %s" % (Def, getattr(Fun, "__doc__")))
     sys.exit(0)
-  
+
   try:
     File = open(sys.argv[1], "rb")
     FileContent = File.read()
@@ -51,9 +51,9 @@ if __name__ == "__main__":
   except IOError:
     print("%s: Could not open file!" % sys.argv[1])
     sys.exit(-1)
-  
+
   Founds = []
-  for Def in dir(policy_rules): 
+  for Def in dir(policy_rules):
     Fun = getattr(policy_rules, Def)
     if callable(Fun) and Def.startswith("policy_"):
       for RegExp in Fun():
@@ -63,7 +63,7 @@ if __name__ == "__main__":
           Pattern = RegExp.pattern
           Text = Match.group(0).replace(os.linesep, " ")
           Founds.append((Line, Policy, Pattern, Text))
-  
+
   Founds.sort(key=operator.itemgetter(0))
   for Found in Founds:
     print("%4d %-18s ...%s..." % (Found[0], Found[1]+":", Found[3]))
