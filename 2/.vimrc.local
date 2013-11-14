@@ -1,65 +1,55 @@
 "key = ['borland']
 colorscheme random
-set t_Co=256
-set spelllang=en
-"
-"
-set modeline
-set modelines=5
+    set t_Co=256
+    set spelllang=en
+    "
+    "
+    "set modeline
+    set modelines=5
+    set ignorecase " ignore case when searching
+    set smartcase  " ... except when search pattern contains an uppercase char
+    "Enable CursorLine
+        "    set cursorline
+        "Default Colors for CursorLine
+        "    highlight  CursorLine ctermbg=Black ctermfg=None
 
-set ignorecase " ignore case when searching
-set smartcase  " ... except when search pattern contains an uppercase char
-"Enable CursorLine
-    "    set cursorline
-    "Default Colors for CursorLine
-    "    highlight  CursorLine ctermbg=Black ctermfg=None
+        "Change Color when entering Insert Mode
+        "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
 
-    "Change Color when entering Insert Mode
-    "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+        "Revert Color to default when leaving Insert Mode
+        "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
 
-    "Revert Color to default when leaving Insert Mode
-    "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
+        "This creates a keyword ERROR and puts it in the highlight group called logError
+        "    syn keyword logError ERROR
+        "Link just links logError to the colouring for error
+        "    hi link logError Error
 
-    "This creates a keyword ERROR and puts it in the highlight group called logError
-    "    syn keyword logError ERROR
-    "Link just links logError to the colouring for error
-    "    hi link logError Error
+        "    hi def logTime guibg=green guifg=white
+    set background=dark
+    let g:solarized_termcolors=256
+    let g:Powerline_symbols = 'fancy'
+    "
+    " Tabs and indents.
+        set autoindent smartindent                      " auto indent
+        set expandtab smarttab                          " tab
+        set tabstop=4 shiftwidth=4
 
-    "    hi def logTime guibg=green guifg=white
-set background=dark
-let g:solarized_termcolors=256
-"let g:Powerline_symbols = 'fancy'
-"
-"
- "used for visual selections.
+        set noswapfile nobackup nowritebackup autoread  " no backups and auto-read
 
-" Tabs and indents.
-set autoindent smartindent                      " auto indent
-set expandtab smarttab                          " tab
-set tabstop=4 shiftwidth=4
+        set showmatch matchtime=3 matchpairs+=<:>       " parenthesis matching
+        set timeout timeoutlen=5000 ttimeoutlen=100
+        set history=1000
+        set shortmess=aTI                               " no greeting message
 
-set noswapfile nobackup nowritebackup autoread  " no backups and auto-read
-
-set showmatch matchtime=3 matchpairs+=<:>       " parenthesis matching
-set timeout timeoutlen=5000 ttimeoutlen=100
-set history=1000
-set shortmess=aTI                               " no greeting message
-
-
-
-
-
-set splitbelow splitright                       " splitting direction
-"
+        set splitbelow splitright                       " splitting direction
+        "
 " Use clipboard register
-if has('unnamedplus')
-  set clipboard& clipboard+=unnamedplus
-else
-  set clipboard& clipboard+=unnamed
-endif
+    if has('unnamedplus')
+      set clipboard& clipboard+=unnamedplus
+    else
+      set clipboard& clipboard+=unnamed
+    endif
 
-
-"set mouse=a
 " set folding
     setlocal foldmethod=expr
     setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
@@ -67,78 +57,57 @@ endif
     set foldtext=getline(v:foldstart)
     set fillchars=fold:\ "(there's a space after that \)
     highlight Folded ctermfg=DarkGreen ctermbg=Black
+
+
     nnoremap <silent> ; :q!<CR>
     map W :w!<CR>
-    "
-    "
-"Fold; {Conflict Analysis & Resolution }
 
     nnoremap <space> za
     vnoremap <space> zf
-"<F11>
+
     "  <F[1-12]>
-        " <F1>
-            map <F1> \c<space>
-            map <S-F1> :reg
-        " <F2>
-            nnoremap <F2> :reg
-            nnoremap <S-F2> :marks
-        " <F3>
-            " Fold
+            " <F1>
+                map <F1> \c<space>
+                map <S-F1> :reg
+            " <F2>
+                nnoremap <F2> :reg
+                nnoremap <S-F2> :marks
+            " <F3>
+                " Fold
                 map <F3> :ls<CR>:sb
-        " <F4>
-            "UndotreeToggle
-            nnoremap <F4> :verbos map
-            nnoremap <S-F4> :let @*=colors_name<CR>
-        " <F5>
-
-            nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
-            nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
-            nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
-
-            nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
-            "
-        " <F7>
-    imap <F7> <C-X><C-l>
-                    vnoremap <f7> :s/xxx/\$\{1\:#\}/g
-                    "
-
+            " <F4>
+                "UndotreeToggle
+                    nnoremap <F4> :verbos map
+                nnoremap <S-F4> :let @*=colors_name<CR>
+            " <F5>
+                nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
+                nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+                nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
+                nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
+            " <F6>
+                vnoremap <F6> :w! >> ~/Dropbox/
+                nnoremap <C-F6> :vsplit ~/Dropbox/<CR>
+                nnoremap <S-F6> :vsp ~/Dropbox/CAR_system<CR>
+            " <F7>
+                imap <F7> <C-X><C-l>
+                vnoremap <f7> :s/xxx/\$\{1\:#\}/g
+            " <F8>
+                map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
+                map <f8><f8> :diffoff<cr>
+                set diffopt=filler,context:4,iwhite	" options for using diff mode
+            " <F9>
+                nnoremap <silent> <F9> :SessionList<CR>
+                nnoremap <silent> <S-F9> :SessionSave<CR>
+                nnoremap <M-F9> :sessionopen
+                nnoremap <C-F9> :SessionSaveAs
+            " <F10>
+                vnoremap <F10> :w! >> ~/Dropbox/INTRODUCTION/authors.txt<CR>
+                nnoremap <silent> <S-F10> :vsplit ~/Dropbox/INTRODUCTION/authors.txt<CR>
 
 
             abbreviate CC Conflict
             abbreviate CAR Conflict Analysis & Resolution
-                "nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
-                "nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
-                "nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
-                "
-                ".w! >> ~/Dropbox/DCAR/zconflict   line.snip  vsplit line.snip
-
-                "nnoremap 11 :.w! >> ~/Dropbox/11_CAR.snip<CR>
-                "nnoremap t11 :vsplit ~/Dropbox/11_CAR.snip<CR>
-                "
-                vnoremap <F6> :w! >> ~/Dropbox/11_CAR.snip<CR>
-                nnoremap <silent> <C-F6> :vsplit ~/Dropbox/11_CAR.snip<CR>
-                "g/^$/;/^$/-1!sort
-        " <F8>
-            map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
-            map <f8><f8> :diffoff<cr>
-            set diffopt=filler,context:4,iwhite	" options for using diff mode
-
-        " <F9>
-            nnoremap <silent> <F9> :SessionList<CR>
-            nnoremap <silent> <S-F9> :SessionSave<CR>
-            nnoremap <M-F9> :sessionopen
-            nnoremap <C-F9> :SessionSaveAs
-        " <F10>
-""""""""""""""            "
-
-                vnoremap <F10> :w! >> ~/Dropbox/car_10
-                nnoremap <silent> <C-F10> :vsplit ~/Dropbox/car_10<CR>
-
-
-                    "vsp ~/Dropbox/car_5
-                    "'<,'>w! >> ~/Dropbox/car_5
-""""""""""""""""""""""""""""""""""""""
+            "g/^$/;/^$/-1!sort
 
 function! RangeChooser()
     let temp = tempname()
@@ -162,10 +131,10 @@ function! RangeChooser()
         exec 'argadd ' . fnameescape(name)
     endfor
 endfunction
-command! -bar RangerChooser call RangeChooser()
-nnoremap <leader>r :<C-U>RangerChooser<CR>
+    command! -bar RangerChooser call RangeChooser()
+    nnoremap <leader>r :<C-U>RangerChooser<CR>
 
-            "nnoremap <silent> <F10> :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
+            "nnoremap <silent> wF :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
         " <F11>
             """""""""""""""""""""""""""""""""""""""""
         " <F12>
@@ -209,7 +178,7 @@ nnoremap <leader>r :<C-U>RangerChooser<CR>
 
             cabbrev ws %s:^\(.*\):snippet\t\1\/\n\t\1:gc
 
-"%s:^\(.*\)\.\(.*\):snippet   \1\2\r   \0:g
+    "%s:^\(.*\)\.\(.*\):snippet   \1\2\r   \0:g
 
         cabbrev wsh !bash %
 
@@ -266,9 +235,9 @@ iabbrev $$ ${0: }<left><left>
     " Undo in insert mode.
     imap <c-z> <c-o>u
     "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
-    map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
-    "map <F11> y<C-W>n<C-W>Lp: ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/CAR.snip
-    "
+    "map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
+    map <F11> :w! >> ~/Dropbox/INTRODUCTION/terms.txt<CR>
+    map <S-F11> y:vsplit ~/Dropbox/INTRODUCTION/terms.txt<CR>
 " " Download the thesaurus " unzip " Add this to vimrc
     " wget www.gutenberg.org/dirs/etext02/mthes10.zip
 
@@ -506,9 +475,10 @@ map ,l :call LoadTemplate()
 " TEMPLATES
 "
 nnoremap ,w  ddGop
+map ن n
 
-map ص C
-
+map س  V:w!   >> ~/Dropbox/CAR_system<CR>
+"
 "\%[]	A sequence of optionally matched atoms.  This always matches.
 "
       ":%s/,/^V^M/g
@@ -571,6 +541,15 @@ nmap <S-Tab> :tabprevious<CR>
 "Apply the commands recorded in q on the vilual selection
 vnoremap ` :normal @q<CR>
 
+function! s:wfind(list, default, f)
+  for x in a:list
+    if eval(substitute(a:f, 'v:val', string(x), 'g'))
+      return x
+    endif
+  endfor
+  return a:default
+endfunction
+
 
 "Open file same dir--------------------------------------------
 "On the current window
@@ -596,16 +575,19 @@ function! s:AbbrAsk(abbr, expansion)
   return answer == 1 ? a:expansion : a:abbr
 endfunction
 
-iabbr <expr> david <SID>AbbrAsk('David Morcillo Muñoz', 'David Morcillo Muñoz')
+iabbr <expr> id <SID>AbbrAsk('David Morcillo Muñoz', 'David Morcillo Muñoz')
+iabbr ws when where who what why
 
 
+" pull full path name into paste buffer for attachment to email etc
+           "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
+cabbrev w99 w! ~/zdotfiles/9/web2py/applications/qastack/
 cabbr csd colorscheme desert
-#Search
+"#Search
 map <F7> :%s//gc<Left><Left><Left>
-# substitute
-#
-:map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
-
+"# substitute
+"#
+":map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
 
 "Number all the lines in a file (insert line number followed by a tab):
 ":%s/^/\=line('.')."\t"/
@@ -616,4 +598,3 @@ map <F7> :%s//gc<Left><Left><Left>
 "Number all the paragraphs in range starting from 1 (assuming the paragraphs are separated by one or more blank lines):
 ":let counter=0|1,20g/^$\n^\s*[^\s]/let counter=counter+1|+1s/^/\=counter."\t"
 "Note: The above command does not work for the first paragraph in the file if there is no blank line above it.
-

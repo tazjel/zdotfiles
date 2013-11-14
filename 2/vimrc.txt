@@ -1,21 +1,3 @@
-"Modeline and Notes {
-
-" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
-"
-"   _____       _______        ___ __
-"  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
-"    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
-"    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
-"    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
-"
-"
-"   This is the personal .vimrc file of Ahmed Alghamdi.
-
-"   While much of it is beneficial for general use, I would
-"   recommend picking out the parts you want and understand.
-"
-"   This is a mirror of :http://spf13.com
-"
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
 "    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
@@ -34,30 +16,21 @@ set nocompatible "necessary for project plugin
 set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
 "set clipboard=unnamedplus
 set encoding=utf-8
-
-
-
 nnoremap <silent> <Space> @=(foldlevel('.')?'za':"\<Space>")<CR>
-
 vnoremap <Space> zf
-
 "-----------------------------
 "            wWw
 "-----------------------------
-
 "map Y y$
 map <C-c> "+y<CR>
-
 """"""""""""""
 "Save "
 nnoremap <silent> W :w<cr>
 "close"
 nnoremap <silent> ; :q!<cr>
-
 "==================================="
 "            F[1-12]
 "==================================="
-
 "find files
 fun! FindFiles()
   let $filename = input("Enter file name to find: ")
@@ -67,29 +40,20 @@ fun! FindFiles()
   copen
   redraw!
 endfun
-
 """""""""""""""""""""""""""""""""""""""
 "
 ""nnoremap <-F3> :call FindFiles()<CR>
-
 "vnoremap <C-F3> y<C-W><C-W>G$]P<C-W><C-W>
 ""verbose map "F4
-
                                                 "diff"
 map <F3> ]c
 map <s-F3> [c
 map <C-F3> dp
 map <M-F3> do
-
                                                 "commenter"
 ""map <F1> ,cc
 map <F1> ,cc
-
-
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
-
-
-
 "F5
 "F6
 "F7
@@ -98,24 +62,16 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 "F10
 "F11
 "F12
-
-
 """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""''
-
-
  "substitute
-
 map <F7> :m
 "map <F7> :%s//gc<Left><Left><Left>
 map <F8> :%s/<[^>]*>//gi<cr>
-
-
 "F5"
     " source vimrc
 nnoremap <silent> <F5> :source ~/.vimrc.local<cr>
 nnoremap <silent> <C-F5> :vsplit ~/.vimrc.local<CR>
 nnoremap <silent> <S-F5> :SessionOpen zmap<CR>
-
 "F9"
     " SessionOpen:
 nnoremap <silent> <C-F9> :SessionSave<CR>
@@ -152,10 +108,7 @@ nnoremap <M-F9> :SessionOpen
 """""""""""""""""""
 """"""""""""
 "
-
-
 Best of Vim Tips
-
 zzapper (zzapper) 15 Years of Vi + 7+ years of Vim and still learning
 15Mar13 : Last Update (Now in VIM Help Format :h helptags)
 ### These Tips are now being maintained at zzapper.co.uk/vimtips.html
@@ -961,7 +914,6 @@ Websites   " finding empty lines
               norm dd
             endif
            endfunction
-
            :g/^/ call Del()
            ----------------------------------------
            " Digraphs (non alpha-numerics)
@@ -1167,8 +1119,6 @@ Websites   " finding empty lines
            " use yy@" to execute following commands
            :w!|sav! vimtips.html|:/^__BEGIN__/,/^__END__/s#<#\<#g|:w!|:!vimtipsftp
            ----------------------------------------
-
-
 "DCAR colorscheme
 "key = ['borland']
 colorscheme random
@@ -1177,18 +1127,14 @@ set t_Co=256
     "    set cursorline
     "Default Colors for CursorLine
     "    highlight  CursorLine ctermbg=Black ctermfg=None
-
     "Change Color when entering Insert Mode
     "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
-
     "Revert Color to default when leaving Insert Mode
     "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
-
     "This creates a keyword ERROR and puts it in the highlight group called logError
     "    syn keyword logError ERROR
     "Link just links logError to the colouring for error
     "    hi link logError Error
-
     "    hi def logTime guibg=green guifg=white
 set background=dark
 let g:solarized_termcolors=256
@@ -1200,7 +1146,6 @@ set mouse=a
 " set folding
     setlocal foldmethod=expr
     setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
-
     set foldtext=getline(v:foldstart)
     set fillchars=fold:\ "(there's a space after that \)
     highlight Folded ctermfg=DarkGreen ctermbg=Black
@@ -1225,11 +1170,9 @@ set mouse=a
             nnoremap <F4> :verbos map
             nnoremap <S-F4> :let @*=colors_name<CR>
         " <F5>
-
             nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
             nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
             nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/.vimrc.localw<CR>
-
             nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
             "
         " <F7>
@@ -1244,7 +1187,6 @@ set mouse=a
             map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
             map <f8><f8> :diffoff<cr>
             set diffopt=filler,context:4,iwhite	" options for using diff mode
-
         " <F9>
             nnoremap <silent> <F9> :SessionList<CR>
             nnoremap <silent> <S-F9> :SessionSave<CR>
@@ -1259,59 +1201,502 @@ set mouse=a
         " <F12>
     cabbrev wss %s/\s\+$//gc
     cabbrev ws_ s/\s/_/gc
-
         nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.zsh<cr>
             "nnoremap <silent> ww :vsplit ~/zdotfiles/2/.vimrc.localw<cr>
             nnoremap <silent> w2 :vsplit ~/zdotfiles/2/.vimrc.localw<cr>
-
         "imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>ka
         cab w!! w !sudo tee "%"
         map ws :!rm ~/.vimswap/*<cr>
         "install unhtml
         "map wh :!rm ~/tst/vhtml<cr>:r!unhtml % > ~/tst/vhtml<cr><esc>:vsplit ~/tst/vhtml<cr>
     " The W culture "
-
-
-
-
                 ca w!! w !sudo tee "%"
                     map ws :!rm ~/.vimswap/*<cr>
-
-
                     "vnoremap 1 :w! >> ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>
-
                 nnoremap <silent> ; :q!<CR>
             "nnoremap ,1 y:vsplit ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>i<CR>iiiiii<C-R>"p<Esc>p
-
             cabbrev fdf ~/Dropbox/C/Foundation/
-
                 "$\{1\:#\}/gc
                 "w! ~/zdotfiles/2/english/english.snippet
+  changing text
+  copying and pasting
+  deleting
+  external commands
+  inserting
+  miscellaneous
+  moving
+  options
+  search and replace
+  changing text
+      cc
+      change a line
+      C
+      change from current cursor position to the end-of-line 
+      cw
+      change from current cursor position to the end of the word
+      J
+      joins the next line to the current line (inserts a space between the two) 
+      gJ
+      joins the next line to the current line (without a space) 
+      :12,24j
+      join lines 12 thru 24, leaving a space between each line.      
+      ~
+      switch lower and upper cases
+      r
+      replace the current character with the next character typed
+      4rx
+       replace next four characters with "x"
+      R
+      overwrite until &lt;esc&gt;
+      s
+      substitute the current character and go into insert mode. 
+        Same as "rxi &lt;ESC&gt;"
+      S
+      substitute the current line, erase it, and go into insert 
+        mode, starting at the indentation of the line. Same as "cc"
+      >>
+      shift current line forward
+      3>>
+      shift three lines forward
+      >%
+      shift all lines until a matching brace or parenthesis
+      >}
+      shift to the end of the paragraph
+      >'m
+      shift to the marked line
+      &lt;&lt;
+      shift current line backward
+      vEU
+      change from here to end of word to uppercase
+      vEu
+      change from here to end of word to lowercase
+&nbsp;copying and pasting
+      yl
+      yank (copy) current character
+      yn
+      yank n characters
+      yw
+      yank the current word
+      yy
+      yank the current line
+      Y
+       yank a line, same as "yy"
+      nyy
+      yank n lines of text
+      y$
+      yank to end of line
+      y)
+      yank to the end of the sentence
+      y'x
+      yank from current line to the mark x 
+        (use mx to mark as x)
+      y/word
+      yank from current position to &quot;word&quot;
+      "ay'm
+       yank from here to the mark. Place this into the named buffer 
+        "a". This will also allow one to switch files using the ":e fn" or ":n 
+        fn" command and then place the buffer back.
+      "ayy
+       yank current line into buffer a. 
+      "a3Y
+       yank three lines, place into buffer "a"
+       "A3Y
+       append 3 lines, place into "a". This allows one to build 
+        up a buffer.
+      "ap
+       paste the contents of "a" back, below current line.
+      &quot;zyy
+        @z 
+      &quot;zyy places the highlighted text into buffer z; @z will run the contents of buffer z. This allows a search pattern to be written in the document and then reused.
+      p
+      paste to the right of the cursor
+      P
+      paste to the left of the cursor
+deleting
+      x
+      delete the character under the cursor
+      dd
+      delete the current line
+      d^
+      delete from current cursor position to the beginning of 
+        the line
+      d$
+      delete from current cursor position to the end of the line
+      dw
+      delete from current cursor position to the end of the word
+      d3w
+       delete three words
+      3dd
+      delete three lines
+      d/word
+      delete until you find word
+      dfx
+      delete from here until the character "x"
+      D
+      delete everything to the end of the current line (same as d$) 
+      3dd
+      delete everything to the end of the current line and the following 2 lines 
+      u
+      undo deletion
+      U
+      undo the line you just changed
+inserting
+      i
+      insert at the current character
+      I
+      insert at the beginning of the current line
+      20i- &lt;ESC&gt;
+       insert 20 dashes (-)
+      a
+      append to the right of the current character
+      A
+      append at the end of the current line
+      o
+      insert a new line immediately following the current line
+      O
+      insert a new line immediately before the current line
+moving
+      h
+      move the cursor one character to the left
+      j
+      move the cursor one character down
+      k
+      move the cursor one character up
+      l
+      move the cursor one character to the right
+      0
+      move cursor to the beginning of the current line
+      $
+      move cursor to the end of the current line
+      w
+      move cursor forward a word
+      3w
+      move cursor forward three words
+      W
+       move cursor forward, ignoring punctuation 
+      b
+      move cursor back a word
+      B
+      move cursor back a word, ignoring punctuation
+      e
+      move cursor to the end of the word
+      E
+      move cursor to the end of the word, ignoring punctuation
+      G
+      move cursor to the last line of the file
+      nG
+      move cursor to the beginning of line n
+      1G
+      move to the first line of a file
+      n|
+      moves the cursor to the beginning of column n
+      f
+      find a character in the line, forward 
+      fa
+      find the character "a" in the line, forward 
+      2fa
+      find the second occurrence of "a" in the line, forward 
+      F
+      find a character in the line, backward 
+      Fz
+      find the character "z" in the line, backward
+      t
+      find up to a character in the line, forward 
+      )
+      jump to the next sentence
+      }
+      jump to the next paragraph
+      ]
+      jump to the next section
+      %
+      find matching brace or parenthesis
+      ^b
+      scroll backwards one page. A count scrolls that many pages 
+      ^f
+      scroll forwards one page. A count scrolls that many pages
+      ^u
+      scroll up half a screen
+      ^d
+      scroll down half a screen
+      z &lt;enter&gt;
+      put current line at top of screen
+      z.
+      put current line at middle of screen
+      z-
+      put current line at bottom of screen
+      m
+      start a mark, the next character is the name, 
+        any character from a-z
+      ma
+      mark this spot with the character &quot;a&quot;
+      'a
+      return to the line marked &quot;a&quot;
+      `a
+      return to the character marked &quot;a&quot;
+      ''
+      return to previous line (auto-mark)
+      ``
+      return to previous character (auto-mark)
+search and replace
+      /word
+      search forward for word
+      ?word
+      search backward for word
+      ?word?z.
+      search forward for word, put line at the middle of screen
+      n
+      jump forward to next occurance of word
+      N
+      jump backward to next occurance of word
+      *
+      search forward for word under cursor (vim)
+      #
+      search backward for word under cursor (vim)
+      g*
+      search forward for word under cursor (partial match) (vim) 
+      g#
+      search backward for word under cursor (partial match) (vim) 
+      :noh
+      stop highlighting the word that was searched for
+      :s/old/new/
+       replaces first occurence of old with new on current 
+        line
+      :s/old/new/g
+      globally replaces old with new on current line
+      :%s/old/new/g
+      globally replaces old with new on all lines
+      :s/old/new/gc
+      confirms replacements
+      :%s/^V^M//g
+      globally remove DOS carriage returns
+      :%s/,/^V^M/g 
+      globally replace commas with newlines (yes, I know this 
+        looks like it would insert DOS carriage returns, but it only inserts the 
+        newlines on Unix)
+      :%s/\s*$//
+      strip blanks from end of lines
+      :%s/^.\{30}//
+      remove the first 30 characters from each line
+      :%s/[ ^I]*$/!d
+      remove trailing whitespace (where ^I 
+        is produced by pressing the tab key)
+      :%s/.*/\L&/ 
+      convert the entire file to lowercase. 
+      :s/.*/\u&/
+      convert the first character of line to uppercase. 
+      :%s/\&lt;./\u&amp;/g 
+        convert the first character of each word to uppercase
+          \&lt; matches the start of a word;
+            . therefore matches the first character of a word;
+            \u tells Vi(m) to uppercase the next character in the substitution 
+            string;
+            &amp; means substitute whatever was matched on the lhs;
+      :s/book{./\L&amp;/
+      convert the first character after the { to lowercase.
+      :'x,.s/\([a-z]\)=/\1 
+        =/
+      replace any lowercase character in the alphabet followed 
+        by an equal sign with the same character followed by a space and an equal 
+        sign, e.g., book= &gt;&gt; book =
+      ::%s/\(That\) or 
+        \(this\)/\2 or \1/
+      change &quot;that or this&quot; to &quot;this or that&quot;
+      ::%s/\(^\\foilhead{\(.*\)}\)/
+        %\1^M\\section{\2}/
+      comment out each line beginning with '\foilhead' and replace 
+        with a line beginning with '\section'; note the nested backreferences 
+        for keeping the rest of the line the same
+      ::%s/\(.*\)/&lt;a 
+        href=&quot;\1&quot;&gt;\1&lt;\/a&gt;/
+      add HTML tags for references to files
+      :s/ \(\d\{1,2}\)\.\(\d\{1,2}\)\(.*\)/&lt;a 
+        href=&quot;\1-\2.sh&quot;&gt;\1.\2\3&lt;\/a&gt;  
+        change a line of the form
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1 
+          Accessing Substring
+          to
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a 
+          href=&quot;1-1.sh&quot;&gt;1.1 Accessing Substrings&lt;/a&gt;               
+      :'x,.s:^\([^ ]\+\) \(.*\):&lt;\1&gt;\1 \2&lt;\/\1&gt;&lt;br&gt;:      
+        change a line of the form
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KBD used for text to be typed by the user
+          to
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;KBD&gt;KBD used for text to be typed by the user&lt;/KBD&gt;&lt;br&gt;
+        Colons are used here instead of the usual slashes for separating the 'find' and 'replace' parts. The part ^\([^ ]\+\) finds all of the characters up to the first space and saves them for use in the 'replace' part as \1.
+      :'x,.s/^/#/
+      insert a pound sign (#) at the beginning of the line from 
+        the line marked with mx to the current line
+      :%s/word1\nword2//
+      remove word1 from the end of a line and word2 from the beginning of the next line; \n represents the newline between the two	
+      :&amp;
+      repeat previous substitution
+      :&lt;up arrow&gt;
+      recall : history
+      :g/string/d
+      deletes every line that contains string
+      :g/\.c/+|s/^/\.cc/
+      look for all ".c" commands, jump to next line, substitute 
+        the beginning of line with ".cc".
+      :g/^\..*/|s//\U&/
+      convert all characters at beginning of line that start with 
+        a "." to upper case.
+      :v/string/d
+      deletes every line that does not contain string
+        :g/.*/m0      
+      This will reverse the order of the lines in 
+        the current file. m0 is the ex command to move the line to line 0. 
+        :v/./d or :g/^$/d       
+      Remove all blank lines. 
+      :g/^\s*$/d
+      Removes all lines that only have whitespace.
+      :v/./.,/./-1join 
+      Replaces multiple blank lines with just one blank line.      
+options
+      :se 
+        ai
+      autoindent (unset with :se 
+        noai)
+      :se ff=unix
+      set fileformat to unix
+      :se 
+        ic 
+      ignore case when searching. 
+      :se 
+        list 
+      display tabs and carriage returns
+      :se 
+        nu 
+      display line numbers in the file. They are not actually 
+        in the file. (unset with :se nonu)
+      :se 
+        sm
+       show matching brace or parenthesis while inserting 
+      :se 
+        smd
+      display the mode
+      :se 
+        sw=2 
+      set shifting to 2 spaces 
+      :se 
+        tabstop=4
+      set tabs to 4 spaces 
+      ^^D
+      turn off autoindent for current line, resume 
+        same place for the next line (up carrot and control-D)
+      0^D
+      reset the autoindent, start at the left margin
+external commands
+      !cmd
+      execute an external program
+      !!cmd
+      execute an external program, replacing the output with the 
+        results 
+      !$
+      send from here to the end-of-line
+      !L
+      send from here to the last line of screen
+      !23G
+      send from here to line 23
+      !/word
+      send from here until you find "word"
+      !)
+      send from here until the next sentence 
+      !}
+      send from here until the next paragraph 
+      !!date
+      adds the date
+      !!cut -c41-
+      cut the first 40 characters from a file
+      3!!sort 
+      send three lines to sort, 
+        and return the output
+      !Grev 
+      send from here to the end of file to the "rev" 
+        command; the results will reverse the characters in each line
+      !}sort
+      sends from the current line until the first blank line to 
+        sort 
+      :'x,.!sort
+      will sort from the line marked with mx to the current line
+      :r !ll
+      read the output of an "ll" command, and put it after the 
+        current line. 
+      :'t,'b !spell
+      check spelling from mark t to mark b 
+       :'t,. !awk '{print 
+        $3 " " $2 " " $1}'
+      reverse the order of three columns
+      :%! sed G 
+      double space the entire file.
+      :1,5! sed G
+      double space the lines from 1-5
+      :'x,.!sed '/^$/d'
+      remove the blank lines from mark x to the current line
+miscellaneous
+      ^g
+      give file name, status, current line number and relative 
+        position
+      ^l
+      refresh the screen (sometimes `^P' or `^R')
+      ^v
+      visual mode. in Windows, Ctrl-v is mapped to paste text. Use Ctrl-q instead 
+        (vim)
+      .
+      repeat latest command
+      &amp;
+      repeat latest `ex' substitute command, e.g. :s/wrong/good/
+      :ab lg longer
+      create an abbreviation.  Whenever lg is typed, it will be replaced with longer.
+      vi +/string filename
+      start vi, jumping to the first occurrence of string
+      vi -r filename
+      recovers an open file after a crash
+      vi `cat somefile`
+      open a list of files that are in the file somefile
+      :r filename
+      insert file filename, 
+        placing its contents after current line
+      :1,4w filename
+      write lines 1 through 4 to filename
+      :e filename
+      edit filename
+      :f filename
+      change current file name to filename
+      :n
+      edit next file
+      :sh
+      call up the shell, run commands until a ^d (CONTROL-d), 
+        then return to editing
+      :vi
+      VI MODE. Used if "Q" is pressed, or called up ex, and now 
+        wish to use the visual mode
+      &nbsp;
+      In Insert mode, press the Ctrl-p or Ctrl-n key to complete 
+        part of a word that has been typed. This is useful for entering function names. 
+      :&lt;up arrow&gt;
+      recall : history
+References
+  vi Fast Reference Guide &#151; the motherload of vi commands
+  Vim documentation: starting
+  Vi IMproved &#151; VIM 
+  Best of VIM Tips 
                     "%s/X/\$\{1\:#\}/gc
                     "%s/X/\$\{2\:#\}/gc
             "%s/Y/\$\{2\:#\}/gc
             "%s/Z/\$\{3\:#\}/gc
-
             cabbrev ws %s:^:snippet$\{0\:#\}:gc
             cabbrev wW r!echo""<left>
-
-
-
-
         cabbrev wsh !bash %
-
         cab zz e ~/zdotfiles/1/.zsh
         cab vv w! ~/zdotfiles/2/
         cab wx :!chmod u+x<CR>
 cab wex !sh %<CR>
             cab abo vsplit ~/Dropbox/abobanirc
-
     " [QA-Stack]
     cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
     cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR>
     cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
     cabbrev W !echo""<left>
-
 "maped to the [1-10]
         cab w77 w! ~/zdotfiles/7/
         cab w66 w! ~/zdotfiles/6/
@@ -1321,25 +1706,18 @@ cab wex !sh %<CR>
             cab w22 w! ~/zdotfiles/2/
         cab w11 w! ~/zdotfiles/1/
     cab w00 w! ~/zdotfiles/0/
-
     cab wdr w! ~/Dropbox/C/Foundation/
-
     "Install unhtml
     "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
-
     "html substitute
         "!sed 's/<[^>]*>//g' %
-
 " Split the Line at Cursor
     nnoremap K i<cr><esc><right>
-
-
     "Enter
             nnoremap <C-Up> m`o<Esc>``
             nnoremap <C-Down> m`O<Esc>``
     nnoremap xw :%s/<[^>]*>//gi<cr><CR>
     "!sed 's/<[^>]*>//g' %
-
     set history=1000
     " show the cursor position all the time
 "iabbrev $$ ${:}<left><left>
@@ -1347,7 +1725,6 @@ cab wex !sh %<CR>
     abbr #p #!/bin/Python
     " Select all.
     map <c-a> ggVG
-
     " Undo in insert mode.
     imap <c-z> <c-o>u
     map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/

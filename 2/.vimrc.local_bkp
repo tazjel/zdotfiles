@@ -4,7 +4,7 @@ colorscheme random
 set t_Co=256
 set background=dark
 let g:solarized_termcolors=256
-"let g:Powerline_symbols = 'fancy'
+let g:Powerline_symbols = 'fancy'
 "
 "
  "used for visual selections.

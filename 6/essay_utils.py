@@ -1,6 +1,10 @@
-from nltk import pos_tag, word_tokenize
-import os
+#!/usr/bin/env python
 
+
+import os
+import nltk
+
+from nltk import pos_tag, word_tokenize
 
 essays = [[line.strip() for line in open(os.path.join("/home/ahmed/alltxt/02whole.txt")).readlines() if len(line.strip()) > 1] for essay in range(1, 21)]
 

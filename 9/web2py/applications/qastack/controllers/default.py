@@ -1,13 +1,12 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*-
 
 #########################################################################
-## This is a samples controller
-## - index is the default action of any application
-## - user is required for authentication and authorization
-## - download is for downloading files uploaded in the db (does streaming)
-## - call exposes all registered services (none by default)
+    ## This is a samples controller
+    ## - index is the default action of any application
+    ## - user is required for authentication and authorization
+    ## - download is for downloading files uploaded in the db (does streaming)
+    ## - call exposes all registered services (none by default)
 #########################################################################
-
 import datetime
 import hashlib
 import base64
@@ -33,6 +32,55 @@ if False:
     from qastack.modules.CustomAuthentication import CustomAuthentication \
         as auth_user
     from qastack.modules.QAStackHelper import QAStackHelper as stackhelper
+
+
+from textblob import TextBlob
+from textblob.np_extractors import ConllExtractor
+extractor = ConllExtractor()
+def about():
+    essay = [line.strip() for line in open(os.path.join("/home/ahmed/Dropbox/DCAR/snippets/zessay.txt")).readlines()]
+    essay_str = ''.join(essay)
+    # blob = TextBlob( essay_str, np_extractor=extractor )
+    blob = TextBlob("Python is a high-level programming language.", np_extractor=extractor)
+    essays = parse_content(essays)
+    
+    for sentence in blob.sentences:
+        print(sentence.sentiment)
+        #content = essays
+    #    blob.noun_phrases
+    #btags = blob.tags
+    #bnp = blob.noun_phrases
+    #btr = blob.translate(to="es")
+    summary = ""
+    return dict(summary=summary,essay_str=essay_str)
+#           
+
+    
+    #       , essay_str=essay_str, btags=btags, bnp=bnp, btr=btr)
+ #   return dict(blob=blob, btags=btags, bnp=bnp, btr=btr)
+#return dict(blob=blob, btags=btags, bnp=bnp, btr=btr)
+
+    #title = ''.join("Arab World"); st = SummaryTool(); sentences_dic = st.get_senteces_ranks(content)
+    # summary = st.get_summary(title, content, sentences_dic)
+    # return dict(summary=summary)
+    # Content from: "http://thenextweb.com/apps/2013/03/21/swayy-discover-curate-content/"
+    #content = ""
+    # Create a SummaryTool object
+    #st = SummaryTool()
+
+    # Build the sentences dictionary
+    #sentences_dic = st.get_senteces_ranks(content)
+
+    # Build the summary with the sentences dictionary
+    #summary = st.get_summary(title, content, sentences_dic)
+    # Print the summary
+    #print summary
+    # Print the ratio between the summary length and the original length
+    #print ""
+    #print "Original Length %s" % (len(title) + len(content))
+    #print "Summary Length %s" % len(summary)
+    #print "Summary Ratio: %s" % (100 - (100 * (len(summary) / (len(title) + len(content)))))
+
 
 
 def index():
@@ -86,8 +134,7 @@ def index():
                 qtype = 'f'
             elif qtype_arg == 'subscribed':
                 qtype = 's'
-        sql_where = []
-        extra_tables = [''] # <-- Important
+                sql_extra_tables = [''] # <-- Important
         if qtype == 'u': # Unanswered
             sql_where.append("questions.is_answered = 'F'")
         elif qtype == 'f': # Featured
@@ -369,31 +416,8 @@ def search():
     else:
         url = URL(r=request, c='default', f='index')
     redirect(url)
-
-
-def about():
-    essays = [line.strip() for line in open(os.path.join("/home/ahmed/Dropbox/DCAR/essay-w")).readlines()]
-    essays = ''.join(essays)
-    essays = parse_content(essays)
-    #essay = TextBlob(essays)
-    return dict(essays=essays)
+
 ############
-
-#blob.tags           # [(u'The', u'DT'), (u'titular', u'JJ'),
-                    #  (u'threat', u'NN'), (u'of', u'IN'), ...]
-
-#blob.noun_phrases   # WordList(['titular threat', 'blob',
-                    #            'ultimate movie monster',
-                    #            'amoeba-like mass', ...])
-
-#for sentence in blob.sentences:
-    #print(sentence.sentiment)  # returns (polarity, subjectivity)
-# (0.060, 0.605)
-# (-0.341, 0.767)
-
-#blob.translate(to="es")  # 'La amenaza titular de The Blob...'
-########
-
 def faq():
     essays = [line.strip() for line in open(os.path.join("/home/ahmed/Dropbox/DCAR/essay-w")).readlines()]
     return dict(essays=essays)

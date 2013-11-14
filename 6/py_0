@@ -1,0 +1,4 @@
+
+	# import the locale, and set the locale. This is used for 
+	# locale-aware number to string formatting
+	locale.setlocale(locale.LC_ALL, '')
