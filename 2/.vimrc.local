@@ -269,7 +269,7 @@ cab wex !sh %<CR>
     " wget www.gutenberg.org/dirs/etext02/mthes10.zip
 
 
-    "1 set thesaurus+=/home/ahmed/mthesaur.txt
+    set thesaurus+=/home/ahmed/mthesaur.txt
         set thesaurus+=/home/ahmed/Dropbox/DCAR/_phrase.snip
     "2 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
         set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
@@ -595,7 +595,13 @@ set cpt=.,k,w,b,t,i
     " pull full path name into paste buffer for attachment to email etc
                "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
 cabbr csd colorscheme desert
-
+"python"
+cabbrev wpy vsplit /home/ahmed/.config/ipython/profile_default/startup/w.ipy
+cabbrev wwpy vsplit /home/ahmed/.config/ipython/profile_default/startup/ww.ipy
+cabbrev wpy !python %
+"
+"
+"map <F9> :w<CR>:!python %<CR>
 " Search
 
 " Substitute

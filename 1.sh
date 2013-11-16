@@ -383,8 +383,21 @@ read_continue() {
     done
 }
 
+#http://www.cyberciti.biz/faq/bash-while-loop/
 
-
+#In this example, the break statement will skip the while loop when user enters -1, otherwise it will keep adding two numbers:
+adding_sum() {
+    while :
+    do
+        read -p "Enter two numnbers ( - 1 to quit ) : " a b
+        if [ $a -eq -1 ]
+        then
+            break
+        fi
+        ans=$(( a + b ))
+        echo $ans
+    done
+}
 
 # show usage
 #[ $# -eq 0 ] && { echo "Usage: $0 fileName"; exit 1; }
@@ -394,3 +407,99 @@ read_continue() {
 
 #The following command counts the total active network interfaces:
 #wc -w <<<$(netstat -i | cut -d" " -f1 | egrep -v "^Kernel|Iface|lo")
+superuser() {
+    if [ $(id -u) != "0" ]; then
+        echo "You must be the superuser to run this script" >&2
+        exit 1
+    fi
+}
+
+
+home_space() {
+    # Only the superuser can get this information
+    if [ "$(id -u)" = "0" ]; then
+        echo "<h2>Home directory space by user</h2>"
+        echo "<pre>"
+        echo "Bytes Directory"
+            du -s /home/* | sort -nr
+        echo "</pre>"
+    fi
+}
+
+
+Calculate_all() {
+    first_num=0
+    second_num=0
+
+    echo -n "Enter the first number --> "
+    read first_num
+    echo -n "Enter the second number -> "
+    read second_num
+
+    echo "first number + second number = $((first_num + second_num))"
+    echo "first number - second number = $((first_num - second_num))"
+    echo "first number * second number = $((first_num * second_num))"
+    echo "first number / second number = $((first_num / second_num))"
+    echo "first number % second number = $((first_num % second_num))"
+    echo "first number raised to the"
+    echo "power of the second number   = $((first_num ** second_num))"
+}
+Seconds_to() {
+    seconds=0
+
+    echo -n "Enter number of seconds > "
+    read seconds
+
+    hours=$((seconds / 3600))
+    seconds=$((seconds % 3600))
+    minutes=$((seconds / 60))
+    seconds=$((seconds % 60))
+
+    echo "$hours hour(s) $minutes minute(s) $seconds second(s)"
+}
+
+is_it_letters() {
+    echo -n "Type a digit or a letter > "
+    read character
+    case $character in
+                # Check for letters
+        [a-z] | [A-Z] ) echo "You typed the letter $character"
+                ;;
+
+                # Check for digits
+        [0-9] )     echo "You typed the digit $character"
+                ;;
+
+                # Check for anything else
+        * )         echo "You did not type a letter or a digit"
+    esac
+}
+
+press_enter() {
+    echo ""
+    echo -n "Press Enter to continue"
+    read
+    clear
+}
+
+selection() {
+        selection=
+    until [ "$selection" = "0" ]; do
+        echo ""
+        echo "PROGRAM MENU"
+        echo "1 - display free disk space"
+        echo "2 - display free memory"
+        echo ""
+        echo "0 - exit program"
+        echo ""
+        echo -n "Enter selection: "
+        read selection
+        echo ""
+        case $selection in
+            1 ) df ; press_enter ;;
+            2 ) free ; press_enter ;;
+            0 ) exit ;;
+            * ) echo "Please enter 1, 2, or 0"; press_enter
+        esac
+    done
+}

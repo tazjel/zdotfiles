@@ -1,5 +1,5 @@
-http://www.linuxcommand.org/learning_the_shell.php
-http://www.linuxcommand.org/writing_shell_scripts.php
-http://www.linuxcommand.org/script_library.php
-KK 
 
+Reference :
+
+William E. Shotts, Jr. (2013).Learning the shell . linuxcommand.org,. Retrieved from
+    http://www.linuxcommand.org/learning_the_shell.php
