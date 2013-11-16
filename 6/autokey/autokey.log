@@ -3413,3 +3413,14 @@ DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.autokey.S
 2013-11-14 23:45:37,735 INFO - service - Starting service
 2013-11-14 23:45:38,362 INFO - interface - XRecord interface thread starting
 2013-11-14 23:45:38,363 INFO - service - Service now marked as running
+2013-11-15 16:53:46,778 INFO - root - Initialising application
+2013-11-15 16:53:46,906 INFO - root - Initialise global hotkeys
+2013-11-15 16:53:46,907 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-15 16:53:58,834 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-15 16:53:58,838 INFO - config-manager - Successfully loaded configuration
+2013-11-15 16:53:58,839 INFO - service - Starting service
+2013-11-15 16:53:59,362 INFO - interface - XRecord interface thread starting
+2013-11-15 16:53:59,363 INFO - service - Service now marked as running
+2013-11-15 17:37:56,522 INFO - service - Undoing last abbreviation expansion
+2013-11-15 17:38:01,282 INFO - service - Undoing last abbreviation expansion
+2013-11-15 17:38:29,962 INFO - service - Undoing last abbreviation expansion

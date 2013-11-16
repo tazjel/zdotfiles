@@ -1,9 +1,10 @@
 #!/bin/zsh
 ########################################################
 # Author : AHMED BANI
-    AK="$HOME/.config/autokey/data"
-    DB="$HOME/Dropbox"
-    DL="$HOME/Downloads"
+# Last Updated on Fri Nov 15 01:03:32 AST 2013
+#
+########################################################
+
 
 ############################  SETUP PARAMETERS
     app_name='zdotfiles'
@@ -21,6 +22,9 @@
         Update
         Delete
     }
+    AK="$HOME/.config/autokey/data"
+    DB="$HOME/Dropbox"
+    DL="$HOME/Downloads"
 grep() {
     #pat = "1-9"
         #list of next pattern
@@ -739,6 +743,55 @@ alias 'www_easystroke_disable'='easystroke disable'
 
 alias 'wgc'='git clone'
 
+zapt() {
+     # Quick list of installed packages on deb based system
+    apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }'
+}
+
+
+# system update
+zapt_clean() {
+    sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean && sudo apt-get autoremove
+}
+
+
+zinstall_vim () {
+    sudo apt-get install exuberant-ctags
+    sudo apt-get install libx11-dev libxt-dev python python2.7-dev
+    sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial
+    sudo apt-get install ruby-dev python-dev
+    sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial
+    sudo apt-get install g++ make git cmake kdelibs5-dev libqjson-dev python-kde4-dev python-qt4-dev
+
+
+    rm -rf ~/vim
+    sudo apt-get autoremove
+
+    sudo apt-get remove vim vim-runtime gvim
+    sudo apt-get remove vim-tiny vim-common vim-gui-common
+
+    cd ~
+
+    hg clone https://code.google.com/p/vim/
+
+    cd vim
+
+
+    ./configure --with-features=huge --enable-rubyinterp --enable-multibyte --enable-pythoninterp --with-tlib=ncurses --with-python-config-dir=/usr/lib/python2.7-config --enable-perlinterp --enable-luainterp --enable-gui=gtk2 --enable-cscope --prefix=/usr
+
+
+    make VIMRUNTIMEDIR=/usr/share/vim/vim74
+
+    sudo make install
+    vim
+    sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim
+    sudo update-alternatives --set editor /usr/bin/vim
+    sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
+    sudo update-alternatives --set vi /usr/bin/vim
+
+    vim +BundleInstall! +BundleClean +q
+}
+
 
 
 AA() {
@@ -751,5 +804,5 @@ alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
 alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
 
 
-alias '999'='cd ~/zdotfiles/9/web2py/' 
+alias '999'='cd ~/zdotfiles/9/web2py/'
 

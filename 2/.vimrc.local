@@ -1,3 +1,5 @@
+" Last Modified: 2013-11-16T00:11:40
+"
 "key = ['borland']
 colorscheme random
     set t_Co=256
@@ -56,7 +58,7 @@ colorscheme random
 
     set foldtext=getline(v:foldstart)
     set fillchars=fold:\ "(there's a space after that \)
-    highlight Folded ctermfg=DarkGreen ctermbg=Black
+    "highlight Folded ctermfg=DarkGreen ctermbg=Black
 
 
     nnoremap <silent> ; :q!<CR>
@@ -64,6 +66,13 @@ colorscheme random
 
     nnoremap <space> za
     vnoremap <space> zf
+
+    nnoremap 8 zMzvzz
+    nnoremap 9 zM
+    nnoremap 0 zR
+
+
+
 
     "  <F[1-12]>
             " <F1>
@@ -91,6 +100,11 @@ colorscheme random
             " <F7>
                 imap <F7> <C-X><C-l>
                 vnoremap <f7> :s/xxx/\$\{1\:#\}/g
+                map <F7> :%s///gc<Left><Left><Left><Left>
+                map <F7> :let @a=''\|g/ /y A \|:let @*=@a <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+                ":map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
+                          ":let @a=''|g/Barratt/y A |:let @*=@a
+                "
             " <F8>
                 map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
                 map <f8><f8> :diffoff<cr>
@@ -103,11 +117,18 @@ colorscheme random
             " <F10>
                 vnoremap <F10> :w! >> ~/Dropbox/INTRODUCTION/authors.txt<CR>
                 nnoremap <silent> <S-F10> :vsplit ~/Dropbox/INTRODUCTION/authors.txt<CR>
+            "cabbrev
+                cabbrev s5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
+                cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
 
+            "abbreviate
+                abbreviate CC Conflict
+                abbreviate CAR Conflict Analysis & Resolution
 
-            abbreviate CC Conflict
-            abbreviate CAR Conflict Analysis & Resolution
-            "g/^$/;/^$/-1!sort
+                "
+                "g/^$/;/^$/-1!sort
+
+                iabbr ws when where who what why
 
 function! RangeChooser()
     let temp = tempname()
@@ -151,12 +172,17 @@ endfunction
         "install unhtml
         "map wh :!rm ~/tst/vhtml<cr>:r!unhtml % > ~/tst/vhtml<cr><esc>:vsplit ~/tst/vhtml<cr>
     " The W culture "
+    " Dropbox " /media/
+    " zdotfiles
+        cabbrev w111 vsp ~/zdotfiles/1.sh
 
 
 
+        cabbrev wda r!date
 
-                ca w!! w !sudo tee "%"
-                    map ws :!rm ~/.vimswap/*<cr>
+
+                    ca w!! w !sudo tee "%"
+                        map ws :!rm ~/.vimswap/*<cr>
 
 
                     "vnoremap 1 :w! >> ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>
@@ -170,70 +196,71 @@ endfunction
                 "w! ~/zdotfiles/s/2/english/english.snippet
                     "%s/X/\$\{1\:#\}/gc
                     "%s/X/\$\{2\:#\}/gc
-            "%s/Y/\$\{2\:#\}/gc
-            "%s/Z/\$\{3\:#\}/gc
+                "%s/Y/\$\{2\:#\}/gc
+                "%s/Z/\$\{3\:#\}/gc
 
-            "cabbrev ws %s:^:snippet$\{0\:#\}:gc
+                "cabbrev ws %s:^:snippet$\{0\:#\}:gc
             cabbrev wW r!echo""<left>
 
             cabbrev ws %s:^\(.*\):snippet\t\1\/\n\t\1:gc
 
-    "%s:^\(.*\)\.\(.*\):snippet   \1\2\r   \0:g
+        "%s:^\(.*\)\.\(.*\):snippet   \1\2\r   \0:g
 
         cabbrev wsh !bash %
 
+        cabbrev w99 w! ~/zdotfiles/9/web2py/applications/qastack/
         cab zz e ~/zdotfiles/1/.zsh
         cab vv w! ~/zdotfiles/2/
         cab wx :!chmod u+x<CR>
 cab wex !sh %<CR>
             cab abo vsplit ~/Dropbox/abobanirc
 
-    " [QA-Stack]
-    cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
-    cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR>
-    cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
-    cabbrev W !echo""<left>
+        " [QA-Stack]
+            cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
+            cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR>
+            cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
+            cabbrev W !echo""<left>
 
-"maped to the [1-10]
-        cab w88 w! ~/zdotfiles/8/
-        cab w77 w! ~/zdotfiles/7/
-        cab w66 w! ~/zdotfiles/6/
-        cab w55 w! ~/zdotfiles/5/
-        cab w44 w! ~/zdotfiles/4/
-        cab w33 w! ~/zdotfiles/3/
-        cab w22 w! ~/zdotfiles/2/
-        cab w11 w! ~/zdotfiles/1/
-    cab w00 w! ~/zdotfiles/0/
+        "maped to the [1-10]
+                cab w88 w! ~/zdotfiles/8/
+                cab w77 w! ~/zdotfiles/7/
+                cab w66 w! ~/zdotfiles/6/
+                cab w55 w! ~/zdotfiles/5/
+                cab w44 w! ~/zdotfiles/4/
+                cab w33 w! ~/zdotfiles/3/
+                cab w22 w! ~/zdotfiles/2/
+                cab w11 w! ~/zdotfiles/1/
+            cab w00 w! ~/zdotfiles/0/
 
-    cab wdr w! ~/Dropbox/C/Foundation/
+        cab wdr w! ~/Dropbox/C/Foundation/
 
     "Install unhtml
-    "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
+        "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
 
-    "html substitute
+        "html substitute
+            "!sed 's/<[^>]*>//g' %
+
+    " Split the Line at Cursor
+        nnoremap K i<cr><esc><right>
+
+
+        "Enter
+                nnoremap <C-Up> m`o<Esc>``
+                nnoremap <C-Down> m`O<Esc>``
+        nnoremap xw :%s/<[^>]*>//gi<cr><CR>
         "!sed 's/<[^>]*>//g' %
 
-" Split the Line at Cursor
-    nnoremap K i<cr><esc><right>
+        set history=9000
+        " show the cursor position all the time
+        iabbrev $$ ${0: }<left><left>
 
+        abbr #b #!/bin/bash
+        abbr #p #!/usr/bin/env python
+        " Select all.
+        map <c-a> ggVG
 
-    "Enter
-            nnoremap <C-Up> m`o<Esc>``
-            nnoremap <C-Down> m`O<Esc>``
-    nnoremap xw :%s/<[^>]*>//gi<cr><CR>
-    "!sed 's/<[^>]*>//g' %
-
-    set history=9000
-    " show the cursor position all the time
-iabbrev $$ ${0: }<left><left>
-
-    abbr #b #!/bin/bash
-    abbr #p #!/usr/bin/env python
-    " Select all.
-    map <c-a> ggVG
-
-    " Undo in insert mode.
-    imap <c-z> <c-o>u
+        " Undo in insert mode.
+        imap <c-z> <c-o>u
     "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
     "map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
     map <F11> :w! >> ~/Dropbox/INTRODUCTION/terms.txt<CR>
@@ -241,11 +268,11 @@ iabbrev $$ ${0: }<left><left>
 " " Download the thesaurus " unzip " Add this to vimrc
     " wget www.gutenberg.org/dirs/etext02/mthes10.zip
 
-"1 set thesaurus+=/home/ahmed/mthesaur.txt
-"2 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
 
-set thesaurus+=/home/ahmed/Dropbox/DCAR/_phrase.snip
-set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
+    "1 set thesaurus+=/home/ahmed/mthesaur.txt
+        set thesaurus+=/home/ahmed/Dropbox/DCAR/_phrase.snip
+    "2 set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
+        set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
 
 function! SilentFileGrep( leader, file )
     try
@@ -255,7 +282,6 @@ function! SilentFileGrep( leader, file )
     endtry
 endfunction
 
-        "let path+=/home/ahmed/Dropbox/10th_Dim
 
 function! LineCompleteFromFile(findstart,base)
     if a:findstart
@@ -275,7 +301,6 @@ function! LineCompleteFromFile(findstart,base)
     endif
 endfunction
 
-
 set completefunc=LineCompleteFromFile
 
 "sorting with external sort
@@ -288,225 +313,221 @@ set completefunc=LineCompleteFromFile
 
 
 " reading Ms-Word documents, requires antiword (not docx)
-"autocmd BufReadPre *.doc set ro
-"autocmd BufReadPre *.doc set hlsearch!
-"autocmd BufReadPre *.txt set syntax=python
-"autocmd BufReadPost *.txt set syntax=python
-"autocmd FileType *.txt exec('set fileformats=unix')
-"autocmd FileType *.txt exec('set syntax= text')
+    "autocmd BufReadPre *.doc set ro
+    "autocmd BufReadPre *.doc set hlsearch!
+    "autocmd BufReadPre *.txt set syntax=python
+    "autocmd BufReadPost *.txt set syntax=python
+    "autocmd FileType *.txt exec('set fileformats=unix')
+    "autocmd FileType *.txt exec('set syntax= text')
 """""
 
-"""""""
-imap <C-s> <C-o>:w<CR>
-map <C-s> :w<CR>
+    "window
+        "Open file same dir--------------------------------------------
+            "On the current window
+            map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+            "On a new vertical window
+            map ,v :vsp <C-R>=expand("%:p:h") . "/" <CR>
+            "On a new horizontal window
+            map ,h :sp <C-R>=expand("%:p:h") . "/" <CR>
+            "
+        "Tab takes you to the next window:
+            nmap <Tab> _
+            nmap <S-Tab>  W_
+            nmap <S-Tab> :tabprevious<CR>
 
+            map <Leader>w <c-w>v<c-w>l
+            map <Leader>sh <c-w>s<c-w>j
+    "File
+        nmap ,, :e.<CR>
+        imap <C-s> <C-o>:w<CR>
+        map <C-s> :w<CR>
 
-"""""""""""""""""""""""""""
+        func! PL(str) " Print string into the current buffer
+          exe "normal o" . a:str
+        endf
 
-func! PL(str) " Print string into the current buffer
-  exe "normal o" . a:str
-endf
+        func! NL()
+            exe "normal o"
+        endf
 
-func! NL()
-    exe "normal o"
-endf
+            " Print string into the current buffer
+        func! Print(str)
+            exe "normal i" . a:str
+        endf
 
-    " Print string into the current buffer
-func! Print(str)
-    exe "normal i" . a:str
-endf
+        func! P(str) " Print string into the current buffer
+            call Print(a:str)
+        endf
 
-func! P(str) " Print string into the current buffer
-    call Print(a:str)
-endf
+        func! SelectAll() " Select all of current buffer
+            exe "normal ggVG"
+        endf
 
-func! SelectAll() " Select all of current buffer
-    exe "normal ggVG"
-endf
+        func! SA() " Select all of current buffer
+            call SelectAll()
+        endf
 
-func! SA() " Select all of current buffer
-    call SelectAll()
-endf
+        func! SelectLine() " Select current line
+            exe "normal V"
+        endf
 
-func! SelectLine() " Select current line
-    exe "normal V"
-endf
+        func! SL() " Select current line
+            call SelectLine()
+        endf
 
-func! SL() " Select current line
-    call SelectLine()
-endf
+        func! Copy() " Copy current selection to clipboard
+            exe 'normal "+y'
+        endf
 
-func! Copy() " Copy current selection to clipboard
-    exe 'normal "+y'
-endf
+        func! CP() " Copy current selection to clipboard
+            call Copy()
+        endf
 
-func! CP() " Copy current selection to clipboard
-    call Copy()
-endf
+        func! CopyAll() " Copy current buffer contents to clipboard
+            call SelectAll()
+            call Copy()
+        endf
 
-func! CopyAll() " Copy current buffer contents to clipboard
-    call SelectAll()
-    call Copy()
-endf
+        func! CPA() " Copy current buffer contents to clipboard
+            call CopyAll()
+        endf
 
-func! CPA() " Copy current buffer contents to clipboard
-    call CopyAll()
-endf
+        func! CopyLine() " Copy a single line
+            call SelectLine()
+            call Copy()
+        endf
 
-func! CopyLine() " Copy a single line
-    call SelectLine()
-    call Copy()
-endf
+        func! CPL() " Copy a single line
+            call CopyLine()
+        endf
 
-func! CPL() " Copy a single line
-    call CopyLine()
-endf
+        func! Cut() " Cut current buffer contents to clipboard
+            call CopyAll()
+            %d
+        endf
 
-func! Cut() " Cut current buffer contents to clipboard
-    call CopyAll()
-    %d
-endf
-
-func! S2C(str) " Put string on clipboard
-    %d
-    call P(a:str)
-    call Cut()
-endf
-
-
-
-function! SaveLine()
-   call CPL()
-   exe ':!echo '.@0.' >> ~/word.txt'
-endfunction
-
-"map ,l :call SaveLine()
-""""""
-function! SaveWord()
-   normal yiw
-   exe ':!echo '.@0.' >> ~/word.txt'
-endfunction
-"map ,p :call SaveWord()
-
-" function to delete duplicate lines
-function! Del_dupl()
- if getline(".") == getline(line(".") - 1)
-   norm dd
- endif
-endfunction
-
-":g/^/ call Del()
-
-""""""""""
-
-autocmd! BufNewFile *py call LoadTemplate()
-autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
-autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
-
-"au Syntax txt  runtime! syntax/txt.vim
-
-    "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r__AA\1/g
- "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
+        func! S2C(str) " Put string on clipboard
+            %d
+            call P(a:str)
+            call Cut()
+        endf
 
 
 
+        function! SaveLine()
+           call CPL()
+           exe ':!echo '.@0.' >> ~/word.txt'
+        endfunction
 
-noremap <CR> :
+        "map ,l :call SaveLine()
+        """"""
+        function! SaveWord()
+           normal yiw
+           exe ':!echo '.@0.' >> ~/word.txt'
+        endfunction
+        "map ,p :call SaveWord()
 
-"
-" nice bash-like filename auto-complete
-set wildmode=longest,list,full
-set wildmenu
+        " function to delete duplicate lines
+        function! Del_dupl()
+         if getline(".") == getline(line(".") - 1)
+           norm dd
+         endif
+        endfunction
 
-nnoremap gl :set operatorfunc=GoogleOperator<cr>g@
-vnoremap gl :<c-u>call GoogleOperator(visualmode())<cr>
+        ":g/^/ call Del()
 
-
-
-map <Leader>w <c-w>v<c-w>l
-map <Leader>sh <c-w>s<c-w>j
-
-nmap ,, :e.<CR>
-
-
-
-nnoremap 8 zMzvzz
-nnoremap 9 zM
-nnoremap 0 zR
-"""""""""""""|"""""""""""
-
-
-function! neocomplcache#util#dup_filter(list) "{{{
-  let dict = {}
-  for keyword in a:list
-    if !has_key(dict, keyword.word)
-      let dict[keyword.word] = keyword
-    endif
-  endfor
-
-  return values(dict)
-endfunction"}}}
-let pos = [line('.'), col('.')]
-let saved_register = @@
-
-function! AA()
-    :g/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/
-endfunction
+        """"""""""
 
 
-function! LoadTemplate()
-    " load a template based on the file extension
-    silent! .r ~/.vim/skel/tmpl.%:e
+    "Syntax
+        "au Syntax txt  runtime! syntax/txt.vim
 
-    " Replace some placeholders
-    "%s/FILENAME%/\=expand("%:t")/g
-    "%s/%DATE%/\=strftime("%b %d, %Y")/g
-    %s/%DATE%/\=strftime("%b %d, %Y")/g
+    "Conflict Analysis & Resolution
+            function! AA()
+                :g/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/
+            endfunction
+                "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r__AA\1/g
+                "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
 
-    " This last one deletes the placeholder
-    " %START% then leaves the cursor there.
-    "%s/%START%//g
-endfunction
+    "CMD
+        noremap <CR> :
 
-map ,l :call LoadTemplate()
 
-    "silent! 0r ~/.vim/skel/tmpl.%:e
-"map ,w
+"auto-complete
+    " nice bash-like filename auto-complete
+    set wildmode=longest,list,full
+    set wildmenu
+
+    function! neocomplcache#util#dup_filter(list)
+      let dict = {}
+      for keyword in a:list
+        if !has_key(dict, keyword.word)
+          let dict[keyword.word] = keyword
+        endif
+      endfor
+
+      return values(dict)
+    endfunction
+
+    let pos = [line('.'), col('.')]
+    let saved_register = @@
+
+
+    "autocmd
+        autocmd! BufNewFile *py call LoadTemplate()
+        autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
+        autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
 " TEMPLATES
-"
-nnoremap ,w  ddGop
-map ن n
+    function! LoadTemplate()
+        " load a template based on the file extension
+            silent! .r ~/.vim/skel/tmpl.%:e
 
-map س  V:w!   >> ~/Dropbox/CAR_system<CR>
-"
-"\%[]	A sequence of optionally matched atoms.  This always matches.
-"
-      ":%s/,/^V^M/g
-      "globally replace commas with newlines (yes, I know this
-        "looks like it would insert DOS carriage returns, but it only inserts the
-        "newlines on Unix)
-      ":%s/\s*$//
-      "strip blanks from end of lines
-      ":%s/^.\{30}//
-      "remove the first 30 characters from each line
-      ":%s/[ ^I]*$/!d
-      "remove trailing whitespace (where ^I
-        "is produced by pressing the tab key)
-      ":%s/.*/\L&/
-      "convert the entire file to lowercase.
-      ":s/.*/\u&/
-      "convert the first character of line to uppercase.
-      ":%s/\&lt;./\u&amp;/g
-        "convert the first character of each word to uppercase
-          "\&lt; matches the start of a word;
-            ". therefore matches the first character of a word;
-            "\u tells Vi(m) to uppercase the next character in the substitution
-            "string;
-            "&amp; means substitute whatever was matched on the lhs;
-"%s/\(^.*install\) \(.*$\)/\2/g
+            " Replace some placeholders
+            "%s/FILENAME%/\=expand("%:t")/g
+            "%s/%DATE%/\=strftime("%b %d, %Y")/g
+                %s/%DATE%/\=strftime("%b %d, %Y")/g
 
-    " source: http://vim.wikia.com/wiki/VimTip102
-    " Let <Tab> do all the autocompletion
+        " This last one deletes the placeholder
+            " %START% then leaves the cursor there.
+            "%s/%START%//g
+    endfunction
+        map ,l :call LoadTemplate()
+            "silent! 0r ~/.vim/skel/tmpl.%:e
+
+"Move
+    nnoremap ,w  ddGop
+    map ن n
+
+    map س  V:w!   >> ~/Dropbox/CAR_system<CR>
+    "
+    "Clean
+        "\%[]	A sequence of optionally matched atoms.  This always matches.
+          ":%s/,/^V^M/g
+          "globally replace commas with newlines (yes, I know this
+            "looks like it would insert DOS carriage returns, but it only inserts the
+            "newlines on Unix)
+          ":%s/\s*$//
+          "strip blanks from end of lines
+          ":%s/^.\{30}//
+          "remove the first 30 characters from each line
+          ":%s/[ ^I]*$/!d
+          "remove trailing whitespace (where ^I
+            "is produced by pressing the tab key)
+          ":%s/.*/\L&/
+          "convert the entire file to lowercase.
+          ":s/.*/\u&/
+          "convert the first character of line to uppercase.
+          ":%s/\&lt;./\u&amp;/g
+            "convert the first character of each word to uppercase
+              "\&lt; matches the start of a word;
+                ". therefore matches the first character of a word;
+                "\u tells Vi(m) to uppercase the next character in the substitution
+                "string;
+                "&amp; means substitute whatever was matched on the lhs;
+        "%s/\(^.*install\) \(.*$\)/\2/g
+
+        " source: http://vim.wikia.com/wiki/VimTip102
+        " Let <Tab> do all the autocompletion
 
 function! Smart_TabComplete()
     let line = getline('.') 					" curline
@@ -529,72 +550,63 @@ endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 set cpt=.,k,w,b,t,i
 
-" Make p in Visual mode replace the selected text with the "" register.
-vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+    "Register
+        " Make p in Visual mode replace the selected text with the "" register.
+        vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
-"Tab takes you to the next window:
-nmap <Tab> _
-nmap <S-Tab>  W_
-nmap <S-Tab> :tabprevious<CR>
+    "Marks
+        "' jumps to the precise location of a marks (`)
+        "Apply the commands recorded in q on the vilual selection
+        vnoremap ` :normal @q<CR>
+
+    "Find
+        function! s:wfind(list, default, f)
+          for x in a:list
+            if eval(substitute(a:f, 'v:val', string(x), 'g'))
+              return x
+            endif
+          endfor
+          return a:default
+        endfunction
+
+
+
+
+
 "
-"' jumps to the precise location of a marks (`)
-"Apply the commands recorded in q on the vilual selection
-vnoremap ` :normal @q<CR>
+    " comment (#)
+        nmap sc 0i# <ESC>
+        vmap <silent> sc :s/^/# /<CR>:silent noh<CR>
+        " uncomment (#)
+        nmap su :s/^# //<CR>
+        vmap <silent> su :s/^# //<CR>:silent noh<CR>
 
-function! s:wfind(list, default, f)
-  for x in a:list
-    if eval(substitute(a:f, 'v:val', string(x), 'g'))
-      return x
-    endif
-  endfor
-  return a:default
-endfunction
+        "Confirm
+            function! s:AbbrAsk(abbr, expansion)
+              let answer = confirm("Use the abbreviation '" . a:abbr . "'?", "&Yes\n&No", 1)
+              return answer == 1 ? a:expansion : a:abbr
+            endfunction
 
-
-"Open file same dir--------------------------------------------
-"On the current window
-map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
-"On a new vertical window
-map ,v :vsp <C-R>=expand("%:p:h") . "/" <CR>
-"On a new horizontal window
-map ,h :sp <C-R>=expand("%:p:h") . "/" <CR>
+            iabbr <expr> id <SID>AbbrAsk('David Morcillo Muñoz', 'David Morcillo Muñoz')
 
 
 
 
-"Programming utils-------------------------------------------
-" comment (#)
-nmap sc 0i# <ESC>
-vmap <silent> sc :s/^/# /<CR>:silent noh<CR>
-" uncomment (#)
-nmap su :s/^# //<CR>
-vmap <silent> su :s/^# //<CR>:silent noh<CR>
-
-function! s:AbbrAsk(abbr, expansion)
-  let answer = confirm("Use the abbreviation '" . a:abbr . "'?", "&Yes\n&No", 1)
-  return answer == 1 ? a:expansion : a:abbr
-endfunction
-
-iabbr <expr> id <SID>AbbrAsk('David Morcillo Muñoz', 'David Morcillo Muñoz')
-iabbr ws when where who what why
-
-
-" pull full path name into paste buffer for attachment to email etc
-           "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
-cabbrev w99 w! ~/zdotfiles/9/web2py/applications/qastack/
+    " pull full path name into paste buffer for attachment to email etc
+               "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
 cabbr csd colorscheme desert
-"#Search
-map <F7> :%s//gc<Left><Left><Left>
-"# substitute
-"#
-":map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
 
-"Number all the lines in a file (insert line number followed by a tab):
-":%s/^/\=line('.')."\t"/
-"Number a range of lines (from line 10 to line 20):
-":10,20s/^/\=line('.')."\t"/
-"Number a range of lines sequentially starting from 1:
-":let counter=0|10,20g//let counter=counter+1|s/^/\=counter."\t"
-"Number all the paragraphs in range starting from 1 (assuming the paragraphs are separated by one or more blank lines):
-":let counter=0|1,20g/^$\n^\s*[^\s]/let counter=counter+1|+1s/^/\=counter."\t"
-"Note: The above command does not work for the first paragraph in the file if there is no blank line above it.
+" Search
+
+" Substitute
+
+" Line Number
+    "Number all the lines in a file (insert line number followed by a tab):
+    ":%s/^/\=line('.')."\t"/
+    "Number a range of lines (from line 10 to line 20):
+    ":10,20s/^/\=line('.')."\t"/
+    "Number a range of lines sequentially starting from 1:
+    ":let counter=0|10,20g//let counter=counter+1|s/^/\=counter."\t"
+    "Number all the paragraphs in range starting from 1 (assuming the paragraphs are separated by one or more blank lines):
+    ":let counter=0|1,20g/^$\n^\s*[^\s]/let counter=counter+1|+1s/^/\=counter."\t"
+    "Note: The above command does not work for the first paragraph in the file if there is no blank line above it.
