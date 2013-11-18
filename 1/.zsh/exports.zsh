@@ -16,6 +16,7 @@ export LESS='--ignore-case --raw-control-chars'
 export PAGER='less'
 export EDITOR='vim'
 #export NODE_PATH=/opt/github/homebrew/lib/node_modules
+#
 #export PYTHONPATH=/usr/local/lib/python2.6/site-packages
 # CTAGS Sorting in VIM/Emacs is better behaved with this in place
 export LC_COLLATE=C
@@ -25,4 +26,9 @@ export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/Projects/django
 export tazjel=$HOME/zdotfiles
 export hz=$HOME/.zsh_history
-#source /usr/local/bin/virtualenvwrapper.sh 
+#
+#source /usr/local/bin/virtualenvwrapper.sh
+## Might want these three in your .bashrc
+export PATH=$PATH:$HOME/.local/bin
+export VIRTUALENVWRAPPER_VIRTUALENV_ARGS="--distribute"
+#source $HOME/.locl/bin/virtualenvwrapper.sh

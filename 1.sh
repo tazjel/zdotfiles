@@ -1,5 +1,14 @@
 #!/bin/bash
 
+#!/usr/bin/env bash
+############################  SETUP PARAMETERS
+app_name='zdotfiles'
+git_uri='https://github.com/tazjel/zdotfiles.git'
+git_branch='master'
+debug_mode='0'
+fork_maintainer='0'
+
+############################  BASIC SETUP TOOLS
 # Define variables
 # ----------------------------------
 
@@ -30,6 +39,10 @@ pause(){
     local m="$@"
     echo "$m"
     read -p "Press [Enter] key to continue..." key
+}
+
+msg() {
+    printf '%b\n' "$1" >&2
 }
 
 #pause() { read -p "Press [Enter] key to continue..." fackEnterKey }
@@ -153,12 +166,28 @@ read_options() {
            echo; echo '*** Top 10 CPU eating process:';ps auxf | sort -nr -k 3 | head -10;
            echo;  pause;;
         5) netstat -s | less;;
-        6) References_add;;
+        6) F6;;
+        10) References_add;;
         0) exit 0;;
         *) pause "Select between 1 to 5 only"
         #*) echo -e "\t ${RED}Error...${STD}" && sleep 1
     esac
 }
+
+
+
+
+F6() {
+while True ; do
+    echo "F6"
+    echo "" && break
+done
+    cd ~/zdotfiles/6
+    pause
+    start_GUI
+}
+
+
 
 start_gui() {
     while true; do
@@ -503,3 +532,240 @@ selection() {
         esac
     done
 }
+
+
+find_txt_grep() {
+    find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep --color=always -Hn "$1" {} \;
+}
+
+#s/^  */\ #2 /g #This substitution replaces line-beginning spaces with a newline. The net result is to replace paragraph indents with a blank line between paragraphs.
+#sed -e "s/$old_pattern/$new_pattern/g" $file_name
+
+#Increment a variable, with the same effect as let y=y+1 and y=$(($y+1))
+
+list_users() {
+    # List all the users in /etc/passwd.
+
+    FILENAME=/etc/passwd
+
+    for user in $(cut -d: -f1 $FILENAME)
+    do
+      echo $user
+    done
+}
+
+#To list a specific line of a text file, pipe the output of head to tail -n 1. For example head -n 8 database.txt | tail -n 1 lists the 8th line of the file database.txt.
+#cut -d ' ' -f2,3 filename is equivalent to awk -F'[ ]' '{ print $2, $3 }' filename
+#References
+#http://tldp.org/LDP/abs/html/textproc.html
+
+
+#To set a variable to a given block of a text file:
+#var=$(head -n $m $filename | tail -n $n)
+
+# filename = name of file
+# m = from beginning of file, number of lines to end of block
+# n = number of lines to set variable to (trim from end of block)
+
+# script-detector.sh: Detects scripts within a directory.
+script-detector(){
+    # script-detector.sh: Detects scripts within a directory.
+
+    TESTCHARS=2    # Test first 2 characters.
+    SHABANG='#!'   # Scripts begin with a "sha-bang."
+
+    for file in *  # Traverse all the files in current directory.
+    do
+      if [[ `head -c$TESTCHARS "$file"` = "$SHABANG" ]]
+      #      head -c2                      #!
+      #  The '-c' option to "head" outputs a specified
+      #+ number of characters, rather than lines (the default).
+      then
+        echo "File \"$file\" is a script."
+      else
+        echo "File \"$file\" is *not* a script."
+      fi
+    done
+
+    exit 0
+}
+
+test_strings() {
+    if [ $file1 -ot $file2 ]
+    then #      ^
+      echo "File $file1 is older than $file2."
+    fi
+
+    if [ "$a" -eq "$b" ]
+    then #    ^
+      echo "$a is equal to $b."
+    fi
+
+    if [ "$c" -eq 24 -a "$d" -eq 47 ]
+    then #    ^              ^
+      echo "$c equals 24 and $d equals 47."
+    fi
+
+    param2=${param1:-$DEFAULTVAL}
+}
+
+count_files() {
+    find . -maxdepth 1 -name \*.txt -print0 | grep -cz .
+}
+
+view_page(){
+    #A particularly useful option is -d, forcing double-spacing (same effect as sed -G).
+    pr -o 5 --width=65 fileZZZ | more gives a nice paginated listing to screen of fileZZZ with margins set at 5 and 65.
+}
+
+############3
+
+success() {
+    if [ "$ret" -eq '0' ]; then
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+    fi
+}
+
+error() {
+    msg "\e[31m[✘]\e[0m ${1}${2}"
+    exit 1
+}
+
+debug() {
+    if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
+      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+    fi
+}
+
+program_exists() {
+    local ret='0'
+    type $1 >/dev/null 2>&1 || { local ret='1'; }
+
+    # throw error on non-zero return value
+    if [ ! "$ret" -eq '0' ]; then
+    error "$2"
+    fi
+}
+
+############################ SETUP FUNCTIONS
+lnif() {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?"
+    debug
+}
+
+do_backup() {
+    if [ -e "$2" ] || [ -e "$3" ] || [ -e "$4" ]; then
+        today=`date +%Y%m%d_%s`
+        for i in "$2" "$3" "$4"; do
+            [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$i.$today";
+        done
+        ret="$?"
+        success "$1"
+        debug
+   fi
+}
+
+upgrade_repo() {
+      msg "trying to update $1"
+
+      if [ "$1" = "$app_name" ]; then
+          cd "$HOME/.$app_name-3" &&
+          git pull origin "$git_branch"
+      fi
+
+      if [ "$1" = "vundle" ]; then
+          cd "$HOME/.vim/bundle/vundle" &&
+          git pull origin master
+      fi
+
+      ret="$?"
+      success "$2"
+      debug
+}
+
+clone_repo() {
+    program_exists "git" "Sorry, we cannot continue without GIT, please install it first."
+    endpath="$HOME/.$app_name-3"
+
+    if [ ! -e "$endpath/.git" ]; then
+        git clone --recursive -b "$git_branch" "$git_uri" "$endpath"
+        ret="$?"
+        success "$1"
+        debug
+    else
+        upgrade_repo "$app_name"    "Successfully updated $app_name"
+    fi
+}
+
+clone_vundle() {
+    if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
+        git clone https://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
+    else
+        upgrade_repo "vundle"   "Successfully updated vundle"
+    fi
+    ret="$?"
+    success "$1"
+    debug
+}
+
+create_symlinks() {
+    endpath="$HOME/.$app_name-3"
+
+    lnif "$endpath/.vimrc"              "$HOME/.vimrc"
+    lnif "$endpath/.vimrc.bundles"      "$HOME/.vimrc.bundles"
+    lnif "$endpath/.vim"                "$HOME/.vim"
+
+    # Useful for fork maintainers
+    touch  "$HOME/.vimrc.local"
+
+    if [ -e "$endpath/.vimrc.fork" ]; then
+        ln -sf "$endpath/.vimrc.fork" "$HOME/.vimrc.fork"
+    elif [ "$fork_maintainer" -eq '1' ]; then
+       touch "$HOME/.vimrc.fork"
+       touch "$HOME/.vimrc.bundles.fork"
+    fi
+
+    if [ -e "$endpath/.vimrc.bundles.fork" ]; then
+        ln -sf "$endpath/.vimrc.bundles.fork" "$HOME/.vimrc.bundles.fork"
+    fi
+
+    if [ ! -d "$endpath/.vim/bundle" ]; then
+        mkdir -p "$endpath/.vim/bundle"
+    fi
+
+    ret="$?"
+    success "$1"
+    debug
+}
+
+setup_vundle() {
+    system_shell="$SHELL"
+    export SHELL='/bin/sh'
+    vim -u "$HOME/.vimrc.bundles" +BundleInstall! +BundleClean +qall
+    export SHELL="$system_shell"
+
+    success "$1"
+    debug
+}
+
+############################ MAIN()
+#program_exists "vim" "To install $app_name you first need to install Vim."
+
+#do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m%d%S`" \
+        #"$HOME/.vim" \
+        "$HOME/.vimrc" \
+        #"$HOME/.gvimrc"
+
+clone_repo      "Successfully cloned $app_name"
+
+#create_symlinks "Setting up vim symlinks"
+
+#clone_vundle    "Successfully cloned vundle"
+
+#setup_vundle    "Now updating/installing plugins using Vundle"
+
+#msg             "\nThanks for installing $app_name."
+#msg             "© `date +%Y` http://vim.spf13.com/"

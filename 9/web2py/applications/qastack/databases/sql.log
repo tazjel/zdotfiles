@@ -1,4 +1,4 @@
-timestamp: 2013-11-08T15:21:59.006949
+timestamp: 2013-11-18T07:59:37.758034
 CREATE TABLE auth_roles(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     role_name CHAR(128),
@@ -6,7 +6,7 @@ CREATE TABLE auth_roles(
     color_designation TEXT
 );
 success!
-timestamp: 2013-11-08T15:21:59.151137
+timestamp: 2013-11-18T07:59:37.895488
 CREATE TABLE auth_users(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     auth_alias CHAR(255),
@@ -17,7 +17,7 @@ CREATE TABLE auth_users(
     auth_role_id INTEGER REFERENCES auth_roles (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2013-11-08T15:21:59.269194
+timestamp: 2013-11-18T07:59:38.277540
 CREATE TABLE system_properties(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     property_name CHAR(128),
@@ -25,7 +25,7 @@ CREATE TABLE system_properties(
     property_value TEXT
 );
 success!
-timestamp: 2013-11-08T15:21:59.372449
+timestamp: 2013-11-18T07:59:38.353074
 CREATE TABLE member_properties_skel(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     property_name CHAR(128),
@@ -34,7 +34,7 @@ CREATE TABLE member_properties_skel(
     sort_order INTEGER
 );
 success!
-timestamp: 2013-11-08T15:21:59.449336
+timestamp: 2013-11-18T07:59:38.427003
 CREATE TABLE member_properties(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     auth_user INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
@@ -42,7 +42,7 @@ CREATE TABLE member_properties(
     property_value CHAR(255)
 );
 success!
-timestamp: 2013-11-08T15:21:59.564974
+timestamp: 2013-11-18T07:59:38.569491
 CREATE TABLE member_avatars(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     content_type CHAR(128),
@@ -51,7 +51,7 @@ CREATE TABLE member_avatars(
     avatar_active CHAR(1)
 );
 success!
-timestamp: 2013-11-08T15:21:59.642174
+timestamp: 2013-11-18T07:59:38.644177
 CREATE TABLE questions(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     title CHAR(255),
@@ -69,7 +69,7 @@ CREATE TABLE questions(
     views INTEGER
 );
 success!
-timestamp: 2013-11-08T15:21:59.743459
+timestamp: 2013-11-18T07:59:38.718692
 CREATE TABLE answers(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     question_id INTEGER REFERENCES questions (id) ON DELETE CASCADE,
@@ -85,7 +85,7 @@ CREATE TABLE answers(
     is_outstanding CHAR(1)
 );
 success!
-timestamp: 2013-11-08T15:21:59.821790
+timestamp: 2013-11-18T07:59:38.794211
 CREATE TABLE comments(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     c_type TEXT,
@@ -100,7 +100,7 @@ CREATE TABLE comments(
     is_visible CHAR(1)
 );
 success!
-timestamp: 2013-11-08T15:21:59.931469
+timestamp: 2013-11-18T07:59:38.934702
 CREATE TABLE score_log(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     l_type CHAR(512),
@@ -111,21 +111,21 @@ CREATE TABLE score_log(
     created_on TIMESTAMP
 );
 success!
-timestamp: 2013-11-08T15:22:00.007909
+timestamp: 2013-11-18T07:59:39.009838
 CREATE TABLE tags(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     tagname CHAR(255),
     is_enabled CHAR(1)
 );
 success!
-timestamp: 2013-11-08T15:22:00.134048
+timestamp: 2013-11-18T07:59:39.085804
 CREATE TABLE question_tags(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     question_id INTEGER REFERENCES questions (id) ON DELETE CASCADE,
     tag_id INTEGER REFERENCES tags (id) ON DELETE CASCADE
 );
 success!
-timestamp: 2013-11-08T15:22:00.212023
+timestamp: 2013-11-18T07:59:39.161247
 CREATE TABLE question_subscriptions(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     auth_user_id INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,
@@ -133,7 +133,7 @@ CREATE TABLE question_subscriptions(
     is_active CHAR(1)
 );
 success!
-timestamp: 2013-11-08T15:22:00.290234
+timestamp: 2013-11-18T07:59:39.235333
 CREATE TABLE subscriptions_notification(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     subscription_id INTEGER REFERENCES question_subscriptions (id) ON DELETE CASCADE,
@@ -141,7 +141,7 @@ CREATE TABLE subscriptions_notification(
     processed_on TIMESTAMP
 );
 success!
-timestamp: 2013-11-08T15:22:00.478024
+timestamp: 2013-11-18T07:59:39.310742
 CREATE TABLE admin_messages(
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     auth_user_id INTEGER REFERENCES auth_users (id) ON DELETE CASCADE,

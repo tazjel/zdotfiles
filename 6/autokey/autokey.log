@@ -3432,3 +3432,174 @@ DBusException: org.freedesktop.DBus.Error.ServiceUnknown: The name org.autokey.S
 2013-11-16 14:17:58,675 INFO - service - Starting service
 2013-11-16 14:17:59,407 INFO - interface - XRecord interface thread starting
 2013-11-16 14:17:59,407 INFO - service - Service now marked as running
+2013-11-16 16:10:18,438 INFO - root - Initialising application
+2013-11-16 16:10:18,476 INFO - root - Initialise global hotkeys
+2013-11-16 16:10:18,476 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-16 16:10:29,793 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-16 16:10:29,797 INFO - config-manager - Successfully loaded configuration
+2013-11-16 16:10:29,798 INFO - service - Starting service
+2013-11-16 16:10:30,187 INFO - interface - XRecord interface thread starting
+2013-11-16 16:10:30,187 INFO - service - Service now marked as running
+2013-11-16 18:11:49,350 INFO - service - Undoing last abbreviation expansion
+2013-11-16 18:23:50,184 INFO - service - Undoing last abbreviation expansion
+2013-11-16 18:27:49,064 INFO - service - Undoing last abbreviation expansion
+2013-11-16 21:45:25,260 INFO - service - Undoing last abbreviation expansion
+2013-11-17 20:54:17,374 INFO - root - Displaying configuration window
+2013-11-17 20:54:35,878 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:54:51,178 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:54:56,758 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:55:00,547 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:55:14,098 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:55:24,510 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:55:44,527 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:55:57,393 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:56:07,517 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:56:20,187 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:56:47,765 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:56:59,862 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:06,736 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:13,402 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:19,945 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:22,028 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:24,794 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:25,975 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:41,691 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:47,875 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:57:49,771 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:58:08,690 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:58:24,831 INFO - service - Undoing last abbreviation expansion
+2013-11-17 20:58:38,242 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:58:57,050 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:59:43,411 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 20:59:50,526 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:09,644 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:30,868 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:34,289 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:38,157 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:44,771 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:52,758 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:54,972 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:00:59,944 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:01:12,157 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:01:18,577 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:01:25,761 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:01:36,133 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:01:43,445 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:01:43,447 INFO - config-manager - Persisting configuration
+2013-11-17 21:01:43,448 INFO - config-manager - Backing up existing config file
+2013-11-17 21:01:43,469 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:01:48,769 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:01:48,770 INFO - config-manager - Persisting configuration
+2013-11-17 21:01:48,771 INFO - config-manager - Backing up existing config file
+2013-11-17 21:01:48,773 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:02:01,580 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:02:10,593 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:02:20,012 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:02:45,337 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:02:51,508 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:02:57,295 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:03:02,346 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:03:08,686 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:03:24,182 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:03:41,695 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:04:25,121 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:04:31,819 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:04:35,500 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:04:36,483 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:04:36,485 INFO - config-manager - Persisting configuration
+2013-11-17 21:04:36,486 INFO - config-manager - Backing up existing config file
+2013-11-17 21:04:36,488 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:04:39,701 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:04:44,963 WARNING - config-manager - No action taken for create/update event at /home/ahmed/.config/autokey/data/DCAR/tazjel/A/nova/.Ahmed Al-Ghamdi.json
+2013-11-17 21:04:50,709 WARNING - config-manager - No action taken for delete event at /home/ahmed/.config/autokey/data/DCAR/tazjel/A/nova/.Ahmed Al-Ghamdi.json
+2013-11-17 21:05:00,707 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:05:18,119 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:05:24,061 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:05:24,062 INFO - config-manager - Persisting configuration
+2013-11-17 21:05:24,063 INFO - config-manager - Backing up existing config file
+2013-11-17 21:05:24,066 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:05:36,732 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:05:36,733 INFO - config-manager - Persisting configuration
+2013-11-17 21:05:36,734 INFO - config-manager - Backing up existing config file
+2013-11-17 21:05:36,735 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:05:39,261 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:05:39,262 INFO - config-manager - Persisting configuration
+2013-11-17 21:05:39,263 INFO - config-manager - Backing up existing config file
+2013-11-17 21:05:39,265 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:05:45,114 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:05:45,116 INFO - config-manager - Persisting configuration
+2013-11-17 21:05:45,117 INFO - config-manager - Backing up existing config file
+2013-11-17 21:05:45,119 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:05:49,678 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:05:49,679 INFO - config-manager - Persisting configuration
+2013-11-17 21:05:49,680 INFO - config-manager - Backing up existing config file
+2013-11-17 21:05:49,682 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:06:38,345 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:06:44,191 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:06:48,591 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:07:04,067 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:07:09,325 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:07:35,918 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:07:42,507 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:07:53,991 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:07:53,993 INFO - config-manager - Persisting configuration
+2013-11-17 21:07:53,994 INFO - config-manager - Backing up existing config file
+2013-11-17 21:07:53,997 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-17 21:08:22,686 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:08:47,550 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:08:51,995 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:08:52,499 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:08:54,565 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 21:08:56,891 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 22:38:24,634 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 22:38:34,860 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-17 22:38:44,485 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-18 02:36:02,730 INFO - root - Displaying configuration window
+2013-11-18 02:36:13,884 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-18 02:37:56,719 INFO - root - Displaying configuration window
+2013-11-18 02:38:00,522 INFO - root - Displaying configuration window
+2013-11-18 02:38:01,011 INFO - root - Displaying configuration window
+2013-11-18 02:38:04,939 INFO - root - Displaying configuration window
+2013-11-18 02:38:08,734 INFO - root - Displaying configuration window
+2013-11-18 02:55:25,352 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 677, in __sendKey
+    self.__sendKeyCode(self.__lookupKeyCode(keyName))
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 856, in __sendKeyCode
+    self.__sendKeyPressEvent(keyCode, modifiers, theWindow)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
+    focus.send_event(keyEvent)
+AttributeError: 'int' object has no attribute 'send_event'
+2013-11-18 02:58:55,275 INFO - service - Undoing last abbreviation expansion
+2013-11-18 02:59:21,419 INFO - service - Undoing last abbreviation expansion
+2013-11-18 04:11:24,588 INFO - service - Undoing last abbreviation expansion
+2013-11-18 04:42:43,393 INFO - service - Undoing last abbreviation expansion
+2013-11-18 04:46:48,001 INFO - service - Undoing last abbreviation expansion
+2013-11-18 05:00:49,629 INFO - root - Displaying configuration window
+2013-11-18 05:01:38,633 INFO - root - Displaying configuration window
+2013-11-18 05:01:42,011 INFO - root - Displaying configuration window
+2013-11-18 05:16:22,460 INFO - root - Displaying configuration window
+2013-11-18 08:15:01,778 INFO - root - Initialising application
+2013-11-18 08:15:01,918 INFO - root - Initialise global hotkeys
+2013-11-18 08:15:01,918 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-18 08:15:18,249 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-18 08:15:18,255 INFO - config-manager - Successfully loaded configuration
+2013-11-18 08:15:18,255 INFO - service - Starting service
+2013-11-18 08:15:19,237 INFO - interface - XRecord interface thread starting
+2013-11-18 08:15:19,237 INFO - service - Service now marked as running
+2013-11-18 11:20:04,043 INFO - service - Undoing last abbreviation expansion
+2013-11-18 16:58:39,160 INFO - service - Undoing last abbreviation expansion
+2013-11-18 17:14:17,922 INFO - service - Undoing last abbreviation expansion
+2013-11-18 22:24:25,404 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 677, in __sendKey
+    self.__sendKeyCode(self.__lookupKeyCode(keyName))
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 856, in __sendKeyCode
+    self.__sendKeyPressEvent(keyCode, modifiers, theWindow)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
+    focus.send_event(keyEvent)
+AttributeError: 'int' object has no attribute 'send_event'

@@ -1,4 +1,4 @@
-# -*- coding: utf-8 -*-
+# -*- coding: utf-8 -*- 
 
 #########################################################################
 ## This is a samples controller
@@ -6,7 +6,7 @@
 ## - user is required for authentication and authorization
 ## - download is for downloading files uploaded in the db (does streaming)
 ## - call exposes all registered services (none by default)
-#########################################################################
+#########################################################################  
 
 import datetime
 import hashlib
@@ -43,7 +43,7 @@ def index():
         sql_order = 'questions.votes_up DESC'
     elif qsort == 'f': # Featured
         sql_where.append("questions.is_featured == 'T'")
-
+    
     if qtype is not None and qtype == 'u': # Unanswered
         sql_where.append("questions.is_answered == 'T'")
     if sql_where:
@@ -107,7 +107,7 @@ def index():
                 'auth_users.auth_alias': q[13]
                 })
     # Get tags for questions
-    for q in questions:
+    for q in questions:        
         tags = db(
             (db.questions.id==db.question_tags.question_id) &\
             (db.question_tags.tag_id==db.tags.id) &\
@@ -118,7 +118,7 @@ def index():
         #raise ValueError, tags
         if tags:
             q['tags'] = tags
-
+        
     #questions = db(
     #    (db.questions.is_visible==True) &\
     #    (db.member_properties.auth_user==db.questions.created_by) &\

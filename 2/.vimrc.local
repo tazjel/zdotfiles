@@ -1,16 +1,65 @@
 " Last Modified: 2013-11-16T00:11:40
-"
+set nocompatible
+set backspace=indent,eol,start
+set shiftwidth=4
+set tabstop=4
+set expandtab
+set autoindent
+set notildeop
+let g:explVertical=1
+let g:explSplitRight=1
+
+" remember more commands and search history
+set history=10000
+
+" do not keep a backup files
+set nobackup
+set nowritebackup
+set ignorecase
+set scs
+set joinspaces
+set laststatus=2
+set showtabline=2
+
+
+"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" COLOR
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set t_Co=256 " 256 colors
+set background=dark
+"color grb256
 "key = ['borland']
 colorscheme random
-    set t_Co=256
+
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+" STATUS LINE
+""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+set showmatch
+nnoremap <leader><leader> <c-^>
+"
+" Close all other windows, open a vertical split, and open this file's test
+" alterna in it.
+
+nnoremap <leader>s :call FocusOnFile()<cr>
+
+function! FocusOnFile()
+  tabnew %
+  normal! v
+  normal! l
+  call OpenTestAlternate()
+  normal! h
+endfunction
+
     set spelllang=en
+    set spell
     "
     "
     "set modeline
     set modelines=5
     set ignorecase " ignore case when searching
     set smartcase  " ... except when search pattern contains an uppercase char
-    "Enable CursorLine
+    "Enablew Cursor Line
         "    set cursorline
         "Default Colors for CursorLine
         "    highlight  CursorLine ctermbg=Black ctermfg=None
@@ -115,11 +164,12 @@ colorscheme random
                 nnoremap <M-F9> :sessionopen
                 nnoremap <C-F9> :SessionSaveAs
             " <F10>
-                vnoremap <F10> :w! >> ~/Dropbox/INTRODUCTION/authors.txt<CR>
-                nnoremap <silent> <S-F10> :vsplit ~/Dropbox/INTRODUCTION/authors.txt<CR>
+                "vnoremap <F10> :w! >> ~/Dropbox/INTRODUCTION/authors.txt<CR>
+                "nnoremap <silent> <S-F10> :vsplit ~/Dropbox/INTRODUCTION/authors.txt<CR>
             "cabbrev
-                cabbrev s5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
+                cabbrev t5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
                 cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
+                cabbrev p1 vsplit ~/.config/ipython/profile_default/startup/w.ipy
 
             "abbreviate
                 abbreviate CC Conflict
@@ -238,6 +288,9 @@ cab wex !sh %<CR>
         "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
 
         "html substitute
+        "
+           " chain an external command
+           ":.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/    [N]
             "!sed 's/<[^>]*>//g' %
 
     " Split the Line at Cursor
@@ -312,15 +365,42 @@ set completefunc=LineCompleteFromFile
     ":sort /.*\%2v/   : sort all lines on second column [N]"
 
 
-" reading Ms-Word documents, requires antiword (not docx)
-    "autocmd BufReadPre *.doc set ro
-    "autocmd BufReadPre *.doc set hlsearch!
-    "autocmd BufReadPre *.txt set syntax=python
-    "autocmd BufReadPost *.txt set syntax=python
-    "autocmd FileType *.txt exec('set fileformats=unix')
-    "autocmd FileType *.txt exec('set syntax= text')
+    " reading Ms-Word documents, requires antiword (not docx)
+        "autocmd BufReadPre *.doc set ro
+        "autocmd BufReadPre *.doc set hlsearch!
+        "autocmd BufReadPre *.txt set syntax=python
+        "autocmd BufReadPost *.txt set syntax=python
+        "autocmd FileType *.txt exec('set fileformats=unix')
+        autocmd FileType *.txt exec('set syntax= text')
+        autocmd FileType * exec('set syntax= text')
 """""
+abbr hosts C:\WINNT\system32\drivers\etc\hosts
 
+" abbreviation to manually enter a timestamp. Just type YTS in insert mode
+
+iab YTS <C-R>=TimeStamp()<CR>
+
+" Date/Time stamps
+" %a - Day of the week
+" %b - Month
+
+" %d - Day of the month
+" %Y - Year
+" %H - Hour
+" %M - Minute
+" %S - Seconds
+" %Z - Time Zone
+
+iab YDATETIME <c-r>=strftime(": %a %b %d, %Y %H:%M:%S %Z")<cr>
+
+" first add a function that returns a time stamp in the desired format
+if !exists("*TimeStamp")
+    fun TimeStamp()
+
+        return "Last-modified: " . strftime("%d %b %Y %X")
+    endfun
+endif
+""""""
     "window
         "Open file same dir--------------------------------------------
             "On the current window
@@ -331,14 +411,14 @@ set completefunc=LineCompleteFromFile
             map ,h :sp <C-R>=expand("%:p:h") . "/" <CR>
             "
         "Tab takes you to the next window:
-            nmap <Tab> _
-            nmap <S-Tab>  W_
-            nmap <S-Tab> :tabprevious<CR>
+            "nmap <Tab> _
+            "nmap <S-Tab>  W_
+            "nmap <S-Tab> :tabprevious<CR>
 
             map <Leader>w <c-w>v<c-w>l
             map <Leader>sh <c-w>s<c-w>j
     "File
-        nmap ,, :e.<CR>
+        "nmap ,, :e.<CR>
         imap <C-s> <C-o>:w<CR>
         map <C-s> :w<CR>
 
@@ -382,7 +462,6 @@ set completefunc=LineCompleteFromFile
         func! CP() " Copy current selection to clipboard
             call Copy()
         endf
-
         func! CopyAll() " Copy current buffer contents to clipboard
             call SelectAll()
             call Copy()
@@ -422,10 +501,10 @@ set completefunc=LineCompleteFromFile
         "map ,l :call SaveLine()
         """"""
         function! SaveWord()
-           normal yiw
+           call CopyLine()
            exe ':!echo '.@0.' >> ~/word.txt'
         endfunction
-        "map ,p :call SaveWord()
+        map ,, :call SaveLine()
 
         " function to delete duplicate lines
         function! Del_dupl()
@@ -446,6 +525,7 @@ set completefunc=LineCompleteFromFile
             function! AA()
                 :g/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/
             endfunction
+            "
                 "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r__AA\1/g
                 "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
 
@@ -570,7 +650,17 @@ set cpt=.,k,w,b,t,i
         endfunction
 
 
-
+function! CommitFile()
+python << EOF
+import vim, re
+curfile = vim.current.buffer.name
+if curfile:
+    try:
+        print "w"
+    except (git.InvalidGitRepositoryError, git.GitCommandError):
+        pass
+EOF
+endfunction
 
 
 "
@@ -601,11 +691,66 @@ cabbrev wwpy vsplit /home/ahmed/.config/ipython/profile_default/startup/ww.ipy
 cabbrev wpy !python %
 "
 "
-"map <F9> :w<CR>:!python %<CR>
+"
+"spelllang
+function! Spell_new_word()
+    set spell!
+    normal ]s
+    normal 1z=
+endfunction
+nnoremap ,d :call Spell_new_word()
+inoremap ,d :call Spell_next_word()
 " Search
+function! InsertCmd( cmd )
+       exe ':silent !'.a:cmd.' > /tmp/vim.insert.xxx 2>/dev/null'
+       let l = readfile( '/tmp/vim.insert.xxx', '', 1 )
+       exe "normal a".l[0]
+       redraw!
+endfunction
 
+imap <silent> <F10> <Esc>:call InsertCmd( 'hostname' )<CR><Insert>
+map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
+"
 " Substitute
+"HOW TO WRITE VIM PLUGINS WITH PYTHON
+"
+"autocmd BufWritePre *.py normal m`:%s/\s\+$//e``
+au FileType py set autoindent
+au FileType py set smartindent
+au FileType py set textwidth=79 " PEP-8 Friendly
+set winwidth=79 " This makes RVM work inside Vim. I have no idea why.
+set shell=bash
+set t_ti= t_te=
+set scrolloff=3
+"
+"" Fix slow O inserts
+set timeout timeoutlen=1000 ttimeoutlen=100
+"
+let g:sh_noisk=1
+"
+set modeline
+set modelines=3
+"
+"augroup vimrcEx
+  " Clear all autocmds in the group
+  autocmd!
+  autocmd FileType text setlocal textwidth=78
+  " Jump to last cursor position unless it's invalid or in an event handler
+  autocmd BufReadPost *
+    \ if line("'\"") > 0 && line("'\"") <= line("$") |
+    \   exe "normal g`\"" |
+    \ endif
+"
+    vmap <tab> >gv
+    vmap <s-tab> <gv
 
+" Buffer naviation
+map <M-Left> :bprevious<CR>
+map <M-Right> :bnext<CR>
+
+
+autocmd FileType python set sw=4 sts=4 et
+"
 " Line Number
     "Number all the lines in a file (insert line number followed by a tab):
     ":%s/^/\=line('.')."\t"/

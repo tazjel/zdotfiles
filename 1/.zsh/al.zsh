@@ -4,10 +4,16 @@
 # Last Updated on Fri Nov 15 01:03:32 AST 2013
 #
 ########################################################
-
-
+autoload -U edit-command-line
+zle -N edit-command-line
+bindkey '\C-x\C-e' edit-command-line
+export EDITOR=vim
 ############################  SETUP PARAMETERS
+alias pygrep="grep --include='*.py' $*"
+export ACK_COLOR_MATCH='red'
 
+
+export WORDCHARS='*?[]~&;!$%^<>'
 
 LS_COLORS='rs=0:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
 export LS_COLORS
@@ -30,7 +36,13 @@ export LS_COLORS
     AK="$HOME/.config/autokey/data"
     DB="$HOME/Dropbox"
     DL="$HOME/Downloads"
-grep() {
+
+zgrep_Quran() {
+    cd ~/zdotfiles/References/Quran
+    grep -IRhsG "$@"
+}
+
+zgrep() {
     #pat = "1-9"
         #list of next pattern
         #list of available pattern
@@ -221,7 +233,7 @@ alias 'wsr'='cd ~/src'
 ###########################################################
     alias 'cdx'='cd ~/Dropbox/'
     alias 'w7'='ssh'
-    alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)"'
+    #alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)"'
     alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
     alias "wwf"="cmdfu"
     alias 'GX'='grep -iaR "$1"--exclude-dir=cache'
@@ -241,9 +253,6 @@ alias 'wsr'='cd ~/src'
     alias 'rmm'='rm -rf'
     alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
     alias 'w7'='ssh'
-    alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)" '
-    alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail
- $2'
     alias 'wX'='chmod -x'
     alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
     alias 'w_ak'='autokey -l'
@@ -264,7 +273,6 @@ alias 'wsr'='cd ~/src'
     alias 'wj'='joy2key'
     alias 'wjprayer'='wf "jeddah prayer time"'
     alias 'wjs'='jstest --normal /dev/input/js0'
-    alias 'wl'='locale'
     alias 'wlen'='export LANG="en_US.UTF-8" '
     alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"' # list and get size
     alias 'wlv'='ls -a | grep vim'
@@ -307,7 +315,7 @@ alias 'wsr'='cd ~/src'
     alias -g 'wxc'='| xclip'
     alias -g G='| grep'
     alias -g Gh='--help | grep'
-alias -g 'wcl'='wc -l'
+    alias -g 'wl'='wc -l'
     alias -g wv='| vim -'
     alias ......='cd ../../../../../'
     alias .....='cd ../../../../'
@@ -338,7 +346,6 @@ alias -g 'wcl'='wc -l'
     alias cathtml='sed '\''s/<[^>]*>//g'\'
     alias cats='pygmentize -O style=monokai -f console256 -g'
     alias cbuild='mkdir build && cd build; cmake ..; make'
-    alias ccat='pygmentize -O bg=dark'
     alias cgrep='grep --color=always'
     alias clip='xclip -sel clip'
     alias clr='clear;pwd;ls'
@@ -421,7 +428,7 @@ alias -g 'wcl'='wc -l'
     alias gpoat='git push origin --all && git push origin --tags'
     alias gpu='git push'
     alias gr='git remote'
-    alias grep='grep --color=auto'
+    #alias grep='grep --color=auto'
     alias grh='git reset HEAD'
     alias grhh='git reset HEAD --hard'
     alias grmv='git remote rename'
@@ -446,8 +453,8 @@ alias -g 'wcl'='wc -l'
     #
 #ls-files
     alias heroku='nocorrect heroku'
-    alias hh='history -$1 | grep'
-    alias hh='history | grep --color=auto'
+    #alias hh='history -$1 | grep'
+    #alias hh='history | grep --color=auto'
     alias hpodder='nocorrect hpodder'
     alias ifconfig-ext='curl ifconfig.me'
     alias install='sudo apt-get install'
@@ -531,10 +538,13 @@ wwww_doc(){
 ########################################################
 # <F3>
 wg_txt() {
-    find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep --color=always -Hn "$1" {} \; }
+    find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep -hisyE "$1" {} \; }
 
 
-
+# Unbreak history
+export HISTSIZE=100000
+export HISTFILE="$HOME/.history"
+export SAVEHIST=$HISTSIZE
 #
 ## extract email adresses from some file (or any other pattern)
 #grep -aEio '([[:alnum:]_.-]+@[[:alnum:]_.-]+?\.[[:alpha:].]{2,6})'
@@ -698,12 +708,6 @@ ww_colors_term()
     "\e[m"; done; done | column -c $((COLUMNS*2))
 }
 
-# Start-up
-star_Level_one
-echo -e "\t\t\t\t $(date)"
-
-cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
-
 
 alias 'wbook_Press'='wbook Press'
 
@@ -733,7 +737,7 @@ wgp() {
 alias 'www_get_website'='wget --recursive --page-requisites --convert-links'
 
 
-alias 'wmd'='cd /media/ahmed/Transcend/backup/tst'
+alias 'wmd'='cd /media/ahmed/Transcend'
 alias 'wres'='rename "s/ /_/g" *.*'
 
 
@@ -811,3 +815,16 @@ alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
 
 alias '999'='cd ~/zdotfiles/9/web2py/'
 
+# Start-up
+star_Level_one
+echo -e "\t\t\t\t $(date)"
+
+cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
+wG_grep(){
+    grep -GRIiysh "$1"
+    #G'='grep -GRIiysh "(.*)($1)(.*)($2)(.*)"'
+        #alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail $2'
+        #alias 'wGG'='grep -GRIiysh "(.*)($1)(.*)($2)(.*)"'
+        #alias 'wG'='grep -GRIiysh "(.*)($1)(.*)"'
+        #alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail $2'
+}
