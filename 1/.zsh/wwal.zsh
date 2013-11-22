@@ -587,4 +587,3 @@ fbook(){
 # Start-up
 star_Level_one
 echo -e "\t\t\t\t $(date)"
-easystroke show

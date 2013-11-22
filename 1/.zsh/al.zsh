@@ -12,6 +12,7 @@ export EDITOR=vim
 alias pygrep="grep --include='*.py' $*"
 export ACK_COLOR_MATCH='red'
 
+export LC_ALL=en_US.UTF-8
 
 export WORDCHARS='*?[]~&;!$%^<>'
 
@@ -828,3 +829,8 @@ wG_grep(){
         #alias 'wG'='grep -GRIiysh "(.*)($1)(.*)"'
         #alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail $2'
 }
+
+
+
+alias 'pp'='python' 
+

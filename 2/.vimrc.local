@@ -175,7 +175,8 @@ endfunction
                 abbreviate CC Conflict
                 abbreviate CAR Conflict Analysis & Resolution
 
-                "
+        "Jones, R. C., Stevens, M. A., and Martinez, W. T. (2008, January 15). Dow ends in positive territory. Reuters. Retrieved June 15, 2009 from http://www.reuters.com
+                "If there is no author listed for the Reuters' story you are citing, Cornell's library says you should lead off the citation with the title of the article.
                 "g/^$/;/^$/-1!sort
 
                 iabbr ws when where who what why

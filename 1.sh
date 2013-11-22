@@ -1,37 +1,114 @@
 #!/bin/bash
 
 #!/usr/bin/env bash
-############################  SETUP PARAMETERS
-app_name='zdotfiles'
-git_uri='https://github.com/tazjel/zdotfiles.git'
-git_branch='master'
-debug_mode='0'
-fork_maintainer='0'
+###########################
+choice_YN() {
+    while true; do
+        read -p "Do you wish to install this program?" yn
+        case $yn in
+            [Yy]* ) make install; break;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+    #Another method, pointed out by Steven Huwig, is bash's 'select' command. Here is the same example using select:
+
+    echo "Do you wish to install this program?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes ) make install; break;;
+            No ) exit;;
+        esac
+    done
+}
+#  SETUP PARAMETERS
+    app_name='zdotfiles'
+    git_uri='https://github.com/tazjel/zdotfiles.git'
+    git_branch='master'
+    debug_mode='0'
+    fork_maintainer='0'
+
+    NBIB='Bibliography'
+    MONTH=`date +%B`
+    vim_snip=~/zdotfiles/2/Ref.snip
+    DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
+    DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
+    BRA='~/zdotfiles/1/References.txt
+
+Session_z() {
+    while True ; do
+        echo "Session Name:	Nov 19 e-live (Presentation Night One!)
+            Start Time:	Nov 19, 2013 6:00 PM
+            End Time:	Nov 19, 2013 11:30 PM
+            Session Type:	Course"
+
+        echo "" && break
+    done
+        echo"Session_z "
+        pause
+        start_GUI
+    }
+
+References_add_Bash() {
+    while true ; do
+        read -p "Add References to Bash" BRA
+    echo $BRA >> ~/zdotfiles/1/References.txt
+    echo "" && break
+done
+    echo "Done"
+    cat $BRA
+    pause
+    start_GUI
+}
+    #cat >> $DCAR_Bib_Notes <<EOL
 
 ############################  BASIC SETUP TOOLS
 # Define variables
 # ----------------------------------
 
+References_read() {
+    while true ; do
+        cat $Ref | grep -i "$@"
+        echo "" && break
+    done
+        echo ""
+        pause
+        start_GUI
+    }
+
 References_add() {
-    Ref=~/Dropbox/DCAR/snippets/Refe.txt
-    read -p "Enter Author : " n1
-    read -p "Enter  DATE : " n2
-    read -p "Enter Link : " n3
-    read -p "Enter Title : " n4
-    read -p "Enter Host : " n5
-    #read -p "Enter Link : " n6
-    echo "$n1. ($n2).$n4 . $n5,. Retrieved from
-    $n3" >> $Ref
-    #~/Dropbox/DCAR/snippets/Refe.txt
-    cat $Ref
-    pause
-    #echo "Number3 - $n3"
+    # Name
+        read -p "Enter Author First Name : " NAF
+        read -p "Enter Author Last Name : " NAL
+    # Published on Date
+        read -p "Enter  Year Published : " NDY
+        read -p "Enter  Month Published : " NDM
+        read -p "Enter  Date Published : " NDD
+    # Title. Newspaper Title.
+        read -p "Article title :" NAT
+        read -p "Newspaper Title:" NPT
+    # URL
+        read -p "Enter URL" NURL
+
+        #Model Bibliography
+            # class auther
+                #function if_ many authers;if no authers ; if
+                #function date
+                #function Publisher.
+                #function URL
+
+    echo "$NAL,$NAF. ($NDY,"$NDM").$n4 . $n5,. Retrieved "$MONTH"from
+    $n3" >> $DCAR_Bib_Notes
+
+    cat $DCAR_Bib_Notes
+        pause
 }
+
 znotify() {
     play ~/zdotfiles/References/notify.mp3
 }
+
 cmdfu() {
-    # Search commandlinefu
     curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -
 }
 
@@ -159,7 +236,7 @@ read_options() {
     echo ""
     read -p "Enter:" choice
     case $choice in
-        1) F1 ;;
+        1) References_add_Bash ;;
         2) pause "$(date)";;
         3) F3 ;;
         4) echo '*** Top 10 Memory eating process:'; ps auxf | sort -nr -k 4 | head -10;
@@ -175,8 +252,8 @@ read_options() {
 }
 
 
-
-
+#while [ 1 ]; do if [ -z "`curl -I "http://cdimage.ubuntu.com/releases/9.10/release/"|grep "404"`" ]; then kdialog --msgbox "9.10 Released"; exit; fi; sleep 300;  done
+#IFS=$'\n'; for i in $(cat FILE.TXT); do echo "$i"; done
 F6() {
 while True ; do
     echo "F6"
@@ -189,7 +266,7 @@ done
 
 
 
-start_gui() {
+start_GUI() {
     while true; do
         show_menus
         read_options
@@ -198,7 +275,7 @@ start_gui() {
 
 
 # # # # # # # # # # # # # # # # # # # #
-    start_gui
+    start_GUI
 
 
 
@@ -266,6 +343,7 @@ Fourth_pics(){
     WEBDIR=/var/www/carol/webcam
     while true; do
         DATE=`date +%Y%m%d`
+        MONTH=`date +%B`
         HOUR=`date +%H`
         mkdir $WEBDIR/"$DATE"
         while [ $HOUR -ne "00" ]; do
@@ -756,10 +834,10 @@ setup_vundle() {
 
 #do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m%d%S`" \
         #"$HOME/.vim" \
-        "$HOME/.vimrc" \
+        #"$HOME/.vimrc" \
         #"$HOME/.gvimrc"
 
-clone_repo      "Successfully cloned $app_name"
+#clone_repo      "Successfully cloned $app_name"
 
 #create_symlinks "Setting up vim symlinks"
 

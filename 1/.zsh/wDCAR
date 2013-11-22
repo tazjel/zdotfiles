@@ -1,7 +1,6 @@
 #!/bin/bash
 
-
-read -d '' String <<"EOF"
+read -p '' String <<EOF
     Miall, Hugh, Oliver Ramsbotham and Tom Woodhouse.  (2011).   Contemporary Conflict Resolution. 3[rd] Edition.  Cambridge, UK:  Polity Press.
 
     Lederach, John Paul. (2005). The Moral Imagination:  the Art and Soul of Building Peace. Oxford, UK:  Oxford UP.
@@ -16,7 +15,5 @@ read -d '' String <<"EOF"
 EOF
 
 wcar_textbooks() {echo $String | egrep -i --color=auto "$1"}
-
-
-###########################
+wcar_textbooks
 

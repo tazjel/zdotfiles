@@ -3603,3 +3603,28 @@ Traceback (most recent call last):
   File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
     focus.send_event(keyEvent)
 AttributeError: 'int' object has no attribute 'send_event'
+2013-11-19 00:23:46,724 INFO - service - Undoing last abbreviation expansion
+2013-11-19 01:31:17,298 INFO - service - Undoing last abbreviation expansion
+2013-11-19 04:43:33,173 INFO - service - Undoing last abbreviation expansion
+2013-11-19 23:08:42,321 INFO - root - Initialising application
+2013-11-19 23:08:42,474 INFO - root - Initialise global hotkeys
+2013-11-19 23:08:42,474 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-19 23:09:01,163 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-19 23:09:01,169 INFO - config-manager - Successfully loaded configuration
+2013-11-19 23:09:01,273 INFO - service - Starting service
+2013-11-19 23:09:02,032 INFO - interface - XRecord interface thread starting
+2013-11-19 23:09:02,032 INFO - service - Service now marked as running
+2013-11-19 23:16:46,485 INFO - root - Displaying configuration window
+2013-11-20 01:55:31,972 INFO - service - Undoing last abbreviation expansion
+2013-11-20 01:55:43,484 INFO - service - Undoing last abbreviation expansion
+2013-11-20 11:02:12,234 INFO - root - Displaying configuration window
+2013-11-20 11:44:16,856 INFO - service - Undoing last abbreviation expansion
+2013-11-20 11:44:19,520 INFO - service - Undoing last abbreviation expansion
+2013-11-22 04:59:38,418 INFO - root - Initialising application
+2013-11-22 04:59:38,626 INFO - root - Initialise global hotkeys
+2013-11-22 04:59:38,626 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-22 04:59:56,974 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-22 04:59:56,979 INFO - config-manager - Successfully loaded configuration
+2013-11-22 04:59:56,980 INFO - service - Starting service
+2013-11-22 04:59:57,334 INFO - interface - XRecord interface thread starting
+2013-11-22 04:59:57,335 INFO - service - Service now marked as running
