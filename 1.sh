@@ -1,177 +1,165 @@
 #!/usr/bin/env bash
 
-#  SETUP PARAMETERS
+#####################################################
+#
+#  Conflict Analysis & Resolution
 
-    app_name='zdotfiles'
-    git_uri='https://github.com/tazjel/zdotfiles.git'
-    git_branch='master'
-    debug_mode='0'
-    fork_maintainer='0'
+# Author : Alghamdi, Ahmed. (November 25, 2013)
+####################################################
 
-    NBIB='Bibliography'
-    MONTH=`date +%B`
-    vim_snip=~/zdotfiles/2/Ref.snip
-    DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
-    DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
-    BRA=~/zdotfiles/1/References.txt
+    # Model
+          # SETUP PARAMETERS
+            # Zdotfiles
+                app_name='zdotfiles'
+                git_uri='https://github.com/tazjel/zdotfiles.git'
+                git_branch='master'
+                debug_mode='0'
+                fork_maintainer='0'
+            # Bibliography
+                NBIB='Bibliography'
+                MONTH=`date +%B`
+                vim_snip=~/zdotfiles/2/Ref.snip
+                DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
+                DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
+                BRA=~/zdotfiles/1/References.txt
+    # Controller
+         # File Manager.
+         # Swap files.
+            function swap() {
+                local TMPFILE=tmp.$$
 
+                [ $# -ne 2 ] && echo "swap: 2 arguments needed" && return 1
+                [ ! -e $1 ] && echo "swap: $1 does not exist" && return 1
+                [ ! -e $2 ] && echo "swap: $2 does not exist" && return 1
 
+                mv "$1" $TMPFILE
+                mv "$2" "$1"
+                mv $TMPFILE "$2"
+            }
+                 # Extract archives
+                    extract () {
+                        if [ -f $1 ] ; then
+                            case $1 in
+                                *.tar.bz2)   tar xjf $1;;
+                                *.tar.gz)    tar xzf $1;;
+                                *.bz2)       bunzip2 $1;;
+                                *.rar)       rar x $1;;
+                                *.gz)        gunzip $1;;
+                                *.tar)       tar xf $1;;
+                                *.tbz2)      tar xjf $1;;
+                                *.tgz)       tar xzf $1;;
+                                *.zip)       unzip $1;;
+                                *.Z)         uncompress $1;;
+                                *.7z)        7z x $1;;
+                                *.rar)       unrar e $1;;
+                                *)           echo "'$1' cannot be extracted via extract()" ;;
+                            esac
+                        else
+                            echo "'$1' is not a valid file"
+                        fi
+                    }
+    # View
+        #  GUI messages
+            msg() {
+                printf '%b\n' "$1" >&2
+            }
 
+            success() {
+                if [ "$ret" -eq '0' ]; then
+                msg "\e[32m[✔]\e[0m ${1}${2}"
+                fi
+            }
 
-
-###########################
-#msg "Conflict Analysis & Resolution"
-
-
-znotify() {
-    play ~/zdotfiles/References/notify.mp3
-}
-
-
-pause(){
-    local m="$@"
-    echo "$m"
-    read -p "Press [Enter] key to continue..." key
-}
-
-
-
-
-
-
-choice_YN() {
-    while true; do
-        read -p "Do you wish to install this program?" yn
-        case $yn in
-            [Yy]* ) make install; break;;
-            [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.";;
-        esac
-    done
-}
-
-time_florida() {
-    while True ; do
-        zdump EST
-        echo "" && break
-    done
-    pause
-    start_GUI
-}
-
-
-
-show_menus() {
-    clear
-    echo "                            بسم الله الرحمن الرحيم"
-    echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo " M A I N - M E N U"
-    echo "~~~~~~~~~~~~~~~~~~~~~"
-    echo "1. First Diamintion :Search commandlinefu"
-    echo "2. Second Diamintion"
-    echo "3. Third Diamintion"
-    echo "4. Fourth Diamintion"
-    echo "5. Fifth Diamintion"
-    echo "6. Sixth Diamintion "
-    echo "7. Seventh Diamintion"
-    echo "8. Eighth Diamintion"
-    echo "9. Ninth Diamintion"
-    echo "10. Tenth Diamintion"
-    echo "0. EXIT"
-}
-
-read_options() {
-    local choice
-    echo "==============="
-    echo ""
-    read -p "Enter:" choice
-    case $choice in
-        1) References_add_Bash ;;
-        2) pause "$(date)";;
-        3) F3 ;;
-        5) netstat -s | less;;
-        6) F6;;
-        10) References_add;;
-        0) exit 0;;
-        *) pause "Select between 1 to 5 only"
-        #*) echo -e "\t ${RED}Error...${STD}" && sleep 1
-    esac
-}
-
-References_add() {
-    # Name
-        read -p "Enter Author First Name : " NAF
-        read -p "Enter Author Last Name : " NAL
-    # Published on Date
-        read -p "Enter  Year Published : " NDY
-        read -p "Enter  Month Published : " NDM
-        read -p "Enter  Date Published : " NDD
-    # Title. Newspaper Title.
-        read -p "Article title :" NAT
-        read -p "Newspaper Title:" NPT
-    # URL
-        read -p "Enter URL" NURL
-
-        #Model Bibliography
-            # class auther
-                #function if_ many authers;if no authers ; if
-                #function date
-                #function Publisher.
-                #function URL
-
-    echo "$NAL,$NAF. ($NDY,"$NDM").$n4 . $n5,. Retrieved "$MONTH"from
-    $n3" >> $DCAR_Bib_Notes
-
-    cat $DCAR_Bib_Notes
-        pause
-}
+            error() {
+                msg "\e[31m[✘]\e[0m ${1}${2}"
+                exit 1
+            }
 
 
-References_add_Bash() {
-    while true ; do
-        read -p "Add References to Bash" BRA
-        echo $BRA >> ~/zdotfiles/1/References.txt
-        echo "" && break
-    done
-        echo "Done"
-        cat $BRA
-    pause
-    start_GUI
-}
+            znotify() {
+                play ~/zdotfiles/References/notify.mp3
+            }
+
+            pause(){
+                local m="$@"
+                echo "$m"
+                read -p "Press [Enter] key to continue..." key
+            }
 
 
 
-
-choice_YN() {
-    while true; do
-        read -p "Do you wish to install this program?" yn
-        case $yn in
-            [Yy]* ) make install; break;;
-            [Nn]* ) exit;;
-            * ) echo "Please answer yes or no.";;
-        esac
-    done
-}
-
-do_you_want(){
-    echo "Do you wish to install this program?"
-    select yn in "Yes" "No"; do
-        case $yn in
-            Yes ) make install; break;;
-            No ) exit;;
-        esac
-    done
-}
+#####################################################
+        # start_GUI
 
 
+        show_menus() {
+            clear
+            echo "                            بسم الله الرحمن الرحيم"
+            echo "~~~~~~~~~~~~~~~~~~~~~"
+            echo " M A I N - M E N U"
+            echo "~~~~~~~~~~~~~~~~~~~~~"
+            echo "1. First Diamintion :Search commandlinefu"
+            echo "2. Second Diamintion"
+            echo "3. Third Diamintion"
+            echo "4. Fourth Diamintion"
+            echo "5. Fifth Diamintion"
+            echo "6. Sixth Diamintion "
+            echo "7. Seventh Diamintion"
+            echo "8. Eighth Diamintion"
+            echo "9. Ninth Diamintion"
+            echo "10. Tenth Diamintion"
+            echo "w. EXIT"
+        }
 
-start_GUI() {
-    while true; do
-        show_menus
-        read_options
-    done;
-}
+        read_options() {
+            local choice
+            echo "==============="
+            echo ""
+            read -p "Enter:" choice
+            case $choice in
+                1) References_add_Bash ;;
+                2) pause "$(date)";;
+                3) F3 ;;
+                5) netstat -s | less;;
+                6) F6;;
+                10) References_add;;
+                w) exit 0;;
+                *) pause "Select between 1 to 5 only";;
+            esac
+        }
 
+        start_GUI() {
+            while true; do
+                show_menus
+                read_options
+            done;
+        }
 
-# # # # # # # # # # # # # # # # # # # #
-    start_GUI
+            start_GUI
+####################################################
+
+# References
+
+    # Next TODO
+     #Create a ZIP archive of a file or folder.
+        function makezip() { zip -r "1.zip" "$1" ; }
+     #gets info about a file - basically a wrapper around stat
+        get_file_info() {
+            info=""
+                case $1 in
+                    'owner')    info='%U';;
+                    'type')     info='%F';;
+                    'creation') info='%w';;
+                    'modified') info='%y';;
+                    'access')   info='%w';;
+                    'change')   info='%z';;
+                    'size')     info='%s';;
+                    'access')   info='%A';;
+                    *)          return 1;;
+                esac
+
+                stat -c $info $2 2>/dev/null
+        }
+    #regular expression editor
+        #http://www.rubular.com/regexes/6293
+        #([^\.].*?[0-9])(?=\.|\Z)

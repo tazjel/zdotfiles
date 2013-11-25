@@ -130,10 +130,13 @@ endfunction
 
 
 
-    "  <F[1-12]>
+      "<F[1-12]>
             " <F1>
                 map <F1> \c<space>
-                map <S-F1> :reg
+                imap <F1> <Esc><F1>
+
+                    map <S-F1> :sball
+
             " <F2>
                 nnoremap <F2> :reg
                 nnoremap <S-F2> :marks
@@ -649,7 +652,7 @@ function! Smart_TabComplete()
 endfunction
 
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-set cpt=.,k,w,b,t,i
+    set cpt=.,k,w,b,t,i
 
     "Register
         " Make p in Visual mode replace the selected text with the "" register.

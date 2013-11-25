@@ -6,6 +6,8 @@ A Brief Description
 A Brief History
 Future Directions
 Technical Appendix
+Tips and Tricks
+
 
 Conflict Analysis and Resolution
 

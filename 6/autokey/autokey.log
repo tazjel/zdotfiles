@@ -3918,3 +3918,132 @@ ValueError: invalid literal for int() with base 10: ''
 2013-11-25 05:03:30,546 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-11-25 05:03:30,547 INFO - service - Matched hotkey phrase/script with prompt=False
 2013-11-25 05:03:30,902 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:40:08,507 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:40:08,862 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:41:22,554 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:41:22,907 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:41:23,001 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:41:23,357 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:41:23,386 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:41:23,747 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:41:33,497 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:41:33,854 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:43:38,887 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:43:39,241 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:43:39,660 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:43:39,984 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:43:40,015 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:43:40,339 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 06:09:55,423 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 06:09:55,676 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 06:11:41,144 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 06:11:41,523 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 06:11:41,741 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 06:11:42,097 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 06:11:44,521 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 06:11:44,876 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 06:11:45,501 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 06:11:45,858 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:10:19,093 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:10:19,448 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:10:19,691 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:10:20,046 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:10:50,025 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:10:50,379 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:10:51,635 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:10:51,991 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:13:27,311 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:13:27,667 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:23:54,617 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:23:54,972 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:23:55,495 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:23:55,851 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:23:57,086 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:23:57,303 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:23:57,469 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:23:57,658 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:01,428 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:01,660 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:01,782 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:01,931 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:02,015 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:02,144 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:02,285 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:02,498 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:06,691 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:06,930 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:07,064 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:07,107 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:07,284 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:07,312 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:07,460 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:07,666 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:07,944 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:08,119 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:08,298 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:08,309 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:08,472 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:08,663 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:24:48,796 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:24:49,152 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:44:34,582 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:44:34,938 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:44:35,116 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:44:35,284 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 08:44:35,471 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 08:44:35,650 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 10:55:40,476 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 10:55:40,830 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 10:55:40,979 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 10:55:41,180 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 10:55:41,333 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 10:55:41,541 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 10:55:41,706 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 10:55:42,061 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 10:56:07,576 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 11:00:00,573 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 11:00:00,929 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 11:03:16,461 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 11:03:16,815 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:00:30,952 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:00:31,305 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:00:56,161 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:00:56,514 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:00:57,264 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:00:57,622 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:00:58,000 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:00:58,208 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:00:58,353 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:00:58,512 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:00:58,694 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:00:58,875 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:00:59,047 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:00:59,229 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:09:35,419 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:09:35,672 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:16:28,022 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:16:28,197 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:16:28,377 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:16:28,553 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:16:28,556 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:16:28,910 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:25:31,024 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:25:31,378 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 12:25:55,321 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 12:25:55,684 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:04:01,504 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:04:01,860 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:04:02,443 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:04:02,798 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:39:36,697 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:39:37,051 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:39:38,391 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:39:38,584 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:39:38,743 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:39:38,937 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:39:38,999 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:39:39,352 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:39:46,643 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:39:46,997 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 14:42:13,503 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 14:42:13,858 INFO - config-manager - Configuration changed - rebuilding in-memory structures
