@@ -3904,3 +3904,17 @@ ValueError: invalid literal for int() with base 10: ''
 2013-11-25 03:42:13,324 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-11-25 03:43:53,974 INFO - service - Matched hotkey phrase/script with prompt=False
 2013-11-25 03:43:54,371 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:03:21,669 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:03:22,024 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:03:22,246 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:03:22,601 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:03:27,816 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:03:28,005 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:03:28,179 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:03:28,309 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:03:28,365 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:03:28,664 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:03:30,189 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:03:30,546 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 05:03:30,547 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 05:03:30,902 INFO - config-manager - Configuration changed - rebuilding in-memory structures

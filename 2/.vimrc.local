@@ -1,4 +1,5 @@
 " Last Modified: 2013-11-16T00:11:40
+
 set nocompatible
 set backspace=indent,eol,start
 set shiftwidth=4
@@ -8,6 +9,8 @@ set autoindent
 set notildeop
 let g:explVertical=1
 let g:explSplitRight=1
+
+set colorcolumn=81
 
 " remember more commands and search history
 set history=10000
@@ -40,6 +43,10 @@ nnoremap <leader><leader> <c-^>
 "
 " Close all other windows, open a vertical split, and open this file's test
 " alterna in it.
+
+
+"" Mappings
+"nmap <F8> :TagbarToggle<CR> " mapping f8 to TagbarToggle
 
 nnoremap <leader>s :call FocusOnFile()<cr>
 
@@ -169,7 +176,8 @@ endfunction
             "cabbrev
                 cabbrev t5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
                 cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
-                cabbrev p1 vsplit ~/.config/ipython/profile_default/startup/w.ipy
+                cabbrev pw vsplit ~/.config/ipython/profile_default/startup/w.ipy
+                cabbrev wp vsplit ~/.config/ipython/profile_default/startup/ww.py
 
             "abbreviate
                 abbreviate CC Conflict
