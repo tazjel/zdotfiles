@@ -5,7 +5,7 @@ stxt= clipboard.get_selection()
 ctxt = clipboard.get_clipboard()
 
 date = system.exec_command("date")
-
+# keyboard.send_keys(output)
 # Title
 if len(stxt) > 20:
     title = stxt[0:17] + "..."
@@ -19,7 +19,7 @@ else:
 #else:
     #title = " No contents!"
 
-choices = ["0", "1", "2","3","4","5","6","7","8","9","10",title, stxt, ctxt]
+choices = ["0", "1", "2","3","4","5","6","7","8","9","10",title, stxt, ctxt, date]
 
 retCode, choice = dialog.list_menu(choices)
 if retCode == 0:
@@ -30,7 +30,8 @@ if retCode == 0:
 #wtitle = title
 #wdate
 #ctext
-
+# URL = <F6><C>c
+# stxt     
 #wwtext = """
 #Title = "%wtitle".  Retrieved %wdate.  ,From  <a href="%wtext""" % (wtitle,wdate, wtext, ctext)
 

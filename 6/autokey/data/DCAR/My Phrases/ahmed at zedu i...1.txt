@@ -1,0 +1,5 @@
+
+
+ahmed at zedu in ~/zdotfiles/1/.zsh on master [d]
+±  lsusb -v -d 05ac: | grep iSerial | awk '{print $3}' | cut -b1-16 | xargs printf "FirewireGuid: 0x%s" >> $MOUNTPOINT/iTunes_Control/Device/SysInfo
+zsh: no such file or directory: /iTun

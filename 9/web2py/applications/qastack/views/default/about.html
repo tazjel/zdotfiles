@@ -3,8 +3,17 @@
 <h2 class="fancy">{{=XML(T('About QA-Stack'))}}</h2>
 
 <div class="paragraph">
+{{m = "Hello **world** [[link http://web2py.com]]"}}
+{{from markmin2html import markmin2html}}
+{{from markmin2latex import markmin2latex}}
 
-<p>QA-Stack is a dynamic web application created using the python programming
+{{from markmin2pdf import markmin2pdf}}
+    markmin2latex
+{{=XML(markmin2latex(m))}}
+{{XML(markmin2html(m))}}
+    {{XML(markmin2pdf(m))}}
+    
+    p>QA-Stack is a dynamic web application created using the python programming
 language under the web2py framework.</p>
 
 <p>QA-Stack aims to provide an easy-to-use, simple and elegant questions and

@@ -1,14 +1,194 @@
 #!/bin/zsh
 ########################################################
-# Author : AHMED BANI
-# Last Updated on Fri Nov 15 01:03:32 AST 2013
-#
+    # Author : AHMED BANI
+    # Largest Updated on Fri Nov 15 01:03:32 AST 2013
+    #
+
+    zgit_id='git@github.com:tazjel/zdotfiles.git'
+    email='tazjel@gmail.com'
+    name='Ahmed Al-Ghamdi'
+    app_name='zdotfiles'
+    git_uri='https://github.com/tazjel/zdotfiles.git'
+    git_branch='master'
+    debug_mode='0'
+    fork_maintainer='0'
+    endpath="$HOME/$app_name"
+
 ########################################################
-autoload -U edit-command-line
-zle -N edit-command-line
-bindkey '\C-x\C-e' edit-command-line
-export EDITOR=vim
+
+
+# <F0>
+    # install-zdotfiles
+    remove_dotfiles(){
+        echo "Deleting the old files"
+        rm ~/.vimrc
+        rm ~/.zshrc
+        rm ~/.vim
+        rm ~/.gvimrc
+        rm ~/.gitconfig
+        rm ~/.gitignore
+        rm ~/.tmux.conf
+        rm ~/.pip/pip.conf
+    }
+
+
+    list_installed_packages_deb(){
+        apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > ~/Dropbox/install-zdotfiles/packages-alpha.txt
+    }
+
+    install_list_pacakges () {
+        for xp in $(cat ~/Dropbox/install-zdotfiles/packages-alpha.txt);do echo -e "\ninstall $xp";sudo apt-get install $xp;done
+    }
+
+    install_ubuntu_restricted-extras(){
+        sudo apt-get install -y ubuntu-restricted-extras
+    }
+
+    install_essentials () {
+        sudo apt-get install -y vim zsh konsole xclip git-core openssh-server curl wget vim-gnome aptitude mercurial inkscape automake pkg-config liblzma-dev xsel
+    }
+
+    install_dropbox(){
+        cd ~ && wget -O - "https://www.dropbox.com/download?plat=lnx.x86_64" | tar xzf -
+    }
+
+    install_ag () {
+        git clone https://github.com/ggreer/the_silver_searcher
+        cd the_silver_searcher && ./build.sh && install
+        ./build.sh && install
+    }
+
+
+    git_remote_add_upstream (){
+        git remote add upstream git@github.com:tazjel/zdotfiles.git
+    }
+
+    #/usr/share/qtsixa/profiles
+    #/etc/sixad
+
+    sixad_profile () {
+        cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/34:C7:31:35:08:44
+        cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/default
+    }
+
+    # How to install KDE on Ubuntu :
+    install_full_kde() {
+        sudo add-apt-repository ppa:kubuntu-ppa/backports
+        sudo apt-get update
+        sudo apt-get -y install kubuntu-full
+    }
+
+    git_config_global () {
+        git config --global user.name 'Ahmed Al-Ghamdi'
+        git config --global user.email 'tazjel@gmail.com'
+        git config --list
+        git config --global color.ui auto
+        git config --global credential.helper cache
+        git config --global credential.helper 'cache --timeout=3600'
+        }
+
+    ssh-keygen_rsa () {
+        ssh-keygen -t rsa -C 'tazjel@gmail.com'
+
+        xclip -sel clip < ~/.ssh/id_rsa.pub
+        ssh -T git@github.com
+        }
+    git_clone_zdotfiles () {
+        git clone git@github.com:tazjel/zdotfiles.git
+        cd zdotfiles
+        git remote add upstream git@github.com:tazjel/zdotfiles.git
+        git remote set-url origin git@github.com:tazjel/zdotfiles.git
+        git fetch upstream
+        }
+    all_functions() {
+        echo "all_functions"
+        #git_remote_add_upstream()
+        #install_essentials()
+        #install_full_kde()
+        #install_list_pacakges()
+        #list_installed_packages_deb()
+        #set_timezone()
+        #sixad_profile()
+    }
+
+
+
+
+
+    function ranger-cd {
+        tempfile='/tmp/chosendir'
+        /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+        test -f "$tempfile" &&
+        if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+            cd -- "$(cat "$tempfile")"
+        fi
+        rm -f -- "$tempfile"
+    }
+
+    #This binds Ctrl-O to ranger-cd:
+#
+# <F0>
+    #
+# <F1>
+   #
+# <F2>
+    #
+# <F3>
+    #
+# <F4>
+    #
+        # Timeline, logs,history
+            wy_readline() {
+                tail -F /var/log/nginx/access.log | python -c 'exec("import sys,time\nl=0\ne=int(time.time())\nfor line in sys.stdin:\n\tt = int(time.time())\n\tl += 1\n\tif t > e:\n\t\te = t\n\t\tprint l\n\t\tl = 0")'
+            }
+# <F5>
+    #
+# <F6>
+    #
+# <F7>
+    #
+# <F8>
+    #
+# <F9>
+    #
+# <F10>
+    #
+
+
+
+    # Search, find , regex , grep , sed
+        search_books() {
+            egrep "$1" /home/ahmed/Dropbox/C/Foundation/books.txt | grep -oG ").\(.*\)" | sed 's/).\s\+\(.*\)/\1/g'
+        }
+
+        search_books_w() {
+            egrep "$1" /home/ahmed/Dropbox/C/Foundation/book-DCAR
+        }
+
+
+
+########################################################
+    autoload -U edit-command-line
+    zle -N edit-command-line
+    bindkey '\C-x\C-e' edit-command-line
+    export EDITOR=vim
 ############################  SETUP PARAMETERS
+#Coordinates
+#Latitude:	21° 3' North
+#Longitude:	39° 1' East
+
+
+#SETUP  Standard Time
+    #+3   EAT   Saudi Arabia
+      #$ export TZ=EST05EDT
+    #-5   EST   Eastern Standard Time
+    #TZ=<timezone><hour offset from UTC><dst timezone>.
+
+#export TZ=:/usr/share/zoneinfo/posix/Asia/Riyadh
+export TZ=EAT
+
+
+
 alias pygrep="grep --include='*.py' $*"
 export ACK_COLOR_MATCH='red'
 
@@ -16,14 +196,11 @@ export LC_ALL=en_US.UTF-8
 
 export WORDCHARS='*?[]~&;!$%^<>'
 
-LS_COLORS='rs=0:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
+
+    LS_COLORS='rs=0:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
+
 export LS_COLORS
 
-    app_name='zdotfiles'
-    git_uri='https://github.com/tazjel/zdotfiles.git'
-    git_branch='master'
-    debug_mode='0'
-    fork_maintainer='0'
 
     #
     # TODO:
@@ -115,25 +292,25 @@ setup_git_push_default() {
 
 
 git_config_global() {
-    git config --global user.name 'Ahmed Al-Ghamdi'
-    git config --global user.email 'tazjel@gmail.com'
+    git config --global user.name $name
+    git config --global user.email $email
     git config --list
     git config --global color.ui auto
     git config --global credential.helper cache
     git config --global credential.helper 'cache --timeout=3600'
 }
 
-ssh-keygen_rsa() {
-    ssh-keygen -t rsa -C 'tazjel@gmail.com'
+zssh-keygen_rsa() {
+    ssh-keygen -t rsa -C $email
     xclip -sel clip < ~/.ssh/id_rsa.pub
     ssh -T git@github.com
 }
 
-git_clone() {
-    git clone git@github.com:tazjel/zdotfiles.git
-    cd zdotfiles
-    git remote add upstream git@github.com:tazjel/zdotfiles.git
-    git remote set-url origin git@github.com:tazjel/zdotfiles.git
+zgit_clone() {
+    git clone "$zgit_id"
+    cd $zdotfiles
+    git remote add upstream $app_name
+    git remote set-url origin $app_name
     git fetch upstream
 }
 
@@ -147,7 +324,9 @@ set_xkeyboard() {
     fi
 }
 
+# set Keyboard
 set_xkeyboard
+
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
@@ -155,7 +334,6 @@ is_linux() {
         set_xkeyboard
     fi
 }
-
 
 star_Level_one() {
     echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
@@ -184,19 +362,18 @@ star_Level_one() {
 
 ########################################################
 # Path
-alias 'wsr'='cd ~/src'
-    #alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
-    alias 'cdx'='cd ~/Dropbox/'
-    alias 'cdd'='cd ~/Downloads'
-    alias 'cdc'='cd $HOME/Dropbox/C/Foundation'
-    alias 'cdx'='cd ~/Dropbox/'
-    alias 'wak'='vim $HOME/.config/autokey/data'
-    alias 'wkl'='cd $HOME/.config/autokey/data;ls'
-    alias 'wvb'='wwww $HOME/.vim/bundle'
-    alias 'h'='cd $HOME'
-    alias 'zzzz'=' vim $HOME/.zshrc && source $HOME/.zshrc'
+    alias 'wsr'='cd ~/src'
+        #alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
+        alias 'cdx'='cd ~/Dropbox/'
+        alias 'cdd'='cd ~/Downloads'
+        alias 'cdc'='cd $HOME/Dropbox/C/Foundation'
+        alias 'cdx'='cd ~/Dropbox/'
+        alias 'wak'='vim $HOME/.config/autokey/data'
+        alias 'wkl'='cd $HOME/.config/autokey/data;ls'
+        alias 'wvb'='wwww $HOME/.vim/bundle'
+        alias 'h'='cd $HOME'
+        alias 'zzzz'=' vim $HOME/.zshrc && source $HOME/.zshrc'
 
-##########################
 
 
 #sudo apt-add-repository --remove
@@ -217,19 +394,7 @@ alias 'wsr'='cd ~/src'
     alias install='sudo apt-get install'
     alias remove='sudo apt-get remove'
 
-#ls-files
-##########3                     ######################################
-#
-#
-#
 ######################################################################
-
-
-
-#############################
-#
-#
-#
 #
 ###########################################################
     alias 'cdx'='cd ~/Dropbox/'
@@ -388,12 +553,15 @@ alias 'wsr'='cd ~/src'
     alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
     alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
     alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
+
     alias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
+
 #alias 'web2py'='cd ~/web2py && python web2py.py -a "w" -i 127.0.0.1 -p 8001'
 
     alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
-    alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
+
     alias '00'='$HOME/zdotfiles'
+
     alias 'z'='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
 
 # <F0> git
@@ -453,11 +621,8 @@ alias 'wsr'='cd ~/src'
 
     #
 #ls-files
-    alias heroku='nocorrect heroku'
     #alias hh='history -$1 | grep'
     #alias hh='history | grep --color=auto'
-    alias hpodder='nocorrect hpodder'
-    alias ifconfig-ext='curl ifconfig.me'
     alias install='sudo apt-get install'
     alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
 
@@ -832,5 +997,236 @@ wG_grep(){
 
 
 
-alias 'pp'='python' 
+alias 'pp'='python'
 
+msg() {
+    printf '%b\n' "$1" >&2
+}
+
+msg "\e[31m[✘]\e[0m $endpath"
+#msg "\e[32m[✔]\e[0m Conflict Analysis & Resolution"
+#msg "Conflict Analysis & Resolution"
+
+msg "\e[31m[✘]\e[0m abobani@gmail.com"
+msg "\e[32m[✔]\e[0m Conflict Analysis & Resolution"
+success() {
+    if [ "$ret" -eq '0' ]; then
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+    fi
+}
+error() {
+    msg "\e[31m[✘]\e[0m ${1}${2}"
+    exit 1
+}
+debug() {
+    if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
+      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+    fi
+}
+program_exists() {
+    local ret='0'
+    type $1 >/dev/null 2>&1 || { local ret='1'; }
+
+    # throw error on non-zero return value
+    if [ ! "$ret" -eq '0' ]; then
+    error "$2"
+    fi
+}
+############################ SETUP FUNCTIONS
+lnif() {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?"
+    debug
+}
+do_backup() {
+    if [ -e "$2" ] || [ -e "$3" ] || [ -e "$4" ]; then
+        today=`date +%Y%m%d_%s`
+        for i in "$2" "$3" "$4"; do
+            [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$i.$today";
+        done
+        ret="$?"
+        success "$1"
+        debug
+   fi
+}
+upgrade_repo() {
+    msg "trying to update $1"
+
+    if [ "$1" = "$app_name" ]; then
+        cd "$HOME/.$app_name" &&
+        git pull origin "$git_branch"
+    fi
+
+    if [ "$1" = "vundle" ]; then
+        cd "$HOME/.vim/bundle/vundle" &&
+        git pull origin master
+    fi
+
+    ret="$?"
+    success "$2"
+    debug
+}
+clone_repo() {
+    program_exists "git" "Sorry, we cannot continue without GIT, please install it first."
+    endpath="$HOME/$app_name"
+
+    if [ ! -e "$endpath/.git" ]; then
+        git clone --recursive -b "$git_branch" "$git_uri" "$endpath"
+        ret="$?"
+        success "$1"
+        debug
+    else
+        upgrade_repo "$app_name"    "Successfully updated $app_name"
+    fi
+}
+clone_vundle() {
+    if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
+        git clone https://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
+    else
+        upgrade_repo "vundle"   "Successfully updated vundle"
+    fi
+    ret="$?"
+    success "$1"
+    debug
+}
+zcreate_symlinks() {
+    endpath="$HOME/$app_name"
+
+    lnif "$endpath/.vimrc"              "$HOME/.vimrc"
+    lnif "$endpath/.vimrc.bundles"      "$HOME/.vimrc.bundles"
+    lnif "$endpath/.vim"                "$HOME/.vim"
+    lnif "$HOME/.vimrc.local"           "$HOME/.vimrc.local"
+
+    # Useful for fork maintainers
+
+    ret="$?"
+    success "$1"
+    debug
+}
+setup_vundle() {
+    system_shell="$SHELL"
+    export SHELL='/bin/sh'
+    vim -u "$HOME/.vimrc.bundles" +BundleInstall! +BundleClean +qall
+    export SHELL="$system_shell"
+
+    success "$1"
+    debug
+}
+install_essentials () {
+    sudo apt-get install -y vim zsh konsole xclip git-core openssh-server curl wget vim-gnome aptitude mercurial inkscape automake pkg-config libpcre3-dev zlib1g-dev liblzma-dev
+}
+set_timezone() {
+    echo 'Etc/UTC' | tee /etc/timezone; dpkg-reconfigure --frontend noninteractive tzdata
+}
+install_ubuntu_restricted-extras() {
+    sudo apt-get install -y ubuntu-restricted-extras
+}
+my_ip() {
+    MY_IP=$(/sbin/ifconfig eth0 | awk '/inet/ { print $2 } ' |
+      sed -e s/addr://)
+    echo ${MY_IP:-"Not connected"}
+}
+info_host() {
+    echo -e "\nYou are logged on ${BRed}$HOST"
+    echo -e "\n${BRed}Additionnal information:$NC " ; uname -a
+    echo -e "\n${BRed}Users logged on:$NC " ; w -hs |
+             cut -d " " -f1 | sort | uniq
+    echo -e "\n${BRed}Current date :$NC " ; date
+    echo -e "\n${BRed}Machine stats :$NC " ; uptime
+    echo -e "\n${BRed}Memory stats :$NC " ; free
+    echo -e "\n${BRed}Diskspace :$NC " ; mydf / $HOME
+    echo -e "\n${BRed}Local IP Address :$NC" ; my_ip
+    echo -e "\n${BRed}Open connections :$NC "; netstat -pan --inet;
+    echo
+}
+git_config_global() {
+    git config --global user.name 'Ahmed Al-Ghamdi'
+    git config --global user.email 'tazjel@gmail.com'
+    git config --list
+    git config --global color.ui auto
+    git config --global credential.helper cache
+    git config --global credential.helper 'cache --timeout=3600'
+    }
+
+ssh-keygen_rsa() {
+    ssh-keygen -t rsa -C 'tazjel@gmail.com'
+
+    xclip -sel clip < ~/.ssh/id_rsa.pub
+    ssh -T git@github.com
+    }
+
+git_clone_zdotfiles() {
+    git clone git@github.com:tazjel/zdotfiles.git
+    cd zdotfiles
+    git remote add upstream git@github.com:tazjel/zdotfiles.git
+    git remote set-url origin git@github.com:tazjel/zdotfiles.git
+    git fetch upstream
+    }
+
+sixad_profile() {
+    ff_profiles ='/usr/share/qtsixa/profiles'
+    ff_sixad ='/etc/sixad'
+    cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/34:C7:31:35:08:44
+    cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/default
+}
+install_full_kde() {
+    sudo add-apt-repository ppa:kubuntu-ppa/backports
+    sudo apt-get update
+    sudo apt-get -y install kubuntu-full
+}
+github-setup() {
+    echo ">>> Starting..."
+
+    echo ">>> Installing git..."
+    sudo apt-get install -y git-core git-gui git-doc
+    echo ">>> Git was installed..."
+
+    echo ">>> Please give me your e-mail address..."
+    read email
+    echo ">>> Generating SSH key..."
+    echo ">>> Please write down the name of file with the path to that directory..."
+    ssh-keygen -t rsa -C "$email"
+
+    echo ">>> Now, go to your specified directory and open SSH key file,"
+    echo ">>> Copy everyting inside and paste to SSH Keys part of your github account..."
+    echo ">>> When you done that press any key to continue..."
+    read -t 5000
+
+    echo ">>> Lets check if everything is OK..."
+    ssh -T git@github.com
+
+    echo ">>> Please give your name & surname..."
+    read name_and_surname
+
+    git config --global user.name "$name_and_surname"
+    git config --global user.email "$email"
+
+    echo ">>> THE END"
+    exit 0
+}
+############################ MAIN()
+
+First_Dimension() {
+ echo 'w'
+}
+Second_Dimension() {
+    program_exists "vim" "To install $app_name you first need to install Vim."
+
+    do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m%d%S`" \
+            "$HOME/.vim" \
+            "$HOME/.vimrc" \
+            "$HOME/.gvimrc"
+
+    clone_repo      "Successfully cloned $app_name"
+
+    create_symlinks "Setting up vim symlinks"
+
+    clone_vundle    "Successfully cloned vundle"
+
+    setup_vundle    "Now updating/installing plugins using Vundle"
+
+    msg             "\nThanks for installing $app_name."
+    msg             "© `date +%Y` http://vim.spf13.com/"
+}

@@ -1,0 +1,112 @@
+import bpy, bgl, blf, sys
+from bpy import data, ops, props, types, context
+import math
+
+#pre-settings
+#bpy.context.scene.file_format = ‘AVI_JPEG’
+#bpy.context.scene.render.resolution_percentage = 20
+#bpy.context.scene.render.antialiasing_samples = ’5′
+#bpy.context.scene.render.filepath = ‘//outputs/video_output.avi’
+
+#criar esfera
+bpy.ops.mesh.primitive_uv_sphere_add(segments=16, ring_count=16, size=0.25, location=(1,0,0))
+
+#animacao basica
+#obj = bpy.context.object
+#obj.location[2] = 0.0
+#obj.keyframe_insert(data_path=”location”, frame=10.0, index=2)
+#obj.location[2] = 1.0
+#obj.keyframe_insert(data_path=”location”, frame=20.0, index=2)
+
+#animacao low level
+obj = bpy.data.objects['Sphere']
+obj = bpy.context.object
+obj.animation_data_create()
+obj.animation_data.action = bpy.data.actions.new(name=”Spiral”)
+fcu_x = obj.animation_data.action.fcurves.new(data_path=”location”, index=0)
+fcu_y = obj.animation_data.action.fcurves.new(data_path=”location”, index=1)
+fcu_z = obj.animation_data.action.fcurves.new(data_path=”location”, index=2)
+#fcu_z.keyframe_points.add(2)
+#fcu_z.keyframe_points[0].co = 10.0, 0.0
+#fcu_z.keyframe_points[1].co = 20.0, 1.0
+fcu_x.keyframe_points.add(9)
+fcu_y.keyframe_points.add(9)
+fcu_z.keyframe_points.add(9)
+deg = 0
+it = 0
+for point in fcu_x.keyframe_points:
+   print(“—”)
+   rad_angle = math.radians(deg)
+   x = (math.cos(rad_angle)*2)
+   y = (math.sin(rad_angle)*2)
+   deg += 45
+   point.co = deg, x
+   fcu_y.keyframe_points[it].co = deg, y
+   fcu_z.keyframe_points[it].co = deg, it*.25
+   it += 1
+   #fcu_z.keyframe_points[1].co = 20.0, 1.0
+
+bpy.context.scene.frame_end = deg
+bpy.ops.render.render( animation=True )
+
+teste2
+
+#tentativa de script faz tudo 1
+# fazer um cubo completar uma volta animada...
+# e gerar um video
+#
+#calculo de seno e coseno, para fazer a volta.
+#Tentativa de fazer espiral.
+
+#./blender -b /home/ilcarmo/Paulo/Blender/blender-render/script_02_faztudo.blend -P /home/ilcarmo/Paulo/Blender/blender-render/script_faz_tudo.py
+
+import bpy, bgl, blf, sys
+from bpy import data, ops, props, types, context
+import math
+
+#pre-settings
+#bpy.context.scene.file_format = ‘AVI_JPEG’
+#bpy.context.scene.render.resolution_percentage = 20
+#bpy.context.scene.render.antialiasing_samples = ’5′
+#bpy.context.scene.render.filepath = ‘//outputs/video_output.avi’
+
+#criar esfera
+bpy.ops.mesh.primitive_uv_sphere_add(segments=16, ring_count=16, size=0.25, location=(1,0,0))
+
+#animacao basica
+#obj = bpy.context.object
+#obj.location[2] = 0.0
+#obj.keyframe_insert(data_path=”location”, frame=10.0, index=2)
+#obj.location[2] = 1.0
+#obj.keyframe_insert(data_path=”location”, frame=20.0, index=2)
+
+#animacao low level
+obj = bpy.data.objects['Sphere']
+obj = bpy.context.object
+obj.animation_data_create()
+obj.animation_data.action = bpy.data.actions.new(name=”Spiral”)
+fcu_x = obj.animation_data.action.fcurves.new(data_path=”location”, index=0)
+fcu_y = obj.animation_data.action.fcurves.new(data_path=”location”, index=1)
+fcu_z = obj.animation_data.action.fcurves.new(data_path=”location”, index=2)
+#fcu_z.keyframe_points.add(2)
+#fcu_z.keyframe_points[0].co = 10.0, 0.0
+#fcu_z.keyframe_points[1].co = 20.0, 1.0
+fcu_x.keyframe_points.add(360)
+fcu_y.keyframe_points.add(360)
+fcu_z.keyframe_points.add(360)
+deg = 0
+it = 0
+for point in fcu_x.keyframe_points:
+   print(“—”)
+   rad_angle = math.radians(deg)
+   x = (math.cos(rad_angle)*2)
+   y = (math.sin(rad_angle)*2)
+   deg += 1
+   point.co = deg, x
+   fcu_y.keyframe_points[it].co = deg, y
+   fcu_z.keyframe_points[it].co = deg, (2/360)*it #it*.25
+   it += 1
+   #fcu_z.keyframe_points[1].co = 20.0, 1.0
+
+bpy.context.scene.frame_end = deg
+bpy.ops.render.render( animation=True )

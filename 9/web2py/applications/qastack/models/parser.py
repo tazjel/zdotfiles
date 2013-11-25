@@ -76,8 +76,8 @@ class StrippingParser(sgmllib.SGMLParser):
     def get_html(self):
         html = ' '.join(self.result)
         return html
-       
-        
+
+
 def handle_pygments(pat, content, pygments_lexer):
     if IS_PYGMENTS:
         data = pat.search(content)
@@ -91,13 +91,13 @@ def handle_pygments(pat, content, pygments_lexer):
                 code_found = code_found[1:]
             if code_found.endswith('\n'):
                 code_found = code_found[:-1]
-                
+
             content = content[:data.start(0)] + code_found + content[data.end(0):]
             data = pat.search(content)
     else:
         content = '[PYGMENTS_ERROR] - %s' % content
     return content
-    
+
 def parse_content(content, mode="removeall"):
     """ Parse the messages """
     if content.strip():
@@ -147,7 +147,7 @@ def parse_content(content, mode="removeall"):
         except NameError:
             # pygments not installed, return content as original text
             pass
-        
+
     else:
         clean_content = ''
     clean_content = clean_content.replace('\n', '<br />')

@@ -6,7 +6,9 @@ import nltk
 
 from nltk import pos_tag, word_tokenize
 
-essays = [[line.strip() for line in open(os.path.join("/home/ahmed/alltxt/02whole.txt")).readlines() if len(line.strip()) > 1] for essay in range(1, 21)]
+essays = [[line.strip() for line in\
+           open(os.path.join("/home/ahmed/Dropbox/Causes.txt")).readlines()
+           if len(line.strip()) > 1] for essay in range(1, 21)]
 
 
 def essay_sent(num, sent=0):
@@ -26,3 +28,7 @@ def essay_sentences(num):
     text = "\n".join(essay)
     text.replace("\n", ".")
     return [sent.strip() for sent in text.split(".")]
+
+xp =essay_sent_tags(essays)
+
+print(xp)

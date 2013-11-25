@@ -1,0 +1,294 @@
+
+
+choice_YN() {
+    while true; do
+        read -p "Do you wish to install this program?" yn
+        case $yn in
+            [Yy]* ) make install; break;;
+            [Nn]* ) exit;;
+            * ) echo "Please answer yes or no.";;
+        esac
+    done
+}
+
+do_you_want(){
+    echo "Do you wish to install this program?"
+    select yn in "Yes" "No"; do
+        case $yn in
+            Yes ) make install; break;;
+            No ) exit;;
+        esac
+    done
+}
+#  SETUP PARAMETERS
+
+    app_name='zdotfiles'
+    git_uri='https://github.com/tazjel/zdotfiles.git'
+    git_branch='master'
+    debug_mode='0'
+    fork_maintainer='0'
+
+    NBIB='Bibliography'
+    MONTH=`date +%B`
+    vim_snip=~/zdotfiles/2/Ref.snip
+    DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
+    DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
+    BRA='~/zdotfiles/1/References.txt
+
+References_add_Bash() {
+    while true ; do
+        read -p "Add References to Bash" BRA
+        echo $BRA >> ~/zdotfiles/1/References.txt
+        echo "" && break
+    done
+        echo "Done"
+        cat $BRA
+    pause
+    start_GUI
+}
+    #cat >> $DCAR_Bib_Notes <<EOL
+
+############################  BASIC SETUP TOOLS
+# Define variables
+# ----------------------------------
+
+References_read() {
+    while true ; do
+        cat $Ref | grep -i "$@"
+        echo "" && break
+    done
+        echo ""
+        pause
+        start_GUI
+}
+
+References_add() {
+    # Name
+        read -p "Enter Author First Name : " NAF
+        read -p "Enter Author Last Name : " NAL
+    # Published on Date
+        read -p "Enter  Year Published : " NDY
+        read -p "Enter  Month Published : " NDM
+        read -p "Enter  Date Published : " NDD
+    # Title. Newspaper Title.
+        read -p "Article title :" NAT
+        read -p "Newspaper Title:" NPT
+    # URL
+        read -p "Enter URL" NURL
+
+        #Model Bibliography
+            # class auther
+                #function if_ many authers;if no authers ; if
+                #function date
+                #function Publisher.
+                #function URL
+
+    echo "$NAL,$NAF. ($NDY,"$NDM").$n4 . $n5,. Retrieved "$MONTH"from
+    $n3" >> $DCAR_Bib_Notes
+
+    cat $DCAR_Bib_Notes
+        pause
+}
+
+znotify() {
+    play ~/zdotfiles/References/notify.mp3
+}
+
+cmdfu() {
+    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -
+}
+
+pause(){
+    local m="$@"
+    echo "$m"
+    read -p "Press [Enter] key to continue..." key
+}
+
+
+#pause() { read -p "Press [Enter] key to continue..." fackEnterKey }
+
+F1() {
+    while true; do
+        echo "Update...Upgrade...Clean..."
+        #pause "$(date)";;
+        #zapt_clean
+        echo ""  && break
+    done
+        pause "$(date)"
+        start_GUI
+}
+
+
+zapt_clean() {
+    sudo apt-get -f install && sudo apt-get update && sudo apt-get upgrade && sudo apt-get clean && sudo apt-get autoremove
+}
+
+wone() {
+    while true
+    do
+        echo "Search [[commandlinefu]]:"
+        read fn
+        cmdfu $fn && break
+    done
+    echo "Do you want to tag this search words ?"
+    read tags_fn
+    echo -e "# $tags_fn \n$fn" >> ~/zdotfiles/.workflow/tags_fn && tail ~/zdotfiles/.workflow/tags_fn;
+    pause
+}
+
+Fourth() {
+    while true
+    do
+        echo "Search history:"
+        local his
+        read -p "Now:" his
+        grep_zsh_history $his | vim - && break
+    done
+       pause
+       start_GUI
+}
+
+w() {
+    while true
+    do
+        show_menu_two
+        menu_read_options_two && break
+    done
+        pause
+        start_GUI
+}
+
+three() {
+    while true
+    do
+        vim ~/zdotfiles/1.sh & break
+    done
+        pause
+        start_GUI
+}
+
+3_read_options() {
+    echo "3"
+}
+
+2_show_menus() {
+    clear
+    echo "~~~~~~~~~~~~~~~~~~~~~"
+    echo " بسم الله الرحمن الرحيم"
+    echo "~~~~~~~~~~~~~~~~~~~~~"
+    echo "[[MENU two ]]"
+    echo "1. Edit 1.sh"
+    echo "2. lsusb"
+    echo "3. List Files"
+    echo "4. List Files"
+    echo "5. List Files"
+    echo "6. Six : search "
+    echo "7. List Files"
+    echo "8. List Files"
+    echo "9. List Files"
+    echo "0. Exit"
+}
+
+show_menus() {
+    clear
+    echo "                            بسم الله الرحمن الرحيم"
+    echo "~~~~~~~~~~~~~~~~~~~~~"
+    echo " M A I N - M E N U"
+    echo "~~~~~~~~~~~~~~~~~~~~~"
+    echo "1. First Diamintion :Search commandlinefu"
+    echo "2. Second Diamintion"
+    echo "3. Third Diamintion"
+    echo "4. Fourth Diamintion"
+    echo "5. Fifth Diamintion"
+    echo "6. Sixth Diamintion "
+    echo "7. Seventh Diamintion"
+    echo "8. Eighth Diamintion"
+    echo "9. Ninth Diamintion"
+    echo "10. Tenth Diamintion"
+    echo "0. EXIT"
+}
+
+read_options() {
+    local choice
+    echo "==============="
+    echo ""
+    read -p "Enter:" choice
+    case $choice in
+        1) References_add_Bash ;;
+        2) pause "$(date)";;
+        3) F3 ;;
+        5) netstat -s | less;;
+        6) F6;;
+        10) References_add;;
+        0) exit 0;;
+        *) pause "Select between 1 to 5 only"
+        #*) echo -e "\t ${RED}Error...${STD}" && sleep 1
+    esac
+}
+
+
+
+
+F6() {
+    while True ; do
+        echo "F6"
+        echo "" && break
+    done
+        cd ~/zdotfiles/6
+        pause
+        start_GUI
+}
+
+
+
+start_GUI() {
+    while true; do
+        show_menus
+        read_options
+    done;
+}
+
+
+# # # # # # # # # # # # # # # # # # # #
+    start_GUI
+
+
+
+#References
+    #Capture
+    # 0 search apt-cache
+    # 1 search cmdfu ## commandlinefu
+    # 2 search zdotfiles-vimrc zdotfiles.org
+    # 3 search github ### github-cli
+    # 4 search help ? stockflow-ubuntu
+    # 5}}
+    # Process
+    # sed stream
+    # Organize
+    # Review
+    # Check if a string is into a variable
+    #± var="w ww www";[[ ${var##*w*} != ${var} ]] && echo "yes"
+    # export key-value pairs list as environment variables
+    # while read line; do export $line; done < <(cat input)
+    # If - while test}
+# User defined function
+
+
+function glll {
+    cd $HOME/zdotfiles
+    git add -A
+    git commit -a
+    git push -all
+    git push origin --all && git push origin --tags
+}
+
+select_vim() {
+    PS3="Enter a number: "; select f in *;do $EDITOR $f; break; done;
+}
+
+function grep_zsh_history () {
+    cut -f2 -d";" ~/.zsh_history | sort | uniq -c | sort -nr | grep $1;
+}
+
+
+# A new directory is created every hour.

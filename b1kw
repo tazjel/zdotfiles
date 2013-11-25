@@ -1,0 +1,15 @@
+
+Session_z() {
+    while True ; do
+        echo "Session Name:	Nov 19 e-live (Presentation Night One!)
+            Start Time:	Nov 19, 2013 6:00 PM
+            End Time:	Nov 19, 2013 11:30 PM
+            Session Type:	Course"
+
+        echo "" && break
+    done
+        echo"Session_z "
+        pause
+        start_GUI
+}
+

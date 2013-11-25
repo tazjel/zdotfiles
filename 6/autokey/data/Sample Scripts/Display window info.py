@@ -1,1 +1,0 @@
-# Displays the information of the next window to be left-clicked 

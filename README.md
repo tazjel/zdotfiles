@@ -1,3 +1,12 @@
+
+A Brief Description of zdotfiles
+Features
+Introduction
+A Brief Description
+A Brief History
+Future Directions
+Technical Appendix
+
 Conflict Analysis and Resolution
 
 ### بسم الله الرحمن الرحيم
@@ -65,4 +74,5 @@ zdotfiles
 # Clone zdotfiles
 git clone git://github.com/tazjel/zdotfiles.git
 
-
+Future Directions
+The goal of zdotfiles is that of making pure coding a "web-friendly" enterprise.

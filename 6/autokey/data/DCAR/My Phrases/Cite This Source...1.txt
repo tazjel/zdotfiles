@@ -1,0 +1,24 @@
+Cite This Source
+
+Add these citations to your bibliography. Select the text below and then copy and paste it into your document.
+American Psychological Association (APA):
+
+conflict of interest. (n.d.). The American Heritage® New Dictionary of Cultural Literacy, Third Edition. Retrieved November 23, 2013, from Dictionary.com website: http://dictionary.reference.com/browse/conflict of interest
+Chicago Manual Style (CMS):
+
+conflict of interest. Dictionary.com. The American Heritage® New Dictionary of Cultural Literacy, Third Edition. Houghton Mifflin Company, 2005. http://dictionary.reference.com/browse/conflict of interest (accessed: November 23, 2013).
+Modern Language Association (MLA):
+
+"conflict of interest." The American Heritage® New Dictionary of Cultural Literacy, Third Edition. Houghton Mifflin Company, 2005. 23 Nov. 2013. <Dictionary.com http://dictionary.reference.com/browse/conflict of interest>.
+Institute of Electrical and Electronics Engineers (IEEE):
+
+Dictionary.com, "conflict of interest," in The American Heritage® New Dictionary of Cultural Literacy, Third Edition. Source location: Houghton Mifflin Company, 2005. http://dictionary.reference.com/browse/conflict of interest. Available: http://dictionary.reference.com. Accessed: November 23, 2013.
+BibTeX Bibliography Style (BibTeX)
+
+@article {Dictionary.com2013,
+    title = {The American Heritage® New Dictionary of Cultural Literacy, Third Edition},
+    month = {Nov},
+    day = {23},
+    year = {2013},
+    url = {http://dictionary.reference.com/browse/conflict of interest},
+}

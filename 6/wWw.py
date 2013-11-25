@@ -47,6 +47,10 @@ def combine_files(fileList, fn):
 
 
 fileList = dir_list(r'/home/ahmed/Dropbox', False, 'txt', 'py')
+for wxp in fileList:
+    print(wxp)
+
+#print fileList
 fn = "/home/ahmed/Dropbox/output_file.txt"
-combine_files(fileList, fn)
+#combine_files(fileList, fn)
 

@@ -27,10 +27,10 @@
         "columnWidths": [
             131, 
             45, 
-            138
+            231
         ], 
         "workAroundApps": ".*VirtualBox.*|krdc.Krdc", 
-        "hPanePosition": 297, 
+        "hPanePosition": 416, 
         "isFirstRun": false
     }, 
     "userCodeDir": null, 

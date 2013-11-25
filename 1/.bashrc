@@ -1,5 +1,17 @@
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
+function ranger-cd {
+    tempfile='/tmp/chosendir'
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    rm -f -- "$tempfile"
+}
+
+# This binds Ctrl-O to ranger-cd:
+bind '"\C-o":"ranger-cd\C-m"'
 
 # don't put duplicate lines in the history. See bash(1) for more options
 export HISTCONTROL=ignoredups

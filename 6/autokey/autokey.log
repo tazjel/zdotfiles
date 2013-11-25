@@ -3628,3 +3628,279 @@ AttributeError: 'int' object has no attribute 'send_event'
 2013-11-22 04:59:56,980 INFO - service - Starting service
 2013-11-22 04:59:57,334 INFO - interface - XRecord interface thread starting
 2013-11-22 04:59:57,335 INFO - service - Service now marked as running
+2013-11-22 10:25:11,963 INFO - root - Initialising application
+2013-11-22 10:25:12,041 INFO - root - Initialise global hotkeys
+2013-11-22 10:25:12,041 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-22 10:25:25,852 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-22 10:25:25,857 INFO - config-manager - Successfully loaded configuration
+2013-11-22 10:25:25,857 INFO - service - Starting service
+2013-11-22 10:25:26,336 INFO - interface - XRecord interface thread starting
+2013-11-22 10:25:26,337 INFO - service - Service now marked as running
+2013-11-23 01:46:41,546 INFO - root - Initialising application
+2013-11-23 01:46:41,558 INFO - root - Initialise global hotkeys
+2013-11-23 01:46:41,559 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-23 01:46:48,871 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 01:46:48,876 INFO - config-manager - Successfully loaded configuration
+2013-11-23 01:46:48,877 INFO - service - Starting service
+2013-11-23 01:46:49,235 INFO - interface - XRecord interface thread starting
+2013-11-23 01:46:49,235 INFO - service - Service now marked as running
+2013-11-23 19:31:39,475 INFO - root - Initialising application
+2013-11-23 19:31:39,556 INFO - root - Initialise global hotkeys
+2013-11-23 19:31:39,557 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-23 19:31:58,696 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 19:31:58,705 INFO - config-manager - Successfully loaded configuration
+2013-11-23 19:31:58,705 INFO - service - Starting service
+2013-11-23 19:31:59,159 INFO - interface - XRecord interface thread starting
+2013-11-23 19:31:59,160 INFO - service - Service now marked as running
+2013-11-23 19:35:58,253 INFO - root - Initialising application
+2013-11-23 19:35:58,368 INFO - root - Initialise global hotkeys
+2013-11-23 19:35:58,369 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-23 19:36:14,553 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 19:36:14,561 INFO - config-manager - Successfully loaded configuration
+2013-11-23 19:36:14,561 INFO - service - Starting service
+2013-11-23 19:36:14,873 INFO - interface - XRecord interface thread starting
+2013-11-23 19:36:14,873 INFO - service - Service now marked as running
+2013-11-23 22:19:44,816 INFO - root - Initialising application
+2013-11-23 22:19:44,921 INFO - root - Initialise global hotkeys
+2013-11-23 22:19:44,921 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-23 22:20:03,777 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 22:20:03,783 INFO - config-manager - Successfully loaded configuration
+2013-11-23 22:20:03,783 INFO - service - Starting service
+2013-11-23 22:20:04,688 INFO - interface - XRecord interface thread starting
+2013-11-23 22:20:04,689 INFO - service - Service now marked as running
+2013-11-23 22:28:45,849 INFO - root - Displaying configuration window
+2013-11-23 23:52:12,857 INFO - root - Displaying configuration window
+2013-11-23 23:55:16,244 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 23:55:16,245 INFO - config-manager - Persisting configuration
+2013-11-23 23:55:16,246 INFO - config-manager - Backing up existing config file
+2013-11-23 23:55:16,249 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-23 23:56:03,150 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 23:56:03,151 INFO - config-manager - Persisting configuration
+2013-11-23 23:56:03,151 INFO - config-manager - Backing up existing config file
+2013-11-23 23:56:03,154 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-23 23:56:08,812 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 23:56:08,813 INFO - config-manager - Persisting configuration
+2013-11-23 23:56:08,813 INFO - config-manager - Backing up existing config file
+2013-11-23 23:56:08,815 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-23 23:56:11,799 WARNING - config-manager - No action taken for create/update event at /home/ahmed/.config/autokey/data/DCAR/tazjel/A/.nova2498.json
+2013-11-23 23:56:13,819 WARNING - config-manager - No action taken for delete event at /home/ahmed/.config/autokey/data/DCAR/tazjel/A/.nova2498.json
+2013-11-23 23:56:58,650 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-23 23:58:05,669 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 00:11:20,595 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 00:11:36,359 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 00:11:48,715 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 00:11:48,718 INFO - config-manager - Persisting configuration
+2013-11-24 00:11:48,719 INFO - config-manager - Backing up existing config file
+2013-11-24 00:11:48,722 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 00:12:00,098 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 00:12:00,106 INFO - config-manager - Persisting configuration
+2013-11-24 00:12:00,106 INFO - config-manager - Backing up existing config file
+2013-11-24 00:12:00,108 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 13:49:35,657 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 14:39:17,874 INFO - service - Undoing last abbreviation expansion
+2013-11-24 15:22:41,728 INFO - root - Displaying configuration window
+2013-11-24 15:23:02,575 INFO - root - Displaying configuration window
+2013-11-24 15:23:33,733 INFO - root - Displaying configuration window
+2013-11-24 15:23:58,097 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:24:01,557 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:24:01,558 INFO - config-manager - Persisting configuration
+2013-11-24 15:24:01,558 INFO - config-manager - Backing up existing config file
+2013-11-24 15:24:01,560 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:24:03,895 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:24:03,897 INFO - config-manager - Persisting configuration
+2013-11-24 15:24:03,897 INFO - config-manager - Backing up existing config file
+2013-11-24 15:24:03,899 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:24:06,639 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:24:06,641 INFO - config-manager - Persisting configuration
+2013-11-24 15:24:06,641 INFO - config-manager - Backing up existing config file
+2013-11-24 15:24:06,643 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:24:29,205 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:24:35,156 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:24:41,408 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:25:08,182 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:25:26,950 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:25:38,483 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:26:17,124 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:27:06,289 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:27:06,291 INFO - config-manager - Persisting configuration
+2013-11-24 15:27:06,292 INFO - config-manager - Backing up existing config file
+2013-11-24 15:27:06,294 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:27:10,333 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:27:10,335 INFO - config-manager - Persisting configuration
+2013-11-24 15:27:10,336 INFO - config-manager - Backing up existing config file
+2013-11-24 15:27:10,338 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:27:43,450 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:27:56,900 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:27:56,902 INFO - config-manager - Persisting configuration
+2013-11-24 15:27:56,903 INFO - config-manager - Backing up existing config file
+2013-11-24 15:27:56,904 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:28:28,635 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:28:35,116 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:28:35,119 INFO - config-manager - Persisting configuration
+2013-11-24 15:28:35,119 INFO - config-manager - Backing up existing config file
+2013-11-24 15:28:35,121 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:28:38,571 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:28:38,574 INFO - config-manager - Persisting configuration
+2013-11-24 15:28:38,575 INFO - config-manager - Backing up existing config file
+2013-11-24 15:28:38,577 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 15:29:42,174 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:29:52,793 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:31:58,295 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:32:05,739 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:33:16,143 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:33:47,196 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 15:33:47,555 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:34:00,815 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 15:34:01,167 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 15:34:01,706 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 15:34:02,082 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 16:45:07,955 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 16:45:17,312 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 16:45:39,625 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 16:45:57,950 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 16:46:13,001 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 16:53:01,262 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 17:33:29,896 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 17:33:35,958 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 17:48:03,952 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 17:48:38,557 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 17:48:45,350 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 17:49:35,156 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 18:03:07,109 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 18:06:09,433 INFO - service - Undoing last abbreviation expansion
+2013-11-24 18:07:26,952 INFO - service - Undoing last abbreviation expansion
+2013-11-24 18:08:41,792 INFO - service - Undoing last abbreviation expansion
+2013-11-24 18:08:45,296 INFO - service - Undoing last abbreviation expansion
+2013-11-24 19:03:19,411 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:50:11,584 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 19:50:11,937 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:50:15,845 INFO - root - Displaying configuration window
+2013-11-24 19:50:30,043 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:50:45,689 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:50:56,637 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:56:31,908 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:56:51,380 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:57:11,191 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:57:15,223 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:59:08,138 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:59:17,476 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:59:27,872 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:59:53,889 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 19:59:53,891 INFO - config-manager - Persisting configuration
+2013-11-24 19:59:53,891 INFO - config-manager - Backing up existing config file
+2013-11-24 19:59:53,893 INFO - config-manager - Finished persisting configuration - no errors
+2013-11-24 20:00:18,630 ERROR - service - Script error
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/service.py", line 454, in execute
+    exec script.code in scope
+  File "<string>", line 8, in <module>
+NameError: name 'output' is not defined
+2013-11-24 20:01:17,052 ERROR - service - Script error
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/service.py", line 454, in execute
+    exec script.code in scope
+  File "<string>", line 8, in <module>
+NameError: name 'output' is not defined
+2013-11-24 20:01:21,846 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:01:31,815 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:02:03,525 ERROR - service - Script error
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/service.py", line 454, in execute
+    exec script.code in scope
+  File "<string>", line 24, in <module>
+  File "/usr/lib/python2.7/dist-packages/autokey/scripting.py", line 328, in list_menu
+    choice = options[int(result)]
+ValueError: invalid literal for int() with base 10: ''
+2013-11-24 20:02:09,107 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:02:18,672 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 20:02:18,924 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:02:44,306 ERROR - service - Script error
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/service.py", line 454, in execute
+    exec script.code in scope
+  File "<string>", line 24, in <module>
+  File "/usr/lib/python2.7/dist-packages/autokey/scripting.py", line 328, in list_menu
+    choice = options[int(result)]
+ValueError: invalid literal for int() with base 10: ''
+2013-11-24 20:03:37,920 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:04:02,737 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:04:12,132 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 20:04:12,384 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:04:14,358 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:04:24,198 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 20:04:24,450 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:04:25,640 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:04:51,202 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:05:02,542 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:08:38,268 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:08:38,771 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:08:45,771 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:08:46,274 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:08:49,708 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:08:50,211 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 20:26:52,754 INFO - root - Displaying configuration window
+2013-11-24 20:37:47,931 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 20:37:48,284 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 22:52:13,627 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-24 22:52:13,980 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-24 23:38:53,301 INFO - root - Displaying configuration window
+2013-11-24 23:39:17,189 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 01:25:01,102 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:14:32,918 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:14:33,272 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:14:33,992 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:14:34,348 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:15:19,665 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:15:20,019 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:15:54,918 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:15:55,273 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:15:58,732 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:15:59,086 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:15:59,212 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:15:59,565 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:24:00,610 ERROR - service - Script error
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/service.py", line 454, in execute
+    exec script.code in scope
+  File "<string>", line 24, in <module>
+  File "/usr/lib/python2.7/dist-packages/autokey/scripting.py", line 328, in list_menu
+    choice = options[int(result)]
+ValueError: invalid literal for int() with base 10: ''
+2013-11-25 02:24:03,017 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:24:03,370 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:24:03,654 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:24:04,014 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:24:04,129 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:24:04,482 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:24:07,291 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:24:07,528 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 02:24:07,648 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 02:24:07,882 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 04:47:31,717 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 04:47:32,118 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 04:47:48,668 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 04:47:48,806 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 04:47:48,958 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 04:47:49,021 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 04:47:49,158 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 04:47:49,311 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 00:25:51,544 INFO - root - Initialising application
+2013-11-25 00:25:51,666 INFO - root - Initialise global hotkeys
+2013-11-25 00:25:51,666 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-25 00:26:16,328 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 00:26:16,334 INFO - config-manager - Successfully loaded configuration
+2013-11-25 00:26:16,334 INFO - service - Starting service
+2013-11-25 00:26:16,741 INFO - interface - XRecord interface thread starting
+2013-11-25 00:26:16,741 INFO - service - Service now marked as running
+2013-11-25 02:04:24,857 INFO - service - Undoing last abbreviation expansion
+2013-11-25 02:30:22,909 INFO - service - Undoing last abbreviation expansion
+2013-11-25 03:41:57,613 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 03:41:58,002 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 03:42:12,578 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 03:42:12,743 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 03:42:12,971 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 03:42:12,972 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 03:42:13,104 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 03:42:13,324 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-25 03:43:53,974 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-25 03:43:54,371 INFO - config-manager - Configuration changed - rebuilding in-memory structures
