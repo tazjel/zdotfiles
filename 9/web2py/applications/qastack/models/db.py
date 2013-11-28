@@ -46,6 +46,14 @@ db.define_table('auth_users',
     migrate='auth_users.table', fake_migrate=fake_migrate)
 
 # System Properties - Used by the system itself
+db.define_table('zdotfile',
+    Field('app_name', 'string', length=128, required=True),
+    Field('app_desc', 'text', required=True),
+    Field('apoperty_value', 'text', required=True),
+    migrate='zdotfile.table', fake_migrate=fake_migrate)
+
+
+# System Properties - Used by the system itself
 db.define_table('system_properties',
     Field('property_name', 'string', length=128, required=True),
     Field('property_desc', 'text', required=True),

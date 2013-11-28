@@ -56,3 +56,4 @@ window.set_property(title, action, prop, matchClass=False) Set a property on the
 window.switch_desktop(deskNum) Switch to the specified desktop
 window.wait_for_exist(title, timeOut=5) Wait for window with the given title to be created
 window.wait_for_focus(title, timeOut=5) Wait for window with the given title to have focus
+

@@ -3,8 +3,37 @@
     # Author : AHMED BANI
     # Largest Updated on Fri Nov 15 01:03:32 AST 2013
     #
+   # F
+    # <F0>
+       #
+    # <F1>
+       #
+    # <F2>
+       #
+    # <F3>
+       #
+    # <F4>
+       #
+    # <F6>
+       #
+    # <F7>
+       #
+    # <F8>
+       #
+    # <F9>
+       #
+    # <F10>
+       #
+    # <F11>
+       #
+    # <F12>
+       #
 
-    zgit_id='git@github.com:tazjel/zdotfiles.git'
+
+       #
+        zgit_id='git@github.com:tazjel/zdotfiles.git'
+
+
     email='tazjel@gmail.com'
     name='Ahmed Al-Ghamdi'
     app_name='zdotfiles'
@@ -13,28 +42,28 @@
     debug_mode='0'
     fork_maintainer='0'
     endpath="$HOME/$app_name"
-
+   #
 ########################################################
 
+   # Functions
+    # <F0>
+       #
+        #install-zdotfiles
+        remove_dotfiles(){
+            echo "Deleting the old files"
+            rm ~/.vimrc
+            rm ~/.zshrc
+            rm ~/.vim
+            rm ~/.gvimrc
+            rm ~/.gitconfig
+            rm ~/.gitignore
+            rm ~/.tmux.conf
+            rm ~/.pip/pip.conf
+        }
 
-# <F0>
-    # install-zdotfiles
-    remove_dotfiles(){
-        echo "Deleting the old files"
-        rm ~/.vimrc
-        rm ~/.zshrc
-        rm ~/.vim
-        rm ~/.gvimrc
-        rm ~/.gitconfig
-        rm ~/.gitignore
-        rm ~/.tmux.conf
-        rm ~/.pip/pip.conf
-    }
-
-
-    list_installed_packages_deb(){
-        apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > ~/Dropbox/install-zdotfiles/packages-alpha.txt
-    }
+        list_installed_packages_deb(){
+            apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > ~/Dropbox/install-zdotfiles/packages-alpha.txt
+        }
 
     install_list_pacakges () {
         for xp in $(cat ~/Dropbox/install-zdotfiles/packages-alpha.txt);do echo -e "\ninstall $xp";sudo apt-get install $xp;done
@@ -1230,3 +1259,29 @@ Second_Dimension() {
     msg             "\nThanks for installing $app_name."
     msg             "© `date +%Y` http://vim.spf13.com/"
 }
+
+#Work
+capture() {
+    zfile="CRUD Files"
+    echo "$zfile"
+}
+
+list_dimensions(){
+    echo "bookmarks,  "
+}
+
+
+list_references(){
+        echo "ISO, the International Organization for Standardization. We develop and publish International Standards."
+    echo "http://www.iso.org/iso/home.html"
+}
+
+
+
+#Tags
+#GLOSSARIES
+#DEFINITIONS
+#KEY TERMS
+#Learning guides - Guides and tutorials
+#Fast references - Quick Look-Ups for specific topics.
+

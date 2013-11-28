@@ -1,5 +1,5 @@
 %s/paper/\$\{1\:#\}/g
-w! ~/zdotfiles/2/english/english.snippet
+w! ~/zdotfiles/2/snippet/english.snip
 %s/X/\$\{1\:#\}/gc
 %s/X/\$\{2\:#\}/gc
 %s/Z/\$\{3\:#\}/gc

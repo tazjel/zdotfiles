@@ -1,0 +1,43 @@
+Definition:
+The ability to use language in a contextually appropriate fashion.
+
+Pragmatic competence is a fundamental aspect of a more general communicative competence .
+
+See also:
+
+Grammaticality
+Illocutionary Force
+Lexical Competence
+Linguistic Competence
+Logonomic Rules
+Perlocutionary
+Pragmatics
+Speech Act and Speech-Act Theory
+Examples and Observations:
+
+"[P]ragmatic competence . . . is understood as the knowledge of the linguistic resources available in a given language for realising particular illocutions, knowledge of the sequential aspects of speech acts, and finally, knowledge of the appropriate contextual use of the particular language's linguistic resources."
+(Anne Barron, Acquisition in Interlanguage Pragmatics: Learning How to Do Things With Words in a Study-Abroad Context. John Benjamins, 2003)
+
+
+"Intrinsic to this decision-making process [in using language to communicate] are several principles that concur to define the nature of pragmatic competence. In particular, individuals make choices and build strategies based on some of the unique properties of pragmatic/communicative competence, such as:
+- variability: the property of communication that defines the range of communicative possibilities, among which is formulating communicative choices;
+- negotiability: the possibility of making choices based on flexible strategies;
+- adaptibility; the ability to modulate and regulate communicative choices in relation to the communicative context;
+- salience: the degree of awareness reached by communicative choices;
+- indeterminacy: the possibility to re-negotiate pragmatic choices as the interaction unfolds in order to fulfill communicative intentions;
+- dynamicity: development of the communicative interaction in time."
+(M. Balconi and S. Amenta, "From Pragmatics to Neuropragmatics." Neuropsychology of Communication, ed. by Michela Balconi. Springer, 2010)
+
+
+"[Noam] Chomsky accepts that language is used purposefully; indeed, in later writings he introduced the term pragmatic competence--knowledge of how language is related to the situation in which it is used. Pragmatic competence 'places language in the institutional setting of its use, relating intentions and purposes to the linguistic means at hand' (Chomsky, 1980a, p. 225). As well as knowing the structure of a language, we have to know how to use it. There is little point in knowing the structure of:
+58. Can you lift that box?
+if you can't decide whether the speaker wants to discover how strong you are (a question) or wants you to move the box (a request).
+
+"It may be possible to have grammatical competence without pragmatic competence. A schoolboy in a Tom Sharpe novel Vintage Stuff (Sharpe, 1982) takes everything that is said literally; when asked to turn over a new leaf, he digs up the headmaster's camellias. But knowledge of language use is different from knowledge of language itself; pragmatic competence is not linguistic competence. The description of grammatical competence explains how the speaker knows that
+59. Why are you making such a noise?
+is a possible sentence of English, and that
+60. *Why you are making such a noise.
+is not. It is the province of pragmatic competence to explain whether the speaker who says:
+61. Why are you making such a noise?
+is requesting someone to stop, or is asking a genuine question out of curiosity, or is muttering a sotto voce comment."
+(V.J. Cook and M. Newson, Chomsky's Universal Grammar: An Introduction. Wiley-Blackwell, 1996)

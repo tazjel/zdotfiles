@@ -1,3 +1,5 @@
+
+
 done
 done}
 find . -name "*.pdf" -exec echo {} > ls_wpdf.txt
@@ -6,6 +8,7 @@ for i in *.pdf\
 grep --color=always -nR 'w' --include=pdf
 l allpdf | wc -l
 ls *pdf
+
 ls -1 *pdf
 ls -lh abstract.pdf | awk '{ print $5}'
 mv *pdf /media/ahmed/Transcend/backup/DCAR-QA/

@@ -25,12 +25,12 @@
         "showToolbar": true, 
         "serviceRunning": true, 
         "columnWidths": [
-            217, 
+            225, 
             45, 
             231
         ], 
         "workAroundApps": ".*VirtualBox.*|krdc.Krdc", 
-        "hPanePosition": 456, 
+        "hPanePosition": 430, 
         "isFirstRun": false
     }, 
     "userCodeDir": null, 

@@ -1,16 +1,17 @@
 #!/usr/bin/env bash
+
 # ###########################  SETUP PARAMETERS
     app_name='spf13-vim'
     git_uri='https://github.com/spf13/spf13-vim.git'
     git_branch='3.0'
     debug_mode='0'
     fork_maintainer='0'
-
 ############################  BASIC SETUP TOOLS
 msg() {
     printf '%b\n' "$1" >&2
 }
 
+#msg "Conflict Analysis & Resolution"
 
 msg "\e[31m[✘]\e[0m abobani@gmail.com"
 msg "\e[32m[✔]\e[0m Conflict Analysis & Resolution"
@@ -152,6 +153,7 @@ info_host() {
     echo -e "\nYou are logged on ${BRed}$HOST"
     echo -e "\n${BRed}Additionnal information:$NC " ; uname -a
     echo -e "\n${BRed}Users logged on:$NC " ; w -hs |
+             cut -d " " -f1 | sort | uniq
     echo -e "\n${BRed}Current date :$NC " ; date
     echo -e "\n${BRed}Machine stats :$NC " ; uptime
     echo -e "\n${BRed}Memory stats :$NC " ; free

@@ -9,14 +9,17 @@ October 2010
 import urllib2
 import sys
 
-def capture_webpag(url):
+def capture_webpage(url):
     webpage = urllib2.urlopen(url)
-# Save the webpage locally with the same name
-out_filename = url.split('/')[-1]
-out_fh = open(out_filename, 'w')
 
-for line in webpage:
-    out_fh.write(line)
-out_fh.close()
+def save_to_file(folder, title, content):
+    """w"""
+   # Save the content to
+    out_filename = url.split('/')[-1]
+    out_fh = open(out_filename, 'w')
 
-print "Saved contents of %s locally as %s." % (url, out_filename)
+    for line in content:
+        out_fh.write(line)
+    out_fh.close()
+
+    print "Saved contents of %s locally as %s." % (title, out_filename)

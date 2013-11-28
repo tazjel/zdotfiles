@@ -1,4 +1,4 @@
-
+export KEYTIMEOUT=1
 
 # Currently this path is appended to dynamically when picking a ruby version
 

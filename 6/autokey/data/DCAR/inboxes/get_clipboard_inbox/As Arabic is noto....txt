@@ -1,0 +1,1 @@
+As Arabic is notorious for its morphological complexity(McCarthy 1985; Azmi 1988;Beesley 1998; Ratcliffe 1998; Ibrahim 2002), it has always been a challenge incomputational morphology and a hard testing ground for morphological analysistechnologies.

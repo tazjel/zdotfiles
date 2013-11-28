@@ -117,14 +117,18 @@
             echo ""
             read -p "Enter:" choice
             case $choice in
-                1) References_add_Bash ;;
-                2) pause "$(date)";;
-                3) F3 ;;
-                5) netstat -s | less;;
+                1) F1;;
+                2) F2;;
+                3) F3;;
+                4) F4;;
+                5) F5;;
                 6) F6;;
-                10) References_add;;
+                7) F7;;
+                8) F8;;
+                9) F9;;
+                10) F10;;
                 w) exit 0;;
-                *) pause "Select between 1 to 5 only";;
+                *) pause "Select between 1 to 10 only";;
             esac
         }
 
@@ -137,9 +141,7 @@
 
             start_GUI
 ####################################################
-
-# References
-
+   # References
     # Next TODO
      #Create a ZIP archive of a file or folder.
         function makezip() { zip -r "1.zip" "$1" ; }
@@ -163,3 +165,10 @@
     #regular expression editor
         #http://www.rubular.com/regexes/6293
         #([^\.].*?[0-9])(?=\.|\Z)
+    #svg2png
+         svg2png () {
+                    inkscape --file="$1" --export-png="$2" --export-width=$3
+            }
+        make-sorted-file-list () {
+            find -maxdepth 1 -type f -iname \*$1 | sort > $2
+        }

@@ -151,3 +151,15 @@ CREATE TABLE admin_messages(
     read_flag CHAR(1)
 );
 success!
+timestamp: 2013-11-28T01:16:30.522893
+ALTER TABLE zdotfile ADD apoperty_value TEXT;
+timestamp: 2013-11-28T01:23:41.240566
+ALTER TABLE zdotfile ADD apoperty_value TEXT;
+timestamp: 2013-11-28T01:30:14.438961
+CREATE TABLE zdotfile(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    app_name CHAR(128),
+    app_desc TEXT,
+    apoperty_value TEXT
+);
+success!

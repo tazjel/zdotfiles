@@ -1,50 +1,84 @@
-" Last Modified: 2013-11-16T00:11:40
+"Last Modified: 2013-11-28T03:08:27
 
-set nocompatible
-set backspace=indent,eol,start
-set shiftwidth=4
-set tabstop=4
-set expandtab
-set autoindent
-set notildeop
-let g:explVertical=1
-let g:explSplitRight=1
+"""""""""""""""""""""""
+" setup
+"""""""""""""""""""""""
+    syntax on
+    set nocompatible
+    set backspace=indent,eol,start
+    set shiftwidth=4
+    set tabstop=4
+    set expandtab
+    set autoindent
+    set notildeop
+    let g:explVertical=1
+    let g:explSplitRight=1
+    let g:solarized_termcolors=256
+    set colorcolumn=81
+    g:solarized_termcolors= 16
 
-set colorcolumn=81
+    g:solarized_termtrans = 0
 
-" remember more commands and search history
-set history=10000
-
-" do not keep a backup files
-set nobackup
-set nowritebackup
-set ignorecase
-set scs
-set joinspaces
-set laststatus=2
-set showtabline=2
+    g:solarized_degrade = 0
+    g:solarized_bold = 1
+    g:solarized_underline = 1
+    g:solarized_italic = 1
+    g:solarized_contrast = “normal”
+    "“high” or “low”
+    g:solarized_visibility= “normal”
+    "“high” or “low”
 
 
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-" COLOR
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set t_Co=256 " 256 colors
-set background=dark
-"color grb256
-"key = ['borland']
-colorscheme random
+    "set statusline=
+    set statusline=
+    set statusline +=%1*\ %n\ %*            "buffer number
+    set statusline +=%5*%{&ff}%*            "file format
+    set statusline +=%3*%y%*                "file type
+    set statusline +=%4*\ %<%F%*            "full path
+    set statusline +=%2*%m%*                "modified flag
+    set statusline +=%1*%=%5l%*             "current line
+    set statusline +=%2*/%L%*               "total lines
+    set statusline +=%1*%4v\ %*             "virtual column number
+    set statusline +=%2*0x%04B\ %*          "character under cursor
+"""""""""""""""""""""""""
+    " remember more commands and search history
+        set history=10000
+    " do not keep a backup files
+        set nobackup
+        set nowritebackup
+        set ignorecase
+        set scs
+        set joinspaces
+        set laststatus=2
+        set showtabline=2
 
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
+         " 256 colors
+            set t_Co=256
+            set background=dark
+            "color grb256
+            "key = ['borland']
+            colorscheme random
+
 " STATUS LINE
-""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-set showmatch
-nnoremap <leader><leader> <c-^>
+    set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+    set showmatch
+    nnoremap <leader><leader> <c-^>
 "
 " Close all other windows, open a vertical split, and open this file's test
 " alterna in it.
 
-
+" Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
 "" Mappings
 "nmap <F8> :TagbarToggle<CR> " mapping f8 to TagbarToggle
 
@@ -128,7 +162,7 @@ endfunction
     nnoremap 0 zR
 
 
-
+nnoremap <Space><CR> :nohlsearch<CR><CR>
 
       "<F[1-12]>
             " <F1>
@@ -138,6 +172,8 @@ endfunction
                     map <S-F1> :sball
 
             " <F2>
+
+               "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
                 nnoremap <F2> :reg
                 nnoremap <S-F2> :marks
             " <F3>
@@ -157,6 +193,12 @@ endfunction
                 nnoremap <C-F6> :vsplit ~/Dropbox/<CR>
                 nnoremap <S-F6> :vsp ~/Dropbox/CAR_system<CR>
             " <F7>
+
+                "let @/='\<the\>'
+                    :set hls
+                        "ref
+                        nnoremap <Space>w :let @/='\<<C-R>=expand("<cword>")<CR>\>'<CR>:set hls<CR>
+
                 imap <F7> <C-X><C-l>
                 vnoremap <f7> :s/xxx/\$\{1\:#\}/g
                 map <F7> :%s///gc<Left><Left><Left><Left>
@@ -177,10 +219,19 @@ endfunction
                 "vnoremap <F10> :w! >> ~/Dropbox/INTRODUCTION/authors.txt<CR>
                 "nnoremap <silent> <S-F10> :vsplit ~/Dropbox/INTRODUCTION/authors.txt<CR>
             "cabbrev
-                cabbrev t5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
-                cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
-                cabbrev pw vsplit ~/.config/ipython/profile_default/startup/w.ipy
-                cabbrev wp vsplit ~/.config/ipython/profile_default/startup/ww.py
+
+            ":w! ~/zdotfiles/2/snippet/english.snip
+                abbreviate w# """"""""""""""""""""""""<CR>
+                            \"<CR>
+                            \"""""""""""""""""""""""""<up>
+
+
+" "
+
+            cabbrev t5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
+            cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
+            cabbrev pw vsplit ~/.config/ipython/profile_default/startup/w.ipy
+            cabbrev wp vsplit ~/.config/ipython/profile_default/startup/ww.py
 
             "abbreviate
                 abbreviate CC Conflict
@@ -219,10 +270,10 @@ endfunction
 
             "nnoremap <silent> wF :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
         " <F11>
-            """""""""""""""""""""""""""""""""""""""""
+         cabbrev xw %s/Z/\$\{0\:#\}/g \|%s/X/\$\{1\:#\}/g \|%s/X/\$\{1\:#\}/g
         " <F12>
-    cabbrev wss %s/\s\+$//gc
-    cabbrev ws_ s/\s/_/gc
+            cabbrev wss %s/\s\+$//gc
+            cabbrev ws_ s/\s/_/gc
 
         nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.zsh<cr>
             "nnoremap <silent> ww :vsplit ~/zdotfiles/2/.vimrc.localw<cr>
@@ -335,14 +386,14 @@ endfunction
         abbr #r ''''''<left><left><left><CR>
 
         " Select all.
-        map <c-a> ggVG
+        "map <c-a> ggVG
 
         " Undo in insert mode.
         imap <c-z> <c-o>u
     "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
     "map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
-    map <F11> :w! >> ~/Dropbox/INTRODUCTION/terms.txt<CR>
-    map <S-F11> y:vsplit ~/Dropbox/INTRODUCTION/terms.txt<CR>
+    "map <F11> :w! >> ~/Dropbox/INTRODUCTION/terms.txt<CR>
+    "map <S-F11> y:vsplit ~/Dropbox/INTRODUCTION/terms.txt<CR>
 " " Download the thesaurus " unzip " Add this to vimrc
     " wget www.gutenberg.org/dirs/etext02/mthes10.zip
 
@@ -390,33 +441,33 @@ set completefunc=LineCompleteFromFile
     ":sort /.*\%2v/   : sort all lines on second column [N]"
 
 
-    " reading Ms-Word documents, requires antiword (not docx)
-        "autocmd BufReadPre *.doc set ro
-        "autocmd BufReadPre *.doc set hlsearch!
-        "autocmd BufReadPre *.txt set syntax=python
-        "autocmd BufReadPost *.txt set syntax=python
-        "autocmd FileType *.txt exec('set fileformats=unix')
-        autocmd FileType *.txt exec('set syntax= text')
-        autocmd FileType * exec('set syntax= text')
-"""""
-abbr hosts C:\WINNT\system32\drivers\etc\hosts
+            " reading Ms-Word documents, requires antiword (not docx)
+                autocmd FileType *.txt exec('set syntax= text')
+                    "autocmd BufReadPre *.doc set ro
+                    "autocmd BufReadPre *.doc set hlsearch!
+                    "autocmd BufReadPre *.txt set syntax=python
+                    "autocmd BufReadPost *.txt set syntax=python
+                    "autocmd FileType *.txt exec('set fileformats=unix')
+                    "autocmd FileType * exec('set syntax= text')
 
-" abbreviation to manually enter a timestamp. Just type YTS in insert mode
 
-iab YTS <C-R>=TimeStamp()<CR>
 
-" Date/Time stamps
-" %a - Day of the week
-" %b - Month
+            " abbreviation to manually enter a timestamp. Just type YTS in insert mode
 
-" %d - Day of the month
-" %Y - Year
-" %H - Hour
-" %M - Minute
-" %S - Seconds
-" %Z - Time Zone
+                    iab YTS <C-R>=TimeStamp()<CR>
 
-iab YDATETIME <c-r>=strftime(": %B %d, %Y")<cr>
+            " Date/Time stamps
+            " %a - Day of the week
+            " %b - Month
+
+            " %d - Day of the month
+            " %Y - Year
+            " %H - Hour
+            " %M - Minute
+            " %S - Seconds
+            " %Z - Time Zone
+
+            iab YDATETIME <c-r>=strftime(": %B %d, %Y")<cr>
 " first add a function that returns a time stamp in the desired format
 if !exists("*TimeStamp")
     fun TimeStamp()
@@ -578,9 +629,14 @@ endif
 
 
     "autocmd
-        autocmd! BufNewFile *py call LoadTemplate()
-        autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
-        autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
+           ":autocmd bufenter *.tex map <F1> :!latex %<CR>
+           ":autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
+                autocmd! BufNewFile *py call LoadTemplate()
+                autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
+                autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
+
+
+
 " TEMPLATES
     function! LoadTemplate()
         " load a template based on the file extension
@@ -707,7 +763,6 @@ endfunction
 
 
     " pull full path name into paste buffer for attachment to email etc
-               "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
 
 cabbr csd colorscheme desert
 
