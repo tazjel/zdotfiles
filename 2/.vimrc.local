@@ -1,72 +1,88 @@
-"Last Modified: 2013-11-28T03:08:27
+"Last Modified: Last Modified: 2013-12-01T01:20:50
 
-"""""""""""""""""""""""
 " setup
-"""""""""""""""""""""""
     syntax on
     set nocompatible
     set backspace=indent,eol,start
+
+
+
+    "Enable Cursor Line
+        set cursorline
+
+                "Default Colors for CursorLine
+                "    highlight  CursorLine ctermbg=Black ctermfg=None
+
+                "Change Color when entering Insert Mode
+                "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+
+                "Revert Color to default when leaving Insert Mode
+                "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
+
+
+
     set shiftwidth=4
     set tabstop=4
     set expandtab
+
     set autoindent
     set notildeop
+
     let g:explVertical=1
     let g:explSplitRight=1
+
     let g:solarized_termcolors=256
     set colorcolumn=81
-    g:solarized_termcolors= 16
-
-    g:solarized_termtrans = 0
-
-    g:solarized_degrade = 0
-    g:solarized_bold = 1
-    g:solarized_underline = 1
-    g:solarized_italic = 1
-    g:solarized_contrast = “normal”
-    "“high” or “low”
-    g:solarized_visibility= “normal”
-    "“high” or “low”
 
 
-    "set statusline=
-    set statusline=
-    set statusline +=%1*\ %n\ %*            "buffer number
-    set statusline +=%5*%{&ff}%*            "file format
-    set statusline +=%3*%y%*                "file type
-    set statusline +=%4*\ %<%F%*            "full path
-    set statusline +=%2*%m%*                "modified flag
-    set statusline +=%1*%=%5l%*             "current line
-    set statusline +=%2*/%L%*               "total lines
-    set statusline +=%1*%4v\ %*             "virtual column number
-    set statusline +=%2*0x%04B\ %*          "character under cursor
-"""""""""""""""""""""""""
-    " remember more commands and search history
-        set history=10000
-    " do not keep a backup files
-        set nobackup
-        set nowritebackup
-        set ignorecase
-        set scs
-        set joinspaces
-        set laststatus=2
-        set showtabline=2
+
+    set spelllang=en
+    set spell
+    "
+    "
+    set modeline
+    set modelines=5
+
+    set ignorecase " ignore case when searching
+    set smartcase  " ... except when search pattern contains an uppercase char
+
+"colors
+
+    "statusline
+        set statusline=
+        set statusline +=%1*\ %n\ %*            "buffer number
+        set statusline +=%5*%{&ff}%*            "file format
+        set statusline +=%3*%y%*                "file type
+        set statusline +=%4*\ %<%F%*            "full path
+        set statusline +=%2*%m%*                "modified flag
+        set statusline +=%1*%=%5l%*             "current line
+        set statusline +=%2*/%L%*               "total lines
+        set statusline +=%1*%4v\ %*             "virtual column number
+        set statusline +=%2*0x%04B\ %*          "character under cursor
+        " remember more commands and search history
+            set history=10000
+        " do not keep a backup files
+            set nobackup
+            set nowritebackup
+            set ignorecase
+            set scs
+            set joinspaces
+            set laststatus=2
+            set showtabline=2
 
 
          " 256 colors
             set t_Co=256
-            set background=dark
+            "set background=dark
             "color grb256
             "key = ['borland']
-            colorscheme random
-
-" STATUS LINE
-    set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
-    set showmatch
-    nnoremap <leader><leader> <c-^>
+            "colorscheme random
+            colorscheme ww
+    " STATUS LINE
+        set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
+        set showmatch
+        "nnoremap <leader><leader> <c-^>
 "
-" Close all other windows, open a vertical split, and open this file's test
-" alterna in it.
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -80,8 +96,10 @@ if 'VIRTUAL_ENV' in os.environ:
     execfile(activate_this, dict(__file__=activate_this))
 EOF
 "" Mappings
-"nmap <F8> :TagbarToggle<CR> " mapping f8 to TagbarToggle
 
+
+" Close all other windows, open a vertical split, and open this file's test
+" alterna in it.
 nnoremap <leader>s :call FocusOnFile()<cr>
 
 function! FocusOnFile()
@@ -92,32 +110,13 @@ function! FocusOnFile()
   normal! h
 endfunction
 
-    set spelllang=en
-    set spell
-    "
-    "
-    "set modeline
-    set modelines=5
-    set ignorecase " ignore case when searching
-    set smartcase  " ... except when search pattern contains an uppercase char
-    "Enablew Cursor Line
-        "    set cursorline
-        "Default Colors for CursorLine
-        "    highlight  CursorLine ctermbg=Black ctermfg=None
-
-        "Change Color when entering Insert Mode
-        "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
-
-        "Revert Color to default when leaving Insert Mode
-        "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
-
         "This creates a keyword ERROR and puts it in the highlight group called logError
-        "    syn keyword logError ERROR
-        "Link just links logError to the colouring for error
-        "    hi link logError Error
+            "    syn keyword logError ERROR
+            "Link just links logError to the colouring for error
+            "    hi link logError Error
 
-        "    hi def logTime guibg=green guifg=white
-    set background=dark
+            "    hi def logTime guibg=green guifg=white
+        "set background=dark
     let g:solarized_termcolors=256
     let g:Powerline_symbols = 'fancy'
     "
@@ -130,17 +129,17 @@ endfunction
 
         set showmatch matchtime=3 matchpairs+=<:>       " parenthesis matching
         set timeout timeoutlen=5000 ttimeoutlen=100
-        set history=1000
+        set history=10000
         set shortmess=aTI                               " no greeting message
 
         set splitbelow splitright                       " splitting direction
         "
-" Use clipboard register
-    if has('unnamedplus')
-      set clipboard& clipboard+=unnamedplus
-    else
-      set clipboard& clipboard+=unnamed
-    endif
+    " Use clipboard register
+        if has('unnamedplus')
+          set clipboard& clipboard+=unnamedplus
+        else
+          set clipboard& clipboard+=unnamed
+        endif
 
 " set folding
     setlocal foldmethod=expr
@@ -151,16 +150,16 @@ endfunction
     "highlight Folded ctermfg=DarkGreen ctermbg=Black
 
 
-    nnoremap <silent> ; :q!<CR>
-    map W :w!<CR>
+    "Fold System
+            nnoremap 8 zMzvzz
+            nnoremap 9 zM
+            nnoremap 0 zR
 
-    nnoremap <space> za
-    vnoremap <space> zf
 
-    nnoremap 8 zMzvzz
-    nnoremap 9 zM
-    nnoremap 0 zR
 
+        "<space><space>
+            nnoremap <space> za
+            vnoremap <space> zf
 
 nnoremap <Space><CR> :nohlsearch<CR><CR>
 
@@ -207,9 +206,14 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
                           ":let @a=''|g/Barratt/y A |:let @*=@a
                 "
             " <F8>
-                map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
-                map <f8><f8> :diffoff<cr>
-                set diffopt=filler,context:4,iwhite	" options for using diff mode
+
+                cabbrev wf !firefox %
+
+                    nmap <F8> :TagbarToggle<CR>
+
+                "map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
+                "map <f8><f8> :diffoff<cr>
+                "set diffopt=filler,context:4,iwhite	" options for using diff mode
             " <F9>
                 nnoremap <silent> <F9> :SessionList<CR>
                 nnoremap <silent> <S-F9> :SessionSave<CR>
@@ -219,6 +223,10 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
                 "vnoremap <F10> :w! >> ~/Dropbox/INTRODUCTION/authors.txt<CR>
                 "nnoremap <silent> <S-F10> :vsplit ~/Dropbox/INTRODUCTION/authors.txt<CR>
             "cabbrev
+
+
+            ":NeoSnippetEdit [{options}] [filetype]
+
 
             ":w! ~/zdotfiles/2/snippet/english.snip
                 abbreviate w# """"""""""""""""""""""""<CR>
@@ -327,7 +335,7 @@ endfunction
 
         cab zz e ~/zdotfiles/1/.zsh
         cab vv w! ~/zdotfiles/2/
-        cab wx !chmod u+x
+        cab wx !chmod u+x %
 
 
         iabbrev ## #####################################################<CR>
@@ -382,7 +390,15 @@ endfunction
         iabbrev $$ ${0: }<left><left>
 
         abbr #b #!/bin/bash
-        abbr #p #!/usr/bin/env python
+        abbr #p #!/usr/bin/env python<CR>
+                    \#<CR>
+                    \# -*- coding: utf-8 -*-<CR>
+                    \<CR>
+                    \<CR>
+                    \<CR>
+                    \import os, sys, re
+
+
         abbr #r ''''''<left><left><left><CR>
 
         " Select all.
@@ -410,7 +426,6 @@ function! SilentFileGrep( leader, file )
         echo "no matches"
     endtry
 endfunction
-
 
 function! LineCompleteFromFile(findstart,base)
     if a:findstart
@@ -447,7 +462,7 @@ set completefunc=LineCompleteFromFile
                     "autocmd BufReadPre *.doc set hlsearch!
                     "autocmd BufReadPre *.txt set syntax=python
                     "autocmd BufReadPost *.txt set syntax=python
-                    "autocmd FileType *.txt exec('set fileformats=unix')
+                    autocmd FileType *.txt exec('set fileformats=unix')
                     "autocmd FileType * exec('set syntax= text')
 
 
@@ -730,15 +745,42 @@ inoremap <tab> <c-r>=Smart_TabComplete()<CR>
         endfunction
 
 
-function! CommitFile()
+
+""""""""""""""""""""""""
+"
+"""""""""""""""""""""""""
+
+
+function! P_Filetype()
+python << EOF
+import vim
+ft = vim.eval("&filetype")
+if ft == "python" or ft == "vim":
+   import re
+   data = '''
+           Conflict Analysis & Resolution
+           Conflict Analysis & Resolution
+           Conflict Analysis & Resolution
+           Conflict Analysis & Resolution
+   '''
+   match = re.search("(\w+)", data).group(1)
+   vim.command("r!cat <<< "+match)
+elif ft == "sh" or ft == 'python':
+   vim.command("echo"+vim.current.buffer.name)
+EOF
+endfun
+""""""""""""""""""""""""
+"
+"""""""""""""""""""""""""
+function! Ctaz()
 python << EOF
 import vim, re
 curfile = vim.current.buffer.name
 if curfile:
-    try:
-        print "w"
-    except (git.InvalidGitRepositoryError, git.GitCommandError):
-        pass
+    print "w :%s" % curfile
+
+print "Done"
+
 EOF
 endfunction
 
@@ -843,6 +885,42 @@ autocmd FileType python set sw=4 sts=4 et
     ":10,20s/^/\=line('.')."\t"/
     "Number a range of lines sequentially starting from 1:
     ":let counter=0|10,20g//let counter=counter+1|s/^/\=counter."\t"
+
     "Number all the paragraphs in range starting from 1 (assuming the paragraphs are separated by one or more blank lines):
+
     ":let counter=0|1,20g/^$\n^\s*[^\s]/let counter=counter+1|+1s/^/\=counter."\t"
+
     "Note: The above command does not work for the first paragraph in the file if there is no blank line above it.
+
+  "- Linux: >
+    let g:gist_clip_command = 'xclip -selection clipboard'
+
+""""""""""""""""""""""""
+"
+"""""""""""""""""""""""""
+" Search
+    nnoremap <silent>  <Space><Space> :nohlsearch<Bar>:echo<CR>
+
+                "iabbrev W #
+                "iabbrev WW $
+                iabbrev WWW () {<CR>
+                            \#<CR>
+                            \<up><right>
+
+map W :NeoSnippetEdit -vertical<CR>
+
+"imap <CR>w <CR><left><BS>
+
+nnoremap <C-B> :Bookmark
+nnoremap <C-N> :ClearBookmarks
+
+" :Bookmark <name>
+" :BookmarkToRoot
+" :OpenBookmark <name>
+" :ClearBookmarks [<names>]
+" :ClearAllBookmarks
+
+
+
+
+

@@ -1,0 +1,120 @@
+        # Zdotfiles
+                app_name='zdotfiles'
+                git_uri='https://github.com/tazjel/zdotfiles.git'
+                git_branch='master'
+                debug_mode='0'
+                fork_maintainer='0'
+            # Bibliography
+                NBIB='Bibliography'
+                MONTH=`date +%B`
+                vim_snip=~/zdotfiles/2/Ref.snip
+                DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
+                DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
+                BRA=~/zdotfiles/1/References.txt
+
+
+
+        # Zdotfiles
+                app_name='zdotfiles'
+                git_uri='https://github.com/tazjel/zdotfiles.git'
+                git_branch='master'
+                debug_mode='0'
+                fork_maintainer='0'
+            # Bibliography
+                NBIB='Bibliography'
+                MONTH=`date +%B`
+                vim_snip=~/zdotfiles/2/Ref.snip
+                DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
+                DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
+                BRA=~/zdotfiles/1/References.txt
+
+
+
+    # Controller
+         # File Manager.
+    # View
+        #  GUI messages
+            msg() {
+                printf '%b\n' "$1" >&2
+            }
+
+            success() {
+                if [ "$ret" -eq '0' ]; then
+                msg "\e[32m[✔]\e[0m ${1}${2}"
+                fi
+            }
+
+            error() {
+                msg "\e[31m[✘]\e[0m ${1}${2}"
+                exit 1
+            }
+
+
+            znotify() {
+                play ~/zdotfiles/References/notify.mp3
+            }
+
+            pause(){
+                local m="$@"
+                echo "$m"
+                read -p "Press [Enter] key to continue..." key
+            }
+
+
+#####################################################
+        # start_GUI
+
+
+        show_menus() {
+            clear
+            echo "                            بسم الله الرحمن الرحيم"
+            echo "~~~~~~~~~~~~~~~~~~~~~"
+            echo " M A I N - M E N U"
+            echo "~~~~~~~~~~~~~~~~~~~~~"
+            echo "1. First Diamintion :Search commandlinefu"
+            echo "2. Second Diamintion"
+            echo "3. Third Diamintion"
+            echo "4. Fourth Diamintion"
+            echo "5. Fifth Diamintion"
+            echo "6. Sixth Diamintion "
+            echo "7. Seventh Diamintion"
+            echo "8. Eighth Diamintion"
+            echo "9. Ninth Diamintion"
+            echo "10. Tenth Diamintion"
+            echo "w. EXIT"
+        }
+
+        read_options() {
+            local choice
+            echo "==============="
+            echo ""
+            read -p "Enter:" choice
+            case $choice in
+                1) F1;;
+                2) F2;;
+                3) F3;;
+                4) F4;;
+                5) F5;;
+                6) F6;;
+                7) F7;;
+                8) F8;;
+                9) F9;;
+                10) F10;;
+                w) exit 0;;
+                *) pause "Select between 1 to 10 only";;
+            esac
+        }
+
+        start_GUI() {
+            while true; do
+                show_menus
+                read_options
+            done;
+        }
+
+            start_GUI
+
+####################################################
+   # References
+    # Next TODO
+     #Create a ZIP archive of a file or folder.

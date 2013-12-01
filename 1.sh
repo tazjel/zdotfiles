@@ -1,11 +1,41 @@
 #!/usr/bin/env bash
 
 #####################################################
-#
 #  Conflict Analysis & Resolution
-
-# Author : Alghamdi, Ahmed. (November 25, 2013)
+#  Author : Alghamdi, Ahmed. (November 25, 2013)
 ####################################################
+
+     #Assignments
+        PROGNAME=`basename $0`
+        CONFIGPATH="$SYSCONFDIR/backup"
+        REMOTEBACKUPDIR="$SYSCONFDIR/tar-backup"
+        CONFIGFILE=${CONFIGPATH}/backup-specs
+        DIRLIST=${CONFIGPATH}/dirs
+        FILELIST=${CONFIGPATH}/files
+        LOGPATH=${CONFIGPATH}/log
+
+    #date and time
+    date() {
+        date +%Y-%m-%d
+        #2013-11-30
+    }
+
+license() {
+    cat - <<EOF
+    Copyright (C) 2006 Free Software Foundation, Inc.
+    This is free software.  You may redistribute copies of it under the terms of
+    the GNU General Public License <http://www.gnu.org/licenses/gpl.html>.
+    There is NO WARRANTY, to the extent permitted by law.
+EOF
+}
+
+
+
+
+
+
+
+
 
     # Model
           # SETUP PARAMETERS
@@ -22,6 +52,15 @@
                 DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
                 DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
                 BRA=~/zdotfiles/1/References.txt
+
+
+            # who what why
+                # where
+                    here="`pwd`"
+
+                # when
+                    startdate="`date`"
+
     # Controller
          # File Manager.
          # Swap files.

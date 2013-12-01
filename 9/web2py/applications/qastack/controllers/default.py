@@ -32,13 +32,7 @@ if False:
     from qastack.modules.CustomAuthentication import CustomAuthentication \
         as auth_user
     from qastack.modules.QAStackHelper import QAStackHelper as stackhelper
-    user_temp_passwd = 'w'
-    db.auth_users.insert(auth_alias=auth_alias,
-                         auth_passwd=user_temp_passwd,
-                         auth_role_id=sys_admin_role_id,
-                         auth_created_on=request.now,
-                         auth_modified_on=request.now,
-                         is_enabled=True)
+
 
 def index():
     """
@@ -51,8 +45,9 @@ def index():
         args = request.args
         nav_css = 'aquestions'
         # Some needed system information (think about caching this and
-        # update every 4 hours or so..)
-        num_recs = int(stackhelper.get_system_property('s_questions_per_page', 30))
+        # update every 4 hours or so..)
+        num_recs = int(
+            stackhelper.get_system_property('s_questions_per_page', 30))
         mode = ''
         try:
             offset = int(req.start)

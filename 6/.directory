@@ -1,7 +1,8 @@
 [Dolphin]
 GroupedSorting=true
 PreviewsShown=true
-Timestamp=2013,11,24,20,27,52
+SortRole=date
+Timestamp=2013,11,29,13,47,40
 Version=3
 ViewMode=1
 

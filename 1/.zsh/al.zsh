@@ -6,6 +6,18 @@
    # F
     # <F0>
        #
+        git_clone_ranger(){
+            git clone git://git.savannah.nongnu.org/ranger.git
+        }
+
+
+        zgit_rm_add_remote_origin() {
+            git remote rm origin
+            git remote add origin git@github.com:$user/$app_name
+            }
+
+
+
     # <F1>
        #
     # <F2>
@@ -157,6 +169,8 @@
     #This binds Ctrl-O to ranger-cd:
 #
 # <F0>
+
+
     #
 # <F1>
    #
@@ -576,7 +590,7 @@ star_Level_one() {
     alias '66'='clear;pwd;cd ~/zdotfiles/6;ls -X'
     alias '77'='clear;pwd;cd ~/zdotfiles/7;ls -X'
     alias '88'='clear;pwd;cd ~/zdotfiles/8;ls -X'
-    alias '99'='cd ~/zdotfiles/Projects/web2py'
+    alias '99'='cd ~/zdotfiles/9/web2py/applications/qastack/controllers'
     alias '99'='clear;pwd;cd ~/zdotfiles/9;ls -X'
     alias '99_welcome/controllers/default'='cd $HOME/zdotfiles/Projects/web2py/web2py/applications/welcome/controllers'
     alias '99w'='cd /home/abobanihh/zdotfiles/Projects/web2py/web2py/applications/welcome'
@@ -1008,7 +1022,7 @@ alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
 alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
 
 
-alias '999'='cd ~/zdotfiles/9/web2py/'
+alias '999'='cd ~/zdotfiles/9/web2py/applications/qastack/modules'
 
 # Start-up
 star_Level_one
@@ -1284,4 +1298,25 @@ list_references(){
 #KEY TERMS
 #Learning guides - Guides and tutorials
 #Fast references - Quick Look-Ups for specific topics.
+
+#vim-scp myuser@some.host.com /dir/path/or_file
+#z9_ssh(){
+    #echo "vim-scp FTW"
+    #if [ $ -ne 2 ]; then
+        #echo "usage : `basename $0` user@host /path"
+        #exit 1
+    #fi
+    #COMMAND="ssh $1 -f -N -o ControlMaster=auto -o ControlPath=/tmp/%r@%h:%p"
+    #echo "opening ssh tunnel.."
+    #$COMMAND || exit $?
+    #echo "ssh tunnel active, opening vim.."
+    #vim scp://$1$2
+    #echo "closing ssh tunnel.."
+    #ps -ef | grep "$COMMAND" | grep -v grep | awk '{print $2}' | xargs kill -9
+    #echo "Great Success!"
+#}
+
+
+
+alias 'wp'='ipython --profile=z'
 

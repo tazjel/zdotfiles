@@ -4464,3 +4464,149 @@ AttributeError: 'NoneType' object has no attribute 'add_item'
 2013-11-28 03:57:32,861 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-11-28 03:57:33,478 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-11-28 03:58:26,033 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-28 10:00:40,677 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-28 10:00:41,370 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-28 11:31:58,085 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-28 11:31:58,464 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-28 11:32:05,114 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-28 12:08:46,115 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-28 12:08:46,471 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-28 12:24:22,700 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-28 12:24:23,098 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-29 06:37:14,910 INFO - root - Initialising application
+2013-11-29 06:37:14,991 INFO - root - Initialise global hotkeys
+2013-11-29 06:37:14,991 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-29 06:38:03,768 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-29 06:38:03,774 INFO - config-manager - Successfully loaded configuration
+2013-11-29 06:38:03,775 INFO - service - Starting service
+2013-11-29 06:38:04,268 INFO - interface - XRecord interface thread starting
+2013-11-29 06:38:04,269 INFO - service - Service now marked as running
+2013-11-29 10:56:09,659 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-29 21:16:56,822 INFO - service - Undoing last abbreviation expansion
+2013-11-29 21:40:40,815 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 551, in __grab_keyboard
+    focus.grab_keyboard(True, X.GrabModeAsync, X.GrabModeAsync, X.CurrentTime)
+AttributeError: 'int' object has no attribute 'grab_keyboard'
+2013-11-29 21:40:40,910 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 677, in __sendKey
+    self.__sendKeyCode(self.__lookupKeyCode(keyName))
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 856, in __sendKeyCode
+    self.__sendKeyPressEvent(keyCode, modifiers, theWindow)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
+    focus.send_event(keyEvent)
+AttributeError: 'int' object has no attribute 'send_event'
+2013-11-29 21:40:40,910 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 677, in __sendKey
+    self.__sendKeyCode(self.__lookupKeyCode(keyName))
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 856, in __sendKeyCode
+    self.__sendKeyPressEvent(keyCode, modifiers, theWindow)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
+    focus.send_event(keyEvent)
+AttributeError: 'int' object has no attribute 'send_event'
+2013-11-29 21:40:40,910 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 677, in __sendKey
+    self.__sendKeyCode(self.__lookupKeyCode(keyName))
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 856, in __sendKeyCode
+    self.__sendKeyPressEvent(keyCode, modifiers, theWindow)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
+    focus.send_event(keyEvent)
+AttributeError: 'int' object has no attribute 'send_event'
+2013-11-29 21:40:40,911 ERROR - interface - Error sending char u'"': 'int' object has no attribute 'send_event'
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 639, in __sendString
+    self.__pressKey(Key.SHIFT)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 770, in __pressKey
+    self.__sendKeyPressEvent(self.__lookupKeyCode(keyName), 0)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
+    focus.send_event(keyEvent)
+AttributeError: 'int' object has no attribute 'send_event'
+2013-11-29 21:40:40,911 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 677, in __sendKey
+    self.__sendKeyCode(self.__lookupKeyCode(keyName))
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 856, in __sendKeyCode
+    self.__sendKeyPressEvent(keyCode, modifiers, theWindow)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 899, in __sendKeyPressEvent
+    focus.send_event(keyEvent)
+AttributeError: 'int' object has no attribute 'send_event'
+2013-11-29 22:25:54,067 INFO - root - Displaying configuration window
+2013-11-29 22:26:20,451 INFO - root - Displaying configuration window
+2013-11-29 22:32:37,171 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 08:05:15,624 INFO - root - Initialising application
+2013-11-30 08:05:15,719 INFO - root - Initialise global hotkeys
+2013-11-30 08:05:15,719 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-30 08:05:52,509 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 08:05:52,515 INFO - config-manager - Successfully loaded configuration
+2013-11-30 08:05:52,515 INFO - service - Starting service
+2013-11-30 08:05:53,211 INFO - interface - XRecord interface thread starting
+2013-11-30 08:05:53,212 INFO - service - Service now marked as running
+2013-11-30 08:27:50,508 INFO - root - Initialising application
+2013-11-30 08:27:50,618 INFO - root - Initialise global hotkeys
+2013-11-30 08:27:50,618 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-30 08:28:23,817 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 08:28:23,823 INFO - config-manager - Successfully loaded configuration
+2013-11-30 08:28:23,824 INFO - service - Starting service
+2013-11-30 08:28:24,373 INFO - interface - XRecord interface thread starting
+2013-11-30 08:28:24,374 INFO - service - Service now marked as running
+2013-11-30 09:21:43,068 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 551, in __grab_keyboard
+    focus.grab_keyboard(True, X.GrabModeAsync, X.GrabModeAsync, X.CurrentTime)
+AttributeError: 'int' object has no attribute 'grab_keyboard'
+2013-11-30 12:18:32,290 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-30 12:18:32,645 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 12:49:07,615 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-11-30 12:49:07,969 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 12:58:34,284 INFO - root - Displaying configuration window
+2013-11-30 12:59:55,518 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 13:00:02,796 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 13:00:29,424 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 13:00:47,973 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 13:00:53,804 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 13:01:03,342 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 13:01:28,090 INFO - root - Initialising application
+2013-11-30 13:01:28,103 INFO - root - Initialise global hotkeys
+2013-11-30 13:01:28,103 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-11-30 13:01:28,163 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-11-30 13:01:28,169 INFO - config-manager - Successfully loaded configuration
+2013-11-30 13:01:28,169 INFO - service - Starting service
+2013-11-30 13:01:28,276 INFO - interface - XRecord interface thread starting
+2013-11-30 13:01:28,276 INFO - service - Service now marked as running
+2013-11-30 13:03:51,192 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 551, in __grab_keyboard
+    focus.grab_keyboard(True, X.GrabModeAsync, X.GrabModeAsync, X.CurrentTime)
+AttributeError: 'int' object has no attribute 'grab_keyboard'
+2013-12-01 03:36:56,344 INFO - root - Displaying configuration window
+2013-12-01 03:38:43,609 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:39:04,904 INFO - root - Displaying configuration window
+2013-12-01 03:39:07,778 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:39:26,699 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:39:58,760 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:40:00,618 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:40:12,888 INFO - root - Displaying configuration window
+2013-12-01 03:40:20,474 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:41:20,663 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:41:23,986 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:41:45,735 INFO - root - Displaying configuration window
+2013-12-01 03:42:11,686 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:42:25,253 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 03:44:30,779 INFO - config-manager - Configuration changed - rebuilding in-memory structures

@@ -28,7 +28,7 @@ echo "Done "
 
 # On Debian based systems(Ubuntu):
 dpkg --get-selections > packages-alpha.txt
- 
+
 # You can run the command again at a later time, concatenating the output into a different file so you can view what has changed since the original system setup. Use a diff tool like diff3, vimdiff, or meld:
 
 # meld packages-alpha.txt packages-omega.txt

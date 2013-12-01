@@ -1542,7 +1542,6 @@ class BaseAdapter(ConnectionPool):
             for query in queries:
                 self.log(query + '\n', table)
                 self.execute(query)
-            table._db.commit()
             self.log('success!\n', table)
         finally:
             pass
@@ -1660,7 +1659,7 @@ class BaseAdapter(ConnectionPool):
             return self.expand(field, colnames=True)
         self._colnames = map(colexpand, fields)
         def geoexpand(field):
-            if isinstance(field.type,str) and field.type.startswith('geometry'):
+            if isinstance(field.type,str) and field.type.startswith('geometry') and isinstance(field, Field):
                 field = field.st_astext()
             return self.expand(field)
         sql_f = ', '.join(map(geoexpand, fields))
@@ -4949,11 +4948,12 @@ class GoogleDatastoreAdapter(NoSQLAdapter):
     def BELONGS(self,first,second=None):
         if not isinstance(second,(list, tuple, set)):
             raise SyntaxError("Not supported")
-        if first.type != 'id':
-            return [GAEF(first.name,'in',self.represent(second,first.type),lambda a,b:a in b)]
-        else:
+        if not self.use_ndb:
+            if isinstance(second,set):
+                second = list(second)
+        if first.type == 'id':
             second = [Key.from_path(first._tablename, int(i)) for i in second]
-            return [GAEF(first.name,'in',second,lambda a,b:a in b)]
+        return [GAEF(first.name,'in',second,lambda a,b:a in b)]
 
     def CONTAINS(self,first,second,case_sensitive=False):
         # silently ignoring: GAE can only do case sensitive matches!
@@ -4979,16 +4979,18 @@ class GoogleDatastoreAdapter(NoSQLAdapter):
     def truncate(self,table,mode):
         self.db(self.db._adapter.id_query(table)).delete()
 
+    GAE_FILTER_OPTIONS = {
+        '=': lambda q, t, p, v: q.filter(getattr(t,p) == v),
+        '>': lambda q, t, p, v: q.filter(getattr(t,p) > v),
+        '<': lambda q, t, p, v: q.filter(getattr(t,p) < v),
+        '<=': lambda q, t, p, v: q.filter(getattr(t,p) <= v),
+        '>=': lambda q, t, p, v: q.filter(getattr(t,p) >= v),
+        '!=': lambda q, t, p, v: q.filter(getattr(t,p) != v),
+        'in': lambda q, t, p, v: q.filter(getattr(t,p).IN(v)),
+        }
+
     def filter(self, query, tableobj, prop, op, value):
-        return {
-            '=': query.filter(getattr(tableobj, prop) == value),
-            '>': query.filter(getattr(tableobj, prop) > value),
-            '<': query.filter(getattr(tableobj, prop) < value),
-            '<=': query.filter(getattr(tableobj, prop) <= value),
-            '>=': query.filter(getattr(tableobj, prop) >= value),
-            '!=': query.filter(getattr(tableobj, prop) != value),
-            'in': query.filter(getattr(tableobj, prop).IN(value)),
-        }[op]
+        return self.GAE_FILTER_OPTIONS[op](query, tableobj, prop, value)
 
     def select_raw(self,query,fields=None,attributes=None):
         db = self.db
@@ -5508,6 +5510,8 @@ class MongoDBAdapter(NoSQLAdapter):
         # synchronous, except when overruled by either this default or
         # function parameter
         self.safe = adapter_args.get('safe',True)
+        # load user setting for uploads in blob storage
+        self.uploads_in_blob = adapter_args.get('uploads_in_blob', False)
 
         if isinstance(m,tuple):
             m = {"database" : m[1]}
@@ -8351,7 +8355,7 @@ def index():
             # first item is always the field name according to Python Database API specs
             columns = adapter.cursor.description
             # reduce the column info down to just the field names
-            fields = [f[0] for f in columns]
+            fields = colnames or [f[0] for f in columns]
             # will hold our finished resultset in a list
             data = adapter._fetchall()
             # convert the list for each row into a dictionary so it's
@@ -10035,7 +10039,7 @@ class Query(object):
         return '<Query %s>' % BaseAdapter.expand(self.db._adapter,self)
 
     def __str__(self):
-        return self.db._adapter.expand(self)
+        return str(self.db._adapter.expand(self))
 
     def __and__(self, other):
         return Query(self.db,self.db._adapter.AND,self,other)
