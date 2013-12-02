@@ -4610,3 +4610,41 @@ AttributeError: 'int' object has no attribute 'grab_keyboard'
 2013-12-01 03:42:11,686 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-12-01 03:42:25,253 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-12-01 03:44:30,779 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 07:23:03,472 INFO - service - Undoing last abbreviation expansion
+2013-12-01 09:54:54,191 INFO - root - Displaying configuration window
+2013-12-01 10:18:53,129 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:18:53,632 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:21:31,488 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:21:31,991 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:23:06,292 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:23:06,793 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:24:58,471 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:24:58,973 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:25:13,320 ERROR - service - Script error
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/service.py", line 454, in execute
+    exec script.code in scope
+  File "<string>", line 9, in <module>
+NameError: name 'keyboardsend_keys' is not defined
+2013-12-01 10:25:31,353 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:25:31,856 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:25:54,362 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:25:54,864 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 10:26:52,550 ERROR - service - Script error
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/service.py", line 454, in execute
+    exec script.code in scope
+  File "<string>", line 0
+SyntaxError: encoding declaration in Unicode string
+2013-12-01 10:27:08,587 INFO - root - Displaying configuration window
+2013-12-01 10:27:13,031 INFO - root - Displaying configuration window
+2013-12-01 10:27:16,590 INFO - root - Displaying configuration window
+2013-12-01 10:27:23,280 INFO - root - Displaying configuration window
+2013-12-01 18:06:43,624 INFO - root - Displaying configuration window
+2013-12-01 18:06:51,325 INFO - root - Displaying configuration window
+2013-12-01 18:07:00,703 INFO - root - Displaying configuration window
+2013-12-01 18:07:03,013 INFO - root - Displaying configuration window
+2013-12-01 18:08:31,032 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 18:08:52,051 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 18:18:58,388 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-01 19:36:23,861 INFO - config-manager - Configuration changed - rebuilding in-memory structures

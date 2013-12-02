@@ -1,50 +1,64 @@
 "Last Modified: Last Modified: 2013-12-01T01:20:50
 
 " setup
+    set encoding=utf8
     syntax on
     set nocompatible
     set backspace=indent,eol,start
-
-
-
+    set wrap
     "Enable Cursor Line
         set cursorline
+    scriptencoding utf-8
 
-                "Default Colors for CursorLine
-                "    highlight  CursorLine ctermbg=Black ctermfg=None
+    " Enable snipMate compatibility feature.
+    let g:neosnippet#enable_snipmate_compatibility = 1
 
-                "Change Color when entering Insert Mode
-                "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
+    " Tell Neosnippet about the other snippets
+    let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
 
-                "Revert Color to default when leaving Insert Mode
-                "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
+    "let g:neocomplcache_enable_fuzzy_completion
 
+    imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+    imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
 
-
-    set shiftwidth=4
-    set tabstop=4
-    set expandtab
-
-    set autoindent
-    set notildeop
-
-    let g:explVertical=1
-    let g:explSplitRight=1
-
-    let g:solarized_termcolors=256
-    set colorcolumn=81
+        imap <expr> -  pumvisible() ?
+            \ "\<Plug>(neocomplcache_start_unite_quick_match)" : '-'
 
 
+                    "Default Colors for CursorLine
+                    "    highlight  CursorLine ctermbg=Black ctermfg=None
+                    "Change Color when entering Insert Mode
+                    "    autocmd InsertEnter * highlight  CursorLine ctermbg=Green ctermfg=Red
 
-    set spelllang=en
-    set spell
-    "
-    "
-    set modeline
-    set modelines=5
+                    "Revert Color to default when leaving Insert Mode
+                    "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
 
-    set ignorecase " ignore case when searching
-    set smartcase  " ... except when search pattern contains an uppercase char
+
+
+        set shiftwidth=4
+        set tabstop=4
+        set expandtab
+
+        set autoindent
+        set notildeop
+
+        let g:explVertical=1
+        let g:explSplitRight=1
+
+        let g:solarized_termcolors=256
+        set colorcolumn=81
+
+
+
+        set spelllang=en
+        set spell
+        "
+        "
+        set modeline
+        set modelines=5
+
+        set ignorecase " ignore case when searching
+        set smartcase  " ... except when search pattern contains an uppercase char
 
 "colors
 
@@ -118,7 +132,9 @@ endfunction
             "    hi def logTime guibg=green guifg=white
         "set background=dark
     let g:solarized_termcolors=256
-    let g:Powerline_symbols = 'fancy'
+    "let g:Powerline_symbols = 'fancy'
+    " Airline
+        let g:airline_powerline_fonts = 1
     "
     " Tabs and indents.
         set autoindent smartindent                      " auto indent
@@ -821,23 +837,26 @@ cabbr csd colorscheme desert
 "
 "spelllang
 function! Spell_new_word()
-    set spell!
+    "set spell!
     normal ]s
     normal 1z=
 endfunction
+
 nnoremap ,d :call Spell_new_word()
 inoremap ,d :call Spell_next_word()
 " Search
-function! InsertCmd( cmd )
-       exe ':silent !'.a:cmd.' > /tmp/vim.insert.xxx 2>/dev/null'
-       let l = readfile( '/tmp/vim.insert.xxx', '', 1 )
-       exe "normal a".l[0]
-       redraw!
-endfunction
 
-imap <silent> <F10> <Esc>:call InsertCmd( 'hostname' )<CR><Insert>
-map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
-"
+
+    function! InsertCmd( cmd )
+           exe ':silent !'.a:cmd.' > /tmp/vim.insert.xxx 2>/dev/null'
+           let l = readfile( '/tmp/vim.insert.xxx', '', 1 )
+           exe "normal a".l[0]
+           redraw!
+    endfunction
+
+    imap <silent> <F10> <Esc>:call InsertCmd( 'hostname' )<CR><Insert>
+    map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
+    "
 " Substitute
 "HOW TO WRITE VIM PLUGINS WITH PYTHON
 "
@@ -845,6 +864,7 @@ map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
 au FileType py set autoindent
 au FileType py set smartindent
 au FileType py set textwidth=79 " PEP-8 Friendly
+
 set winwidth=79 " This makes RVM work inside Vim. I have no idea why.
 set shell=bash
 set t_ti= t_te=
@@ -907,12 +927,11 @@ autocmd FileType python set sw=4 sts=4 et
                             \#<CR>
                             \<up><right>
 
-map W :NeoSnippetEdit -vertical<CR>
+    map W :NeoSnippetEdit -vertical<CR>
 
-"imap <CR>w <CR><left><BS>
 
-nnoremap <C-B> :Bookmark
-nnoremap <C-N> :ClearBookmarks
+    "nnoremap <C-B> :Bookmark
+    "nnoremap <C-N> :ClearBookmarks
 
 " :Bookmark <name>
 " :BookmarkToRoot
@@ -920,7 +939,70 @@ nnoremap <C-N> :ClearBookmarks
 " :ClearBookmarks [<names>]
 " :ClearAllBookmarks
 
+if has('conceal')
+  set conceallevel=2 concealcursor=i
+endif
+
+" Syntastic settings
+
+let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
+let g:syntastic_check_on_open=1         " Check for errors on buffer load
+let g:syntastic_auto_loc_list=1         " Open Error window automatically
+let g:syntastic_auto_jump=1             " Automatically jump to first detected error
+let g:syntastic_loc_list_height=3
+let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+
+" Gist settings
+let g:gist_open_browser_after_post=1
+let g:gist_detect_filetype=1
+
+function! UpdateModifiable()
+  if !exists("b:setmodifiable")
+    let b:setmodifiable = 0
+  endif
+  if &readonly
+    if &modifiable
+      setlocal nomodifiable
+      let b:setmodifiable = 1
+    endif
+  else
+    if b:setmodifiable
+      setlocal modifiable
+    endif
+  endif
+endfunction
+autocmd BufReadPost * call UpdateModifiable()
 
 
 
 
+
+let g:neosnippet#enable_snipmate_compatibility = 1
+
+let g:pydiction_location = '/home/ahmed/zdotfiles/2/py_dict'
+
+let g:neosnippet#enable_preview = 1
+
+"let i_<Plug>(neosnippet_start_unite_snippet)
+let g:unite_force_overwrite_statusline = 0
+
+
+autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal modifiable | endif
+
+
+function! AccentDemo()
+  let keys = ['a','b','c','d','e','f','g','h']
+  for k in keys
+    call airline#parts#define_text(k, k)
+  endfor
+  call airline#parts#define_accent('a', 'red')
+  call airline#parts#define_accent('b', 'green')
+  call airline#parts#define_accent('c', 'blue')
+  call airline#parts#define_accent('d', 'yellow')
+  call airline#parts#define_accent('e', 'orange')
+  call airline#parts#define_accent('f', 'purple')
+  call airline#parts#define_accent('g', 'bold')
+  call airline#parts#define_accent('h', 'italic')
+  let g:airline_section_a = airline#section#create(keys)
+endfunction
+autocmd VimEnter * call AccentDemo()

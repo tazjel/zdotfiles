@@ -1,6 +1,6 @@
 #!/bin/sh
 # Date:  Tue Sep  3 10:21:50 AST 2013
-# Author: Ahmed 
+# Author: Ahmed
 archs=`uname -m`
 case "$archs" in
     i?86) archs=i386 ;;
@@ -12,18 +12,16 @@ for arch in $archs; do
     test -x ./ioquake3.$arch || continue
     exec ./ioquake3.$arch "$@"
 done
-==================================================================================
 
-I'm making a script to detect the "Architecture", this is my simple code (I am using it with wine , for my Windows Games , under Linux , by each game , i use diferrent version of WineHQ, downloaded from "PlayOnLinux" site.
 
 # First Obtain "kernel" name
 KERNEL=$(uname -s)
 
-if      [ $KERNEL = "Darwin" ]; then
+if      [[ $KERNEL == "Darwin" ]]; then
         KERNEL=mac
-elif        [ $Nucleo = "Linux" ]; then
+elif        [[ $Nucleo == "Linux" ]]; then
         KERNEL=linux
-elif        [ $Nucleo = "FreeBSD" ]; then
+elif        [[ $Nucleo == "FreeBSD" ]]; then
         KERNEL=linux
 else
         echo "Unsupported OS"

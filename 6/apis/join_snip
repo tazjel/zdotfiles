@@ -1,0 +1,799 @@
+a = join(words[j:])]] dirfile = os.path
+    text = '\n'.join(t.strip() for t in text.split('\n'))
+            cal='{'+''.join('l' for j in range(cols))+'}'
+                code='\\\\'.join(x.replace('=','&=&',1) for x in code.split('\\\\'))
+    author = '\n\\and\n'.join(a.replace('\n','\\\\\n\\footnotesize ') for a in authors)
+        content = '\n'.join(content_data)
+result = ''.join(fn(i) for i in items)
+    lookup_strings = ["|".join([item['journal'], item['year'], "", "", item["lastname"] + " " + item["initials"], keyname]) for item in items]
+    folder = os.path.join(request.folder,'sources')
+                    if os.path.isdir(os.path.join(folder,f))]
+    infofile = os.path.join(FOLDER,subfolder,'info.txt')
+    filename = os.path.join(FOLDER,subfolder,'chapters.txt')
+    filename = os.path.join(FOLDER,subfolder,'%.2i.markmin' % chapter_id)
+    dest = os.path.join(request.folder, 'static_chaps', subfolder, '%.2i.html' % chapter_id)
+        filename = os.path.join(FOLDER,subfolder,'%.2i.markmin' % chapter_id)
+    filename = os.path.join(FOLDER,subfolder,'images',key)
+    filename = os.path.join(FOLDER,subfolder,'references',key)
+    button = QPushButton(u"".join("wwww"))
+    button.clicked.connect(u"".join("wwwwww"))
+gitem2 = "\n" + "#####"+ "\n" + u"".join(gitem)
+buffer.append(u"".join(gitem))
+# xp = "\n".join(buffer)
+            fullpath = os.path.join(dirpath, file)
+gitem2 = "\n" + "#####"+ "\n" + u"".join(gitem)
+buffer.append(u"".join(gitem))
+# xp = "\n".join(buffer)
+            yield os.path.join(path,name)
+            print os.path.join(dirname, name)
+            print(os.path.join(dirname, name))
+            print(os.path.join(dirpath, name))
+    logfile.write('%s\n' % os.path.join(dirname, name))
+                logfile.write('%s\n' % os.path.join(dirname, name))
+            results += '%s\n' % os.path.join(dirpath, name)
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+    ws = ','.join(choice)
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+#s = ','.join(wctext)
+    ws = ','.join(choice)
+        ws = '","'.join(choice)
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+    ws = ','.join(choice)
+                      #' '+' '.join(items[1:]))
+                      ' '+' '.join(items[11:]))
+            ip,port='.'.join(items[3][:-1]),items[3][-1]
+            ip,port='.'.join(items[4][:-1]),items[4][-1]
+            return _urljoin(base, rel or u'')
+        uri = _urljoin(base, rel)
+       'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin',
+RE_PUNCTUATION = "|".join(map(re.escape, PUNCTUATION))
+       'stroke-dashoffset', 'stroke-linecap', 'stroke-linejoin',
+    parser_dir = os.path.realpath(os.path.join("contrib", "stanford-parser"))
+    parser_dir = os.path.realpath(os.path.join("contrib", "stanford-corenlp"))
+    malt_dir = os.path.realpath(os.path.join('contrib', 'malt-parser'))
+            nfile = os.path.join(dir,file)
+            nfile = os.path.join(dir,file)
+            file_list.append(os.path.join(root,name))
+                new_line = ' '.join(new_words)
+    return ''.join([ w if w not in splitlist else ' ' for w in source]).split()
+        return '\n\n'.join(partsParsed)
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+#s = ','.join(wctext)
+    ws = ','.join(choice)
+#join is fastest on many strings,
+file.write(" ".join([str1, str2, str3, "\n"]))
+pdfpath = os.path.join('db', pid, 'paper.pdf')
+picklepath = os.path.join('db', pid, 'topwords.p')
+            fullpath = os.path.join(dirpath, file)
+        html = ' '.join(self.result)
+RE_ABBR3 = re.compile("^[A-Z][" + "|".join( # capital followed by consonants, "Mr."
+RE_EMOTICONS = [r" ?".join([re.escape(each) for each in e]) for v in EMOTICONS.values() for e in v]
+RE_EMOTICONS = re.compile(r"(%s)($|\s)" % "|".join(RE_EMOTICONS))
+    sentences = (" ".join(s) for s in sentences if len(s) > 0)
+            a = self.assessments(((w.lower(), None) for w in " ".join(self.tokenizer(s)).split()), negation)
+    tags = "".join("%s%s" % (tag, SEPARATOR) for token, tag in tagged)
+                s[i][j] = "/".join(s[i][j])
+            s[i] = " ".join(s[i])
+        s = "\n".join(s)
+            string = "\n".join(" ".join("/".join(token) for token in s) for s in string)
+        model = "\n".join(model)
+#And please use os.path.join instead of concatenating with a slash! Your problem is filePath = rootdir + '/' + file - you must concatenate the currently "walked" folder instead of the topmost folder. So that must be filePath = os.path.join(root, file). BTW "file" is a builtin, so you don't normally use it as variable name.
+    outfileName = os.path.join(root, "py-outfile.txt")
+            filePath = os.path.join(root, filename)
+            lineno, linecount, ' > '.join(result_lines).strip())
+                with open(os.path.join(root, file), 'r') as fin:
+      matches.append(os.path.join(root, filename))
+                filename = os.path.join(root, basename)
+    comment = ' '.join((uec, eosm))
+    return concat.join([word for (word, tag) in tree])
+zip_cmd = "zip -qr '%s' %s" % (bk_fn, ' '.join(bk_src))
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+#s = ','.join(wctext)
+    ws = ','.join(choice)
+            % ( "saddr=" + "%20to:".join(   [   urllib.quote(record)
+        self.snippet_text = "\n".join([self.view.substr(i) for i in self.view.sel()])
+            file_path = os.path.join(sublime.packages_path(), 'User', file_name)
+                    in iglob(os.path.join(sublime.packages_path(), 'User', '*.sublime-snippet'))]
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+           open(os.path.join("/home/ahmed/Dropbox/Causes.txt")).readlines()
+    return " ".join(essays[(num - 1)])
+    text = "\n".join(essay)
+            pardir = os.path.normpath(os.path.join(path, '..'))
+            filepath = os.path.join(path, filename)
+        dirfile = os.path.join(dir_name, file)
+		fullpath = os.path.join(path, name)
+                    fullpath = os.path.join(path, name)
+        temp = ' '.join(heading2)
+                            temp = ' '.join(sent[1:])
+                temp = ' '.join(sent[1:])
+                            temp = ' '.join(sent[1:])
+                    temp = ' '.join(sent[1:])
+            temp = ' '.join(text[counter1][0])
+                    temp = ' '.join(sent[1:])
+            temp = ' '.join(text[counter1][0])
+                            temp = ' '.join(sent[1:])
+                temp = ' '.join(sent[1:])
+            temp = ' '.join(text[counter1][0])
+                            temp = ' '.join(sent[1:])
+                        temp2 = ' '.join(text[counter2][0])
+        temp = ' '.join(heading2)
+                            headings4 = [' '.join(item) for item in headings3]
+                            tempsent0 = ' '.join(sent1)
+                temp = ' '.join(sent[1:])
+                untokend = ' '.join(sent)
+            temp = ' '.join(sent3[1:])
+            temp = ' '.join(sent3[1:])
+    untokend = ' '.join(sent[1:])
+	return u''.join(list_word).replace(u' ', u'')
+		return u''.join(l)
+		result = reshape_it(u''.join(decomposed_word.stripped_regular_letters))
+	return u''.join(reshaped_word)
+		return u'\n'.join(lines)
+				words[i] = u''.join(mixed_words)
+	return u' '.join(words)
+        dirfile = os.path.join(dir_name, file)
+zip_cmd = "zip -qr '%s' %s" % (bk_fn, ' '.join(bk_src))
+    b = n.join([p + l[w:] for l in st])
+DOW_MATCH       = r"(" + "|".join (DOW) + ")"
+        t['title'] = " ".join(title.split())  # remove useless blank chars too
+                print " ", "; ".join([__author__, __date__, __version__])
+        return ''.join(self.fed)
+        return u"{0} - {1}\n\n{2}".format(self.title, self.url, '\n'.join(self.summaries))
+#xp = " ".join()
+    return ''.join([ w if w not in splitlist else ' ' for w in source]).split()
+grades = [[float(n) for n in l.split()[1:]] for l in open(os.path.join("data/grades.txt")).readlines()[::-1][:-5]]
+            essay_text = "\n".join(essay_utils.essays[essay_index])
+                essay_text = "\n".join(essay_utils.essays[i])
+                print " | ".join([str(s) for s in [(i + 1), expected_grade, received_grade, diff, abs(diff)]])
+    train = pd.read_csv(os.path.join(data_path, "train.csv"),
+    test = pd.read_csv(os.path.join(data_path, "test.csv"),
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+    ws = ','.join(choice)
+globaldb = os.path.join('db', 'papers.p')
+  pdir = os.path.join('db', pid)
+    refpath = os.path.join(pdir, 'references.p')
+    citpath = os.path.join(pdir, 'citations.p')
+    topWordsPicklePath = os.path.join(pdir, 'topwords.p')
+      thumbs = [os.path.join('resources', pid, x) for x in thumbfiles]
+outfile = os.path.join('client', 'db.json')
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+        dirfile = os.path.join(dir_name, file)
+            return singularize(words[0], pos, custom)+"-"+"-".join(words[1:])
+build_dir = os.path.join(docs_dir, '_build')
+    run("open %s" % os.path.join(build_dir, 'index.html'))
+CSV_FILE = os.path.join(HERE, 'data.csv')
+JSON_FILE = os.path.join(HERE, "data.json")
+TSV_FILE = os.path.join(HERE, "data.tsv")
+AP_MODEL_LOC = os.path.join(HERE, 'trontagger.pickle')
+              "join|VB the|DT board|NN as|IN a|DT nonexecutive|JJ director|NN "
+CSV_FILE = os.path.join(HERE, 'data.csv')
+JSON_FILE = os.path.join(HERE, "data.json")
+TSV_FILE = os.path.join(HERE, "data.tsv")
+    def test_join(self):
+        assert_equal(tb.TextBlob(' ').join(l), tb.TextBlob('explicit is better'))
+        assert_equal(tb.TextBlob(' ').join(wl), tb.TextBlob('explicit is better'))
+                fn = os.path.join(where, name)
+                        os.path.isfile(os.path.join(fn, '__init__.py'))):
+    attr_expression = " and ".join(attr_conditions)
+    def join(self, iterable):
+        """Behaves like the built-in `str.join(iterable)` method, except
+        return self.__class__(self._strkey().join(iterable))
+                    sentence = "".join([sentence, next_token]) # append the extra punctuation
+        result += " ".join(unicode_repr(el) for el in self._rhs)
+            missing = ', '.join('%r' % (w,) for w in missing)
+    results = ' '.join(stemmed)
+    original = ' '.join(orig)
+    >>> print(" ".join(SnowballStemmer.languages)) # See which languages are supported
+            word = "".join(("Y", word[1:]))
+                word = "".join((word[:i], "Y", word[i+1:]))
+                word = "".join((word[:i], "I", word[i+1:]))
+                    word = "".join((word[:-5], "heid"))
+                    r1 = "".join((r1[:-5], "heid"))
+                        r2 = "".join((r2[:-5], "heid"))
+                        word = "".join((word[:-3], word[-3], word[-1]))
+            word = "".join(("Y", word[1:]))
+                word = "".join((word[:i], "Y", word[i+1:]))
+                        word = "".join((word[:-len(suffix)], "ee"))
+                            r1 = "".join((r1[:-len(suffix)], "ee"))
+                            r2 = "".join((r2[:-len(suffix)], "ee"))
+                            word = "".join((word, "e"))
+                            r1 = "".join((r1, "e"))
+                                r2 = "".join((r2, "e"))
+                            word = "".join((word, "e"))
+                                r1 = "".join((r1, "e"))
+                                r2 = "".join((r2, "e"))
+            word = "".join((word[:-1], "i"))
+                r1 = "".join((r1[:-1], "i"))
+                r2 = "".join((r2[:-1], "i"))
+                        word = "".join((word[:-1], "e"))
+                            r1 = "".join((r1[:-1], "e"))
+                            r2 = "".join((r2[:-1], "e"))
+                        word = "".join((word[:-len(suffix)], "ize"))
+                            r1 = "".join((r1[:-len(suffix)], "ize"))
+                            r2 = "".join((r2[:-len(suffix)], "ize"))
+                        word = "".join((word[:-len(suffix)], "ate"))
+                            r1 = "".join((r1[:-len(suffix)], "ate"))
+                            r2 = "".join((r2[:-len(suffix)], "ate"))
+                        word = "".join((word[:-len(suffix)], "al"))
+                            r1 = "".join((r1[:-len(suffix)], "al"))
+                            r2 = "".join((r2[:-len(suffix)], "al"))
+                        word = "".join((word[:-len(suffix)], "ous"))
+                            r1 = "".join((r1[:-len(suffix)], "ous"))
+                            r2 = "".join((r2[:-len(suffix)], "ous"))
+                        word = "".join((word[:-len(suffix)], "ive"))
+                            r1 = "".join((r1[:-len(suffix)], "ive"))
+                            r2 = "".join((r2[:-len(suffix)], "ive"))
+                        word = "".join((word[:-len(suffix)], "ble"))
+                            r1 = "".join((r1[:-len(suffix)], "ble"))
+                            r2 = "".join((r2[:-len(suffix)], "ble"))
+                        word = "".join((word[:-len(suffix)], "ate"))
+                            r1 = "".join((r1[:-len(suffix)], "ate"))
+                            r2 = "".join((r2[:-len(suffix)], "ate"))
+                        word = "".join((word[:-len(suffix)], "ic"))
+                            r1 = "".join((r1[:-len(suffix)], "ic"))
+                            r2 = "".join((r2[:-len(suffix)], "ic"))
+                        word = "".join((word[:-3], "ksi"))
+                        r1 = "".join((r1[:-3], "ksi"))
+                        r2 = "".join((r2[:-3], "ksi"))
+                        word = "".join((word[:-i], word[-i+1:]))
+                word = "".join((word[:i], "U", word[i+1:]))
+                    word = "".join((word[:i], "U", word[i+1:]))
+                    word = "".join((word[:i], "I", word[i+1:]))
+                    word = "".join((word[:i], "Y", word[i+1:]))
+                        word = "".join((word[:-len(suffix)], "eux"))
+                            word = "".join((word[:-1], "x"))
+                            word = "".join((word[:-3], "i"))
+                    word = "".join((word[:-6], "ant"))
+                    rv = "".join((rv[:-6], "ant"))
+                    word = "".join((word[:-6], "ent"))
+                    word = "".join((word[:-2], "l"))
+                            word = "".join((word[:-2], "iqU"))
+                    word = "".join((word[:-len(suffix)], "log"))
+                    word = "".join((word[:-len(suffix)], "u"))
+                    word = "".join((word[:-len(suffix)], "ent"))
+                            word = "".join((word[:-2], "l"))
+                            word = "".join((word[:-2], "iqU"))
+                                word = "".join((word[:-2], "iqU"))
+                word = "".join((word[:-1], "i"))
+                word = "".join((word[:-1], "c"))
+                            word = "".join((word[:-len(suffix)], "i"))
+                    word = "".join((word[:-i], "e", word[-i+1:]))
+                    word = "".join((word[:i], "U", word[i+1:]))
+                    word = "".join((word[:i], "Y", word[i+1:]))
+                    word = "".join((word[:-4], word[-3]))
+                        r1 = "".join((r1[:-4], r1[-3]))
+                        word = "".join((word[:-1], "a"))
+                        r1 = "".join((r1[:-1], "a"))
+                        word = "".join((word[:-1], "e"))
+                        r1 = "".join((r1[:-1], "e"))
+                    word = "".join((word[:-2], "e"))
+                    r1 = "".join((r1[:-2], "e"))
+                    word = "".join((word[:-len(suffix)], "a"))
+                    r1 = "".join((r1[:-len(suffix)], "a"))
+                    word = "".join((word[:-5], "a"))
+                    r1 = "".join((r1[:-5], "a"))
+                    word = "".join((word[:-5], "e"))
+                    r1 = "".join((r1[:-5], "e"))
+                        word = "".join((word[:-3], word[-2]))
+                            r1 = "".join((r1[:-3], r1[-2]))
+                    word = "".join((word[:-3], "a"))
+                    r1 = "".join((r1[:-3], "a"))
+                    word = "".join((word[:-len(suffix)], "e"))
+                    r1 = "".join((r1[:-len(suffix)], "e"))
+                        word = "".join((word[:-len(suffix)], "a"))
+                        r1 = "".join((r1[:-len(suffix)], "a"))
+                        word = "".join((word[:-len(suffix)], "e"))
+                        r1 = "".join((r1[:-len(suffix)], "e"))
+                        word = "".join((word[:-len(suffix)], "a"))
+                        r1 = "".join((r1[:-len(suffix)], "a"))
+                        word = "".join((word[:-len(suffix)], "e"))
+                        r1 = "".join((r1[:-len(suffix)], "e"))
+                        word = "".join((word[:-2], "a"))
+                        word = "".join((word[:-2], "e"))
+                word = "".join((word[:i], "U", word[i+1:]))
+                    word = "".join((word[:i], "U", word[i+1:]))
+                    word = "".join((word[:i], "I", word[i+1:]))
+                    word = "".join((word[:-len(suffix)], "e"))
+                    r1 = "".join((r1[:-len(suffix)], "e"))
+                    r2 = "".join((r2[:-len(suffix)], "e"))
+                    rv = "".join((rv[:-len(suffix)], "e"))
+                        word = "".join((word[:-2], "te"))
+                        rv = "".join((rv[:-2], "te"))
+                    word = "".join((word[:-len(suffix)], "er"))
+                    r1 = "".join((r1[:-len(suffix)], "er"))
+                    word = "".join((word[:-len(suffix)], "ir"))
+                    rv = "".join((rv[:-len(suffix)], "ir"))
+                        word = "".join((word[:-len(suffix)], "u"))
+                        rv = "".join((rv[:-len(suffix)], "u"))
+                        word = "".join((word[:-len(suffix)], "ente"))
+                        rv = "".join((rv[:-len(suffix)], "ente"))
+            word = "".join((word[:-1], "c"))
+                    word = "".join((word[:i], "U", word[i+1:]))
+                    word = "".join((word[:i], "I", word[i+1:]))
+                        word = "".join((word[:-len(suffix)], "e"))
+                            rv = "".join((rv[:-len(suffix)], "e"))
+                        word = "".join((word[:-len(suffix)], "i"))
+                            rv = "".join((rv[:-len(suffix)], "i"))
+                            word = "".join((word[:-len(suffix)], "abil"))
+                            word = "".join((word[:-len(suffix)], "iv"))
+                            word = "".join((word[:-len(suffix)], "ic"))
+                            word = "".join((word[:-len(suffix)], "at"))
+                                r2 = "".join((r2[:-len(suffix)], "at"))
+                            word = "".join((word[:-len(suffix)], "it"))
+                                r2 = "".join((r2[:-len(suffix)], "it"))
+                            word = "".join((word[:-5], "t"))
+                        word = "".join((word[:-len(suffix)], "ist"))
+                             "/".join(SnowballStemmer.languages) +
+        stemmed = " ".join(stemmer.stem(word) for word in excerpt)
+        excerpt = " ".join(excerpt)
+        JOIN, HLINK, VLINK = '+', '-', '|'
+                    if i == min_idx:    display(format(JOIN, ' ', HLINK))
+                    elif i == max_idx:  display(format(JOIN, HLINK, ' '))
+                    else:               display(format(JOIN, HLINK, HLINK))
+        display(''.join(item.center(width) for item in last_row))
+        print("\n".join(defn + examples))
+    version_file = os.path.join(os.path.dirname(__file__), 'VERSION')
+NLTK_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), '..', '..'))
+NLTK_TEST_DIR = os.path.join(NLTK_ROOT, 'nltk')
+    #print "-----", glob(os.path.join(os.path.dirname(__file__), '*.doctest'))
+    paths = glob(os.path.join(dir, '*.doctest'))
+            stroptions = ",".join(options.doctestOptions).split(',')
+        self._candc_models_path = os.path.normpath(os.path.join(self._candc_bin[:-5], '../models'))
+        args = ['--models', os.path.join(self._candc_models_path, ['boxer','questions'][question]),
+        return self._call('\n'.join(sum((["<META>'%s'" % id] + d for d,id in zip(inputs,discourse_ids)), [])), self._candc_bin, args, verbose)
+            print('Command:', binary + ' ' + ' '.join(args))
+            cmd = 'echo "%s" | %s %s' % (input_str, binary, ' '.join(args))
+            raise Exception('ERROR CALLING: %s %s\nReturncode: %d\n%s' % (binary, ' '.join(args), p.returncode, stderr))
+                                    ', '.join("%s" % r for r in self.refs),
+                                    ', '.join("%s" % c for c in self.conds))
+                                 self.sent_index, ', '.join("%s" % wi for wi in self.word_indices))
+        return iter(('['+','.join(self.ans_types)+']', self.drs1, self.variable, self.drs2))
+        pname = '_'.join(caps)
+                    accum += '\n%s%s {%s}' % (' '*(indent), feature, ('\n%s' % (' '*(indent+len(feature)+2))).join(item))
+        return '\n'.join(self._pretty())
+        refs_line = ' '.join(self._order_ref_strings(self.refs))
+        drs = '([%s],[%s])' % (','.join(self._order_ref_strings(self.refs)),
+                               ', '.join("%s" % cond for cond in self.conds)) # map(str, self.conds)))
+        var_string = ' '.join("%s" % v for v in variables) + DrtTokens.DOT
+        return ([func_line + ' ' + ' '.join(args_line) + ' ' for func_line, args_line in func_args_lines[:2]] +
+                [func_line + '(' + ','.join(args_line) + ')' for func_line, args_line in func_args_lines[2:3]] +
+                [func_line + ' ' + ' '.join(args_line) + ' ' for func_line, args_line in func_args_lines[3:]])
+        return '[' + ','.join("%s" % it for it in self) + ']'
+            refs = ' '.join("%s"%r for r in expression.refs)
+            arg_str = ','.join("%s" % arg for arg in args)
+        return Tokens.LAMBDA + ' '.join("%s" % v for v in variables) + \
+        return self.getQuantifier() + ' ' + ' '.join("%s" % v for v in variables) + \
+def _join(lst, sep=' ', untag=False):
+    Join a list into a string, turning tags tuples into tag strings or just words.
+        return sep.join(lst)
+            return sep.join(tup[0] for tup in lst)
+        return sep.join(tuple2str(tup) for tup in lst)
+    sym = _join(lst, '_', untag=True)
+        reldict['lcon'] = _join(pairs[0][0][-window:])
+        reldict['subjtext'] = _join(pairs[0][1].leaves())
+        reldict['filler'] = _join(pairs[1][0])
+        reldict['objtext'] = _join(pairs[1][1].leaves())
+        reldict['rcon'] = _join(pairs[2][0][:window])
+        return '{' + ', '.join('%s: %s' % (v, self.d[v]) for v in self.d) + '}'
+        if self.indices & arg.indices: # if the sets are NOT disjoint
+            raise linearlogic.LinearLogicApplicationException("'%s' applied to '%s'.  Indices are not disjoint." % (self, arg))
+        else: # if the sets ARE disjoint
+            accum += ' : {' + ', '.join(str(index) for index in self.indices) + '}'
+                os.path.join('grammars', 'sample_grammars',
+                            if not (cur.indices & atomic.indices): # if the sets of indices are disjoint
+                            if not (cur.indices & nonatomic.indices): # if the sets of indices are disjoint
+  - A "joint-feature" is a property of a labeled token.
+input-features are typically called "contexts", and joint-features
+Converting Input-Features to Joint-Features
+In maximum entropy models, joint-features are required to have numeric
+set of joint-features of the form:
+|   joint_feat(token, label) = { 1 if input_feat(token) == feat_val
+    set of "weights", which are used to combine the joint-features
+            joint-feature vectors, which are used by the maxent
+        print('  Feature'.ljust(descr_width)+''.join(
+        print('  TOTAL:'.ljust(descr_width)+''.join(
+        print('  PROBS:'.ljust(descr_width)+''.join(
+    of joint-feature values, given a label.  This conversion is
+    The set of joint-features used by a given encoding is fixed, and
+    each index in the generated joint-feature vectors corresponds to a
+    single joint-feature.  The length of the generated joint-feature
+    Because the joint-feature vectors generated by
+    value of each non-zero joint-feature.
+        vector of joint-feature values.  This vector is represented as
+        each non-zero joint-feature.
+        :return: The size of the fixed-length joint-feature vectors
+            joint-feature vector for some value of ``fs``.
+        :return: A string describing the value of the joint-feature
+    given featureset/label pair to a sparse joint-feature vector.
+             and a label, and returns the sparse joint feature vector
+             This sparse joint feature vector (``feature_vector``) is a
+        :param length: The size of the fixed-length joint-feature
+            ``self.encode(fs,l)`` can be a nonzero joint-feature vector
+    joint-features of the form:
+    |  joint_feat(fs, l) = { 1 if (fs[fname] == fval) and (l == label)
+    |  joint_feat(fs, l) = { 1 if is_unseen(fname, fs[fname])
+    contain any joint features that are true when ``fs[fname]==fval``.
+    |  joint_feat(fs, l) = { 1 if (l == label)
+            tuples to corresponding joint-feature indexes.  These
+           features in the generated joint-feature vectors.
+           features in the generated joint-feature vectors.
+        """The length of generated joint feature vectors."""
+        # Convert input-features to joint-features:
+        joint-features that will be included in this encoding.
+            rare joint-features.  If a joint-feature's value is 1
+            then that joint-feature is not included in the generated
+                # If a count cutoff is given, then only add a joint
+    A binary feature encoding which adds one new joint-feature to the
+    joint-features defined by ``BinaryMaxentFeatureEncoding``: a
+    float and binary joint-features of the form:
+    |  joint_feat(fs, l) = { 1 if (fs[fname] == fval) and (l == label)
+    |  joint_feat(fs, l) = { fval if     (fs[fname] == type(fval))
+    |  joint_feat(fs, l) = { 1 if is_unseen(fname, fs[fname])
+    contain any joint features that are true when ``fs[fname]==fval``.
+    |  joint_feat(fs, l) = { 1 if (l == label)
+            tuples to corresponding joint-feature indexes.  These
+           features in the generated joint-feature vectors.
+           features in the generated joint-feature vectors.
+        """The length of generated joint feature vectors."""
+        # Convert input-features to joint-features:
+        joint-features that will be included in this encoding.
+            rare joint-features.  If a joint-feature's value is 1
+            then that joint-feature is not included in the generated
+                # If a count cutoff is given, then only add a joint
+    # Cinv is the inverse of the sum of each joint feature vector.
+    # print './megam_i686.opt ', ' '.join(options)
+        all joint features have binary values, and are listed iff they
+            stream.write(':'.join(str(encoding.cost(featureset, label, l)) for l in labels))
+                ' '.join('%d %d' % u for u in v)
+    print('  Senses: ' + ' '.join(senses))
+            if os.path.exists(os.path.join(path, 'weka.jar')):
+                _weka_classpath = os.path.join(path, 'weka.jar')
+            test_filename = os.path.join(temp_dir, 'test.arff')
+                os.remove(os.path.join(temp_dir, f))
+            train_filename = os.path.join(temp_dir, 'train.arff')
+                os.remove(os.path.join(temp_dir, f))
+        s += '@ATTRIBUTE %-30r {%s}\n' % ('-label-', ','.join(self._labels))
+    lib_dir = os.path.join(_mallet_home, 'lib')
+    _mallet_classpath = os.path.pathsep.join(os.path.join(lib_dir, filename)
+    These models define the joint probability of a sequence of symbols and
+        is labelled, then returns the joint probability of the symbol, state
+        sequence is labelled, then returns the joint log-probability of the
+                    ' '.join('%s/%s' % (token, tag)
+                    ' '.join("%s" % token for (token, tag) in test_sent))
+                    ' '.join('%s/%s' % (token, tag)
+        Supervised training maximising the joint probability of the symbol and
+                return path.join(self._path, 'senna-linux64')
+            return path.join(self._path, 'senna-linux32')
+            return path.join(self._path, 'senna-win32.exe')
+            return path.join(self._path, 'senna-osx')
+        return path.join(self._path, 'senna')
+        _input = '\n'.join((' '.join(x) for x in sentences))+'\n'
+            be mapped to joint-features.  See CRFInfo.WeightGroup
+            print(''.join(out[-100:]))
+        info['states'] = '\n'.join(state.toxml() for state in self.states)
+        info['w_groups'] = '\n'.join(wg.toxml() for wg in self.weight_groups)
+            info['transitions'] = '\n'.join(transition.toxml()
+            info['w_groups'] = ' '.join(wg for wg in self.weightgroups)
+        mapped to joint-features (which are a function of both the input
+    print(textwrap.fill(' '.join('%s/%s' % w for w in sample_output),
+from os.path import join
+    contents = load(join(_UNIVERSAL_DATA, fileid+'.map'), format="text")
+            conditions = ' and '.join('%s in %d...%d' % (v,s,e)
+            conditions = ' if '+ ', and '.join(self._condition_to_str(c)
+                left = ' '.join('%s/%s' % w for w in train_sent[:wordnum])
+                right = ' '.join('%s/%s' % w for w in train_sent[wordnum+1:])
+        self._regexs = re.compile('|'.join('(?P<%s>%s)' % (label, regex) for regex,label in regexps_labels))
+        default_options = ' '.join(_java_options)
+        _input = '\n'.join((' '.join(x) for x in sentences))
+                sentence.append((''.join(word_tags[:-1]), word_tags[-1]))
+    >>> print(", ".join(brown.words()))
+            headline = ' '.join(self.headline.leaves())
+            headline = ' '.join([w for w in self.text.leaves()
+        return ['\n'.join(out)]
+    >>> print(", ".join(brown.words()))
+            self.root.join('psd'), '.*', '.psd', encoding=encoding)
+            self.root.join('pos'), '.*', '.pos')
+        if titles: self.title = '\n'.join(
+        if authors: self.author = '\n'.join(
+        if editors: self.editor = '\n'.join(
+        if resps: self.resps = '\n\n'.join(
+            '\n'.join(resp_elt.text.strip() for resp_elt in resp)
+            #sys.stderr.write(' '.join(t.split())+'\n')
+        return '*'.join('%s' % p for p in self.pieces)
+        return ','.join('%s' % p for p in self.pieces)
+_morphs2str_default = lambda morphs: '/'.join(m[0] for m in morphs if m[0] != 'EOS')
+                res.append( (cells[0], ' '.join(cells[1:])) )
+                morph = ( cells[0], ' '.join(cells[1:]) )
+    print(''.join( knbc.words()[:100] ))
+    print('\n\n'.join( '%s' % tree for tree in knbc.parsed_sents()[:2] ))
+    knbc.morphs2str = lambda morphs: '/'.join(
+    print('\n\n'.join( '%s' % tree for tree in knbc.parsed_sents()[:2] ))
+    print('\n'.join( ' '.join("%s/%s"%(w[0], w[1].split(' ')[2]) for w in sent)
+                xml_block = '\n'.join(instance_lines)
+    A 'view' of a corpus file that joins together one or more
+        return ''.join(docs)
+            return [''.join(lines)]
+            return [''.join(lines)]
+            return [''.join(lines)]
+            prefix = ''.join('%s/' % p for p in _path_from(root.path, dirname))
+                    print('%25s %s' % ('/'.join(context)[-20:], piece.group()))
+                        if re.match(tagspec, '/'.join(context)):
+                        elts.append( (elt_text, '/'.join(context)) )
+                        if re.match(tagspec, '/'.join(context)+'/'+name):
+                                         '/'.join(context)+'/'+name))
+        return ''.join([open(fileid, 'r').read()
+        return 'SpeakerInfo(%s)' % (', '.join(args))
+            text = ' '.join('%s/%s' % w for w in self)
+            text = ' '.join(self)
+                w = (_cells[0], '\t'.join(_cells[1:]))
+    print('/'.join( jeita.words()[22100:22140] ))
+    print('\nEOS\n'.join('\n'.join("%s/%s" % (w[0],w[1].split('\t')[2]) for w in sent)
+            synset.definition = '; '.join(definitions)
+        verbstr = ' '.join(self.words[i][0] for i in self.verb)
+        s += '\n'.join(self.pprint_frame(vnframe, indent='    ')
+        s = 'Subclasses: ' + ' '.join(subclasses)
+        s = 'Members: ' + ' '.join(members)
+                piece += '[%s]' % ' '.join(modifiers)
+        return '\n'.join(pieces)
+                piece += '[%s]' % ' '.join(modifiers)
+        return indent + ' '.join(pieces)
+            pieces.append('%s(%s)' % (pred.get('value'), ', '.join(args)))
+        return '\n'.join('%s* %s' % (indent, piece) for piece in pieces)
+        return '*'.join('%s' % p for p in self.pieces)
+        return ','.join('%s' % p for p in self.pieces)
+    outstr += "  " + ", ".join('{0}({1})'.format(x.name, x.ID) for x in st.subTypes) + '\n'*(len(st.subTypes)>0)
+        outstr += "\n[lexemes] {0}\n".format(' '.join('{0}/{1}'.format(lex.name,lex.POS) for lex in lu.lexemes))
+        outstr += "  "*(len(lu.semTypes)>0) + ", ".join('{0}({1})'.format(x.name, x.ID) for x in lu.semTypes) + '\n'*(len(lu.semTypes)>0)
+        for line in textwrap.fill(", ".join(sorted(subc)), 60).split('\n'):
+    outstr += "  "*(len(frame.semTypes)>0) + ", ".join("{0}({1})".format(x.name, x.ID) for x in frame.semTypes) + '\n'*(len(frame.semTypes)>0)
+    outstr += '  ' + '\n  '.join(repr(frel) for frel in frame.frameRelations) + '\n'
+    outstr += "{0}\n".format(_pretty_longstring(', '.join(lustrs),prefix='  '))
+        outstr += "{0:>16}: {1}\n".format(ct, ', '.join(sorted(fes[ct])))
+    outstr += "  " + '\n  '.join(", ".join([x.name for x in coreSet]) for coreSet in frame.FEcoreSets) + '\n'
+        return '{'+(',\n ' if self._BREAK_LINES else ', ').join(parts)+'}'
+                return "[%s, ...]" % text_type(',\n ' if self._BREAK_LINES else ', ').join(pieces[:-1])
+        return "[%s]" % text_type(',\n ' if self._BREAK_LINES else ', ').join(pieces)
+                return "[%s, ...]" % text_type(', ').join(pieces[:-1])
+            return "[%s]" % text_type(', ').join(pieces)
+        locpath = os.path.join(
+        locpath = os.path.join(
+        locpath = os.path.join("{0}".format(self._root), self._lu_dir, fname)
+            by joining the reader's root to each file name.
+        return self._root.join(fileid)
+        paths = [self._root.join(f) for f in fileids]
+        stream = self._root.join(file).open(encoding)
+            block[2] = " ".join(block[2]) # kludge; we shouldn't have tokenized the alignment string
+        # print "Context (%d): <%s>" % (self._n, ','.join(context))
+                             " ".join(words))
+                        ' '.join(self._tokens[i-context:i]))
+                right = ' '.join(self._tokens[i+1:i+context])
+        self._raw = ''.join('<'+w+'>' for w in tokens)
+            self.name = " ".join(text_type(tok) for tok in tokens[1:end])
+            self.name = " ".join(text_type(tok) for tok in tokens[:8]) + "..."
+        hits = [' '.join(h) for h in hits]
+         "PMing", "me", "to", "lol", "JOIN"]
+         "will", "join", "the", "board", "as", "a", "nonexecutive",
+    print("sent1:", " ".join(sent1))
+    print("sent2:", " ".join(sent2))
+    print("sent3:", " ".join(sent3))
+    print("sent4:", " ".join(sent4))
+    print("sent5:", " ".join(sent5))
+    print("sent6:", " ".join(sent6))
+    print("sent7:", " ".join(sent7))
+    print("sent8:", " ".join(sent8))
+    print("sent9:", " ".join(sent9))
+        join_string = '\n'
+                yield (mkr, join_string.join(value_lines))
+        yield (mkr, join_string.join(value_lines))
+    return ''.join(l[1:])
+    return ''.join(l)
+        return '<FreqDist: %s>' % ', '.join(items)
+    word in a corpus, and the joint frequency of word tuples. This data
+        print('\t', [' '.join(tup) for tup in cf.nbest(scorer, 15)])
+        return (result, '\n'.join(debugger.lines))
+                    used_vars = "[%s]" % (",".join("%s" % ve.variable.name for ve in ex._used_vars))
+    print('%s |- %s: %s' % (', '.join(ps), pc, TableauProver().prove(pc, pps, verbose=verbose)))
+        return '{' + ', '.join("%s" % item for item in self) + '}'
+        data_str = ', '.join('%s: %s' % (v, self.d[v]) for v in sorted(self.d.keys()))
+                                "code %d" % (' '.join(cmd), ret))
+            input_file.write('\n'.join(dg.to_conll(10) for dg in depgraphs))
+                            (' '.join(cmd), ret))
+    print('Parsing \'', " ".join(sent), '\'...')
+            print('Parsing %r' % " ".join(tokens))
+        s += '* ' + ' '.join(remaining_text) + ']'
+            rhs = " ".join(production.rhs())
+        print('%3d. %s' % (n, ' '.join(sent)))
+        return ''.join(lines)
+join    VB      8       VC
+join    VB      8       VC
+            bindings = '{%s}' % ', '.join('%s: %r' % item for item in
+        print('Parsing %r' % " ".join(text))
+                '\n'.join(self.pp_edge(edge, width) for edge in edges))
+    A rule that joins two adjacent edges to form a single combined
+    A rule that joins a given edge with adjacent edges in the chart,
+        self.filename = os.path.join(subdir, id+ext)
+           is formed by joining ``self.subdir`` with ``self.id``, and
+        filepath = os.path.join(download_dir, info.filename)
+        if not os.path.exists(os.path.join(download_dir, info.subdir)):
+            os.mkdir(os.path.join(download_dir, info.subdir))
+            zipdir = os.path.join(download_dir, info.subdir)
+            if info.unzip or os.path.exists(os.path.join(zipdir, info.id)):
+            filepath = os.path.join(download_dir, info.filename)
+            unzipped_size = sum(os.stat(os.path.join(d, f)).st_size
+        return os.path.join(homedir, 'nltk_data')
+        print('    ' + spc.join(options))
+        text = '\n'.join(self._log_messages)
+            dirpath = os.path.join(root, *pieces[:i+1])
+        filepath = os.path.join(root, *filename.split('/'))
+    for pkg_xml, zf, subdir in _find_packages(os.path.join(root, 'packages')):
+    collections = list(_find_collections(os.path.join(root, 'collections')))
+                xmlfile = os.path.join(dirname, filename)
+        relpath = '/'.join(_path_from(root, dirname))
+                xmlfilename = os.path.join(dirname, filename)
+    print('\n'.join(textwrap.wrap(s, width=width)))
+    return '\n'.join(textwrap.wrap(separator.join(tokens), width=width))
+        % ', '.join([repr(enc) for enc in encodings if enc]))
+                return '[%s, ...]' % text_type(', ').join(pieces[:-1])
+            return '[%s]' % text_type(', ').join(pieces)
+        return  re.compile(r"\b({0})\b".format("|".join(map(re.escape,
+        return '\n'.join(self._str(self._find_reentrances({}), {}))
+        return '%s[%s]%s' % (prefix, ', '.join(segments), suffix)
+        return '%s[%s]' % (prefix, ', '.join(segments))
+        fullname = '.'.join("%s" % n for n in path)
+        bindstr = '{%s}' % ', '.join(
+        return '(%s)' % ', '.join('%s' % (b,) for b in self)
+        return '{%s}' % ', '.join(sorted('%s' % (b,) for b in self))
+        return '{%s}' % '+'.join(sorted('%s' % (b,) for b in self))
+        return '(%s)' % '+'.join('%s' % (b,) for b in self)
+        print('\n'.join(indent+l.center(linelen)
+                    for sent in load_ace_file(os.path.join(root, f), fmt):
+    lines = [" ".join(token) for token in tree2conlltags(t)]
+    return '\n'.join(lines)
+    s = "[ Pierre/NNP Vinken/NNP ] ,/, [ 61/CD years/NNS ] old/JJ ,/, will/MD join/VB [ the/DT board/NN ] ./."
+        self._str = '<' + '><'.join(tags) + '>'
+        return ''.join(lst)
+            print('  ', ' '.join(map(str,chunk)))
+            print('  ', ' '.join(map(str,chunk)))
+        :param unaryChar: A string joining two non-terminals in a unary production (default = "+")
+    def collapse_unary(self, collapsePOS = False, collapseRoot = False, joinChar = "+"):
+        into a new non-terminal (Tree node) joined by 'joinChar'.
+        :param joinChar: A string used to connect collapsed node values (default = "+")
+        :type  joinChar: str
+        collapse_unary(self, collapsePOS, collapseRoot, joinChar)
+        childstr = ", ".join(unicode_repr(c) for c in self)
+                s += '\n'+' '*(indent+2)+ "/".join(child)
+                childstrs.append("/".join(child))
+                                    " ".join(childstrs), parens[1])
+                                    " ".join(childstrs), parens[1])
+    treebank_string = " ".join(tokens)
+        words = "[%s]" % (", ".join("'%s'" % w for w in self._words))
+        mots = "[%s]" % (", ".join("'%s'" % w for w in self._mots))
+        source = " ".join(self._words)[:20] + "..."
+        target = " ".join(self._mots)[:20] + "..."
+        return " ".join("%d-%d" % p[:2] for p in sorted(self))
+    return ''.join(
+    print(textwrap.fill(" ".join(output), line_length))
+        os.path.join(sys.prefix, str('nltk_data')),
+        os.path.join(sys.prefix, str('lib'), str('nltk_data')),
+        os.path.join(os.environ.get(str('APPDATA'), str('C:\\')), str('nltk_data'))
+    return ''.join([protocol,name])
+    def join(self, fileid):
+    def join(self, fileid):
+        _path = os.path.join(self._path, fileid)
+    def join(self, fileid):
+        return os.path.normpath(os.path.join(self._zipfile.filename, self._entry))
+                p = os.path.join(_path, resource_name)
+                p = os.path.join(_path, zipfile)
+            modified_name = '/'.join(pieces[:i]+[pieces[i]+'.zip']+pieces[i:])
+    msg += '\n  Searched in:' + ''.join('\n    - %r' % d for d in paths)
+            chars = ''.join(self.linebuffer) + chars
+            check2 = ''.join(self.linebuffer)
+NLTK_JAR = os.path.abspath(os.path.join(os.path.split(__file__)[0],
+        path_to_file = os.path.join(filename, alternative)
+        path_to_file = os.path.join(filename, 'file', alternative)
+                    path_to_file = os.path.join(env_dir, alternative)
+                    path_to_file = os.path.join(env_dir, 'file', alternative)
+            path_to_file = os.path.join(directory, alternative)
+        msg += ''.join('\n    - %s' % d for d in searchpath)
+        path_to_jar = os.path.join(directory, name)
+        msg += ''.join('\n    - %s' % d for d in searchpath)
+        sentence = " ".join(self._sent)
+        sentence = " ".join(self._sent)
+            rhs = " ".join(rhselts)
+        rhs1 = " ".join(rhs[:pos])
+        rhs2 = " ".join(rhs[pos:])
+        sentence = " ".join(self._tokens)
+         "<indent>\nMerge rule: joins consecutive chunks that match regexp1 "
+                text = text.replace('<<TAGSET>>', '\n'.join(
+            out.write(''.join('  %s\n' % line for line in g.strip().split()))
+            out.write(''.join('  %s\n' % line for line
+        sent = ''.join([' '] * d) + sent
+                self.model.tagged_sents = [' '.join(w+'/'+t for (w,t) in sent) for sent in ts]
+            return ' '.join(new)
+        browser_thread.join()
+    s += ', '.join(format_lemma(l.name) for l in synset.lemmas)
+         "; ".join("\"%s\"" % e for e in synset.examples))
+        ''.join((_collect_one_synset(word, synset, synset_relations)
+                 ''.join('<li>%s</li>\n' % relation_html(sr) for sr in r[1]))
+                ''.join("<li>%s</li>\n" % relation_html(r) for r in rels)
+        '\n'.join(("<li>%s</li>" % make_synset_html(*rel_data) for rel_data
+                parentString = "%s<%s>" % (parentChar, "-".join(parent))
+                        newHead = "%s%s<%s>%s" % (originalNode, childChar, "-".join(childNodes[i:min([i+horzMarkov,numChildren])]),parentString) # create new head
+                        newHead = "%s%s<%s>%s" % (originalNode, childChar, "-".join(childNodes[max([numChildren-i-horzMarkov,0]):-i]),parentString)
+def collapse_unary(tree, collapsePOS = False, collapseRoot = False, joinChar = "+"):
+    into a new non-terminal (Tree node) joined by 'joinChar'.
+    :param joinChar: A string used to connect collapsed node values (default = "+")
+    :type  joinChar: str
+                node.node += joinChar + node[0].node
+    module_path = '.'.join(components[:-1])
+    print("psent1:", " ".join(psent1))
+    print("psent2:", " ".join(psent2))
+    print("psent3:", " ".join(psent3))
+    print("psent4:", " ".join(psent4))
+        nopunct_text = ''.join(c for c in lowercase_text
+                             ' '.join(valid_blanklines))
+    >>> print('\n-----\n'.join(sent_detector.tokenize(text.strip())))
+    >>> print('\n-----\n'.join(
+    >>> print('\n-----\n'.join(
+        return '[%s]' % re.escape(''.join(self.sent_end_chars))
+        propvals = ', '.join(
+                pat = '\s*'.join(re.escape(c) for c in tok)
+    >>> t = AnnotationTask(data=[x.split() for x in open(os.path.join(os.path.dirname(__file__), "artstein_poesio_example.txt"))])
+        return "\r\n".join(map(lambda x:"%s\t%s\t%s" %
+                                ",".join(x['labels'])), self.data))
+        restrictions = "[%s]" % ",".join(unicode_repr(r) for r in self._restrs)
+RE_ABBR3 = re.compile("^[A-Z][" + "|".join( # capital followed by consonants, "Mr."
+RE_EMOTICONS = [r" ?".join([re.escape(each) for each in e]) for v in EMOTICONS.values() for e in v]
+RE_EMOTICONS = re.compile(r"(%s)($|\s)" % "|".join(RE_EMOTICONS))
+    sentences = (" ".join(s) for s in sentences if len(s) > 0)
+            a = self.assessments(((w.lower(), None) for w in " ".join(self.tokenizer(s)).split()), negation)
+    tags = "".join("%s%s" % (tag, SEPARATOR) for token, tag in tagged)
+                s[i][j] = "/".join(s[i][j])
+            s[i] = " ".join(s[i])
+        s = "\n".join(s)
+            string = "\n".join(" ".join("/".join(token) for token in s) for s in string)
+        model = "\n".join(model)
+    return concat.join([word for (word, tag) in tree])
+__version__ = ".".join(map(str,VERSION))
+                ret = ''.join([ret, word])
+                ret = ' '.join([ret, word])
+        path = os.path.join(MODULE, "en-spelling.txt")
+        path = os.path.join(MODULE, "en-lexicon.txt"),
+  morphology = os.path.join(MODULE, "en-morphology.txt"),
+     context = os.path.join(MODULE, "en-context.txt"),
+    entities = os.path.join(MODULE, "en-entities.txt"),
+        path = os.path.join(MODULE, "en-sentiment.xml"),
+            return singularize(words[0], pos, custom)+"-"+"-".join(words[1:])
+            pardir = os.path.normpath(os.path.join(path, '..'))
+            filepath = os.path.join(path, filename)
+essays = [[line.strip() for line in open(os.path.join("/home/ahmed/alltxt/02whole.txt")).readlines() if len(line.strip()) > 1] for essay in range(1, 21)]
+            os.rmdir(os.path.join(root, name))
+            print 'Skipping', os.path.join(root, name)
+    print "This sentence is about: %s" % ", ".join(result)
+        return ("\n").join(summary)
+    from os.path import join, isdir, islink, abspath
+            if isdir(join(top, name)):
+            path = join(top, name)
+        path = join(top, name)
+            link_abs = abspath(join(top, os.readlink(path)))
+    from os.path import basename, exists, isdir, join, normpath, abspath, \
+                            d = join(dirpath, dirname)
+                                f = join(dirpath, filename)
+globaldb = os.path.join('db', 'papers.p')
+  q = " ".join(sys.argv[2:])
+  dirpath = os.path.join('db', idstr)
+  print "author: ", (", ".join(a['FirstName'] + ' ' + a['LastName'] for a in pub['Author']))
+jsonpath = os.path.join(dirpath, 'json.p')
+  refPicklePath = os.path.join('db', idstr, fname)
+pdfpath = os.path.join('db', idstr, 'paper.pdf')
+  thumbpath = os.path.join('db', idstr, 'thumb.png')
+        return ''.join(self.fed)
+            sentences += [[" ".join(words[:i]), " ".join(words[i:])]]
+                    sentences += [[" ".join(words[:i]), " ".join(words[i:j]), " ".join(words[j:])]]
+        dirfile = os.path.join(dir_name, file)
+    words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)
+#s = ','.join(wctext)
+    ws = ','.join(choice)
+  exec('\n'.join(r[:]) + '\n')
+  exec('\n'.join(r[:]) + '\n')

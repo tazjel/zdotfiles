@@ -17,7 +17,6 @@ def getwords(text, splitchars=' \t|!?.;:,"_'):
 options = [x for x in getwords(stext)]
         ########
 
-W W
 clipboard.fill_clipboard(stext)
 
 
@@ -72,3 +71,6 @@ if retCode == 0:
 
 
 del ctext,stext,options,ws
+
+Ah
+

@@ -32,3 +32,5 @@ for file in $HOME/{.shell/bash,.shell}/*; do
 done
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+
+export LESS="-R"

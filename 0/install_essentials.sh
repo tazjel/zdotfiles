@@ -1,5 +1,22 @@
 #!/bin/bash
 
+
+# Obtain "kernel" name
+KERNEL=$(uname -s)
+
+if      [ $KERNEL = "Darwin" ]; then
+        KERNEL=mac
+elif        [ $Nucleo = "Linux" ]; then
+        KERNEL=linux
+elif        [ $Nucleo = "FreeBSD" ]; then
+        KERNEL=linux
+else
+        echo "Unsupported OS"
+fi
+
+
+
+
 ##On a freshly installed system, create the starting baseline list of packages:
 list_installed_packages_deb(){
     apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > ~/Dropbox/install-zdotfiles/packages-alpha.txt

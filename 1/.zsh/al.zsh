@@ -6,6 +6,18 @@
    # F
     # <F0>
        #
+
+        #Standard Time Zone: GMT/UTC + 03:00 hour
+            SixDaysAgo=$(date --date='6 days ago')
+            OneMonthAgo=$(date --date='1 month ago')  # Four weeks back (not a month!)
+            OneYearAgo=$(date --date='1 year ago')
+
+        #Time zone dump: echoes the time in a specified time zone.
+            #Current local time in Jeddah, Saudi Arabia
+            #Current local time in Jeddah, Saudi Arabia
+            #zdump UTC
+
+
         git_clone_ranger(){
             git clone git://git.savannah.nongnu.org/ranger.git
         }
@@ -216,31 +228,27 @@
     bindkey '\C-x\C-e' edit-command-line
     export EDITOR=vim
 ############################  SETUP PARAMETERS
-#Coordinates
-#Latitude:	21° 3' North
-#Longitude:	39° 1' East
+                Coordinates
+                Latitude:	21° 3' North
+                Longitude:	39° 1' East
 
 
-#SETUP  Standard Time
-    #+3   EAT   Saudi Arabia
-      #$ export TZ=EST05EDT
-    #-5   EST   Eastern Standard Time
-    #TZ=<timezone><hour offset from UTC><dst timezone>.
+                #SETUP  Standard Time
+                  #$ export TZ=EST05EDT
 
-#export TZ=:/usr/share/zoneinfo/posix/Asia/Riyadh
-export TZ=EAT
+                    export TZ=UTC
 
 
 
-alias pygrep="grep --include='*.py' $*"
-export ACK_COLOR_MATCH='red'
+                alias pygrep="grep --include='*.py' $*"
+                export ACK_COLOR_MATCH='red'
 
-export LC_ALL=en_US.UTF-8
+                export LC_ALL=en_US.UTF-8
 
-export WORDCHARS='*?[]~&;!$%^<>'
+                export WORDCHARS='*?[]~&;!$%^<>'
 
 
-    LS_COLORS='rs=0:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
+    #LS_COLORS='rs=0:di=01;33:ln=01;36:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32:*.tar=01;31:*.tgz=01;31:*.arj=01;31:*.taz=01;31:*.lzh=01;31:*.lzma=01;31:*.tlz=01;31:*.txz=01;31:*.zip=01;31:*.z=01;31:*.Z=01;31:*.dz=01;31:*.gz=01;31:*.lz=01;31:*.xz=01;31:*.bz2=01;31:*.bz=01;31:*.tbz=01;31:*.tbz2=01;31:*.tz=01;31:*.deb=01;31:*.rpm=01;31:*.jar=01;31:*.war=01;31:*.ear=01;31:*.sar=01;31:*.rar=01;31:*.ace=01;31:*.zoo=01;31:*.cpio=01;31:*.7z=01;31:*.rz=01;31:*.jpg=01;35:*.jpeg=01;35:*.gif=01;35:*.bmp=01;35:*.pbm=01;35:*.pgm=01;35:*.ppm=01;35:*.tga=01;35:*.xbm=01;35:*.xpm=01;35:*.tif=01;35:*.tiff=01;35:*.png=01;35:*.svg=01;35:*.svgz=01;35:*.mng=01;35:*.pcx=01;35:*.mov=01;35:*.mpg=01;35:*.mpeg=01;35:*.m2v=01;35:*.mkv=01;35:*.webm=01;35:*.ogm=01;35:*.mp4=01;35:*.m4v=01;35:*.mp4v=01;35:*.vob=01;35:*.qt=01;35:*.nuv=01;35:*.wmv=01;35:*.asf=01;35:*.rm=01;35:*.rmvb=01;35:*.flc=01;35:*.avi=01;35:*.fli=01;35:*.flv=01;35:*.gl=01;35:*.dl=01;35:*.xcf=01;35:*.xwd=01;35:*.yuv=01;35:*.cgm=01;35:*.emf=01;35:*.axv=01;35:*.anx=01;35:*.ogv=01;35:*.ogx=01;35:*.aac=00;36:*.au=00;36:*.flac=00;36:*.mid=00;36:*.midi=00;36:*.mka=00;36:*.mp3=00;36:*.mpc=00;36:*.ogg=00;36:*.ra=00;36:*.wav=00;36:*.axa=00;36:*.oga=00;36:*.spx=00;36:*.xspf=00;36:';
 
 export LS_COLORS
 
@@ -254,9 +262,9 @@ export LS_COLORS
         Update
         Delete
     }
-    AK="$HOME/.config/autokey/data"
-    DB="$HOME/Dropbox"
-    DL="$HOME/Downloads"
+            AK="$HOME/.config/autokey/data"
+            DB="$HOME/Dropbox"
+            DL="$HOME/Downloads"
 
 zgrep_Quran() {
     cd ~/zdotfiles/References/Quran
@@ -746,8 +754,11 @@ wwww_doc(){
 # F2
 ########################################################
 # <F3>
-wg_txt() {
-    find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep -hisyE "$1" {} \; }
+
+# exec  ./cache/ubuntu/DEBS_avail
+wft() {
+    find . -type f -print0 -exec grep -hisyE "$2" {} \;
+}
 
 
 # Unbreak history
@@ -1319,4 +1330,134 @@ list_references(){
 
 
 alias 'wp'='ipython --profile=z'
+
+msg() {
+    printf '%b\n' "$1" >&2
+}
+
+success() {
+    if [ "$ret" -eq '0' ]; then
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+    fi
+}
+
+error() {
+    msg "\e[31m[✘]\e[0m ${1}${2}"
+    exit 1
+}
+
+debug() {
+    if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
+      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+    fi
+}
+
+program_exists() {
+    local ret='0'
+    type $1 >/dev/null 2>&1 || { local ret='1'; }
+
+    # throw error on non-zero return value
+    if [ ! "$ret" -eq '0' ]; then
+    error "$2"
+    fi
+}
+
+############################ SETUP FUNCTIONS
+lnif() {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?"
+    debug
+}
+
+do_backup() {
+    if [ -e "$2" ] || [ -e "$3" ] || [ -e "$4" ]; then
+        today=`date +%Y%m%d_%s`
+        for i in "$2" "$3" "$4"; do
+            [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$i.$today";
+        done
+        ret="$?"
+        success "$1"
+        debug
+   fi
+}
+
+upgrade_repo() {
+      msg "trying to update $1"
+
+      if [ "$1" = "$app_name" ]; then
+          cd "$HOME/.$app_name-3" &&
+          git pull origin "$git_branch"
+      fi
+
+      if [ "$1" = "vundle" ]; then
+          cd "$HOME/.vim/bundle/vundle" &&
+          git pull origin master
+      fi
+
+      ret="$?"
+      success "$2"
+      debug
+}
+
+clone_repo() {
+    program_exists "git" "Sorry, we cannot continue without GIT, please install it first."
+    endpath="$HOME/.$app_name-3"
+
+    if [ ! -e "$endpath/.git" ]; then
+        git clone --recursive -b "$git_branch" "$git_uri" "$endpath"
+        ret="$?"
+        success "$1"
+        debug
+    else
+        upgrade_repo "$app_name"    "Successfully updated $app_name"
+    fi
+}
+
+clone_vundle() {
+    if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
+        git clone https://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
+    else
+        upgrade_repo "vundle"   "Successfully updated vundle"
+    fi
+    ret="$?"
+    success "$1"
+    debug
+}
+
+# for github
+alias wgets="wget --no-check-certificate "
+
+
+
+upload_keys () {
+     upload_keys SSH
+
+    KEY="$HOME/.ssh/id_rsa.pub"
+
+    if [ ! -f ~/.ssh/id_rsa.pub ];then
+        echo "private key not found at $KEY"
+        echo "* please create it with "ssh-keygen -t rsa" *"
+        echo "* to login to the remote host without a password, don't give the key you create with ssh-keygen a password! *"
+        exit
+    fi
+
+    if [ -z $1 ];then
+        echo "Please specify user@host.tld as the first switch to this script"
+        exit
+    fi
+
+    echo "Putting your key on $1... "
+
+    KEYCODE=`cat $KEY`
+    ssh -q $1 "mkdir ~/.ssh 2>/dev/null; chmod 700 ~/.ssh; echo "$KEYCODE" >> ~/.ssh/authorized_keys; chmod 644 ~/.ssh/authorized_keys"
+
+    echo "done!"
+}
+
+wfi() {find . -type f -name '*py' -print0 | xargs -0 grep -y "$1"}
+
+
+alias 'wtz'='TZ=UTC date' 
 
