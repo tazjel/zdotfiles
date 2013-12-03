@@ -1729,7 +1729,3 @@ cab wex !sh %<CR>
     " Undo in insert mode.
     imap <c-z> <c-o>u
     map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
-
-
-<!--w-->
-

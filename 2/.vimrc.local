@@ -1,7 +1,7 @@
 "Last Modified: Last Modified: 2013-12-01T01:20:50
-
 " setup
     set encoding=utf8
+    set termencoding=utf-8
     syntax on
     set nocompatible
     set backspace=indent,eol,start
@@ -15,15 +15,43 @@
 
     " Tell Neosnippet about the other snippets
     let g:neosnippet#snippets_directory='~/.vim/bundle/vim-snippets/snippets'
-
     "let g:neocomplcache_enable_fuzzy_completion
 
-    imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
-    imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
+    "imap <C-k>  <Plug>(neocomplcache_start_unite_complete)
+    "imap <C-q>  <Plug>(neocomplcache_start_unite_quick_match)
 
-        imap <expr> -  pumvisible() ?
-            \ "\<Plug>(neocomplcache_start_unite_quick_match)" : '-'
+        "imap <expr> -  pumvisible() ?
+            "\ "\<Plug>(neocomplcache_start_unite_quick_match)" : '-'
 
+
+    "gtd
+        au BufNewFile,BufRead *.gtd			set filetype=gtd
+        "syn region gtdProject start="^p:" end="\s"
+
+
+        "highlight String term=underline cterm=NONE ctermfg=Magenta
+        "highlight String term=underline cterm=NONE ctermfg=Magenta
+
+        syn region gtdProject start="^\"p:" end="\s"
+        hi def link gtdProject Type
+
+        syn region tazjel start="tazjel" end="\s"
+        hi def link tazjel String
+
+"black_angus
+
+" Allow @ and : in keywords.
+setlocal iskeyword="a-z,A-Z,0-9,@,:"
+
+
+"p: pressing
+"e: pressing
+
+
+    "colors
+        "AutumnLeaf
+        "automation
+        "asu1dark
 
                     "Default Colors for CursorLine
                     "    highlight  CursorLine ctermbg=Black ctermfg=None
@@ -34,11 +62,11 @@
                     "    autocmd InsertLeave * highlight  CursorLine ctermbg=Yellow ctermfg=None
 
 
-
+        set autowrite
         set shiftwidth=4
         set tabstop=4
         set expandtab
-
+        set scrolloff=5
         set autoindent
         set notildeop
 
@@ -60,19 +88,17 @@
         set ignorecase " ignore case when searching
         set smartcase  " ... except when search pattern contains an uppercase char
 
-"colors
-
-    "statusline
-        set statusline=
-        set statusline +=%1*\ %n\ %*            "buffer number
-        set statusline +=%5*%{&ff}%*            "file format
-        set statusline +=%3*%y%*                "file type
-        set statusline +=%4*\ %<%F%*            "full path
-        set statusline +=%2*%m%*                "modified flag
-        set statusline +=%1*%=%5l%*             "current line
-        set statusline +=%2*/%L%*               "total lines
-        set statusline +=%1*%4v\ %*             "virtual column number
-        set statusline +=%2*0x%04B\ %*          "character under cursor
+        "statusline
+            set statusline=
+            set statusline +=%1*\ %n\ %*            "buffer number
+            set statusline +=%5*%{&ff}%*            "file format
+            set statusline +=%3*%y%*                "file type
+            set statusline +=%4*\ %<%F%*            "full path
+            set statusline +=%2*%m%*                "modified flag
+            set statusline +=%1*%=%5l%*             "current line
+            set statusline +=%2*/%L%*               "total lines
+            set statusline +=%1*%4v\ %*             "virtual column number
+            set statusline +=%2*0x%04B\ %*          "character under cursor
         " remember more commands and search history
             set history=10000
         " do not keep a backup files
@@ -81,17 +107,20 @@
             set ignorecase
             set scs
             set joinspaces
-            set laststatus=2
-            set showtabline=2
 
 
          " 256 colors
             set t_Co=256
-            "set background=dark
-            "color grb256
-            "key = ['borland']
-            "colorscheme random
-            colorscheme ww
+            set background=dark
+            colorscheme random
+            "colorscheme ww
+                "256-jungle
+                    "BlackSea
+
+
+
+
+
     " STATUS LINE
         set statusline=%<%f\ (%{&ft})\ %-4(%m%)%=%-19(%3l,%02c%03V%)
         set showmatch
@@ -185,19 +214,18 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
                 imap <F1> <Esc><F1>
 
                     map <S-F1> :sball
-
             " <F2>
 
                "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
-                nnoremap <F2> :reg
-                nnoremap <S-F2> :marks
+                nnoremap <F2> :reg<CR>
+                nnoremap <S-F2> :marks <CR>
             " <F3>
                 " Fold
                 map <F3> :ls<CR>:sb
             " <F4>
                 "UndotreeToggle
-                    nnoremap <F4> :verbos map
-                nnoremap <S-F4> :let @*=colors_name<CR>
+                nnoremap <F4> :verbos map<Space>
+                nnoremap <S-F4>  :let @a=""\|:let @a=colors_name\|:let @"=@a<CR>
             " <F5>
                 nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
                 nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
@@ -311,12 +339,7 @@ endfunction
     " The W culture "
     " Dropbox " /media/
     " zdotfiles
-        cabbrev w111 vsp ~/zdotfiles/1.sh
-
-
-
-        cabbrev wda r!date
-
+                    cabbrev w111 vsp ~/zdotfiles/1.sh
 
                     ca w!! w !sudo tee "%"
                         map ws :!rm ~/.vimswap/*<cr>
@@ -476,10 +499,8 @@ set completefunc=LineCompleteFromFile
                 autocmd FileType *.txt exec('set syntax= text')
                     "autocmd BufReadPre *.doc set ro
                     "autocmd BufReadPre *.doc set hlsearch!
-                    "autocmd BufReadPre *.txt set syntax=python
-                    "autocmd BufReadPost *.txt set syntax=python
                     autocmd FileType *.txt exec('set fileformats=unix')
-                    "autocmd FileType * exec('set syntax= text')
+                    autocmd FileType * exec('set syntax= text')
 
 
 
@@ -639,10 +660,12 @@ endif
         noremap <CR> :
 
 
-"auto-complete
-    " nice bash-like filename auto-complete
-    set wildmode=longest,list,full
-    set wildmenu
+    "auto-complete
+        " nice bash-like filename auto-complete
+        set list
+        set wildmode=longest,list,full
+        "set wildmode=full:list
+        set wildmenu
 
     function! neocomplcache#util#dup_filter(list)
       let dict = {}
@@ -888,10 +911,12 @@ set modelines=3
     \   exe "normal g`\"" |
     \ endif
 "
-    vmap <tab> >gv
-    vmap <s-tab> <gv
-
-    " Buffer navigation
+    "vmap <tab> >gv
+    "vmap <s-tab> <gv
+        "bocau
+    vnoremap <Tab> >>
+    vnoremap <s-tab> <<
+        " Buffer navigation
 map <M-Left> :bprevious<CR>
 map <M-Right> :bnext<CR>
 
@@ -914,6 +939,9 @@ autocmd FileType python set sw=4 sts=4 et
 
   "- Linux: >
     let g:gist_clip_command = 'xclip -selection clipboard'
+    let g:gist_get_multiplefile = 1
+    let g:gist_post_private = 1
+
 
 """"""""""""""""""""""""
 "
@@ -953,8 +981,10 @@ let g:syntastic_loc_list_height=3
 let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " Gist settings
-let g:gist_open_browser_after_post=1
-let g:gist_detect_filetype=1
+    let g:gist_open_browser_after_post=1
+    let g:gist_detect_filetype=1
+    let g:gist_browser_command = 'w3m %URL%'
+    let g:gist_clip_command = 'xclip -selection clipboard'
 
 function! UpdateModifiable()
   if !exists("b:setmodifiable")
@@ -982,9 +1012,8 @@ let g:neosnippet#enable_snipmate_compatibility = 1
 let g:pydiction_location = '/home/ahmed/zdotfiles/2/py_dict'
 
 let g:neosnippet#enable_preview = 1
-
 "let i_<Plug>(neosnippet_start_unite_snippet)
-let g:unite_force_overwrite_statusline = 0
+"let g:unite_force_overwrite_statusline = 1
 
 
 autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal modifiable | endif
@@ -1006,3 +1035,135 @@ function! AccentDemo()
   let g:airline_section_a = airline#section#create(keys)
 endfunction
 autocmd VimEnter * call AccentDemo()
+
+function! ToggleSyntax()
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax enable
+    endif
+endfunction
+nmap <silent> ;s :call ToggleSyntax()<CR>
+
+
+" ------------------
+" Python
+" ------------------
+let python_highlight_all = 1
+hi pythonBuiltin        ctermfg=blue    cterm=NONE
+hi pythonSync           ctermfg=red
+autocmd FileType python setl autoindent
+autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setl omnifunc=pythoncomplete#Complete
+
+
+"nmap ,l  :!/usr/bin/python2.6 %<CR>
+nmap <Space><Right> *
+nmap <Space><Left> %
+
+nmap <F12> :!/usr/lib/python2.7 %<CR>
+
+
+" Markdown
+" ------------------
+au BufRead,BufNewFile *.md,*.mkdn,*.markdown :set filetype=markdown
+au FileType markdown :set wrap
+
+
+
+cnoremap <C-a> <Home>
+cnoremap <C-b> <Left>
+cnoremap <C-d> <Del>
+cnoremap <C-e> <End>
+cnoremap <C-f> <Right>
+cnoremap <C-n> <Down>
+cnoremap <C-p> <Up>
+cnoremap <Esc><C-b> <S-Left>
+cnoremap <Esc><C-f> <S-Right>
+
+noremap gK :grep "<C-R><C-W>" .
+
+set nowrap
+
+function! s:SID_PREFIX()
+  return matchstr(expand('<sfile>'), '<SNR>\d\+_\zeSID_PREFIX$')
+endfunction
+
+function! s:my_tabline()  "{{{
+  let s = ''
+  for i in range(1, tabpagenr('$'))
+    let bufnrs = tabpagebuflist(i)
+    let bufnr = bufnrs[tabpagewinnr(i) - 1]  " first window, first appears
+    let no = i  " display 0-origin tabpagenr.
+    let mod = getbufvar(bufnr, '&modified') ? '!' : ' '
+    let title = fnamemodify(bufname(bufnr), ':t')
+    let title = '[' . title . ']'
+    let s .= '%'.i.'T'
+    let s .= '%#' . (i == tabpagenr() ? 'TabLineSel' : 'TabLine') . '#'
+    let s .= no . ':' . title
+    let s .= mod
+    let s .= '%#TabLineFill# '
+  endfor
+  let s .= '%#TabLineFill#%T%=%#TabLine#'
+  return s
+endfunction "}}}
+let &tabline = '%!'. s:SID_PREFIX() . 'my_tabline()'
+set showtabline=2
+
+            "for n in range(1, 9)
+                "execute 'nnoremap <silent> [Tag]'.n  ':<C-u>tabnext'.n.'<CR>'
+            "endfor
+
+
+
+
+
+
+
+set nocompatible
+
+let s:neobundle_dir = expand('~/.vim/bundle/neobundle.vim')
+if !isdirectory(s:neobundle_dir)
+    execute printf('!git clone %s://github.com/Shougo/neobundle.vim.git',
+                \ (exists('$http_proxy') ? 'https' : 'git'))
+                \ s:neobundle_dir
+endif
+
+execute 'set rtp+=' . s:neobundle_dir
+call neobundle#rc(fnamemodify(s:neobundle_dir,':h'))
+"#####################################################
+"#
+"####################################################
+let g:neocomplete#enable_at_startup                 = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#min_keyword_length                = 3
+let g:neocomplete#enable_auto_delimiter             = 1
+let g:neosnippet#enable_snipmate_compatibility      = 1
+let g:neocomplete#enable_insert_char_pre            = 1
+let g:neocomplete#enable_smart_case                 = 1
+let g:neocomplete#enable_fuzzy_completion           = 1
+let g:neocomplete#enable_auto_select                = 0
+let g:neocomplete#enable_refresh_always             = 0
+
+
+imap <expr><space> !pumvisible() ? "\<space>" :
+            \ neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" :
+            \ getline('.')[getpos('.')[2]-2] =~ '[\.\#\(]' ? '' : ' '
+imap <expr><TAB> pumvisible() ? "\<C-n>" :
+            \ neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
+            \ "\<Plug>(neosnippet_expand_or_jump)" : "\<TAB>"
+
+inoremap <expr><S-TAB> pumvisible() ? "\<C-p>" : "\<C-h>"
+cabbrev wW <C-><Left>
+
+
+    "Bundle 'mattn/webapi-vim'
+    "Bundle 'mattn/gist-vim'
+
+
+
+autocmd FileType python setl omnifunc=pythoncomplete#Complete
+

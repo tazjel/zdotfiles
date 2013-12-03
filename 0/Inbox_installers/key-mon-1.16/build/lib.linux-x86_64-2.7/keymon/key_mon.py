@@ -1039,3 +1039,12 @@ if __name__ == '__main__':
   #import cProfile
   #cProfile.run('main()', 'keymonprof')
   main()
+#
+keySwk
+,o
+
+will expand to:to:tototo:to:to:to:toggle_chrome(self, current): """Toggle show/hideo
+w, h), gtk.main
+join(bin/python
+import os
+re.

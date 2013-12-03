@@ -1,7 +1,7 @@
 #!/bin/zsh
 ########################################################
     # Author : AHMED BANI
-    # Largest Updated on Fri Nov 15 01:03:32 AST 2013
+    # Last Modified: 2013-12-03T06:32:28
     #
    # F
     # <F0>
@@ -228,13 +228,12 @@
     bindkey '\C-x\C-e' edit-command-line
     export EDITOR=vim
 ############################  SETUP PARAMETERS
-                Coordinates
-                Latitude:	21° 3' North
-                Longitude:	39° 1' East
+                #Coordinates
+                #Latitude:	21° 3' North
+                #Longitude:	39° 1' East
 
 
                 #SETUP  Standard Time
-                  #$ export TZ=EST05EDT
 
                     export TZ=UTC
 
@@ -1098,13 +1097,14 @@ do_backup() {
     if [ -e "$2" ] || [ -e "$3" ] || [ -e "$4" ]; then
         today=`date +%Y%m%d_%s`
         for i in "$2" "$3" "$4"; do
-            [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$i.$today";
+            [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$i.$today"
         done
         ret="$?"
         success "$1"
         debug
    fi
 }
+
 upgrade_repo() {
     msg "trying to update $1"
 
@@ -1459,5 +1459,5 @@ upload_keys () {
 wfi() {find . -type f -name '*py' -print0 | xargs -0 grep -y "$1"}
 
 
-alias 'wtz'='TZ=UTC date' 
+alias 'wtz'='TZ=UTC date'
 
