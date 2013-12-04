@@ -31,6 +31,11 @@
 
 
     # <F1>
+find-symbolic-links() {
+    ls -Rl `find . -maxdepth 1 -type l -print`
+}
+
+
        #
     # <F2>
        #

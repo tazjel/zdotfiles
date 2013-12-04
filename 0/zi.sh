@@ -21,27 +21,6 @@ ssh-keygen_rsa() {
     ssh -T git@github.com
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ############################  BASIC SETUP TOOLS
 msg() {
     printf '%b\n' "$1" >&2
