@@ -41,7 +41,8 @@
                                     nnoremap 0 zR
 
 
-
+  map <space>w cs
+       "colorscheme"
                                 "<space><space>
                                     nnoremap <space> za
                                     vnoremap <space> zf
@@ -467,36 +468,41 @@ endfunction
                         "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r__AA\1/g
                         "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
 
+
+"nnoremap <C-F10> call setqflist([]) | :bufdo grepadd! w %
+
+    "map <S-Up> <C-W>_
+           map <M-Up> <C-W>j<C-W>_
+           map <M-Down> <C-W>k<C-W>_
+
+
+
+
             "CMD
                 noremap <CR> :
 
 
+
+
+
+
+
             "auto-complete
                 " nice bash-like filename auto-complete
-                set list
-                set wildmode=longest,list,full
-                set wildmode=full:list
-                set wildmenu
+"                set list
+"                set wildmode=longest,list,full
+"                set wildmode=full:list
+"                set wildmenu
 
-            function! neocomplcache#util#dup_filter(list)
-              let dict = {}
-              for keyword in a:list
-                if !has_key(dict, keyword.word)
-                  let dict[keyword.word] = keyword
-                endif
-              endfor
 
-              return values(dict)
-            endfunction
-
-                                                    let pos = [line('.'), col('.')]
-                                                    let saved_register = @@
+"                                                    let pos = [line('.'), col('.')]
+"                                                    let saved_register = @@
 
 
     "autocmd
            ":autocmd bufenter *.tex map <F1> :!latex %<CR>
            ":autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
-                autocmd! BufNewFile *py call LoadTemplate()
+"                autocmd! BufNewFile *py call LoadTemplate()
                 "                autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
                 "                autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
 
@@ -631,13 +637,15 @@ endfunction
                                         nmap su :s/^# //<CR>
                                         vmap <silent> su :s/^# //<CR>:silent noh<CR>
 
-"python"
+
+"ipython"
 
 "API
-    cabbrev wpy vsplit ~/.config/ipython/profile_default/startup/w.ipy
-    cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
-    cabbrev wpy !python %
-    cabbrev wak vsplit ~/zdotfiles/6/autokey/data/API/AK/ak_vim.txt
+    "path
+            cabbrev wpy vsplit ~/.config/ipython/profile_default/startup/w.ipy
+            cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
+            cabbrev wpy !python %
+            cabbrev wak vsplit ~/zdotfiles/6/autokey/data/API/AK/ak_vim.txt
 
 "
 "
@@ -661,10 +669,17 @@ inoremap ,d :call Spell_next_word()
            redraw!
     endfunction
 
-"    imap <silent> <F10> <Esc>:call InsertCmd( 'hostname' )<CR><Insert>
-"    map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
+imap <silent> <F10> <Esc>:call InsertCmd( 'grep -RI "w"' )<CR><Insert>
+
+                let zwz = 'grep %'
+                "imap <silent> <F10> <Esc>:call InsertCmd( zwz )<CR><Insert>
+                "map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
     "
-" Substitute
+                let zwz = 'grep %'
+                imap <silent> <F10> <Esc>:call InsertCmd( zwz )<CR><Insert>
+                map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
+
+
 "
 "autocmd BufWritePre *.py normal m`:%s/\s\+$//e``
 "au FileType py set autoindent
@@ -700,9 +715,9 @@ set shell=bash
 
 "
                           "- Linux: >
-                                    let g:gist_clip_command = 'xclip -selection clipboard'
-                                    let g:gist_get_multiplefile = 1
-                                    let g:gist_post_private = 1
+                                    "let g:gist_clip_command = 'xclip -selection clipboard'
+                                    "let g:gist_get_multiplefile = 1
+                                    "let g:gist_post_private = 1
 
 
                                         " Search
@@ -719,12 +734,12 @@ set shell=bash
 
 " Syntastic settings
 
-let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
-let g:syntastic_check_on_open=1         " Check for errors on buffer load
-let g:syntastic_auto_loc_list=1         " Open Error window automatically
-let g:syntastic_auto_jump=1             " Automatically jump to first detected error
-let g:syntastic_loc_list_height=3
-let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+"let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
+"let g:syntastic_check_on_open=1         " Check for errors on buffer load
+"let g:syntastic_auto_loc_list=1         " Open Error window automatically
+"let g:syntastic_auto_jump=1             " Automatically jump to first detected error
+"let g:syntastic_loc_list_height=3
+"let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " Gist settings
     let g:gist_open_browser_after_post=1
@@ -848,10 +863,12 @@ au FileType markdown :set wrap
                         "cabbrev ww <C-r>"<BS>
 "                        nnoremap ww Y
                         nnoremap ww :source ~/zdotfiles/2/.vimrc.local<CR>
-                        nnoremap W :echo colors_name<CR>
+                        nnoremap W<Space> :echo colors_name<CR>
 
 
+":let &path = &path . ',/usr/local/include'
 
+map <F1> <plug>NERDCommenterToggle
 
 " Add the virtualenv's site-packages to vim path
 py << EOF
@@ -864,3 +881,6 @@ if 'VIRTUAL_ENV' in os.environ:
     activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
     execfile(activate_this, dict(__file__=activate_this))
 EOF
+
+
+"%s/^\(.*)\)\(.*$\)/\r\r\1/g

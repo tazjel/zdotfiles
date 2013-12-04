@@ -4648,3 +4648,11 @@ SyntaxError: encoding declaration in Unicode string
 2013-12-01 18:08:52,051 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-12-01 18:18:58,388 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-12-01 19:36:23,861 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-04 08:45:17,747 INFO - root - Initialising application
+2013-12-04 08:45:17,823 INFO - root - Initialise global hotkeys
+2013-12-04 08:45:17,823 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-04 08:45:42,159 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-04 08:45:42,165 INFO - config-manager - Successfully loaded configuration
+2013-12-04 08:45:42,165 INFO - service - Starting service
+2013-12-04 08:45:42,558 INFO - interface - XRecord interface thread starting
+2013-12-04 08:45:42,558 INFO - service - Service now marked as running
