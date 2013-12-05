@@ -505,19 +505,19 @@ endfunction
 
 
 " TEMPLATES
-    "function! LoadTemplate()
+    function! LoadTemplate()
         " load a template based on the file extension
-            "silent! .r ~/.vim/skel/tmpl.%:e
+"            silent! .r ~/.vim/skel/tmpl.%:e
 
             " Replace some placeholders
             "%s/FILENAME%/\=expand("%:t")/g
             "%s/%DATE%/\=strftime("%b %d, %Y")/g
-                "%s/%DATE%/\=strftime("%b %d, %Y")/g
+                %s/%DATE%/\=strftime("%b %d, %Y")/g
 
         " This last one deletes the placeholder
             " %START% then leaves the cursor there.
             "%s/%START%//g
-    "endfunction
+    endfunction
 
         map ,l :call LoadTemplate()
             "silent! 0r ~/.vim/skel/tmpl.%:e
@@ -851,6 +851,7 @@ au FileType markdown :set wrap
 
 
 
+A
 "autocmd FileType python setl omnifunc=pythoncomplete#Complete
 
                         "cabbrev ww <C-r>"<BS>

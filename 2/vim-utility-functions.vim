@@ -16,7 +16,7 @@ endf
 
 func! SelectAll() " Select all of current buffer
 	exe "normal ggVG"
-ndf
+endf
 
 func! SA() " Select all of current buffer
 	call SelectAll()

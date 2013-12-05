@@ -4656,3 +4656,65 @@ SyntaxError: encoding declaration in Unicode string
 2013-12-04 08:45:42,165 INFO - service - Starting service
 2013-12-04 08:45:42,558 INFO - interface - XRecord interface thread starting
 2013-12-04 08:45:42,558 INFO - service - Service now marked as running
+2013-12-04 13:50:30,122 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-04 13:50:30,623 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-04 13:52:56,441 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-04 13:52:56,943 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-04 14:04:12,611 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-04 14:04:13,112 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-05 04:03:06,587 INFO - root - Initialising application
+2013-12-05 04:03:06,687 INFO - root - Initialise global hotkeys
+2013-12-05 04:03:06,688 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-05 04:03:46,444 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-05 04:03:46,450 INFO - config-manager - Successfully loaded configuration
+2013-12-05 04:03:46,450 INFO - service - Starting service
+2013-12-05 04:03:46,995 INFO - interface - XRecord interface thread starting
+2013-12-05 04:03:46,996 INFO - service - Service now marked as running
+2013-12-05 04:04:11,882 ERROR - interface - Error in X event loop thread
+Traceback (most recent call last):
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 116, in __eventLoop
+    method(*args)
+  File "/usr/lib/python2.7/dist-packages/autokey/interface.py", line 551, in __grab_keyboard
+    focus.grab_keyboard(True, X.GrabModeAsync, X.GrabModeAsync, X.CurrentTime)
+AttributeError: 'int' object has no attribute 'grab_keyboard'
+2013-12-05 04:26:01,799 INFO - root - Displaying configuration window
+2013-12-05 04:26:20,651 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-05 04:31:49,589 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-05 04:31:49,606 INFO - root - Shutting down
+2013-12-05 04:31:49,606 INFO - service - Service shutting down
+2013-12-05 04:31:50,182 INFO - config-manager - Persisting configuration
+2013-12-05 04:31:50,183 INFO - config-manager - Backing up existing config file
+2013-12-05 04:31:50,219 INFO - config-manager - Finished persisting configuration - no errors
+2013-12-05 04:31:51,220 INFO - inotify - Shutting down file monitor
+2013-12-05 04:31:59,577 INFO - root - Initialising application
+2013-12-05 04:31:59,588 INFO - root - Initialise global hotkeys
+2013-12-05 04:31:59,588 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-05 04:32:02,304 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-05 04:32:02,310 INFO - config-manager - Successfully loaded configuration
+2013-12-05 04:32:02,310 INFO - service - Starting service
+2013-12-05 04:32:02,405 INFO - interface - XRecord interface thread starting
+2013-12-05 04:32:02,406 INFO - service - Service now marked as running
+2013-12-05 05:10:01,723 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-05 05:10:02,141 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-05 09:17:54,825 INFO - service - Undoing last abbreviation expansion
+2013-12-05 16:40:56,545 INFO - service - Undoing last abbreviation expansion
+2013-12-05 16:50:47,761 INFO - root - Initialising application
+2013-12-05 16:50:47,911 INFO - root - Initialise global hotkeys
+2013-12-05 16:50:47,911 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-05 16:51:29,346 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-05 16:51:29,352 INFO - config-manager - Successfully loaded configuration
+2013-12-05 16:51:29,352 INFO - service - Starting service
+2013-12-05 16:51:29,937 INFO - interface - XRecord interface thread starting
+2013-12-05 16:51:29,938 INFO - service - Service now marked as running
+2013-12-06 00:14:46,721 INFO - root - Initialising application
+2013-12-06 00:14:46,885 INFO - root - Initialise global hotkeys
+2013-12-06 00:14:46,886 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-06 00:15:10,706 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 00:15:10,716 INFO - config-manager - Successfully loaded configuration
+2013-12-06 00:15:10,717 INFO - service - Starting service
+2013-12-06 00:15:11,086 INFO - interface - XRecord interface thread starting
+2013-12-06 00:15:11,086 INFO - service - Service now marked as running
+2013-12-06 00:27:10,678 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 00:27:11,031 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 00:27:11,345 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 00:27:11,698 INFO - config-manager - Configuration changed - rebuilding in-memory structures

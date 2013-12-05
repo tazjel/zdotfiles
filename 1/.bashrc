@@ -1,4 +1,7 @@
 # If not running interactively, don't do anything
+
+export TZ=Asia/Riyadh
+
 [ -z "$PS1" ] && return
 function ranger-cd {
     tempfile='/tmp/chosendir'

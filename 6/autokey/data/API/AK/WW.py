@@ -7,53 +7,53 @@ text = clipboard.get_selection()
 keyboard.send_key("<delete>")
 keyboard.send_keys("The text %s was here previously" % text)
 keyboard.send_keys(output)
-engine.create_abbreviation(folder, description, abbr, contents) Create a text abbreviation
-engine.create_hotkey(folder, description, modifiers, key, contents) Create a text hotkey
-engine.create_phrase(folder, description, contents) Create a text phrase
-engine.get_folder(title) Retrieve a folder by its title
-engine.get_macro_arguments() Get the arguments supplied to the current script via its macro
-engine.run_script(description) Run an existing script using its description to look it up
-engine.set_return_value(val) Store a return value to be used by a phrase macro
-keyboard.fake_keypress(key, repeat=1) Fake a keypress
-keyboard.press_key(key) Send a key down event
-keyboard.release_key(key) Send a key up event
-keyboard.send_key(key, repeat=1) Send a keyboard event
-
-keyboard.send_keys(keyString) Send a sequence of keys via keyboard events
-
-keyboard.send_keys(keyString) Send a sequence of keys via keyboard events
-keyboard.wait_for_keypress(self, key, modifiers=[], timeOut=10.0) Wait for a keypress or key combination
+engine.create_abbreviation(folder, description, abbr, contents)
+engine.create_hotkey(folder, description, modifiers, key, contents)
+engine.create_phrase(folder, description, contents)
+engine.get_folder(title)
+engine.get_macro_arguments()
+engine.run_script(description)
+engine.set_return_value(val)
+keyboard.fake_keypress(key, repeat=1)
+keyboard.press_key(key)
+keyboard.release_key(key)
+keyboard.send_key(key, repeat=1)
+keyboard.send_keys(keyString)
+keyboard.send_keys(keyString)
+keyboard.wait_for_keypress(self, key, modifiers=[], timeOut=10.0)
 mouse.click_absolute(x, y, button) Send a mouse click relative to the screen (absolute)
-mouse.click_relative(x, y, button) Send a mouse click relative to the active window
-mouse.click_relative_self(x, y, button) Send a mouse click relative to the current mouse position
-mouse.wait_for_click(self, button, timeOut=10.0) Wait for a mouse click
-clipboard.fill_clipboard(contents) Copy text into the clipboard
-clipboard.fill_selection(contents) Copy text into the X selection
-clipboard.get_clipboard() Read text from the clipboard
-clipboard.get_selection() Read text from the X selection
-dialog.choose_colour(title="Select Colour") Show a Colour Chooser dialog
-dialog.choose_directory(title="Select Directory", initialDir="~", rememberAs=None, **kwargs) Show a Directory Chooser dialog
-dialog.combo_menu(options, title="Choose an option", message="Choose an option", **kwargs) Show a combobox menu
-dialog.input_dialog(title="Enter a value", message="Enter a value", default="", **kwargs) Show an input dialog
-dialog.list_menu(options, title="Choose a value", message="Choose a value", default=None, **kwargs) Show a single-selection list menu
-dialog.list_menu_multi(options, title="Choose one or more values", message="Choose one or more values", defaults=[], **kwargs) Show a multiple-selection list menu
-dialog.open_file(title="Open File", initialDir="~", fileTypes="*|All Files", rememberAs=None, **kwargs) Show an Open File dialog
-dialog.password_dialog(title="Enter password", message="Enter password", **kwargs) Show a password input dialog
-dialog.save_file(title="Save As", initialDir="~", fileTypes="*|All Files", rememberAs=None, **kwargs) Show a Save As dialog
-store.get_value(key) Get a value
-store.remove_value(key) Remove a value
-store.set_value(key, value) Store a value
-system.create_file(fileName, contents="") Create a file with contents
-system.exec_command(command, getOutput=True) Execute a shell command
-window.activate(title, switchDesktop=False, matchClass=False) Activate the specified window, giving it input focus
-window.close(title, matchClass=False) Close the specified window gracefully
-window.get_active_class() Get the class of the currently active window
-window.get_active_geometry() Get the geometry of the currently active window
-window.get_active_title() Get the visible title of the currently active window
-window.move_to_desktop(title, deskNum, matchClass=False) Move the specified window to the given desktop
-window.close(title, xOrigin=-1, yOrigin=-1, width=-1, height=-1, matchClass=False) Resize and/or move the specified window
-window.set_property(title, action, prop, matchClass=False) Set a property on the given window using the specified action
-window.switch_desktop(deskNum) Switch to the specified desktop
-window.wait_for_exist(title, timeOut=5) Wait for window with the given title to be created
-window.wait_for_focus(title, timeOut=5) Wait for window with the given title to have focus
+mouse.click_relative(x, y, button)
+mouse.click_relative_self(x, y, button)
+mouse.wait_for_click(self, button, timeOut=10.0)
+clipboard.fill_clipboard(contents)
+clipboard.fill_selection(contents)
+clipboard.get_clipboard()
+clipboard.get_selection()
+dialog.choose_colour(title="Select Colour")
+dialog.choose_directory(title="Select Directory", initialDir="~", rememberAs=None, **kwargs)
+dialog.combo_menu(options, title="Choose an option", message="Choose an option", **kwargs)
+dialog.input_dialog(title="Enter a value", message="Enter a value", default="", **kwargs)
+dialog.list_menu(options, title="Choose a value", message="Choose a value", default=None, **kwargs)
+dialog.list_menu_multi(options, title="Choose one or more values", message="Choose one or more values", defaults=[], **kwargs)
+dialog.open_file(title="Open File", initialDir="~", fileTypes="*|All Files", rememberAs=None, **kwargs)
+dialog.password_dialog(title="Enter password", message="Enter password", **kwargs)
+dialog.save_file(title="Save As", initialDir="~", fileTypes="*|All Files", rememberAs=None, **kwargs)
+store.get_value(key)
+store.remove_value(key)
+store.set_value(key, value)
+system.create_file(fileName, contents="")
+system.exec_command(command, getOutput=True)
+window.activate(title, switchDesktop=False, matchClass=False)
+window.close(title, matchClass=False)
+window.get_active_class()
+window.get_active_geometry()
+window.get_active_title()
+window.move_to_desktop(title, deskNum, matchClass=False)
+window.close(title, xOrigin=-1, yOrigin=-1, width=-1, height=-1, matchClass=False)
+window.set_property(title, action, prop, matchClass=False)
+window.switch_desktop(deskNum)
+window.wait_for_exist(title, timeOut=5)
+window.wait_for_focus(title, timeOut=5)
+
+grades = [[float(n) for n in l.split()[1:]] for l in open(os.path.join("data/grades.txt")).readlines()[::-1][:-5]]
 

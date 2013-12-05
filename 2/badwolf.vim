@@ -364,7 +364,7 @@ call s:HL('InterestingWord3', 'coal', 'taffy')
 " }}}
 " Makegreen {{{
 
-" hi GreenBar term=reverse ctermfg=white ctermbg=green guifg=coal guibg=#9edf1c
+ hi GreenBar term=reverse ctermfg=white ctermbg=green guifg=coal guibg=#9edf1c
 " hi RedBar   term=reverse ctermfg=white ctermbg=red guifg=white guibg=#C50048
 
 " }}}

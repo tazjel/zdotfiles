@@ -1,43 +1,39 @@
 #!/bin/zsh
 ########################################################
 # Author : AHMED BANI
+# Zero Dimension : Repository
+# Eighth Dimension : web
 #
-#
-#
-#
-#<F0>
-AK="$HOME/.config/autokey/data"
-DB="$HOME/Dropbox"
-DL="$HOME/Downloads"
 
-############################  SETUP PARAMETERS
-    app_name='zdotfiles'
-    git_uri='https://github.com/tazjel/zdotfiles.git'
-    git_branch='master'
-    debug_mode='0'
-    fork_maintainer='0'
-#<F9>
-#
-#
-#<F6>
-www_ak_add() {
-    echo "$1" > $HOME/.config/autokey/data/MyPhrases/ww/"$2"
-}
-
-
-
-wwib(){xp="$@";ssh root@192.168.1.${xp}}
-#
-# bash find function
+if [ "$TERM" = "linux" ]; then
+echo -en "\e]P0000000" #black
+    echo -en "\e]P8555753" #darkgrey
+    echo -en "\e]P1a40000" #darkred
+    echo -en "\e]P9cc0000" #red
+    echo -en "\e]P24e9a06" #darkgreen
+    echo -en "\e]PA73d216" #green
+    echo -en "\e]P3edd400" #brown
+    echo -en "\e]PBffc123" #yellow
+# echo -en "\e]PBc4a000" #yellow
+    echo -en "\e]P4204a87" #darkblue
+    echo -en "\e]PC3465a4" #blue
+    echo -en "\e]P5ce5c00" #darkmagenta
+    echo -en "\e]PDf57900" #magenta
+# echo -en "\e]P6038e82" #darkcyan
+# echo -en "\e]PE05d2c1" #cyan
+    echo -en "\e]P689b6e2" #darkcyan
+    echo -en "\e]PE46a4ff" #cyan
+    echo -en "\e]P7babdb6" #lightgrey
+    echo -en "\e]PFd3d7cf" #white
+    clear #for background artifacting
+fi
 
 
 
-# Replace all the spaces in all the filenames of the current directory and including directories with underscores.
-www_rename(){
-    ls -1 | while read file; do
-        new_file=$(echo $file | sed s/\ /_/g)
-        mv "$file" "$new_file"; done
-}
+
+
+
+# <F8>
 
 www_wget() {
     wget --recursive  --page-requisites --convert-links
@@ -76,17 +72,16 @@ git_clone() {
 
 set_xkeyboard() {
     if [[ $(uname) = "Linux" ]];then
-        #easystroke show
-        setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
-        setxkbmap -option ctrl:nocaps
+    easystroke show
+    setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
+    setxkbmap -option ctrl:nocaps
     fi
 }
-
 set_xkeyboard
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
-        #easystroke show
+        easystroke show
         set_xkeyboard
     fi
 }
@@ -120,7 +115,7 @@ star_Level_one() {
 ########################################################
 # Path
 alias 'wsr'='cd ~/src'
-    #alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
+    alias 'p'='vim ~/zdotfiles/1/.zsh/DCAR.zsh'
     alias 'cdx'='cd ~/Dropbox/'
     alias 'cdd'='cd ~/Downloads'
     alias 'cdc'='cd $HOME/Dropbox/C/Foundation'
@@ -255,7 +250,7 @@ alias 'wsr'='cd ~/src'
     alias -g 'wxc'='| xclip'
     alias -g G='| grep'
     alias -g Gh='--help | grep'
-alias -g 'wcl'='wc -l'
+
     alias -g wv='| vim -'
     alias ......='cd ../../../../../'
     alias .....='cd ../../../../'
@@ -329,8 +324,6 @@ alias -g 'wcl'='wc -l'
     alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
     alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
     alias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
-#alias 'web2py'='cd ~/web2py && python web2py.py -a "w" -i 127.0.0.1 -p 8001'
-
     alias 'wfw'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
     alias 'wsix'='source ~/zdotfiles/1/01/gui_3_bash.sh'
     alias '00'='$HOME/zdotfiles'
@@ -400,34 +393,9 @@ alias -g 'wcl'='wc -l'
     alias ifconfig-ext='curl ifconfig.me'
     alias install='sudo apt-get install'
     alias ip='dig +short myip.opendns.com @resolver1.opendns.com'
-
-
     alias ips='ifconfig -a | grep -o '\''inet6\? \(\([0-9]\+\.[0-9]\+\.[0-9]\+\.[0-9]\+\)\|[a-fA-F0-9:]\+\)'\'' | sed -e '\''s/inet6* //'\'
-
     alias ipy='python -c '\''import IPython; IPython.frontend.terminal.ipapp.launch_new_instance()'\'
     alias jpgtopdf='convert *.JPG "$(basename "$(pwd)").pdf"'
-
-
-wwww_pdf(){
-    for i in *.pdf; do echo --------$i-------; echo
-        pdftotext $i - | grep -i $1
-    done
-}
-
-# find and grep Word docs
-#find . -iname '*filename*.doc' | { while read line; do antiword "$line"; done; } | grep -C4 search_term;
-
-# compare two Microsoft Word documents
-#meld <(antiword microsoft_word_a.doc) <(antiword microsoft_word_b.doc)
-
-wwww_doc(){
-    for i in *.doc; do echo --------$i-------; echo
-        catdoc $i - | grep -i $1
-    done
-}
-
-
-
     alias k9='kill -9'
     alias k='gitk --all &'
     alias l.='ls -d .* --color=auto'
@@ -483,46 +451,6 @@ wwww_doc(){
 # F2
 ########################################################
 # <F3>
-wg_txt() {
-    find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep --color=always -Hn "$1" {} \;
-}
-
-
-
-
-alias 'wgt'='grep --color=always -nr "$1" --include=*txt'
-#
-## extract email adresses from some file (or any other pattern)
-#grep -aEio '([[:alnum:]_.-]+@[[:alnum:]_.-]+?\.[[:alpha:].]{2,6})'
-#
-## Escape literal string for inclusion in an egrep regex
-#egrep_escape() {  echo "$1" |sed -re 's/([\\.*+?(|)^$[])/\\\1/g' -e 's/\{/[{]/g';  }
-
-
-
- # Multiline unique paragraph sort; with case insensitive option (-i)
-#gawk 'BEGIN {RS="\n\n"; if (ARGV[1]=="-i")IGNORECASE=1;ARGC=1}{if (IGNORECASE)Text[tolower($0)]=$0;else Text[$0]=$0 };END {N=asort(Text);for(i=1;i<=N;i++)printf "%s\n\n",Text[i]}' -i<Test.txt
-
- # Multiline paragraph sort; with case insensitive option (-i)
-#gawk 'BEGIN {RS="\n\n"; if (ARGV[1]=="-i"){IGNORECASE=1; ARGC=1}};{Text[NR]=$0};END {asort(Text);for (i=1;i<=NR;i++) printf "%s\n\n",Text[i] }' -i<Zip.txt
-
- #File without comments or blank lines.
-#gawk '!/^[\t\ ]*#/{print $0}' filename | strings
-
-
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
-#
 ########################################################
 alias "wwf"="cmdfu"
 
@@ -541,7 +469,7 @@ function wpw_capture_pic_every_2 () {
 function zbp {
     mkdir -p $HOME/Dropbox/zzz_bkp
     for xx in ~/.* ;do
-    rsync -avz --progress --exclude=.cache --exclude=~/.config/chromium --exclude=~/.config/google-chrome/ $HOME/.* /media/ahmed/Transcend/backup/newbkp
+    rsync -avz --progress $HOME/.* $HOME/Dropbox/zzz_bkp
     echo $xx
 done;
 }
@@ -580,25 +508,25 @@ function WW {
     tail $zal
 }
 function Ww() {
-    ag -C 3 $(echo "$1") $(echo $HOME/zdotfiles)
+ag -C 3 $(echo "$1") $(echo $HOME/zdotfiles)
 }
 function ww-bluetooth_restart {
     sudo service bluetooth restart;
 }
 function cmdfu() {
     curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
-
-
-
+    function google() {
+    Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q=';
+    AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\
+        /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||');
+    echo -e "${stream//\%/\x}";x }
 wwws () {
     PS3="Enter a number: "
-    select f in $1;do
+    select f in '$1';do
         echo $f;
         break;
     done;
 }
-
-
 function wwrename {
     for file in * ; do
     mv "$file" `echo "$file" | tr ' ' '_' | tr '[A-Z]' '[a-z]'`;
@@ -681,14 +609,14 @@ ww_colors_term()
     # EXPR1 -o EXPR2  -  True if either EXPR1 or EXPR2 is true.
 
     # File type tests
-        # -b FILE  -  True if FILE exists and is a block special device.
-        # -c FILE  -  True if FILE exists and is a character special device.
-        # -d FILE  -  True if FILE exists and is a directory.
-        # -f FILE  -  True if FILE exists and is a regular file.
-        # -L FILE  -  True if FILE exists and is a symbolic link.
-        # -p FILE  -  True if FILE exists and is a named pipe.
-        # -S FILE  -  True if FILE exists and is a socket.
-        # -t FD  -  True if FD is a file descriptor that is associated with a terminal.
+    # -b FILE  -  True if FILE exists and is a block special device.
+    # -c FILE  -  True if FILE exists and is a character special device.
+    # -d FILE  -  True if FILE exists and is a directory.
+    # -f FILE  -  True if FILE exists and is a regular file.
+    # -L FILE  -  True if FILE exists and is a symbolic link.
+    # -p FILE  -  True if FILE exists and is a named pipe.
+    # -S FILE  -  True if FILE exists and is a socket.
+    # -t FD  -  True if FD is a file descriptor that is associated with a terminal.
 
     # Access permission tests
     # -g FILE  -  True if FILE exists and has its set-group-id bit set.
@@ -721,14 +649,13 @@ ww_colors_term()
     # ARG1 -le ARG2
     # ARG1 -gt ARG2
     # ARG1 -ge ARG2
+############################################################################################################################################################
 
 ######################################## Main
 
 # Start-up
 star_Level_one
 echo -e "\t\t\t\t $(date)"
-
-cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
 
 ############################################################################################################################################################
 
@@ -753,6 +680,9 @@ wy_append_line(){
 }
 
 
+# Fetch the current human population of Earth
+dcar_human_population(){
+}
 
 
 
@@ -779,41 +709,4 @@ wgp() {
 }
 
 #bash ~/zdotfiles/4/time/zprayertime.sh
-
-
-alias 'www_get_website'='wget --recursive --page-requisites --convert-links'
-
-
-alias 'wmd'='cd /media/ahmed/Transcend/backup/tst'
-alias 'wres'='rename "s/ /_/g" *.*'
-
-
-alias 'wmm'='/media/ahmed/Transcend/backup/tst/Projects'
-
-
-alias 'www_easy_enable'='easystroke enable'
-
-
-alias 'www_easystroke_disable'='easystroke disable'
-
-
-alias 'wgc'='git clone'
-
-
-############################  SETUP PARAMETERS
-    app_name='zdotfiles'
-    git_uri='https://github.com/tazjel/zdotfiles.git'
-    git_branch='master'
-    debug_mode='0'
-    fork_maintainer='0'
-
-
-AA() {
-    grep -Iishyr "\(Ramsbotham\|McDonald\|Miall\|Hugh\|Oliver\|Woodhouse\|Lederach\|Druckman\|eds\|Pruitt\|Kim\|Sung\|Cloke\|Kenneth\|Diamond\|Tidwell\|Alan\|Burton\|Cheldelin\)" .
-}
-
-
-alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
-
-alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
 
