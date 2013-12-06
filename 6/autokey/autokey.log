@@ -4718,3 +4718,5 @@ AttributeError: 'int' object has no attribute 'grab_keyboard'
 2013-12-06 00:27:11,031 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-12-06 00:27:11,345 INFO - service - Matched hotkey phrase/script with prompt=False
 2013-12-06 00:27:11,698 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 02:04:51,587 INFO - service - Undoing last abbreviation expansion
+2013-12-06 02:27:50,113 INFO - service - Undoing last abbreviation expansion

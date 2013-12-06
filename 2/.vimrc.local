@@ -4,9 +4,9 @@
 
                 "" Mappings
                     " Tabs and indents.
-"                        set autoindent smartindent                      " auto indent
-"                        set expandtab smarttab                          " tab
-"                        set tabstop=4 shiftwidth=4
+                        set autoindent smartindent                      " auto indent
+                        set expandtab smarttab                          " tab
+                        set tabstop=4 shiftwidth=4
 
                         set noswapfile nobackup nowritebackup
 
@@ -71,7 +71,7 @@
                     nnoremap <S-F4>  :let @a=""\|:let @a=colors_name\|:let @"=@a<CR>\|:echo @"<CR>
             " <F5>
                     nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name<CR>
-                    "nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+                    nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 "                Tips
                     nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
                     nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
@@ -222,7 +222,6 @@
                         "html substitute
                         "
                            " chain an external command
-                           ":.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/    [N]
                             "!sed 's/<[^>]*>//g' %
 
                                             " Split the Line at Cursor
@@ -441,6 +440,7 @@ endfunction
                    call CopyLine()
                    exe ':!echo '.@0.' >> ~/word.txt'
                 endfunction
+
                 map ,, :call SaveLine()
 
                 " function to delete duplicate lines
@@ -464,6 +464,8 @@ endfunction
                     endfunction
                     "
                         "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r__AA\1/g
+
+o
                         "%s/\(Miall\|Cheldelin\|Cloke\|Ramsbotham\|McDonald\|Tidwell\|Pruitt\|Miall\|Hugh\|Oliver\|Ramsbotham\|and\|Tom\|Woodhouse\|Lederach\|John\|Paul\|Cheldelin\|Druckman\|and\|Fast\|eds\|Pruitt\|Dean\|and\|Kim\|Sung\|Hee\|Cloke\|Kenneth\|McDonald\|John\|and\|Louise\|Diamond\|Tidwell\|Alan\|C.\|Burton\|John\|Cheryl\|Duckworth\|Ph.D.Cheldelin\)/\r\r\1\r/g
 
 
@@ -491,8 +493,6 @@ endfunction
                 set wildmode=full:list
                 set wildmenu
 
-"                                                    let pos = [line('.'), col('.')]
-"                                                    let saved_register = @@
 
 
     "autocmd
@@ -684,16 +684,16 @@ imap <silent> <F10> <Esc>:call InsertCmd( 'grep -RI "w"' )<CR><Insert>
 
 "set winwidth=79 " This makes RVM work inside Vim. I have no idea why.
 set shell=bash
-"set t_ti= t_te=
-"set scrolloff=3
+set t_ti= t_te=
+set scrolloff=3
 "
                                 "" Fix slow O inserts
                                 set timeout timeoutlen=1000 ttimeoutlen=100
                                 "
                                 let g:sh_noisk=1
                                 "
-"                                set modeline
-"                                set modelines=3
+                                set modeline
+                                set modelines=3
 "
 "augroup vimrcEx
   " Clear all autocmds in the group
@@ -728,12 +728,12 @@ set shell=bash
 
 " Syntastic settings
 
-"let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
-"let g:syntastic_check_on_open=1         " Check for errors on buffer load
-"let g:syntastic_auto_loc_list=1         " Open Error window automatically
-"let g:syntastic_auto_jump=1             " Automatically jump to first detected error
-"let g:syntastic_loc_list_height=3
-"let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
+let g:syntastic_check_on_open=1         " Check for errors on buffer load
+let g:syntastic_auto_loc_list=1         " Open Error window automatically
+let g:syntastic_auto_jump=1             " Automatically jump to first detected error
+let g:syntastic_loc_list_height=3
+let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " Gist settings
     let g:gist_open_browser_after_post=1
@@ -751,7 +751,7 @@ set shell=bash
 "let g:unite_force_overwrite_statusline = 1
 
 
-autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal modifiable | endif
+"autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal modifiable | endif
 
 
 function! AccentDemo()
@@ -786,13 +786,13 @@ nmap <silent>  wn :call ToggleSyntax()<CR>
 " ------------------
 " Python
 " ------------------
-"let python_highlight_all = 1
-"hi pythonBuiltin        ctermfg=blue    cterm=NONE
-"hi pythonSync           ctermfg=red
-"autocmd FileType python setl autoindent
-"autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-"autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-"autocmd FileType python setl omnifunc=pythoncomplete#Complete
+let python_highlight_all = 1
+hi pythonBuiltin        ctermfg=blue    cterm=NONE
+hi pythonSync           ctermfg=red
+autocmd FileType python setl autoindent
+autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setl omnifunc=pythoncomplete#Complete
 
 
 nmap <Space><Right> *
@@ -852,11 +852,12 @@ au FileType markdown :set wrap
 
 
 "autocmd FileType python setl omnifunc=pythoncomplete#Complete
+"autocmd FileType python setl omnifunc=pythoncomplete#Complete"
 
                         "cabbrev ww <C-r>"<BS>
                         "nnoremap ww Y
-"nnoremap ww <F5>
-                        nnoremap W :echo colors_name<CR>
+map ww <F5>
+                        "nnoremap W :echo colors_name >> ~/zdotfiles/2/colors/zcolors_name.vim <CR>
 
                         "nnoremap WW <ESC><F5>:echo colors_name<CR>
 
@@ -876,3 +877,11 @@ if 'VIRTUAL_ENV' in os.environ:
     execfile(activate_this, dict(__file__=activate_this))
 EOF
 
+function! Zget_line()
+    let pos = [line('.'), col('.')]
+    let zsaved_register = @@
+    let a:zline = getline('.')
+    exe "normal o" . a:zline
+endfunction
+
+ nnoremap wl :call Zget_line()<CR>
