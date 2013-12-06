@@ -1,0 +1,1 @@
+    title = contents[0:17] + "..."

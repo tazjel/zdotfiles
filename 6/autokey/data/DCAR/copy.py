@@ -10,7 +10,7 @@ if len(contents) > 20:
     title = contents[0:17] + "..."
 else:
     title = contents
-folder = engine.get_folder("get_clipboard_inbox")
+folder = engine.get_folder("wbk")
 engine.create_phrase(folder, title, contents)
 
 # clipboard.get_clipboard() Read text from the clipboard

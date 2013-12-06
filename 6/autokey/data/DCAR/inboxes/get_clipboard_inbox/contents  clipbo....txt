@@ -1,0 +1,1 @@
+contents = clipboard.get_selection()

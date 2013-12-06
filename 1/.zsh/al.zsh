@@ -16,6 +16,12 @@ DL="$HOME/Downloads"
     git_branch='master'
     debug_mode='0'
     fork_maintainer='0'
+    #
+load_ZPROMPT() {
+    ZPROMPT="$fg[red]%R →$reset_color $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
+
+}
+    #
 #<F9>
 #
 #
@@ -817,3 +823,40 @@ alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
 
 alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
 
+
+alias 'wp'='ipython --profile=z'
+
+#(sed 's/#.*//g'|sed '/^ *$/d'|tr '\n' ';'|xargs echo) < al.zsh
+#(sed 's/(\(.*\))/({\1})/g' | sed 's/\(({.*\),/\1},{/') < wautokeyapi.txt
+#
+#
+#
+wfg() {
+    SPROMPT="$fg[red]%R →$reset_color $fg[green]%r? (Yes, No, Abort, Edit) "
+    echo "$fg[red]$PWD"
+    SPROMPT="$fg[red]%R →$reset_color $fg[green] :"
+    echo ""; echo $SPROMPT "$1"
+}
+#
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
+
+alias mv="mv --verbose --interactive"
+alias cp="cp --verbose --interactive"
+alias rm="rm --verbose --interactive=once"
+alias ln="ln --verbose --interactive"
+alias chmod="chmod --verbose --preserve-root"
+alias chgrp="chgrp --verbose --preserve-root"
+alias chown="chown --verbose --preserve-root"
+alias mkdir="mkdir --verbose"
+
+if [[ -x /usr/bin/mplayer ]]; then
+    alias mplayer="mplayer -msgcolor -msglevel all=4:statusline=9"
+    alias -s avi=mplayer
+    alias -s ogv=mplayer
+    alias -s mp4=mplayer
+    alias -s mkv=mplayer
+    alias -s mp3=mplayer
+    alias -s wav=mplayer
+fi

@@ -4720,3 +4720,44 @@ AttributeError: 'int' object has no attribute 'grab_keyboard'
 2013-12-06 00:27:11,698 INFO - config-manager - Configuration changed - rebuilding in-memory structures
 2013-12-06 02:04:51,587 INFO - service - Undoing last abbreviation expansion
 2013-12-06 02:27:50,113 INFO - service - Undoing last abbreviation expansion
+2013-12-06 04:32:39,326 INFO - service - Undoing last abbreviation expansion
+2013-12-06 10:44:05,847 INFO - root - Displaying configuration window
+2013-12-06 10:45:34,641 INFO - root - Displaying configuration window
+2013-12-06 10:45:49,070 INFO - root - Displaying configuration window
+2013-12-06 10:46:15,948 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:46:16,202 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:46:39,320 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:46:39,675 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:48:10,733 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:48:11,098 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:48:16,874 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:48:17,229 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:48:18,235 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:48:18,592 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:48:29,657 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:48:29,912 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:48:50,142 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:48:50,681 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:49:16,636 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:49:16,991 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:49:42,568 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:49:42,921 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:50:03,800 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:50:04,164 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:50:48,397 INFO - root - Displaying configuration window
+2013-12-06 10:52:21,392 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:52:21,660 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:53:33,846 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:53:44,486 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:55:33,441 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:55:33,795 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 10:56:47,168 INFO - service - Matched hotkey phrase/script with prompt=False
+2013-12-06 10:56:47,529 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 14:19:04,952 INFO - root - Initialising application
+2013-12-06 14:19:05,147 INFO - root - Initialise global hotkeys
+2013-12-06 14:19:05,147 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-06 14:19:45,929 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-06 14:19:45,936 INFO - config-manager - Successfully loaded configuration
+2013-12-06 14:19:45,936 INFO - service - Starting service
+2013-12-06 14:19:46,615 INFO - interface - XRecord interface thread starting
+2013-12-06 14:19:46,615 INFO - service - Service now marked as running

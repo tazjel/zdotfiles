@@ -1,0 +1,15 @@
+$Id: INSTALL 534 2012-04-21 00:52:58Z cdekter@gmail.com $
+
+The full application can be installed using the setup script:
+python setup.py install
+
+Alternatively, you can build Debian packages using the following command:
+
+dpkg-buildpackage -us -uc
+cd ../
+
+Then to install the GTK version:
+sudo dpkg -i autokey-gtk_<version>.deb autokey-common_<version>.deb
+
+Or the Qt version:
+sudo dpkg -i autokey-qt_<version>.deb autokey-common_<version>.deb
