@@ -884,5 +884,5 @@ function! Zget_line()
     exe "normal o" . a:zline
 endfunction
 
- nnoremap wl :call Zget_line()<CR>
+nnoremap wl :call Zget_line()<CR>
 cabbrev wc call

@@ -2,20 +2,21 @@
 
                         colorscheme random
 
-                        set autoindent smartindent
-                        set expandtab smarttab
-                        set tabstop=4 shiftwidth=4
+                "" Mappings
+                    " Tabs and indents.
+"                        set autoindent smartindent                      " auto indent
+"                        set expandtab smarttab                          " tab
+"                        set tabstop=4 shiftwidth=4
 
                         set noswapfile nobackup nowritebackup
-                        set showmatch matchtime=3 matchpairs+=<:>
+
+"                        set showmatch matchtime=3 matchpairs+=<:>       " parenthesis matching
                         set timeout timeoutlen=5000 ttimeoutlen=100
                         set history=10000
-                        set shortmess=aTI
+                        set shortmess=aTI                               " no greeting message
 
-                        set splitbelow splitright
-
-
-
+                        set splitbelow splitright                       " splitting direction
+                        "
                             " Use clipboard register
                                 if has('unnamedplus')
                                   set clipboard& clipboard+=unnamedplus
@@ -284,30 +285,69 @@ endfunction
 
 
 
-                                    "function! LineCompleteFromFile(findstart,base)
-                                    "    if a:findstart
-                                    "        " column to begin searching from (first non-whitespace column):
-                                    "        return match(getline("."),'S')
-                                    "    else
-                                    "        " grep the file and build list of results:
-                                    "        let path+= /home/ahmed/Dropbox/Causes.txt
-                                    "        call SilentFileGrep( a:base, path )
-                                    "        let matches = []
-                                    "        for thismatch in getqflist()
-                                    "            " trim leading whitespace
-                                    "            call add(matches, matchstr(thismatch.text,'S.*'))
-                                    "        endfor
-                                    "        call setqflist([])
-                                    "        return matches
-                                    "    endif
-                                    "endfunction
+                                "function! LineCompleteFromFile(findstart,base)
+                                "    if a:findstart
+                                "        " column to begin searching from (first non-whitespace column):
+                                "        return match(getline("."),'S')
+                                "    else
+                                "        " grep the file and build list of results:
+                                "        let path+= /home/ahmed/Dropbox/Causes.txt
+                                "        call SilentFileGrep( a:base, path )
+                                "        let matches = []
+                                "        for thismatch in getqflist()
+                                "            " trim leading whitespace
+                                "            call add(matches, matchstr(thismatch.text,'S.*'))
+                                "        endfor
+                                "        call setqflist([])
+                                "        return matches
+                                "    endif
+                                "endfunction
 
-                                    "set completefunc=LineCompleteFromFile
-
-
+                                "set completefunc=LineCompleteFromFile
 
 
-                                        "
+
+            " reading Ms-Word documents, requires antiword (not docx)
+"                autocmd FileType *.txt exec('set syntax= text')
+                    "autocmd BufReadPre *.doc set ro
+                    "autocmd BufReadPre *.doc set hlsearch!
+
+"                    autocmd FileType *.txt exec('set fileformats=unix')
+
+
+            " abbreviation to manually enter a timestamp. Just type YTS in insert mode
+                    iab YTS <C-R>=TimeStamp()<CR>
+
+                            " Date/Time stamps
+                            " %a - Day of the week
+                            " %b - Month
+
+                            " %d - Day of the month
+                            " %Y - Year
+                            " %H - Hour
+                            " %M - Minute
+                            " %S - Seconds
+                            " %Z - Time Zone
+
+            iab YDATETIME <c-r>=strftime(": %B %d, %Y")<cr>
+                " first add a function that returns a time stamp in the desired format
+                if !exists("*TimeStamp")
+                    fun TimeStamp()
+
+                        return "Last-modified: " . strftime("%d %b %Y %X")
+                    endfun
+                endif
+""""""
+
+                            "window
+                                "Open file same dir--------------------------------------------
+                                    "On the current window
+                                    map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
+                                    "On a new vertical window
+                                    map ,v :vsp <C-R>=expand("%:p:h") . "/" <CR>
+                                    "On a new horizontal window
+                                    map ,h :sp <C-R>=expand("%:p:h") . "/" <CR>
+                                    "
                                 "Tab takes you to the next window:
                                     "nmap <Tab> _
                                     "nmap <S-Tab>  W_
@@ -826,8 +866,20 @@ nnoremap W :echo colors_name<CR>
 map <F1> <plug>NERDCommenterToggle
 
 " Add the virtualenv's site-packages to vim path
+py << EOF
+import os.path
+import sys
+import vim
+if 'VIRTUAL_ENV' in os.environ:
+    project_base_dir = os.environ['VIRTUAL_ENV']
+    sys.path.insert(0, project_base_dir)
+    activate_this = os.path.join(project_base_dir, 'bin/activate_this.py')
+    execfile(activate_this, dict(__file__=activate_this))
+EOF
 
-
-source ~/zdotfiles/2/zplugin/zabz.vim
-"<CR>\|:echo colors_name<CR>
-
+if is_it
+    <`0`>
+endif
+    <`0`>
+endif
+"source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name<CR>

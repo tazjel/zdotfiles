@@ -31,8 +31,7 @@ www_ak_add() {
 }
 
 
-
-wwib(){xp="$@";ssh root@192.168.1.${xp}}
+#wwib(){xp="$@";ssh root@192.168.1.${xp}}
 #
 # bash find function
 
@@ -193,12 +192,15 @@ alias 'wsr'='cd ~/src'
     alias 'n1'='dpkg --get-selections | grep linux-image'
     alias 'ppp'='sudo add-apt-repository $1'
     alias 'rmm'='rm -rf'
-    alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
+    alias 'w'='clear;ls -X;pwd;cho -e "\t\t\t$(date)"'
     alias 'w7'='ssh'
     alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)" '
     alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail
  $2'
+    alias 'wx'='chmod +x'
     alias 'wX'='chmod -x'
+    alias 'wx_all_sh'='find ./ -name "*.sh" -exec chmod +x {} \;'
+
     alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
     alias 'w_ak'='autokey -l'
     alias 'war'='setxmap -layout ar'
@@ -210,7 +212,6 @@ alias 'wsr'='cd ~/src'
     alias 'wf'='firefox -search'
     alias 'wfbash'='firefox -search bash command line "$@"'
     alias 'wfd'='find -maxdepth 1 -type d'
-    alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
     alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'
     alias 'whis'='cut -f2 -d";" ~/.zsh_history | grep "$1" | sort -u'
     alias 'wi'='sudo apt-get install'
@@ -860,3 +861,7 @@ if [[ -x /usr/bin/mplayer ]]; then
     alias -s mp3=mplayer
     alias -s wav=mplayer
 fi
+
+function zfind_size() {
+    find -name "*.*" -print0 | du -hc --files0-from=-
+}

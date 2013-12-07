@@ -4761,3 +4761,11 @@ AttributeError: 'int' object has no attribute 'grab_keyboard'
 2013-12-06 14:19:45,936 INFO - service - Starting service
 2013-12-06 14:19:46,615 INFO - interface - XRecord interface thread starting
 2013-12-06 14:19:46,615 INFO - service - Service now marked as running
+2013-12-07 00:53:48,610 INFO - root - Initialising application
+2013-12-07 00:53:48,730 INFO - root - Initialise global hotkeys
+2013-12-07 00:53:48,731 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-07 00:54:26,994 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-07 00:54:27,000 INFO - config-manager - Successfully loaded configuration
+2013-12-07 00:54:27,000 INFO - service - Starting service
+2013-12-07 00:54:27,364 INFO - interface - XRecord interface thread starting
+2013-12-07 00:54:27,365 INFO - service - Service now marked as running

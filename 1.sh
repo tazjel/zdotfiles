@@ -33,6 +33,8 @@ EOF
 
 
 
+alias Wg='grep --exclude-dir=.git -rEI "TODO|FIXME" . 2>/dev/null'
+alias tasks='grep --exclude-dir=.git -rEI "TODO|FIXME" . 2>/dev/null'
 
 
 
