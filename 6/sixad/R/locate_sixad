@@ -1,0 +1,160 @@
+/etc/default/sixad
+/etc/init.d/sixad
+/etc/logrotate.d/sixad
+/etc/rc0.d/K10sixad
+/etc/rc1.d/K10sixad
+/etc/rc6.d/K10sixad
+/home/tazjel/zdotfiles/0/Inbox_installers/1_setup_sixad_profile.sh
+/home/tazjel/zdotfiles/0/apt/install_sixad.sh
+/home/tazjel/zdotfiles/6/sixad
+/home/tazjel/zdotfiles/6/sixad/.directory
+/home/tazjel/zdotfiles/6/sixad/R
+/home/tazjel/zdotfiles/6/sixad/tazjel_keys_profile
+/home/tazjel/zdotfiles/6/sixad/R/1_restart_sixad.sh
+/home/tazjel/zdotfiles/6/sixad/R/2_setup_sixad.sh
+/home/tazjel/zdotfiles/6/sixad/R/6_bash_python_cmds_sixaxis
+/home/tazjel/zdotfiles/6/sixad/R/6_bash_python_cmds_sixaxis0
+/home/tazjel/zdotfiles/6/sixad/R/6_bash_python_cmds_sixaxis111
+/home/tazjel/zdotfiles/6/sixad/R/6_bash_python_cmds_sixaxis333
+/home/tazjel/zdotfiles/6/sixad/R/Bani_KDE_profile
+/home/tazjel/zdotfiles/6/sixad/R/Best
+/home/tazjel/zdotfiles/6/sixad/R/Bkup_KDE_qtsixa
+/home/tazjel/zdotfiles/6/sixad/R/DELL
+/home/tazjel/zdotfiles/6/sixad/R/Install_dependency_sixad
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad
+/home/tazjel/zdotfiles/6/sixad/R/KDE_qtsixad_
+/home/tazjel/zdotfiles/6/sixad/R/R_sixad
+/home/tazjel/zdotfiles/6/sixad/R/References
+/home/tazjel/zdotfiles/6/sixad/R/SixAxis
+/home/tazjel/zdotfiles/6/sixad/R/Six_axis_Diminsions_manual_key
+/home/tazjel/zdotfiles/6/sixad/R/bk_profiles
+/home/tazjel/zdotfiles/6/sixad/R/bk_sixadw
+/home/tazjel/zdotfiles/6/sixad/R/bk_w_sixad
+/home/tazjel/zdotfiles/6/sixad/R/connect_sixasix.sh
+/home/tazjel/zdotfiles/6/sixad/R/pyinstall_disable_input_uncomment
+/home/tazjel/zdotfiles/6/sixad/R/qt_falTX_KDE_input_keys
+/home/tazjel/zdotfiles/6/sixad/R/qtsix_commands
+/home/tazjel/zdotfiles/6/sixad/R/qtsixa
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad_todo
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis_hcitool.sh
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis_layout_gimp.xcf
+/home/tazjel/zdotfiles/6/sixad/R/usb_cmds.sh
+/home/tazjel/zdotfiles/6/sixad/R/wqtsixa
+/home/tazjel/zdotfiles/6/sixad/R/wwsixad
+/home/tazjel/zdotfiles/6/sixad/R/xorg-sixad
+/home/tazjel/zdotfiles/6/sixad/R/Best/This_etc_sixad
+/home/tazjel/zdotfiles/6/sixad/R/DELL/34:C7:31:35:08:44
+/home/tazjel/zdotfiles/6/sixad/R/DELL/default
+/home/tazjel/zdotfiles/6/sixad/R/DELL/hidraw
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.Get_mac_joystick.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.New Phrase.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.New Phrase1.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/._echo wsudo -S sixad --stopsudo -S sixad --start.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.boot-yes.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.folder.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.force_connection.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.hcitool dev.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.how to start.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.install_qtsixq.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/.lsusb grep Sony.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/2_install_qtsix
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/Get_mac_joystick.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/New Phrase.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/New Phrase1.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/_echo wsudo -S sixad --stopsudo -S sixad --start.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/boot-yes.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/force_connection.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/hcitool dev.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/how to start.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/install_qtsixq.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/lsusb grep Sony.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref_keys
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref_keys~
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/.New Phrase.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/.New Phrase1.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/.New Phrase1.txt.kate-swp
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/.New Phrase2.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/.folder.json
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/New Phrase.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/New Phrase1.txt
+/home/tazjel/zdotfiles/6/sixad/R/Install_qtsixad/ref/New Phrase2.txt
+/home/tazjel/zdotfiles/6/sixad/R/References/all_keys_sixaxis
+/home/tazjel/zdotfiles/6/sixad/R/SixAxis/PROFILE_sixad
+/home/tazjel/zdotfiles/6/sixad/R/SixAxis/SIXAXIS pad over Bluetooth on Ubuntu Precise.html
+/home/tazjel/zdotfiles/6/sixad/R/SixAxis/python_sixad.txt
+/home/tazjel/zdotfiles/6/sixad/R/bk_profiles/34:C7:31:35:08:44
+/home/tazjel/zdotfiles/6/sixad/R/bk_profiles/default
+/home/tazjel/zdotfiles/6/sixad/R/bk_profiles/hidraw
+/home/tazjel/zdotfiles/6/sixad/R/qtsixa/qrsixad_tazjel
+/home/tazjel/zdotfiles/6/sixad/R/qtsixa/wsixad.py
+/home/tazjel/zdotfiles/6/sixad/R/qtsixa/wsixad.py~
+/home/tazjel/zdotfiles/6/sixad/R/qtsixa/wsixad_default
+/home/tazjel/zdotfiles/6/sixad/R/qtsixa/wsixad_key
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.Get_mac_joystick.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.boot-yes.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.folder.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.force_connection.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.hcitool dev.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.how to start.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.lsusb grep Sony.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.ps grep sixad.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.sixpair.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.su.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.sudo sixad_.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/.sudo sixpair.json
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/Get_mac_joystick.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/boot-yes.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/force_connection.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/hcitool dev.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/how to start.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/lsusb grep Sony.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/ps grep sixad.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/sixpair.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/su.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/sudo sixad_.txt
+/home/tazjel/zdotfiles/6/sixad/R/qtsixad/sudo sixpair.txt
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis/.profile
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis/KDE
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis/bash_sixaxis
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis/sixad_windows
+/home/tazjel/zdotfiles/6/sixad/R/sixaxis/w
+/home/tazjel/zdotfiles/6/sixad/R/wqtsixa/KDE
+/home/tazjel/zdotfiles/6/sixad/R/wqtsixa/qtsixa_list_keys
+/home/tazjel/zdotfiles/6/sixad/R/wqtsixa/qtsixa_list_keys_tazjel
+/home/tazjel/zdotfiles/6/sixad/R/wqtsixa/qtsixa_list_keys_tazjel~
+/home/tazjel/zdotfiles/6/zak/Ref/setup/.AK_sixad.json
+/home/tazjel/zdotfiles/6/zak/Ref/setup/AK_sixad.txt
+/home/tazjel/zdotfiles/6/zak/c/zapp/zsixad
+/home/tazjel/zdotfiles/6/zak/c/zapp/zsixad/.folder.json
+/home/tazjel/zdotfiles/6/zak/c/zapp/zsixad/.sixad.json
+/home/tazjel/zdotfiles/6/zak/c/zapp/zsixad/.sixpair.json
+/home/tazjel/zdotfiles/6/zak/c/zapp/zsixad/sixad.py
+/home/tazjel/zdotfiles/6/zak/c/zapp/zsixad/sixpair.txt
+/home/tazjel/zdotfiles/6/zak/w/open/Launcher/sixad
+/home/tazjel/zdotfiles/6/zak/w/open/Launcher/sixad/.folder.json
+/home/tazjel/zdotfiles/6/zak/w/open/Launcher/sixad/.sixad.json
+/home/tazjel/zdotfiles/6/zak/w/open/Launcher/sixad/sixad.txt
+/usr/bin/sixad
+/usr/bin/sixad-jack
+/usr/sbin/sixad-3in1
+/usr/sbin/sixad-bin
+/usr/sbin/sixad-raw
+/usr/sbin/sixad-remote
+/usr/sbin/sixad-sixaxis
+/usr/share/doc/sixad
+/usr/share/doc/sixad/changelog.Debian.gz
+/usr/share/doc/sixad/copyright
+/var/lib/sixad
+/var/lib/dpkg/info/sixad.conffiles
+/var/lib/dpkg/info/sixad.list
+/var/lib/dpkg/info/sixad.md5sums
+/var/lib/dpkg/info/sixad.postinst
+/var/lib/dpkg/info/sixad.postrm
+/var/lib/dpkg/info/sixad.preinst
+/var/lib/sixad/profiles
+/var/lib/sixad/profiles/34:C7:31:35:08:44
+/var/lib/sixad/profiles/default
+/var/lib/update-rc.d/sixad
