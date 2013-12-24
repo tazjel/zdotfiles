@@ -1,0 +1,29 @@
+
+error message "unable to connect to sdp session" 
+
+From brian9640 at http://www.raspberrypi.org/phpBB3/viewtopic.php?f=78&t=16702&sid=4a543bc204c12f1a322e89c8aaf33877&start=25
+In directory 'QtSixA-1.5.1/sixad' edit the file 'bluetooth.cpp'. Change line #218 in the 'l2cap_accept' function.
+
+OLD:
+
+if (!legacy && req.vendor == 0x054c && req.product == 0x0268) {
+
+NEW:
+if (!legacy) {
+
+The problem : 
+
+rian9640 wrote:The error message "unable to connect to sdp session" is because the newer version of bluetoothd is not running the sdp socket in udev mode. Running the bluetoothd daemon without '--udev' will not allow the PS3 controller to connect. I believe it has to do with the protocol Sony is using. The sdp session is used by sixad to determine which controller type is connected over bluetooth. If anyone wants to research how to get the sdp running in udev mode please do.
+
+For myself I modified the source code to ignore the controller type. Since I'm only using a PS3 controller I don't care about the others. Here is how to modify the code. Assuming you already have the source code installed.
+
+In directory 'QtSixA-1.5.1/sixad' edit the file 'bluetooth.cpp'. Change line #218 in the 'l2cap_accept' function.
+
+OLD:
+if (!legacy && req.vendor == 0x054c && req.product == 0x0268) {
+NEW:
+if (!legacy) {
+
+Next run the 'make' command. Followed by the 'sudo make install' command.
+
+####
