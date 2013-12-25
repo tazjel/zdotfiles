@@ -35,3 +35,5 @@ zinstall_vim () {
 
     vim +BundleInstall! +BundleClean +q
 }
+
+zinstall_vim

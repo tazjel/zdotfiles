@@ -828,6 +828,56 @@ map <F1> <plug>NERDCommenterToggle
 " Add the virtualenv's site-packages to vim path
 
 
-source ~/zdotfiles/2/zplugin/zabz.vim
-"<CR>\|:echo colors_name<CR>
 
+" Font
+set guifont=Monaco\ for\ Powerline:h11
+
+
+" Make a dir if no exists {{{
+function! MakeDirIfNoExists(path)
+    if !isdirectory(expand(a:path))
+        call mkdir(expand(a:path), "p")
+    endif
+endfunction
+" }}}
+"
+"
+" Airline
+set noshowmode
+let g:airline_theme = 'solarized'
+let g:airline_enable_branch = 1
+let g:airline_powerline_fonts = 1
+let g:airline_detect_whitespace = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_min_count = 1
+
+
+" indentLine
+let g:indentLine_char = '┊'
+let g:indentLine_color_term = 239
+
+
+" Syntastic
+let g:syntastic_python_pylint_exe = "pylint2"
+let g:syntastic_error_symbol = '✘'
+let g:syntastic_warning_symbol = '⚠'
+let g:syntastic_style_error_symbol = '⚡'
+let g:syntastic_style_warning_symbol = '⚡'
+" PythonMode
+let g:pymode_lint_checker = 'pylint,pep8,mccabe,pep257'
+let g:pymode_lint_config = $HOME.'/.pylintrc'
+let g:pymode_lint_cwindow = 0
+" Custom symbols will be supported in the future (I hope).
+" See: https://github.com/klen/python-mode/pull/295
+let g:pymode_lint_todo_symbol = '⚠'
+let g:pymode_lint_comment_symbol = '⑊'
+let g:pymode_lint_visual_symbol = '⑆'
+let g:pymode_lint_error_symbol = '✘'
+let g:pymode_lint_info_symbol = '●'
+let g:pymode_lint_pyflakes_symbol = '●'
+"source ~/zdotfiles/2/zplugin/zabz.vim
+"source ~/zdotfiles/2/zplugin/zbuff.vim
+"source ~/zdotfiles/2/zplugin/zfunctionz.vim
+"source ~/zdotfiles/2/zplugin/zmapz.vim

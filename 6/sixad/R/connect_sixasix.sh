@@ -1,5 +1,5 @@
 #!/bin/bash
-echo w | sudo -S hcitool dc XX:XX:XX:XX:XX:XX
-echo w | sudo -S killall sixad-bin
-echo w | sudo -S killall sixad
-echo w | sudo -S sixad -s
+sudo -S hcitool dc $(hcitool con)
+sudo -S killall sixad-bin
+sudo -S killall sixad
+sudo -S sixad -s

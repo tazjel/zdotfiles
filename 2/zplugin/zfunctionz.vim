@@ -877,9 +877,3 @@ if 'VIRTUAL_ENV' in os.environ:
     execfile(activate_this, dict(__file__=activate_this))
 EOF
 
-if is_it
-    <`0`>
-endif
-    <`0`>
-endif
-"source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name<CR>

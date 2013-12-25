@@ -4769,3 +4769,24 @@ AttributeError: 'int' object has no attribute 'grab_keyboard'
 2013-12-07 00:54:27,000 INFO - service - Starting service
 2013-12-07 00:54:27,364 INFO - interface - XRecord interface thread starting
 2013-12-07 00:54:27,365 INFO - service - Service now marked as running
+2013-12-25 10:28:40,751 INFO - root - Initialising application
+2013-12-25 10:28:40,758 INFO - root - Initialise global hotkeys
+2013-12-25 10:28:40,758 INFO - config-manager - Loading config from existing file: /home/ahmed/.config/autokey/autokey.json
+2013-12-25 10:28:40,802 INFO - config-manager - Checking if upgrade is needed from version 0.90.1
+2013-12-25 10:28:40,802 INFO - config-manager - Resetting interface type, new type: XRecord
+2013-12-25 10:28:40,803 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-25 10:28:40,807 INFO - config-manager - Persisting configuration
+2013-12-25 10:28:40,807 INFO - config-manager - Backing up existing config file
+2013-12-25 10:28:40,807 INFO - config-manager - Finished persisting configuration - no errors
+2013-12-25 10:28:40,808 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-25 10:28:40,809 INFO - config-manager - Successfully loaded configuration
+2013-12-25 10:28:40,809 INFO - service - Starting service
+2013-12-25 10:28:40,936 INFO - interface - XRecord interface thread starting
+2013-12-25 10:28:40,937 INFO - service - Service now marked as running
+2013-12-25 10:28:40,991 INFO - root - Displaying configuration window
+2013-12-25 10:28:41,655 INFO - root - Entering main()
+2013-12-25 10:41:45,494 INFO - config-manager - Configuration changed - rebuilding in-memory structures
+2013-12-25 10:41:45,494 INFO - config-manager - Persisting configuration
+2013-12-25 10:41:45,495 INFO - config-manager - Backing up existing config file
+2013-12-25 10:41:45,495 INFO - config-manager - Finished persisting configuration - no errors
+2013-12-25 11:36:06,358 INFO - service - Undoing last abbreviation expansion

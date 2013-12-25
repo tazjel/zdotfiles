@@ -20,7 +20,7 @@
         "interfaceType": "XRecord", 
         "windowDefaultSize": [
             600, 
-            400
+            427
         ], 
         "showToolbar": true, 
         "serviceRunning": true, 
@@ -34,7 +34,7 @@
         "isFirstRun": false
     }, 
     "userCodeDir": null, 
-    "version": "0.90.1", 
+    "version": "0.90.4", 
     "configHotkey": {
         "hotKey": "k", 
         "modifiers": [

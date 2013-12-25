@@ -592,8 +592,12 @@ function Ww() {
 function ww-bluetooth_restart {
     sudo service bluetooth restart;
 }
-function cmdfu() {
-    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
+
+
+cmdfu()
+{
+    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -;
+}
 
 
 
@@ -865,3 +869,20 @@ fi
 function zfind_size() {
     find -name "*.*" -print0 | du -hc --files0-from=-
 }
+
+
+# paste this in your ~/.bashrc
+myip ()
+    {
+    clear
+    echo
+    echo ” ip local: `hostname -I`”
+    echo ” router: `route -n | awk ‘/UG/ {print $2}’`”
+    echo ” external ip: `curl –connect-timeout 4 -s sputnick-area.net/ip`”
+    echo
+    read -sn 1 -p ” Press any key to continue…”
+    clear
+}
+
+
+alias "www_unmute_audio"="amixer -c 0 set Master 1+ unmute"
