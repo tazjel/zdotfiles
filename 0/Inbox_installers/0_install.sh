@@ -20,11 +20,9 @@ fork_maintainer='0'
 zos=`uname`
 is_Linux () {
     if [[ ${zos} == "Linux" ]];then
-        echo 1
-        sudo apt-get install ubuntu-restricted-extras
-    sudo apt-get install -y vim zsh konsole xclip git-core openssh-server curl wget vim-gnome aptitude mercurial
+        sudo apt-get install -y vim zsh konsole xclip git-core openssh-server curl wget vim-gnome aptitude mercurial
         else
-            echo 2
+            echo "Not Linux"
     fi
 }
 

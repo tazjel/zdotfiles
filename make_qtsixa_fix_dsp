@@ -2,6 +2,7 @@
 error message "unable to connect to sdp session" 
 
 From brian9640 at http://www.raspberrypi.org/phpBB3/viewtopic.php?f=78&t=16702&sid=4a543bc204c12f1a322e89c8aaf33877&start=25
+
 In directory 'QtSixA-1.5.1/sixad' edit the file 'bluetooth.cpp'. Change line #218 in the 'l2cap_accept' function.
 
 OLD:

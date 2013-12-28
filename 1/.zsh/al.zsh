@@ -224,7 +224,6 @@ alias 'wsr'='cd ~/src'
     alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"' # list and get size
     alias 'wlv'='ls -a | grep vim'
     alias 'wlz'='ls -a | grep zsh'
-    alias 'wml'='env SHELL=zsh mlterm --meta=esc --metakey=alt -E ar.SA.UTF-8 -f=green -b=black -0=green -R=30-40'
     alias 'wmsg'='dmesg | tail -15'
     alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'
     alias 'wshut'='sudo shutdown -h now'
@@ -246,16 +245,6 @@ alias 'wsr'='cd ~/src'
     alias 'wwww_clean_history_get_install'="lg install | sed 's/install//g' | sed 's/^ //g' | sed 's/sudo aptitude//g' | sed 's/^[ ]apt-get//g'| sed 's/^alg.*$//g"
     alias 'wwww_which_ubuntu_dist'='cat /etc/issue'
     alias 'wx'='chmod +x'
-
-    alias 'x'='exit'
-    alias 'اسحب'='gpo'
-    alias 'اعد'='__r'
-    alias 'برامج'='acs'
-    alias 'دف'='glll'
-    alias 'كيفك'='gst'
-    alias 'ما'='ls'
-    alias 'من'='who'
-    alias 'نصب'='wi'
     alias -g 'Gx'='--exclude-dir=cache .'
     alias -g 'H'="--help"
     alias -g 'wH'="--help | grep "
@@ -865,3 +854,19 @@ fi
 function zfind_size() {
     find -name "*.*" -print0 | du -hc --files0-from=-
 }
+
+alias zw="vim ~/.mlterm/"
+
+export LC_ALL='ar_SA.UTF-8'
+
+alias 'wml'='env SHELL=zsh mlterm --meta=esc --metakey=alt -E ar_SA.UTF-8 -f=green -b=black -0=green -R=30-40'
+    alias 'اخرج'='exit'
+    alias 'x'='exit'
+    alias 'اسحب'='gpo'
+    alias 'اعد'='__r'
+    alias 'برامج'='acs'
+    alias 'دف'='glll'
+    alias 'كيفك'='gst'
+    alias 'ما'='ls'
+    alias 'من'='who'
+    alias 'نصب'='sudo apt-get install'

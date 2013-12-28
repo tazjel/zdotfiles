@@ -3,8 +3,10 @@ alias "قل"="echo"
 alias "اكتب"="vim"
 alias "اقرا"="cat"
 alias "اكتب عربي"="vim -A"
-alias "اعد"="zsh"
+#lias "اعد"="zsh"
 alias "نظف"="clear"
 alias "التاريخ"="clear"
-
+#alias "اطفئ"="
+alias "اعد"="reboot"
 alias "التحديث"="agg"
+

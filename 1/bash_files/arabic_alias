@@ -1,3 +1,5 @@
+#!/bin/bash
+
 alias "سم"="alias"
 alias "قل"="echo"
 alias "اكتب"="vim"
@@ -6,3 +8,4 @@ alias "اكتب عربي"="vim -A"
 alias "اعد"="zsh"
 alias "نظف"="clear"
 alias "التاريخ"="clear"
+
