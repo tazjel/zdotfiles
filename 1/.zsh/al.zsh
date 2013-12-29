@@ -870,3 +870,10 @@ alias 'wml'='env SHELL=zsh mlterm --meta=esc --metakey=alt -E ar_SA.UTF-8 -f=gre
     alias 'ما'='ls'
     alias 'من'='who'
     alias 'نصب'='sudo apt-get install'
+
+if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
+    source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+fi
+
+
+export TERM=xterm-256color

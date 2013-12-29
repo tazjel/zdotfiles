@@ -1,8 +1,9 @@
 #!/bin/sh
-# Date: 02/09/2013 
-# Author: Ahmed 
+# Date: 02/09/2013
+# Author: Ahmed
 # Content: Github setup
 # Refernce : https://github.com/sadican/Shell-Scripts/blob/master/github-setup.sh
+
 echo ">>> Starting..."
 
 echo ">>> Installing git..."
