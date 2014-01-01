@@ -1,27 +1,48 @@
 #!/bin/zsh
 
+
+
+
 ########################################################
 # Author : AHMED BANI
+#
+#
+#
+#
+#<F0>
+AK="$HOME/.config/autokey/data"
+DB="$HOME/Dropbox"
+DL="$HOME/Downloads"
 
-source ~/zdotfiles/1/walias.sh
-
-
-
-www_ak_add()
-{
+############################  SETUP PARAMETERS
+    app_name='zdotfiles'
+    git_uri='https://github.com/tazjel/zdotfiles.git'
+    git_branch='master'
+    debug_mode='0'
+    fork_maintainer='0'
+#<F9>
+#
+#
+#<F6>
+www_ak_add() {
     echo "$1" > $HOME/.config/autokey/data/MyPhrases/ww/"$2"
 }
 
-#eplace all the spaces in all the filenames of the current directory and including directories with underscores.
 
-www_rename()
-{
+
+#
+# bash find function
+
+
+
+# Replace all the spaces in all the filenames of the current directory and including directories with underscores.
+www_rename(){
     ls -1 | while read file; do
-    new_file=$(echo $file | sed s/\ /_/g) && mv "$file" "$new_file"; done;
+        new_file=$(echo $file | sed s/\ /_/g)
+        mv "$file" "$new_file"; done
 }
 
-www_wget()
-{
+www_wget() {
     wget --recursive  --page-requisites --convert-links
 }
 
@@ -65,8 +86,7 @@ set_xkeyboard() {
 
 set_xkeyboard
 
-is_linux()
-{
+is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
         #easystroke show
@@ -75,11 +95,9 @@ is_linux()
 }
 
 
-star_Level_one()
-{
+star_Level_one() {
     echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
 }
-#
 # vi style incremental search
     export EDITOR="vim"
     bindkey -v
@@ -89,11 +107,50 @@ star_Level_one()
     bindkey '^P' history-search-backward
     bindkey '^N' history-search-forward
 
+    setopt AUTO_CD
+
+# Arabic aliases
+
+########################################################
+# Path
+
+##########################
+
+
+#sudo apt-add-repository --remove
+
+#ls-files
+##########3                     ######################################
+#
+#
+#
+######################################################################
 
 
 
-wwww_pdf()
-{
+#############################
+#
+#
+#
+#
+###########################################################
+ #$2'
+
+
+#zdotfiles
+
+
+# <F0> git
+
+
+    #
+#ls-files
+
+
+
+
+
+wwww_pdf(){
     for i in *.pdf; do echo --------$i-------; echo
         pdftotext $i - | grep -i $1
     done
@@ -120,14 +177,26 @@ wg_txt() {
     find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep --color=always -Hn "$1" {} \;
 }
 
+
+
+#
+## extract email adresses from some file (or any other pattern)
+#grep -aEio '([[:alnum:]_.-]+@[[:alnum:]_.-]+?\.[[:alpha:].]{2,6})'
+#
+
+
+
+
+
+
+########################################################
+
 function sw ()
 {
     today=`date +%Y_%m_%d_%h_%s`
     scrot '$today_srot.png' -e 'mv $f ~/images/shots/'
 }
-
-function wsw()
-{
+function wsw() {
     today=`date +%d_%s`;echo $today; scrot "$today"_shot.png -e 'mv $f ~/images/shots/';ls ~/images/shots
 }
 

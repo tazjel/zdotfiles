@@ -33,12 +33,13 @@ export LESS="-R"
 
 export PYTHONPATH=/usr/local/lib/python2.7/dist-packages
 
+export PYTHONPATH=/usr/share/python:/usr/local/share/python:$PYTHONPATH
 export PATH=/usr/local/opt/ruby/bin:/usr/local:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:
 
 export PATH=$PATH:/usr/local/sbin
 
 # CTAGS Sorting in VIM/Emacs is better behaved with this in place
-    export LC_COLLATE=C
+export LC_COLLATE=C
 
 
 # Virtual Environment Stuff

@@ -1,6 +1,6 @@
 #!/usr/bin/env python
 
-import sys, os # I don't care!
+import sys, os
 
 from os import listdir
 from os.path import islink, join, expanduser
