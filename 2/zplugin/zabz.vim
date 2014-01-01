@@ -3,8 +3,6 @@ abbr #p #!/usr/bin/env python<CR>
 
 abbreviate CAR Conflict Analysis & Resolution
 
-abbreviate w# """"""""""""""""""""""""<CR>
-cabbrev h tab h
 cabbrev pw vsplit ~/.config/ipython/profile_default/startup/w.ipy
 cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
 cabbrev t5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
@@ -16,20 +14,21 @@ cabbrev wp vsplit ~/.config/ipython/profile_default/startup/ww.py
 cabbrev wpy !python %
 cabbrev wpy vsplit ~/.config/ipython/profile_default/startup/w.ipy
 cabbrev ws %s/\s\+$//gc
-cabbrev ws %s:^:snippet$\{0\:#\}:gc
-cabbrev ws %s:^\(.*\):snippet\t\1\/\n\t\1:gc
+
+"cabbrev ws %s:^:snippet$\{0\:"\}:gc
+"cabbrev ws %s:^\(.*\):snippet\t\1\/\n\t\1:gc
+
 cabbrev ws_ s/\s/_/gc
 cabbrev wsh !bash %
 cabbrev ww <C-r>"<BS>
 cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
 iabbr ws when where who what why
-iabbrev ## #####################################################<CR>
+iabbrev ### #####################################################<CR>
 iabbrev $$ ${0: }<left><left>
 iabbrev WWW () {<CR>
 nnoremap wl :call Zget_line()<CR>
 cabbrev wc call Z
 
-#
 function! Zget_line()
     let pos = [line('.'), col('.')]
     let zsaved_register = @@
@@ -37,7 +36,7 @@ function! Zget_line()
     exe "normal o" . a:zline
 endfunction
 
- nnoremap wl :call Zget_line()<CR>
+nnoremap wl :call Zget_line()<CR>
 cabbrev wc call
 
 

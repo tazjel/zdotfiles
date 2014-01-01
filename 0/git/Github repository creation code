@@ -1,13 +1,12 @@
 #!/bin/sh
-# Date: 02/09/2013 
-# Author: Ahmed 
+# Date: 02/09/2013
+# Author: Ahmed
 # Content: Github setup
 # Refernce : https://github.com/sadican/Shell-Scripts/blob/master/github-create-repo.sh
 
 # Content: Github repository creation code
 
 echo ">>> Starting..."
-
 echo ">>> Repository folder will be created in /home/user-name/Tools/..."
 echo ">>> Please give me repository folder name..."
 read repo_directory

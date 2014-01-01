@@ -150,7 +150,7 @@ do
 			usage
 			exit 1
 			;;
-	esac
+    esac
 done
 shift $(($OPTIND - 1))
 

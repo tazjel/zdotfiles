@@ -147,7 +147,7 @@ do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m
         "$HOME/.zshenv \
         "$HOME/.easystroke"
 
-     
+
 clone_repo "Successfully cloned $app_name"
 
 create_symlinks_ak "Setting up symlinks"

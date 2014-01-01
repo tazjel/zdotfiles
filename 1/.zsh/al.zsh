@@ -875,5 +875,6 @@ if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline
     source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
 fi
 
-
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
 export TERM=xterm-256color

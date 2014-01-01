@@ -880,10 +880,11 @@ let g:pymode_lint_error_symbol = '✘'
 let g:pymode_lint_info_symbol = '●'
 let g:pymode_lint_pyflakes_symbol = '●'
 "
-source ~/zdotfiles/2/zplugin/zabz.vim
-source ~/zdotfiles/2/zplugin/zbuff.vim
-source ~/zdotfiles/2/zplugin/zfunctionz.vim
-source ~/zdotfiles/2/zplugin/zmapz.vim
+""source ~/zdotfiles/2/zplugin/zabz.vim
+""source ~/zdotfiles/2/zplugin/zbuff.vim
+
+""source ~/zdotfiles/2/zplugin/zfunctionz.vim
+""source ~/zdotfiles/2/zplugin/zmapz.vim
 
 
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
