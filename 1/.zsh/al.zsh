@@ -1,4 +1,8 @@
 #!/bin/zsh
+
+
+
+
 ########################################################
 # Author : AHMED BANI
 #
@@ -16,12 +20,6 @@ DL="$HOME/Downloads"
     git_branch='master'
     debug_mode='0'
     fork_maintainer='0'
-    #
-load_ZPROMPT() {
-    ZPROMPT="$fg[red]%R →$reset_color $fg[green]%r?$reset_color (Yes, No, Abort, Edit) "
-
-}
-    #
 #<F9>
 #
 #
@@ -31,7 +29,7 @@ www_ak_add() {
 }
 
 
-#wwib(){xp="$@";ssh root@192.168.1.${xp}}
+
 #
 # bash find function
 
@@ -88,6 +86,7 @@ set_xkeyboard() {
 }
 
 set_xkeyboard
+
 is_linux() {
     if [[ $(uname) = "Linux" ]];then
         echo "Yes"
@@ -192,15 +191,12 @@ alias 'wsr'='cd ~/src'
     alias 'n1'='dpkg --get-selections | grep linux-image'
     alias 'ppp'='sudo add-apt-repository $1'
     alias 'rmm'='rm -rf'
-    alias 'w'='clear;ls -X;pwd;cho -e "\t\t\t$(date)"'
+    #alias 'w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
     alias 'w7'='ssh'
     alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)" '
-    alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail
- $2'
-    alias 'wx'='chmod +x'
-    alias 'wX'='chmod -x'
-    alias 'wx_all_sh'='find ./ -name "*.sh" -exec chmod +x {} \;'
-
+    #alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail
+ #$2'
+    #alias 'wX'='chmod -x'
     alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
     alias 'w_ak'='autokey -l'
     alias 'war'='setxmap -layout ar'
@@ -212,6 +208,7 @@ alias 'wsr'='cd ~/src'
     alias 'wf'='firefox -search'
     alias 'wfbash'='firefox -search bash command line "$@"'
     alias 'wfd'='find -maxdepth 1 -type d'
+    #alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
     alias 'wh'='tail -3000 ~/.zsh_history | cut -d";" -f2 | sort -u | grep'
     alias 'whis'='cut -f2 -d";" ~/.zsh_history | grep "$1" | sort -u'
     alias 'wi'='sudo apt-get install'
@@ -224,6 +221,7 @@ alias 'wsr'='cd ~/src'
     alias 'wlrs_sizels'='ls -lhR | grep -e "total\|:\$"' # list and get size
     alias 'wlv'='ls -a | grep vim'
     alias 'wlz'='ls -a | grep zsh'
+    alias 'wml'='env SHELL=zsh mlterm --meta=esc --metakey=alt -E ar_SA.UTF-8 -f=green -b=black -0=green -R=30-40'
     alias 'wmsg'='dmesg | tail -15'
     alias 'wrvs_remove_vim_swap'='rm ~/.vimswap/*'
     alias 'wshut'='sudo shutdown -h now'
@@ -245,6 +243,16 @@ alias 'wsr'='cd ~/src'
     alias 'wwww_clean_history_get_install'="lg install | sed 's/install//g' | sed 's/^ //g' | sed 's/sudo aptitude//g' | sed 's/^[ ]apt-get//g'| sed 's/^alg.*$//g"
     alias 'wwww_which_ubuntu_dist'='cat /etc/issue'
     alias 'wx'='chmod +x'
+
+    alias 'x'='exit'
+    #alias 'اسحب'='gpo'
+    #alias 'اعد'='__r'
+    #alias 'برامج'='acs'
+    #alias 'دف'='glll'
+    #alias 'كيفك'='gst'
+    #alias 'ما'='ls'
+    #alias 'من'='who'
+    #alias 'نصب'='wi'
     alias -g 'Gx'='--exclude-dir=cache .'
     alias -g 'H'="--help"
     alias -g 'wH'="--help | grep "
@@ -796,85 +804,9 @@ alias 'www_easystroke_disable'='easystroke disable'
 alias 'wgc'='git clone'
 
 
-############################  SETUP PARAMETERS
-    app_name='zdotfiles'
-    git_uri='https://github.com/tazjel/zdotfiles.git'
-    git_branch='master'
-    debug_mode='0'
-    fork_maintainer='0'
+
+alias 'war'='vim -A ~/zdotfiles/arabic.zsh' 
 
 
-AA() {
-    grep -Iishyr "\(Ramsbotham\|McDonald\|Miall\|Hugh\|Oliver\|Woodhouse\|Lederach\|Druckman\|eds\|Pruitt\|Kim\|Sung\|Cloke\|Kenneth\|Diamond\|Tidwell\|Alan\|Burton\|Cheldelin\)" .
-}
+alias 'wara'='source ~/zdotfiles/arabic.zsh' 
 
-
-alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
-
-alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
-
-
-alias 'wp'='ipython --profile=z'
-
-#(sed 's/#.*//g'|sed '/^ *$/d'|tr '\n' ';'|xargs echo) < al.zsh
-#(sed 's/(\(.*\))/({\1})/g' | sed 's/\(({.*\),/\1},{/') < wautokeyapi.txt
-#
-#
-#
-wfg() {
-    SPROMPT="$fg[red]%R →$reset_color $fg[green]%r? (Yes, No, Abort, Edit) "
-    echo "$fg[red]$PWD"
-    SPROMPT="$fg[red]%R →$reset_color $fg[green] :"
-    echo ""; echo $SPROMPT "$1"
-}
-#
-export LANG=en_US.UTF-8
-export LC_ALL=en_US.UTF-8
-export LC_CTYPE=en_US.UTF-8
-
-alias mv="mv --verbose --interactive"
-alias cp="cp --verbose --interactive"
-alias rm="rm --verbose --interactive=once"
-alias ln="ln --verbose --interactive"
-alias chmod="chmod --verbose --preserve-root"
-alias chgrp="chgrp --verbose --preserve-root"
-alias chown="chown --verbose --preserve-root"
-alias mkdir="mkdir --verbose"
-
-if [[ -x /usr/bin/mplayer ]]; then
-    alias mplayer="mplayer -msgcolor -msglevel all=4:statusline=9"
-    alias -s avi=mplayer
-    alias -s ogv=mplayer
-    alias -s mp4=mplayer
-    alias -s mkv=mplayer
-    alias -s mp3=mplayer
-    alias -s wav=mplayer
-fi
-
-function zfind_size() {
-    find -name "*.*" -print0 | du -hc --files0-from=-
-}
-
-alias zw="vim ~/.mlterm/"
-
-export LC_ALL='ar_SA.UTF-8'
-
-alias 'wml'='env SHELL=zsh mlterm --meta=esc --metakey=alt -E ar_SA.UTF-8 -f=green -b=black -0=green -R=30-40'
-    alias 'اخرج'='exit'
-    alias 'x'='exit'
-    alias 'اسحب'='gpo'
-    alias 'اعد'='__r'
-    alias 'برامج'='acs'
-    alias 'دف'='glll'
-    alias 'كيفك'='gst'
-    alias 'ما'='ls'
-    alias 'من'='who'
-    alias 'نصب'='sudo apt-get install'
-
-if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
-    source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
-fi
-
-export LESS='-R'
-export LESSOPEN='|~/.lessfilter %s'
-export TERM=xterm-256color

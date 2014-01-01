@@ -4,6 +4,8 @@ source $HOME/zdotfiles/1/.zsh/colors.zsh
 source $HOME/zdotfiles/1/.zsh/completion.zsh
 source $HOME/zdotfiles/1/.zsh/exports.zsh
 source $HOME/zdotfiles/1/.zsh/functions.zsh
+source $HOME/zdotfiles/1/.zsh/zfunctions.zsh
+
 source $HOME/zdotfiles/1/.zsh/history.zsh
 source $HOME/zdotfiles/1/.zsh/prompt.zsh
 source $HOME/zdotfiles/1/.zsh/setopt.zsh

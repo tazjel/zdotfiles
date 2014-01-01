@@ -1,9 +1,1 @@
-alias "سم"="alias"
-alias "قل"="echo"
-alias "اكتب"="vim"
-alias "اقرا"="cat"
-alias "اكتب عربي"="vim -A"
-alias "نظف"="clear"
-alias "التاريخ"="clear"
-alias "اعد"="reboot"
-alias "التحديث"="agg"
+
