@@ -320,19 +320,9 @@ wgp() {
 
 #bash ~/zdotfiles/4/time/zprayertime.sh
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+wpic()
+{
+    while true; do sleep 3; scrot '%Y-%m-%d-%s_$wx$h_wscrot.png' -e 'mv $f ~/images/shots/'; ls ~/images/shots;done
+}
 
 

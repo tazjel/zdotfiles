@@ -22,6 +22,7 @@ endif
 hi vimSynType     gui=none
 hi vimCommand     guifg=#82a3bf
 hi vimSetEqual    guifg=#a7b367
+
 " Syntax highlighting
 hi Comment      guifg=#8e8f8d gui=none
 hi Todo         guifg=#8f8f8f gui=none
