@@ -1,0 +1,120 @@
+<snippets namespace="" license="GPL v3+" filetypes="Python" authors="Yngve Inntjore Levinsen" name="Python Snippets">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>while</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>while ${condition}:
+	${cursor}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>for</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>for ${condition}:
+    ${cursor}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>def</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>def ${1:name}:
+    '''
+     ${2:doc}
+    '''
+    ${cursor}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>class</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>class ${1:name}:
+    '''
+    ${2:doc}
+    '''
+    def __init__(self,${3:initargs}):
+        ${4:initialization}
+    ${cursor}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>gplheader</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#  This file is part of ${project}
+#
+# Copyright (C) %{year} %{fullname} &lt;%{email}>
+#
+#  This library is free software; you can redistribute it and/or
+#  modify it under the terms of the GNU Library General Public
+#  License as published by the Free Software Foundation; either
+#  version 2 of the License, or (at your option) any later version.
+#
+#  This library is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+#  Library General Public License for more details.
+#
+#  You should have received a copy of the GNU Library General Public License
+#  along with this library; see the file COPYING.LIB.  If not, write to
+#  the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+#  Boston, MA 02110-1301, USA.
+#
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>try</match>
+  <displaypostfix>: try/except</displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>try:
+        ${1:pass}
+except ${2:exception}, ${3:e}:
+        ${4:raise} ${3}
+finally:
+    ${5:pass}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ifmain</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>if __name__ == '__main__':
+        ${1:main()}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>lambda</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>${1:var} = lambda ${2:vars} : ${3:action}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>#!</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/usr/bin/env python
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>moduledoc</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>'''
+.. module: ${1:modulename}
+
+${2:description}
+
+.. moduleauthor:: %{fullname} &lt;%{email}>
+
+'''</fillin>
+ </item>
+</snippets>

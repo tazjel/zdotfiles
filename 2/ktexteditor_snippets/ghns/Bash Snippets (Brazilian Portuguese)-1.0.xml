@@ -1,0 +1,309 @@
+<snippets namespace="" license="BSD" filetypes="Bash" authors="Bruno Gonçalves Araujo" name="Bash">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>#!/bin/bash</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>case_start_stop_restart</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere o primeiro parametro informado com as opções a seguir, exemplo de uso: ./script start
+case "$1" in
+
+    start)
+	echo "iniciando"
+	exit
+    ;;
+
+    stop)
+	echo "parando"
+	exit
+    ;;
+
+    restart)
+	echo "reiniciando"
+	exit
+    ;;
+
+esac
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Checagem_de_arquivo(reload)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#########################################
+# Início da checagem de arquivo de texto caso um arquivo de texto especificado
+# sofra alteração o painel será recarregado.
+#########################################
+echo '&lt;script type="text/javascript">
+            var first_run = true;
+            function verifica_arquivo() {
+               $.get('
+
+#Substitua o endereço do arquivo aqui
+echo "\"$HOME/teste\""
+
+#Continuação da checagem de arquivo
+echo ', function(data){
+                   if ($("#content").html() != data) {
+                       if (first_run == false) {
+                           location.reload();
+                       } else {
+                           first_run = false;
+                       }
+                       content = data;                       
+                       $("#content").html(content);    
+                   }
+                   setTimeout(verifica_arquivo,500);
+               });
+            }
+            $(document).ready(function(){
+               verifica_arquivo();
+            });
+        &lt;/script>
+        &lt;div id="content" style="display:none;">&lt;/div>'
+#########################################
+# Checagem de arquivo concluída
+#########################################
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>echo</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>echo $""</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>EOF</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Insira o conteúdo entre os 2 EOF sem se preocupar com aspas
+cat &lt;&lt; EOF
+
+
+EOF
+
+</fillin>
+ </item>
+
+ <item>
+  <displayprefix></displayprefix>
+  <match>for_loop_comando</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Exemplo de for, onde irá executar o trecho entre do e done uma vez para cada palavra listada no comando ls ~
+for i  in  $(ls ~); do
+    echo "$i"
+done
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>for_loop_lista</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Exemplo de for, onde irá executar o trecho entre do e done substituindo cada vez a variável $i por variavel 1, bananas e uvas.
+for i  in  "variavel 1" "bananas" "uvas"; do
+    echo "$i"
+done
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_arquivo_existe</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se o arquivo existe
+if [ -e "/bin/bash" ]; then
+    echo "O arquivo existe"
+else
+    echo "O arquivo não existe"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_arquivo_nao_existe</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se o arquivo não existe
+if [ ! -e "/bin/bash" ]; then
+    echo "O arquivo não existe"
+else
+    echo "O arquivo existe"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_confere_se_é_root</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se o usuário tem permissões de root (administrador)
+if test $(id -u) != 0
+then                 
+    echo "Usuário sem permissão de root, cancelando o processo."
+    exit                     
+fi </fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_diferente</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se a desigualdade é verdadeira
+if [ "0" != "1" ]; then
+    echo "A desigualdade é verdadeira"
+else
+    echo "A desigualdade não é verdadeira"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_igual</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se a igualdade é verdadeira
+if [ "1" = "1" ]; then
+    echo "A igualdade é verdadeira"
+else
+    echo "A igualdade não é verdadeira"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_maior_ou_igual</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se um número é maior ou igual ao outro
+if [ "1" -ge "2" ]; then
+    echo "É maior ou igual"
+else
+    echo "Não é maior ou igual"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_maior_que</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se um número é maior que o outro
+if [ "2" -gt "1" ]; then
+    echo "É maior que"
+else
+    echo "Não é maior que"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_menor_ou_igual</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se um número é menor ou igual ao outro
+if [ "1" -le "2" ]; then
+    echo "É menor ou igual"
+else
+    echo "Não é menor ou igual"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_menor_que</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Confere se um número é menor que o outro
+if [ "1" -lt "2" ]; then
+    echo "É menor que"
+else
+    echo "Não é menor que"
+fi
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>IFS_quebra_de_linha</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Altera a variável IFS para quebra de linha.
+#IFS é uma variável usada por vários comandos, entre eles o for, como forma de delimitador, onde normalmente é utilizado quebra de linha ou espaço em branco, nesse exemplo será considerado apenas a quebra de linha.
+OIFS=$IFS
+IFS=$'\n'
+#Insira aqui os comandos a serem executados com IFS somente para quebra de linha.
+
+
+#Restaura variável IFS para o padrão do sistema.
+IFS=$OIFS
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mkdir_criar_pasta</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Cria pastas e subpastas, exemplo de uso: mkdir -p /home/usuario/pasta
+mkdir -p </fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>sleep_5_segundos</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Para por 5 segundos e depois prossegue normalmente.
+sleep 5</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>while_loop_ate_5</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#loop até 5 usando while
+CONTADOR=0
+while [  $CONTADOR -lt 5 ]; do
+      echo "$CONTADOR";
+      let CONTADOR=CONTADOR+1; 
+done
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>while_loop_infinito</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#loop infinito usando while
+while :; do
+	echo "Isso será executado infinitamente até que seja pressionado [CTRL+C]."
+done
+
+</fillin>
+ </item>
+</snippets>

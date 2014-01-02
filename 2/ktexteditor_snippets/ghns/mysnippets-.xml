@@ -1,0 +1,819 @@
+<snippets namespace="" license="Artistic" filetypes="C;C++" authors="Islam Hassan" name="mysnippets">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>for</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>for(int ${i}=0; ${i} &lt; ${n}; ${i}++){
+  ${cursor}
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>freopen</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#ifndef ONLINE_JUDGE
+    freopen("in.txt", "rt", stdin);
+    freopen("out.txt", "wt", stdout);
+#endif
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>scanf</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>scanf("%${d}",&amp;${cursor});</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>printf</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>printf("${cursor}");</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mytemplate</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#include &lt;vector>
+#include &lt;list>
+#include &lt;map>
+#include &lt;set>
+#include &lt;queue>
+#include &lt;deque>
+#include &lt;stack>
+#include &lt;bitset>
+#include &lt;algorithm>
+#include &lt;functional>
+#include &lt;numeric>
+#include &lt;utility>
+#include &lt;sstream>
+#include &lt;iostream>
+#include &lt;iomanip>
+#include &lt;cstdio>
+#include &lt;cmath>
+#include &lt;cstdlib>
+#include &lt;ctime>
+#include &lt;string.h>
+
+#define rep(i,n) for(int i=0; i&lt;n; i++)
+#define repa(i,a,b,d) for(int i=a; i&lt;=b; i+=d)
+#define repd(i,a,b,d) for(int i=a; i>=b; i-=d)
+#define repi(it,stl) for(typeof((stl).begin()) it = (stl).begin(); (it)!=stl.end(); ++(it))
+#define sz(a) ((int)(a).size())
+#define mem(a,n) memset((a), (n), sizeof(a))
+#define all(n) (n).begin(),(n).end()
+#define rall(n) (n).rbegin(),(n).rend()
+#define mp(a,b) make_pair((a),(b))
+#define pii pair&lt;int,int>
+#define vi vector&lt;int>
+#define vs vector&lt;string>
+#define sstr stringstream
+#define myfind(v,x) (find(all((v)),(x))-(v).begin())
+#define itr(A,B) typeof(B) A = B
+
+typedef long long ll;
+using namespace std;
+
+int main()
+{
+
+    return 0;
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>break;</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>break;</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>continue;</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>continue;</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_TopologicalSort</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>const int SIZE = 105
+vector&lt;vector&lt;int> > outNodes(SIZE);
+vector&lt;vector&lt;int> > inNodes(SIZE);
+vector&lt;int> output;
+void topologicalSort(int n)   
+{
+    output.clear();
+    vector&lt;int> outDegree(n + 1);
+    for(int i = 0; i &lt; n; ++i)
+        outDegree[i] = (int)(outNodes[i].size());
+    set&lt;int> zeros;
+    for(int i = 0; i &lt; n; ++i)
+        if(outDegree[i] == 0)
+            zeros.insert(i);
+        while(zeros.size()) {
+            int cur = *zeros.begin();
+            zeros.erase(cur);
+            output.push_back(cur);
+            for(int i = 0; i &lt; (int)(inNodes[cur].size()); ++i) {
+                int parent = inNodes[cur][i];
+                if((--outDegree[parent]) == 0)
+                    zeros.insert(parent);
+            }
+        }
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_Sieve</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>const int MAX = 1000100
+bool primes[MAX];
+void sieve()   //O(n ln ln n)
+{
+    memset(primes, 1, sizeof primes);
+    primes[0] = primes[1] = 0;
+    int d = 1;
+    for(int i = 2; i *i &lt;= MAX; i += d, d = 2)
+        if(primes[i]) {
+            int d2 = i == 2 ? i : i + i;
+            for(int j = i * i; j &lt; MAX; j += d2)
+                primes[j] = 0;
+        }
+
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_Factorization</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>const int MAX = 1000000;
+long long primepow[MAX], prime[MAX], nprimes = 0;
+
+void factorization(long long n)   // O(sqrt(n))
+{
+    nprimes = 0;
+    long long pow = 0;
+    int d = 1;
+    for(long long i = 2; i *i &lt;= n; i += d, d = 2) {
+        pow = 0;
+        while(!(n % i))        pow++, n /= i;
+        if(pow != 0)
+            primepow[nprimes] = pow, prime[nprimes++] = i;
+    }
+    if(n > 1)
+        primepow[nprimes] = 1, prime[nprimes++] = n;
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_GenerateDivisors</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>//call factorization before calling this
+long long divs[MAX];//holds divisors
+int sz = 0;
+void generate_divisors(int ind = 0, long long mul = 1)
+{
+
+    if(ind == nprimes) {
+        divs[sz++] = mul;
+        return;
+    }
+    long long x = 1;
+    for(int i = 0; i &lt;= primepow[ind]; i++) {
+        generate_divisors(ind + 1, mul * x);
+        x *= prime[ind];
+    }
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_pwrlogn</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>ll powr(ll n, ll p)
+{
+    if(p == 0)     return 1;
+    if(p == 1)     return n;
+    ll x = powr(n, p / 2);
+    x = x * x;
+    if(p &amp; 1)
+        x *= n;
+    return x;
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_dijkstra</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>const int MAX = 1000, OO = 1e7
+
+int adjMax[MAX][MAX];
+int Dijkstra(int n, int src, int dest)
+{
+    bool vis[MAX] = {0};
+    int dist[MAX];
+    fill(dist, dist + n, OO);
+    dist[src] = 0; // we can reach source in no cost
+
+    for(int t = 0; t &lt; n; ++t) {
+        int val = OO, idx = -1;
+        for(int i = 0; i &lt; n; ++i) {
+            if(!vis[i] &amp;&amp; dist[i] &lt; val)
+                val = dist[i], idx = i;
+        }
+
+        if(idx == dest || idx == -1)
+            return dist[dest];
+        vis[idx] = 1; // 2) MARK as visited
+
+        for(int i = 0; i &lt; n; ++i)
+            if(dist[i] > (val = dist[idx] + adjMax[idx][i]))
+                dist[i] = val;
+    }
+    return dist[dest];
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_dijkstraWithHeap</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>const int SIZE = 50004, OO = 1 &lt;&lt; 27
+vector&lt;vector&lt;pair&lt;int,int> > > adjlst;
+int n;
+int dist[SIZE];
+int DijkstraWithHeap(int src, int goal)
+{
+    fill(dist, dist + n, OO);
+    dist[src] = 0;
+    priority_queue&lt;pair&lt;int,int>, vector&lt; pair&lt;int,int> >, greater&lt; pair&lt;int,int> > > q;
+    q.push(make_pair(0, src));
+    while(q.size()) {
+        src = q.top().second;
+        int cst = q.top().first;
+        q.pop();
+        if(cst != dist[src])
+            continue;
+        if(src == goal)
+            return dist[goal];
+        for(typeof(adjlst[src].begin()) it = adjlst[src].begin(); it != adjlst[src].end(); ++it){
+            int nxt = it->second, nxtc = it->first;
+            if(dist[nxt] > dist[src] + nxtc) {
+                dist[nxt] = dist[src] + nxtc;
+                q.push(make_pair(dist[nxt], nxt));
+            }
+        }
+    }
+    return OO;
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_disjointSet</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>const int SIZE = 1000
+struct DisjointSets {
+    int parent[SIZE], rank[SIZE], componentsCnt;
+    DisjointSets(int n) {
+        memset(rank, 0, sizeof rank);
+        for(int i = 0; i &lt; n; i++)
+            parent[i] = i;
+        componentsCnt = n;
+    }
+    int find(int e) {
+        return parent[e] == e ? e : parent[e] = find(parent[e]);
+    }
+    bool join(int e1, int e2) {
+        int p1 = find(e1), p2 = find(e2);
+        if(p1 == p2)
+            return 0;
+        if(rank[p1] == rank[p2])
+            rank[p1]++;
+        if(rank[p2] > rank[p1])
+            swap(p1, p2);
+        parent[p2] = p1;
+        componentsCnt--; // new components get merged
+        return 1;
+    }
+};
+
+struct Edge {
+    int from, to;
+    int cost;
+    Edge(int from, int to, int cost): from(from), to(to), cost(cost) {}
+    Edge() {}
+    bool operator&lt;(const Edge   &amp;e) const {
+        return cost &lt; e.cost;
+    }
+};</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_MSTPrim</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>const int SIZE = 1002, OO = 1 &lt;&lt; 27
+int n, adjmax[SIZE][SIZE];
+int MST()
+{
+    bool vis[SIZE] = {0};
+    int dist[SIZE];
+    fill(dist, dist + n, OO), dist[0] = 0;
+    int mstCost = 0, cur = 0;
+    for(int k = 1; k &lt; n; k++) {  //n-1 iteration
+        vis[cur] = 1;
+        int val = OO, idx = 0;
+        for(int i = 0; i &lt; n; i++) {
+            if(vis[i])
+                continue;
+
+            if(adjmax[cur][i] &lt; dist[i])
+                dist[i] = adjmax[cur][i];
+
+            if(dist[i] &lt; val)
+                val = dist[i], idx = i;
+        }
+        cur = idx, mstCost += val;
+    }
+    return mstCost;
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_MaxFlow</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>int m, n;
+const int MAX = 500;
+pii par[MAX];
+bool vis[MAX];
+struct edge {
+    int to, revId, cst;
+    edge(int t, int r, int c) :
+        to(t), revId(r), cst(c) {
+    }
+};
+vector&lt;vector&lt;edge> > adjlst;
+int pathMin;
+bool getPath(int src, int dest)
+{
+    if(src == dest)        return 1;
+    if(vis[src])   return 0;
+    vis[src] = 1;
+    rep(i, sz(adjlst[src])) {
+        edge e = adjlst[src][i];
+        if(par[e.to].first == -1 &amp;&amp; e.cst > 0 &amp;&amp; getPath(e.to, dest)) {
+            pathMin = min(pathMin, e.cst);
+            par[e.to] = mp(src, i);
+            return true;
+        }
+    }
+    return false;
+}
+
+void updatePath(int src, int dest)
+{
+    if(src == dest)        return;
+    int fr = par[dest].first, idx = par[dest].second;
+    int rev = adjlst[fr][idx].revId;
+    adjlst[fr][idx].cst -= pathMin;
+    adjlst[dest][rev].cst += pathMin;
+    updatePath(src, fr);
+}
+int MaxFlow(int src, int dest)
+{
+    int res = 0;
+    do {
+        mem(vis, 0);
+        mem(par, -1);
+        pathMin = INT_MAX;
+        if(!getPath(src, dest))        break;
+        res += pathMin;
+        updatePath(src, dest);
+    } while(true);
+    return res;
+}
+
+inline void addEdge(int src, int dest, int cst)
+{
+    adjlst[src].push_back(edge(dest, adjlst[dest].size(), cst));
+    adjlst[dest].push_back(edge(src, adjlst[src].size() - 1, 0));
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_kthroot</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>typedef unsigned long long ull;
+ull divk(ull n, ull mid, ull k, bool isdiv){
+    while(k){
+        if(isdiv &amp;&amp; n%mid) break;
+        n/= mid;
+        --k;
+    }
+    return k?-1:n;
+}
+ll kthroot(ull n, ull k){//k>1
+    ull st=0, en = n+1;
+    rep(i,70){
+        ull mid = (st+en)/2;
+        if(mid == divk(n,mid,k-1,1)) return mid;
+        if(mid > divk(n,mid,k-1,0)) en = mid;
+        else st = mid+1;
+    }
+    return -1;
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_BIT</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>struct BIT {
+    vector&lt;long long> v;
+    BIT() {
+    }
+    BIT(int s) {
+        s = 1 &lt;&lt; (int) ceil(log(2.0 + s) / log(2.));
+        v.resize(s, 0);
+    }
+
+    long long getCum(int idx) {//inclusive
+        idx++;
+        long long r = 0;
+        while(idx) {
+            r += v[idx - 1];
+            idx -= idx &amp; -idx;
+        }
+        return r;
+    }
+    void update(int idx, long long val) {
+        idx++;
+        while(idx &lt;= (int) v.size()) {
+            v[idx - 1] += val;
+            idx += idx &amp; -idx;
+        }
+    }
+    int getIdx(long long cum) { //last occurence of cum
+        int s = 0;
+        int m = v.size() >> 1;
+        while(m) {
+            if(v[s + m - 1] &lt;= cum)
+                cum -= v[(s += m) - 1];
+            m >>= 1;
+        }
+        return cum ? -1 : s - 1;
+    }
+    int lower_bound(long long cum) { //first cumulative value >= cum
+        int s = 0;
+        int m = v.size() >> 1;
+        while(m) {
+            if(v[s + m - 1] &lt; cum)
+                cum -= v[(s += m) - 1];
+            m >>= 1;
+        }
+        return  s;
+    }
+};</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_Treap</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>typedef int T;
+#define OO 1e9
+struct node {
+    static node* empty;
+    node* left, *right;
+    T val;
+    int pri, size, freq;
+    bool bad;
+    node() {
+        memset(this,0,sizeof(this));
+        left = right = this;
+        pri = INT_MAX;
+    }
+    node(T v) {
+        val = v;
+        left = right = empty;
+        bad = 0;
+        pri = rand();
+        size = freq = 1;
+    }
+    void update() {
+        size = left->getSize() + right->getSize() + freq;
+        bad = 0;
+    }
+    int getSize() {
+        if (bad)
+            update();
+        return size;
+    }
+    int lower_bound(T v) {
+        if(this == empty) return OO;
+        if (val == v)
+            return left->getSize();
+        else if (v &lt; val)
+            return left->lower_bound(v);
+        else
+            return left->getSize() + freq + right->lower_bound(v);
+    }
+    int upper_bound(T v) {
+        if(this == empty) return OO;
+        if (val == v)
+            return left->getSize() + freq;
+        else if (v &lt; val)
+            return left->upper_bound(v);
+        else
+            return left->getSize() + freq + right->upper_bound(v);
+    }
+    T getValue(int idx) {
+        if (idx &lt; left->getSize())
+            return left->getValue(idx);
+        if (idx >= left->getSize() + freq)
+            return right->getValue(idx - left->getSize() - freq);
+        return val;
+    }
+};
+node* node::empty = new node;
+node* find(node* root, T v){
+    if(root == node::empty) return root;
+    if (root->val == v)
+        return root;
+    else if (v &lt; root->val)
+        return find(root->left, v);
+    else
+        return find(root->right, v);
+}
+node* rotateRight(node* root) {
+    node* l = root->left;
+    root->left = l->right;
+    l->right = root;
+    l->bad = root->bad = 1;
+    return l;
+}
+node* rotateLeft(node* root) {
+    node* r = root->right;
+    root->right = r->left;
+    r->left = root;
+    r->bad = root->bad = 1;
+    return r;
+}
+node* balance(node* root) {
+    if (root->left->pri &lt; root->pri)
+        root = rotateRight(root);
+    else if (root->right->pri &lt; root->pri)
+        root = rotateLeft(root);
+    return root;
+}
+node* insert(node* root, T val) {
+    if (root == node::empty)
+        return root = new node(val);
+    if (root->val == val) {
+        ++root->freq, ++root->size;
+        return root;
+    }
+    if (val &lt; root->val)
+        root->left = insert(root->left, val);
+    else
+        root->right = insert(root->right, val);
+    root->bad=1;
+    return balance(root);
+}
+node* remove(node* root, T val) {
+    if (root == node::empty)
+        return root;
+    root->bad = 1;
+    if (root->val == val) {
+        if (root->freq > 1) {
+            --root->freq;
+            return root;
+        }
+        if (root->right == node::empty)
+            return root->left;
+        if (root->left == node::empty)
+            return root->right;
+        if (root->left->pri &lt; root->right->pri)
+            root = rotateRight(root);
+        else
+            root = rotateLeft(root);
+        root = remove(root, val);
+        return root;
+    }
+    if (val &lt; root->val)
+        root->left = remove(root->left, val);
+    else
+        root->right = remove(root->right, val);
+    return root;
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>tst</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>a%{selection}a
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_BITMultiset</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>struct BIT {
+    vector&lt;long long> v;
+    BIT() {
+    }
+    BIT(int s) {
+        s = 1 &lt;&lt; (int) ceil(log(2.0 + s) / log(2.));
+        v.resize(s);
+    }
+    
+    long long getCum(int i) {
+        i++;
+        long long r = 0;
+        while(i) {
+            r += v[i - 1];
+            i -= i &amp; -i;
+        }
+        return r;
+    }
+    void update(int i, long long val) {
+        i++;
+        while(i &lt;= (int) v.size()) {
+            v[i - 1] += val;
+            i += i &amp; -i;
+        }
+    }
+    int find(long long val) {
+        int s = 0;
+        int m = v.size() >> 1;
+        while(m) {
+            if(v[s + m - 1] &lt; val)
+                val -= v[(s += m) - 1];
+            m >>= 1;
+        }
+        return s;
+    }
+};
+
+struct BITMultiSet: public BIT {
+
+    BITMultiSet(){}
+    // the max value that can be stored in the set
+    BITMultiSet(int maxVal): BIT(maxVal) {
+        update(0, -1);
+    }
+
+    void insert(int val) {
+        update(val, 1);
+    }
+
+    void eraseByVal(int val) {
+        update(val, -1);
+    }
+
+    void eraseByIndex(int ind) {
+        eraseByVal((*this)[ind]);
+    }
+
+    int operator[](int ind) {
+        return find(ind);
+    }
+
+    int count(int val) {
+        return getCum(val) - getCum(val - 1);
+    }
+
+    bool empty() {
+        return getCum(v.size() - 1) == -1;
+    }
+
+    int size() {
+        return getCum(v.size() - 1) + 1;
+    }
+};</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_SegTree</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>struct SegTree {
+    int n;
+    vector&lt;pair&lt;ll,ll> > segtree;
+    //first: total sum of the whole range
+    //second: node value. One value to be added to each node in the range
+    
+    SegTree() {}
+    SegTree(int n) {
+        this->n = n;
+        int siz = 1 &lt;&lt; (int) ceil(log(2.0 + n) / log(2.)); //nearest power of 2 for #leafs
+        segtree.resize(2 * siz + 2, mp(0, 0));
+    }
+    
+    //The rest of the code is problem dependent. Change it according to the problem
+    ll setVal(int s, int e, ll val) {
+        return setVal(0, s, e, 0, n - 1, val);
+    }
+    
+    ll setVal(int idx, int tars, int tare, int curs, int cure, ll val) {
+        if(tars > cure || tare &lt; curs) return 0; //if current node is out of the target range
+
+        if(tars &lt;= curs &amp;&amp; tare >= cure) { //if current node is completely inside the target range
+            segtree[idx].second += val;
+            segtree[idx].first += val * (cure - curs + 1);
+            return val * (cure - curs + 1);
+        }
+        ll val1 = setVal(2 * idx + 1, tars, tare, curs, (curs + cure) / 2, val);
+        ll val2 = setVal(2 * idx + 2, tars, tare, (curs + cure) / 2 + 1, cure, val);
+        
+        segtree[idx].first += val1 + val2;
+        return val1 + val2;
+    }
+    
+    ll getSum(int s, int e) {
+        return getSum(0, s, e, 0, n - 1);
+    }
+    
+    ll getSum(int idx, int tars, int tare, int curs, int cure) {
+        if(tars > cure || tare &lt; curs) return 0; //if current node is out of the target range
+
+        if(tars &lt;= curs &amp;&amp; tare >= cure) { //if current node is completely inside the target range
+            return segtree[idx].first;
+        }
+        ll val1 = getSum(2 * idx + 1, tars, tare, curs, (curs + cure) / 2);
+        ll val2 = getSum(2 * idx + 2, tars, tare, (curs + cure) / 2 + 1, cure);
+        
+        ll st=max(tars,curs), en = min(tare,cure);
+        return val1 + val2 + segtree[idx].second*(en-st+1);
+    }
+};
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mylib_KMP</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#define MAX 1000010
+char pat[MAX];
+char text[MAX];
+int pre[MAX];
+vector&lt;int> res;
+//int dp[MAX][256];
+int getlen(int l, char c)
+{
+    //     int &amp;m = dp[l][c];
+    //     if(m!=-1) return m;
+    while(l &amp;&amp; pat[l] != c)
+        l = pre[l - 1];
+    if(pat[l] == c)
+        l++;
+    return /*m=*/l;
+}
+/* To check if the prefix ending at i is periodic or not use this if sttmnt
+ *       d = prefix_len / period_length_in_it
+ *       which means d is the number of repetitions of a substring forming the prefix ending @i
+ i *f ((i + 1) % (i + 1 - pre[i]) == 0)
+ int d = (i + 1) / (i + 1 - pre[i]);
+ */      
+void compute_pre() {
+    pre[0] = 0;
+    int l = 0;
+    if (pat[0])
+        for (int i = 1; pat[i]; ++i) {
+            l = getlen(l, pat[i]);
+            pre[i] = l;
+        }
+}
+void match() {
+    //mem(dp,-1);
+    compute_pre();
+    res.clear();
+    int l = 0;
+    for (int i = 0; text[i]; ++i) {
+        l = getlen(l, text[i]);
+        if (!pat[l]) {
+            res.push_back(i - l + 1);
+            l = pre[l - 1]; //l=0 if no overlap is allowed
+        }
+    }
+}</fillin>
+ </item>
+</snippets>

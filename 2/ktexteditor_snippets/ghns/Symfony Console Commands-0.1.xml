@@ -1,0 +1,73 @@
+<snippets namespace="" license="BSD" filetypes="Bash" authors="jimtendo" name="Symfony Console Commands">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Clear_Cache_Dev</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console cache:clear --env=dev --no-debug</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Clear_Cache_Prod</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console cache:clear --env=prod --no-debug</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Database_Create</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console doctrine:database:create</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Database_Drop</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console doctrine:database:drop --force</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Database_Update_Schema</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console doctrine:schema:update --force</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Generate_Bundle</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console generate:bundle --namespace=Acme/HelloBundle --format=yml</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Generate_CRUD</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console generate:doctrine:crud --entity=AcmeBlogBundle:Post --format=annotation --with-write --no-interaction</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Generate_Entity</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console doctrine:generate:entity --entity="AcmeStoreBundle:Product" --fields="name:string(255) price:float description:text"</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Generate_Entities_Getters_Setters</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console doctrine:generate:entities Acme</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Generate_Form</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>php app/console generate:doctrine:form AcmeBlogBundle:Post</fillin>
+ </item>
+</snippets>
