@@ -1,0 +1,158 @@
+<snippets namespace="" license="BSD" filetypes="*" authors="bruno" name="BigBashView">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Checkbox</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Substitua o id, name e for para o nome desejado, recomendo manter os 3 com o mesmo nome para facilitar a organização.
+checkbox_title=$"Descrição ao passar o mouse"
+echo "&lt;input type=\"checkbox\" title=\"$checkbox_title\" id=\"nome\" name=\"nome\" value=\"1\">&lt;label title=\"$checkbox_title\" for=\"nome\">" $"Descrição" "&lt;/label>"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_cor(Input_color)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Seletor de cores
+inputcolor_title=$"Descrição ao passar o mouse"
+echo $"Cor" "&lt;input type=\"color\" title=\"$inputcolor_title\" name=\"cor\" value=\"#000000\">"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_escala(Input_range)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Seletor de escala
+inputrange_title=$"Descrição ao passar o mouse"
+echo $"Selecione de 0 a 10" "&lt;input title=\"$inputrange_title\" type=\"range\" name=\"escala\" min=\"0\" max=\"10\" value=\"3\">"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_número(Input_number)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Javascript para evitar que sejam inseridos caracteres que não sejam numéricos
+echo '&lt;script language=javascript>function isNumber(evt){var charCode = (evt.which) ? evt.which : event.keyCode;if (charCode != 46 &amp;&amp; charCode >31 &amp;&amp; (charCode &lt; 48 || charCode > 57)) return false; return true;}&lt;/script>'
+#
+# Campo para números
+inputnumber_title=$"Descrição ao passar o mouse"
+echo "&lt;input type=\"number\" title=\"$inputnumber_title\" name=\"entradanumero\" value=\"0\" step=\"1\" style=\"width:80px;\" onkeypress=\"return isNumber(event)\"/>"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_senha(Input_password)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>inputpassword_title=$"Descrição ao passar o mouse"
+echo $"Descrição" "&lt;input title=\"$inputpassword_title\" type=\"password\" name=\"entradasenha\" size=\"25\" placeholder=\"" $"Texto de dica" "\">"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_texto_grande(Textarea)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Campo de texto
+textarea_title=$"Descrição ao passar o mouse"
+echo $"Campo de texto" "&lt;textarea title=\"$textarea_title\" name=\"campo_de_texto\" rows=\"4\" cols=\"40\" placeholder=\"" $"Texto de dica" "\">""&lt;/textarea>"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Entrada_de_texto(Input_text)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>inputtext_title=$"Descrição ao passar o mouse"
+echo $"Descrição" "&lt;input title=\"$inputtext_title\" type=\"text\" name=\"entradatexto\" size=\"25\" value=\"\" placeholder=\"" $"Texto de dica" "\">"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Exibir_imagem(img_src)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Exibir imagem
+echo "&lt;img src=\"imagem.png\" title=\"" $"Descrição da imagem" "\" height=\"100\" width=\"100\">"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Formulário_inicio(Form)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Início do formulário, informe o arquivo que irá recebe-lo em action.
+echo "&lt;form action=\"arquivo.sh.htm\" method=\"post\">"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Link(a_href)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Link clicável
+echo "&lt;a href=\"arquivo.sh.htm\" title=\"" $"Descrição do link" "\">" $"Exemplo de link" "&lt;/a>"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Menu(DropDown)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Menu Drop Down.
+menu_title=$"Descrição ao passar o mouse"
+echo "&lt;select name=\"menu\" title=\"$menu_title\">
+&lt;option value=\"1\">" $"Opção 1" "&lt;/option>
+&lt;option value=\"2\">" $"Opção 2" "&lt;/option>
+&lt;option value=\"3\" selected>" $"Opção 3" "&lt;/option>
+&lt;option value=\"4\">" $"Opção 4" "&lt;/option>
+&lt;/select>"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Quebra_de_linha</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>echo "&lt;br>"
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Radio_Buttons</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Substitua o id, name e for para o nome desejado.
+radiobutton_title_1=$"Descrição ao passar o mouse 1"
+radiobutton_title_2=$"Descrição ao passar o mouse 2"
+echo "&lt;input type=\"radio\" title=\"$radiobutton_title_1\" id=\"1\" name=\"radio\" value=\"sim\">&lt;label title=\"$radiobutton_title_1\" for=\"1\">" $"Sim" "&lt;/label>"
+echo "&lt;input type=\"radio\" title=\"$radiobutton_title_2\" id=\"2\" name=\"radio\" value=\"não\">&lt;label title=\"$radiobutton_title_2\" for=\"2\">" $"Não" "&lt;/label>"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Redirecionar(refresh)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#Redirecionar automaticamente
+echo "&lt;META http-equiv=\"refresh\" content=\"0;URL=arquivo.sh.htm\">" 
+
+</fillin>
+ </item>
+</snippets>

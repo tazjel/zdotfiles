@@ -1,0 +1,124 @@
+!XTerm
+XTerm.vt100.saveLines:1000000
+XTerm.vt100.scrollBar:false
+XTerm.vt100.loginShell:false
+XTerm.vt100.faceName:Monaco:pixelsize=17
+XTerm.vt100.faceNameDoublesize:WenQuanYi Bitmap Song:pixelsize=17
+XTerm.vt100.cjkWidth:false
+XTerm.vt100.preeditType:Root
+XTerm.vt100.inputMethod:ibus
+XTerm.vt100.locale:true
+XTerm.vt100.visualBell:false
+
+URxvt.inputMethod: ibus
+URxvt.preeditType: OverTheSpot
+
+XTerm*background:  #000000
+XTerm*foreground:  #DEDEDE
+XTerm*cursorColor: yellow
+
+*color0:    Black
+*color1:    OrangeRed3
+*color2:    Green4
+*color3:    Yellow3
+*color4:    RoyalBlue3
+*color5:    Magenta3
+*color6:    Cyan3
+*color7:    AntiqueWhite
+*color8:    Grey15
+*color9:    OrangeRed
+*color10:   Green
+*color11:   Yellow
+*color12:   CornflowerBlue
+*color13:   Magenta
+*color14:   turquoise
+*color15:   White
+! http://critical.ch/xterm
+
+
+!URxvt
+URxvt*background: rgba:0E00/0E00/0E00/dddd
+URxvt*foreground: #DEDEDE
+URxvt*saveLines:  1000000
+URxvt.depth:      32
+URxvt.buffered:    true
+URxvt.transparent: false
+URxvt.shading:     100
+
+!Scroll
+URxvt.scrollBar: false
+URxvt.scrollBar_right: true
+URxvt.scrollBar_floating: true
+URxvt.scrollstyle: plain
+
+URxvt*scrollTtyOutput   : false
+URxvt*scrollWithBuffer  : true
+URxvt*scrollTtyKeypress : true
+
+URxvt*secondaryWheel  : true
+URxvt*secondaryScreen : true
+
+urxvt*buffered:false
+urxvt*transparent:true
+urxvt*fading:20
+urxvt*tintColor:#000000
+urxvt*shading:30
+!this makes urxvt to start faster?!
+urxvt*preeditType:Root
+
+URxvt.preeditType: OffTheSpot
+URxvt.inputMethod:fcitx
+URxvt.imFont: -Monaco-medium-r-normal–0-0-0-0-p-0-iso10646-1
+urxvt*imLocale:zh_CN.utf8
+
+URxvt.font:xft:Monaco:size=14:antialias=true,xft:DejaVu Sans Mono:size=14:antialias=true,xft:Microsoft YaHei:size=14:antialias=true,xft:WenQuanYi Bitmap Song:size=14:antialias=true:charwidth=14
+URxvt.boldfont:xft:Monaco:size=14:antialias=true,xft:DejaVu Sans Mono:size=14:antialias=true,xft:Microsoft YaHei:size=14:antialias=true,xft:WenQuanYi Bitmap Song:size=14:antialias=true:charwidth=14
+
+
+urxvt*urgentOnBell:true
+urxvt*meta8:false
+urxvt*borderless:true
+urxvt*multichar_encoding:utf8
+urxvt*cursorBlink:false
+urxvt*cursorUnderline:false
+urxvt*metaSendsEscape: true
+urxvt*eightBitInput: false
+
+urxvt*keysym.sym: string
+
+
+URxvt.perl-lib: /home/jinzhu/.scripts/urxvt/
+URxvt.perl-ext-common: default,url-select,vim-scrollback,clipboard,autocomplete-ALL-the-things,font-size
+
+! URxvt.matcher.button:   1
+URxvt.colorUL: #4682B4
+
+URxvt.keysym.M-slash:  perl:aAtt:complete
+
+! keyboard-select,
+! URxvt.keysym.M-v: perl:keyboard-select:activate
+! URxvt.keysym.M-s: perl:keyboard-select:search
+
+! URxvt.clipboard.autocopy: true
+! URxvt.keysym.M-c:   perl:clipboard:copy
+! URxvt.keysym.M-v:   perl:clipboard:paste
+
+URxvt.keysym.C-M-u: perl:url-select:select_next
+! URxvt.url-select.autocopy: true
+URxvt.url-select.launcher: chromium
+URxvt.url-select.underline: true
+
+urxvt.vim-scrollback: C-M-v
+! M-r * -> paste from buffer; M-r + -> paste from clipboard
+urxvt.vim-scrollback-paste: M-r
+urxvt.vim-scrollback-bg: 16
+urxvt.vim-scrollback-fg: 10
+
+! file name with line number
+urxvt.vim-scrollback.pattern.1: (.*)
+urxvt.vim-scrollback.launcher.1: /home/jinzhu/.scripts/open_or_search $1
+urxvt*urlLauncher: chromium
+
+! Change font size on the fly
+URxvt.keysym.C-S-Up:   perl:font-size:incglobal
+URxvt.keysym.C-S-Down: perl:font-size:decglobal

@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# Build & Install
+
+./configure --enable-fribidi --enable-anti-alias --enable-optimize --prefix=/usr --with-type-engines=xft --enable-m17nlib --enable-ibus --enable-scim

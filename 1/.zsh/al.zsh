@@ -219,14 +219,17 @@ wds_compare_strings() {
 function W_file_size () {
     ls -lhR | grep -e "total\|:$"
 } # List directories recursively showing its sizes using only ls and grep
+
 function ww10 {
     for i in $(seq 1 10);do
         echo $i
     done
 }
+
 function alg () {
     grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
 }
+
 function glll {
     cd $HOME/zdotfiles
     git add -A
@@ -244,13 +247,15 @@ function wpkl () {
     dpkg --get-selections > ~/zdotfiles/0/packages-alpha.txt
 }
 
-wssh () { listips | grep "for" | cut -d' ' -f5,6 | sed 's/^\(.*\) (\(.*\))/ssh
-    \1@\2/g'}
-
-
+wssh ()
+{
+    listips | grep "for" | cut -d' ' -f5,6 | sed 's/^\(.*\) (\(.*\))/ssh
+    \1@\2/g'
+}
 listip_ssh () {
     listips | grep "for" | cut -d' ' -f5,6 | sed 's/^\(.*\) (\(.*\))/ssh root@\2:\/home\/\1/g'
 }
+
 www_lynx() {
     lynx -dump $1 | awk '/http/{print $2}' | egrep "^https{0,1}"
 }
@@ -327,3 +332,23 @@ wpic()
 #$(pgrep easystroke)
 
 alias "wea_easystroke"="easystroke -c ~/.easystroke"
+echo ${TERM}
+
+#LANG=ar_SA.UTF-8:en_US.UTF-8
+#LC_ALL=en_US.UTF-8:ar_SA.UTF-8
+#LC_ALL
+#locale
+# Unicode Locale environment variables (See: Unicode HowTo):
+export LANG=ar_SA.UTF-8
+export LANGUAGE=ar:ar_SA.UTF-8:en:C:en_US.UTF-8:en_GB
+export LANGUAGELIST=ar_SA:en_GB:en:C
+export LC_ALL=ar_SA.UTF-8
+export FALLBACKLOCALE=C
+export COUNTRY=SA
+export G_BROKEN_FILENAMES=1
+export CHARSET=ISO_8859-6
+export LESSCHARSET=UTF-8
+export OUTPUT_CHARSET=UTF-8
+
+
+alias "w_term_colors"="msgcat --color=test"

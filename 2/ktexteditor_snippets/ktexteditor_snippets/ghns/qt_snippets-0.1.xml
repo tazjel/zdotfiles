@@ -1,0 +1,158 @@
+<snippets namespace="qt::" license="BSD" filetypes="C++" authors="Yago Fernández Meilán" name="qtsnippets">
+ <script>function getDocName() {
+  return document.fileName();
+}
+
+function getClassName() {
+  var filename = document.fileName();
+  return filename.replace(/.(cpp|h)$/, '');
+}
+
+function headerGuard() {
+  var filename = document.fileName().toUpperCase();
+  filename = filename.replace(/[\.\-]/, '_');
+  return filename;
+}
+</script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>qt::model::h</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>/* This file is part of the ${AppName} application.
+Copyright ${CompanyName} ${year}. All rights reserved.*/
+
+#ifndef ${g`headerGuard`}
+#define ${g}
+
+#include &lt;QObject>
+
+class ${h`getClassName`}:public QObject
+{
+  Q_OBJECT
+  
+  public: //functions
+    //constructor
+    explicit ${h} (QObject* parent = 0);
+    
+  public slots: //slots
+    //void exampleSlot(QString parm1, QString parm2);
+ 
+  private: //atributes
+
+  private: //functions
+    //int exampleFunc(QThing&amp; arg1, int ceroDefault = 0);
+
+  signals:
+    //void exampleSignal(QString arg1, QString arg2);
+};
+
+#endif // ${g}
+
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>qt::model::cpp</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>/* This file is part of the ${AppName} application.
+Copyright ${CompanyName} ${year}. All rights reserved.*/
+
+#include "${g`getClassName`}.h"
+
+${g}::${g} ( QObject* parent) : QObject ( parent)
+{
+  ${cursor}
+  //This is a good place to connect signals and slots
+}
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>qt::controller::h</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>/* This file is part of the ${AppName} application.
+Copyright ${CompanyName} ${year}. All rights reserved.*/
+
+#ifndef ${g`headerGuard`}
+#define ${g}
+
+#include &lt;${QDialog}>
+#include &lt;ui_${cn`getClassName`}.h>
+
+class ${cn}:public %{QDialog}
+{
+  Q_OBJECT
+  
+  public: //functions
+    //constructor
+    ${cn} (QWidget* parent = 0, Qt::WindowFlags flags = 0 );
+    
+  public slots: //slots
+    //void exampleSlot(QString parm1, QString parm2);
+ 
+  private: //atributes
+    Ui::${cn} ui;
+
+  private: //functions
+    //int exampleFunc(QThing&amp; arg1, int ceroDefault = 0);
+
+  signals:
+    //void exampleSignal(QString arg1, QString arg2);
+};
+
+#endif // %{THISNAME}_H
+
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>qt::controller::cpp</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>/* This file is part of the ${AppName} application.
+Copyright ${CompanyName} ${year}. All rights reserved.*/
+#include "${cn`getClassName`}.h"
+
+${cn}::${cn} ( QWidget* parent, Qt::WindowFlags flags ) : ${QDialog} ( parent, flags)
+{
+  ui.setupUi(this);
+  //This is a good place to connect signals and slots
+}
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>qt::main::cpp</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>/* This file is part of the ${AppName} application.
+Copyright ${CompanyName} ${year}. All rights reserved.*/
+
+#include &lt;QApplication>
+#include &lt;QMainWindow>
+
+#include "controller/MainWindow.h"
+
+int main(int argc, char **argv)
+{
+    QApplication app(argc, argv);
+    QApplication::setOrganizationName("%{CompanyName}");
+    QApplication::setOrganizationDomain("%{CompanyName}.com");
+    QApplication::setApplicationName("${AppName}");
+    
+    MainWindow w;
+    w.show();
+
+    return app.exec();
+}
+
+</fillin>
+ </item>
+</snippets>
