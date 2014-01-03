@@ -324,5 +324,6 @@ wpic()
 {
     while true; do sleep 3; scrot '%Y-%m-%d-%s_$wx$h_wscrot.png' -e 'mv $f ~/images/shots/'; ls ~/images/shots;done
 }
+#$(pgrep easystroke)
 
-
+alias "wea_easystroke"="easystroke -c ~/.easystroke"

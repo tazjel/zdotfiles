@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 
@@ -15,6 +16,8 @@ else
 fi
 
 
+
+# sudo apt-get install key-mon 
 
 
 ##On a freshly installed system, create the starting baseline list of packages:
