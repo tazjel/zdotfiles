@@ -1,4 +1,4 @@
-set fillchars+=stl:\ ,stlnc:\
+"set fillchars+=stl:\ ,stlnc:\
 
 "From : https://github.com/tazjel/dotfiles-26/blob/master/_vim/colors/Tomorrow-Night.vim
 "

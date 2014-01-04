@@ -1,4 +1,4 @@
-# checks (stolen from zshuery)
+
 if [[ $(uname) = 'Linux' ]]; then
     IS_LINUX=1
 fi

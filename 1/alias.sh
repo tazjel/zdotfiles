@@ -20,54 +20,69 @@ DL="$HOME/Downloads"
     git_branch='master'
     debug_mode='0'
     fork_maintainer='0'
-#<F9>
+    #
+    #
+    #
+    #
+    #
+#           <F9>
 #
 #
-#<F6>
+#
+#
+#
+#
+#           <F6>
+
+
 www_ak_add() {
     echo "$1" > $HOME/.config/autokey/data/MyPhrases/ww/"$2"
 }
 
 
 
-#
-# bash find function
-
-
 
 # Replace all the spaces in all the filenames of the current directory and including directories with underscores.
 www_rename(){
     ls -1 | while read file; do
-        new_file=$(echo $file | sed s/\ /_/g)
+        new_file=$(echo $file | sed 's/\ /_/g' )
         mv "$file" "$new_file"; done
 }
+
+
 
 www_wget() {
     wget --recursive  --page-requisites --convert-links
 }
 
-setup_git_push_default() {
-    git config --global push.default current
-}
 
 
 git_config_global() {
     git config --global user.name 'Ahmed Al-Ghamdi'
+    read Username
+    read user.name
+    read user.email
+
     git config --global user.email 'tazjel@gmail.com'
-    git config --list
     git config --global color.ui auto
     git config --global credential.helper cache
     git config --global credential.helper 'cache --timeout=3600'
+    git config --list
 }
 
 ssh-keygen_rsa() {
-    ssh-keygen -t rsa -C 'tazjel@gmail.com'
+    ssh-keygen -t rsa -C $user.email
+    #
     xclip -sel clip < ~/.ssh/id_rsa.pub
+    sleep 3
     ssh -T git@github.com
 }
 
+
+
 git_clone() {
-    git clone git@github.com:tazjel/zdotfiles.git
+    get_Repository=git@github.com:$user/$app_name.git
+    git clone
     cd zdotfiles
     git remote add upstream git@github.com:tazjel/zdotfiles.git
     git remote set-url origin git@github.com:tazjel/zdotfiles.git
@@ -76,9 +91,12 @@ git_clone() {
 
 ############################
 
-set_xkeyboard() {
+zeasystroke_show()
+w
+
+set_xkeyboard()
+{
     if [[ $(uname) = "Linux" ]];then
-        #easystroke show
         setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
         setxkbmap -option ctrl:nocaps
     fi
@@ -95,63 +113,19 @@ is_linux() {
 }
 
 
-star_Level_one() {
+w_001_introduction()
+{
     echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
 }
-# vi style incremental search
-    export EDITOR="vim"
-    bindkey -v
 
-    bindkey '^R' history-incremental-search-backward
-    bindkey '^S' history-incremental-search-forward
-    bindkey '^P' history-search-backward
-    bindkey '^N' history-search-forward
-
-    setopt AUTO_CD
-
-# Arabic aliases
-
-########################################################
-# Path
-
-##########################
-
-
-#sudo apt-add-repository --remove
-
-#ls-files
-##########3                     ######################################
-#
-#
-#
-######################################################################
-
-
-
-#############################
-#
-#
-#
-#
-###########################################################
- #$2'
-
-
-#zdotfiles
-
-
-# <F0> git
-
-
-    #
-#ls-files
-
-
-
-
+F0_git()
+{
+    git_clone
+    git_branch
+}
 
 wwww_pdf(){
-    for i in *.pdf; do echo --------$i-------; echo
+    for i in *.pdf; do echo "-------- $i -------"; echo
         pdftotext $i - | grep -i $1
     done
 }

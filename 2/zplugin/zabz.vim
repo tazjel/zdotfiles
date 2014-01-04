@@ -6,8 +6,10 @@ abbreviate CAR Conflict Analysis & Resolution
 cabbrev pw vsplit ~/.config/ipython/profile_default/startup/w.ipy
 cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
 cabbrev t5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
+
 cabbrev w111 vsp ~/zdotfiles/1.sh
-cabbrev w99 w! ~/zdotfiles/9/web2py/applications/qastack/
+
+cabbrev w99 w! ~/zdotfiles/9/web2py/applications/qastack/languages/es-es.py
 cabbrev wak vsplit ~/zdotfiles/6/autokey/data/API/AK/ak_vim.txt
 cabbrev wf !firefox %
 cabbrev wp vsplit ~/.config/ipython/profile_default/startup/ww.py

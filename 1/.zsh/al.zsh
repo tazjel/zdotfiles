@@ -1,5 +1,8 @@
 #!/bin/zsh
 
+
+
+
 ########################################################
 # Author : AHMED BANI
 
@@ -99,15 +102,29 @@ wwww_pdf()
     done
 }
 
+
+#
 # find and grep Word docs
-#find . -iname '*filename*.doc' | { while read line; do antiword "$line"; done; } | grep -C4 search_term;
 
-# compare two Microsoft Word documents
-#meld <(antiword microsoft_word_a.doc) <(antiword microsoft_word_b.doc)
+www_find()
+{
+    find . -iname '*filename*.doc' | { while read line; do antiword "$line"; done; } | grep -C4 "$1";
+}
 
-wwww_doc(){
-    for i in *.doc; do echo --------$i-------; echo
-        catdoc $i - | grep -i $1
+#
+compare_two_doc()
+{
+    meld <(antiword microsoft_word_a.doc) <(antiword microsoft_word_b.doc)
+}
+
+
+
+wwww_doc()
+{
+    for I in *.doc; do
+        echo "-------- $i -------";
+        echo ""
+        catdoc $i - | grep -i "$1";
     done
 }
 
@@ -115,7 +132,15 @@ wwww_doc(){
 ########################################################
 # F2
 ########################################################
+#
+#
+#
+#
+#
+#
 # <F3>
+
+
 wg_txt() {
     find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep --color=always -Hn "$1" {} \;
 }
@@ -275,7 +300,7 @@ ww_colors_term()
 star_Level_one
 echo -e "\t\t\t\t $(date)"
 
-cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
+#cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
 
 ############################################################################################################################################################
 
@@ -318,11 +343,6 @@ wy_append_line(){
 # Fetches a Reddit user's ($USER) link karma
 #curl -s http://www.reddit.com/user/$USER/about.json | tr "," "\n" | grep "link_karma" | tr ": " "\n" | grep -E "[0-9]+" | sed s/"^"/"Link Karma: "/
 
-# check your up to date delicious links.
-#curl -k https://Username:Password@api.del.icio.us/v1/posts/all?red=api | xml2| \grep '@href' | cut -d\= -f 2- | sort | uniq | linkchecker -r0 --stdin --complete -v -t 50 -F blacklist
-wgp() {
-    python -c 'exec("import sys,os\nfor line in sys.stdin:\n\tprint line")'
-}
 
 #bash ~/zdotfiles/4/time/zprayertime.sh
 
@@ -333,23 +353,7 @@ wpic()
 #$(pgrep easystroke)
 
 alias "wea_easystroke"="easystroke -c ~/.easystroke"
-echo ${TERM}
-
-#LANG=ar_SA.UTF-8:en_US.UTF-8
-#LC_ALL=en_US.UTF-8:ar_SA.UTF-8
-#LC_ALL
-#locale
-# Unicode Locale environment variables (See: Unicode HowTo):
-export LANG=ar_SA.UTF-8
-export LANGUAGE=ar:ar_SA.UTF-8:en:C:en_US.UTF-8:en_GB
-export LANGUAGELIST=ar_SA:en_GB:en:C
-export LC_ALL=ar_SA.UTF-8
-export FALLBACKLOCALE=C
-export COUNTRY=SA
-export G_BROKEN_FILENAMES=1
-export CHARSET=ISO_8859-6
-export LESSCHARSET=UTF-8
-export OUTPUT_CHARSET=UTF-8
+#echo ${TERM}
 
 
 alias "w_term_colors"="msgcat --color=test"
