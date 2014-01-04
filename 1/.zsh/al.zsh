@@ -7,6 +7,8 @@
 # Author : AHMED BANI
 
 source ~/zdotfiles/1/walias.sh
+source ~/zdotfiles/1/z_arabic.sh
+
 
 
 
