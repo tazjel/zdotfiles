@@ -238,7 +238,8 @@ function glll {
     git push origin --all && git push origin --tags
 }
 
-function ww_sort() {
+ww_sort()
+{
     sort -u
 }
 

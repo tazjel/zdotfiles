@@ -1,4 +1,4 @@
-
+set fillchars+=stl:\ ,stlnc:\
 
 "From : https://github.com/tazjel/dotfiles-26/blob/master/_vim/colors/Tomorrow-Night.vim
 "
@@ -68,21 +68,23 @@ hi htmlEndTag     guifg=#82a3bf
 hi cssTagName     guifg=#82a3bf
 hi cssClassName   guifg=#d3b96b
 
-                        colorscheme random
 
-                        set autoindent smartindent
-                        set expandtab smarttab
-                        set tabstop=4 shiftwidth=4
+    "colorscheme random
+            set autoindent smartindent
+            set expandtab smarttab
+            set tabstop=4 shiftwidth=4
 
                         set noswapfile nobackup nowritebackup
                         set showmatch matchtime=3 matchpairs+=<:>
-                        set timeout timeoutlen=5000 ttimeoutlen=100
+
+                                "" Fix slow O inserts
+                                        set timeout timeoutlen=1000 ttimeoutlen=100
+                                        set timeout timeoutlen=5000 ttimeoutlen=100
+                                        set shortmess=aTI
+
                         set history=10000
-                        set shortmess=aTI
 
                         set splitbelow splitright
-
-
 
                             " Use clipboard register
                                 if has('unnamedplus')
@@ -119,8 +121,7 @@ hi cssClassName   guifg=#d3b96b
                     map <F1> :nohlsearch<CR>\|:.s/^/"/<CR>\|:nohlsearch<CR>
                     map <S-F1> :.s/^\(^.*\)"//<CR>\|:nohlsearch<CR>
 
-"               "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
-
+"              "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
                 nnoremap <F2> :reg<CR>
                 nnoremap <S-F2> :marks <CR>
             " <F3>
@@ -150,7 +151,7 @@ hi cssClassName   guifg=#d3b96b
 
             " <F7>
 
-    "                nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")
+nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 
                     imap <F7> <C-X><C-l>
 
@@ -716,8 +717,6 @@ set shell=bash
 "set t_ti= t_te=
 "set scrolloff=3
 "
-                                "" Fix slow O inserts
-                                set timeout timeoutlen=1000 ttimeoutlen=100
                                 "
                                 let g:sh_noisk=1
                                 "
@@ -970,3 +969,7 @@ if has("multi_byte")
   set encoding=utf-8                     " better default than latin1
   setglobal fileencoding=utf-8           " change default file encoding when writing new files
 endif
+
+
+" Font
+let g:Powerline_symbols = 'fancy'

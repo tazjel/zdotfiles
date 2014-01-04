@@ -1,3 +1,7 @@
+#!/bin/bash
+
+
+
 
 # Arabic aliases
         alias "سم"="alias"

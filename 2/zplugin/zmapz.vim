@@ -44,3 +44,6 @@ nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name
 nnoremap <silent> <F9> :SessionList<CR>
 nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 nnoremap <silent> <S-F9> :SessionSave<CR>
+t ~/zdotfiles/2/.vimrc.local<CR>
+nnoremap <silent> <S-F9> :SessionSave<CR>
+"nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
