@@ -5,7 +5,7 @@
 function l()
 {
     ls -alt
-}
+    }
 
 function w()
 {
@@ -374,3 +374,6 @@ alias "wea_easystroke"="easystroke -c ~/.easystroke"
 
 
 alias "w_term_colors"="msgcat --color=test"
+
+alias 'wchmod-400-only'='chmod 400 ~/.ssh/id_rsa'
+
