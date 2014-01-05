@@ -1,0 +1,12 @@
+
+      --enable-fribidi
+      --enable-ind
+      --with-tools=mlclient,mlconfig,mlterm-menu,mlcc,mlterm-zoom
+      --with-scrollbars=sample,extra,pixmap_engine
+      --with-imagelib=gdk-pixbuf2
+      --with-type-engines=xft,xcore
+      --enable-optimize-redrawing
+      --enable-uim
+      --enable-iiimf
+      --enable-m17nlib
+      --enable-utmp

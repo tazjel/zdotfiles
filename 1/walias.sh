@@ -566,6 +566,4 @@ alias 'www_easystroke_disable'='easystroke disable'
 alias 'wgc'='git clone'
 
 
-alias 'war'='vim -A ~/zdotfiles/arabic.zsh'
-alias 'wara'='source ~/zdotfiles/arabic.zsh'
-
+alias 'war'='vim -A ~/zdotfiles/1/z_arabic.sh;source ~/zdotfiles/1/z_arabic.sh'

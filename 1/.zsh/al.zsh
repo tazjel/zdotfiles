@@ -2,6 +2,22 @@
 
 
 
+function l()
+{
+    ls -alt
+}
+
+function w()
+{
+    clear;ls -al;date;pwd
+    echo "$TERM"
+    echo "$SHELL"
+}
+
+ن()
+{
+    الحمد
+}
 
 ########################################################
 # Author : AHMED BANI
@@ -9,8 +25,7 @@
 source ~/zdotfiles/1/walias.sh
 source ~/zdotfiles/1/z_arabic.sh
 
-
-
+show_code() { pygmentize $1 | less -N }
 
 www_ak_add()
 {

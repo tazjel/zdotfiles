@@ -95,3 +95,6 @@ read -p "هل انت مستعد للعمل ؟" fine
 صحيح "هل قلت ؟ "
 sleep 7
 }
+
+#start_zarab
+

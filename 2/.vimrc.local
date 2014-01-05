@@ -1,14 +1,24 @@
-"set fillchars+=stl:\ ,stlnc:\
 
 "From : https://github.com/tazjel/dotfiles-26/blob/master/_vim/colors/Tomorrow-Night.vim
-"
-"
-"
+
+if &encoding == 'utf-8'
+  set ambiwidth=double
+endif
+
 set background=dark
 hi clear
+
 if exists("syntax_on")
   syntax reset
 endif
+
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+"
 "let colors_name = "tomorrow_night"
 if version >= 700
   hi CursorLine     guibg=#2d2d2d
@@ -516,6 +526,7 @@ endfunction
 
             "auto-complete
                 " nice bash-like filename auto-complete
+                set listchars=tab:>-,trail:-
                 set list
                 set wildmode=longest,list,full
                 set wildmode=full:list

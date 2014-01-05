@@ -1,0 +1,187 @@
+#!/usr/bin/env python
+import IPython.ipapi
+ip = IPython.ipapi.get()
+
+import sys, os, os.path, time, re, subprocess, socket
+
+#opt_dir = os.path.expanduser('~/Source/python_opt/opt')
+#sys.path.insert(0, os.path.join(opt_dir, 'lib/python2.7/site-packages'))
+#if 'PYTHONPATH' in os.environ:
+#    os.environ['PYTHONPATH'] = ':'.join([
+#        os.path.join(opt_dir, 'lib/python2.7/site-packages'), os.environ['PYTHONPATH']])
+#else:
+#    os.environ['PYTHONPATH'] = os.path.join(opt_dir, 'lib/python2.7/site-packages')
+
+# import numpy stuff
+from numpy import *
+import numpy as np
+from scipy import linalg, stats, optimize
+import matplotlib as mpl
+from matplotlib import pyplot as plt
+
+# add my own code to the path, and import it
+sys.path.append(os.path.expanduser('~/Config'))
+import j
+
+# lower the precision at which nupmy prints floats
+np.set_printoptions(precision=3, linewidth=100, suppress=True)
+
+# load the autoreload ipython module, which provides %autoreload
+# this will check to see what modules have been modified since they
+# were first loaded, and reload them.
+import ipy_autoreload
+
+def gref(pattern, filename_list):
+    if type(filename_list) == str:
+        filename_list = [filename_list]
+
+    re_obj = re.compile(pattern)
+    for fname in filename_list:
+        f = open(fname, 'r')
+        lines = f.readlines()
+        for l_i in range(len(lines)):
+            l = lines[l_i]
+            if re_obj.search(l):
+                print '%s: %s' % (fname, l.rstrip())
+        f.close()
+
+def emacs_func(self, arg):
+    ip = self.api
+    print arg
+    ip.runlines('!emacs -nw %s' % arg)
+
+# setup a magic command for emacs
+ip.expose_magic('emacs', emacs_func)
+
+def roxterm_set_color_scheme(scheme_name):
+    roxterm_id = os.environ['ROXTERM_ID']
+    subprocess.call([
+        '/usr/bin/dbus-send', '--session', '/net/sf/roxterm/Options', 'net.sf.roxterm.Options.SetColourScheme',
+        'string:%s' % roxterm_id, 'string:%s' % scheme_name])
+
+def jsh_func(self, arg):
+    roxterm_set_color_scheme('Remote')
+    if arg == 'lab':
+        ip.runlines('!ssh -t -X -p2424 binney@cerberus.usc.edu ipython -p sh')
+    elif arg == 'mandy.local':
+        ip.runlines('!ssh -t -X jbinney@10.66.68.4 ipython -p sh')
+    elif arg == 'mandy':
+        ip.runlines('!ssh -t -X jbinney@mandy.usc.edu ipython -p sh')
+    else:
+        print 'Error: Unknown ssh target %s' % arg
+    roxterm_set_color_scheme('Tango')
+
+# ssh helper
+ip.expose_magic('jsh', jsh_func)
+
+# setup environment
+os.environ['EDITOR'] = 'vim'
+
+# add my own bin directory
+os.environ['PATH'] = '/home/binney/bin:'+os.environ['PATH']
+
+def in_home(rel_path):
+    # hack for willow garage work computer
+    if socket.gethostname() == 'bil':
+        home_dir = '/jbinney/Dropbox'
+    else:
+        home_dir = os.path.expanduser('~')
+
+
+    return os.path.join(home_dir, rel_path)
+
+ros_versions = dict(
+    ct = dict(
+        ros_root = '/opt/ros/cturtle/ros',
+        package_paths = ['/opt/ros/cturtle/stacks']),
+
+    db = dict(
+        ros_root = '/opt/ros/diamondback/ros',
+        package_paths = ['/opt/ros/diamondback/stacks']),
+
+    el = dict(
+        ros_root = '/opt/ros/electric/ros',
+        package_paths = ['/opt/ros/electric/stacks']),
+    )
+
+ros_envs = dict(
+    arm = dict(
+        package_paths = [
+            in_home('Projects/ARM/mandy'),
+            in_home('Projects/ARM/mandy-data'),
+            in_home('Projects/ARM/usc-ros-pkg')]),
+
+    rgbdslam = dict(
+        package_paths = [
+            in_home('Projects/ARM/usc-ros-pkg')]),
+
+    pplan = dict(
+        package_paths = [
+            in_home('Projects/pplan'),
+            in_home('research/papers/bnb_journal'),
+            in_home('Projects/ppas'),
+            in_home('Projects/usc_aquatic/ros'),
+            in_home('Projects/informative_motion_planner'),
+            in_home('Projects/dshred'),
+            in_home('Research')]),
+
+    willow = dict(
+        package_paths = [
+            in_home('Code')])
+    )
+ros_envs['all'] = {'package_paths': ros_envs['willow']['package_paths']}
+
+def rosset_func(self, arg):
+    ip = self.api
+    args = arg.split(' ')
+    if not len(args) > 0:
+        print 'Usage: setros <ros_version> [ros_packages]'
+        return
+
+    ros_version = args[0]
+    if not ros_version in ros_versions:
+        print "Error: %s not in ros_versions" % arg
+        return
+
+    # add the user's package paths
+    package_paths = []
+    for re in args[1:]:
+        if not re in ros_envs:
+            print "Error: %s not in ros_envs" % re
+            return
+        package_paths.extend(ros_envs[re]['package_paths'])
+
+    # add the package paths from the ros installation
+    package_paths.extend(ros_versions[ros_version]['package_paths'])
+
+    j.ros.set_env(ip, ros_versions[ros_version]['ros_root'], package_paths=package_paths)
+
+    ip.magic('%rehashx')
+
+def rosadd_func(self, arg):
+    ''' Prepend path to ROS_PACKAGE_PATH '''
+    newpath = os.path.abspath(os.path.expanduser(arg))
+    os.environ['ROS_PACKAGE_PATH'] = newpath + ':' + os.environ['ROS_PACKAGE_PATH']
+
+#ip.expose_magic('rosset', rosset_func)
+#ip.expose_magic('rosadd', rosadd_func)
+
+# setup package for using ipython with ROS
+#try:
+#    # default setting for ros environment
+#    ip.magic('%rosset el all')
+#    import ros
+#    ros.initialize(ip)
+#except ImportError, e:
+#    print 'ROS does not appear to be installed'
+#    print e
+
+try:
+    import j.vc
+    j.vc.initialize(ip)
+except ImportError:
+    print 'Could not import j.vc'
+
+# for some reason on certain systems this doesn't happen automatically
+ip.magic('%rehashx')
+
