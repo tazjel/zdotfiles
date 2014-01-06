@@ -5,17 +5,18 @@
 #---------------------------------------------------
 # substitute zsh_history 
 # : "1357705996:0;"
-function (){
-^:.*;
+
+function wwWww(){
+    sed 's/^:.*//g'
 }
 
 #www
 
-/<[^>]*> will select all the tags
+#/<[^>]*> will select all the tags
 
 Always on one line with that pattern? 
 Then: 
-:%s/<\a\+>\([^<]\+\)\(<[^>]\+>\)/\1\2\1 
+#:%s/<\a\+>\([^<]\+\)\(<[^>]\+>\)/\1\2\1 
 
 #Search 
 #
@@ -24,23 +25,23 @@ map <F7> :%s//gc<Left><Left><Left>
 #Remove comments and blank lines from files
 
 If you want to remove all the comment lines and the blank lines from a file to see the only active lines, just use sed as below:
-sed '/^ *#/d; /^ *$/d'  filename
+#sed '/^ *#/d; /^ *$/d'  filename
 
-You can also do it with alternate methods like that:
-grep -v ' *#' filename | grep -v '^ *$'
+#You can also do it with alternate methods like that:
+#grep -v ' *#' filename | grep -v '^ *$'
 
-:map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
+#:map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
 
-:%s/^\n//
-:%g/^$/d
-Outside vim:
+#:%s/^\n//
+#:%g/^$/d
+#Outside vim:
 
-$ grep -v '^$' file
-$ grep '.' file
-$ sed '/^$/d' file
-$ sed -n '/^$/!p' file
-$ awk NF file
-$ awk '/./' file
+#$ grep -v '^$' file
+#$ grep '.' file
+#$ sed '/^$/d' file
+#$ sed -n '/^$/!p' file
+#$ awk NF file
+#$ awk '/./' file
 
 
 

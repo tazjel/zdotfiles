@@ -2,7 +2,8 @@
 
 
 
-wgp() {
+wgp()
+{
     python -c 'exec("import sys,os\nfor line in sys.stdin:\n\tprint line")'
 }
 

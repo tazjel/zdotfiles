@@ -1,11 +1,12 @@
 #!/bin/zsh
 
 
+today=`date +%Y_%m_%d_%h_%s`
 
 function l()
 {
     ls -alt
-    }
+}
 
 function w()
 {
@@ -25,7 +26,10 @@ function w()
 source ~/zdotfiles/1/walias.sh
 source ~/zdotfiles/1/z_arabic.sh
 
-show_code() { pygmentize $1 | less -N }
+
+show_code()
+{
+    pygmentize $1 | less -N }
 
 www_ak_add()
 {
@@ -286,8 +290,9 @@ ww_sort()
 }
 
 
-function wpkl () {
-    dpkg --get-selections > ~/zdotfiles/0/packages-alpha.txt
+function wpkl ()
+{
+    dpkg --get-selections > ~/zdotfiles/0/packages-alpha${today}.txt
 }
 
 wssh ()
@@ -350,18 +355,6 @@ wy_append_line(){
 # english <--> german translation with dict.leo.org
 #leo() { lang=en; IFS=+; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
 
-# Google verbatim search on your terminal
-#function google { Q="$@"; GOOG_URL='https://www.google.de/search?tbs=li:1&q='; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}${Q//\ /+}" | grep -oP '\/url\?q=.+?&amp' | sed 's|/url?q=||; s|&amp||'); echo -e "${stream//\%/\x}"; }
-
-# Search google.com on your terminal
-#Q="YOURSEARCH"; GOOG_URL="http://www.google.com/search?q="; AGENT="Mozilla/4.0"; stream=$(curl -A "$AGENT" -skLm 10 "${GOOG_URL}\"${Q/\ /+}\"" | grep -oP '\/url\?q=.+?&amp' | sed 's/\/url?q=//;s/&amp//'); echo -e "${stream//\%/\x}"
-
-
-# Fetches a Reddit user's ($USER) link karma
-#curl -s http://www.reddit.com/user/$USER/about.json | tr "," "\n" | grep "link_karma" | tr ": " "\n" | grep -E "[0-9]+" | sed s/"^"/"Link Karma: "/
-
-
-#bash ~/zdotfiles/4/time/zprayertime.sh
 
 wpic()
 {
@@ -376,3 +369,19 @@ alias "w_term_colors"="msgcat --color=test"
 
 alias 'wchmod-400-only'='chmod 400 ~/.ssh/id_rsa'
 alias 'wgit_set-url_origin'= 'git remote set-url origin git@github.com:tazjel/zdotfiles.git'
+
+#dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
+Undo_commit()
+{
+    git commit
+    git reset --soft 'HEAD^'
+    # edit
+    git add
+    git commit -c ORIG_HEAD
+}
+
+function xremindme()
+{
+    sleep $1 && zenity --info --text "$2" &
+}
+

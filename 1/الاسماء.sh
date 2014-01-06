@@ -1,4 +1,1 @@
-صصص()
-{
-    echo "ar"
-}
+alias سم="alias"

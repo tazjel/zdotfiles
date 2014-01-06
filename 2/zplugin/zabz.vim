@@ -25,8 +25,11 @@ cabbrev wsh !bash %
 cabbrev ww <C-r>"<BS>
 cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
 iabbr ws when where who what why
+
 iabbrev ### #####################################################<CR>
-iabbrev $$ ${0: }<left><left>
+
+"iabbrev $$ ${0: }<left><left>
+
 iabbrev WWW () {<CR>
 nnoremap wl :call Zget_line()<CR>
 cabbrev wc call Z
@@ -40,5 +43,4 @@ endfunction
 
 nnoremap wl :call Zget_line()<CR>
 cabbrev wc call
-
 
