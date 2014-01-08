@@ -217,13 +217,14 @@ alias tasks='grep --exclude-dir=.git -rEI "TODO|FIXME" . 2>/dev/null'
 
 unlink_files () {
     files=".vim .vimrc .zshrc .gitconfig .tmux.conf .lynxrc .tmuxinator"
-    for file in $files
+    for "$1" in "$2"
     do
       if [ -L $HOME/$file ]; then
         unlink $HOME/$file
       fi
       ln -s $HOME/.dotfiles/$file $HOME
     done
+
 }
 
 remove_zdotfiles() {

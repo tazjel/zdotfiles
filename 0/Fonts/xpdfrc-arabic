@@ -1,0 +1,3 @@
+#----- begin Arabic support package (2003-feb-16; updated to use poppler-data 2010-06-14)
+unicodeMap	ISO-8859-6	/usr/share/poppler/unicodeMap/ISO-8859-6
+#----- end Arabic support package

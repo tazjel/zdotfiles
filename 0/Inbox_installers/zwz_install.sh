@@ -1,11 +1,6 @@
 #!/usr/bin/env bash
-
-#  تعرف الاسماء
-
-
 app_name='zdotfiles'
-gi_uri='https://github.com/tazjel/zdotfiles.git'
-
+git_uri='https://github.com/tazjel/zdotfiles.git'
 git_branch='master'
 debug_mode='0'
 fork_maintainer='0'
@@ -36,18 +31,46 @@ echo "Done "
 
 
 dpkg --get-selections > packages-alpha.txt
+
+
+# Obtain "kernel" name
+KERNEL=$(uname -s)
+
+if      [ $KERNEL = "Darwin" ]; then
+        KERNEL=mac
+elif        [ $Nucleo = "Linux" ]; then
+        KERNEL=linux
+elif        [ $Nucleo = "FreeBSD" ]; then
+        KERNEL=linux
+else
+        echo "Unsupported OS"
+fi
+
+
+# Call distribution specific scripts
+if $IS_OSX; then
+    source ./scripts/osx-install.sh
+    source ./scripts/osx-config.sh
+else
+    source ./scripts/ubuntu-install.sh
+    source ./scripts/ubuntu-config.sh
+fi
+
+
+
+
 #####################################################
 #
 #
 ####################################################
-files=".vim .vimrc .zshrc .gitconfig .tmux.conf .lynxrc .tmuxinator"o
+#
 
+files=".vim .vimrc .zshrc .gitconfig .tmux.conf .lynxrc .tmuxinator"
 
-for file in $files
+for file in $HOME/$files
 do
-  if [ -L $HOME/$file ]; then
+if [ -L $HOME/$file ]; then
     unlink $HOME/$file
-  fi
-  ln -s $HOME/.dotfiles/$file $HOME
+fi
 done
-
+#ln -s $HOME/.dotfiles/$file $HOME

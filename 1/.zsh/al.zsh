@@ -1,6 +1,8 @@
 #!/bin/zsh
 
 
+source ~/zdotfiles/1/walias.sh
+
 today=`date +%Y_%m_%d_%h_%s`
 
 function l()
@@ -22,8 +24,11 @@ function w()
 
 ########################################################
 # Author : AHMED BANI
+#####################################################
+##
+##
+#####################################################
 
-source ~/zdotfiles/1/walias.sh
 source ~/zdotfiles/1/z_arabic.sh
 
 
@@ -384,4 +389,6 @@ function xremindme()
 {
     sleep $1 && zenity --info --text "$2" &
 }
+
+
 

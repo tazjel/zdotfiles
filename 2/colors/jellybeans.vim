@@ -489,3 +489,6 @@ delf s:grey_color
 delf s:grey_level
 delf s:grey_number
 " }}}
+
+"Modification to the original colorscheme, remove this line if you prefer the original colorscheme
+hi CursorLine cterm=NONE,underline ctermbg=None  guibg=None

@@ -8,4 +8,4 @@ do
     unlink $HOME/$file
   fi
   ln -s $HOME/.dotfiles/$file $HOME
-done
+

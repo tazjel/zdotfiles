@@ -10,6 +10,9 @@ LIGHT_GREEN="\[\033[1;32m\]"
  LIGHT_GRAY="\[\033[0;37m\]"
  COLOR_NONE="\[\e[0m\]"
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
 # Basic environment
 export PS1="${BLUE}\h:\W \$${COLOR_NONE} "
@@ -46,3 +49,13 @@ export HISTCONTROL=ignoreboth
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export LESS="-R"
+
+alias 'wi'='sudo apt-get install'
+alias 'w'='clear;ls -al;pwd;date'
+alias 'W'='echo'
+alias 'wwww'='cat'
+# wi git zsh vim wget curl
+# git clone https://github.com/tazjel/zdotfiles.git
+alias "wh"="history > $HOME/history_dotfile; vim $HOME/history_dotfile"
+
+

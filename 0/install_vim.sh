@@ -1,4 +1,11 @@
 #!/bin/bash
+if [ "$UID" != "0" ] ; then
+        echo
+        echo "This script must be run as root"
+        echo
+        exit
+fi
+
 zinstall_vim () {
     sudo apt-get install exuberant-ctags
     sudo apt-get install libx11-dev libxt-dev python python2.7-dev
