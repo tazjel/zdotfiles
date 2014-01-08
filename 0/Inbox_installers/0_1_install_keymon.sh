@@ -34,6 +34,7 @@ sudo python setup.py install
 #If you download the source there is a file called xlib.py which can be run to see the keystrokes, or mouse click events.
 #If you download the source there is a file called xlib.py which can be run to see the keystrokes, or mouse click events.
 #sudo aptitude update 
+
 #
 #    $ python src/keymon/xlib.py 
 #

@@ -1,0 +1,48 @@
+
+http://lists.gnu.org/archive/html/bug-gnulib/2012-01/msg00128.html
+
+
+
+The reason is that /bin/sh does not like to set LC_ALL to some values:
+
+
+$ /bin/sh -c 'LC_ALL=Turkish_Turkey.65001 pwd'
+Turkish_Turkey.65001: unknown locale
+/home/bruno
+$ /bin/sh -c 'env LC_ALL=Turkish_Turkey.65001 pwd'
+/home/bruno
+$ /bin/bash -c 'LC_ALL=Turkish_Turkey.65001 pwd'
+/home/bruno
+$ /bin/sh -c 'LC_ALL=French_France.65001 pwd'
+/home/bruno
+
+Quite bizarre. But hey, what have you expected. This is ksh!
+
+
+2012-01-08  Bruno Haible  <address@hidden>
+
+        setlocale tests: Avoid test failure on Solaris 11 2011-11.
+        * tests/test-setlocale2.sh: Use 'env' to set the LC_ALL environment
+        variable.
+
+--- tests/test-setlocale2.sh.orig       Sun Jan  8 23:31:17 2012
++++ tests/test-setlocale2.sh    Sun Jan  8 23:30:57 2012
+@@ -2,14 +2,16 @@
+ 
+ # Test locale names with likely unsupported encoding in Unix syntax.
+ for name in ar_SA.ISO-8859-1 fr_FR.CP1251 zh_TW.GB18030 zh_CN.BIG5; do
+-  LC_ALL=$name ./test-setlocale2${EXEEXT} 1 || exit 1
++  env LC_ALL=$name ./test-setlocale2${EXEEXT} 1 || exit 1
+ done
+ 
+ # Test locale names with likely unsupported encoding in native Windows syntax.
+ for name in "Arabic_Saudi Arabia.1252" "Arabic_Saudi Arabia.65001" \
+             French_France.65001 Japanese_Japan.65001 Turkish_Turkey.65001 \
+             Chinese_Taiwan.65001 Chinese_China.54936 Chinese_China.65001; do
+-  LC_ALL=$name ./test-setlocale2${EXEEXT} 1 || exit 1
++  # Here we use 'env' to set the LC_ALL environment variable, because on
++  # Solaris 11 2011-11, the /bin/sh refuses to do it for Turkish_Turkey.65001.
++  env LC_ALL="$name" ./test-setlocale2${EXEEXT} 1 || exit 1
+ done
+ 
+ exit 0

@@ -1,0 +1,145 @@
+<snippets namespace="" license="BSD" filetypes="Bash" authors="bruno" name="BigControlCenter">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Arquivo_description.sh.htm</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+#
+# Autor: Seu nome.
+# Contato: Seu e-mail.
+# Licença: A que desejar.
+# Data: Caso ache necessário.
+# Descrição geral da utilidade do painel.
+#########################################
+
+
+#Translation / Tradução
+export TEXTDOMAINDIR="/usr/share/locale-langpack"
+
+# Caso esse painel vá ser traduzido especifique o nome que será dado à tradução que ficará na pasta: /usr/share/locale-langpack
+export TEXTDOMAIN=bigcontrolcenter-internet-ipscan
+
+# Change application name / Escolha o nome do aplicativo
+name_application=$"Troque pelo nome desejado"
+
+# Change description / Escolha a descrição
+description_application=$"Troque pela descrição desejada"
+
+# Change file for execute / Escolha o arquivo a ser executado
+file_execute="/usr/share/bigcontrolcenter/categories/internet/ipscan/ip_start.sh.htm"
+
+# Change icon / Escolha o ícone desejado
+icon_application="/usr/share/bigcontrolcenter/categories/internet/ipscan/icon.png"
+
+# Window size / Escolha o tamanho da janela
+window_size="-s 800x600"
+
+# Don't change / Não altere essa linha
+exec_application="/usr/share/bigbashview/run.run?bigbashview $file_execute -i $icon_application $window_size"
+
+</fillin>
+ </item>
+
+ <item>
+  <displayprefix></displayprefix>
+  <match>Botão_de_link(Button_link)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Exemplo de uso: button_link $"Descrição" "arquivo.sh.htm" "icone.png"
+button_link $"Descrição" "arquivo.sh.htm"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Botão_enviar(Button_submit)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Exemplo de uso: button_submit $"Descrição" "icone.png"
+button_submit $"Aplicar"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Botão_fechar(Button_close)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Exemplo de uso: button_link $"Descrição" "icone.png"
+button_close $"Fechar"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Botão_voltar(Button_back)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Exemplo de uso: button_back $"Descrição" "icone.png"
+button_back $"Voltar"
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Cabeçalho(Header)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+#
+# Autor: Seu nome.
+# Contato: Seu e-mail.
+# Licença: A que desejar.
+# Data: Caso ache necessário.
+# Descrição geral da utilidade do painel.
+#########################################
+
+# Importa arquivo que irá definir o tema do painel e algumas outras facilidades.
+# Entre as facilidades está incluso o jquery.
+. /usr/share/bigcontrolcenter/import-theme.htm
+
+# Informe o título.
+big_title=$"Formulário simples"
+
+# Informe uma descrição curta.
+big_description=$"Exemplo de uso do BigBashView"
+
+# Informe o caminho do ícone, de preferência no tamanho 32x32, também pode ficar em branco.
+big_icon="/usr/share/bigcontrolcenter/default/images/lamp.png"
+
+# Caso esse painel vá ser traduzido especifique o nome que será dado à tradução que ficará na pasta: /usr/share/locale-langpack
+big_translate="bigbashview_formulario"
+
+# Descomente as linhas a seguir para desativar a parte superior do painel onde fica o título, a cor de fundo e a imagem de fundo.
+#big_header_disable="1"
+#big_bg_color_disable="1"
+#big_bg_image_disable="1"
+
+# Adiciona o layout geral do painel e o cabeçalho, onde aparece o título, ícone e descrição.
+big_header
+
+#########################################
+# Até aqui foram preenchidos dados
+# padronizados, portanto a seguir está
+# realmente a parte funcional do painel.
+#########################################
+
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Rodapé(Footer)</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>
+
+#########################################
+# A partir daqui inicia o rodapé, onde devem ser colocados os botões, por exemplo, Aplicar, OK e Fechar.
+#########################################
+echo "&lt;div id=\"rodape\">"
+
+</fillin>
+ </item>
+</snippets>

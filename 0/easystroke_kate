@@ -1,0 +1,11 @@
+#!/bin/bash
+
+
+
+cp -r /home/w/.kde/share/apps/ktexteditor_snippets ~/zdotfiles/2/ktexteditor_snippets
+
+
+sudo apt-get install g++ libboost-serialization-dev libgtkmm-2.4-dev libxtst-dev libdbus-glib-1-dev intltool xserver-xorg-dev
+easystroke -c ~/.easystroke
+
+

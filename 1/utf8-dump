@@ -1,0 +1,20 @@
+#!/usr/bin/perl
+
+#REF:http://perlgeek.de/blog-en/perl-tips/utf8-dump.html
+#Example:# echo ص | ~/zdotfiles/1/utf8-dump
+
+use strict;
+use warnings;
+use charnames ();
+use Encode qw(decode_utf8);
+
+while (<>){
+    $_ = decode_utf8($_);
+    s{([^\0-\177])}{N_escape($1)}eg;
+    print;
+}
+
+sub N_escape {
+    my $n = charnames::viacode(ord($_[0]));
+    return defined($n) ? "\\N{$n}" : sprintf('\x{%x}', ord($_[0]));
+}

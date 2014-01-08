@@ -1,0 +1,11 @@
+<snippets namespace="" license="" filetypes="Troff Mandoc" authors="w" name="Troff Mandoc snippets">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>pip_gitpython</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>pip list | grep -i gitpython
+sudo pip install -Iv https://pypi.python.org/packages/source/G/GitPython/GitPython-0.3.1-beta2.tar.gz</fillin>
+ </item>
+</snippets>

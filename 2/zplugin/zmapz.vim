@@ -22,11 +22,13 @@ map <F3> :ls<CR>:sball
 map <M-Left> :bprevious<CR>
 map <M-Up> <C-W>j<C-W>_
 map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
-map <S-Up> <C-W>_
 map <c-a> ggVG
 map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
+<<<<<<< HEAD:2/zplugin/zmapz.vim
 nmap ,, :e.<CR>
 nmap <Space><Right> *
+=======
+>>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70:2/zplugin/zmapz.vim
 nmap <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr
 nmap <silent>  wn :call ToggleSyntax()<CR>
 nnoremap 8 zMzvzz
@@ -50,6 +52,6 @@ nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name
 nnoremap <silent> <F9> :SessionList<CR>
 nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 nnoremap <silent> <S-F9> :SessionSave<CR>
-nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.zsh<cr>
-nnoremap <space> za
-vmap ,w  ddGop
+t ~/zdotfiles/2/.vimrc.local<CR>
+nnoremap <silent> <S-F9> :SessionSave<CR>
+"nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>

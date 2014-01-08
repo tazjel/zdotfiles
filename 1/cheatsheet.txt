@@ -1,0 +1,66 @@
+Good idea From https://github.com/arnodebruijn/dotFiles/blob/master/cheatsheet
+##################################
+##  cli                         ##
+##################################
+
+#Ref : https://raw.github.com/arnodebruijn/dotFiles/master/cheatsheet
+
+tmux ls       list sessions
+tmux new -s   create new session with name ...
+tmux a -t     attach to session with name ...
+
+
+
+##################################
+##  tmux                        ##
+##################################
+^a  [         enter scroll mode (q to quit)
+
+^a  i         commant prompt
+    :source-file ~/.tmux.conf                          tmux source-file ~/.tmux.conf
+    :new      create a new session
+
+^a  o         select other pane
+^a  q         show pane numbers
+^a  s         list sessions
+^a  t         big clock
+^a  x         kill pane
+
+^a  $         name current session
+^a  )         next session
+^a  (         previous session
+
+^a  "         split pane vertical
+^a  %         split pane horizontal
+^a  }         swap this pane, with pane to the right
+^a  {         swap this pane, with pane to the left
+
+^a  c         create new window
+^a  n         next window
+^a  p         previous window
+^a  0-9       move to window at index 0-9
+^a  ,         rename window
+
+
+##################################
+##  vim                         ##
+##################################
+:sp           horizontal split
+:vsp          vertical split
+ctrl+w  _     max height of the current split
+ctrl+w  |     max width of the current split
+ctrl+w  =     normalize all splits
+^p            tab completion forward
+^n            tab completion backwards
+
+
+##################################
+##  tmux + vim                  ##
+##################################
+^h  move to left pane
+^j  move to down pane
+^k  move to up pane
+^l  move to right pane
+^\  move to previous pane
+
+

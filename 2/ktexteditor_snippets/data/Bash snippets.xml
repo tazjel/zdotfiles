@@ -1,0 +1,1421 @@
+<snippets namespace="" license="" filetypes="Bash" authors="w" name="Bash snippets">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>code</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>ret="$?"
+success "$1"
+debug</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Darwin</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>if [ "$(uname -s)" == "Darwin" ]; then
+    IS_OSX=true
+else
+    IS_OSX=false
+fi</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>bash</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/usr/bin/env bash</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>administrator</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Ask for the administrator password upfront
+sudo -v
+# Keep-alive: update existing `sudo` time stamp until script has finished
+while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &amp;</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>COMMON_PACKAGES</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># We need to distinguish sources and binary packages for Brew &amp; Cask on OSX
+COMMON_PACKAGES="git git-extras legit jnettop hfsutils unrar subversion ack colordiff faac flac
+lame x264 inkscape graphviz qemu lftp shntool testdisk fdupes recode pngcrush exiftool rtmpdump
+optipng colortail mercurial grc coreutils bzr htop apg fontforge"
+
+BIN_PACKAGES="audacity avidemux firefox gimp inkscape vlc blender thunderbird virtualbox
+bitcoin-qt wireshark prey"</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>DOT_FILES</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Search local dotfiles
+DOT_FILES=`find . -maxdepth 1 \
+    -not -name "assets" -and \
+    -not -name "scripts" -and \
+    -not -name "install.sh" -and \
+    -not -name "\.DS_Store" -and \
+    -not -name "\.gitignore" -and \
+    -not -name "\.gitmodules" -and \
+    -not -name "*\.dmg" -and \
+    -not -name "*\.swp" -and \
+    -not -name "*\.md" -and \
+    -not -name "\.git" -and \
+    -not -name "*~*" \
+    -not -name "\." \
+    -exec basename {} \;`</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>backups</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>for f in $DOT_FILES
+do
+    source="${PWD}/$f"
+    target="${HOME}/$f"
+    if [ "$1" = "restore" ]; then
+        # Restore backups if found
+        if [ -e "${target}.dotfile.bak" ] &amp;&amp; [ -L "${target}" ]; then
+            unlink "${target}"
+            mv "$target.dotfile.bak" "$target"
+        fi
+    else
+        # Link files
+        if [ -e "${target}" ] &amp;&amp; [ ! -L "${target}" ]; then
+            mv "$target" "$target.dotfile.bak"
+        fi
+        # TODO: fix recursive symlinks
+        ln -sf "${source}" "${target}"
+    fi
+done
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Create_folder</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Create empty folders
+mkdir -p ~/.pip/cache</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Call_scripts</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Call distribution specific scripts
+if $IS_OSX; then
+    source ./scripts/osx-install.sh
+    source ./scripts/osx-config.sh
+else
+    source ./scripts/ubuntu-install.sh
+    source ./scripts/ubuntu-config.sh
+fi</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>python_modules</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Install &amp; upgrade all global python modules
+PYTHON_PACKAGES="readline pip setuptools virtualenv virtualenvwrapper autoenv pep8 pylint pyflakes
+coverage rope autopep8 mccabe nose"
+sudo pip install --upgrade $PYTHON_PACKAGES
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>powerline-fontconfig</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Patch terminal font for Vim's Airline plugin
+# See: https://powerline.readthedocs.org/en/latest/fontpatching.html
+mkdir ./powerline-fontconfig
+curl -fsSL https://github.com/Lokaltog/powerline/tarball/develop | tar -xvz --strip-components 2 --directory ./powerline-fontconfig -f -
+fontforge -script ./powerline-fontconfig/fontpatcher.py --no-rename ./assets/SourceCodePro-Regular.otf
+rm -rf ./powerline-fontconfig
+# Install the patched font
+if $IS_OSX; then
+    mkdir -p ~/Library/Fonts/
+    mv ./Source\ Code\ Pro.otf ~/Library/Fonts/
+else
+    mkdir -p ~/.fonts/
+    mv ./Source\ Code\ Pro.otf ~/.fonts/
+    # Refresh font cache
+    sudo fc-cache -f -v
+fi
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>source_bash_profile</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Reload Bash with new configuration
+source ~/.bash_profile</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>install_Chrome</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>install_Chrome()
+{
+wget -c www.mirrorservice.org/sites/archive.ubuntu.com/ubuntu//pool/main/u/udev/libudev0_175-0ubuntu13_amd64.deb
+sudo dpkg -i libudev0*.deb
+wget https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+sudo dpkg -i ./google-chrome*.deb
+sudo apt-get -f -y install
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>mkdir_apps</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>mkdir_apps ()
+{
+mkdir ~/apps
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Installation_completed.</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>echo "Installation completed."
+exit 0</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>msg</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>msg() {
+    printf '%b\n' "$1" >&amp;2
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>success</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>success() {
+    if [ "$ret" -eq '0' ]; then
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+    fi
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>msg_success_error</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>msg() {
+    printf '%b\n' "$1" >&amp;2
+}
+
+success() {
+    if [ "$ret" -eq '0' ]; then
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+    fi
+}
+
+error() {
+    msg "\e[31m[✘]\e[0m ${1}${2}"
+    exit 1
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>lnif_debug_msg</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>
+debug_mode='0'
+
+msg() {
+    printf '%b\n' "$1" >&amp;2
+}
+
+debug() {
+    if [ "$debug_mode" -eq '1' ] &amp;&amp; [ "$ret" -gt '1' ]; then
+      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+    fi
+}
+
+############################ SETUP FUNCTIONS
+lnif() {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?"
+    debug
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>program_exists</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>program_exists() {
+    local ret='0'
+    type $1 >/dev/null 2>&amp;1 || { local ret='1'; }
+
+    # throw error on non-zero return value
+    if [ ! "$ret" -eq '0' ]; then
+    error "$2"
+    fi
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>do_backup</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>do_backup() {
+    if [ -e "$2" ] || [ -e "$3" ] || [ -e "$4" ]; then
+        today=`date +%Y%m%d_%s`
+        for i in "$2" "$3" "$4"; do
+            [ -e "$i" ] &amp;&amp; [ ! -L "$i" ] &amp;&amp; mv "$i" "$i.$today";
+        done
+        ret="$?"
+        success "$1"
+        debug
+   fi
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>upgrade_repo</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>upgrade_repo() {
+      msg "trying to update $1"
+
+      if [ "$1" = "$app_name" ]; then
+          cd "$HOME/.$app_name-3" &amp;&amp;
+          git pull origin "$git_branch"
+      fi
+
+      if [ "$1" = "vundle" ]; then
+          cd "$HOME/.vim/bundle/vundle" &amp;&amp;
+          git pull origin master
+      fi
+
+      ret="$?"
+      success "$2"
+      debug
+}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>clone_repo</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>clone_repo() {
+    program_exists "git" "Sorry, we cannot continue without GIT, please install it first."
+    endpath="$HOME/.$app_name"
+
+    if [ ! -e "$endpath/.git" ]; then
+        git clone --recursive -b "$git_branch" "$git_uri" "$endpath"
+        ret="$?"
+        success "$1"
+        debug
+    else
+        upgrade_repo "$app_name"    "Successfully updated $app_name"
+    fi
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>clone_vundle</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>clone_vundle() {
+    if [ ! -e "$HOME/.vim/bundle/vundle" ]; then
+        git clone https://github.com/gmarik/vundle.git "$HOME/.vim/bundle/vundle"
+    else
+        upgrade_repo "vundle"   "Successfully updated vundle"
+    fi
+    ret="$?"
+    success "$1"
+    debug
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>create_symlinks_ak</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>create_symlinks_ak() {
+    endpath="$HOME/$app_name"
+    Drobox="$HOME/Dropbox"
+    lnif "$HOME/Dropbox/zdotfiles/6/autokey/data/DCAR" "$HOME/.config/autokey/data/DCAR"
+
+    lnif "$endpath/1/.lynxrc"      "$HOME/.lynxrc"
+
+    lnif "$endpath/2/.vimrc.local" "$HOME/.vimrc.local"
+    lnif "$endpath/2/.vimrc.localw" "$HOME/.vimrc.localw"
+
+    lnif "$endpath/1/.zsh" "$HOME/.zsh"
+    lnif "$endpath/1/.zshrc" "$HOME/.zshrc"
+    lnif "$endpath/1/.zshenv" "$HOME/.zshenv"
+
+
+    ret="$?"
+    success "$1"
+    debug
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>MAIN_spf3</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>############################ MAIN()
+program_exists "vim" "To install $app_name you first need to install Vim."
+
+do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m%d%S`" \
+        "$HOME/.zsh \
+        "$HOME/.zshenv \
+        "$HOME/.zshenv \
+        "$HOME/.easystroke"
+
+     
+clone_repo "Successfully cloned $app_name"
+
+create_symlinks_ak "Setting up symlinks"
+
+clone_vundle "Successfully cloned vundle"
+
+setup_vundle "Now updating/installing plugins using Vundle"
+
+lnif "$HOME/Dropbox/zdotfiles/6/autokey/" "$HOME/.config/autokey/data/DCAR"
+
+msg "\nThanks for installing $app_name."
+msg "© `date +%Y` "</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ipython-notebook</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/sh
+# setup_ipython_notebook_deb.sh
+
+# Install and configure ipython notebook
+
+sudo apt-get install -y ipython-notebook
+
+ipython profile create
+
+conf="$HOME/zdotfiles/1/ipython_config.py"
+dest="$HOME/.config/ipython/profile_default/ipython_config.py
+
+mv $dest $dest.orig.py
+
+ln -s $conf $dest</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>kernel_name</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Obtain "kernel" name
+KERNEL=$(uname -s)
+
+if      [ $KERNEL = "Darwin" ]; then
+        KERNEL=mac
+elif        [ $Nucleo = "Linux" ]; then
+        KERNEL=linux
+elif        [ $Nucleo = "FreeBSD" ]; then
+        KERNEL=linux
+else
+        echo "Unsupported OS"
+fi
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>get_list_installed_packages</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>##On a freshly installed system, create the starting baseline list of packages:
+list_installed_packages_deb(){
+    apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > ~/Dropbox/install-zdotfiles/packages-alpha.txt
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>get_install_list_packages</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>##On a freshly installed system, create the starting baseline list of packages:
+list_installed_packages_deb(){
+    apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > ~/Dropbox/install-zdotfiles/packages-alpha.txt
+}
+install_list_pacakges () {
+    for xp in $(cat ~/Dropbox/install-zdotfiles/packages-alpha.txt);do echo -e "\ninstall $xp";sudo apt-get install $xp;done
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>install_ubuntu_restricted-extras</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>install_ubuntu_restricted-extras(){
+    sudo apt-get install -y ubuntu-restricted-extras
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>install_essentials</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>install_essentials () {
+    sudo apt-get install -y vim zsh konsole xclip git-core openssh-server curl wget vim-gnome aptitude mercurial automake pkg-config liblzma-dev xsel
+}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>install_ag</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>install_ag () {
+    git clone https://github.com/ggreer/the_silver_searcher
+    cd the_silver_searcher &amp;&amp; ./build.sh &amp;&amp; install
+    ./build.sh &amp;&amp; install
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>git_config_global</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>git_config_global () {
+    git config --global user.name 'Ahmed Al-Ghamdi'
+    git config --global user.email 'tazjel@gmail.com'
+    git config --list
+    git config --global color.ui auto
+    git config --global credential.helper cache
+    git config --global credential.helper 'cache --timeout=3600'
+    }</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ssh-keygen_rsa</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>ssh-keygen_rsa () {
+    ssh-keygen -t rsa -C 'tazjel@gmail.com'
+
+    xclip -sel clip &lt; ~/.ssh/id_rsa.pub
+    ssh -T git@github.com
+    }</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>git_clone_zdotfiles</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>git_clone_zdotfiles () {
+    git clone git@github.com:tazjel/zdotfiles.git
+    cd zdotfiles
+    git remote add upstream git@github.com:tazjel/zdotfiles.git
+    git remote set-url origin git@github.com:tazjel/zdotfiles.git
+    git fetch upstream
+    }</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>clone_web2py.git_qastack</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+
+mv ~/zdotfiles/9/web2py ~/zdotfiles/9/web2py-bkp
+cd ~/zdotfiles/9
+
+#wget http://www.web2py.com/examples/static/web2py_src.zip
+#unzip web2py_src.zip
+#rm web2py_src.zip
+git clone git://github.com/web2py/web2py.git
+cd web2py/applications
+hg clone https://bitbucket.org/speedbird/qastack
+
+#python -c "from gluon.main import save_password; save_password(raw_input('admin  password: '),433)"</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>zinstall_vim</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>zinstall_vim () {
+    sudo apt-get install exuberant-ctags
+    sudo apt-get install libx11-dev libxt-dev python python2.7-dev
+    sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial
+    sudo apt-get install ruby-dev python-dev
+    sudo apt-get install libncurses5-dev libgnome2-dev libgnomeui-dev libgtk2.0-dev libatk1.0-dev libbonoboui2-dev libcairo2-dev libx11-dev libxpm-dev libxt-dev python-dev ruby-dev mercurial
+    sudo apt-get install g++ make git cmake kdelibs5-dev libqjson-dev python-kde4-dev python-qt4-dev
+
+
+    rm -rf ~/vim
+    sudo apt-get autoremove
+
+    sudo apt-get remove vim vim-runtime gvim
+    sudo apt-get remove vim-tiny vim-common vim-gui-common
+
+    cd ~
+
+    hg clone https://code.google.com/p/vim/
+
+    cd vim
+
+
+    ./configure --with-features=huge --enable-rubyinterp --enable-multibyte --enable-pythoninterp --with-tlib=ncurses --with-python-config-dir=/usr/lib/python2.7-config --enable-perlinterp --enable-luainterp --enable-gui=gtk2 --enable-cscope --prefix=/usr
+
+
+    make VIMRUNTIMEDIR=/usr/share/vim/vim74
+
+    sudo make install
+    vim
+    sudo update-alternatives --install /usr/bin/editor editor /usr/bin/vim 1
+    sudo update-alternatives --set editor /usr/bin/vim
+    sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
+    sudo update-alternatives --set vi /usr/bin/vim
+
+    vim +BundleInstall! +BundleClean +q
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>installlibreadline-dev</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get install \
+emacs23 emacs23-el git-core git-doc subversion subversion-tools zsh zsh-doc build-essential \
+python-profiler python-doc python-docutils python-setuptools python-dev \
+ipython pyrex-mode python-mode pymacs \
+openssh-server anthy ibus-anthy anthy-el \
+libgtkmm-2.4-dev ruby libmmap-ruby ruby1.8-dev \
+latex-beamer texinfo trash-cli inkscape language-pack-ja language-support-ja \
+nkf libflickr-api-perl libflickr-upload-perl \
+gimp \
+libbz2-dev libdb-dev libgdbm-dev libncurses-dev libreadline-dev libsqlite3-dev libssl-dev zlib1g-dev cmake \
+poppler-data sun-java6-bin sun-java6-plugin \
+python-matplotlib python-scipy \
+ttf-vlgothic 'ttf-ipafont*' ubuntu-restricted-extras
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>BASHMAGIC</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+
+echo ===============BASH MAGIC===============
+date
+
+OLD_DIR=`pwd`
+if [ -z "$1" ]; then
+    echo "Usage: bash_magic.sh /path/to/bin/dir {--crontab}"
+    exit 1
+else
+    BIN_DIR=$1
+fi
+
+#if [ -z "$2" ]; then
+#CRONTAB="false"
+#else
+    CRONTAB="true"
+#fi
+
+cd $BIN_DIR
+
+# Check if .bashrc exists
+if [ -f "$HOME/.bashrc" ]; then
+    echo ".bashrc exists..."
+# Check for any .bashrc changes
+if diff $HOME/.bashrc $BIN_DIR/bashrc > /dev/null; then
+    echo ".bashrc file has not changed. Nothing to do. Booooring."
+else
+    echo ".bashrc file has changed! Copying to backup..."
+    cp -f $HOME/.bashrc $BIN_DIR/bashrc
+fi
+    else
+    echo ".bashrc does not exist"
+fi
+
+# Check if .screenrc exists
+if [ -f "$HOME/.screenrc" ]; then
+    echo ".screenrc exists..."
+# Check for any .screenrc changes
+if diff $HOME/.screenrc $BIN_DIR/screenrc > /dev/null; then
+    echo ".screenrc file has not changed. Nothing to do. Booooring."
+else
+    echo ".screenrc file has changed! Copying to backup..."
+    cp -f $HOME/.screenrc $BIN_DIR/screenrc
+fi
+else
+echo ".screenrc does not exist"
+fi
+
+# Check if .tmux.conf exists
+if [ -f "$HOME/.tmux.conf" ]; then
+    echo ".tmux.conf exists..."
+# Check for any .tmux.conf changes
+if diff $HOME/.tmux.conf $BIN_DIR/tmux.conf > /dev/null; then
+    echo ".tmux.conf file has not changed. Nothing to do. Booooring."
+else
+    echo ".tmux.conf file has changed! Copying to backup..."
+    cp -f $HOME/.tmux.conf $BIN_DIR/tmux.conf
+fi
+else
+echo ".tmux.conf does not exist"
+fi
+
+# Check if .lynxrc exists
+if [ -f "$HOME/.lynxrc" ]; then
+    echo ".lynxrc exists..."
+# Check for any .lynxrc changes
+if diff $HOME/.lynxrc $BIN_DIR/lynxrc > /dev/null; then
+    echo ".lynxrc file has not changed. Nothing to do. Booooring."
+else
+    echo ".lynxrc file has changed! Copying to backup..."
+    cp -f $HOME/.lynxrc $BIN_DIR/lynxrc
+fi
+else
+    echo ".lynxrc does not exist"
+fi
+
+# Check if .zshrc exists
+if [ -f "$HOME/.zshrc" ]; then
+    echo ".zshrc exists..."
+# Check for any .zshrc changes
+if diff $HOME/.zshrc $BIN_DIR/zshrc > /dev/null; then
+    echo ".zshrc file has not changed. Nothing to do. Booooring."
+else
+    echo ".zshrc file has changed! Copying to backup..."
+    cp -f $HOME/.zshrc $BIN_DIR/zshrc
+fi
+    else
+        echo ".zshrc does not exist"
+fi
+
+if [ $CRONTAB == "true" ]; then
+    # Backup Crontab
+    echo "--crontab is set. Backing up crontab..."
+    # crontab -l > $BIN_DIR/crontab.bkp.`hostname`
+    # removed `hostname` b/c our dns is screwy
+    crontab -l > $BIN_DIR/crontab.bkp.bbelyeumb
+fi
+
+# Receive any updates
+git pull origin master
+
+# Push any modified files
+if git status | grep -v '# On branch master' | grep -v 'nothing to commit' > /dev/null ; then
+    echo "Committing changes and pushing to master..."
+    git commit -am "Bash daily crontab backup."
+    git push origin master
+    echo "All done!"
+fi
+
+cd $OLD_DIR
+
+echo ""
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ppa:xubuntu-dev/xfce-4.10</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#To install Xfce 4.10 (the newest version of this desktop environment) on Ubuntu 12.04 LTS you should follow these steps:
+
+#Add the ppa that will allow you to install the Xfce 4.10:
+
+sudo add-apt-repository ppa:xubuntu-dev/xfce-4.10
+#Update the system:
+
+sudo apt-get update
+#Install Xfce 4.10:
+
+
+sudo apt-get install xfce4
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>config--global</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/usr/bin/env bash
+git config --global user.name "Ahmed Bani"
+git config --global user.email "tazjel@gmail.com"
+git config --global credential.helper cache
+# Set git to use the credential memory cache
+git config --global credential.helper 'cache --timeout=3600'
+# Set the cache to timeout after 1 hour (setting is in seconds)
+git config --global color.ui auto
+
+
+###########
+#Allow all Git commands to use colored output, if possible
+
+git config --global color.ui auto
+
+#Disable the advice shown by Git when you attempt to push something that’s not fast forward-able
+
+#git config --global advice.pushNonFastForward false
+
+#Disable “how to stage/unstage/add” hints given by git status:
+
+git config --global advice.statusHints false
+
+    #Tell Git which whitespace problems it should recognize, namely any whitespace at the end of a line, as well as mixed spaces and tabs:
+
+git config --global core.whitespace trailing-space,space-before-tab
+
+#See the man page for more possible options on this.
+
+    #Allow git diff to do basic rename and copy detection:
+
+git config --global diff.renames copies
+
+#Tell git diff to use mnemonic prefixes (index, work tree, commit, object) instead of the standard a and b notation:
+
+git config --global diff.mnemonicprefix true
+
+#When branching off a remote branch, automatically let the local branch track the remote branch:
+
+git config --global branch.autosetupmerge true
+
+#When pushing without giving a refspec, push the current branch to its upstream branch. See the git config man page for more possible options.
+
+git config --global push.default tracking
+
+#Enable the recording of resolved conflicts, so that identical hunks can be resolved automatically later on.
+
+git config --global rerere.enabled true
+
+#You may also want to investigate the rerere.autoupdate setting.
+#Always show a diffstat at the end of a merge:
+
+git config --global merge.stat true</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Github_creation</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/sh
+# Date: 02/09/2013 
+# Author: Ahmed 
+# Content: Github setup
+# Refernce : https://github.com/sadican/Shell-Scripts/blob/master/github-create-repo.sh
+
+# Content: Github repository creation code
+
+echo ">>> Starting..."
+
+echo ">>> Repository folder will be created in /home/user-name/Tools/..."
+echo ">>> Please give me repository folder name..."
+read repo_directory
+mkdir -p $HOME/Tools/$repo_directory
+echo ">>> Directory created..."
+cd $HOME/Tools/$repo_directory
+echo ">>> Init git..."
+git init
+echo ">>> Create README file..."
+touch README
+
+echo ">>> Enter repository name on github..."
+read repo_name
+echo ">>> Enter your name on github..."
+read user_name
+
+echo ">>> Add README file to repo..."
+git add README
+git commit -m "first commit"
+git remote add origin git@github.com:$user_name/$repo_name.git
+git push -u origin master
+
+echo ">>> THE END"
+exit 0</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>installing-chrome-java-plugin</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># http://askubuntu.com/questions/155852/installing-chrome-java-plugin
+mkdir -p /opt/google/chrome/plugins
+
+# Google Chrome
+#Become the root user by running the su command and then enter the super-user password. Type: 
+sudo -s
+
+#Create a directory called plugins if you do not have it. Type: 
+mkdir -p /opt/google/chrome/plugins
+
+#Go to Google chrome plugins directory before you make the symbolic link. Type: 
+cd /opt/google/chrome/plugins
+
+#Create a symbolic link. Type: 
+ln -s /usr/local/java/jre1.7.0/lib/amd64/libnpjp2.so
+
+#Restart your browser and test Java
+
+
+# Mozilla Firefox
+# Become the root user by running the su command and then enter the super-user password. Type: 
+sudo -s
+# Create a directory called plugins if you do not have it. Type: 
+mkdir -p /usr/lib/mozilla/plugins
+# Go to Google chrome plugins directory before you make the symbolic link. Type: 
+cd /usr/lib/mozilla/plugins
+# Create a symbolic link. Type: 
+ln -s /usr/local/java/jre1.7.0/lib/amd64/libnpjp2.so
+# Restart your browser and test Java</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>installl-key-mon-</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+
+wget http://key-mon.googlecode.com/files/key-mon-1.16.zip
+
+unzip key-mon-1.16.zip
+cd key-mon-1.16
+sudo python setup.py install
+
+#equirements:
+#Linux or equivalent.
+#GTK+
+#pyGtk 2.0 (python-gtk2)
+#XLib (python-xlib)
+#X.Org "record" module.
+#librsvg2-common library 
+#
+#Installation:
+#
+#From zip. Download the zip file and unzip into a directory.
+#
+#unzip key-mon*.zip
+#cd key-mon*
+#sudo python setup.py install
+#
+#From deb package.
+#
+#sudo dpkg -i key-mon*.deb
+#                        
+#sudo aptitude update 
+#
+#If you download the source there is a file called xlib.py which can be run to see the keystrokes, or mouse click events.
+#
+#
+#If you download the source there is a file called xlib.py which can be run to see the keystrokes, or mouse click events.
+#If you download the source there is a file called xlib.py which can be run to see the keystrokes, or mouse click events.
+#sudo aptitude update 
+#
+#    $ python src/keymon/xlib.py 
+#</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>is_Linux</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#uname --help     display this help and exit
+
+    #-s, --kernel-name        print the kernel name
+      #-n, --nodename           print the network node hostname
+      #-r, --kernel-release     print the kernel release
+      #-v, --kernel-version     print the kernel version
+      #-m, --machine            print the machine hardware name
+      #-p, --processor          print the processor type or "unknown"
+      #-i, --hardware-platform  print the hardware platform or "unknown"
+      #-o, --operating-system   print the operating system
+
+zos=`uname`
+
+is_Linux() {
+    if [[ ${zos} == "Linux" ]];then
+        sudo apt-get install -y vim zsh konsole xclip git-core openssh-server curl wget vim-gnome aptitude mercurial
+        else
+            echo "Not Linux"
+    fi
+}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>unlink</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>files=".vim .vimrc .zshrc .gitconfig .tmux.conf .lynxrc .tmuxinator"
+
+for file in $files
+do
+  if [ -L $HOME/$file ]; then
+    unlink $HOME/$file
+  fi
+  ln -s $HOME/.dotfiles/$file $HOME
+done</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>audacious</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get install ardour
+sudo apt-get install hydrogen
+sudo apt-get install audacious
+sudo apt-get install juk
+sudo apt-get install vlc vlc-plugin-pulse
+sudo apt-get install mplayer-gui</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>read_USERNAME</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+
+###
+
+if ! which expect &amp;> /dev/null;
+then
+echo "Unable to find command 'expect', run ./essentials.sh first"
+    exit
+fi;
+
+###
+
+echo -n "Username: "
+read USERNAME
+
+if [ -z "$USERNAME" ]
+then
+echo "Username must not be empty"
+    exit
+fi
+
+###
+
+echo -n "Shell Password: "
+read -s PASSWORD
+echo ""
+
+echo -n "Retype Shell Password: "
+read -s PASSWORD2
+echo ""
+
+if [ "$PASSWORD" != "$PASSWORD2" ]
+then
+echo "Shell Passwords do not match"
+    exit
+fi
+
+###
+
+echo -n "SSH Public Key (end input with ESC): "
+read -d `echo -e "\e"` PUBLICKEY
+echo ""
+
+if [ -z "$PUBLICKEY" ]
+then
+echo "Public Key must not be empty"
+    exit
+fi
+
+###
+
+echo -n "SSH Port [default=22]: "
+read PORT
+
+if [ -z "$PORT" ]
+then
+PORT='22'
+fi
+
+###
+
+useradd -s /bin/bash -m $USERNAME
+
+# add user to sudo group (append)
+usermod -a -G sudo $USERNAME
+
+# add user password
+expect &lt;&lt; EOF
+spawn passwd $USERNAME
+expect "Enter new UNIX password:"
+send "${PASSWORD}\r"
+expect "Retype new UNIX password:"
+send "${PASSWORD}\r"
+expect eof;
+EOF
+
+###
+
+mkdir /home/$USERNAME/.ssh
+
+touch /home/$USERNAME/.ssh/authorized_keys
+
+# remove newlines from public key
+echo "ssh-rsa $PUBLICKEY" | sed ':a;N;$!ba;s/\n//g' >> /home/$USERNAME/.ssh/authorized_keys
+
+###
+
+# backup original config file
+cp /etc/ssh/sshd_config /etc/ssh/sshd_config.bak
+
+sed -e "s/#\?Port .*/Port $PORT/g" -i /etc/ssh/sshd_config
+
+sed -e "s/#\?RSAAuthentication .*/RSAAuthentication yes/g" -i /etc/ssh/sshd_config
+
+sed -e "s/#\?PubkeyAuthentication .*/PubkeyAuthentication yes/g" -i /etc/ssh/sshd_config
+
+sed -e "s/#\?PermitRootLogin .*/PermitRootLogin no/g" -i /etc/ssh/sshd_config
+
+sed -e "s/#\?PasswordAuthentication .*/PasswordAuthentication no/g" -i /etc/ssh/sshd_config
+
+# restart ssh
+service ssh restart
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>/etc/init.d/god</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>http://jetpackweb.com/blog/topics/linux/
+
+ sudo vi /etc/init.d/god
+ 
+#!/bin/bash
+#
+# God
+#
+# chkconfig: - 85 15
+# description: start, stop, restart God (bet you feel powerful)
+#
+ 
+RETVAL=0
+ 
+case "$1" in
+    start)
+      /usr/bin/god -P /var/run/god.pid -l /var/log/god.log
+      /usr/bin/god load /etc/god.conf
+      RETVAL=$?
+      ;;
+    stop)
+      kill `cat /var/run/god.pid`
+      RETVAL=$?
+      ;;
+    restart)
+      kill `cat /var/run/god.pid`
+      /usr/bin/god -P /var/run/god.pid -l /var/log/god.log
+      /usr/bin/god load /etc/god.conf
+      RETVAL=$?
+      ;;
+    status)      
+      /usr/bin/god status
+      RETVAL=$?
+      ;;
+    *)
+      echo "Usage: god {start|stop|restart|status}"
+      exit 1
+  ;;
+esac
+ 
+exit $RETVAL
+
+
+Now adjust the permissions, and set the init script to start on system boot:
+
+$ sudo chmod a+x /etc/init.d/god
+$ sudo /sbin/chkconfig --add god
+$ sudo /sbin/chkconfig --level 345 god on
+
+
+Before we start god up, we need to create a configuration file that tells it what configuration files to load:
+
+$ sudo vi /etc/god.conf
+ 
+God.load "/srv/apps/your_app/current/config/god/*.god"
+
+
+##
+
+
+It’s now time to start the daemon:
+
+$ sudo /etc/init.d/god start
+$ sudo /etc/init.d/god status
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>cp#/etc/sixad</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#/usr/share/qtsixa/profiles
+#/etc/sixad
+
+cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/34:C7:31:35:08:44
+cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/default
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>git_clonessh-keygen_rsa</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+ssh-keygen_rsa ()
+{
+    ssh-keygen -t rsa -C 'tazjel@gmail.com'
+
+    xclip -sel clip &lt; ~/.ssh/id_rsa.pub
+    ssh -T git@github.com
+}
+
+git_clone ()
+{
+    git clone git@github.com:tazjel/zdotfiles.git
+    cd zdotfiles
+    git remote add upstream git@github.com:tazjel/zdotfiles.git
+    git remote set-url origin git@github.com:tazjel/zdotfiles.git
+    git fetch upstream
+}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>git_init</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+username='tazjel'
+gurl='https://github.com/'$username
+
+repo='new_repo'
+mkdir $repo
+cd $repo
+git init
+touch README
+git add README
+git commit -m 'first commit'
+git remote add origin https://github.com/</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>http://j.mp/spf13-vim3</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get install curl
+sh &lt;(curl http://j.mp/spf13-vim3 -L)</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>git--init</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#!/bin/bash
+username='tazjel'
+gurl='https://github.com/'$username
+
+repo='new_repo'
+mkdir $repo
+cd $repo
+git init
+touch README
+git add README
+git commit -m 'first commit'
+git remote add origin https://github.com/
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>sixad_profile</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>#/usr/share/qtsixa/profiles
+#/etc/sixad
+sixad_profile () {
+    cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/34:C7:31:35:08:44
+    cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/default
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>Call_distribution_specific_scripts</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Call distribution specific scripts
+if $IS_OSX; then
+    source ./scripts/osx-install.sh
+    source ./scripts/osx-config.sh
+else
+    source ./scripts/ubuntu-install.sh
+    source ./scripts/ubuntu-config.sh
+fi</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>if_mkdir</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>if [ ! -d "$HOME/dot-files/vim/bundle" ]; then
+    mkdir -p "$HOME/dot-files/vim/bundle";
+fi</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>caseinstall</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>case $1 in
+    'install')
+        git clone git://github.com/thinca/vim-guicolorscheme.git;
+        git clone git://github.com/Shougo/neocomplcache.git;
+        git clone git://github.com/thinca/vim-quickrun.git;
+        git clone git://github.com/Shougo/unite.vim.git;
+        git clone git://github.com/thinca/vim-ref.git;
+        git clone git://github.com/kchmck/vim-coffee-script.git;
+        git clone git://github.com/groenewege/vim-less.git;
+        git clone git://github.com/altercation/vim-colors-solarized.git;
+        git clone git://github.com/hallison/vim-markdown.git;
+        git clone git://github.com/vim-scripts/sudo.vim.git;
+        git clone git://github.com/tpope/vim-fugitive.git;
+        git clone git://github.com/airblade/vim-gitgutter.git;
+        git clone git://github.com/jnwhiteh/vim-golang.git;
+        git clone git://github.com/haskell/haskell-mode-vim.git;
+        git clone git://github.com/ujihisa/ref-hoogle.git;
+        git clone git@github.com:derekwyatt/vim-scala.git;
+        ;;
+
+    'upgrade')
+        dirlista=`find . -maxdepth 1 -type d -print`;
+        for d in $dirlista; do
+            if [ "$d" != "." ]; then
+                cd "$d";
+                echo $d;
+                git pull;
+                cd '..';
+            fi
+        done;
+        ;;
+    *)
+        cat &lt;&lt; EOM
+Usage:
+    $0 install
+
+    $0 upgrade
+
+EOM
+        ;;
+esac</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>lnifautokey</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>
+lnif "$HOME/Dropbox/zdotfiles/6/autokey/" "$HOME/.config/autokey/data/DCAR"</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>app_name</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>app_name='zdotfiles'
+git_uri='https://github.com/tazjel/zdotfiles.git'
+git_branch='master'
+debug_mode='0'
+fork_maintainer='0'</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>wi_basic</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>wi_basic(){
+    sudo apt-get install -y vim zsh xclip git-core openssh-server curl wget aptitude mercurial
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>TZAsia/Riyadh</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>export TZ=Asia/Riyadh</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>$HOME</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>AK="$HOME/.config/autokey/data"
+DB="$HOME/Dropbox"
+DL="$HOME/Downloads"</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>www_ak_add</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>www_ak_add() {
+    echo "$1" > $HOME/.config/autokey/data/MyPhrases/ww/"$2"
+}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ssh_wwib</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>wwib(){xp="$@";ssh root@192.168.1.${xp}}</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>www_rename</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Replace all the spaces in all the filenames of the current directory and including directories with underscores.
+www_rename(){
+    ls -1 | while read file; do
+        new_file=$(echo $file | sed s/\ /_/g)
+        mv "$file" "$new_file"; done
+}
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>wssh-keygen_rsa</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>ssh-keygen_rsa() {
+    ssh-keygen -t rsa -C 'tazjel@gmail.com'
+    xclip -sel clip &lt; ~/.ssh/id_rsa.pub
+    echo "go &amp; paste your key at -->  : https://github.com/settings/ssh"
+    ssh -T git@github.com
+}
+</fillin>
+ </item>
+</snippets>

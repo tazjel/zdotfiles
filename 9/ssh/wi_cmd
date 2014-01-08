@@ -1,0 +1,18 @@
+
+#Generate a key if necessary:from :  http://archive.networknewz.com/networknewz-10-20030707AuthenticatingbyPublicKeyOpenSSH.html
+
+mkdir -p ~/.ssh; chmod 700 ~/.ssh; cd ~/.ssh; ssh-keygen -t dsa
+scp -p id_dsa.pub remoteuser@remotehost: Password: ********
+
+
+
+Log into the remote host and install the public key:
+
+$ ssh -l remoteuser remotehost
+#Password: ********
+remotehost$ mkdir -p ~/.ssh
+remotehost$ chmod 700 ~/.ssh
+remotehost$ cat id_dsa.pub >> ~/.ssh/authorized_keys
+remotehost$ chmod 600 ~/.ssh/authorized_keys
+remotehost$ mv id_d
+ls ~/.ssh/id_rsa

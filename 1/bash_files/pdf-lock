@@ -1,7 +1,0 @@
-Print a locked pdf
-
-To be able to print a pdf file even though it has been print locked you can convert the pdf to postscrloipt and back again to a pdf.
-?
-1
-	
-$ pdf2ps locked.pdf unlocked.ps && ps2pdf unlocked.ps unlocked.pdf

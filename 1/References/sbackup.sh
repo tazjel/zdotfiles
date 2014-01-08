@@ -10,7 +10,7 @@ TO=my.name@domtest.priv
 SERVER=out.server.it
 
 #Backup
-rdiff-backup --print-statistics   $LOCAL_PATH $REMOTE_IP::$REMOTE_PATH >/tmp/last_backup.txt 2>/tmp/last_backup_E.txt 
+rdiff-backup --print-statistics   $LOCAL_PATH $REMOTE_IP::$REMOTE_PATH >/tmp/last_backup.txt 2>/tmp/last_backup_E.txt
 
 #Prepare Notify
 sed s/\<DATE\>/"`date`"/ $SCRIPT_PATH/template.tpl >/tmp/email.txt
@@ -23,7 +23,7 @@ cat /tmp/email.txt  | sendmail -f$FROM -s$SERVER $TO
 #Error : check error looking into --print-statistics file (/tmp/last_backup.txt)
 error=`grep -e 'Errors.0' /tmp/last_backup.txt`
 if [ -z "$error" ]; then
-	sed s/\<DATE\>/"`date`"/ $SCRIPT_PATH/template_error.tpl >/tmp/email_e.txt
-	cat /tmp/last_backup_E.txt >>/tmp/email_e.txt
-	cat /tmp/email_e.txt  | sendmail -f$FROM -s$SERVER $TO
-fi 
+    sed s/\<DATE\>/"`date`"/ $SCRIPT_PATH/template_error.tpl >/tmp/email_e.txt
+    cat /tmp/last_backup_E.txt >>/tmp/email_e.txt
+    cat /tmp/email_e.txt  | sendmail -f$FROM -s$SERVER $TO
+fi

@@ -1,20 +1,60 @@
 
+set nocompatible
+"let encoding = &enc
+"set encoding=utf-8
+"if encoding == 'latin1'
+    "if has("unix")
+    "let encoding = 'iso-8859-8'
+    "else
+    "let encoding = 'cp1255'
+    "endif
+"endif
 
-                        colorscheme random
+"if encoding == 'utf-8'
+    "source <sfile>:p:h/hebrewp_utf-8.vim
+"elseif encoding == 'cp1255'
+    "source <sfile>:p:h/hebrewp_cp1255.vim
+"else
+    "source <sfile>:p:h/hebrewp_iso-8859-8.vim
+"endif
 
-                        set autoindent smartindent
-                        set expandtab smarttab
-                        set tabstop=4 shiftwidth=4
+set fillchars+=stl:\ ,stlnc:\
+
+if &encoding == 'utf-8'
+  set ambiwidth=single
+  "set ambiwidth=double
+endif
+
+set background=dark
+hi clear
+
+if exists("syntax_on")
+  syntax reset
+endif
+
+if has('autocmd')
+  filetype plugin indent on
+endif
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+"
+    "colorscheme random
+            set autoindent smartindent
+            set expandtab smarttab
+            set tabstop=4 shiftwidth=4
 
                         set noswapfile nobackup nowritebackup
                         set showmatch matchtime=3 matchpairs+=<:>
-                        set timeout timeoutlen=5000 ttimeoutlen=100
+
+                                "" Fix slow O inserts
+                                        set timeout timeoutlen=1000 ttimeoutlen=100
+                                        set timeout timeoutlen=5000 ttimeoutlen=100
+                                        set shortmess=aTI
+
                         set history=10000
-                        set shortmess=aTI
 
                         set splitbelow splitright
-
-
 
                             " Use clipboard register
                                 if has('unnamedplus')
@@ -51,8 +91,7 @@
                     map <F1> :nohlsearch<CR>\|:.s/^/"/<CR>\|:nohlsearch<CR>
                     map <S-F1> :.s/^\(^.*\)"//<CR>\|:nohlsearch<CR>
 
-"               "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
-
+"              "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
                 nnoremap <F2> :reg<CR>
                 nnoremap <S-F2> :marks <CR>
             " <F3>
@@ -70,7 +109,7 @@
                     nnoremap <S-F4>  :let @a=""\|:let @a=colors_name\|:let @"=@a<CR>\|:echo @"<CR>
             " <F5>
                     nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name<CR>
-                    "nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+                    nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 "                Tips
                     nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
                     nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
@@ -82,7 +121,7 @@
 
             " <F7>
 
-    "                nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")
+nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 
                     imap <F7> <C-X><C-l>
 
@@ -447,6 +486,7 @@ endfunction
 
             "auto-complete
                 " nice bash-like filename auto-complete
+                set listchars=tab:>-,trail:-
                 set list
                 set wildmode=longest,list,full
                 set wildmode=full:list
@@ -648,8 +688,6 @@ set shell=bash
 "set t_ti= t_te=
 "set scrolloff=3
 "
-                                "" Fix slow O inserts
-                                set timeout timeoutlen=1000 ttimeoutlen=100
                                 "
                                 let g:sh_noisk=1
                                 "
@@ -689,12 +727,12 @@ set shell=bash
 
 " Syntastic settings
 
-"let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
-"let g:syntastic_check_on_open=1         " Check for errors on buffer load
-"let g:syntastic_auto_loc_list=1         " Open Error window automatically
-"let g:syntastic_auto_jump=1             " Automatically jump to first detected error
-"let g:syntastic_loc_list_height=3
-"let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
+let g:syntastic_check_on_open=1         " Check for errors on buffer load
+let g:syntastic_auto_loc_list=1         " Open Error window automatically
+let g:syntastic_auto_jump=1             " Automatically jump to first detected error
+let g:syntastic_loc_list_height=3
+let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
 " Gist settings
     let g:gist_open_browser_after_post=1
@@ -714,23 +752,6 @@ set shell=bash
 
 autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal modifiable | endif
 
-
-function! AccentDemo()
-  let keys = ['a','b','c','d','e','f','g','h']
-  for k in keys
-    call airline#parts#define_text(k, k)
-  endfor
-  call airline#parts#define_accent('a', 'red')
-  call airline#parts#define_accent('b', 'green')
-  call airline#parts#define_accent('c', 'blue')
-  call airline#parts#define_accent('d', 'yellow')
-  call airline#parts#define_accent('e', 'orange')
-  call airline#parts#define_accent('f', 'purple')
-  call airline#parts#define_accent('g', 'bold')
-  call airline#parts#define_accent('h', 'italic')
-  let g:airline_section_a = airline#section#create(keys)
-endfunction
-autocmd VimEnter * call AccentDemo()
 
 
 function! ToggleSyntax()
@@ -877,7 +898,37 @@ let g:pymode_lint_visual_symbol = '⑆'
 let g:pymode_lint_error_symbol = '✘'
 let g:pymode_lint_info_symbol = '●'
 let g:pymode_lint_pyflakes_symbol = '●'
+<<<<<<< HEAD
 "source ~/zdotfiles/2/zplugin/zabz.vim
 "source ~/zdotfiles/2/zplugin/zbuff.vim
 "source ~/zdotfiles/2/zplugin/zfunctionz.vim
 "source ~/zdotfiles/2/zplugin/zmapz.vim
+=======
+"
+""source ~/zdotfiles/2/zplugin/zabz.vim
+""source ~/zdotfiles/2/zplugin/zbuff.vim
+
+""source ~/zdotfiles/2/zplugin/zfunctionz.vim
+""source ~/zdotfiles/2/zplugin/zmapz.vim
+
+
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+
+" Always show statusline
+set laststatus=2
+
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8                     " better default than latin1
+  setglobal fileencoding=utf-8           " change default file encoding when writing new files
+endif
+
+
+" Font
+let g:Powerline_symbols = 'fancy'
+>>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70

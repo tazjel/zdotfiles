@@ -158,23 +158,24 @@ create_symlinks_ak() {
 }
 
 ############################ MAIN()
-#program_exists "vim" "To install $app_name you first need to install Vim."
+program_exists "vim" "To install $app_name you first need to install Vim."
 
-#do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m%d%S`" \
-        #"$HOME/.zsh \
-        #"$HOME/.zshenv \
-        #"$HOME/.config/autokey/data/DCAR"
+do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m%d%S`" \
+        "$HOME/.zsh \
+        "$HOME/.zshenv \
+        "$HOME/.zshenv \
+        "$HOME/.easystroke"
 
-        #"$HOME/.easystroke"
-#clone_repo      "Successfully cloned $app_name"
 
-#create_symlinks_ak "Setting up symlinks"
+clone_repo "Successfully cloned $app_name"
 
-#clone_vundle    "Successfully cloned vundle"
+create_symlinks_ak "Setting up symlinks"
 
-#setup_vundle    "Now updating/installing plugins using Vundle"
+clone_vundle "Successfully cloned vundle"
+
+setup_vundle "Now updating/installing plugins using Vundle"
 
 lnif "$HOME/Dropbox/zdotfiles/6/autokey/" "$HOME/.config/autokey/data/DCAR"
 
-msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` "
+msg "\nThanks for installing $app_name."
+msg "© `date +%Y` "

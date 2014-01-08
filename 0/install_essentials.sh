@@ -1,3 +1,4 @@
+
 #!/bin/bash
 
 
@@ -11,6 +12,8 @@ install_list_pacakges ()
 {
     for xp in $(cat $HOME/zdotfiles/packages-alpha.txt) ; do echo -e "\ninstall $xp";sudo apt-get install $xp;done
 }
+
+# sudo apt-get install key-mon 
 
 
 install_ubuntu_restricted-extras() {

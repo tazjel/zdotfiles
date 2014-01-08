@@ -1,0 +1,278 @@
+<snippets namespace="" license="" filetypes="*" authors="w" name=" snippets">
+ <script></script>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ppa-blender</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo add-apt-repository ppa:irie/blender
+sudo apt-get update
+sudo apt-get install -y blender</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>installing-ubuntu.html</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>http://www.webupd8.org/2013/04/7-things-to-do-after-installing-ubuntu.html
+sudo apt-get install ubuntu-restricted-extras
+
+
+sudo apt-get install icedtea-7-plugin openjdk-7-jre
+
+sudo apt-get install libavformat-extra-53 libavcodec-extra-53
+
+http://www.medibuntu.org/repository.php
+The following bash command adds Medibuntu's repository to Ubuntu. It also adds Medibuntu's GPG key to your keyring, which is needed to authenticate the Medibuntu packages. 
+sudo -E wget --output-document=/etc/apt/sources.list.d/medibuntu.list http://www.medibuntu.org/sources.list.d/$(lsb_release -cs).list &amp;&amp; sudo apt-get --quiet update &amp;&amp; sudo apt-get --yes --quiet --allow-unauthenticated install medibuntu-keyring &amp;&amp; sudo apt-get --quiet update
+
+Removing Non-Free Software
+
+Some people don't want to install Non-Free software on their computer, or simply have no need for the software in Medibuntu's non-free component. The following command deactivates the non-free component.
+
+This command should be run in the Terminal, after adding the repository:
+
+sudo sed -e 's/ non-free//' -i /etc/apt/sources.list.d/medibuntu.list &amp;&amp; sudo apt-get update</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ppa:openshot</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo add-apt-repository ppa:openshot.developers/ppa
+sudo apt-get update
+sudo apt-get install openshot openshot-doc</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ppa:webupd8team/y-ppa-manager</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo add-apt-repository ppa:webupd8team/y-ppa-manager
+sudo apt-get update
+sudo apt-get install y-ppa-manager</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>libplist</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>espeak espeakup espeak-data espeak-gui espeak-gui
+flac
+jack
+libplist++-dev
+libplist-utils
+libplist1
+libsox-fmt-all
+mbrola stardict-plugin-espeak
+python-espeak
+sox
+speakup-tools
+speechd-up
+surfraw
+txt2regex
+usbmuxd
+xsel
+liveusb-creator
+alsa-tools alsa-utils
+dos2unix
+ffmpeg
+jackd
+libnotify-bin
+libusb-1.0-0 libusb-1.0-0-dev
+mplayer
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>sedinstall</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>%s/\(^.*install\) \(.*$\)/\2/g</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ifinputrc</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin># Get the personal aliases and functions
+if [ -f ~/.bashrc ]; then
+        . ~/.bashrc
+fi
+# global definitions are sourced in ~/.bashrc !!
+###############################################################################
+# read the .inputrc for key bindings, completion, etc.
+if [ -f ~/.inputrc ]; then
+        bind -f ~/.inputrc
+fi
+</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>alias_ar</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>alias "سم"="alias"
+alias "قل"="echo"
+alias "اكتب"="vim"
+alias "اقرا"="cat"
+alias "اكتب عربي"="vim -A"
+alias "اعد"="zsh"
+alias "نظف"="clear"
+alias "التاريخ"="clear"</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>sixadchmod</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo chmod 777 -R /var/lib/sixad
+sudo modprobe uinput</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>qtsixa</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get install qtsixa</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>ppa:easystroke</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo add-apt-repository ppa:easystroke/ppa</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>et-pip.py</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>https://raw.github.com/pypa/pip/master/contrib/get-pip.py | sudo python2.7</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>exportTERM=xterm-256color</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>export TERM=xterm-256color</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>konsolesolarized_dark</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>~/.kde/share/apps/konsole/solarized_dark.terminal</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>pipGitPython</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo pip install -Iv https://pypi.python.org/packages/source/G/GitPython/GitPython-0.3.1-beta2.tar.gz</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>piplist</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>pip list | grep -i gitpython</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>pipgrep</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>pip freeze | cut -d = -f 1 | xargs -n 1 pip search | grep -B2 'LATEST:'</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>hostname</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>appname=$(cat /etc/hostname)</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>dpkgconfigure</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get -f install
+: 1388081283:0;sudo dpkg --configure -a</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>aptautoclean</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>: 1388081083:0;sudo apt-get autoclean
+: 1388081106:0;sudo apt-get -f install
+: 1388081131:0;sudo dpkg --configure -a
+: 1388081136:0;sudo apt-get -f install
+: 1388081172:0;sudo apt-get autoremove
+: 1388081234:0;sudo apt-get -f install
+: 1388081237:0;sudo apt-get autoremove
+: 1388081241:0;sudo apt-get autoclean
+: 1388081245:0;agg
+: 1388081276:0;sudo apt-get -f install
+: 1388081283:0;sudo dpkg --configure -a
+: 1388081319:0;sudo apt-get install ppa-purge
+: 1388081369:0;sudo apt-get update
+: 1388081383:0;sudo apt-get upgrade
+: 1388081621:0;sudo apt-get -u dist-upgrade
+: 1388082070:0;sudo apt-get install update-manager-core
+: 1388082080:0;sudo do-release-upgrade
+: 1388082091:0;sudo apt-get install update-manager
+: 1388082099:0;sudo update-manager -d
+: 1388082127:0;sudo apt-add-repository ppa:kubuntu-ppa/backports -y
+: 1388082138:0;sudo apt-get update
+: 1388082158:0;sudo apt-get install kde-standard
+: 1388082179:0;sudo apt-get kde-standard kubuntu-desktop
+: 1388082399:0;lsb_release -a</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>installttfttf-dejavu</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get install ttf-dejavu</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>vimpython</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo add-apt-repository http://klen.github.io/python-mode/deb main
+: 1388095279:0;agg
+: 1388095290:0;apt-get install vim-python-mode
+: 1388095294:0;__ apt-get install vim-python-mode
+: 1388095309:0;vim-addons install python-mode
+: 1388095351:0;sudo apt-get install vim exuberant-ctags git
+: 1388095368:0;sudo pip install dbgp vim-debug pep8 flake8 pyflakes</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>install_dpend_qtsixa_joystick</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get install bluez-utils bluez-compat bluez-hcidump checkinstall libusb-dev  libbluetooth-dev joystick</fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>install_essential</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo apt-get install vim vim-gtk git tig git-gui git-svn gitk python-pip \
+xmonad suckless-tools xmobar dwm dmenu ubuntu-restricted-extras rxvt-unicode tmux \
+byobu trayer libghc6-xmonad-contrib-dev scrot cabal-install xclip \
+ack build-essential gufw keychain chrony openssh-server </fillin>
+ </item>
+ <item>
+  <displayprefix></displayprefix>
+  <match>easy_install</match>
+  <displaypostfix></displaypostfix>
+  <displayarguments></displayarguments>
+  <fillin>sudo easy_install Pygments
+sudo pip install pjson</fillin>
+ </item>
+</snippets>
