@@ -57,12 +57,13 @@ git_config_global() {
     git config --global credential.helper cache
     git config --global credential.helper 'cache --timeout=3600'
 }
-
 ssh-keygen_rsa() {
     ssh-keygen -t rsa -C 'tazjel@gmail.com'
     xclip -sel clip < ~/.ssh/id_rsa.pub
+    echo "go & paste your key at -->  : https://github.com/settings/ssh"
     ssh -T git@github.com
 }
+
 
 git_clone() {
     git clone git@github.com:tazjel/zdotfiles.git

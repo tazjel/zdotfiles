@@ -35,7 +35,7 @@ www_ak_add() {
 #
 # bash find function
 
-
+# curl https://github.com/igorgue.json | pjson
 
 # Replace all the spaces in all the filenames of the current directory and including directories with underscores.
 www_rename(){
@@ -886,3 +886,8 @@ myip ()
 
 
 alias "www_unmute_audio"="amixer -c 0 set Master 1+ unmute"
+alias wabout="lsb_release -a"
+
+
+alias ''='' 
+

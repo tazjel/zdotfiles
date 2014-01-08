@@ -1,0 +1,26 @@
+#!/bin/bas
+
+
+
+
+
+
+
+ export LANG=ar_SA.utf8
+         localeLANG=ar_SA.utf8 \
+         LC_CTYPE="ar_SA.utf8" \
+         LC_COLLATE="ar_SA.utf8" \
+         LC_MONETARY="ar_SA.utf8" \
+         LC_NUMERIC="ar_SA.utf8"LC_TIME="ar_SA.utf8" \
+         LC_MESSAGES="ar_SA.utf8" \
+         LC_ALL=$ \
+
+
+
+#iconv -f iso86 -t utf8 arabic.iso >arabic.utf8
+
+"Sometimes two conversion steps are needed. Example, if the file is "arabic8" encoded, use:
+
+iconv -f arab8 -t iso86 arabic.8 >arabic.iso  iconv -f iso86 -t utf8 arabic.iso >arabic.utf8
+
+#"To list all available conversions, run iconv -l .

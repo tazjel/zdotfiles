@@ -222,7 +222,7 @@ unlink_files () {
       if [ -L $HOME/$file ]; then
         unlink $HOME/$file
       fi
-      ln -s $HOME/.dotfiles/$file $HOME
+      ln -s $HOME/.dotfiles/$file $HOME/.$HOME
     done
 }
 

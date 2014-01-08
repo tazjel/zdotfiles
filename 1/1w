@@ -40,12 +40,12 @@
 
             success() {
                 if [ "$ret" -eq '0' ]; then
-                msg "\e[32m[✔]\e[0m ${1}${2}"
+                msg "\e[32m[â]\e[0m ${1}${2}"
                 fi
             }
 
             error() {
-                msg "\e[31m[✘]\e[0m ${1}${2}"
+                msg "\e[31m[â]\e[0m ${1}${2}"
                 exit 1
             }
 
@@ -71,7 +71,7 @@ F1(){
 
         show_menus() {
             clear
-            echo "                            بسم الله الرحمن الرحيم"
+            echo "                            Ø¨Ø³Ù Ø§ÙÙÙ Ø§ÙØ±Ø­ÙÙ Ø§ÙØ±Ø­ÙÙ"
             echo "~~~~~~~~~~~~~~~~~~~~~"
             echo " M A I N - M E N U"
             echo "~~~~~~~~~~~~~~~~~~~~~"
@@ -120,5 +120,5 @@ F1(){
 
 ####################################################
    # References
-    # Next TODO
-     #Create a ZIP archive of a file or folder.
+        # Next TODO
+         #Create a ZIP archive of a file or folder.

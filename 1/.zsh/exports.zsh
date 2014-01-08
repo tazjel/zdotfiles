@@ -1,9 +1,12 @@
 export KEYTIMEOUT=1
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
+export LC_ALL=ar_SA.UTF-8
+export LANG=ar_SA.UTF-8
 
 export TZ=Asia/Riyadh
+export LESS='-R'
+export LESSOPEN='|~/.lessfilter %s'
+
 
 # Currently this path is appended to dynamically when picking a ruby version
 

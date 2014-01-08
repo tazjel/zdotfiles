@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-############################  SETUP PARAMETERS
 app_name='zdotfiles'
     git_uri='https://github.com/tazjel/zdotfiles.git'
     git_branch='master'
@@ -43,6 +42,26 @@ debug() {
     fi
 
 }
+
+program_exists() {
+    local ret='0'
+    type $1 >/dev/null 2>&1 || { local ret='1'; }
+
+    # throw error on non-zero return value
+    if [ ! "$ret" -eq '0' ]; then
+    error "$2"
+    fi
+}
+
+############################ SETUP FUNCTIONS
+lnif() {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?"
+    debug
+}
+
 
 program_exists() {
     local ret='0'

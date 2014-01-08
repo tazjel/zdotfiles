@@ -8,3 +8,9 @@ alias "نظف"="clear"
 alias "التاريخ"="clear"
 
 alias "التحديث"="agg"
+
+
+
+ قا() {                                                          
+alias "$1"="$2"
+}
