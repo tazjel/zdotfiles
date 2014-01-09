@@ -1,0 +1,5 @@
+#xrdb -merge ~/.Xdefaults
+# you'll also want to add this to your ~/.xsession so it happens every time you log in:
+if [ -f $HOME/.Xdefaults ]; then
+  xrdb -merge $HOME/.Xdefaults
+fi

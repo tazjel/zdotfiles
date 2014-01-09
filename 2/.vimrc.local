@@ -1,22 +1,7 @@
 
 set nocompatible
-"let encoding = &enc
-"set encoding=utf-8
-"if encoding == 'latin1'
-    "if has("unix")
-    "let encoding = 'iso-8859-8'
-    "else
-    "let encoding = 'cp1255'
-    "endif
-"endif
+set encoding=utf-8
 
-"if encoding == 'utf-8'
-    "source <sfile>:p:h/hebrewp_utf-8.vim
-"elseif encoding == 'cp1255'
-    "source <sfile>:p:h/hebrewp_cp1255.vim
-"else
-    "source <sfile>:p:h/hebrewp_iso-8859-8.vim
-"endif
 
 set fillchars+=stl:\ ,stlnc:\
 
@@ -26,7 +11,6 @@ if &encoding == 'utf-8'
 endif
 
 set background=dark
-hi clear
 
 if exists("syntax_on")
   syntax reset
@@ -38,60 +22,57 @@ endif
 if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
-"
-    "colorscheme random
-            set autoindent smartindent
-            set expandtab smarttab
-            set tabstop=4 shiftwidth=4
 
-                        set noswapfile nobackup nowritebackup
-                        set showmatch matchtime=3 matchpairs+=<:>
 
-                                "" Fix slow O inserts
-                                        set timeout timeoutlen=1000 ttimeoutlen=100
-                                        set timeout timeoutlen=5000 ttimeoutlen=100
-                                        set shortmess=aTI
+     colorscheme random
+    set autoindent smartindent
+    set expandtab smarttab
+    set tabstop=4 shiftwidth=4
+    set showmatch matchtime=3 matchpairs+=<:>
+    set noswapfile nobackup nowritebackup
 
-                        set history=10000
+    "" Fix slow O inserts
+        set timeout timeoutlen=1000 ttimeoutlen=100
+        set timeout timeoutlen=5000 ttimeoutlen=100
+        set shortmess=aTI
 
-                        set splitbelow splitright
+set history=10000
 
-                            " Use clipboard register
-                                if has('unnamedplus')
-                                  set clipboard& clipboard+=unnamedplus
-                                else
-                                  set clipboard& clipboard+=unnamed
-                                endif
+set splitbelow splitright
 
 
 
-                        " set folding
-                            setlocal foldmethod=expr
-                            setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
+" set folding
+        setlocal foldmethod=expr
+        setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
 
-                            set foldtext=getline(v:foldstart)
-                            set fillchars=fold:\ "(there's a space after that \)
-                            "highlight Folded ctermfg=DarkGreen ctermbg=Black
+        set foldtext=getline(v:foldstart)
+        set fillchars=fold:\ "(there's a space after that \)
+
+        "highlight Folded ctermfg=DarkGreen ctermbg=Black
+
+"Fold System
+    nnoremap 8 zMzvzz
+    nnoremap 9 zM
+    nnoremap 0 zR
 
 
-                            "Fold System
-                                    nnoremap 8 zMzvzz
-                                    nnoremap 9 zM
-                                    nnoremap 0 zR
+
+"<space><space>
+    nnoremap <space> za
+    vnoremap <space> zf
+    nnoremap <Space><CR> :nohlsearch<CR><CR>
+
+" <F[1-12]>
+    "map <C-w> :w<CR><F5>
+    "map <S-C-w> :vsplit $HOME/.vim/bundle<CR>
 
 
-                                "<space><space>
-                                    nnoremap <space> za
-                                    vnoremap <space> zf
 
-                    nnoremap <Space><CR> :nohlsearch<CR><CR>
+    map <F1> <plug>NERDCommenterToggle
+    imap <F1> <Esc><F1>
 
-      "<F[1-12]>
-                    imap <F1> <Esc><F1>
-                    map <F1> :nohlsearch<CR>\|:.s/^/"/<CR>\|:nohlsearch<CR>
-                    map <S-F1> :.s/^\(^.*\)"//<CR>\|:nohlsearch<CR>
-
-"              "nnoremap <F2> :let @*=expand("%:p")<cr> :unix
+              "nnoremap <F2> :
                 nnoremap <F2> :reg<CR>
                 nnoremap <S-F2> :marks <CR>
             " <F3>
@@ -108,7 +89,7 @@ endif
                     nnoremap <F4> :verbos map<Space>
                     nnoremap <S-F4>  :let @a=""\|:let @a=colors_name\|:let @"=@a<CR>\|:echo @"<CR>
             " <F5>
-                    nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name<CR>
+                    nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>
                     nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 "                Tips
                     nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
@@ -844,7 +825,6 @@ nnoremap W :echo colors_name<CR>
 
 ":let &path = &path . ',/usr/local/include'
 
-map <F1> <plug>NERDCommenterToggle
 
 " Add the virtualenv's site-packages to vim path
 
@@ -898,12 +878,10 @@ let g:pymode_lint_visual_symbol = '⑆'
 let g:pymode_lint_error_symbol = '✘'
 let g:pymode_lint_info_symbol = '●'
 let g:pymode_lint_pyflakes_symbol = '●'
-<<<<<<< HEAD
 "source ~/zdotfiles/2/zplugin/zabz.vim
 "source ~/zdotfiles/2/zplugin/zbuff.vim
 "source ~/zdotfiles/2/zplugin/zfunctionz.vim
 "source ~/zdotfiles/2/zplugin/zmapz.vim
-=======
 "
 ""source ~/zdotfiles/2/zplugin/zabz.vim
 ""source ~/zdotfiles/2/zplugin/zbuff.vim
@@ -931,4 +909,6 @@ endif
 
 " Font
 let g:Powerline_symbols = 'fancy'
->>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70
+
+""""""""""""""""""""""""""""""
+

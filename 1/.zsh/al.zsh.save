@@ -1,13 +1,11 @@
 #!/bin/zsh
+;
 
-
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
 source ~/zdotfiles/1/walias.sh
 
 today=`date +%Y_%m_%d_%h_%s`
 
-l()
+function l()
 {
     ls -alt
 }
@@ -33,6 +31,10 @@ function w()
 
 source ~/zdotfiles/1/z_arabic.sh
 
+
+<<<<<<< HEAD
+# curl https://github.com/igorgue.json | pjson
+=======
 show_code()
 {
     pygmentize $1 | less -N }
@@ -42,6 +44,8 @@ www_ak_add()
     echo "$1" > $HOME/.config/autokey/data/MyPhrases/ww/"$2"
 }
 
+#eplace all the spaces in all the filenames of the current directory and including directories with underscores.
+>>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70
 
 www_rename()
 {
@@ -252,12 +256,10 @@ function wwrename {
     mv "$file" `echo "$file" | tr ' ' '_' | tr '[A-Z]' '[a-z]'`;
     done;
 }
-
-function Wbkp()
-{
+function Wbkp {
     for xx in ~/.* ;do
         rsync -avz --progress $HOME/.* $HOME/zzz_bkp
-        ls -alt > ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
+        ls -a > ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
         echo $data >> ~/zdotfiles/1/.zsh/Inbox_Home_dotfiles.txt
     done;
 }
@@ -287,8 +289,7 @@ function alg () {
     grep $1 $HOME/.zsh_history | sed 's/^.*;//g'
 }
 
-glll()
-{
+function glll {
     cd $HOME/zdotfiles
     git add -A
     git commit -a
@@ -296,11 +297,15 @@ glll()
     git push origin --all && git push origin --tags
 }
 
-#ww_sort() { sort -u }
-
-wpkl()
+ww_sort()
 {
-    dpkg --get-selections > ~/zdotfiles/0/packages-alpha${today};
+    sort -u
+}
+
+
+function wpkl ()
+{
+    dpkg --get-selections > ~/zdotfiles/0/packages-alpha${today}.txt
 }
 
 wssh ()
@@ -317,14 +322,25 @@ www_lynx() {
 }
 
 
-W_colors_term()
-{
-    for code in $(seq -w 0 255); do for attr in 0 1; do printf "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m" "\e[m"; done; done | column -c $((COLUMNS*2));
+ww_colors_term()
+    {for code in $(seq -w 0 255); do for attr in 0 1; do printf
+    "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m"
+    "\e[m"; done; done | column -c $((COLUMNS*2))
 }
 
 
-wbook()
-{
+######################################## Main
+
+# Start-up
+star_Level_one
+echo -e "\t\t\t\t $(date)"
+
+#cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
+
+############################################################################################################################################################
+
+
+wbook() {
     egrep "$1" /home/ahmed/Dropbox/C/Foundation/books.txt | grep -oG ").\(.*\)" | sed 's/).\s\+\(.*\)/\1/g'
 }
 
@@ -333,20 +349,22 @@ fbook() {
 }
 
 
-wy_readline()
-{
+wy_readline() {
     tail -F /var/log/nginx/access.log | python -c 'exec("import sys,time\nl=0\ne=int(time.time())\nfor line in sys.stdin:\n\tt = int(time.time())\n\tl += 1\n\tif t > e:\n\t\te = t\n\t\tprint l\n\t\tl = 0")'
 }
 
-ww_sed_wy_append_line()
-{
+wy_append_line(){
     # Append the line # -*- coding: utf-8 -*- to a file
-    sed -i -e '1i \# -*- coding: utf-8 -*-';
+    sed -i -e '1i \# -*- coding: utf-8 -*-'
 }
+
+
+
 
 
 # Dropbox login using only curl, sed and bash
 #link=https://www.dropbox.com/login ; curl -b a -c cookie -d "t=$(curl -c a $link | sed -rn 's/.*TOKEN: "([^"]*).*/\1/p')&login_email=me%40yahoo.com&login_password=my_passwd" $link
+
 # english <--> german translation with dict.leo.org
 #leo() { lang=en; IFS=+; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
 
@@ -355,24 +373,17 @@ wpic()
 {
     while true; do sleep 3; scrot '%Y-%m-%d-%s_$wx$h_wscrot.png' -e 'mv $f ~/images/shots/'; ls ~/images/shots;done
 }
-
-
 #$(pgrep easystroke)
 
 alias "wea_easystroke"="easystroke -c ~/.easystroke"
-
+#echo ${TERM}
 
 alias "w_term_colors"="msgcat --color=test"
 
 alias 'wchmod-400-only'='chmod 400 ~/.ssh/id_rsa'
 alias 'wgit_set-url_origin'= 'git remote set-url origin git@github.com:tazjel/zdotfiles.git'
 
-www_dmesg()
-{
-    dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
-}
-
-
+#dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
 Undo_commit()
 {
     git commit
@@ -382,12 +393,19 @@ Undo_commit()
     git commit -c ORIG_HEAD
 }
 
-xremindme()
+function xremindme()
 {
     sleep $1 && zenity --info --text "$2" &
 }
 
 
+
+<<<<<<< HEAD
+#(sed 's/#.*//g'|sed '/^ *$/d'|tr '\n' ';'|xargs echo) < al.zsh
+#(sed 's/(\(.*\))/({\1})/g' | sed 's/\(({.*\),/\1},{/') < wautokeyapi.txt
+#
+#
+#
 wfg() {
     SPROMPT="$fg[red]%R →$reset_color $fg[green]%r? (Yes, No, Abort, Edit) "
     echo "$fg[red]$PWD"
@@ -395,17 +413,28 @@ wfg() {
     echo ""; echo $SPROMPT "$1"
 }
 #
+export LANG=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
+export LC_CTYPE=en_US.UTF-8
 
 alias mv="mv --verbose --interactive"
 alias cp="cp --verbose --interactive"
 alias rm="rm --verbose --interactive=once"
 alias ln="ln --verbose --interactive"
-
 alias chmod="chmod --verbose --preserve-root"
 alias chgrp="chgrp --verbose --preserve-root"
 alias chown="chown --verbose --preserve-root"
 alias mkdir="mkdir --verbose"
 
+if [[ -x /usr/bin/mplayer ]]; then
+    alias mplayer="mplayer -msgcolor -msglevel all=4:statusline=9"
+    alias -s avi=mplayer
+    alias -s ogv=mplayer
+    alias -s mp4=mplayer
+    alias -s mkv=mplayer
+    alias -s mp3=mplayer
+    alias -s wav=mplayer
+fi
 
 function zfind_size() {
     find -name "*.*" -print0 | du -hc --files0-from=-
@@ -429,9 +458,8 @@ myip ()
 alias "www_unmute_audio"="amixer -c 0 set Master 1+ unmute"
 alias wabout="lsb_release -a"
 
-######################################## Main
 
-# Start-up
-star_Level_one
-#cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
-echo -e "\t\t\t\t $(date)"
+alias ''='' 
+
+=======
+>>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70

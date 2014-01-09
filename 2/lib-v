@@ -1,0 +1,17 @@
+
+
+
+ ~/.Xdefaults
+
+stly rants and speculation by volume
+256-Color XTerms in Ubuntu
+
+It’s not commonly used, but most Linux terminals can support 256 colors. It’s also a bit of a pain in the ass to set up if it doesn’t Just Work out of the box. Having spent a while today tinkering and searching and cursing and testing and trading mail/IM with folks who understand the eldritch depths of terminals better than I, I thought I’d write up my findings for anyone else who’d like spiffy colors.
+
+Ncurses and other terminal programming libraries need to know what capabilities your terminal supports, like highlighting, underlining, blinking, and colors. This used to be done with termcap but now everyone uses terminfo, which hold the specifications in a set of files. The first thing to do is make sure you have a 256-color terminfo file for your terminal:
+
+ 
+ $ find /lib/terminfo /usr/share/terminfo -name "*256*"
+
+locale-gen
+$ find /lib/terminfo /usr/share/terminfo -name "*256*"

@@ -21,6 +21,9 @@ vnoremap <Space> zf
 "-----------------------------
 "            wWw
 "-----------------------------
+    map <F1> :nohlsearch<CR>\|:.s/^/"/<CR>\|:nohlsearch<CR>
+    map <S-F1> :.s/^\(^.*\)"//<CR>\|:nohlsearch<CR>
+    "
 "map Y y$
 map <C-c> "+y<CR>
 """"""""""""""
@@ -1729,3 +1732,34 @@ cab wex !sh %<CR>
     " Undo in insert mode.
     imap <c-z> <c-o>u
     map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
+"if encoding == 'latin1'
+    "if has("unix")
+    "let encoding = 'iso-8859-8'
+    "else
+    "let encoding = 'cp1255'
+    "endif
+"endif
+
+"if encoding == 'utf-8'
+    "source <sfile>:p:h/hebrewp_utf-8.vim
+"elseif encoding == 'cp1255'
+    "source <sfile>:p:h/hebrewp_cp1255.vim
+"else
+    "source <sfile>:p:h/hebrewp_iso-8859-8.vim
+"endif
+" tree
+
+
+#(sed 's/#.*//g'|sed '/^ *$/d'|tr '\n' ';'|xargs echo) < al.zsh
+#(sed 's/(\(.*\))/({\1})/g' | sed 's/\(({.*\),/\1},{/') < wautokeyapi.txt
+#
+#
+
+                    " Use clipboard register
+                                if has('unnamedplus')
+                                  set clipboard& clipboard+=unnamedplus
+                                else
+                                  set clipboard& clipboard+=unnamed
+                                endif
+
+    "map <C-Left> :vsplit $HOME/.vim/bundle<CR> "map <C-Down> :vsplit $HOME/.vim/bundle<CR>
