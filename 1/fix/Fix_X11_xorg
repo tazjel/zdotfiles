@@ -10,6 +10,7 @@ sudo Xorg -configure
 [ -f xorg.conf* ] && sudo mv xorg.conf* /etc/X11/xorg.conf
 sudo dpkg-reconfigure $(dpkg -l | awk '{print $2}' | grep "^xserver" | tr '\n' ' ')
 sudo update-initramfs -u
-Reboot
+reboot
 
-/media/6cd870be-d0ea-4d4d-9017-0fb3a0b328de/etc/X11
+#sudo apt-get remove xdm lxdm kdm wdm
+#/media/6cd870be-d0ea-4d4d-9017-0fb3a0b328de/etc/X11

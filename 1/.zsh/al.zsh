@@ -4,17 +4,19 @@
 source ~/zdotfiles/1/walias.sh
 
 today=`date +%Y_%m_%d_%h_%s`
-
+zzz="$"HOME/zdotfiles/1/.zsh/al.zsh
 function l()
 {
-    ls -alt
+    ls -altr
 }
 
 function w()
 {
-    clear;ls -al;date;pwd
-    echo "$TERM"
-    echo "$SHELL"
+    clear
+    ls -alrt
+    date
+    pwd
+    echo "$TERM     $SHELL"
 }
 
 ن()
@@ -34,7 +36,8 @@ source ~/zdotfiles/1/z_arabic.sh
 
 show_code()
 {
-    pygmentize $1 | less -N }
+    pygmentize $1 | less -N
+}
 
 www_ak_add()
 {
@@ -389,6 +392,8 @@ function xremindme()
 {
     sleep $1 && zenity --info --text "$2" &
 }
+
+
 
 
 
