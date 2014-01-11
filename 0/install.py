@@ -6,7 +6,7 @@ from os import listdir
 from os.path import islink, join, expanduser
 
 home = expanduser("~/")
-directory = expanduser("~/dotfiles")
+directory = expanduser("~/zdotfiles/link")
 
 excludes = ["pure", "README.md", ".gitmodules", ".git", "bin"]
 linux_only_excludes = ["Xresources", "xinitrc", "xmobarrc", "xmonad.hs", "zprofile"]
@@ -21,7 +21,7 @@ files = [ f for f in listdir(directory) if f not in excludes]
 
 for f in files:
     src = join(directory, f)
-    dest = join(home, ".%s" % f)
+    dest = join(home, "%s" % f)
 
     if not islink(dest):
         print "Symlinking %s to %s" % (src, dest)

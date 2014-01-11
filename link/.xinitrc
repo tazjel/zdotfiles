@@ -15,6 +15,6 @@ fi
 case $1 in
         gnome) exec gnome-session;;
         kde) exec startkde;;
-        xfce);;
-        *) exec startxfce4;;
+        xfce) exec startxfce4;;
+        *) exec startkde;;
 esac

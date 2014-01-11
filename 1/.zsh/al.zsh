@@ -1,8 +1,9 @@
 #!/bin/zsh
 
+les() {  echo "ls -a"; ls -a "$1" | wc -l; echo  "ls -A";  ls -A | wc -l }
 
 source ~/zdotfiles/1/walias.sh
-
+alias W="echo"
 today=`date +%Y_%m_%d_%h_%s`
 zzz="$"HOME/zdotfiles/1/.zsh/al.zsh
 function l()
