@@ -50,12 +50,28 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export LESS="-R"
 
-alias 'wi'='sudo apt-get install'
-alias 'w'='clear;ls -al;pwd;date'
 alias 'W'='echo'
+alias 'w'='clear;ls -al;pwd;date'
+alias 'wi'='sudo apt-get install'
+alias 'www'='vim'
 alias 'wwww'='cat'
 # wi git zsh vim wget curl
 # git clone https://github.com/tazjel/zdotfiles.git
 alias "wh"="history > $HOME/history_dotfile; vim $HOME/history_dotfile"
 
-
+source $HOME/zdotfiles/1/.zsh/al.zsh
+# source $HOME/zdotfiles/1/.zsh/checks.zsh
+# source $HOME/zdotfiles/1/.zsh/colors.zsh
+# # source $HOME/zdotfiles/1/.zsh/completion.zsh
+# # source $HOME/zdotfiles/1/.zsh/exports.zsh
+# # source $HOME/zdotfiles/1/.zsh/functions.zsh
+# # source $HOME/zdotfiles/1/.zsh/history.zsh
+# # source $HOME/zdotfiles/1/.zsh/prompt.zsh
+# # source $HOME/zdotfiles/1/.zsh/setopt.zsh
+# # source $HOME/zdotfiles/1/.zsh/zsh_hooks.zsh
+# 
+# source $HOME/zdotfiles/1/.zsh/arabic_alias.zsh
+# source $HOME/zdotfiles/1/z_arabic.sh
+# 
+# source $HOME/zdotfiles/1/.zsh/config
+# 

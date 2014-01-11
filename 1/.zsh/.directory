@@ -1,10 +1,10 @@
 [Dolphin]
-GroupedSorting=true
 PreviewsShown=true
-Timestamp=2013,12,27,17,42,5
+SortOrder=1
+Timestamp=2014,1,11,7,18,11
 Version=3
 ViewMode=1
-VisibleRoles=CustomizedDetails,Details_size,Details_date,Details_permissions,Details_path,Details_owner,Details_group,Details_type,Details_destination
+VisibleRoles=CustomizedDetails,Details_text,Details_size,Details_date,Details_path,Details_destination,Details_copiedFrom,Details_owner,Details_group
 
 [Settings]
 HiddenFilesShown=true

@@ -143,6 +143,16 @@ setup_vundle() {
 }
 
 ############################ MAIN()
+
+bkup_z() {
+  zlink=$HOME/zdotfiles/link
+  for f in $T_FILES; do 
+    echo "$zlink/$f" "$HOME/$f"
+    done
+    } ; bkup_z
+
+
+
 program_exists "vim" "To install $app_name you first need to install Vim."
 
 do_backup   "Your old vim stuff has a suffix now and looks like .vim.`date +%Y%m%d%S`" \
