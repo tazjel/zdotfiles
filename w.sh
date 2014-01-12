@@ -3,33 +3,12 @@
 
 
 
-############################  SETUP PARAMETERS
 ############################  NAMES SETUP
 
-app_name='spf13-vim'
-git_uri='https://github.com/spf13/spf13-vim.git'
-git_branch='3.0'
-debug_mode='0'
-fork_maintainer='0'
 zdotfiles=$HOME/zdotfiles
 LINKS=$HOME/zdotfiles/link
-EAL_USER_NAME=`logname`
-
-if [ "$REAL_USER_NAME" == ""  ] ; then
-        REAL_USER_NAME="$1"
-fi
-
-if [ "$REAL_USER_NAME" == "" ] ; then
-        echo
-        echo "ERROR: Can not find out your real username, please give your real username as the first argument for the script." 
-        echo
-        exit
-fi
-
-#HOME_DIRECTORY=`getent passwd $REAL_USER_NAME | cut -d: -f6`
-
-
-
+REAL_USER_NAME=`logname`
+HOME_DIRECTORY=`getent passwd $REAL_USER_NAME | cut -d: -f6`
 
 
 
@@ -47,13 +26,28 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "*~*" \
     -not -name "\." \
     -exec basename {} \;`
-    echo "$T_FILES"
+
+############################  SETUP PARAMETERS
+
+wi_basic(){
+    sudo apt-get install -y vim zsh xclip git-core openssh-server curl wget
+aptitude mercurial
+}
+
+
 ############################  BASIC SETUP TOOLS
 
+count_home_dotfiles() { 
+echo ">>> ls -1 .* | wc -l; >>> =$(ls -1 .* | wc -l;)"
+echo ">>> ls -1 ./. | wc -l;  >>> =$(ls -1 ./. | wc -l; )"
+echo ">>> ls -1 .* | wc -l; >>> =$(ls -1 .* | wc -l;)"
+echo ">>> ls -1 * | wc -l; >>> =$(ls -1 * | wc -l;)"
+echo ">>> ls -1 .* | wc -l; >>> =$(ls -1 .* | wc -l;)"
 
+ }
 
-ll_dotfiles_dir() { ls -1 ./.* | wc -l; }
 dir_DOTFILES=$(cd ~;ls .*)
+
 src=$HOME/zdotfiles/link
 BKUP=$HOME/bkup
 
@@ -85,20 +79,44 @@ lnif()
 }
 
 
-zlink_f() {
+z_install_basic() {
+    sudo apt-get install -y \ 
+	aptitude
+	git
+	vim
+	zsh
+}
+
+
+z_link_f() {
     zlink=$HOME/zdotfiles/link
-    for f in $T_FILES; do 
+    for f in $T_FILES; do
        lnif "$zlink/$f" "$HOME/$f"
     done
-	ls -al | grep "<\|>"
-} 
+}
 
-        #-h)  ;;
-	#-l) zdotfiles_link ;;
-        
+
+
+z_clear_all_symlinks() {
+    zlink=$HOME/zdotfiles/link
+    for f in $HOME; do
+       unlink "$HOME/$f"
+    done
+}
+
+
+z_un_link_f() {
+    zlink=$HOME/zdotfiles/link
+    for f in $T_FILES; do
+       unlink "$HOME/$f"
+    done
+}
+
+
 case $1 in
-	-r) z_restore;;
-        -c) zcheck ;;
-	-l) zlink_f ;;
+    -i) wi ;;
+    -r) z_restore ;;
+    -c) zcheck ;;
+    -l) z_link_f ;;
+    -L) z_un_link_f ;;
 esac
-# TODO : -c;-r

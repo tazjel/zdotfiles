@@ -39,8 +39,7 @@ setopt prompt_subst # Enable parameter expansion, command substitution, and arit
 setopt transient_rprompt # only show the rprompt on the current prompt
 
 # ===== Scripts and Functions
-setopt multios # perform implicit tees or cats when multiple redirections are 
-attempted
+setopt multios # perform implicit tees or cats when multiple redirections are attempted
 
 # =====
 setopt prompt_subst

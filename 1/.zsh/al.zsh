@@ -2,6 +2,8 @@
 
 les() {  echo "ls -a"; ls -a "$1" | wc -l; echo  "ls -A";  ls -A | wc -l }
 
+#source ~/zdotfiles/link/arabic_alias
+#source ~/zdotfiles/link/z_arabic.sh
 source ~/zdotfiles/1/walias.sh
 alias W="echo"
 today=`date +%Y_%m_%d_%h_%s`

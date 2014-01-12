@@ -1,10 +1,9 @@
 #!/bin/bash
 
-
-
-# vim: set fileencoding=utf-8 :
-
+#####################################################
 ##  Ahmed Bani
+##
+#####################################################
 
 msg() {
     printf '%b\n' "$1" >&2
@@ -98,14 +97,4 @@ sleep 7
 }
 
 #start_zarab
-
-
-alias "سم"="alias"
-alias "قل"="echo"
-alias "اكتب"="vim"
-alias "اقرا"="cat"
-alias "اكتب عربي"="vim -A"
-alias "اعد"="zsh"
-alias "نظف"="clear"
-alias "التاريخ"="clear"
 

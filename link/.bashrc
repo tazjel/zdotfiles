@@ -62,7 +62,11 @@ alias "wh"="history > $HOME/history_dotfile; vim $HOME/history_dotfile"
 source $HOME/zdotfiles/1/.zsh/al.zsh
 # source $HOME/zdotfiles/1/.zsh/checks.zsh
 # source $HOME/zdotfiles/1/.zsh/colors.zsh
-# # source $HOME/zdotfiles/1/.zsh/completion.zsh
+# # sourfiles="bashrc vimrc vim zshrc oh-my-zsh private scrotwm.conf 
+Xresources" 
+# 
+list of files/folders to symlink in homedirce 
+$HOME/zdotfiles/1/.zsh/completion.zsh
 # # source $HOME/zdotfiles/1/.zsh/exports.zsh
 # # source $HOME/zdotfiles/1/.zsh/functions.zsh
 # # source $HOME/zdotfiles/1/.zsh/history.zsh

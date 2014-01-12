@@ -70,9 +70,9 @@ export PATH=$PATH:/usr/local/sbin
 
 
 # dotfiles;zsh_history
-ZPATHS=$tazjel
-export tazjel=$HOME/zdotfiles
-export hz=$HOME/.zsh_history
+#ZPATHS=$tazjel
+#export tazjel=$HOME/zdotfiles
+#export hz=$HOME/.zsh_history
 
 
 

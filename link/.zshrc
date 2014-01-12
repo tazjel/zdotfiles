@@ -15,9 +15,9 @@ source $HOME/zdotfiles/1/z_arabic.sh
 source $HOME/zdotfiles/1/.zsh/config
 
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 #. /usr/share/zsh/site-contrib/powerline.zsh
 
-.  /home/w/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#.  /home/w/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 #/home/w/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
