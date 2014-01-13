@@ -1,39 +1,47 @@
 
+
 set nocompatible
-set t_Co=256 "use 256 colours in terminal
+set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
-"if encoding == 'latin1'
-    "if has("unix")
-    "let encoding = 'iso-8859-8'
-    "else
-    "let encoding = 'cp1255'
-    "endif
-"endif
 
-"if encoding == 'utf-8'
-    "source <sfile>:p:h/hebrewp_utf-8.vim
-"elseif encoding == 'cp1255'
-    "source <sfile>:p:h/hebrewp_cp1255.vim
-"else
-    "source <sfile>:p:h/hebrewp_iso-8859-8.vim
-"endif
 
-nnoremap ] @q:update<bar>bd
-et nocompatible
-set fillchars+=stl:\ ,stlnc:\
-set background=dark
-hi clear
+set fileformats=unix,dos,mac
+" Always show statusline
+set laststatus=2
 
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+set t_Co=256
+
+if has("multi_byte")
+    if &termencoding == ""
+        let &termencoding = &encoding
+    endif
+endif
+
+set encoding=utf-8                     " better default than latin1
+setglobal fileencoding=utf-8           " change default file encoding when writing new files
+
+
+
+nmap ww gf
+
+source ~/zdotfiles/2/zplugin/zabz.vim
+
+
+let @x="V}y<Esc>:vsplit ~/.vimrc.local.w<CR>ggGp<ESC><C-W><C-W>"
+
+map <CR> :
+nnoremap <F6> V}y<C-w><C-w>ggGp
 
 let @a=@q
-        vnoremap ` :normal @q<CR>
+vnoremap ` :normal @q<CR>
 
 "calmar256-light
 
-if &encoding == 'utf-8'
-  set ambiwidth=single
+"if &encoding == 'utf-8'
+  "set ambiwidth=single
   "set ambiwidth=double
-endif
+"endif
 
 set background=dark
 hi clear
@@ -49,52 +57,44 @@ if has('syntax') && !exists('g:syntax_on')
   syntax enable
 endif
 "
-    "colorscheme random
-            set autoindent smartindent
-            set expandtab smarttab
-            set tabstop=4 shiftwidth=4
+colorscheme random
 
-                        set noswapfile nobackup nowritebackup
-                        set showmatch matchtime=3 matchpairs+=<:>
+set autoindent smartindent
+set expandtab smarttab
+set tabstop=4 shiftwidth=4
 
-                                "" Fix slow O inserts
-                                        set timeout timeoutlen=1000 ttimeoutlen=100
-                                        set timeout timeoutlen=5000 ttimeoutlen=100
-                                        set shortmess=aTI
+set noswapfile nobackup nowritebackup
+set showmatch matchtime=3 matchpairs+=<:>
 
-                        set history=10000
+"" Fix slow O inserts
+set timeout timeoutlen=1000 ttimeoutlen=100
+set timeout timeoutlen=5000 ttimeoutlen=100
+set shortmess=aTI
 
-                        set splitbelow splitright
+set history=10000
 
-                            " Use clipboard register
-                                if has('unnamedplus')
-                                  set clipboard& clipboard+=unnamedplus
-                                else
-                                  set clipboard& clipboard+=unnamed
-                                endif
+set splitbelow splitright
 
+" set folding
+    setlocal foldmethod=expr
+    setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
 
-
-                        " set folding
-                            setlocal foldmethod=expr
-                            setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
-
-                            set foldtext=getline(v:foldstart)
-                            set fillchars=fold:\ "(there's a space after that \)
-                            "highlight Folded ctermfg=DarkGreen ctermbg=Black
+set foldtext=getline(v:foldstart)
+set fillchars=fold:\ "(there's a space after that \)
+"highlight Folded ctermfg=DarkGreen ctermbg=Black
 
 
-                            "Fold System
-                                    nnoremap 8 zMzvzz
-                                    nnoremap 9 zM
-                                    nnoremap 0 zR
+"Fold System
+    nnoremap 8 zMzvzz
+    nnoremap 9 zM
+    nnoremap 0 zR
 
 
-                                "<space><space>
-                                    nnoremap <space> za
-                                    vnoremap <space> zf
+"<space><space>
+    nnoremap <space> za
+    vnoremap <space> zf
 
-                    nnoremap <Space><CR> :nohlsearch<CR><CR>
+    nnoremap <Space><CR> :nohlsearch<CR><CR>
 
       "<F[1-12]>
                     imap <F1> <Esc><F1>
@@ -130,24 +130,24 @@ endif
 
             " <F7>
 
-nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
+"nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 
                     imap <F7> <C-X><C-l>
 
-    ""                vnoremap <f7> :s/xxx/\$\{1\:#\}/g
-    "                map <F7> :%s///gc<Left><Left><Left><Left>
+                          "vnoremap <f7> :s/xxx/\$\{1\:#\}/g
+    "map <F7> :%s///gc<Left><Left><Left><Left>
 
-                    map <F7> :let @a=''\|g/ /y A \|:let @*=@a <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+    map <F7> :let @a=''\|g/ /y A \|:let @*=@a <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
 
-                map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
+    map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
             " <F8>
 
-                    cabbrev wf !firefox %
-                    map <F8> :TagbarToggle<CR>
+      cabbrev wf !firefox %
+          map <F8> :TagbarToggle<CR>
 
-                    map <S-F8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
+                 map <S-F8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
 
-"                    map <f8><f8> :diffoff<cr>
+                 map <f8><f8> :diffoff<cr>
 
         set diffopt=filler,context:4,iwhite
             " <F9>
@@ -173,29 +173,31 @@ nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 
 
 
-                abbreviate w# """"""""""""""""""""""""<CR>
-                            \"<CR>
-                            \"""""""""""""""""""""""""<up>
+abbreviate w# """"""""""""""""""""""""<CR>
 
 
 
 
-                    fun! RangerChooser()
-                        exec "silent !python ~/zdotfiles/5/ranger-1.6.1/ranger.py --choosefile=/tmp/chosenfile " . expand("%:p:h")
-                        if filereadable('/tmp/chosenfile')
-                            exec 'edit ' . system('cat /tmp/chosenfile')
-                            call system('rpythonm /tmp/chosenfile')
-                        endif
-                        redraw!
-                    endfun
+fun! RangerChooser()
+    exec "silent !python ~/zdotfiles/5/ranger-1.6.1/ranger.py --choosefile=/tmp/chosenfile " . expand("%:p:h")
+    if filereadable('/tmp/chosenfile')
+        exec 'edit ' . system('cat /tmp/chosenfile')
+        call system('rpythonm /tmp/chosenfile')
+    endif
+    redraw!
+endfun
 
 
-                        nnoremap <C-Left> :call RangerChooser()<CR>
+nnoremap <C-Left> :call RangerChooser()<CR>
 
 
                     "nnoremap <silent> wF :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
         " <F11>
-        " <F12>
+
+map <F5>><Space> so ~/zdotfiles/2/colors/jellybeans.vim
+
+"<F11> so ~/zdotfiles/2/colors/jellybeans.vim
+" <F12>
             cabbrev ws %s/\s\+$//gc
             cabbrev ws_ s/\s/_/gc
 
@@ -205,31 +207,9 @@ nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
         "imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>ka
 
         cab w!! w !sudo tee "%"
-
-"        map ws :!rm ~/.vimswap/*<cr>
-        "install unhtml
-        "map wh :!rm ~/tst/vhtml<cr>:r!unhtml % > ~/tst/vhtml<cr><esc>:vsplit ~/tst/vhtml<cr>
-
-
-
-
-    " The W culture "
-
-                    cabbrev w111 vsp ~/zdotfiles/1.sh
-
-
-
-
-                nnoremap <silent> ; :q!<CR>
-
-
-
-                "cabbrev ws %s:^:snippet$\{0\:#\}:gc
-                "cabbrev ws %s:^\(.*\):snippet\t\1\/\n\t\1:gc
-                "%s:^\(.*\)\.\(.*\):snippet   \1\2\r   \0:g
+        nnoremap <silent> ; :q!<CR>
 
         cabbrev wsh !bash %
-
 
         cabbrev w99 w! ~/zdotfiles/9/web2py/applications/qastack/
 
@@ -245,43 +225,39 @@ nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 
 
 
-        " [QA-Stack]
-            cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
-            cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR>
-            cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
+" [QA-Stack]
+    cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
+    cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR>
+    cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
 
-                cab 6w vsplit ~/zdotfiles/6/zapi_python.py
+    cab 6w vsplit ~/zdotfiles/6/zapi_python.py
 
-        "maped to the [1-10]
-                cab w88 w! ~/zdotfiles/8/
-                cab w77 w! ~/zdotfiles/7/
-                cab w66 w! ~/zdotfiles/6/
-                cab w55 w! ~/zdotfiles/5/
-                cab w44 w! ~/zdotfiles/4/
-                cab w33 w! ~/zdotfiles/3/
-                cab w22 w! ~/zdotfiles/2/
-                cab w11 w! ~/zdotfiles/1/
-                cab w00 w! ~/zdotfiles/0/
+"maped to the [1-10]
+    cab w88 w! ~/zdotfiles/8/
+    cab w77 w! ~/zdotfiles/7/
+    cab w66 w! ~/zdotfiles/6/
+    cab w55 w! ~/zdotfiles/5/
+    cab w44 w! ~/zdotfiles/4/
+    cab w33 w! ~/zdotfiles/3/
+    cab w22 w! ~/zdotfiles/2/
+    cab w11 w! ~/zdotfiles/1/
+    cab w00 w! ~/zdotfiles/0/
 
 
-                    "Install unhtml
-                        "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
 
-                        "html substitute
-                        "
-                           " chain an external command
-                           ":.g/^/ exe ".!sed 's/N/X/'" | s/I/Q/    [N]
-                            "!sed 's/<[^>]*>//g' %
+          "html substitute
+                    "
+            "!sed 's/<[^>]*>//g' %
 
-                                            " Split the Line at Cursor
-                                                nnoremap K i<cr><esc><right>
+                        " Split the Line at Cursor
+                           nnoremap K i<cr><esc><right>
 
 
                                                         "Enter
                                                                 nnoremap <C-Up> m`o<Esc>``
                                                                 nnoremap <C-Down> m`O<Esc>``
 
-                                                        nnoremap xw :%s/<[^>]*>//gi<cr><CR>
+nnoremap xw :%s/<[^>]*>//gi<cr><CR>
                                                         "!sed 's/<[^>]*>//g' %
 
 
@@ -289,16 +265,10 @@ nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 
 
 
-                                        iabbrev $$ ${0: }<left><left>
+    iabbrev $$ ${0: }<left><left>
 
-                                abbr #b #!/bin/bash
-                                abbr #p #!/usr/bin/env python<CR>
-                                            \#<CR>
-                                            \# -*- coding: utf-8 -*-<CR>
-                                            \<CR>
-                                            \<CR>
-                                            \<CR>
-                                            \import os, sys, re
+    abbr #b #!/usr/bin/env bash
+    abbr #p #!/usr/bin/env python<CR>
 
 
                                         " Select all.
@@ -308,27 +278,8 @@ nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 
 
 
-            "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
+"map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
             "map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
-            "map <F11> :w! >> ~/Dropbox/INTRODUCTION/terms.txt<CR>
-            "map <S-F11> y:vsplit ~/Dropbox/INTRODUCTION/terms.txt<CR>
-" " Download the thesaurus " unzip " Add this to vimrc
-    " wget www.gutenberg.org/dirs/etext02/mthes10.zip
-
-
-"    set thesaurus+=/home/ahmed/mthesaur.txtSylubus.txt
-     set thesaurus+=/home/ahmed/Dropbox/DCAR/_phrase.snip
-    " set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
-     set dictionary+=/home/ahmed/Dropbox/System.txt
-
-function! SilentFileGrep( leader, file )
-    try
-        exe 'vimgrep /^s*' . a:leader . '.*/j ' . a:file
-    catch /.*/
-        echo "no matches"
-    endtry
-endfunction
-
 
 
 
@@ -352,21 +303,9 @@ endfunction
 
                                     "set completefunc=LineCompleteFromFile
 
-
-
-
-                                        "
-                                "Tab takes you to the next window:
-                                    "nmap <Tab> _
-                                    "nmap <S-Tab>  W_
-                                    "nmap <S-Tab> :tabprevious<CR>
-
-"                        map <Leader>w <c-w>v<c-w>l
-"                        map <Leader>sh <c-w>s<c-w>j
-            "File
-                "nmap ,, :e.<CR>
-                imap <C-s> <C-o>:w<CR>
-                map <C-s> :w<CR>
+    "nmap ,, :e.<CR>
+        imap <C-s> <C-o>:w<CR>
+        map <C-s> :w<CR>
 
                 func! PL(str) " Print string into the current buffer
                   exe "normal o" . a:str
@@ -501,10 +440,6 @@ endfunction
                 set wildmode=full:list
                 set wildmenu
 
-"                                                    let pos = [line('.'), col('.')]
-"                                                    let saved_register = @@
-
-
 
 function! Smart_TabComplete()
     let line = getline('.') 					" curline
@@ -638,15 +573,6 @@ set shell=bash
 "
                                 "
                                 let g:sh_noisk=1
-                                "
-"                                set modeline
-"                                set modelines=3
-"
-"augroup vimrcEx
-  " Clear all autocmds in the group
-"  autocmd!
-"  autocmd FileType text setlocal textwidth=78
-  " Jump to last cursor position unless it's invalid or in an event handler
         map <Tab> >>
         map <s-tab> <<
 
@@ -689,13 +615,12 @@ let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: li
     let g:gist_clip_command = 'xclip -selection clipboard'
 
 
-"let g:neosnippet#enable_snipmate_compatibility = 1
+let g:neosnippet#enable_snipmate_compatibility = 1
 
-"let g:pydiction_location = '/home/ahmed/zdotfiles/2/py_dict'
+let g:pydiction_location = '/home/ahmed/zdotfiles/2/py_dict'
 
-"let g:neosnippet#enable_preview = 1
-"let i_<Plug>(neosnippet_start_unite_snippet)
-"let g:unite_force_overwrite_statusline = 1
+let g:neosnippet#enable_preview = 1
+let g:unite_force_overwrite_statusline = 1
 
 
 autocmd BufReadPost * if &readonly | setlocal nomodifiable | else | setlocal modifiable | endif
@@ -797,21 +722,9 @@ map <F1> <plug>NERDCommenterToggle
 " Add the virtualenv's site-packages to vim path
 
 
-source ~/zdotfiles/2/zplugin/zabz.vim
-"<CR>\|:echo colors_name<CR>
 
 " Font
-set guifont=Monaco\ for\ Powerline:h11
-
-
-" Make a dir if no exists {{{
-function! MakeDirIfNoExists(path)
-    if !isdirectory(expand(a:path))
-        call mkdir(expand(a:path), "p")
-    endif
-endfunction
-" }}}
-"
+"set guifont=Monaco\ for\ Powerline:h11
 "
 " Airline
 set noshowmode
@@ -854,23 +767,6 @@ let g:pymode_lint_pyflakes_symbol = '●'
 
 ""source ~/zdotfiles/2/zplugin/zfunctionz.vim
 ""source ~/zdotfiles/2/zplugin/zmapz.vim
-
-
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
-
-" Always show statusline
-set laststatus=2
-
-" Use 256 colours (Use this setting only if your terminal supports 256 colours)
-set t_Co=256
-
-if has("multi_byte")
-  if &termencoding == ""
-    let &termencoding = &encoding
-  endif
-  set encoding=utf-8                     " better default than latin1
-  setglobal fileencoding=utf-8           " change default file encoding when writing new files
-endif
 
 
 " Font

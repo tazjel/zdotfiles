@@ -1,7 +1,7 @@
 #!/bin/zsh
 
 
-alias 'wwww'='cat'
+alias 'wwww'="pygmentize"
 
 # V 0.3
 # vim :colorscheme  jellybeans:

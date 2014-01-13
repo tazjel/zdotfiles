@@ -1879,3 +1879,40 @@ hi clear
   syntax reset
 endif
 
+"    set thesaurus+=/home/ahmed/mthesaur.txtSylubus.txt
+     "set thesaurus+=/home/ahmed/Dropbox/DCAR/_phrase.snip
+    " set dictionary+=/home/ahmed/Dropbox/Sylubus.txt
+     "set dictionary+=/home/ahmed/Dropbox/System.txt
+
+
+            "map <F11> :w! >> ~/Dropbox/INTRODUCTION/terms.txt<CR>
+            "map <S-F11> y:vsplit ~/Dropbox/INTRODUCTION/terms.txt<CR>
+" " Download the thesaurus " unzip " Add this to vimrc
+ "wDell   " wget www.gutenberg.org/dirs/etext02/mthes10.zip
+
+    #$ DONE
+    try
+        exe 'vimgrep /^s*' . a:leader . '.*/j ' . a:file
+    catch /.*/
+        echo "no matches"
+    endtry
+endfunction
+
+"if encoding == 'latin1'
+    "if has("unix")
+    "let encoding = 'iso-8859-8'
+    "else
+    "let encoding = 'cp1255'
+    "endif
+"endif
+
+
+nnoremap ] @q:update<bar>bd
+set fillchars+=stl:\ ,stlnc:\
+set background=dark
+
+
+let s:wsx = expand("<sfile>:p:r")."x.vim"
+if file_readable(s:wsx)
+  exe "source " . fnameescape(s:wsx)
+endif
