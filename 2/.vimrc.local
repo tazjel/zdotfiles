@@ -30,6 +30,8 @@ let base16colorspace=256
     "source <sfile>:p:h/hebrewp_iso-8859-8.vim
 "endif
 
+map <C-S-F4> :!git config --global user.name "tazjel"<CR>:!git config --global user.email "tazjel@gmail.com"
+
 set fillchars+=stl:\ ,stlnc:\
 
 if &encoding == 'utf-8'
