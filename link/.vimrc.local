@@ -1,7 +1,7 @@
 
 set nocompatible
-"let encoding = &enc
-"set encoding=utf-8
+set t_Co=256 "use 256 colours in terminal
+
 "if encoding == 'latin1'
     "if has("unix")
     "let encoding = 'iso-8859-8'
@@ -18,7 +18,17 @@ set nocompatible
     "source <sfile>:p:h/hebrewp_iso-8859-8.vim
 "endif
 
+nnoremap ] @q:update<bar>bd
+et nocompatible
 set fillchars+=stl:\ ,stlnc:\
+set background=dark
+hi clear
+
+
+let @a=@q
+        vnoremap ` :normal @q<CR>
+
+"calmar256-light
 
 if &encoding == 'utf-8'
   set ambiwidth=single
@@ -108,15 +118,14 @@ endif
                     nnoremap <F4> :verbos map<Space>
                     nnoremap <S-F4>  :let @a=""\|:let @a=colors_name\|:let @"=@a<CR>\|:echo @"<CR>
             " <F5>
-                    nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name<CR>
-                    nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
+                    nnoremap <silent> <F5> :source ~/zdotfiles/link/.vimrc.local<CR>\|:echo colors_name<CR>
+                    nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/link/.vimrc.local<CR>
 "                Tips
                     nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
-                    nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
+                    nnoremap <C-F5> :vsplit ~/zdotfiles/link/al.zsh<CR>
             " <F6>
                 vnoremap <F6> :w! >> ~/zdotfiles/6/
                 nnoremap <C-F6> :vsplit ~/zdotfiles/6/
-"                nnoremap <S-F6> :vsp ~/zdotfiles/6/
 
 
             " <F7>
@@ -496,67 +505,6 @@ endfunction
 "                                                    let saved_register = @@
 
 
-    "autocmd
-           ":autocmd bufenter *.tex map <F1> :!latex %<CR>
-           ":autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
-"                autocmd! BufNewFile *py call LoadTemplate()
-                "                autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
-                "                autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
-
-
-
-" TEMPLATES
-    "function! LoadTemplate()
-        " load a template based on the file extension
-            "silent! .r ~/.vim/skel/tmpl.%:e
-
-            " Replace some placeholders
-            "%s/FILENAME%/\=expand("%:t")/g
-            "%s/%DATE%/\=strftime("%b %d, %Y")/g
-                "%s/%DATE%/\=strftime("%b %d, %Y")/g
-
-        " This last one deletes the placeholder
-            " %START% then leaves the cursor there.
-            "%s/%START%//g
-    "endfunction
-
-        map ,l :call LoadTemplate()
-            "silent! 0r ~/.vim/skel/tmpl.%:e
-
-"Move
-                                    nnoremap ,w  ddGop
-                                    map ن n
-
-                                    map س  V:w!   >> ~/Dropbox/CAR_system<CR>
-                    "
-                    "Clean
-                        "\%[]	A sequence of optionally matched atoms.  This always matches.
-                          ":%s/,/^V^M/g
-                          "globally replace commas with newlines (yes, I know this
-                            "looks like it would insert DOS carriage returns, but it only inserts the
-                            "newlines on Unix)
-                          ":%s/\s*$//
-                          "strip blanks from end of lines
-                          ":%s/^.\{30}//
-                          "remove the first 30 characters from each line
-                          ":%s/[ ^I]*$/!d
-                          "remove trailing whitespace (where ^I
-                            "is produced by pressing the tab key)
-                          ":%s/.*/\L&/
-                          "convert the entire file to lowercase.
-                          ":s/.*/\u&/
-                          "convert the first character of line to uppercase.
-                          ":%s/\&lt;./\u&amp;/g
-                            "convert the first character of each word to uppercase
-                              "\&lt; matches the start of a word;
-                                ". therefore matches the first character of a word;
-                                "\u tells Vi(m) to uppercase the next character in the substitution
-                                "string;
-                                "&amp; means substitute whatever was matched on the lhs;
-                        "%s/\(^.*install\) \(.*$\)/\2/g
-
-                        " source: http://vim.wikia.com/wiki/VimTip102
-                        " Let <Tab> do all the autocompletion
 
 function! Smart_TabComplete()
     let line = getline('.') 					" curline

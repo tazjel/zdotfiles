@@ -1,6 +1,7 @@
+
+
 "
-nnoremap <C-Up> m`o<Esc>``
-cabbrev w|source %
+"nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
 cnoremap <C-b> <Left>
 cnoremap <C-d> <Del>
 cnoremap <C-e> <End>
@@ -31,10 +32,9 @@ nnoremap <C-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
 nnoremap <C-F6> :vsplit ~/zdotfiles/6/
 nnoremap <C-F9> :SessionSaveAs
 nnoremap <C-Up> <Esc>u
+nnoremap <C-Up> m`o<Esc>``
 nnoremap <CR> :
 nnoremap <F2> :reg<CR>
-
-
 nnoremap <F4> :verbos map<Space>
 nnoremap <M-F9> :sessionopen
 nnoremap <S-F2> :marks <CR>
@@ -44,6 +44,5 @@ nnoremap <silent> <F5> :source ~/zdotfiles/2/.vimrc.local<CR>\|:echo colors_name
 nnoremap <silent> <F9> :SessionList<CR>
 nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
 nnoremap <silent> <S-F9> :SessionSave<CR>
-t ~/zdotfiles/2/.vimrc.local<CR>
 nnoremap <silent> <S-F9> :SessionSave<CR>
-"nnoremap <Space>w :let @B="" \|let @B=\<C-R>=expand("<cword>")<CR>
+t ~/zdotfiles/2/.vimrc.local<CR>

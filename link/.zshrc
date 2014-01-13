@@ -1,4 +1,16 @@
-source $HOME/zdotfiles/1/.zsh/al.zsh
+#!/bin/zsh
+
+
+alias 'wwww'='cat'
+
+# V 0.3
+# vim :colorscheme  jellybeans:
+
+
+source $HOME/zdotfiles/link/al.zsh
+source $HOME/zdotfiles/link/aliases.sh
+source /home/w/zdotfiles/link/aliase_ls.sh
+
 source $HOME/zdotfiles/1/.zsh/checks.zsh
 source $HOME/zdotfiles/1/.zsh/colors.zsh
 source $HOME/zdotfiles/1/.zsh/completion.zsh
@@ -15,9 +27,7 @@ source $HOME/zdotfiles/1/z_arabic.sh
 source $HOME/zdotfiles/1/.zsh/config
 
 
-#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 #. /usr/share/zsh/site-contrib/powerline.zsh
 
-#.  /home/w/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-#/home/w/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh

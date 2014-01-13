@@ -10,9 +10,9 @@ LIGHT_GREEN="\[\033[1;32m\]"
  LIGHT_GRAY="\[\033[0;37m\]"
  COLOR_NONE="\[\e[0m\]"
 
-export LC_ALL=en_US.UTF-8
-export LANG=en_US.UTF-8
-export LANGUAGE=en_US.UTF-8
+#export LC_ALL=en_US.UTF-8
+#export LANG=en_US.UTF-8
+#export LANGUAGE=en_US.UTF-8
 
 # Basic environment
 export PS1="${BLUE}\h:\W \$${COLOR_NONE} "
@@ -60,22 +60,23 @@ alias 'wwww'='cat'
 alias "wh"="history > $HOME/history_dotfile; vim $HOME/history_dotfile"
 
 source $HOME/zdotfiles/1/.zsh/al.zsh
+# Change the prompt when you open a shell from inside ranger
+[ -n "$RANGER_LEVEL" ] && PS1="$PS1"'(in ranger) '
+
+
+
+
+
+
+
 # source $HOME/zdotfiles/1/.zsh/checks.zsh
 # source $HOME/zdotfiles/1/.zsh/colors.zsh
-# # sourfiles="bashrc vimrc vim zshrc oh-my-zsh private scrotwm.conf 
-Xresources" 
-# 
-list of files/folders to symlink in homedirce 
-$HOME/zdotfiles/1/.zsh/completion.zsh
-# # source $HOME/zdotfiles/1/.zsh/exports.zsh
+# # sourfiles="bashrc vimrc vim zshrc oh-my-zsh private scrotwm.conf
 # # source $HOME/zdotfiles/1/.zsh/functions.zsh
 # # source $HOME/zdotfiles/1/.zsh/history.zsh
 # # source $HOME/zdotfiles/1/.zsh/prompt.zsh
 # # source $HOME/zdotfiles/1/.zsh/setopt.zsh
 # # source $HOME/zdotfiles/1/.zsh/zsh_hooks.zsh
-# 
 # source $HOME/zdotfiles/1/.zsh/arabic_alias.zsh
 # source $HOME/zdotfiles/1/z_arabic.sh
-# 
 # source $HOME/zdotfiles/1/.zsh/config
-# 

@@ -1,3 +1,5 @@
+" vim: set ft=vim :
+"
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
 "    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
@@ -1232,15 +1234,15 @@ set mouse=a
       cc
       change a line
       C
-      change from current cursor position to the end-of-line 
+      change from current cursor position to the end-of-line
       cw
       change from current cursor position to the end of the word
       J
-      joins the next line to the current line (inserts a space between the two) 
+      joins the next line to the current line (inserts a space between the two)
       gJ
-      joins the next line to the current line (without a space) 
+      joins the next line to the current line (without a space)
       :12,24j
-      join lines 12 thru 24, leaving a space between each line.      
+      join lines 12 thru 24, leaving a space between each line.
       ~
       switch lower and upper cases
       r
@@ -1250,10 +1252,10 @@ set mouse=a
       R
       overwrite until &lt;esc&gt;
       s
-      substitute the current character and go into insert mode. 
+      substitute the current character and go into insert mode.
         Same as "rxi &lt;ESC&gt;"
       S
-      substitute the current line, erase it, and go into insert 
+      substitute the current line, erase it, and go into insert
         mode, starting at the indentation of the line. Same as "cc"
       >>
       shift current line forward
@@ -1289,25 +1291,25 @@ set mouse=a
       y)
       yank to the end of the sentence
       y'x
-      yank from current line to the mark x 
+      yank from current line to the mark x
         (use mx to mark as x)
       y/word
       yank from current position to &quot;word&quot;
       "ay'm
-       yank from here to the mark. Place this into the named buffer 
-        "a". This will also allow one to switch files using the ":e fn" or ":n 
+       yank from here to the mark. Place this into the named buffer
+        "a". This will also allow one to switch files using the ":e fn" or ":n
         fn" command and then place the buffer back.
       "ayy
-       yank current line into buffer a. 
+       yank current line into buffer a.
       "a3Y
        yank three lines, place into buffer "a"
        "A3Y
-       append 3 lines, place into "a". This allows one to build 
+       append 3 lines, place into "a". This allows one to build
         up a buffer.
       "ap
        paste the contents of "a" back, below current line.
       &quot;zyy
-        @z 
+        @z
       &quot;zyy places the highlighted text into buffer z; @z will run the contents of buffer z. This allows a search pattern to be written in the document and then reused.
       p
       paste to the right of the cursor
@@ -1319,7 +1321,7 @@ deleting
       dd
       delete the current line
       d^
-      delete from current cursor position to the beginning of 
+      delete from current cursor position to the beginning of
         the line
       d$
       delete from current cursor position to the end of the line
@@ -1334,9 +1336,9 @@ deleting
       dfx
       delete from here until the character "x"
       D
-      delete everything to the end of the current line (same as d$) 
+      delete everything to the end of the current line (same as d$)
       3dd
-      delete everything to the end of the current line and the following 2 lines 
+      delete everything to the end of the current line and the following 2 lines
       u
       undo deletion
       U
@@ -1374,7 +1376,7 @@ moving
       3w
       move cursor forward three words
       W
-       move cursor forward, ignoring punctuation 
+       move cursor forward, ignoring punctuation
       b
       move cursor back a word
       B
@@ -1392,17 +1394,17 @@ moving
       n|
       moves the cursor to the beginning of column n
       f
-      find a character in the line, forward 
+      find a character in the line, forward
       fa
-      find the character "a" in the line, forward 
+      find the character "a" in the line, forward
       2fa
-      find the second occurrence of "a" in the line, forward 
+      find the second occurrence of "a" in the line, forward
       F
-      find a character in the line, backward 
+      find a character in the line, backward
       Fz
       find the character "z" in the line, backward
       t
-      find up to a character in the line, forward 
+      find up to a character in the line, forward
       )
       jump to the next sentence
       }
@@ -1412,7 +1414,7 @@ moving
       %
       find matching brace or parenthesis
       ^b
-      scroll backwards one page. A count scrolls that many pages 
+      scroll backwards one page. A count scrolls that many pages
       ^f
       scroll forwards one page. A count scrolls that many pages
       ^u
@@ -1426,7 +1428,7 @@ moving
       z-
       put current line at bottom of screen
       m
-      start a mark, the next character is the name, 
+      start a mark, the next character is the name,
         any character from a-z
       ma
       mark this spot with the character &quot;a&quot;
@@ -1454,13 +1456,13 @@ search and replace
       #
       search backward for word under cursor (vim)
       g*
-      search forward for word under cursor (partial match) (vim) 
+      search forward for word under cursor (partial match) (vim)
       g#
-      search backward for word under cursor (partial match) (vim) 
+      search backward for word under cursor (partial match) (vim)
       :noh
       stop highlighting the word that was searched for
       :s/old/new/
-       replaces first occurence of old with new on current 
+       replaces first occurence of old with new on current
         line
       :s/old/new/g
       globally replaces old with new on current line
@@ -1470,65 +1472,65 @@ search and replace
       confirms replacements
       :%s/^V^M//g
       globally remove DOS carriage returns
-      :%s/,/^V^M/g 
-      globally replace commas with newlines (yes, I know this 
-        looks like it would insert DOS carriage returns, but it only inserts the 
+      :%s/,/^V^M/g
+      globally replace commas with newlines (yes, I know this
+        looks like it would insert DOS carriage returns, but it only inserts the
         newlines on Unix)
       :%s/\s*$//
       strip blanks from end of lines
       :%s/^.\{30}//
       remove the first 30 characters from each line
       :%s/[ ^I]*$/!d
-      remove trailing whitespace (where ^I 
+      remove trailing whitespace (where ^I
         is produced by pressing the tab key)
-      :%s/.*/\L&/ 
-      convert the entire file to lowercase. 
+      :%s/.*/\L&/
+      convert the entire file to lowercase.
       :s/.*/\u&/
-      convert the first character of line to uppercase. 
-      :%s/\&lt;./\u&amp;/g 
+      convert the first character of line to uppercase.
+      :%s/\&lt;./\u&amp;/g
         convert the first character of each word to uppercase
           \&lt; matches the start of a word;
             . therefore matches the first character of a word;
-            \u tells Vi(m) to uppercase the next character in the substitution 
+            \u tells Vi(m) to uppercase the next character in the substitution
             string;
             &amp; means substitute whatever was matched on the lhs;
       :s/book{./\L&amp;/
       convert the first character after the { to lowercase.
-      :'x,.s/\([a-z]\)=/\1 
+      :'x,.s/\([a-z]\)=/\1
         =/
-      replace any lowercase character in the alphabet followed 
-        by an equal sign with the same character followed by a space and an equal 
+      replace any lowercase character in the alphabet followed
+        by an equal sign with the same character followed by a space and an equal
         sign, e.g., book= &gt;&gt; book =
-      ::%s/\(That\) or 
+      ::%s/\(That\) or
         \(this\)/\2 or \1/
       change &quot;that or this&quot; to &quot;this or that&quot;
       ::%s/\(^\\foilhead{\(.*\)}\)/
         %\1^M\\section{\2}/
-      comment out each line beginning with '\foilhead' and replace 
-        with a line beginning with '\section'; note the nested backreferences 
+      comment out each line beginning with '\foilhead' and replace
+        with a line beginning with '\section'; note the nested backreferences
         for keeping the rest of the line the same
-      ::%s/\(.*\)/&lt;a 
+      ::%s/\(.*\)/&lt;a
         href=&quot;\1&quot;&gt;\1&lt;\/a&gt;/
       add HTML tags for references to files
-      :s/ \(\d\{1,2}\)\.\(\d\{1,2}\)\(.*\)/&lt;a 
-        href=&quot;\1-\2.sh&quot;&gt;\1.\2\3&lt;\/a&gt;  
+      :s/ \(\d\{1,2}\)\.\(\d\{1,2}\)\(.*\)/&lt;a
+        href=&quot;\1-\2.sh&quot;&gt;\1.\2\3&lt;\/a&gt;
         change a line of the form
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1 
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1.1
           Accessing Substring
           to
-          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a 
-          href=&quot;1-1.sh&quot;&gt;1.1 Accessing Substrings&lt;/a&gt;               
-      :'x,.s:^\([^ ]\+\) \(.*\):&lt;\1&gt;\1 \2&lt;\/\1&gt;&lt;br&gt;:      
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;a
+          href=&quot;1-1.sh&quot;&gt;1.1 Accessing Substrings&lt;/a&gt;
+      :'x,.s:^\([^ ]\+\) \(.*\):&lt;\1&gt;\1 \2&lt;\/\1&gt;&lt;br&gt;:
         change a line of the form
           &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;KBD used for text to be typed by the user
           to
         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&lt;KBD&gt;KBD used for text to be typed by the user&lt;/KBD&gt;&lt;br&gt;
         Colons are used here instead of the usual slashes for separating the 'find' and 'replace' parts. The part ^\([^ ]\+\) finds all of the characters up to the first space and saves them for use in the 'replace' part as \1.
       :'x,.s/^/#/
-      insert a pound sign (#) at the beginning of the line from 
+      insert a pound sign (#) at the beginning of the line from
         the line marked with mx to the current line
       :%s/word1\nword2//
-      remove word1 from the end of a line and word2 from the beginning of the next line; \n represents the newline between the two	
+      remove word1 from the end of a line and word2 from the beginning of the next line; \n represents the newline between the two
       :&amp;
       repeat previous substitution
       :&lt;up arrow&gt;
@@ -1536,53 +1538,53 @@ search and replace
       :g/string/d
       deletes every line that contains string
       :g/\.c/+|s/^/\.cc/
-      look for all ".c" commands, jump to next line, substitute 
+      look for all ".c" commands, jump to next line, substitute
         the beginning of line with ".cc".
       :g/^\..*/|s//\U&/
-      convert all characters at beginning of line that start with 
+      convert all characters at beginning of line that start with
         a "." to upper case.
       :v/string/d
       deletes every line that does not contain string
-        :g/.*/m0      
-      This will reverse the order of the lines in 
-        the current file. m0 is the ex command to move the line to line 0. 
-        :v/./d or :g/^$/d       
-      Remove all blank lines. 
+        :g/.*/m0
+      This will reverse the order of the lines in
+        the current file. m0 is the ex command to move the line to line 0.
+        :v/./d or :g/^$/d
+      Remove all blank lines.
       :g/^\s*$/d
       Removes all lines that only have whitespace.
-      :v/./.,/./-1join 
-      Replaces multiple blank lines with just one blank line.      
+      :v/./.,/./-1join
+      Replaces multiple blank lines with just one blank line.
 options
-      :se 
+      :se
         ai
-      autoindent (unset with :se 
+      autoindent (unset with :se
         noai)
       :se ff=unix
       set fileformat to unix
-      :se 
-        ic 
-      ignore case when searching. 
-      :se 
-        list 
+      :se
+        ic
+      ignore case when searching.
+      :se
+        list
       display tabs and carriage returns
-      :se 
-        nu 
-      display line numbers in the file. They are not actually 
+      :se
+        nu
+      display line numbers in the file. They are not actually
         in the file. (unset with :se nonu)
-      :se 
+      :se
         sm
-       show matching brace or parenthesis while inserting 
-      :se 
+       show matching brace or parenthesis while inserting
+      :se
         smd
       display the mode
-      :se 
-        sw=2 
-      set shifting to 2 spaces 
-      :se 
+      :se
+        sw=2
+      set shifting to 2 spaces
+      :se
         tabstop=4
-      set tabs to 4 spaces 
+      set tabs to 4 spaces
       ^^D
-      turn off autoindent for current line, resume 
+      turn off autoindent for current line, resume
         same place for the next line (up carrot and control-D)
       0^D
       reset the autoindent, start at the left margin
@@ -1590,8 +1592,8 @@ external commands
       !cmd
       execute an external program
       !!cmd
-      execute an external program, replacing the output with the 
-        results 
+      execute an external program, replacing the output with the
+        results
       !$
       send from here to the end-of-line
       !L
@@ -1601,33 +1603,33 @@ external commands
       !/word
       send from here until you find "word"
       !)
-      send from here until the next sentence 
+      send from here until the next sentence
       !}
-      send from here until the next paragraph 
+      send from here until the next paragraph
       !!date
       adds the date
       !!cut -c41-
       cut the first 40 characters from a file
-      3!!sort 
-      send three lines to sort, 
+      3!!sort
+      send three lines to sort,
         and return the output
-      !Grev 
-      send from here to the end of file to the "rev" 
+      !Grev
+      send from here to the end of file to the "rev"
         command; the results will reverse the characters in each line
       !}sort
-      sends from the current line until the first blank line to 
-        sort 
+      sends from the current line until the first blank line to
+        sort
       :'x,.!sort
       will sort from the line marked with mx to the current line
       :r !ll
-      read the output of an "ll" command, and put it after the 
-        current line. 
+      read the output of an "ll" command, and put it after the
+        current line.
       :'t,'b !spell
-      check spelling from mark t to mark b 
-       :'t,. !awk '{print 
+      check spelling from mark t to mark b
+       :'t,. !awk '{print
         $3 " " $2 " " $1}'
       reverse the order of three columns
-      :%! sed G 
+      :%! sed G
       double space the entire file.
       :1,5! sed G
       double space the lines from 1-5
@@ -1635,12 +1637,12 @@ external commands
       remove the blank lines from mark x to the current line
 miscellaneous
       ^g
-      give file name, status, current line number and relative 
+      give file name, status, current line number and relative
         position
       ^l
       refresh the screen (sometimes `^P' or `^R')
       ^v
-      visual mode. in Windows, Ctrl-v is mapped to paste text. Use Ctrl-q instead 
+      visual mode. in Windows, Ctrl-v is mapped to paste text. Use Ctrl-q instead
         (vim)
       .
       repeat latest command
@@ -1655,7 +1657,7 @@ miscellaneous
       vi `cat somefile`
       open a list of files that are in the file somefile
       :r filename
-      insert file filename, 
+      insert file filename,
         placing its contents after current line
       :1,4w filename
       write lines 1 through 4 to filename
@@ -1666,21 +1668,21 @@ miscellaneous
       :n
       edit next file
       :sh
-      call up the shell, run commands until a ^d (CONTROL-d), 
+      call up the shell, run commands until a ^d (CONTROL-d),
         then return to editing
       :vi
-      VI MODE. Used if "Q" is pressed, or called up ex, and now 
+      VI MODE. Used if "Q" is pressed, or called up ex, and now
         wish to use the visual mode
       &nbsp;
-      In Insert mode, press the Ctrl-p or Ctrl-n key to complete 
-        part of a word that has been typed. This is useful for entering function names. 
+      In Insert mode, press the Ctrl-p or Ctrl-n key to complete
+        part of a word that has been typed. This is useful for entering function names.
       :&lt;up arrow&gt;
       recall : history
 References
   vi Fast Reference Guide &#151; the motherload of vi commands
   Vim documentation: starting
-  Vi IMproved &#151; VIM 
-  Best of VIM Tips 
+  Vi IMproved &#151; VIM
+  Best of VIM Tips
                     "%s/X/\$\{1\:#\}/gc
                     "%s/X/\$\{2\:#\}/gc
             "%s/Y/\$\{2\:#\}/gc
@@ -1729,3 +1731,151 @@ cab wex !sh %<CR>
     " Undo in insert mode.
     imap <c-z> <c-o>u
     map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
+
+
+                    ".s/^\(^.*\)"//<CR>\|:nohlsearch<CR>
+                    "
+                    "
+    "autocmd
+           ":autocmd bufenter *.tex map <F1> :!latex %<CR>
+           ":autocmd bufenter *.tex map <F2> :!xdvi -hush %<.dvi&<CR>
+"                autocmd! BufNewFile *py call LoadTemplate()
+                "                autocmd BufEnter * if &filetype == "" | setlocal ft=txt | endif
+                "                autocmd BufEnter * if &filetype == "txt" | setlocal ft=txt | endif
+
+
+
+" TEMPLATES
+    "function! LoadTemplate()
+        " load a template based on the file extension
+            "silent! .r ~/.vim/skel/tmpl.%:e
+
+            " Replace some placeholders
+            "%s/FILENAME%/\=expand("%:t")/g
+            "%s/%DATE%/\=strftime("%b %d, %Y")/g
+                "%s/%DATE%/\=strftime("%b %d, %Y")/g
+
+        " This last one deletes the placeholder
+            " %START% then leaves the cursor there.
+            "%s/%START%//g
+    "endfunction
+
+        map ,l :call LoadTemplate()
+            "silent! 0r ~/.vim/skel/tmpl.%:e
+
+"Move
+                                    nnoremap ,w  ddGop
+                                    map ن n
+
+                                    map س  V:w!   >> ~/Dropbox/CAR_system<CR>
+                    "
+                    "Clean
+                        "\%[]	A sequence of optionally matched atoms.  This always matches.
+                          ":%s/,/^V^M/g
+                          "globally replace commas with newlines (yes, I know this
+                            "looks like it would insert DOS carriage returns, but it only inserts the
+                            "newlines on Unix)
+                          ":%s/\s*$//
+                          "strip blanks from end of lines
+                          ":%s/^.\{30}//
+                          "remove the first 30 characters from each line
+                          ":%s/[ ^I]*$/!d
+                          "remove trailing whitespace (where ^I
+                            "is produced by pressing the tab key)
+                          ":%s/.*/\L&/
+                          "convert the entire file to lowercase.
+                          ":s/.*/\u&/
+                          "convert the first character of line to uppercase.
+                          ":%s/\&lt;./\u&amp;/g
+                            "convert the first character of each word to uppercase
+                              "\&lt; matches the start of a word;
+                                ". therefore matches the first character of a word;
+                                "\u tells Vi(m) to uppercase the next character in the substitution
+                                "string;
+                                "&amp; means substitute whatever was matched on the lhs;
+                        "%s/\(^.*install\) \(.*$\)/\2/g
+
+                        " source: http://vim.wikia.com/wiki/VimTip102
+                        " L"
+"if encoding == 'latin1'
+    "if has("unix")
+    "let encoding = 'iso-8859-8'
+    "else
+    "let encoding = 'cp1255'
+    "endif
+"endif
+
+"if encoding == 'utf-8'
+    "source <sfile>:p:h/hebrewp_utf-8.vim
+"elseif encoding == 'cp1255'
+    "source <sfile>:p:h/hebrewp_cp1255.vim
+"else
+    "source <sfile>:p:h/hebrewp_iso-8859-8.vim
+"endif
+
+et <Tab> do all the autocompletion
+
+if &encoding == 'utf-8'
+  set ambiwidth=single
+  "set ambiwidth=double
+endif
+
+
+set nocompatible
+set fillchars+=stl:\ ,stlnc:\
+set background=dark
+hi clear
+
+"
+"if encoding == 'latin1'
+    "if has("unix")
+    "let encoding = 'iso-8859-8'
+    "else
+    "let encoding = 'cp1255'
+    "endif
+"endif
+
+calmar256-light
+
+  #$ DONE
+endif
+
+"if encoding == 'latin1'
+    "if has("unix")
+    "let encoding = 'iso-8859-8'
+    "else
+    "let encoding = 'cp1255'
+    "endif
+"endif
+
+#$ DONE
+    "source <sfile>:p:h/hebrewp_utf-8.vim
+"elseif encoding == 'cp1255'
+    "source <sfile>:p:h/hebrewp_cp1255.vim
+"else
+    "source <sfile>:p:h/hebrewp_iso-8859-8.vim
+"endif
+
+#$ DONE
+set fillchars+=stl:\ ,stlnc:\
+set background=dark
+hi clear
+
+#$ DONE
+let @a=@q
+        vnoremap ` :normal @q<CR>
+
+#$ DONE
+
+    #$ DONE
+  set ambiwidth=single
+  "set ambiwidth=double
+endif
+
+#$ DONE
+hi clear
+
+    #$ DONE
+  syntax reset
+endif
+
