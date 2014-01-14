@@ -1,8 +1,14 @@
-#!/bin/bash
-
-
+#!/usr/bin/env bash
+############################  SETUP PARAMETERS
+app_name='spf13-vim'
+git_uri='https://github.com/spf13/spf13-vim.git'
+git_branch='3.0'
+debug_mode='0'
+fork_maintainer='0'
 
 ############################  NAMES SETUP
+
+#####
 
 zdotfiles=$HOME/zdotfiles
 LINKS=$HOME/zdotfiles/link
@@ -142,20 +148,18 @@ git_clone() {
     git fetch upstream
 }
 
-#while :
-#do
-    #case "$1" in
-    #-a|-A) echo you picked A;;
-    #-b|-B) echo you picked B;;
-    #-c|-C) echo you picked C;;
-    #-*) usage "bad argument $1";;
-    #*) break;;
-    #esac
-    #shift
-#done
+z__user(){
+    read email
+    read email2
+    read phone
+    read name
+    read Keys_A
+    read Keys_B
+    read address
+}
+
 
 z_install_git() {
-
     echo ">>> your e-mail address ?"
     read email
     echo ">>> Generating SSH key..."
@@ -166,10 +170,10 @@ z_install_git() {
 
     # Copies the contents of the id_rsa.pub file to your clipboard
     xclip -sel clip < ~/.ssh/id_rsa.pub
-
     echo ">>> Now, go to your specified directory and open SSH key file,"
     echo ">>> Copy everyting inside and paste to SSH Keys part of your github account..."
     echo ">>> When you done that press any key to continue..."
+    success "Go to : https://github.com/settings/ssh"
 
     read -t 5000
     echo ">>> Lets check if everything is OK..."
@@ -196,17 +200,62 @@ z__now() {
     *) ;;
 esac
 }
-#!/bin/zsh
 
 
+z_install_vimrc(){
+    endpath="$HOME/.$app_name-3"
+    lnif "$endpath/.vimrc"              "$HOME/.vimrc"
+    lnif "$endpath/.vimrc.bundles"      "$HOME/.vimrc.bundles"
+    lnif "$endpath/.vimrc.before"       "$HOME/.vimrc.before"
+    lnif "$endpath/.vim"                "$HOME/.vim"
+
+    # Useful for fork maintainers
+    lnif "$LINKS/.vimrc.local" "$HOME/.vimrc.local"
+    # Useful for fork maintainers
+    lnif "$LINKS/.vimrc.local" "$HOME/.vimrc.local"
+}
+
+
+z_symlink_easystroke () {
+    #if [[ -d $HOME/.easystroke ]]; then
+        #sudo rm -rf "$HOME/.easystroke/actions-0.5.6" && success "removed "
+        #sudo rm -rf "$HOME/.easystroke/actions-0.5.6" && success "removed "
+        #sudo rm -rf "$HOME/.easystroke" && success "removed "
+        #sudo mkdir "$HOME/.easystroke" && success "removed "
+
+        lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "A"
+        lnif "$HOME/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/actions-0.5.6" && success "B"
+        #sudo chown -R w:w "$HOME/.easystroke" && success "removed"
+        #sudo w -R w:w "$HOME/.easystroke" && success "removed "
+        #success "symlink"
+    #else
+        #mkdir "$HOME/.easystroke" && success "removed "
+        #lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "removed "
+        #lnif "$HOME/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/actions-0.5.6" && success "removed "
+        #success "symlink "
+    #fi
+}
+
+
+z__install_spf() {
+    . /home/w/zdotfiles/0/spf3-new.sh
+}
+
+
+
+while :
+do
 case $1 in
-    i|-i) z_install_basic ;;
-    -r) z_restore ;;
-    -c) z_check_f ;;
-    -l) z_link_f ;;
-    -L) z_un_link_HOME ;;
-    -g) z_install_git ;;
-    *) error "====== \n" && z_hi;;
+        i|-i) z_install_basic ;;
+        -r) z_restore ;;
+        -c) z_check_f ;;
+        -l) z_link_f ;;
+        -e) z_symlink_easystroke ;;
+        -L) z_un_link_HOME ;;
+        -g) z_install_git ;;
+        s|-s) z_install_spf ;;
+        -*) error "bad argument $1";;
+        *) break;;
 esac
-
-#!zsh % -i
+shift
+done

@@ -14,7 +14,7 @@ wwww() { pygmentize $1 | less -N }
 w()
 {
     clear
-    ls -l $(find $HOME -maxdepth 1)
+    success "$(find .-maxdepth 1)"
     #success "$(HERE)"
     success "$(ls -al | grep '>' | wc -l)" }
 

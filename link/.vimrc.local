@@ -31,7 +31,6 @@ source ~/zdotfiles/2/zplugin/zabz.vim
 let @x="V}y<Esc>:vsplit ~/.vimrc.local.w<CR>ggGp<ESC><C-W><C-W>"
 
 map <CR> :
-nnoremap <F6> V}y<C-w><C-w>ggGp
 
 let @a=@q
 vnoremap ` :normal @q<CR>
@@ -124,9 +123,13 @@ set fillchars=fold:\ "(there's a space after that \)
                     nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
                     nnoremap <C-F5> :vsplit ~/zdotfiles/link/al.zsh<CR>:vsplit ~/zdotfiles/w.sh<CR>
             " <F6>
-                vnoremap <F6> :w! >> ~/zdotfiles/6/
+                vnoremap <F6> normal vEc"
+
+                nnoremap <C-F6> :vsplit ~/zdotfiles/6/
+                vnoremap <F6> vEc"<ESC>
                 nnoremap <C-F6> :vsplit ~/zdotfiles/6/
 
+"nnoremap <F6> V}y<C-w><C-w>ggGp
 
             " <F7>
 
