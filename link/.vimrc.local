@@ -122,7 +122,7 @@ set fillchars=fold:\ "(there's a space after that \)
                     nnoremap <silent> <S-F5> :vsplit ~/zdotfiles/link/.vimrc.local<CR>
 "                Tips
                     nnoremap <silent> <C-S-F5> :vsplit ~/zdotfiles/2/vimrc.txt<CR>
-                    nnoremap <C-F5> :vsplit ~/zdotfiles/link/al.zsh<CR>
+                    nnoremap <C-F5> :vsplit ~/zdotfiles/link/al.zsh<CR>:vsplit ~/zdotfiles/w.sh<CR>
             " <F6>
                 vnoremap <F6> :w! >> ~/zdotfiles/6/
                 nnoremap <C-F6> :vsplit ~/zdotfiles/6/

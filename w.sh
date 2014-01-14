@@ -112,18 +112,6 @@ z_hi(){
         -l) z_link_f ;;
         -L) z_un_link_HOME ;;"
 }
-
-case $1 in
-    i|-i) z_install_basic ;;
-    -r) z_restore ;;
-    -c) z_check_f ;;
-    -l) z_link_f ;;
-    -L) z_un_link_HOME ;;
-    *) error "====== \n" && z_hi;;
-esac
-
-#!zsh % -i
-
 usage() {
     echo `basename $0`: ERROR: $* 1>&2
     echo usage: `basename $0` '[-a] [-b] [-c]
@@ -173,12 +161,17 @@ z_install_git() {
     echo ">>> Generating SSH key..."
     echo ">>> Please write down the name of file with the path to that directory..."
     ssh-keygen -t rsa -C "$email"
+    success "Downloads and installs xclip. If you don't have `apt-get`, you might need to use another installer"
+    sudo apt-get install xclip
+
+    # Copies the contents of the id_rsa.pub file to your clipboard
+    xclip -sel clip < ~/.ssh/id_rsa.pub
 
     echo ">>> Now, go to your specified directory and open SSH key file,"
     echo ">>> Copy everyting inside and paste to SSH Keys part of your github account..."
     echo ">>> When you done that press any key to continue..."
-    read -t 5000
 
+    read -t 5000
     echo ">>> Lets check if everything is OK..."
     ssh -T git@github.com
 
@@ -203,3 +196,17 @@ z__now() {
     *) ;;
 esac
 }
+#!/bin/zsh
+
+
+case $1 in
+    i|-i) z_install_basic ;;
+    -r) z_restore ;;
+    -c) z_check_f ;;
+    -l) z_link_f ;;
+    -L) z_un_link_HOME ;;
+    -g) z_install_git ;;
+    *) error "====== \n" && z_hi;;
+esac
+
+#!zsh % -i
