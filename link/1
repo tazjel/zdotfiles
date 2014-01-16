@@ -40,19 +40,14 @@ wwww() {
     pygmentize $1 | less -N;
 }
 
-alias 'x'="exit"
-alias 'wWw__exit'="exit"
-alias 'wWw__zsh'="zsh"
 
 w() {
     clear
     DHOME=$(find ~/ -type l -exec basename {} \;)
     success "Symlinks at HOME = " "$(echo $DHOME | wc -l)"
+
     ZSRC=$(find ~/zdotfiles/link -exec basename {} \;);
     success "Dotfiles at zdotfiles/link = " "$( echo $ZSRC | wc -l )";
-    WROOT=$(find . -user root);
-    success "Root files = " "$(echo $WROOT | wc -l)";
-    echo "$(echo $WROOT)";
 }
 
 cmdfu() {

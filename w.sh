@@ -74,7 +74,7 @@ app_names=(mercurial \
 
 z__check_app_names() {
     for AA in $app_names ; do
-        type $AA >/dev/null 2>&1 || error $AA && z_install_basic
+        type $AA >/dev/null 2>&1 || msg "Error $AA" && z_install_basic
     done;
 }
 
@@ -119,6 +119,7 @@ z_un_link_HOME() {
         fi;done
 }
 
+
 z_hi(){
     success " \r
         -i) z_install_basic ;;
@@ -127,6 +128,8 @@ z_hi(){
         -l) z_link_f ;;
         -L) z_un_link_HOME ;;"
 }
+
+
 usage() {
     echo `basename $0`: ERROR: $* 1>&2
     echo usage: `basename $0` '[-a] [-b] [-c]
@@ -134,13 +137,15 @@ usage() {
     exit 1
 }
 
+
 z_clear_all_symlinks() {
-    rm ~/.bashrc
-    rm ~/.zshrc
-    rm ~/.vimrc
-    rm ~/.vimrc.local
-    rm ~/.vim
-    rm ~/.vim.*
+    rm ~/.bashrc \
+    rm ~/.zshrc \
+    rm ~/.vimrc \
+    rm ~/.vimrc.local \
+    rm ~/.vim \
+    rm ~/.vimrc.bundles \
+    rm ~/.vimrc.before
 }
 
 ssh-keygen_rsa() {
@@ -148,6 +153,7 @@ ssh-keygen_rsa() {
     xclip -sel clip < ~/.ssh/id_rsa.pub
     ssh -T git@github.com
 }
+
 
 git_clone() {
     git clone git@github.com:tazjel/zdotfiles.git
@@ -157,11 +163,12 @@ git_clone() {
     git fetch upstream
 }
 
+
 z__user(){
+    read name
     read email
     read email2
     read phone
-    read name
     read Keys_A
     read Keys_B
     read address
@@ -226,9 +233,12 @@ z_install_vimrc(){
 
 
 z_symlink_easystroke () {
-    [ -e $HOME/.easystroke/actions-0.5.6 ] && rm -rf "$HOME/.easystroke/actions-0.5.6" && error "Removed easystroke/actions-0.5.6" && ls -al ~/.easystroke/ && ls -al ~/.easystroke && read -p "w" wpw || success "no -e  symlink"
-
-    lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "link easystroke"
+    #
+    [ -e $HOME/.easystroke/actions-0.5.6 ] && rm -rf "$HOME/.easystroke/actions-0.5.6" && error "Removed easystroke/actions-0.5.6" && ls -al ~/.easystroke/ && ls -al ~/.easystroke && read -p "w" wpw || success "no -e  symlink";
+    #
+    lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "link easystroke/actions-0.5.6" && ls -al ~/.easystroke/;
+    #
+   lnif "/home/w/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/preferences-0.5.5" && success "link easystroke";
 
     #lnif "$HOME/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/actions-0.5.6" \
         #&& success "B"
