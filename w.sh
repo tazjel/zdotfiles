@@ -58,7 +58,6 @@ error() {
 }
 
 
-
 lnif()
  {
     if [ -e "$1" ]; then
@@ -69,6 +68,20 @@ lnif()
 
 
 
+app_names=(mercurial \
+    vim \
+    zsh \
+    vim \
+    xclip \
+    curl \
+    wget \
+    dos2unix)
+
+z__check_app_names() {
+    for AA in $app_names ; do
+        type $AA >/dev/null 2>&1 || error $AA && z_install_basic
+    done;
+}
 
 
 z_install_basic() {
@@ -222,7 +235,8 @@ z_symlink_easystroke () {
         #sudo rm -rf "$HOME/.easystroke/actions-0.5.6" && success "removed "
         #sudo rm -rf "$HOME/.easystroke" && success "removed "
         #sudo mkdir "$HOME/.easystroke" && success "removed "
-
+        [ -e /home/w/.easystroke ] && success actions-0.5.6 || error actions-0.5.6
+        rm -rf "$HOME/.easystroke/actions-0.5.6" && success "Removed symlink"
         lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "A"
         lnif "$HOME/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/actions-0.5.6" && success "B"
         #sudo chown -R w:w "$HOME/.easystroke" && success "removed"
@@ -237,8 +251,16 @@ z_symlink_easystroke () {
 }
 
 
+
+z_check_f() {
+    [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || error "actions-0.5.6"
+    [ -e $(pgrep easystroke) ] && success "easystroke" "On" || error "Off";
+}
+
 z__install_spf() {
-    . /home/w/zdotfiles/0/spf3-new.sh
+        #. /home/w/zdotfiles/0/spf3-new.sh
+    sudo apt-get install curl
+    sh <(curl http://j.mp/spf13-vim3 -L)
 }
 
 
@@ -253,7 +275,7 @@ case $1 in
         -e) z_symlink_easystroke ;;
         -L) z_un_link_HOME ;;
         -g) z_install_git ;;
-        s|-s) z_install_spf ;;
+        s|-s) z__install_spf ;;
         -*) error "bad argument $1";;
         *) break;;
 esac

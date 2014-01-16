@@ -4,7 +4,7 @@ set nocompatible
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 
-
+"abbreviate w #
 set fileformats=unix,dos,mac
 " Always show statusline
 set laststatus=2

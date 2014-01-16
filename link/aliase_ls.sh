@@ -1,7 +1,5 @@
 
-    #alias 'www__w'='clear;ls -X;pwd;echo -e "\t\t\t$(date)"'
-    #alias 'www__wlv'='ls -a | grep "vim|
-    #alias 'www__ما'='ls'
+    alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__00'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__11'='clear;pwd;cd ~/zdotfiles/1;ls -X'
     alias 'www__22'='clear;pwd;cd ~/zdotfiles/2;ls -X'

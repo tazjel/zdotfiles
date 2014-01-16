@@ -12,7 +12,7 @@ directory = expanduser("~/zdotfiles/link")
 
 excludes = ["pure", "README.md", ".gitmodules", ".git", "bin"]
 linux_only_excludes = ["Xresources", "xinitrc",
-                       "xmobarrc", "xmonad.hs", "zprofile"]
+                       "xmobarrc", "xmonad.hs", "zprofile","easystroke"]
 # is linux
 try:
     if sys.argv[1] == "linux":
