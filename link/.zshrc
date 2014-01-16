@@ -9,19 +9,23 @@ source $HOME/zdotfiles/link/aliases.sh
 source $HOME/zdotfiles/link/aliase_ls.sh
 source $HOME/zdotfiles/w.sh
 
-#alias "W"="vim -O $HOME/zdotfiles/link/aliases.sh $HOME/.zshrc $HOME/zdotfiles/w.sh $HOME/zdotfiles/link/aliase_ls.sh $HOME/zdotfiles/link/al.sh"
+
 alias "wWw_w"="~/zdotfiles/w.sh $@"
+
 alias "W"="vim \
-                $HOME/zdotfiles/link/aliases.sh \
-                $HOME/zdotfiles/link/aliase_ls.sh \
-                $HOME/zdotfiles/w.sh \
-                $HOME/.zshrc"
+        $HOME/zdotfiles/link/aliases.sh \
+        $HOME/zdotfiles/link/aliase_ls.sh \
+        $HOME/zdotfiles/w.sh \
+        $HOME/.zshrc"
 
 #alias "WW"="echo"
 #alias "ww_bashrc"="vim $HOME/.bashrc"
 #alias 'wwww'="pygmentize"
 
-
+alias "wW___vim"="vim \
+    $HOME/zdotfiles/link/.vimrc.local \
+    $HOME/.vimrc \
+    $HOME/.vimrc.bundles.local"
 
 
 

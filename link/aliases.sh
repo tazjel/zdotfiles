@@ -8,14 +8,16 @@ msg() {
     printf '%b\n' "$1" >&2
 }
 
-    success() {
+
+success() {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
 
+
 error() {
     msg "\e[31m[✘]\e[0m ${1}${2}"
-    exit 1
 }
+
 
 debug() {
     if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
@@ -34,8 +36,9 @@ success() {
 }
 
 
-wwww() { pygmentize $1 | less -N ;}
-
+wwww() {
+    pygmentize $1 | less -N;
+}
 
 
 w() {
@@ -51,18 +54,22 @@ setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
 setxkbmap -option ctrl:nocaps
 
 alias "wWw___eeasystroke"="asystroke -c ~/zdotfiles/link/.easystroke"
-alias wWw__acs='apt-cache search'
-alias wWw___acsh='apt-cache show'
+alias 'wWw__acs'='apt-cache search'
+alias 'wWw___acsh'='apt-cache show'
+
 alias "ww"="vim"
-#alias 'W'='echo'
-#alias "W_"="echo"
-#alias "W_"="echo"
 #alias 'wW'='ls -RlhFAa | egrep ">" | wc -l'
+
 alias 'wi'='sudo apt-get install'
 alias 'www'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
+
 alias 'wwwww'='alias'
 
+WWWWWWW_reboot() {
+    sudo reboot;
+}
 
 
+alias "wW_zsh"="zsh"
 alias "ww_bashrc"="vim $HOME/.bashrc"
 alias 'wwww'="pygmentize"

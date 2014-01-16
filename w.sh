@@ -1,27 +1,24 @@
 #!/usr/bin/env bash
 ############################  SETUP PARAMETERS
-app_name='spf13-vim'
-git_uri='https://github.com/spf13/spf13-vim.git'
-git_branch='3.0'
-debug_mode='0'
-fork_maintainer='0'
+        app_name='spf13-vim'
+        git_uri='https://github.com/spf13/spf13-vim.git'
+        git_branch='3.0'
+        debug_mode='0'
+        fork_maintainer='0'
 
 ############################  NAMES SETUP
+        zdotfiles=$HOME/zdotfiles
+        LINKS=$HOME/zdotfiles/link
+        vim_spf13_endpath="$HOME/.spf13-vim-3"
 
-#####
-
-zdotfiles=$HOME/zdotfiles
-LINKS=$HOME/zdotfiles/link
-vim_spf13_endpath="$HOME/.spf13-vim-3"
-
-REAL_USER_NAME=`logname`
-HOME_DIRECTORY=`getent passwd $REAL_USER_NAME | cut -d: -f6`
-dir_DOTFILES=$(cd ~;find . -type l)
-src=$HOME/zdotfiles/link
-BKUP=$HOME/bkup
+        REAL_USER_NAME=`logname`
+        HOME_DIRECTORY=`getent passwd $REAL_USER_NAME | cut -d: -f6`
+        dir_DOTFILES=$(cd ~ ; find . -type l)
+        src=$HOME/zdotfiles/link
+        BKUP=$HOME/bkup
 
 
-XXP=$(find $HOME -maxdepth 1)
+        XXP=$(find $HOME -maxdepth 1)
 
 T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "assets" -and \
@@ -39,9 +36,9 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -exec basename {} \;`
 
 ############################  SETUP PARAMETERS
-#for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
-#for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
-XXP=$(find $HOME -maxdepth 1)
+    #for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
+    #for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
+    XXP=$(find $HOME -maxdepth 1)
 ############################  BASIC SETUP TOOLS
 
 msg() {
@@ -54,7 +51,6 @@ success() {
 
 error() {
     msg "\e[31m[✘]\e[0m ${1}${2}"
-    exit 1
 }
 
 
@@ -65,7 +61,6 @@ lnif()
     fi
     ret="$?"
 }
-
 
 
 app_names=(mercurial \
@@ -98,6 +93,7 @@ z_install_basic() {
         md5deep
 }
 
+
 z_link_f() {
     zlink=$HOME/zdotfiles/link
     for f in $T_FILES; do
@@ -117,7 +113,7 @@ z_clear_all_symlinks() {
 z_un_link_HOME() {
     for FF in $(find $HOME -maxdepth 1) ; do
         if [ -e $FF ] && [ -L $FF ] ; then
-            success " $FF" && unlink $FF
+            success " $FF"# && unlink $FF
         else
             error "1= $FF"
         fi;done
@@ -230,15 +226,13 @@ z_install_vimrc(){
 
 
 z_symlink_easystroke () {
-    #if [[ -d $HOME/.easystroke ]]; then
-        #sudo rm -rf "$HOME/.easystroke/actions-0.5.6" && success "removed "
-        #sudo rm -rf "$HOME/.easystroke/actions-0.5.6" && success "removed "
-        #sudo rm -rf "$HOME/.easystroke" && success "removed "
-        #sudo mkdir "$HOME/.easystroke" && success "removed "
-        [ -e /home/w/.easystroke ] && success actions-0.5.6 || error actions-0.5.6
-        rm -rf "$HOME/.easystroke/actions-0.5.6" && success "Removed symlink"
-        lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "A"
-        lnif "$HOME/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/actions-0.5.6" && success "B"
+    [ -e $HOME/.easystroke/actions-0.5.6 ] && rm -rf "$HOME/.easystroke/actions-0.5.6" && error "Removed easystroke/actions-0.5.6" && ls -al ~/.easystroke/ && ls -al ~/.easystroke && read -p "w" wpw || success "no -e  symlink"
+
+    lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "link easystroke"
+
+    #lnif "$HOME/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/actions-0.5.6" \
+        #&& success "B"
+
         #sudo chown -R w:w "$HOME/.easystroke" && success "removed"
         #sudo w -R w:w "$HOME/.easystroke" && success "removed "
         #success "symlink"
@@ -251,10 +245,11 @@ z_symlink_easystroke () {
 }
 
 
-
 z_check_f() {
     [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || error "actions-0.5.6"
     [ -e $(pgrep easystroke) ] && success "easystroke" "On" || error "Off";
+    [ -e $(pgrep easystroke) ] && success "easystroke" "On" || error "Off";
+
 }
 
 z__install_spf() {
@@ -264,18 +259,26 @@ z__install_spf() {
 }
 
 
+wWw_git_up() {
+    cd $HOME/zdotfiles
+    git add -A
+    git commit -a
+    git push --all
+    git push origin --all && git push origin --tags;
+}
 
 while :
 do
 case $1 in
         i|-i) z_install_basic ;;
         -r) z_restore ;;
-        -c) z_check_f ;;
+        c|-c) z_check_f ;;
         -l) z_link_f ;;
-        -e) z_symlink_easystroke ;;
+        e|-e) z_symlink_easystroke ;;
         -L) z_un_link_HOME ;;
         -g) z_install_git ;;
         s|-s) z__install_spf ;;
+        w|-w) wWw_git_up ;;
         -*) error "bad argument $1";;
         *) break;;
 esac

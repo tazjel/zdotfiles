@@ -68,6 +68,7 @@ www_wget()
     wget --recursive  --page-requisites --convert-links
 }
 
+
 setup_git_push_default() {
     git config --global push.default current
 }
@@ -88,6 +89,7 @@ ssh-keygen_rsa() {
     ssh -T git@github.com
 }
 
+
 git_clone() {
     git clone git@github.com:tazjel/zdotfiles.git
     cd zdotfiles
@@ -95,6 +97,7 @@ git_clone() {
     git remote set-url origin git@github.com:tazjel/zdotfiles.git
     git fetch upstream
 }
+
 
 ############################
 
@@ -232,12 +235,14 @@ function Ww() {
 function ww-bluetooth_restart {
     sudo service bluetooth restart;
 }
+
 function cmdfu() {
-    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - }
+    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - ;
+}
 
 
 
-wwws () {
+wwws() {
     PS3="Enter a number: "
     select f in $1;do
         echo $f;
@@ -321,7 +326,7 @@ www_lynx() {
 
 ######################################## Main
 
-# Start-up star_Level_one echo -e "\t\t\t\t $(date)" 
+# Start-up star_Level_one echo -e "\t\t\t\t $(date)"
 #cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
 
 ############################################################################################################################################################
