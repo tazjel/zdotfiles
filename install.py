@@ -22,7 +22,7 @@ except IndexError:
 files = [ f for f in listdir(directory) if f not in excludes]
 
 zdirectory = expanduser("~/zdotfiles/link/.easystroke/")
-wfiles = [ f for f in listdir(zdirectory)]
+
 
 for f in files:
     src = join(directory, f)
@@ -44,6 +44,8 @@ zhome = expanduser("~/.easystroke/")
 
 wdirectory = expanduser("~/zdotfiles/link/.easystroke/")
 whome = expanduser("~/.easystroke/")
+
+wfiles = [ f for f in listdir(zdirectory)]
 
 for x in wfiles :
     wsrc = join(wdirectory, "%s" % x)

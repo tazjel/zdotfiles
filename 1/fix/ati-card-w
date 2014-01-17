@@ -1,6 +1,9 @@
-lpci -nnk | grep -iA3 vga
 
-lspci -nnk | grep -iA3 vga
+z__vga() {
+    # VGA
+    zVGA_lpci=$(lpci -nnk | grep -iA3 vga) && echo "$ZVGA_lpci"
+    zVGA_lspci=$(lspci -nnk | grep -iA3 vga) && echo "$zVGA_lspci";
+}
 
 #If you get into situation where something crashes and you will not be able to fix things by using graphical user interface you can still get to command line. Firstly you can try pressing Ctrl+Alt+F<1-6>( chose number between 1 and 6). Another option is to enter “recovery mode” at boot that also gives you access to command line. So maybe you don't have reinstall entire OS.
 

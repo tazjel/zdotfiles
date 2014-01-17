@@ -59,7 +59,7 @@ alias 'wwww'='cat'
 # git clone https://github.com/tazjel/zdotfiles.git
 alias "wh"="history > $HOME/history_dotfile; vim $HOME/history_dotfile"
 
-source $HOME/zdotfiles/1/.zsh/al.zsh
+# source $HOME/zdotfiles/1/.zsh/al.zsh
 # Change the prompt when you open a shell from inside ranger
 [ -n "$RANGER_LEVEL" ] && PS1="$PS1"'(in ranger) '
 

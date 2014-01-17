@@ -72,8 +72,6 @@ alias 'wwwww'='alias'
 
 WWWWWWW_reboot() {
     sudo reboot;
-
-
 }
 
 

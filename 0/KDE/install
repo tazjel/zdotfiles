@@ -1,0 +1,5 @@
+
+sudo apt-get install update-manager-core
+sudo do-release-upgrade
+sudo apt-add-repository ppa:kubuntu-ppa/backports -y
+sudo apt-get update

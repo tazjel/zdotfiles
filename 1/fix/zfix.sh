@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 z_rm_etc_xorg() {
     sudo rm -f /etc/X11/xorg.conf
     sudo rm -f xorg.conf*
@@ -24,6 +23,13 @@ z_Xorg_config() {
 }
 
 reboot
-remove() {
+
+z_uninstal() {
     sudo apt-get remove xdm lxdm kdm wdm
 }
+
+
+z_service
+z_Xorg_config
+z_rm_etc_xorg
+z_uninstal

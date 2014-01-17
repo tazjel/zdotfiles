@@ -11,15 +11,6 @@
         LINKS=$HOME/zdotfiles/link
         vim_spf13_endpath="$HOME/.spf13-vim-3"
 
-        REAL_USER_NAME=`logname`
-        HOME_DIRECTORY=`getent passwd $REAL_USER_NAME | cut -d: -f6`
-        dir_DOTFILES=$(cd ~ ; find . -type l)
-        src=$HOME/zdotfiles/link
-        BKUP=$HOME/bkup
-
-
-        XXP=$(find $HOME -maxdepth 1)
-
 T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "assets" -and \
     -not -name "scripts" -and \
@@ -119,6 +110,7 @@ z_un_link_HOME() {
         fi;done
 }
 
+alias 'www_Grep_R'='egrep -R "$1"--exclude-dir=cache'
 
 z_hi(){
     success " \r
@@ -276,6 +268,19 @@ wWw_git_up() {
     git push --all
     git push origin --all && git push origin --tags;
 }
+
+
+function w_tmp() {
+    tempfile='/tmp/chosendir'
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    rm -f -- "$tempfile"
+}
+
+
 
 while :
 do

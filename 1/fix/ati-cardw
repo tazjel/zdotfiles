@@ -1,6 +1,6 @@
 
 
-Or if you have installed the drivers manually from the binary download available on the amd website run these commands:
+#Or if you have installed the drivers manually from the binary download available on the amd website run these commands:*/
 
  sudo sh /usr/share/ati/fglrx-uninstall.sh
  sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.old
@@ -8,13 +8,3 @@ Or if you have installed the drivers manually from the binary download available
  sudo dpkg-reconfigure xserver-xorg
  sudo reboot
 
-shareedit
-	
-edited Jun 26 '12 at 10:46
-
-	
-answered Apr 6 '12 at 20:20
-Daniel
-1,6241517
-	add comment (requires 50 reputation)
-Your Answer

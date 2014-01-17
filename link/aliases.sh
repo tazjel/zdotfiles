@@ -67,27 +67,44 @@ alias 'wWw__acs'='apt-cache search'
 alias 'wWw___acsh'='apt-cache show'
 
 alias "ww"="vim"
+
 #alias 'wW'='ls -RlhFAa | egrep ">" | wc -l'
 
 alias 'wi'='sudo apt-get install'
 alias 'www'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
 
-alias 'wwwww'='alias'
-
+#easystroke -c ~/zdotfiles/link/.easystroke
 
 WWWWWWW_reboot() {
     sudo reboot;
-
-
 }
 
+alias listips='nmap -sP 192.168.1.1/24'
 
+
+wWW_findzdotfiles()
+{
+    find ~/zdotfiles -name "$1" -type f -print | xargs egrep --color=always "$2";
+}
 
 alias -g wv='| vim -'
 alias -g 'H'="--help"
-
 alias -g G='| grep'
+
 alias "wW_zsh"="zsh"
 alias "ww_bashrc"="vim $HOME/.bashrc"
 alias 'wwww'="pygmentize"
 alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
+
+
+
+#alias -g M='|more'
+#alias -g H='|head'
+#alias -g T='|tail'
+
+# Matching Strings
+#grep -l <string-to-match> * | xargs grep -c <string-not-to-match> | grep '\:0'
+
+# Deleting directory recurcive. Directories will be deleled when empty or contains only .svn subdirectory
+#for I in $(find . -depth -type d -not -path  "*/.svn*" -print) ; do N="$(ls -1A ${I} | wc -l)"; if [[ "${N}" -eq 0 || "${N}" -eq 1 &&  -n $(ls -1A | grep .svn) ]] ; then svn rm --force "${I}"; fi ; done
+#find . -type f ! -perm /u+x -printf "\"%p\"\n"

@@ -2,33 +2,23 @@
 
 
 # V 0.4
-# vim :colorscheme  jellybeans:
 
 source $HOME/zdotfiles/link/al.sh
 source $HOME/zdotfiles/link/aliases.sh
 source $HOME/zdotfiles/link/aliase_ls.sh
 source $HOME/zdotfiles/w.sh
 
-
 alias "wWw_w"="~/zdotfiles/w.sh $@"
 
 alias "W"="vim \
         $HOME/zdotfiles/link/aliases.sh \
-        $HOME/zdotfiles/link/aliase_ls.sh \
         $HOME/zdotfiles/w.sh \
         $HOME/.zshrc"
 
-#alias "WW"="echo"
-#alias "ww_bashrc"="vim $HOME/.bashrc"
-#alias 'wwww'="pygmentize"
 
 alias "wW___vim"="vim \
     $HOME/zdotfiles/link/.vimrc.local \
-    $HOME/.vimrc \
-    $HOME/.vimrc.bundles.local"
-
-
-
+    $HOME/.vim/bundle/neosnippet"
 
 source $HOME/zdotfiles/1/.zsh/checks.zsh
 source $HOME/zdotfiles/1/.zsh/colors.zsh
