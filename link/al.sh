@@ -39,3 +39,4 @@ alias 'wW'='ls -RlhFAa | egrep ">" | wc -l'
 alias 'wi'='sudo apt-get install'
 alias 'www'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
 alias 'wwwww'='alias'
+export LC_ALL=en_US.UTF-8

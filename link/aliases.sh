@@ -44,13 +44,20 @@ alias 'x'="exit"
 alias 'wWw__exit'="exit"
 alias 'wWw__zsh'="zsh"
 
+#AMD/ATI
+W_AMD_VGA(){
+    lspci | grep VGA
+    sudo lshw -C video
+}
+
+ZSRC=$(find ~/zdotfiles/link -exec basename {} \;)
+DHOME=$(find ~/ -type l -exec basename {} \;)
+WROOT=$(find . -user root)
+
 w() {
     clear
-    DHOME=$(find ~/ -type l -exec basename {} \;)
     success "Symlinks at HOME = " "$(echo $DHOME | wc -l)"
-    ZSRC=$(find ~/zdotfiles/link -exec basename {} \;);
     success "Dotfiles at zdotfiles/link = " "$( echo $ZSRC | wc -l )";
-    WROOT=$(find . -user root);
     success "Root files = " "$(echo $WROOT | wc -l)";
     echo "$(echo $WROOT)";
 }
@@ -63,14 +70,17 @@ setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
 setxkbmap -option ctrl:nocaps
 
 alias "wWw___eeasystroke"="asystroke -c ~/zdotfiles/link/.easystroke"
-alias 'wWw__acs'='apt-cache search'
+
+alias 'W_00_acs'='apt-cache search'
 alias 'wWw___acsh'='apt-cache show'
 
 alias "ww"="vim"
 
 #alias 'wW'='ls -RlhFAa | egrep ">" | wc -l'
 
-alias 'wi'='sudo apt-get install'
+alias 'wi_install'='sudo apt-get install'
+alias 'wx'='chmod +x'; alias 'wX'='chmod -x'
+
 alias 'www'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
 
 #easystroke -c ~/zdotfiles/link/.easystroke
@@ -90,8 +100,9 @@ wWW_findzdotfiles()
 alias -g wv='| vim -'
 alias -g 'H'="--help"
 alias -g G='| grep'
+alias -g H='|head'
 
-alias "wW_zsh"="zsh"
+alias "w__zsh"="zsh"
 alias "ww_bashrc"="vim $HOME/.bashrc"
 alias 'wwww'="pygmentize"
 alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
@@ -99,7 +110,6 @@ alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
 
 
 #alias -g M='|more'
-#alias -g H='|head'
 #alias -g T='|tail'
 
 # Matching Strings

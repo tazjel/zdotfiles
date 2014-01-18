@@ -704,7 +704,7 @@ nnoremap ww Y
 "nnoremap ww <F5>
 nnoremap W :echo colors_name<CR>
 
-nnoremap WW <ESC><F5>:echo colors_name<CR>
+"nnoremap WW <ESC><F5>:echo colors_name<CR>
 
 ":let &path = &path . ',/usr/local/include'
 

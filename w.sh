@@ -25,7 +25,26 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "*~*" \
     -not -name "\." \
     -exec basename {} \;`
+#a####################################################
+#
+#
+####################################################
+#
 
+w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
+    -not -name "assets" -and \
+    -not -name "scripts" -and \
+    -not -name "install.sh" -and \
+    -not -name "\.DS_Store" -and \
+    -not -name "\.gitignore" -and \
+    -not -name "\.gitmodules" -and \
+    -not -name "*\.dmg" -and \
+    -not -name "*\.swp" -and \
+    -not -name "*\.md" -and \
+    -not -name "\.git" -and \
+    -not -name "*~*" \
+    -not -name "\." \
+    -exec basename {} \;`
 ############################  SETUP PARAMETERS
     #for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
     #for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
@@ -110,7 +129,6 @@ z_un_link_HOME() {
         fi;done
 }
 
-alias 'www_Grep_R'='egrep -R "$1"--exclude-dir=cache'
 
 z_hi(){
     success " \r
@@ -280,6 +298,9 @@ function w_tmp() {
     rm -f -- "$tempfile"
 }
 
+w_Do_we_have_command() {
+    which "$1" > /dev/null 2>&1 && echo "Success!";
+}
 
 
 while :

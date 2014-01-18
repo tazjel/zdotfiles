@@ -2015,7 +2015,7 @@ class Auth(object):
         if user and user.get(settings.passfield, False):
             password = settings.table_user[
                 settings.passfield].validate(password)[0]
-            if not user.registration_key and password == \
+            if not user.registration_key.strip() and password == \
                 user[settings.passfield]:
                 self.login_user(user)
                 return user
@@ -2112,7 +2112,7 @@ class Auth(object):
         success = False
         if row:
             userfield = self.settings.login_userfield or 'username' \
-                if 'username' in table_user.fields else 'email'
+                if 'username' in table.fields else 'email'
             # If ticket is a service Ticket and RENEW flag respected
             if ticket[0:3] == 'ST-' and \
                     not ((row.renew and renew) ^ renew):
@@ -2915,7 +2915,7 @@ class Auth(object):
                         formname='reset_password', dbio=False,
                         onvalidation=onvalidation,
                         hideerror=self.settings.hideerror):
-            user = table_user(**{userfield:form.vars.email})
+            user = table_user(**{userfield:form.vars.get(userfield)})
             if not user:
                 session.flash = self.messages['invalid_%s' % userfield]
                 redirect(self.url(args=request.args),
@@ -5395,7 +5395,7 @@ class Wiki(object):
         if (auth.user and
             check_credentials(current.request, gae_login=False) and
             not 'wiki_editor' in auth.user_groups.values() and
-            self.settings.groups is None):
+            self.settings.groups == auth.user_groups.values()):
             group = db.auth_group(role='wiki_editor')
             gid = group.id if group else db.auth_group.insert(
                 role='wiki_editor')
@@ -5523,7 +5523,7 @@ class Wiki(object):
                 url = URL(args=('_edit', slug))
                 return dict(content=A('Create page "%s"' % slug, _href=url, _class="btn"))
             else:
-                html = page.html if not force_render else self.get_renderer(page)
+                html = page.html if not force_render else self.get_renderer()(page)
                 content = XML(self.fix_hostname(html))
                 return dict(title=page.title,
                             slug=page.slug,
@@ -5893,7 +5893,7 @@ class Wiki(object):
 class Config(object):
     def __init__(
         self,
-                filename,
+        filename,
         section,
         default_values={}
     ):
