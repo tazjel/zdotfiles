@@ -1,27 +1,31 @@
+#!/usr/bin/env bash
+
+
+
 zdotfiles_link() {
     if [ -d $src ]; then
         for f in $src; do
-		# TODO:TEST  
-		lnif $dest/$f $src/$f	
-        done
+    # TODO:TEST
+    lnif $dest/$f $src/$f
+    done
     fi
     unset f
 }
 
-zbkup() { for i in $dir_DOTFILES ; do [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" 
+zbkup() {
+    for i in $dir_DOTFILES ; do [ -e "$i" ] && [ ! -L "$i" ] && mv "$i"
 "$(echo $i | sed 's/\(\/home\/\(.*\)\/\(.*\)/\1\/\2\/bkup\/\3_BKUP/')"; done
         success "Done!"
         ret="$?"
         $success "$1"
         debug
-	unset i
+    unset i
 }
 
 
 
 do_backup() { today=`date +%Y%m%d_%s`
-        #[ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$BKUP/$i.$today";
-	zbkup
+        [ -e "$i" ] && [ ! -L "$i" ] && mv "$i" "$BKUP/$i.$today";
         success "Moved $i to "
         ret="$?"
         success "$1"
@@ -29,27 +33,20 @@ do_backup() { today=`date +%Y%m%d_%s`
 }
 
 check_bkup_dir() { if [ -d $HOME/bkup ]; then
-    	mkdir -p $HOME/bkup
-    	success "mkdir $HOME/bkup"
-    	BKUP=$HOME/bkup
-	fi
+        mkdir -p $HOME/bkup
+        success "mkdir $HOME/bkup"
+        BKUP=$HOME/bkup
+    fi
 }
-check_zdotfiles_dir() { if [ -d /home/w/zdotfiles ]; then success "zdotfiles is 
-available" else error "No zdotfilesc" fi }
+
+check_zdotfiles_dir() {
+    if [ -d /home/w/zdotfiles ]; then success "zdotfiles is available"
+    else error "No zdotfilesc" fi }
 
 usage() { cat << EOF
 usage: $0 options
 
 This script make and install Blender
-
-OPTIONS:
-   -h      Show this message
-   -m      Make Blender (not only install the files)
-   -c      Install
-   -n      Not install
-   -i      Install all
-   -j      Number of Jobs, default is $numjobs
-   -v      Verbose
 EOF
 }
 ll_dotfiles_dir() { ls -1 ./.* | wc -l; }
@@ -57,31 +54,33 @@ dir_DOTFILES=$(cd ~;ls .*)
 src=$HOME/zdotfiles/link
 BKUP=$HOME/bkup
 
-z_restore() { for i in $HOME/bkup/.*; do [ -e "$i" ] && mv "$i" "$(echo $i | sed 
-'s/\(\/home\)\/\(.*\)\/\(.*\)_bkup\/\(.*\)/\1\/\2\3/')"; done ret="$?" success 
-"$1" debug } ############################ SETUP FUNCTIONS 
+z_restore() {
+    for i in $HOME/bkup/.*; do
+        [ -e "$i" ] && mv "$i" "$(echo $i | sed 's/\(\/home\)\/\(.*\)\/\(.*\)_bkup\/\(.*\)/\1\/\2\3/')"
+    done
+    ret="$?" success "$1" debug
+}
 
-
-lnif
 
 restore_x_bkup() {
-    for f in $LINKS
-do
-    source="${PWD}/$f"
-    target="${HOME}/$f"
-    #if [ "$1" = "restore" ]; then
-        # Restore backups if found
+    for f in $LINKS; do
+        source="${PWD}/$f"
+        target="${HOME}/$f"
+    if [ "$1" = "restore" ]; then
+        echo "# Restore backups if found"
+    fi
+
     if [ -e "${target}_bkup" ] && [ -L "${target}" ]; then
-            unlink "${target}"
-            mv "$target.dotfile.bak" "$target"
-        fi
-    else
-        # Link files
-        if [ -e "${target}" ] && [ ! -L "${target}" ]; then
+        unlink "${target}"
+        mv "$target.dotfile.bak" "$target"
+    fi
+    #else
+        echo "# Link files"
+    if [ -e "${target}" ] && [ ! -L "${target}" ]; then
             mv "$target" "$target.dotfile.bak"
-        fi
-        # TODO: fix recursive symlinks
+    #fi
+         #TODO: fix recursive symlinks
         ln -sf "${source}" "${target}"
     fi
-done
+    done
 }

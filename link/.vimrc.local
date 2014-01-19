@@ -1,3 +1,21 @@
+" vim: set ft=vim :
+"
+"   _____       _______        ___ __
+"  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
+"    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
+"    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
+"    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
+"
+"
+"   This is the personal .vimrc file of Ahmed Alghamdi.
+"   While much of it is beneficial for general use, I would
+"   recommend picking out the parts you want and understand.
+"
+"   This is a mirror of :http://spf13.com
+
+
+#####################################################
+
 set nocompatible
 
 source ~/zdotfiles/2/zplugin/zabz.vim

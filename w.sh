@@ -11,6 +11,14 @@
         LINKS=$HOME/zdotfiles/link
         vim_spf13_endpath="$HOME/.spf13-vim-3"
 
+
+
+# Ask for the administrator password upfront
+    sudo -v
+# Keep-alive: update existing `sudo` time stamp until script has finished
+        while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
 T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "assets" -and \
     -not -name "scripts" -and \
@@ -28,6 +36,27 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
 #a####################################################
 #
 #
+
+
+# Patch terminal font for Vim's Airline plugin
+# See: https://powerline.readthedocs.org/en/latest/fontpatching.html
+z__install_fonts(){
+    mkdir ./powerline-fontconfig
+    curl -fsSL https://github.com/Lokaltog/powerline/tarball/develop | tar -xvz --strip-components 2 --directory ./powerline-fontconfig -f -
+    fontforge -script ./powerline-fontconfig/fontpatcher.py --no-rename ./assets/SourceCodePro-Regular.otf
+    rm -rf ./powerline-fontconfig
+# Install the patched font
+    if $IS_OSX; then
+        mkdir -p ~/Library/Fonts/
+        mv ./Source\ Code\ Pro.otf ~/Library/Fonts/
+    else
+        mkdir -p ~/.fonts/
+        mv ./Source\ Code\ Pro.otf ~/.fonts/
+        # Refresh font cache
+        sudo fc-cache -f -v
+    fi
+}
+
 ####################################################
 #
 
@@ -64,13 +93,29 @@ error() {
 }
 
 
-lnif()
- {
+lnif() {
     if [ -e "$1" ]; then
         ln -sf "$1" "$2"
     fi
-    ret="$?"
+    ret="$?";
 }
+
+#####################################################
+#http://www.pythonforbeginners.com/systems-programming/how-to-use-fabric-in-python/
+#https://code.osuosl.org/projects/51/wiki/Install
+# pip
+z__install_py() {
+    sudo apt-get install python-pip
+    # devel libraries may be needed for some pip installs
+    sudo apt-get install python-dev
+    # install fabric and virtualenv
+    sudo apt-get install python-virtualenv
+    sudo apt-get install fabric
+
+
+}
+
+####################################################
 
 
 app_names=(mercurial \
@@ -224,7 +269,7 @@ z__now() {
     Sat|Sun)
         echo "No backup";;
     *) ;;
-esac
+    esac
 }
 
 
@@ -285,21 +330,6 @@ wWw_git_up() {
     git commit -a
     git push --all
     git push origin --all && git push origin --tags;
-}
-
-
-function w_tmp() {
-    tempfile='/tmp/chosendir'
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-        cd -- "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-}
-
-w_Do_we_have_command() {
-    which "$1" > /dev/null 2>&1 && echo "Success!";
 }
 
 
