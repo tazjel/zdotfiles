@@ -358,3 +358,7 @@ alias "w_term_colors"="msgcat --color=test"
 
 alias 'wchmod-400-only'='chmod 400 ~/.ssh/id_rsa'
 alias 'wgit_set-url_origin'= 'git remote set-url origin git@github.com:tazjel/zdotfiles.git'
+
+
+
+

@@ -39,25 +39,25 @@ for f in files:
         print "Symlinking %s to %s" % (src, dest)
         os.symlink(src, dest)
 
-# link easystroke
-
-zhome = expanduser("~/.easystroke/")
-
-
-wdirectory = expanduser("~/zdotfiles/link/.easystroke/")
-whome = expanduser("~/.easystroke/")
-
-wfiles = [ f for f in listdir(zdirectory)]
-
-for x in wfiles :
-    wsrc = join(wdirectory, "%s" % x)
-    wdest = join(whome, "%s" % x)
-
-    if not islink(wdest):
-        print "easystroke Symlinking %s to %s" % (wsrc, wdest)
-        os.symlink(wsrc, wdest)
-    else:
-        print "easystroke Unlinking %s to %s" % (wsrc, wdest)
-        os.unlinkk(wdest)
-        print "easystroke Symlinking %s to %s" % (wsrc, wdest)
-        os.symlink(wsrc, wdest)
+## link easystroke
+#
+#zhome = expanduser("~/.easystroke/")
+#
+#
+#wdirectory = expanduser("~/zdotfiles/link/.easystroke/")
+#whome = expanduser("~/.easystroke/")
+#
+#wfiles = [ f for f in listdir(zdirectory)]
+#
+#for x in wfiles :
+#    wsrc = join(wdirectory, "%s" % x)
+#    wdest = join(whome, "%s" % x)
+#
+#    if not islink(wdest):
+#        print "easystroke Symlinking %s to %s" % (wsrc, wdest)
+#        os.symlink(wsrc, wdest)
+#    else:
+#        print "easystroke Unlinking %s to %s" % (wsrc, wdest)
+#        os.unlinkk(wdest)
+#        print "easystroke Symlinking %s to %s" % (wsrc, wdest)
+#        os.symlink(wsrc, wdest)
