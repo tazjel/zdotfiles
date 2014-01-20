@@ -1,0 +1,19 @@
+#!/bin/bash
+
+cd $HOME
+
+echo $PWD
+
+BP=$HOME/bkup
+
+mkdir -p $BP
+
+#wwFiles=$(ls -a)
+for af in $HOME;do
+    echo $af
+done
+
+
+#read -p "w" yn
+
+

@@ -42,7 +42,7 @@ case `file --mime-type $file_common_opts "$1"` in
     text/x-shellscript) lexer=sh;;
     text/x-tcl) lexer=tcl;;
     text/x-tex|text/x-texinfo) lexer=latex;; # FIXME: texinfo really needs its own lexer
-    
+
     # Types that file outputs which pygmentize didn't support as of file 5.11, pygments 1.5
     # text/calendar
     # text/PGP

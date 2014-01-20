@@ -317,14 +317,25 @@ www_lynx() {
 }
 
 
-W_colors_term()
-{
-    for code in $(seq -w 0 255); do for attr in 0 1; do printf "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m" "\e[m"; done; done | column -c $((COLUMNS*2));
+ww_colors_term()
+    {for code in $(seq -w 0 255); do for attr in 0 1; do printf
+    "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m"
+    "\e[m"; done; done | column -c $((COLUMNS*2))
 }
 
 
-wbook()
-{
+######################################## Main
+
+# Start-up
+star_Level_one
+echo -e "\t\t\t\t $(date)"
+
+#cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
+
+############################################################################################################################################################
+
+
+wbook() {
     egrep "$1" /home/ahmed/Dropbox/C/Foundation/books.txt | grep -oG ").\(.*\)" | sed 's/).\s\+\(.*\)/\1/g'
 }
 
@@ -360,19 +371,14 @@ wpic()
 #$(pgrep easystroke)
 
 alias "wea_easystroke"="easystroke -c ~/.easystroke"
-
+#echo ${TERM}
 
 alias "w_term_colors"="msgcat --color=test"
 
 alias 'wchmod-400-only'='chmod 400 ~/.ssh/id_rsa'
 alias 'wgit_set-url_origin'= 'git remote set-url origin git@github.com:tazjel/zdotfiles.git'
 
-www_dmesg()
-{
-    dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
-}
-
-
+#dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
 Undo_commit()
 {
     git commit
@@ -382,7 +388,7 @@ Undo_commit()
     git commit -c ORIG_HEAD
 }
 
-xremindme()
+function xremindme()
 {
     sleep $1 && zenity --info --text "$2" &
 }

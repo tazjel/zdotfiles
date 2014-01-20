@@ -1,0 +1,4 @@
+
+# Diff two directories by finding and comparing the md5 checksums of their contents.
+diff <(sort <(md5deep -r ~/zdotfiles/link/) |cut -f1 -d' ') <(sort <(md5deep -r ~/zdotfiles/1/.zsh/) |cut -f1 -d' ')
+

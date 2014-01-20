@@ -11,11 +11,10 @@ dir=$HOME
 dest=$HOME/zdotfiles/link
 
 if [ -d $dest ]; then
-        for f in $dest ; do
-           [ -x "$f" ] && echo "$f"
-
-        done
-        unset f
+    for f in $dest ; do
+       [ -x "$f" ] && echo "$f"
+    done
+    unset f
 fi
 }
 

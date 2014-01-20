@@ -1,5 +1,9 @@
 [Dolphin]
-Timestamp=2013,5,12,14,51,46
+SortRole=date
+Timestamp=2014,1,18,9,19,47
+Version=3
+ViewMode=1
+VisibleRoles=CustomizedDetails,Details_text,Details_size,Details_date,Details_destination,Details_path
 
 [Settings]
 HiddenFilesShown=true

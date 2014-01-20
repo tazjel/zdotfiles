@@ -1,0 +1,10 @@
+
+
+#Or if you have installed the drivers manually from the binary download available on the amd website run these commands:*/
+
+ sudo sh /usr/share/ati/fglrx-uninstall.sh
+ sudo mv /etc/X11/xorg.conf /etc/X11/xorg.conf.old
+ sudo apt-get install --reinstall xserver-xorg-core libgl1-mesa-glx libgl1-mesa-dri
+ sudo dpkg-reconfigure xserver-xorg
+ sudo reboot
+

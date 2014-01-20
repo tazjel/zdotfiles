@@ -77,9 +77,9 @@ export LESSCHARSET=UTF-8
 export CHARSET=ISO_8859-6
 
 # dotfiles;zsh_history
-ZPATHS=$tazjel
-export tazjel=$HOME/zdotfiles
-export hz=$HOME/.zsh_history
+#ZPATHS=$tazjel
+#export tazjel=$HOME/zdotfiles
+#export hz=$HOME/.zsh_history
 
 
 

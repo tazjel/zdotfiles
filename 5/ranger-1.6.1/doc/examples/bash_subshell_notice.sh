@@ -4,4 +4,5 @@
 #
 # Add this line to your .bashrc for it to work.
 
+# Change the prompt when you open a shell from inside ranger
 [ -n "$RANGER_LEVEL" ] && PS1="$PS1"'(in ranger) '
