@@ -1,0 +1,2 @@
+  # Lower case
+  contents = contents.lower()

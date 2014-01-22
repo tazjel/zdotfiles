@@ -1,0 +1,3 @@
+Error and attack tolerance of complex networks
+by Andrea Rapisarda
+Communication/transportation systems are often subjected to failures and attacks. Here we represent such systems as networks and we study their ability to resist failures (attacks) simulated as the breakdown of a group of nodes of the network chosen at random (chosen accordingly to degree or load). We consider and compare the results for two different network topologies: the Erdös–Rényi random graph and the Barabási–Albert scale-free network. We also discuss briefly a dynamical model recently proposed to take into account the dynamical redistribution of loads after the initial damage of a single node of the network.

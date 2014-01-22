@@ -1,0 +1,562 @@
+ subjec....json
+-rw-r--r-- 1 ahmed ahmed  372 Nov 27 17:08 This whole subjec....txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  6 10:46 ._   title  conte....json
+-rw-r--r-- 1 ahmed ahmed   35 Dec  6 10:46 _   title  conte....txt
+-rw-r--r-- 1 ahmed ahmed  16K Nov 27 09:20 _                ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 09:08 .Vimium optionsSc....json
+-rw-r--r-- 1 ahmed ahmed 3.5K Nov 27 09:08 Vimium optionsSc....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 30 12:18 ._web applications....json
+-rw-r--r-- 1 ahmed ahmed  185 Nov 30 12:18 _web applications....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:07 .When conducting ....json
+-rw-r--r-- 1 ahmed ahmed  421 Nov 27 19:07 When conducting ....txt
+-rw-r--r-- 1 ahmed ahmed  578 Dec  6 10:46 .Your.json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 11:32 .Your password is ...1.json
+-rw-r--r-- 1 ahmed ahmed   25 Nov 28 11:32 Your password is ...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 11:31 .Your password is ....json
+-rw-r--r-- 1 ahmed ahmed   25 Nov 28 11:31 Your password is ....txt
+-rw-r--r-- 1 ahmed ahmed    4 Dec  6 10:46 Your.txt
+total 1.4M
+drwxr-xr-x 2 ahmed ahmed  20K Dec  6 10:48 .
+drwxr-xr-x 4 ahmed ahmed 4.0K Nov 27 09:25 ..
+-rw-r--r-- 1 ahmed ahmed  580 Nov 27 16:01 .1.json
+-rw-r--r-- 1 ahmed ahmed    3 Nov 27 16:01 1.txt
+-rw-r--r-- 1 ahmed ahmed  580 Nov 27 16:01 .2.json
+-rw-r--r-- 1 ahmed ahmed    3 Nov 27 16:01 2.txt
+-rw-r--r-- 1 ahmed ahmed  574 Nov 29 10:56 .3.json
+-rw-r--r-- 1 ahmed ahmed    0 Nov 29 10:56 3.txt
+-rw-r--r-- 1 ahmed ahmed  582 Nov 28 03:44 .abobani8.json
+-rw-r--r-- 1 ahmed ahmed    8 Nov 28 03:44 abobani8.txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:47 .According to Fir....json
+-rw-r--r-- 1 ahmed ahmed  726 Nov 27 18:47 According to Fir....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:53 .A corpus-driven ....json
+-rw-r--r-- 1 ahmed ahmed  430 Nov 27 18:53 A corpus-driven ....txt
+-rw-r--r-- 1 ahmed ahmed  592 Nov 30 12:49 .adminqa-stack.com.json
+-rw-r--r-- 1 ahmed ahmed   18 Nov 30 12:49 adminqa-stack.com.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:42 .Advanced Collocat....json
+-rw-r--r-- 1 ahmed ahmed 3.9K Nov 27 19:42 Advanced Collocat....txt
+-rw-r--r-- 1 ahmed ahmed  579 Dec  6 10:48 .ahmed1.json
+-rw-r--r-- 1 ahmed ahmed    5 Dec  6 10:48 ahmed1.txt
+-rw-r--r-- 1 ahmed ahmed  579 Dec  6 10:48 .ahmed2.json
+-rw-r--r-- 1 ahmed ahmed    5 Dec  6 10:48 ahmed2.txt
+-rw-r--r-- 1 ahmed ahmed  579 Dec  6 10:48 .ahmed.json
+-rw-r--r-- 1 ahmed ahmed    5 Dec  6 10:48 ahmed.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:59 .Also Known As la....json
+-rw-r--r-- 1 ahmed ahmed  152 Nov 27 18:59 Also Known As la....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:42 .An easy way to re....json
+-rw-r--r-- 1 ahmed ahmed  405 Nov 27 19:42 An easy way to re....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:04 .Applications of F....json
+-rw-r--r-- 1 ahmed ahmed  675 Nov 27 19:04 Applications of F....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:00 .As Arabic is noto....json
+-rw-r--r-- 1 ahmed ahmed  249 Nov 27 17:00 As Arabic is noto....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:49 .At this time the ....json
+-rw-r--r-- 1 ahmed ahmed  213 Nov 27 16:49 At this time the ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  6 00:27 ._awk lsplit1...1.json
+-rw-r--r-- 1 ahmed ahmed  104 Dec  6 00:27 _awk lsplit1...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  6 00:27 ._awk lsplit1....json
+-rw-r--r-- 1 ahmed ahmed  104 Dec  6 00:27 _awk lsplit1....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:34 .Beyond IQ A late....json
+-rw-r--r-- 1 ahmed ahmed 1.3K Nov 27 17:34 Beyond IQ A late....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 17:36 .BibliographyAlt....json
+-rw-r--r-- 1 ahmed ahmed 3.8K Nov 27 17:36 BibliographyAlt....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:38 .Business conflic....json
+-rw-r--r-- 1 ahmed ahmed 1.3K Nov 27 16:38 Business conflic....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:55 .Chunk and chunkin....json
+-rw-r--r-- 1 ahmed ahmed  210 Nov 27 18:55 Chunk and chunkin....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:13 .chunkBy Richard ....json
+-rw-r--r-- 1 ahmed ahmed 5.8K Nov 27 19:13 chunkBy Richard ....txt
+-rw-r--r-- 1 ahmed ahmed  607 Nov 27 09:01 . CLI...1.json
+-rw-r--r-- 1 ahmed ahmed  56K Nov 27 09:01  CLI...1.txt
+-rw-r--r-- 1 ahmed ahmed  607 Nov 27 08:32 . CLI....json
+-rw-r--r-- 1 ahmed ahmed  56K Nov 27 08:32  CLI....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:09 .Colligation and t....json
+-rw-r--r-- 1 ahmed ahmed  127 Nov 27 17:09 Colligation and t....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 17:39 .CollocationI wa....json
+-rw-r--r-- 1 ahmed ahmed  273 Nov 27 17:39 CollocationI wa....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 14:46 .Collocations Invo....json
+-rw-r--r-- 1 ahmed ahmed 1.3K Nov 27 14:46 Collocations Invo....txt
+-rw-r--r-- 1 ahmed ahmed  586 Nov 27 17:34 .Collocations.json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:17 .Collocations List....json
+-rw-r--r-- 1 ahmed ahmed 3.2K Nov 27 18:17 Collocations List....txt
+-rw-r--r-- 1 ahmed ahmed  597 Nov 27 19:17 .CollocationsTe...1.json
+-rw-r--r-- 1 ahmed ahmed 2.0K Nov 27 19:17 CollocationsTe...1.txt
+-rw-r--r-- 1 ahmed ahmed  597 Nov 27 18:13 .CollocationsTe....json
+-rw-r--r-- 1 ahmed ahmed 2.5K Nov 27 18:13 CollocationsTe....txt
+-rw-r--r-- 1 ahmed ahmed   12 Nov 27 17:34 Collocations.txt
+-rw-r--r-- 1 ahmed ahmed  610 Nov 27 17:34 .collocationTh....json
+-rw-r--r-- 1 ahmed ahmed  129 Nov 27 17:34 collocationTh....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:04 .Comments from stu...1.json
+-rw-r--r-- 1 ahmed ahmed  20K Nov 27 09:04 Comments from stu...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:24 .Comments from stu....json
+-rw-r--r-- 1 ahmed ahmed  20K Nov 27 09:24 Comments from stu....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 14:02 .Contact UsSugges....json
+-rw-r--r-- 1 ahmed ahmed  213 Nov 27 14:02 Contact UsSugges....txt
+-rw-r--r-- 1 ahmed ahmed  582 Dec  6 10:48 .contents.json
+-rw-r--r-- 1 ahmed ahmed    8 Dec  6 10:48 contents.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .Crash Course Usi....json
+-rw-r--r-- 1 ahmed ahmed 2.0K Nov 27 18:12 Crash Course Usi....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:58 .Criticism of the ....json
+-rw-r--r-- 1 ahmed ahmed  472 Nov 27 18:58 Criticism of the ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 17:32 .DECLARATIONBy su....json
+-rw-r--r-- 1 ahmed ahmed  307 Nov 27 17:32 DECLARATIONBy su....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:46 .DefinitionA fam....json
+-rw-r--r-- 1 ahmed ahmed  329 Nov 27 18:46 DefinitionA fam....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:46 .DefinitionA gro....json
+-rw-r--r-- 1 ahmed ahmed  470 Nov 27 18:46 DefinitionA gro....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:09 .DefinitionBoth ....json
+-rw-r--r-- 1 ahmed ahmed  354 Nov 27 19:09 DefinitionBoth ....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 18:44 .DefinitionColl....json
+-rw-r--r-- 1 ahmed ahmed  316 Nov 27 18:44 DefinitionColl....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:14 .DefinitionIn li....json
+-rw-r--r-- 1 ahmed ahmed 5.4K Nov 27 19:14 DefinitionIn li....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:55 .DefinitionIn st....json
+-rw-r--r-- 1 ahmed ahmed  212 Nov 27 18:55 DefinitionIn st....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:12 .DefinitionThe a...1.json
+-rw-r--r-- 1 ahmed ahmed 3.5K Nov 27 19:12 DefinitionThe a...1.txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:03 .DefinitionThe a....json
+-rw-r--r-- 1 ahmed ahmed  127 Nov 27 19:03 DefinitionThe a....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 28 10:00 .def keywords ....json
+-rw-r--r-- 1 ahmed ahmed 1.7K Nov 28 10:00 def keywords ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  5 05:10 .dpkg-reconfigure ....json
+-rw-r--r-- 1 ahmed ahmed   23 Dec  5 05:10 dpkg-reconfigure ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 16:48 ._English Languag....json
+-rw-r--r-- 1 ahmed ahmed 2.5K Nov 27 16:48 _English Languag....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:48 .Error and attack ....json
+-rw-r--r-- 1 ahmed ahmed  697 Nov 27 16:48 Error and attack ....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 18:47 .EtymologyFrom ....json
+-rw-r--r-- 1 ahmed ahmed  241 Nov 27 18:47 EtymologyFrom ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .Examples and Obse...1.json
+-rw-r--r-- 1 ahmed ahmed 3.1K Nov 27 19:11 Examples and Obse...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:10 .Examples and Obse....json
+-rw-r--r-- 1 ahmed ahmed 4.1K Nov 27 19:10 Examples and Obse....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:38 .Expanded definiti....json
+-rw-r--r-- 1 ahmed ahmed  700 Nov 27 17:38 Expanded definiti....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:08 ._Fillmore Kay an....json
+-rw-r--r-- 1 ahmed ahmed  384 Nov 27 18:08 _Fillmore Kay an....txt
+-rw-r--r-- 1 ahmed ahmed  537 Nov 27 07:37 .folder.json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:48 .For decades the ....json
+-rw-r--r-- 1 ahmed ahmed  255 Nov 27 16:48 For decades the ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:35 .for row in data....json
+-rw-r--r-- 1 ahmed ahmed  720 Nov 27 19:35 for row in data....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 17:40 .Here are some qu....json
+-rw-r--r-- 1 ahmed ahmed 2.8K Nov 27 17:40 Here are some qu....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:06 .His consultation....json
+-rw-r--r-- 1 ahmed ahmed  536 Nov 27 19:06 His consultation....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:44 .httpfaculty.ua....json
+-rw-r--r-- 1 ahmed ahmed   97 Nov 27 08:44 httpfaculty.ua....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .httpgrammar.ab...1.json
+-rw-r--r-- 1 ahmed ahmed   59 Nov 27 19:11 httpgrammar.ab...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .httpgrammar.ab...2.json
+-rw-r--r-- 1 ahmed ahmed   59 Nov 27 19:11 httpgrammar.ab...2.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:08 .httpgrammar.ab....json
+-rw-r--r-- 1 ahmed ahmed   48 Nov 27 19:08 httpgrammar.ab....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:39 .httpnltk.googl....json
+-rw-r--r-- 1 ahmed ahmed   64 Nov 27 19:39 httpnltk.googl....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:10 .httpsdcu.acade....json
+-rw-r--r-- 1 ahmed ahmed   38 Nov 27 18:10 httpsdcu.acade....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:10 .httpsnova.acad....json
+-rw-r--r-- 1 ahmed ahmed   43 Nov 27 18:10 httpsnova.acad....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:11 .httpswww.acade...1.json
+-rw-r--r-- 1 ahmed ahmed  131 Nov 27 16:11 httpswww.acade...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:09 .httpswww.acade...2.json
+-rw-r--r-- 1 ahmed ahmed  120 Nov 27 17:09 httpswww.acade...2.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:11 .httpswww.acade...3.json
+-rw-r--r-- 1 ahmed ahmed  106 Nov 27 17:11 httpswww.acade...3.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:11 .httpswww.acade...4.json
+-rw-r--r-- 1 ahmed ahmed  182 Nov 27 18:11 httpswww.acade...4.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .httpswww.acade...5.json
+-rw-r--r-- 1 ahmed ahmed   98 Nov 27 18:12 httpswww.acade...5.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .httpswww.acade...6.json
+-rw-r--r-- 1 ahmed ahmed  187 Nov 27 18:12 httpswww.acade...6.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:20 .httpswww.acade...7.json
+-rw-r--r-- 1 ahmed ahmed   75 Nov 27 18:20 httpswww.acade...7.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:20 .httpswww.acade...8.json
+-rw-r--r-- 1 ahmed ahmed  182 Nov 27 18:20 httpswww.acade...8.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 14:46 .httpswww.acade....json
+-rw-r--r-- 1 ahmed ahmed  122 Nov 27 14:46 httpswww.acade....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:44 .httpufal.mff.c....json
+-rw-r--r-- 1 ahmed ahmed   53 Nov 27 08:44 httpufal.mff.c....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:17 .httpwww.englis....json
+-rw-r--r-- 1 ahmed ahmed   54 Nov 27 19:17 httpwww.englis....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 12:24 .httpwww.marksi....json
+-rw-r--r-- 1 ahmed ahmed   52 Nov 28 12:24 httpwww.marksi....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 07:52 .httpwww.uas.al....json
+-rw-r--r-- 1 ahmed ahmed   83 Nov 27 07:52 httpwww.uas.al....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:02 .httpwww.victor....json
+-rw-r--r-- 1 ahmed ahmed   71 Nov 27 18:02 httpwww.victor....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:38 .httpwww.xklsv.....json
+-rw-r--r-- 1 ahmed ahmed   52 Nov 27 17:38 httpwww.xklsv.....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:47 .Impact of knowled....json
+-rw-r--r-- 1 ahmed ahmed 2.3K Nov 27 16:47 Impact of knowled....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:36 .In linguistics....json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:36 .In linguistics p....json
+-rw-r--r-- 1 ahmed ahmed  763 Nov 27 17:36 In linguistics p....txt
+-rw-r--r-- 1 ahmed ahmed 7.5K Nov 27 17:36 In linguistics....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:49 .In the 1970s the....json
+-rw-r--r-- 1 ahmed ahmed  130 Nov 27 16:49 In the 1970s the....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:24 .In this class so ...1.json
+-rw-r--r-- 1 ahmed ahmed  253 Nov 27 08:24 In this class so ...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:24 .In this class so ....json
+-rw-r--r-- 1 ahmed ahmed  253 Nov 27 08:24 In this class so ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:06 .Introduction.Lin....json
+-rw-r--r-- 1 ahmed ahmed  576 Nov 27 18:06 Introduction.Lin....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:20 ._                ....json
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:05 .Keywords.Phraseo....json
+-rw-r--r-- 1 ahmed ahmed   98 Nov 27 18:05 Keywords.Phraseo....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .linguistic perfor...1.json
+-rw-r--r-- 1 ahmed ahmed 5.3K Nov 27 19:11 linguistic perfor...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .linguistic perfor....json
+-rw-r--r-- 1 ahmed ahmed 5.3K Nov 27 19:11 linguistic perfor....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:18 .Lisa Fields Illus...1.json
+-rw-r--r-- 1 ahmed ahmed 7.9K Nov 27 09:18 Lisa Fields Illus...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:25 .Lisa Fields Illus....json
+-rw-r--r-- 1 ahmed ahmed 7.9K Nov 27 09:25 Lisa Fields Illus....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:02 .Most Frequent Wor....json
+-rw-r--r-- 1 ahmed ahmed  456 Nov 27 18:02 Most Frequent Wor....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 09:27 .My CoursesI con....json
+-rw-r--r-- 1 ahmed ahmed 4.8K Nov 27 09:27 My CoursesI con....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:05 .Old comments 200...1.json
+-rw-r--r-- 1 ahmed ahmed  25K Nov 27 09:05 Old comments 200...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:05 .Old comments 200....json
+-rw-r--r-- 1 ahmed ahmed  25K Nov 27 09:05 Old comments 200....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:05 .On some occasions....json
+-rw-r--r-- 1 ahmed ahmed  885 Nov 27 19:05 On some occasions....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:11 .P. Durrant 2009....json
+-rw-r--r-- 1 ahmed ahmed  174 Nov 27 18:11 P. Durrant 2009....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .P. Durrant  N. S....json
+-rw-r--r-- 1 ahmed ahmed  186 Nov 27 18:12 P. Durrant  N. S....txt
+-rw-r--r-- 1 ahmed ahmed  610 Nov 27 18:52 .pedagogyThe m...1.json
+-rw-r--r-- 1 ahmed ahmed  102 Nov 27 18:52 pedagogyThe m...1.txt
+-rw-r--r-- 1 ahmed ahmed  610 Nov 27 18:52 .pedagogyThe m....json
+-rw-r--r-- 1 ahmed ahmed  102 Nov 27 18:52 pedagogyThe m....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:15 .possessive determ....json
+-rw-r--r-- 1 ahmed ahmed 3.9K Nov 27 19:15 possessive determ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:44 .Prague Arabic Dep....json
+-rw-r--r-- 1 ahmed ahmed  441 Nov 27 08:44 Prague Arabic Dep....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:05 .Problems Facing F....json
+-rw-r--r-- 1 ahmed ahmed 1.1K Nov 27 19:05 Problems Facing F....txt
+-rw-r--r-- 1 ahmed ahmed  588 Nov 27 07:45 .Really Great._.json
+-rw-r--r-- 1 ahmed ahmed   14 Nov 27 07:45 Really Great._.txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 17:39 .References Hal....json
+-rw-r--r-- 1 ahmed ahmed 2.3K Nov 27 17:39 References Hal....txt
+-rw-r--r-- 1 ahmed ahmed  593 Nov 27 14:46 .Research Interests.json
+-rw-r--r-- 1 ahmed ahmed   19 Nov 27 14:46 Research Interests.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:11 .Restorative Writi....json
+-rw-r--r-- 1 ahmed ahmed   98 Nov 27 17:11 Restorative Writi....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:28 .return to GSP 220....json
+-rw-r--r-- 1 ahmed ahmed 8.6K Nov 27 09:28 return to GSP 220....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 12:08 .So how do you do ....json
+-rw-r--r-- 1 ahmed ahmed   55 Nov 28 12:08 So how do you do ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:13 .Strayer Universit....json
+-rw-r--r-- 1 ahmed ahmed 4.6K Nov 27 09:13 Strayer Universit....txt
+-rw-r--r-- 1 ahmed ahmed  590 Nov 27 08:20 .Student Comments.json
+-rw-r--r-- 1 ahmed ahmed   16 Nov 27 08:20 Student Comments.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:51 .Sublist 1 of the ....json
+-rw-r--r-- 1 ahmed ahmed 7.9K Nov 27 17:51 Sublist 1 of the ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:59 .Swan also finds ....json
+-rw-r--r-- 1 ahmed ahmed  419 Nov 27 18:59 Swan also finds ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:13 .systemic function....json
+-rw-r--r-- 1 ahmed ahmed 3.5K Nov 27 19:13 systemic function....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:17 .Thanks Great Pre....json
+-rw-r--r-- 1 ahmed ahmed   27 Nov 27 09:17 Thanks Great Pre....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:19 .Thank you so much....json
+-rw-r--r-- 1 ahmed ahmed   50 Nov 27 08:19 Thank you so much....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:48 .The class of verb....json
+-rw-r--r-- 1 ahmed ahmed  169 Nov 27 18:48 The class of verb....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:06 .The fact that an....json
+-rw-r--r-- 1 ahmed ahmed  277 Nov 27 19:06 The fact that an....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:09 .The idea that lex....json
+-rw-r--r-- 1 ahmed ahmed 2.0K Nov 27 18:09 The idea that lex....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:33 .The NLTK collocat....json
+-rw-r--r-- 1 ahmed ahmed 1.1K Nov 27 19:33 The NLTK collocat....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:40 .The problem for t....json
+-rw-r--r-- 1 ahmed ahmed  393 Nov 27 17:40 The problem for t....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:01 .There are three s....json
+-rw-r--r-- 1 ahmed ahmed  435 Nov 27 17:01 There are three s....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:03 .The study of the ....json
+-rw-r--r-- 1 ahmed ahmed  457 Nov 27 19:03 The study of the ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:51 .The term colliga...1.json
+-rw-r--r-- 1 ahmed ahmed  186 Nov 27 18:51 The term colliga...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:48 .The term colliga....json
+-rw-r--r-- 1 ahmed ahmed  186 Nov 27 18:48 The term colliga....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:08 .This whole subjec....json
+-rw-r--r-- 1 ahmed ahmed  372 Nov 27 17:08 This whole subjec....txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  6 10:46 ._   title  conte....json
+-rw-r--r-- 1 ahmed ahmed   35 Dec  6 10:46 _   title  conte....txt
+-rw-r--r-- 1 ahmed ahmed  16K Nov 27 09:20 _                ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 09:08 .Vimium optionsSc....json
+-rw-r--r-- 1 ahmed ahmed 3.5K Nov 27 09:08 Vimium optionsSc....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 30 12:18 ._web applications....json
+-rw-r--r-- 1 ahmed ahmed  185 Nov 30 12:18 _web applications....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:07 .When conducting ....json
+-rw-r--r-- 1 ahmed ahmed  421 Nov 27 19:07 When conducting ....txt
+-rw-r--r-- 1 ahmed ahmed  578 Dec  6 10:46 .Your.json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 11:32 .Your password is ...1.json
+-rw-r--r-- 1 ahmed ahmed   25 Nov 28 11:32 Your password is ...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 11:31 .Your password is ....json
+-rw-r--r-- 1 ahmed ahmed   25 Nov 28 11:31 Your password is ....txt
+-rw-r--r-- 1 ahmed ahmed    4 Dec  6 10:46 Your.txt
+total 1.4M
+drwxr-xr-x 2 ahmed ahmed  20K Dec  6 10:48 .
+drwxr-xr-x 4 ahmed ahmed 4.0K Nov 27 09:25 ..
+-rw-r--r-- 1 ahmed ahmed  580 Nov 27 16:01 .1.json
+-rw-r--r-- 1 ahmed ahmed    3 Nov 27 16:01 1.txt
+-rw-r--r-- 1 ahmed ahmed  580 Nov 27 16:01 .2.json
+-rw-r--r-- 1 ahmed ahmed    3 Nov 27 16:01 2.txt
+-rw-r--r-- 1 ahmed ahmed  574 Nov 29 10:56 .3.json
+-rw-r--r-- 1 ahmed ahmed    0 Nov 29 10:56 3.txt
+-rw-r--r-- 1 ahmed ahmed  582 Nov 28 03:44 .abobani8.json
+-rw-r--r-- 1 ahmed ahmed    8 Nov 28 03:44 abobani8.txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:47 .According to Fir....json
+-rw-r--r-- 1 ahmed ahmed  726 Nov 27 18:47 According to Fir....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:53 .A corpus-driven ....json
+-rw-r--r-- 1 ahmed ahmed  430 Nov 27 18:53 A corpus-driven ....txt
+-rw-r--r-- 1 ahmed ahmed  592 Nov 30 12:49 .adminqa-stack.com.json
+-rw-r--r-- 1 ahmed ahmed   18 Nov 30 12:49 adminqa-stack.com.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:42 .Advanced Collocat....json
+-rw-r--r-- 1 ahmed ahmed 3.9K Nov 27 19:42 Advanced Collocat....txt
+-rw-r--r-- 1 ahmed ahmed  579 Dec  6 10:48 .ahmed1.json
+-rw-r--r-- 1 ahmed ahmed    5 Dec  6 10:48 ahmed1.txt
+-rw-r--r-- 1 ahmed ahmed  579 Dec  6 10:48 .ahmed2.json
+-rw-r--r-- 1 ahmed ahmed    5 Dec  6 10:48 ahmed2.txt
+-rw-r--r-- 1 ahmed ahmed  579 Dec  6 10:48 .ahmed.json
+-rw-r--r-- 1 ahmed ahmed    5 Dec  6 10:48 ahmed.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:59 .Also Known As la....json
+-rw-r--r-- 1 ahmed ahmed  152 Nov 27 18:59 Also Known As la....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:42 .An easy way to re....json
+-rw-r--r-- 1 ahmed ahmed  405 Nov 27 19:42 An easy way to re....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:04 .Applications of F....json
+-rw-r--r-- 1 ahmed ahmed  675 Nov 27 19:04 Applications of F....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:00 .As Arabic is noto....json
+-rw-r--r-- 1 ahmed ahmed  249 Nov 27 17:00 As Arabic is noto....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:49 .At this time the ....json
+-rw-r--r-- 1 ahmed ahmed  213 Nov 27 16:49 At this time the ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  6 00:27 ._awk lsplit1...1.json
+-rw-r--r-- 1 ahmed ahmed  104 Dec  6 00:27 _awk lsplit1...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  6 00:27 ._awk lsplit1....json
+-rw-r--r-- 1 ahmed ahmed  104 Dec  6 00:27 _awk lsplit1....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:34 .Beyond IQ A late....json
+-rw-r--r-- 1 ahmed ahmed 1.3K Nov 27 17:34 Beyond IQ A late....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 17:36 .BibliographyAlt....json
+-rw-r--r-- 1 ahmed ahmed 3.8K Nov 27 17:36 BibliographyAlt....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:38 .Business conflic....json
+-rw-r--r-- 1 ahmed ahmed 1.3K Nov 27 16:38 Business conflic....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:55 .Chunk and chunkin....json
+-rw-r--r-- 1 ahmed ahmed  210 Nov 27 18:55 Chunk and chunkin....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:13 .chunkBy Richard ....json
+-rw-r--r-- 1 ahmed ahmed 5.8K Nov 27 19:13 chunkBy Richard ....txt
+-rw-r--r-- 1 ahmed ahmed  607 Nov 27 09:01 . CLI...1.json
+-rw-r--r-- 1 ahmed ahmed  56K Nov 27 09:01  CLI...1.txt
+-rw-r--r-- 1 ahmed ahmed  607 Nov 27 08:32 . CLI....json
+-rw-r--r-- 1 ahmed ahmed  56K Nov 27 08:32  CLI....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:09 .Colligation and t....json
+-rw-r--r-- 1 ahmed ahmed  127 Nov 27 17:09 Colligation and t....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 17:39 .CollocationI wa....json
+-rw-r--r-- 1 ahmed ahmed  273 Nov 27 17:39 CollocationI wa....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 14:46 .Collocations Invo....json
+-rw-r--r-- 1 ahmed ahmed 1.3K Nov 27 14:46 Collocations Invo....txt
+-rw-r--r-- 1 ahmed ahmed  586 Nov 27 17:34 .Collocations.json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:17 .Collocations List....json
+-rw-r--r-- 1 ahmed ahmed 3.2K Nov 27 18:17 Collocations List....txt
+-rw-r--r-- 1 ahmed ahmed  597 Nov 27 19:17 .CollocationsTe...1.json
+-rw-r--r-- 1 ahmed ahmed 2.0K Nov 27 19:17 CollocationsTe...1.txt
+-rw-r--r-- 1 ahmed ahmed  597 Nov 27 18:13 .CollocationsTe....json
+-rw-r--r-- 1 ahmed ahmed 2.5K Nov 27 18:13 CollocationsTe....txt
+-rw-r--r-- 1 ahmed ahmed   12 Nov 27 17:34 Collocations.txt
+-rw-r--r-- 1 ahmed ahmed  610 Nov 27 17:34 .collocationTh....json
+-rw-r--r-- 1 ahmed ahmed  129 Nov 27 17:34 collocationTh....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:04 .Comments from stu...1.json
+-rw-r--r-- 1 ahmed ahmed  20K Nov 27 09:04 Comments from stu...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:24 .Comments from stu....json
+-rw-r--r-- 1 ahmed ahmed  20K Nov 27 09:24 Comments from stu....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 14:02 .Contact UsSugges....json
+-rw-r--r-- 1 ahmed ahmed  213 Nov 27 14:02 Contact UsSugges....txt
+-rw-r--r-- 1 ahmed ahmed  582 Dec  6 10:48 .contents.json
+-rw-r--r-- 1 ahmed ahmed    8 Dec  6 10:48 contents.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .Crash Course Usi....json
+-rw-r--r-- 1 ahmed ahmed 2.0K Nov 27 18:12 Crash Course Usi....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:58 .Criticism of the ....json
+-rw-r--r-- 1 ahmed ahmed  472 Nov 27 18:58 Criticism of the ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 17:32 .DECLARATIONBy su....json
+-rw-r--r-- 1 ahmed ahmed  307 Nov 27 17:32 DECLARATIONBy su....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:46 .DefinitionA fam....json
+-rw-r--r-- 1 ahmed ahmed  329 Nov 27 18:46 DefinitionA fam....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:46 .DefinitionA gro....json
+-rw-r--r-- 1 ahmed ahmed  470 Nov 27 18:46 DefinitionA gro....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:09 .DefinitionBoth ....json
+-rw-r--r-- 1 ahmed ahmed  354 Nov 27 19:09 DefinitionBoth ....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 18:44 .DefinitionColl....json
+-rw-r--r-- 1 ahmed ahmed  316 Nov 27 18:44 DefinitionColl....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:14 .DefinitionIn li....json
+-rw-r--r-- 1 ahmed ahmed 5.4K Nov 27 19:14 DefinitionIn li....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:55 .DefinitionIn st....json
+-rw-r--r-- 1 ahmed ahmed  212 Nov 27 18:55 DefinitionIn st....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:12 .DefinitionThe a...1.json
+-rw-r--r-- 1 ahmed ahmed 3.5K Nov 27 19:12 DefinitionThe a...1.txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:03 .DefinitionThe a....json
+-rw-r--r-- 1 ahmed ahmed  127 Nov 27 19:03 DefinitionThe a....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 28 10:00 .def keywords ....json
+-rw-r--r-- 1 ahmed ahmed 1.7K Nov 28 10:00 def keywords ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Dec  5 05:10 .dpkg-reconfigure ....json
+-rw-r--r-- 1 ahmed ahmed   23 Dec  5 05:10 dpkg-reconfigure ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 16:48 ._English Languag....json
+-rw-r--r-- 1 ahmed ahmed 2.5K Nov 27 16:48 _English Languag....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:48 .Error and attack ....json
+-rw-r--r-- 1 ahmed ahmed  697 Nov 27 16:48 Error and attack ....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 18:47 .EtymologyFrom ....json
+-rw-r--r-- 1 ahmed ahmed  241 Nov 27 18:47 EtymologyFrom ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .Examples and Obse...1.json
+-rw-r--r-- 1 ahmed ahmed 3.1K Nov 27 19:11 Examples and Obse...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:10 .Examples and Obse....json
+-rw-r--r-- 1 ahmed ahmed 4.1K Nov 27 19:10 Examples and Obse....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:38 .Expanded definiti....json
+-rw-r--r-- 1 ahmed ahmed  700 Nov 27 17:38 Expanded definiti....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:08 ._Fillmore Kay an....json
+-rw-r--r-- 1 ahmed ahmed  384 Nov 27 18:08 _Fillmore Kay an....txt
+-rw-r--r-- 1 ahmed ahmed  537 Nov 27 07:37 .folder.json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:48 .For decades the ....json
+-rw-r--r-- 1 ahmed ahmed  255 Nov 27 16:48 For decades the ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:35 .for row in data....json
+-rw-r--r-- 1 ahmed ahmed  720 Nov 27 19:35 for row in data....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 17:40 .Here are some qu....json
+-rw-r--r-- 1 ahmed ahmed 2.8K Nov 27 17:40 Here are some qu....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:06 .His consultation....json
+-rw-r--r-- 1 ahmed ahmed  536 Nov 27 19:06 His consultation....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:44 .httpfaculty.ua....json
+-rw-r--r-- 1 ahmed ahmed   97 Nov 27 08:44 httpfaculty.ua....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .httpgrammar.ab...1.json
+-rw-r--r-- 1 ahmed ahmed   59 Nov 27 19:11 httpgrammar.ab...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .httpgrammar.ab...2.json
+-rw-r--r-- 1 ahmed ahmed   59 Nov 27 19:11 httpgrammar.ab...2.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:08 .httpgrammar.ab....json
+-rw-r--r-- 1 ahmed ahmed   48 Nov 27 19:08 httpgrammar.ab....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:39 .httpnltk.googl....json
+-rw-r--r-- 1 ahmed ahmed   64 Nov 27 19:39 httpnltk.googl....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:10 .httpsdcu.acade....json
+-rw-r--r-- 1 ahmed ahmed   38 Nov 27 18:10 httpsdcu.acade....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:10 .httpsnova.acad....json
+-rw-r--r-- 1 ahmed ahmed   43 Nov 27 18:10 httpsnova.acad....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:11 .httpswww.acade...1.json
+-rw-r--r-- 1 ahmed ahmed  131 Nov 27 16:11 httpswww.acade...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:09 .httpswww.acade...2.json
+-rw-r--r-- 1 ahmed ahmed  120 Nov 27 17:09 httpswww.acade...2.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:11 .httpswww.acade...3.json
+-rw-r--r-- 1 ahmed ahmed  106 Nov 27 17:11 httpswww.acade...3.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:11 .httpswww.acade...4.json
+-rw-r--r-- 1 ahmed ahmed  182 Nov 27 18:11 httpswww.acade...4.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .httpswww.acade...5.json
+-rw-r--r-- 1 ahmed ahmed   98 Nov 27 18:12 httpswww.acade...5.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .httpswww.acade...6.json
+-rw-r--r-- 1 ahmed ahmed  187 Nov 27 18:12 httpswww.acade...6.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:20 .httpswww.acade...7.json
+-rw-r--r-- 1 ahmed ahmed   75 Nov 27 18:20 httpswww.acade...7.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:20 .httpswww.acade...8.json
+-rw-r--r-- 1 ahmed ahmed  182 Nov 27 18:20 httpswww.acade...8.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 14:46 .httpswww.acade....json
+-rw-r--r-- 1 ahmed ahmed  122 Nov 27 14:46 httpswww.acade....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:44 .httpufal.mff.c....json
+-rw-r--r-- 1 ahmed ahmed   53 Nov 27 08:44 httpufal.mff.c....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:17 .httpwww.englis....json
+-rw-r--r-- 1 ahmed ahmed   54 Nov 27 19:17 httpwww.englis....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 12:24 .httpwww.marksi....json
+-rw-r--r-- 1 ahmed ahmed   52 Nov 28 12:24 httpwww.marksi....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 07:52 .httpwww.uas.al....json
+-rw-r--r-- 1 ahmed ahmed   83 Nov 27 07:52 httpwww.uas.al....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:02 .httpwww.victor....json
+-rw-r--r-- 1 ahmed ahmed   71 Nov 27 18:02 httpwww.victor....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:38 .httpwww.xklsv.....json
+-rw-r--r-- 1 ahmed ahmed   52 Nov 27 17:38 httpwww.xklsv.....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:47 .Impact of knowled....json
+-rw-r--r-- 1 ahmed ahmed 2.3K Nov 27 16:47 Impact of knowled....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:36 .In linguistics....json
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:36 .In linguistics p....json
+-rw-r--r-- 1 ahmed ahmed  763 Nov 27 17:36 In linguistics p....txt
+-rw-r--r-- 1 ahmed ahmed 7.5K Nov 27 17:36 In linguistics....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 16:49 .In the 1970s the....json
+-rw-r--r-- 1 ahmed ahmed  130 Nov 27 16:49 In the 1970s the....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:24 .In this class so ...1.json
+-rw-r--r-- 1 ahmed ahmed  253 Nov 27 08:24 In this class so ...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:24 .In this class so ....json
+-rw-r--r-- 1 ahmed ahmed  253 Nov 27 08:24 In this class so ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:06 .Introduction.Lin....json
+-rw-r--r-- 1 ahmed ahmed  576 Nov 27 18:06 Introduction.Lin....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:20 ._                ....json
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:05 .Keywords.Phraseo....json
+-rw-r--r-- 1 ahmed ahmed   98 Nov 27 18:05 Keywords.Phraseo....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .linguistic perfor...1.json
+-rw-r--r-- 1 ahmed ahmed 5.3K Nov 27 19:11 linguistic perfor...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:11 .linguistic perfor....json
+-rw-r--r-- 1 ahmed ahmed 5.3K Nov 27 19:11 linguistic perfor....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:18 .Lisa Fields Illus...1.json
+-rw-r--r-- 1 ahmed ahmed 7.9K Nov 27 09:18 Lisa Fields Illus...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:25 .Lisa Fields Illus....json
+-rw-r--r-- 1 ahmed ahmed 7.9K Nov 27 09:25 Lisa Fields Illus....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:02 .Most Frequent Wor....json
+-rw-r--r-- 1 ahmed ahmed  456 Nov 27 18:02 Most Frequent Wor....txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 09:27 .My CoursesI con....json
+-rw-r--r-- 1 ahmed ahmed 4.8K Nov 27 09:27 My CoursesI con....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:05 .Old comments 200...1.json
+-rw-r--r-- 1 ahmed ahmed  25K Nov 27 09:05 Old comments 200...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:05 .Old comments 200....json
+-rw-r--r-- 1 ahmed ahmed  25K Nov 27 09:05 Old comments 200....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:05 .On some occasions....json
+-rw-r--r-- 1 ahmed ahmed  885 Nov 27 19:05 On some occasions....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:11 .P. Durrant 2009....json
+-rw-r--r-- 1 ahmed ahmed  174 Nov 27 18:11 P. Durrant 2009....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:12 .P. Durrant  N. S....json
+-rw-r--r-- 1 ahmed ahmed  186 Nov 27 18:12 P. Durrant  N. S....txt
+-rw-r--r-- 1 ahmed ahmed  610 Nov 27 18:52 .pedagogyThe m...1.json
+-rw-r--r-- 1 ahmed ahmed  102 Nov 27 18:52 pedagogyThe m...1.txt
+-rw-r--r-- 1 ahmed ahmed  610 Nov 27 18:52 .pedagogyThe m....json
+-rw-r--r-- 1 ahmed ahmed  102 Nov 27 18:52 pedagogyThe m....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:15 .possessive determ....json
+-rw-r--r-- 1 ahmed ahmed 3.9K Nov 27 19:15 possessive determ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:44 .Prague Arabic Dep....json
+-rw-r--r-- 1 ahmed ahmed  441 Nov 27 08:44 Prague Arabic Dep....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:05 .Problems Facing F....json
+-rw-r--r-- 1 ahmed ahmed 1.1K Nov 27 19:05 Problems Facing F....txt
+-rw-r--r-- 1 ahmed ahmed  588 Nov 27 07:45 .Really Great._.json
+-rw-r--r-- 1 ahmed ahmed   14 Nov 27 07:45 Really Great._.txt
+-rw-r--r-- 1 ahmed ahmed  596 Nov 27 17:39 .References Hal....json
+-rw-r--r-- 1 ahmed ahmed 2.3K Nov 27 17:39 References Hal....txt
+-rw-r--r-- 1 ahmed ahmed  593 Nov 27 14:46 .Research Interests.json
+-rw-r--r-- 1 ahmed ahmed   19 Nov 27 14:46 Research Interests.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:11 .Restorative Writi....json
+-rw-r--r-- 1 ahmed ahmed   98 Nov 27 17:11 Restorative Writi....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:28 .return to GSP 220....json
+-rw-r--r-- 1 ahmed ahmed 8.6K Nov 27 09:28 return to GSP 220....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 28 12:08 .So how do you do ....json
+-rw-r--r-- 1 ahmed ahmed   55 Nov 28 12:08 So how do you do ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:13 .Strayer Universit....json
+-rw-r--r-- 1 ahmed ahmed 4.6K Nov 27 09:13 Strayer Universit....txt
+-rw-r--r-- 1 ahmed ahmed  590 Nov 27 08:20 .Student Comments.json
+-rw-r--r-- 1 ahmed ahmed   16 Nov 27 08:20 Student Comments.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:51 .Sublist 1 of the ....json
+-rw-r--r-- 1 ahmed ahmed 7.9K Nov 27 17:51 Sublist 1 of the ....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 18:59 .Swan also finds ....json
+-rw-r--r-- 1 ahmed ahmed  419 Nov 27 18:59 Swan also finds ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:13 .systemic function....json
+-rw-r--r-- 1 ahmed ahmed 3.5K Nov 27 19:13 systemic function....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 09:17 .Thanks Great Pre....json
+-rw-r--r-- 1 ahmed ahmed   27 Nov 27 09:17 Thanks Great Pre....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 08:19 .Thank you so much....json
+-rw-r--r-- 1 ahmed ahmed   50 Nov 27 08:19 Thank you so much....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:48 .The class of verb....json
+-rw-r--r-- 1 ahmed ahmed  169 Nov 27 18:48 The class of verb....txt
+-rw-r--r-- 1 ahmed ahmed  595 Nov 27 19:06 .The fact that an....json
+-rw-r--r-- 1 ahmed ahmed  277 Nov 27 19:06 The fact that an....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:09 .The idea that lex....json
+-rw-r--r-- 1 ahmed ahmed 2.0K Nov 27 18:09 The idea that lex....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:33 .The NLTK collocat....json
+-rw-r--r-- 1 ahmed ahmed 1.1K Nov 27 19:33 The NLTK collocat....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:40 .The problem for t....json
+-rw-r--r-- 1 ahmed ahmed  393 Nov 27 17:40 The problem for t....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:01 .There are three s....json
+-rw-r--r-- 1 ahmed ahmed  435 Nov 27 17:01 There are three s....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 19:03 .The study of the ....json
+-rw-r--r-- 1 ahmed ahmed  457 Nov 27 19:03 The study of the ....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:51 .The term colliga...1.json
+-rw-r--r-- 1 ahmed ahmed  186 Nov 27 18:51 The term colliga...1.txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 18:48 .The term colliga....json
+-rw-r--r-- 1 ahmed ahmed  186 Nov 27 18:48 The term colliga....txt
+-rw-r--r-- 1 ahmed ahmed  594 Nov 27 17:08 .This whole subjec....json
+-rw-r--r-- 1 ahmed ahmed  372 Nov 27 17:08 This whole 
