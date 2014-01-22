@@ -444,5 +444,3 @@ echo -e "\t\t\t\t $(date)"
 alias WWW_z="vim ~/.zshrc && source ~/.zshrc"
 alias WWW_zz="vim ~/zdotfiles/1/.zsh/al.zsh && source ~/zdotfiles/1/.zsh/al.zsh"
 alias WWW_v="vim ~/zdotfiles/2/.vimrc.local && source ~/zdotfiles/2/.vimrc.local"
-alias WWW_reboot="sudo reboot"
-
