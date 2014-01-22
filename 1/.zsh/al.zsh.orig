@@ -1,43 +1,22 @@
 #!/bin/zsh
-les() {  echo "ls -a"; ls -a "$1" | wc -l; echo  "ls -A";  ls -A | wc -l }
 
 
-<<<<<<< HEAD
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 source ~/zdotfiles/1/walias.sh
-=======
-#source ~/zdotfiles/link/arabic_alias
-#source ~/zdotfiles/link/z_arabic.sh
-#source ~/zdotfiles/1/walias.sh
->>>>>>> xubuntu2013
 
-alias w_ zshrc="$HOME/.zshrc"
-alias w_ zsh_alias="$"HOME/zdotfiles/1/.zsh/al.zsh
-alias w_bashrc="vim $HOME/.bashrc"
-
-alias W="echo"
 today=`date +%Y_%m_%d_%h_%s`
 
-<<<<<<< HEAD
 l()
-=======
-alias "ww"="vim"
-alias "ww"="python ~/zdotfiles/5/ranger-1.6.1/ranger.py"
-
-function l()
->>>>>>> xubuntu2013
 {
-    ls -altr
+    ls -alt
 }
 
 function w()
 {
-    clear
-    ls -alrt
-    date
-    pwd
-    echo "$TERM     $SHELL"
+    clear;ls -al;date;pwd
+    echo "$TERM"
+    echo "$SHELL"
 }
 
 ن()
@@ -56,8 +35,7 @@ source ~/zdotfiles/1/z_arabic.sh
 
 show_code()
 {
-    pygmentize $1 | less -N
-}
+    pygmentize $1 | less -N }
 
 www_ak_add()
 {
@@ -75,7 +53,6 @@ www_wget()
 {
     wget --recursive  --page-requisites --convert-links
 }
-
 
 setup_git_push_default() {
     git config --global push.default current
@@ -97,7 +74,6 @@ ssh-keygen_rsa() {
     ssh -T git@github.com
 }
 
-
 git_clone() {
     git clone git@github.com:tazjel/zdotfiles.git
     cd zdotfiles
@@ -105,7 +81,6 @@ git_clone() {
     git remote set-url origin git@github.com:tazjel/zdotfiles.git
     git fetch upstream
 }
-
 
 ############################
 
@@ -133,6 +108,17 @@ star_Level_one()
 {
     echo -e "\t\t بسم الله الرحمن الرحيم | ماشاء الله ولا قوة الابالله"
 }
+#
+# vi style incremental search
+    export EDITOR="vim"
+    bindkey -v
+
+    bindkey '^R' history-incremental-search-backward
+    bindkey '^S' history-incremental-search-forward
+    bindkey '^P' history-search-backward
+    bindkey '^N' history-search-forward
+
+
 
 
 wwww_pdf()
@@ -244,20 +230,15 @@ function ww-bluetooth_restart {
     sudo service bluetooth restart;
 }
 
-<<<<<<< HEAD
 
 cmdfu()
 {
     curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R -;
-=======
-function cmdfu() {
-    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - ;
->>>>>>> xubuntu2013
 }
 
 
 
-wwws() {
+wwws () {
     PS3="Enter a number: "
     select f in $1;do
         echo $f;
@@ -336,15 +317,25 @@ www_lynx() {
 }
 
 
-<<<<<<< HEAD
-W_colors_term()
-{
-    for code in $(seq -w 0 255); do for attr in 0 1; do printf "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m" "\e[m"; done; done | column -c $((COLUMNS*2));
+ww_colors_term()
+    {for code in $(seq -w 0 255); do for attr in 0 1; do printf
+    "%s-%03s %bTest%b\n" "${attr}" "${code}" "\e[${attr};38;05;${code}m"
+    "\e[m"; done; done | column -c $((COLUMNS*2))
 }
 
 
-wbook()
-{
+######################################## Main
+
+# Start-up
+star_Level_one
+echo -e "\t\t\t\t $(date)"
+
+#cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
+
+############################################################################################################################################################
+
+
+wbook() {
     egrep "$1" /home/ahmed/Dropbox/C/Foundation/books.txt | grep -oG ").\(.*\)" | sed 's/).\s\+\(.*\)/\1/g'
 }
 
@@ -355,19 +346,6 @@ fbook() {
 
 wy_readline()
 {
-=======
-
-
-######################################## Main
-
-# Start-up star_Level_one echo -e "\t\t\t\t $(date)"
-#cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
-
-############################################################################################################################################################
-
-
-wy_readline() {
->>>>>>> xubuntu2013
     tail -F /var/log/nginx/access.log | python -c 'exec("import sys,time\nl=0\ne=int(time.time())\nfor line in sys.stdin:\n\tt = int(time.time())\n\tl += 1\n\tif t > e:\n\t\te = t\n\t\tprint l\n\t\tl = 0")'
 }
 
@@ -378,15 +356,10 @@ ww_sed_wy_append_line()
 }
 
 
-<<<<<<< HEAD
 # Dropbox login using only curl, sed and bash
 #link=https://www.dropbox.com/login ; curl -b a -c cookie -d "t=$(curl -c a $link | sed -rn 's/.*TOKEN: "([^"]*).*/\1/p')&login_email=me%40yahoo.com&login_password=my_passwd" $link
 # english <--> german translation with dict.leo.org
 #leo() { lang=en; IFS=+; Q="${*// /%20}"; curl -s "https://dict.leo.org/${lang}de/?search=${Q//+/%20}" | html2text | grep -EA 900 '^\*{5} ' | grep -B 900 '^Weitere Aktionen$';}
-=======
-
-
->>>>>>> xubuntu2013
 
 
 wpic()
@@ -398,23 +371,14 @@ wpic()
 #$(pgrep easystroke)
 
 alias "wea_easystroke"="easystroke -c ~/.easystroke"
-<<<<<<< HEAD
-
-=======
->>>>>>> xubuntu2013
+#echo ${TERM}
 
 alias "w_term_colors"="msgcat --color=test"
 
 alias 'wchmod-400-only'='chmod 400 ~/.ssh/id_rsa'
 alias 'wgit_set-url_origin'= 'git remote set-url origin git@github.com:tazjel/zdotfiles.git'
 
-<<<<<<< HEAD
-www_dmesg()
-{
-    dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
-}
-
-
+#dmesg -T|sed -e 's|\(^.*'`date +%Y`']\)\(.*\)|\x1b[0;34m\1\x1b[0m - \2|g'
 Undo_commit()
 {
     git commit
@@ -424,12 +388,10 @@ Undo_commit()
     git commit -c ORIG_HEAD
 }
 
-xremindme()
+function xremindme()
 {
     sleep $1 && zenity --info --text "$2" &
 }
-=======
->>>>>>> xubuntu2013
 
 
 wfg() {
@@ -479,3 +441,11 @@ alias wabout="lsb_release -a"
 star_Level_one
 #cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
 echo -e "\t\t\t\t $(date)"
+alias WWW_z="vim ~/.zshrc && source ~/.zshrc"
+alias WWW_zz="vim ~/zdotfiles/1/.zsh/al.zsh && source ~/zdotfiles/1/.zsh/al.zsh"
+alias WWW_v="vim ~/zdotfiles/2/.vimrc.local && source ~/zdotfiles/2/.vimrc.local"
+<<<<<<< HEAD
+alias WWW_reboot="sudo reboot"
+
+=======
+>>>>>>> 2be3677bfc95a4384b81c347f053edb31765139b
