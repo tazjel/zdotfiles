@@ -2,7 +2,8 @@
 set nocompatible
 
 
-cabbrev Ww %s/^[<\|>\|=].*//gc
+
+"%s/^[<\|>\|=].*//gc
 
 
 
@@ -16,30 +17,8 @@ if has("multi_byte")
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
-let base16colorspace=256
-
-
-"let encoding = &enc
-"set encoding=utf-8
-"if encoding == 'latin1'
-    "if has("unix")
-    "let encoding = 'iso-8859-8'
-    "else
-    "let encoding = 'cp1255'
-    "endif
-"endif
-
-"if encoding == 'utf-8'
-    "source <sfile>:p:h/hebrewp_utf-8.vim
-"elseif encoding == 'cp1255'
-    "source <sfile>:p:h/hebrewp_cp1255.vim
 
 set fillchars+=stl:\ ,stlnc:\
-
-if &encoding == 'utf-8'
-  set ambiwidth=single
-  "set ambiwidth=double
-endif
 
 set background=dark
 
@@ -56,13 +35,7 @@ endif
 
 
 
-Bundle 'chriskempson/base16-vim'
 
-"
-    "colorscheme random
-            set autoindent smartindent
-            set expandtab smarttab
-            set tabstop=4 shiftwidth=4
 
 
 
@@ -550,7 +523,7 @@ endfunction
 
             "auto-complete
                 " nice bash-like filename auto-complete
-                set listchars=tab:>-,trail:-
+                "set listchars=tab:>-,trail:-
                 set list
                 set wildmode=longest,list,full
                 set wildmode=full:list
@@ -622,30 +595,30 @@ endfunction
                         " source: http://vim.wikia.com/wiki/VimTip102
                         " Let <Tab> do all the autocompletion
 
-function! Smart_TabComplete()
-    let line = getline('.') 					" curline
-    let substr = strpart(line, -1, col('.'))	" from start to cursor
-    let substr = matchstr(substr, "[^ \t]*$")	" word till cursor
-    if (strlen(substr)==0)						" nothing to match on empty string
-        return "\<tab>"
-    endif
-    let has_period = match(substr, '\.') != -1	" position of period, if any
-    let has_slash = match(substr, '\/') != -1	" position of slash, if any
-    if (!has_period && !has_slash)
-        return "\<C-X>\<C-P>"					" existing text matching
-    elseif ( has_slash )
-        return "\<C-X>\<C-F>"					" file matching
-    else
-        return "\<C-X>\<C-l>"					" plugin matching
-    endif
-endfunction
+"function! Smart_TabComplete()
+    "let line = getline('.') 					" curline
+    "let substr = strpart(line, -1, col('.'))	" from start to cursor
+    "let substr = matchstr(substr, "[^ \t]*$")	" word till cursor
+    "if (strlen(substr)==0)						" nothing to match on empty string
+        "return "\<tab>"
+    "endif
+    "let has_period = match(substr, '\.') != -1	" position of period, if any
+    "let has_slash = match(substr, '\/') != -1	" position of slash, if any
+    "if (!has_period && !has_slash)
+        "return "\<C-X>\<C-P>"					" existing text matching
+    "elseif ( has_slash )
+        "return "\<C-X>\<C-F>"					" file matching
+    "else
+        "return "\<C-X>\<C-l>"					" plugin matching
+    "endif
+"endfunction
 
 "inoremap <tab> <c-r>=Smart_TabComplete()<CR>
-    set cpt=.,k,w,b,t,i
+    "set cpt=.,k,w,b,t,i
 
     "Register
         " Make p in Visual mode replace the selected text with the "" register.
-        vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+        "vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
     "Marks
         "' jumps to the precise location of a marks (`)

@@ -4,7 +4,7 @@
 
 export LC_ALL=en_US.UTF-8
 
-source $HOME/zdotfiles/1/.zsh/al.zsh
+#source $HOME/zdotfiles/1/.zsh/al.zsh
 source $HOME/zdotfiles/1/.zsh/checks.zsh
 source $HOME/zdotfiles/1/.zsh/colors.zsh
 source $HOME/zdotfiles/1/.zsh/completion.zsh
@@ -18,12 +18,13 @@ source $HOME/zdotfiles/1/.zsh/prompt.zsh
 source $HOME/zdotfiles/1/.zsh/setopt.zsh
 source $HOME/zdotfiles/1/.zsh/zsh_hooks.zsh
 
-source $HOME/zdotfiles/1/.zsh/arabic_alias.zsh
-source $HOME/zdotfiles/1/z_arabic.sh
+#source $HOME/zdotfiles/1/.zsh/arabic_alias.zsh
+#source $HOME/zdotfiles/1/z_arabic.sh
 
-source $HOME/zdotfiles/1/.zsh/config
+#source $HOME/zdotfiles/1/.zsh/config
 
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-setopt prompt_subst
+#source ~/zdotfiles/1/z_arabic.sh
+#PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+#setopt prompt_subst
 

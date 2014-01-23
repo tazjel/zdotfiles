@@ -3,13 +3,13 @@ abbr #p #!/usr/bin/env python<CR>
 
 abbreviate CAR Conflict Analysis & Resolution
 
-<<<<<<< HEAD
+
 abbreviate w# """"""""""""""""""""""""
 """"""""""""""""""""""""""""""""
 
 cabbrev h tab h
-=======
->>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70
+
+
 cabbrev pw vsplit ~/.config/ipython/profile_default/startup/w.ipy
 cabbrev s1 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/sh.snip
 cabbrev t5 vsplit ~/.spf13-vim-3/.vim/bundle/neosnippet/autoload/neosnippet/snippets/text.snip
@@ -23,34 +23,34 @@ cabbrev wp vsplit ~/.config/ipython/profile_default/startup/ww.py
 cabbrev wpy !python %
 cabbrev wpy vsplit ~/.config/ipython/profile_default/startup/w.ipy
 cabbrev ws %s/\s\+$//gc
-<<<<<<< HEAD
+
 cabbrev wsnp %s:^:snippet$\{0\:#\}:gc
 cabbrev wsnp %s:^\(.*\):snippet\t\1\/\n\t\1:gc
-=======
+
 
 "cabbrev ws %s:^:snippet$\{0\:"\}:gc
 "cabbrev ws %s:^\(.*\):snippet\t\1\/\n\t\1:gc
 
->>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70
+
 cabbrev ws_ s/\s/_/gc
 cabbrev wsh !bash %
 cabbrev ww <C-r>"<BS>
 cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
 iabbr ws when where who what why
-<<<<<<< HEAD
+
 """""""""""""""""""""""""""""""""""""""
 
 
 "
 iabbrev ## #####################################################<CR>
 iabbrev $$ ${0: }<left><left>
-=======
+
 
 iabbrev ### #####################################################<CR>
 
 "iabbrev $$ ${0: }<left><left>
 
->>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70
+
 iabbrev WWW () {<CR>
 nnoremap wl :call Zget_line()<CR>
 cabbrev wc call Z
