@@ -1,5 +1,4 @@
 #!/usr/bin/env bash
-
 ############################  SETUP PARAMETERS
     git_branch='A'
     debug_mode='0'
@@ -69,6 +68,14 @@ z__install_base() {
 # Keep-alive: update existing `sudo` time stamp until script has finished
 while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
 
+
+
+# Ask for the administrator password upfront
+    sudo -v
+# Keep-alive: update existing `sudo` time stamp until script has finished
+        while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+
+
 T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "assets" -and \
     -not -name "scripts" -and \
@@ -83,6 +90,7 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "*~*" \
     -not -name "\." \
     -exec basename {} \;`
+<<<<<<< HEAD
 #####################################################
 # Patch terminal font for Vim's Airline plugin
     # See: https://powerline.readthedocs.org/en/latest/fontpatching.html
@@ -103,6 +111,36 @@ z__install_fonts(){
     fi;
 }
 
+||||||| merged common ancestors
+#a####################################################
+#
+#
+=======
+#a####################################################
+#
+#
+
+
+# Patch terminal font for Vim's Airline plugin
+# See: https://powerline.readthedocs.org/en/latest/fontpatching.html
+z__install_fonts(){
+    mkdir ./powerline-fontconfig
+    curl -fsSL https://github.com/Lokaltog/powerline/tarball/develop | tar -xvz --strip-components 2 --directory ./powerline-fontconfig -f -
+    fontforge -script ./powerline-fontconfig/fontpatcher.py --no-rename ./assets/SourceCodePro-Regular.otf
+    rm -rf ./powerline-fontconfig
+# Install the patched font
+    if $IS_OSX; then
+        mkdir -p ~/Library/Fonts/
+        mv ./Source\ Code\ Pro.otf ~/Library/Fonts/
+    else
+        mkdir -p ~/.fonts/
+        mv ./Source\ Code\ Pro.otf ~/.fonts/
+        # Refresh font cache
+        sudo fc-cache -f -v
+    fi
+}
+
+>>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 ####################################################
 
 w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
@@ -132,6 +170,58 @@ z__install_py() {
     sudo apt-get install python-virtualenv
     sudo apt-get install fabric;
 }
+
+<<<<<<< HEAD
+####################################################
+||||||| merged common ancestors
+success() {
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+}
+
+error() {
+    msg "\e[31m[✘]\e[0m ${1}${2}"
+}
+
+
+lnif()
+ {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?"
+}
+=======
+success() {
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+}
+
+error() {
+    msg "\e[31m[✘]\e[0m ${1}${2}"
+}
+
+
+lnif() {
+    if [ -e "$1" ]; then
+        ln -sf "$1" "$2"
+    fi
+    ret="$?";
+}
+
+#####################################################
+#http://www.pythonforbeginners.com/systems-programming/how-to-use-fabric-in-python/
+#https://code.osuosl.org/projects/51/wiki/Install
+# pip
+z__install_py() {
+    sudo apt-get install python-pip
+    # devel libraries may be needed for some pip installs
+    sudo apt-get install python-dev
+    # install fabric and virtualenv
+    sudo apt-get install python-virtualenv
+    sudo apt-get install fabric
+
+
+}
+>>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 
 ####################################################
 
@@ -343,10 +433,31 @@ wWw_git_up() {
     git push origin --all && git push origin --tags;
 }
 
+<<<<<<< HEAD
 z_symlink_kate() {
     ln -sf ~/zdotfiles/2/ktexteditor_snippets/ ~/.kde/share/apps/ktexteditor_snippets/data;
 }
 
+||||||| merged common ancestors
+
+function w_tmp() {
+    tempfile='/tmp/chosendir'
+    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+    test -f "$tempfile" &&
+    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+        cd -- "$(cat "$tempfile")"
+    fi
+    rm -f -- "$tempfile"
+}
+
+w_Do_we_have_command() {
+    which "$1" > /dev/null 2>&1 && echo "Success!";
+}
+
+
+=======
+
+>>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 while :
 do
 case $1 in

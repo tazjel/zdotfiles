@@ -14,6 +14,7 @@
 "   This is a mirror of :http://spf13.com
 
 
+#####################################################
 
 set nocompatible
 
@@ -179,13 +180,30 @@ nnoremap <silent> <C-S-F5> nnoremap <silent> <C-F5> :vsplit ~/zdotfiles/link/wal
 map <F8> :TagbarToggle<CR>
 map <S-F8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
 map <f8><f8> :diffoff<cr>
-
+map <Space><Space> ]c
         set diffopt=filler,context:4,iwhite
 " <F9>
         nnoremap <silent> <F9> :SessionList<CR>
         nnoremap <silent> <S-F9> :SessionSave<CR>
         nnoremap <M-F9> :sessionopen
         nnoremap <C-F9> :SessionSaveAs
+
+if &diff
+    "Vimdiff use c-j and c-k to navigate
+    nnoremap <C-j> ]c
+    nnoremap <C-k> [c
+
+    "Vimdiff quit without changes
+    nnoremap q :qa! <CR>
+endif
+
+" if using vimdiff:
+if &diff
+  colorscheme inkpot
+endif
+
+
+
 
 cabbrev wf !firefox %
 
