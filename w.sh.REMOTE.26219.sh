@@ -226,28 +226,7 @@ z__install_py() {
 ####################################################
 
 
-<<<<<<< HEAD
-app_names=(mercurial \
-    vim \
-    zsh \
-    vim \
-    xclip \
-    curl \
-    wget \
-    kdiff3 \
-    dos2unix)
-||||||| merged common ancestors
-app_names=(mercurial \
-    vim \
-    zsh \
-    vim \
-    xclip \
-    curl \
-    wget \
-    dos2unix)
-=======
 app_names=(mercurial vim zsh vim xclip curl wget dos2unix)
->>>>>>> xubuntu2013
 
 z__check_app_names() {
     for AA in $app_names ; do

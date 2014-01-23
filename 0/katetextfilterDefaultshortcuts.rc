@@ -1,0 +1,5 @@
+<kpartgui version="1" name="katetextfilter">
+  <ActionProperties>
+    <Action shortcut="Ctrl+\" name="edit_filter"/>
+  </ActionProperties>
+</kpartgui>

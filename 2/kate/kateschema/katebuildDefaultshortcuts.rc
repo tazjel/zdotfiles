@@ -1,0 +1,5 @@
+<kpartgui version="1" name="katebuild">
+  <ActionProperties>
+    <Action shortcut="Ctrl+Alt+Left" name="goto_prev"/>
+  </ActionProperties>
+</kpartgui>

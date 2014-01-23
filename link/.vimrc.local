@@ -19,6 +19,7 @@
 set nocompatible
 
 source ~/zdotfiles/2/zplugin/zabz.vim
+source ~/zdotfiles/2/colors/badwolf.vim
 "
 ""source ~/zdotfiles/2/zplugin/zabz.vim
 ""source ~/zdotfiles/2/zplugin/zbuff.vim
@@ -73,10 +74,6 @@ let @a=@q
 
 
 
-if &encoding == 'utf-8'
-      "set ambiwidth=single
-      set ambiwidth=double
-endif
 
 set background=dark
 "hi clear
@@ -95,7 +92,7 @@ endif
 "
 
 "colorscheme random
-colorscheme badwolf
+"colorscheme badwolf
 
 set autoindent smartindent
 set expandtab smarttab
@@ -188,13 +185,30 @@ nnoremap <silent> <C-S-F5> nnoremap <silent> <C-F5> :vsplit ~/zdotfiles/link/wal
 map <F8> :TagbarToggle<CR>
 map <S-F8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
 map <f8><f8> :diffoff<cr>
-
+map <Space><Space> ]c
         set diffopt=filler,context:4,iwhite
 " <F9>
         nnoremap <silent> <F9> :SessionList<CR>
         nnoremap <silent> <S-F9> :SessionSave<CR>
         nnoremap <M-F9> :sessionopen
         nnoremap <C-F9> :SessionSaveAs
+
+if &diff
+    "Vimdiff use c-j and c-k to navigate
+    nnoremap <C-j> ]c
+    nnoremap <C-k> [c
+
+    "Vimdiff quit without changes
+    nnoremap q :qa! <CR>
+endif
+
+" if using vimdiff:
+if &diff
+  colorscheme inkpot
+endif
+
+
+
 
 cabbrev wf !firefox %
 
@@ -305,7 +319,7 @@ map <S-F10> :colorscheme random
                 " Undo in insert mode.
         imap <c-z> <c-o>u
 
-let g:neosnippet#disable_runtime_snippets
+"let g:neosnippet#disable_runtime_snippets
 
 
 "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip

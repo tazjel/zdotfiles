@@ -39,7 +39,9 @@ cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
 iabbr ws when where who what why
 
 """""""""""""""""""""""""""""""""""""""
-
+map <silent> 2 :diffget 2<CR>:diffupdate<CR>
+map <silent> 3 :diffget 3<CR>:diffupdate<CR>
+map <silent> 4 :diffget 4<CR>:diffupdate<CR>
 
 "
 iabbrev ## #####################################################<CR>

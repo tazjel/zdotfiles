@@ -1,72 +1,15 @@
 #!/usr/bin/env bash
 ############################  SETUP PARAMETERS
-    git_branch='A'
-    debug_mode='0'
-    app_version='0.3'
+        app_name='spf13-vim'
+        git_uri='https://github.com/spf13/spf13-vim.git'
+        git_branch='3.0'
+        debug_mode='0'
+        fork_maintainer='0'
+
 ############################  NAMES SETUP
-    zdotfiles=$HOME/zdotfiles
-    LINKS=$HOME/zdotfiles/link
-
-    #for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
-    #for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
-    XXP=$(find $HOME -maxdepth 1)
-############################  BASIC SETUP TOOLS
-
-msg() {
-    printf '%b\n' "$1" >&2
-}
-
-success() {
-    msg "\e[32m[✔]\e[0m ${1}${2}"
-}
-
-z_error() {
-    msg "\e[31m[✘]\e[0m ${1}${2}"
-}
-
-
-lnif() {
-    if [ -e "$1" ]; then
-        ln -sf "$1" "$2"
-    fi
-    ret="$?";
-}
-#####################################################
-#
-#
-####################################################
-#
-
-w__prepare() {
-  cd ${zdotfiles}/6
-  sed -i -e 's|^#!/usr/bin/env python$|#!/usr/bin/env python2|' $(find ${zdotfiles}/6 -name '*.py');
-}
-
-wWw_git_up_ssh() {
-    echo "Check for SSH key and generate one if it doesn't exist."
-    [[ -f ~/.ssh/id_rsa.pub ]] || ssh-keygen -t rsa -C "tazjel@gmail.com"
-    echo "Copy public key to clipboard and paste it into your Github account."
-    [[ -f ~/.ssh/id_rsa.pub ]] && cat ~/.ssh/id_rsa.pub | xclip -selection clipboard
-    echo "Open www.github.com and add new SSH key."
-    echo "Press <Enter> to continue."
-    read NOW_READ
-}
-
-w__shutdown() {
-    echo "Your machine will now restart to apply changes."
-    sudo shutdown -r 0
-}
-
-
-z__install_base() {
-    echo "Installing base packages.This will take a long time and download ~500 MB."
-    sudo apt-get install git-core ruby kate libxml2-dev libxslt-dev libc6-dev build-essential gcc libgraphicsmagick1-dev libmagickwand-dev libreadline-dev ffmpeg file mysql-client mysql-server mysql-client mysql-server libmysqlclient-dev libssl-dev g++
-}
-
-# Ask for the administrator password upfront
- sudo -v
-# Keep-alive: update existing `sudo` time stamp until script has finished
-while true; do sudo -n true; sleep 60; kill -0 "$$" || exit; done 2>/dev/null &
+        zdotfiles=$HOME/zdotfiles
+        LINKS=$HOME/zdotfiles/link
+        vim_spf13_endpath="$HOME/.spf13-vim-3"
 
 
 
@@ -90,32 +33,6 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "*~*" \
     -not -name "\." \
     -exec basename {} \;`
-<<<<<<< HEAD
-#####################################################
-# Patch terminal font for Vim's Airline plugin
-    # See: https://powerline.readthedocs.org/en/latest/fontpatching.html
-z__install_fonts(){
-    mkdir ./powerline-fontconfig
-    curl -fsSL https://github.com/Lokaltog/powerline/tarball/develop | tar -xvz --strip-components 2 --directory ./powerline-fontconfig -f -
-    fontforge -script ./powerline-fontconfig/fontpatcher.py --no-rename ./assets/SourceCodePro-Regular.otf
-    rm -rf ./powerline-fontconfig
-    # Install the patched font
-    if $IS_OSX; then
-        mkdir -p ~/Library/Fonts/
-        mv ./Source\ Code\ Pro.otf ~/Library/Fonts/
-    else
-        mkdir -p ~/.fonts/
-        mv ./Source\ Code\ Pro.otf ~/.fonts/
-        # Refresh font cache
-        sudo fc-cache -f -v
-    fi;
-}
-
-||||||| merged common ancestors
-#a####################################################
-#
-#
-=======
 #a####################################################
 #
 #
@@ -140,8 +57,8 @@ z__install_fonts(){
     fi
 }
 
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 ####################################################
+#
 
 w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
     -not -name "assets" -and \
@@ -158,39 +75,15 @@ w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
     -not -name "\." \
     -exec basename {} \;`
 ############################  SETUP PARAMETERS
-#####################################################
-#http://www.pythonforbeginners.com/systems-programming/how-to-use-fabric-in-python/
-#https://code.osuosl.org/projects/51/wiki/Install
-# pip
-z__install_py() {
-    sudo apt-get install python-pip
-    # devel libraries may be needed for some pip installs
-    sudo apt-get install python-dev
-    # install fabric and virtualenv
-    sudo apt-get install python-virtualenv
-    sudo apt-get install fabric;
+    #for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
+    #for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
+    XXP=$(find $HOME -maxdepth 1)
+############################  BASIC SETUP TOOLS
+
+msg() {
+    printf '%b\n' "$1" >&2
 }
 
-<<<<<<< HEAD
-####################################################
-||||||| merged common ancestors
-success() {
-    msg "\e[32m[✔]\e[0m ${1}${2}"
-}
-
-error() {
-    msg "\e[31m[✘]\e[0m ${1}${2}"
-}
-
-
-lnif()
- {
-    if [ -e "$1" ]; then
-        ln -sf "$1" "$2"
-    fi
-    ret="$?"
-}
-=======
 success() {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
@@ -221,22 +114,10 @@ z__install_py() {
 
 
 }
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 
 ####################################################
 
 
-<<<<<<< HEAD
-app_names=(mercurial \
-    vim \
-    zsh \
-    vim \
-    xclip \
-    curl \
-    wget \
-    kdiff3 \
-    dos2unix)
-||||||| merged common ancestors
 app_names=(mercurial \
     vim \
     zsh \
@@ -245,9 +126,6 @@ app_names=(mercurial \
     curl \
     wget \
     dos2unix)
-=======
-app_names=(mercurial vim zsh vim xclip curl wget dos2unix)
->>>>>>> xubuntu2013
 
 z__check_app_names() {
     for AA in $app_names ; do
@@ -292,8 +170,8 @@ z_un_link_HOME() {
         if [ -e $FF ] && [ -L $FF ] ; then
             success " $FF"# && unlink $FF
         else
-            z_error "1= $FF"
-        fi;done;
+            error "1= $FF"
+        fi;done
 }
 
 
@@ -303,12 +181,12 @@ z_hi(){
         -r) z_restore ;;
         -c) z_check_f ;;
         -l) z_link_f ;;
-        -L) z_un_link_HOME ;;";
+        -L) z_un_link_HOME ;;"
 }
 
 
 usage() {
-    echo `basename $0`: z_error: $* 1>&2
+    echo `basename $0`: ERROR: $* 1>&2
     echo usage: `basename $0` '[-a] [-b] [-c]
         [file ...]' 1>&2
     exit 1
@@ -325,10 +203,10 @@ z_clear_all_symlinks() {
     rm ~/.vimrc.before
 }
 
-    z_ssh-keygen_rsa() {
+ssh-keygen_rsa() {
     ssh-keygen -t rsa -C 'tazjel@gmail.com'
     xclip -sel clip < ~/.ssh/id_rsa.pub
-    ssh -T git@github.com;
+    ssh -T git@github.com
 }
 
 
@@ -341,7 +219,7 @@ git_clone() {
 }
 
 
-z__user() {
+z__user(){
     read name
     read email
     read email2
@@ -378,7 +256,7 @@ z_install_git() {
     git config --global user.name "$name_and_surname"
     git config --global user.email "$email"
 
-    echo ">>> THE END";
+    echo ">>> THE END"
 }
 
 z__now() {
@@ -411,7 +289,7 @@ z_install_vimrc(){
 
 z_symlink_easystroke () {
     #
-    [ -e $HOME/.easystroke/actions-0.5.6 ] && rm -rf "$HOME/.easystroke/actions-0.5.6" && z_error "Removed easystroke/actions-0.5.6" && ls -al ~/.easystroke/ && ls -al ~/.easystroke && read -p "w" wpw || success "no -e  symlink";
+    [ -e $HOME/.easystroke/actions-0.5.6 ] && rm -rf "$HOME/.easystroke/actions-0.5.6" && error "Removed easystroke/actions-0.5.6" && ls -al ~/.easystroke/ && ls -al ~/.easystroke && read -p "w" wpw || success "no -e  symlink";
     #
     lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "link easystroke/actions-0.5.6" && ls -al ~/.easystroke/;
     #
@@ -433,9 +311,9 @@ z_symlink_easystroke () {
 
 
 z_check_f() {
-    [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || z_error "actions-0.5.6"
-    [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
-    [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
+    [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || error "actions-0.5.6"
+    [ -e $(pgrep easystroke) ] && success "easystroke" "On" || error "Off";
+    [ -e $(pgrep easystroke) ] && success "easystroke" "On" || error "Off";
 
 }
 
@@ -454,31 +332,7 @@ wWw_git_up() {
     git push origin --all && git push origin --tags;
 }
 
-<<<<<<< HEAD
-z_symlink_kate() {
-    ln -sf ~/zdotfiles/2/ktexteditor_snippets/ ~/.kde/share/apps/ktexteditor_snippets/data;
-}
 
-||||||| merged common ancestors
-
-function w_tmp() {
-    tempfile='/tmp/chosendir'
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-        cd -- "$(cat "$tempfile")"
-    fi
-    rm -f -- "$tempfile"
-}
-
-w_Do_we_have_command() {
-    which "$1" > /dev/null 2>&1 && echo "Success!";
-}
-
-
-=======
-
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 while :
 do
 case $1 in
@@ -491,7 +345,7 @@ case $1 in
         -g) z_install_git ;;
         s|-s) z__install_spf ;;
         w|-w) wWw_git_up ;;
-        -*) z_error "bad argument $1";;
+        -*) error "bad argument $1";;
         *) break;;
 esac
 shift
