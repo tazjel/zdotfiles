@@ -43,6 +43,11 @@ map <silent> 2 :diffget 2<CR>:diffupdate<CR>
 map <silent> 3 :diffget 3<CR>:diffupdate<CR>
 map <silent> 4 :diffget 4<CR>:diffupdate<CR>
 
+map <silent> <F10> [c
+map <silent> <F11> ]c
+
+map <silent> <F12> :w<CR>:diffupdate<CR>
+
 
 iabbrev ## #####################################################<CR>
 iabbrev $$ ${0: }<left><left>

@@ -90,33 +90,7 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "*~*" \
     -not -name "\." \
     -exec basename {} \;`
-<<<<<<< HEAD
 #####################################################
-# Patch terminal font for Vim's Airline plugin
-    # See: https://powerline.readthedocs.org/en/latest/fontpatching.html
-z__install_fonts(){
-    mkdir ./powerline-fontconfig
-    curl -fsSL https://github.com/Lokaltog/powerline/tarball/develop | tar -xvz --strip-components 2 --directory ./powerline-fontconfig -f -
-    fontforge -script ./powerline-fontconfig/fontpatcher.py --no-rename ./assets/SourceCodePro-Regular.otf
-    rm -rf ./powerline-fontconfig
-    # Install the patched font
-    if $IS_OSX; then
-        mkdir -p ~/Library/Fonts/
-        mv ./Source\ Code\ Pro.otf ~/Library/Fonts/
-    else
-        mkdir -p ~/.fonts/
-        mv ./Source\ Code\ Pro.otf ~/.fonts/
-        # Refresh font cache
-        sudo fc-cache -f -v
-    fi;
-}
-
-||||||| merged common ancestors
-#a####################################################
-#
-#
-=======
-#a####################################################
 #
 #
 
@@ -140,7 +114,6 @@ z__install_fonts(){
     fi
 }
 
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 ####################################################
 
 w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
@@ -158,25 +131,10 @@ w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
     -not -name "\." \
     -exec basename {} \;`
 ############################  SETUP PARAMETERS
-#####################################################
-#http://www.pythonforbeginners.com/systems-programming/how-to-use-fabric-in-python/
-#https://code.osuosl.org/projects/51/wiki/Install
-# pip
-z__install_py() {
-    sudo apt-get install python-pip
-    # devel libraries may be needed for some pip installs
-    sudo apt-get install python-dev
-    # install fabric and virtualenv
-    sudo apt-get install python-virtualenv
-    sudo apt-get install fabric;
-}
-
-<<<<<<< HEAD
-####################################################
-||||||| merged common ancestors
-success() {
-    msg "\e[32m[✔]\e[0m ${1}${2}"
-}
+    #for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
+    #for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
+    XXP=$(find $HOME -maxdepth 1)
+############################  BASIC SETUP TOOLS
 
 error() {
     msg "\e[31m[✘]\e[0m ${1}${2}"
@@ -221,22 +179,10 @@ z__install_py() {
 
 
 }
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 
 ####################################################
 
 
-<<<<<<< HEAD
-app_names=(mercurial \
-    vim \
-    zsh \
-    vim \
-    xclip \
-    curl \
-    wget \
-    kdiff3 \
-    dos2unix)
-||||||| merged common ancestors
 app_names=(mercurial \
     vim \
     zsh \
@@ -245,9 +191,6 @@ app_names=(mercurial \
     curl \
     wget \
     dos2unix)
-=======
-app_names=(mercurial vim zsh vim xclip curl wget dos2unix)
->>>>>>> xubuntu2013
 
 z__check_app_names() {
     for AA in $app_names ; do
@@ -303,7 +246,7 @@ z_hi(){
         -r) z_restore ;;
         -c) z_check_f ;;
         -l) z_link_f ;;
-        -L) z_un_link_HOME ;;";
+        -L) z_un_link_HOME ;;"
 }
 
 
@@ -433,7 +376,7 @@ z_symlink_easystroke () {
 
 
 z_check_f() {
-    [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || z_error "actions-0.5.6"
+        [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || z_error "actions-0.5.6"
     [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
     [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
 
@@ -478,7 +421,6 @@ w_Do_we_have_command() {
 
 =======
 
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
 while :
 do
 case $1 in
@@ -491,7 +433,7 @@ case $1 in
         -g) z_install_git ;;
         s|-s) z__install_spf ;;
         w|-w) wWw_git_up ;;
-        -*) z_error "bad argument $1";;
+        -*) error "bad argument $1";;
         *) break;;
 esac
 shift
