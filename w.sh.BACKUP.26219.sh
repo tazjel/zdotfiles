@@ -90,7 +90,7 @@ T_FILES=`cd $LINKS;find . -maxdepth 1 \
     -not -name "*~*" \
     -not -name "\." \
     -exec basename {} \;`
-<<<<<<< HEAD
+### HEAD
 #####################################################
 # Patch terminal font for Vim's Airline plugin
     # See: https://powerline.readthedocs.org/en/latest/fontpatching.html
@@ -111,11 +111,11 @@ z__install_fonts(){
     fi;
 }
 
-||||||| merged common ancestors
+### merged common ancestors
 #a####################################################
 #
 #
-=======
+###
 #a####################################################
 #
 #
@@ -140,7 +140,7 @@ z__install_fonts(){
     fi
 }
 
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
+###
 ####################################################
 
 w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
@@ -171,9 +171,9 @@ z__install_py() {
     sudo apt-get install fabric;
 }
 
-<<<<<<< HEAD
+### HEAD
 ####################################################
-||||||| merged common ancestors
+### merged common ancestors
 success() {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
@@ -190,7 +190,7 @@ lnif()
     fi
     ret="$?"
 }
-=======
+###
 success() {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
@@ -221,12 +221,12 @@ z__install_py() {
 
 
 }
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
+###
 
 ####################################################
 
 
-<<<<<<< HEAD
+### HEAD
 app_names=(mercurial \
     vim \
     zsh \
@@ -236,7 +236,7 @@ app_names=(mercurial \
     wget \
     kdiff3 \
     dos2unix)
-||||||| merged common ancestors
+### merged common ancestors
 app_names=(mercurial \
     vim \
     zsh \
@@ -245,9 +245,9 @@ app_names=(mercurial \
     curl \
     wget \
     dos2unix)
-=======
+###
 app_names=(mercurial vim zsh vim xclip curl wget dos2unix)
->>>>>>> xubuntu2013
+###
 
 z__check_app_names() {
     for AA in $app_names ; do
@@ -454,12 +454,12 @@ wWw_git_up() {
     git push origin --all && git push origin --tags;
 }
 
-<<<<<<< HEAD
+### HEAD
 z_symlink_kate() {
     ln -sf ~/zdotfiles/2/ktexteditor_snippets/ ~/.kde/share/apps/ktexteditor_snippets/data;
 }
 
-||||||| merged common ancestors
+### merged common ancestors
 
 function w_tmp() {
     tempfile='/tmp/chosendir'
@@ -476,9 +476,9 @@ w_Do_we_have_command() {
 }
 
 
-=======
+###
 
->>>>>>> 909f0aff3d0398a9aca794b72e7fe9ef64c3fac8
+###
 while :
 do
 case $1 in
