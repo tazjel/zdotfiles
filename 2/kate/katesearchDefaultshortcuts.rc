@@ -1,3 +1,5 @@
 <kpartgui version="1" name="katesearch">
-  <ActionProperties/>
+  <ActionProperties>
+    <Action shortcut="Alt+Space" name="go_to_next_match"/>
+  </ActionProperties>
 </kpartgui>

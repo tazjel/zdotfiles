@@ -1,0 +1,116 @@
+# Building Kate from Sources
+# http://kate-editor.org/get-it/
+
+sudo apt-get install g++ make git cmake kdelibs5-dev libqjson-dev 
+python-kde4-dev python-qt4-dev
+
+# create and change into a KDE development directory:
+mkdir -p ~/kde/usr; cd ~/kde
+
+# get a copy of the Kate code:
+git clone git://anongit.kde.org/kate
+
+# create and change into a build directory inside the kate # directory for 
+# compilation:
+
+cd kate; mkdir build; cd build
+
+# Building Kate from Sources
+
+#  This quick howto explains how to build Kate without # touching your stable 
+# KDE 
+
+# installation. Right now, Kate’s source code is located on git.kde.org. To build 
+# Kate from git, you need KDE SC >= 4.8. Further,
+
+# make sure you have the following packages installed: git and the kdelibs 
+# development package (and CMake).
+# to install on openSUSE: sudo zypper install git libkde4-devel 
+# libkactivities-devel libqjson-devel python-kde4-devel
+# to install on Ubuntu and derivates: 
+	
+sudo apt-get install g++ make git cmake kdelibs5-dev libqjson-dev 
+python-kde4-dev python-qt4-dev
+
+# to install on Arch Linux: pacman -S git automoc4 cmake kdebindings-python 
+# (installation with base-devel + kde)
+# to install on RHEL: yum install gcc-c++ kdelibs-devel kactivities-devel 
+# qjson-devel sip-devel PyKDE4-devel
+# to install on Fedora: yum install gcc-c++ kdelibs-devel kactivities-devel 
+# qjson-devel sip-devel pykde4-devel
+
+# create and change into a KDE development directory:
+mkdir -p ~/kde/usr; cd ~/kde
+# get a copy of the Kate code:
+git clone git://anongit.kde.org/kate
+# create and change into a build directory inside the kate directory for 
+# compilation:
+cd kate; mkdir build; cd build
+
+# Use a run.sh script as shown below to set the right environment variables, 
+# else 
+# make install might fail later.
+# run the configure process with 
+# cmake: (-DBUILD_KTEXTEDITOR=1 will install new 
+# ktexteditor interfaces from kate.git, otherwise, you need up-to-date kdelibs)
+# For just using Kate, build it optimized but with debugging symbols to get useful 
+# backtraces for bugreports:
+# cmake .. -
+# 
+# #  
+cmake .. -DBUILD_KTEXTEDITOR=1 -DCMAKE_BUILD_TYPE=RelWithDebInfo \
+	-DCMAKE_INSTALL_PREFIX=~/kde/usr \
+		-DINSTALL_PYTHON_FILES_IN_PYTHON_PREFIX=OFF
+	
+# 		For developing Kate, build it with debug support (if you have problems 
+# using gdb because of optimizations, swap Debug with DebugFull):
+			
+cmake .. -DBUILD_KTEXTEDITOR=1 -DCMAKE_BUILD_TYPE=Debug 
+\
+-DCMAKE_INSTALL_PREFIX=~/kde/usr \
+-DINSTALL_PYTHON_FILES_IN_PYTHON_PREFIX=OFF
+
+
+# compile Kate:
+
+make
+# finally install Kate:
+make install
+
+# That’s all! This installs Kate locally into the separate directory ~/kde/usr, 
+#  so that your global KDE installation will not be touched at all.
+# Now on to starting the newly compiled Kate. Create a file ~/kde/run.sh with 
+# the following content:
+
+#!/bin/bash
+export KATE_DIR=~/kde/usr
+export PATH=$KATE_DIR/bin:$PATH
+export LD_LIBRARY_PATH=$KATE_DIR/lib:$KATE_DIR/lib64:$LD_LIBRARY_PATH
+export KDEDIR=$KATE_DIR
+export KDEDIRS=$KDEDIR
+export XDG_DATA_DIRS=$XDG_DATA_DIRS:$KATE_DIR/share
+
+# update KDE's system configuration cache
+kbuildsycoca4
+# start app
+# Just calling kate
+$@
+
+# can run the compiled Kate version with 
+~/kde/run.sh kate
+
+# Make the script executable with 
+chmod 755 ~/kde/run.sh
+
+# Now you directly will start the system version of Kate.
+# Your copy of Kate contains all of the Kate code, i.e.: the KTextEditor 
+# interfaces, Kate Part, KWrite and the Kate Application. You can keep your 
+# copy up-to-date by typing 
+
+
+cd ~/kde/kate
+git pull --rebase
+
+# Feel free to send patches to our mailing list kwrite-devel@kde.org. And join
+#kate on irc.kde.org 
+

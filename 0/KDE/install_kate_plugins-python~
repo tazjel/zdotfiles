@@ -1,0 +1,381 @@
+https://github.com/goinnn/Kate-plugins
+
+http://kate-editor.org/2012/06/26/python-plugin-user-guide/
+pip install Kate-plugins
+ln -s /PATH/OF/THE/EGG/kate_plugins/ $(kde4-config 
+--localprefix)/share/apps/kate/pate
+
+# Or
+
+
+cd ~/build
+git clone https://github.com/goinnn/Kate-plugins
+ln -s ~/build/Kate-plugins/kate_plugins/ $(kde4-config 
+--localprefix)/share/apps/kate/pate
+
+Startup Kate and enable "Python Plugins" in: Settings > Configure Kate > Plugins
+You should now see three additional menu items: "Python", "Javascript", and 
+"XML". You can change the menu configuration of easy way change the settings
+Other repositories of Plugins to Kate
+http://github.com/mtorromeo/kate-plugin-zencoding (Very recomended)
+https://github.com/pag/pate/tree/master/src/plugins
+https://github.com/emyller/pate-plugins
+https://github.com/zaufi/kate-pate-plugins
+Other repositories of Plugins to Kate
+https://pypi.python.org/pypi/Kate-plugins
+
+
+http://github.com/mtorromeo/kate-plugin-zencoding (Very recomended)
+https://github.com/pag/pate/tree/master/src/plugins
+https://github.com/emyller/pate-plugins
+https://github.com/zaufi/kate-pate-plugins
+Installation
+Requirements
+
+Kate
+
+Extra dependencies for extra and super nice features. Optional, but very 
+recomended :)
+pysmell
+pyplete
+pyflakes
+simplejson
+pyjslint (it requires NodeJS, read the pyjslint readme)
+Installation
+
+Install Kate from sources
+Install optional requirements:
+	# Kate plugins has been tested with these versions but is very probably 
+	that works with later versions
+	pip install pysmell==0.7.3 pyplete==0.0.2 pep8==0.6.1 pyflakes==0.5.0 
+	pyjslint==0.3.3 simplejson==2.6.1
+	Install Kate-plugins:
+		pip install Kate-plugins
+		ln -s /PATH/OF/THE/EGG/kate_plugins/ $(kde4-config 
+										 --localprefix)/share/apps/kate/pate
+		Or
+		
+		cd ~/build
+		git clone https://github.com/goinnn/Kate-plugins
+		ln -s ~/build/Kate-plugins/kate_plugins/ $(kde4-config 
+											 --localprefix)/share/apps/kate/pate
+		Startup Kate and enable "Python Plugins" in: Settings > Configure Kate > 
+		Plugins
+		You should now see three additional menu items: "Python", "Javascript", 
+		and "XML". You can change the menu configuration of easy way change the 
+		settings
+		
+		Plugins
+		
+		Autocomplete (python)
+		Shortcut: It is automatical
+		from and import instruction
+		autocomplete into the code (beta) with pysmell
+		There was a hook if you want to add your own packages python in the 
+		autocomplete structure. You should be create a file called 
+		"autocomplete_path.py" next to the "autocomplete.py" with a function 
+		"def path(session, doc, view)", like this:
+			def path(session, doc, view):
+				if session == 'session1'
+				       return ['/PATH/OF/THE/EGG1/name1.egg',
+				   '/PATH/OF/THE/PACKAGE1/',
+				                  ...
+				                                 '/PATH/OF/THE/EGGN/namen.egg']
+				   elif session == 'session2':
+					   return ['/PATH/OF/THE/EGG2/name2.egg',
+				'/PATH/OF/THE/PACKAGE2/',
+				               ...
+				                              '/PATH/OF/THE/EGGN/namem.egg']
+				   else:
+					   return ['/PATH/OF/THE/EGG2/name3.egg',
+				'/PATH/OF/THE/PACKAGE3/',
+				               ...
+				                              '/PATH/OF/THE/EGGN/namel.egg']
+				   insert IPDB (python)
+				   Shortcut: Ctrl+I
+				   Insert the text "import ipdb; ipdb.set_trace()"
+				   insert __init__ (python)
+				   Shortcut: Ctrl+-
+				   Smart insert a function __init__
+				   insert super (python)
+				   Shortcut: Alt+-
+				   Smart insert a call to super of the function
+				   insert call recursive (python)
+				   Shortcut: Ctrl+Alt+-
+				   Smart insert a call to the current function recursively
+				   PEP8 (python)
+				   Shortcut: Alt+8
+				   Use PEP8 to look for ugly code, highlights lines with 
+				   problems
+				   It uses pep8 so it must be present in the system
+				   PyFlakes (python)
+				   Shortcut: Alt+7
+				   Use PyFlakes to look for bad code, highlights lines with 
+				   problems
+				   It uses pyflakes so it must be present in the system
+				   Parse syntax (python)
+				   Shortcut: Alt+6 or when you save the file
+				   Parse syntax this file and show a error list, or a dialog say 
+				   "OK"
+				   Check All (python/javascript)
+				   Shortcut: Alt+5
+				   Check pep8, pyflakes, parse syntax and jslint
+				   Template Django urls (django)
+				   Shortcut: Ctrl+Alt+7
+				   Smart template of the file urls.py
+				   Template import views (django)
+				   Shortcut: Ctrl+Alt+V
+				   Insert the tipical imports in a view
+				   Create Django form (django)
+				   Shortcut: Ctrl+Alt+F
+				   Template to form class
+				   Create Django model (django)
+				   Shortcut: Ctrl+Alt+M
+				   Template to model class
+				   Close Template tag (django)
+				   Shortcut: Ctrl+Alt+C
+				   Close the last open templatetag (block, if, for, etc)
+				   Template block (django)
+				   Shortcut: Ctrl+Alt+B
+				   Insert a struncture like this: {% block content %}XXX{% 
+															 endblock %} or {% 
+								if x > 3 %} {% endif %}
+															 Autocomplete static 
+															 to javascript 
+															 (javascript)
+															 Shortcut: It is 
+															 automatical
+															 Autocomplete static 
+															 to jQuery 
+															 (javascript)
+															 Shortcut: It is 
+															 automatical
+															 jQuery ready 
+															 (javascript)
+															 Shortcut: Ctrl+J
+															 Template jQuery 
+															 ready
+															 Pretty JSON 
+															 (javascript)
+															 Shortcut: 
+																 Ctrl+Alt+J
+																 Convert a 
+																 horrible json 
+																 in a pretty 
+																 JSON :-)
+															 JSLint (javascript)
+															 Shortcut: Alt+9
+															 Use JSLint to look 
+															 for errors and bad 
+															 code, highlights 
+															 lines with problems
+															 It uses pyjslint so 
+															 it must be present 
+															 in the system (and 
+							   working!)
+															 Pretty XML (xhtml)
+															 Shortcut: 
+																 Ctrl+Alt+X
+																 Convert a 
+																 horrible xml in 
+																 a pretty XML 
+																 :-)
+															 Future Plugins
+															 
+															 Clean code (core)
+															 Improve 
+															 autocompletes 
+															 plugins (core)
+															 Template tags 
+															 autocomplete 
+															 (django)
+															 Integration with 
+															 rope (python)
+															 Other repositories 
+															 of Plugins to Kate
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+															 
+http://github.com/mtorromeo/kate-plugin-zencoding (Very recomended)
+https://github.com/pag/pate/tree/master/src/plugins
+https://github.com/emyller/pate-plugins
+https://github.com/zaufi/kate-pate-plugins
+Releases
+
+0.2.3 (2013-04-29)
+Update the readme
+0.2.2 (2013-03-14)
+Update the readme
+0.2.1 (2013-03-11)
+This release is out of support
+Now works from pypi
+Improvement to pep8 checker
+0.2.0 (2013-02-12)
+Fix an error in the Close Template tag (django)
+Details to the JSON plugin
+Improve in the js autocomplete generator
+0.1.9 (2013-02-06)
+These changes are backwards incompatibles.
+Adapt the plugins to the last Kate (2013-02-06)
+Fix a little error in the pep8 plugin
+Improve the JSON plugin
+0.1.8 (2012-09-02)
+Fix an error in jQuery autocomplete and js autocomplete, broken in this commit
+Add try/except, if the user has not simplejson egg installed
+0.1.7 (2012-09-02)
+Adapt the code to the last version of pyplete. Now the python autocomplete 
+plugin can autocomplete the relative imports, something like this:
+from models import MyModel # from the same directory of the models.py
+And this:
+
+from .models import MyModel # from the same directory of the models.py
+0.1.6 (2012-08-18)
+Fix for autocomplete in the last KDE
+Restructuring of menus
+Refactor
+Thank you to Jeroen van Veen to the changes
+0.1.5 (2012-07-09)
+Liberate PyPlete (You need install this egg if you want python autocomplete)
+Add Copyright
+0.1.4 (2012-06-15)
+Detail to jQuery autocomplete. This did not accept something like this: 
+jQuery("a.class-with-dash")
+0.1.3 (2012-04-24)
+I forgot the block_plugins file.... o_O
+0.1.2 (2012-04-22)
+Insert separators in the menu, before and after, of the plugins
+Add Close Template tag plugin
+Add Template block plugin
+0.1.1 (2012-03-17)
+Created a menu structure to the plugins, before they were all in edit menu
+Refactor an clean the code, if you insert a text with XXX, the cursor move here
+Fix a little error in the jQuery plugin regex
+Fix a little error in the python plugin, when the lines contains ";"
+0.1.0 (2012-03-15)
+A new settings to ignore pep8 errors
+Now is possible move between various errors in the same line
+Fix jslint errors line number
+Fix callRecursive error, when to call the plugin with text in this line
+Fix a little error in autocomplete
+0.0.9 (2012-03-12)
+Add jQuery autocomplete plugin
+Add XML pretty plugin
+Add call recursive plugin
+Title in the autocompletes
+Fix some error in js autocomplete
+Now the python autocomplete can depend of the session
+The checker plugins move to the first error, from position, when they are 
+invoked
+Remove old popups in check plugins
+Improvement in the usability of the template Django urls plugin and jQuery ready 
+plugin
+Other settings: PYTHON_AUTOCOMPLETE_ENABLED, JAVASCRIPT_AUTOCOMPLETE_ENABLED, 
+JQUERY_AUTOCOMPLETE_ENABLED, CHECKALL_TO_SAVE
+Refactor: Rename the utils file to kate_core_plugins, removing unnecessary code
+0.0.8 (2012-03-03)
+Usability improvements in check plugins
+0.0.7 (2012-03-02)
+Fix some errors of the 0.0.6 version (checker plugins)
+Fix a error of JSON autocompletion
+Update the readme
+0.0.6 (2012-03-02)
+Python parse syntax plugin
+PEP8 checker plugin
+PyFlakes checker plugin
+JSLint checker plugin
+Settings to the kate actions: texts, short cuts, menus and icons
+0.0.5 (2012-02-28)
+Cleaning code
+Fix little error in preatty JSON. The quotes should be " instead of '
+Fix some other error
+Refactored autocomplete plugin to python
+Created a pyplete, a generic module to autocompletion in python
+Fix a in the code to detect the class has a error (insert init plugin, insert 
+super plugin)
+0.0.4 (2012-02-20)
+Fix a error in autocomplete, if the line contains "and" or "or"
+Improvement in the performance in the python autocompletation
+Abstraction of Autocomplete. Create a Abstract class
+Create a AbstractJSONFileCodeCompletionModel. Only autocompletion creating a 
+json file
+Create a static autocompletation to javascript
+0.0.3 (2012-02-02)
+Fix some errors to autocomplete
+Icons different to packages and modules
+Usability in the autocomplete:
+The popup that say "Syntax error" only show if the autocomplete is not manual
+The python autocomplete, only works if the file ends with ".py", ".pyc" or it is 
+not saved
+0.0.2 (2012-02-01)
+Autocomplete to python (second version)
+0.0.1 (2012-01-29)
+Autocomplete to python (first version)
+ipdb, init, super, urls, form, model, ready, json plugin
+ 
+File	Type	Py Version	Uploaded on	Size
+Kate-plugins-0.2.3.tar.gz (md5)	 Source		2013-04-29	206KB
+Downloads (All Versions):

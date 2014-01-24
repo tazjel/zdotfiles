@@ -1,0 +1,59 @@
+alsa-utils
+
+# 
+alsamixer --help
+ alsamixer --help  
+
+Package: alsa-utils (1.0.23-3)
+Links for alsa-utils
+Screenshot
+Debian Resources:
+
+    Bug Reports
+    Developer Information (PTS)
+    Debian Changelog
+    Copyright File
+    Debian Patch Tracker
+
+Download Source Package alsa-utils:
+
+    [alsa-utils_1.0.23-3.dsc]
+    [alsa-utils_1.0.23.orig.tar.bz2]
+    [alsa-utils_1.0.23-3.debian.tar.bz2]
+
+Maintainers:
+
+    Debian ALSA Maintainers (QA Page, Mail Archive)
+    Jordi Mallach (QA Page)
+    Elimar Riesebieter (QA Page)
+    Martin Pitt (QA Page) 
+
+External Resources:
+
+    Homepage [www.alsa-project.org]
+
+Similar packages:
+
+    alsa-utils-udeb
+    alsa-base
+    python-pyalsa
+    qtractor
+    alsa-source
+    pmidi
+    qasmixer
+    aconnectgui
+    qashctl
+    linux-sound-base
+    drumstick-tools
+
+Utilities for configuring and using ALSA
+Utilities for configuring and using ALSA
+
+Included tools:
+
+ o amixer: command line mixer
+ o alsamixer: curses mixer
+ o amidi: read from and write to ALSA RawMIDI ports
+ o aplay, arecord: command line playback and recording
+ o aplaymidi, arecordmidi: command line MIDI playback and recording
+ o aconnect, aseqnet, aseqdump: command line MIDI sequencer control
