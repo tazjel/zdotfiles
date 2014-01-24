@@ -1,15 +1,15 @@
 #!/usr/bin/env bash
 ############################  SETUP PARAMETERS
-    git_branch='A'
-    debug_mode='0'
-    app_version='0.3'
+git_branch='A'
+debug_mode='0'
+app_version='0.3'
 ############################  NAMES SETUP
-    zdotfiles=$HOME/zdotfiles
-    LINKS=$HOME/zdotfiles/link
+zdotfiles=$HOME/zdotfiles
+LINKS=$HOME/zdotfiles/link
 
-    #for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
-    #for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
-    XXP=$(find $HOME -maxdepth 1)
+#for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
+#for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
+XXP=$(find $HOME -maxdepth 1)
 ############################  BASIC SETUP TOOLS
 
 msg() {

@@ -32,7 +32,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 #. /home/w/bkup/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 #. /home/w/bkup/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-w_PYPOWERLINE=/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-. /home/w/bkup/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#w_PYPOWERLINE=/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+#. /home/w/bkup/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
 
-[ - z "$w_PYPOWERLINE" ] && mv /home/w/bkup/.local /home/w/.local && success "Y"
+#[ - z "$w_PYPOWERLINE" ] && mv /home/w/bkup/.local /home/w/.local && success "Y"
