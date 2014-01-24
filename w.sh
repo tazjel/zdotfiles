@@ -148,7 +148,7 @@ lnif()
     fi
     ret="$?"
 }
-=======
+
 success() {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
@@ -383,7 +383,7 @@ z_check_f() {
 }
 
 z__install_spf() {
-        #. /home/w/zdotfiles/0/spf3-new.sh
+   #. /home/w/zdotfiles/0/spf3-new.sh
     sudo apt-get install curl
     sh <(curl http://j.mp/spf13-vim3 -L)
 }
@@ -397,12 +397,7 @@ wWw_git_up() {
     git push origin --all && git push origin --tags;
 }
 
-<<<<<<< HEAD
-z_symlink_kate() {
-    ln -sf ~/zdotfiles/2/ktexteditor_snippets/ ~/.kde/share/apps/ktexteditor_snippets/data;
-}
 
-||||||| merged common ancestors
 
 function w_tmp() {
     tempfile='/tmp/chosendir'
@@ -419,7 +414,7 @@ w_Do_we_have_command() {
 }
 
 
-=======
+
 
 while :
 do

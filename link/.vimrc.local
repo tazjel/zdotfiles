@@ -14,21 +14,17 @@
 "   This is a mirror of :http://spf13.com
 
 
-#####################################################
 
 set nocompatible
 
 source ~/zdotfiles/2/zplugin/zabz.vim
-source ~/zdotfiles/2/colors/badwolf.vim
+"source ~/zdotfiles/2/colors/badwolf.vim
 "
-""source ~/zdotfiles/2/zplugin/zabz.vim
-""source ~/zdotfiles/2/zplugin/zbuff.vim
+"source ~/zdotfiles/2/zplugin/zabz.vim
+"source ~/zdotfiles/2/zplugin/zbuff.vim
 
-""source ~/zdotfiles/2/zplugin/zfunctionz.vim
-""source ~/zdotfiles/2/zplugin/zmapz.vim
-
-
-
+"source ~/zdotfiles/2/zplugin/zfunctionz.vim
+"source ~/zdotfiles/2/zplugin/zmapz.vim
 set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 function! ToggleSyntax()
@@ -792,3 +788,4 @@ let g:pymode_lint_pyflakes_symbol = '●'
 let g:Powerline_symbols = 'fancy'
 
 iabbrev www #
+"%s/^=.*\|^<.*\|^|.*//gc

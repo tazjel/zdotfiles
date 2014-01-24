@@ -41,9 +41,11 @@ PROMPT_RUBY="[\$(rbenv version | sed -e 's/ .*//')]"
 PROMPT_GIT="${GREEN}\$(__git_ps1)"
 PROMPT_FOOTER="\n\$(is_vim_running && echo \"${red}\" || echo \"${BLACK}\")↳ ${GREEN}\$ ${NC}"
 PS1="\n${PROMPT_INFO} ${PROMPT_RUBY}${PROMPT_GIT} ${PROMPT_FOOTER}"
+
 export TZ=Asia/Riyadh
 
 [ -z "$PS1" ] && return
+
 function ranger-cd {
     tempfile='/tmp/chosendir'
     /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
@@ -72,7 +74,6 @@ export HISTCONTROL=ignoreboth
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export LESS="-R"
-<<<<<<< HEAD
 alias l='ls -la'
 alias c='clear'
 alias v='vim'
@@ -83,8 +84,7 @@ GREEN="\[\033[0;32m\]"
 NO_COLOUR="\[\033[0m\]"
 
 PS1="$GREEN\u$NO_COLOUR:\w$YELLOW\$(parse_git_branch)$NO_COLOUR\$ "
-  
-=======
+
 alias l="ls -al"
 alias dl="cd ~/downloads"
 alias c="clear"
@@ -191,4 +191,3 @@ export PATH="bin:.bundle/bin:$PATH"
 
 # load .bashrc
 source $HOME/.bashrc
->>>>>>> 5672702670de75bfdb940e430b813f3b5b680e70
