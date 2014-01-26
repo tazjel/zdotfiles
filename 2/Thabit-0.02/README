@@ -1,0 +1,18 @@
+Thabit (from Arabic ثابت; fixed) is a fixed width OpenType font family that
+is supports Arabic script. It is developed by Arabeyes.org as part of Khotot
+project.
+
+The font is distributed under Open Font License, see the included OFL.txt for
+more details.
+
+Currently supported languages:
+* Arabic (basic Arabic, no Quranic support yet)
+* Pashto
+* Farsi
+
+You can visit our web page
+http://www.arabeyes.org/project.php?proj=Khotot
+
+--
+Khaled Hosny <khaledhosny@eglug.org>  Thu, 17 Jul 2008
+

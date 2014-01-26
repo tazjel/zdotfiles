@@ -3,7 +3,7 @@
 
 export LC_ALL=en_US.UTF-8
 
-source $HOME/zdotfiles/link/1.sh
+source $HOME/zdotfiles/link/1/.zsh/al.zsh
 source $HOME/zdotfiles/1/.zsh/checks.zsh
 source $HOME/zdotfiles/1/.zsh/colors.zsh
 source $HOME/zdotfiles/1/.zsh/completion.zsh

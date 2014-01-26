@@ -1,0 +1,20 @@
+
+
+""References :WebPage: http://github.com/mattn/pastebin-vim
+" Section: Script variables
+" If you don't want pastes to open directly in your browser - define
+" g:pastebin_browser_command as "" in your vimrc
+if !exists('g:pastebin_browser_command')
+  if exists(':OpenBrowser')
+    let g:pastebin_browser_command = ":OpenBrowser %URL%"
+  elseif has('win32')
+    let g:pastebin_browser_command = "!start rundll32 url.dll,FileProtocolHandler %URL%"
+  elseif has('mac')
+    let g:pastebin_browser_command = "open %URL%"
+  elseif executable('xdg-open')
+    let g:pastebin_browser_command = "xdg-open %URL%"
+  else
+    let g:pastebin_browser_command = "firefox %URL% &"
+  endif
+endif
+"

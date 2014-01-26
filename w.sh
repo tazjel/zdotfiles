@@ -4,28 +4,25 @@ git_branch='A'
 debug_mode='0'
 app_version='0.3'
 ############################  NAMES SETUP
-zdotfiles=$HOME/zdotfiles
-LINKS=$HOME/zdotfiles/link
-
-#for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
-#for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
-XXP=$(find $HOME -maxdepth 1)
+W_zdotfiles=$HOME/zdotfiles
+W_LINKS=$HOME/zdotfiles/link
+W_ZSHRC=$HOME/.zshrc
 ############################  BASIC SETUP TOOLS
-
-msg() {
+W_SIXAD=/var/lib/sixad/profiles
+WW_msg() {
     printf '%b\n' "$1" >&2
 }
 
-success() {
+WW_success() {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
 
-z_error() {
+WW_error() {
     msg "\e[31m[✘]\e[0m ${1}${2}"
 }
 
 
-lnif() {
+WW_lnif() {
     if [ -e "$1" ]; then
         ln -sf "$1" "$2"
     fi
@@ -37,9 +34,8 @@ lnif() {
 ####################################################
 #
 
-w__prepare() {
-  cd ${zdotfiles}/6
-  sed -i -e 's|^#!/usr/bin/env python$|#!/usr/bin/env python2|' $(find ${zdotfiles}/6 -name '*.py');
+WW__sed() {
+  sed -i -e 's|"$1"|"$2"|g' "$3";
 }
 
 wWw_git_up_ssh() {
@@ -258,17 +254,30 @@ usage() {
 }
 
 
-z_clear_all_symlinks() {
-    rm ~/.bashrc \
-    rm ~/.zshrc \
-    rm ~/.vimrc \
-    rm ~/.vimrc.local \
-    rm ~/.vim \
-    rm ~/.vimrc.bundles \
-    rm ~/.vimrc.before
+w_remove_bashrc() {
+    rm -rf ~/.bashrc
 }
 
-    z_ssh-keygen_rsa() {
+w_remove_zshrc() {
+    rm -rf ~/.zshrc
+}
+
+w_remove_vimrc() {
+    rm -rf ~/.vimrc
+}
+
+w_remove_vimrc_local() {
+    rm -rf ~/.vimrc.local
+}
+
+w_remove_spf_vimrc() {
+    w_remove_vimrc
+    rm -rf ~/.vim \
+    rm -rf ~/.vimrc.bundles \
+    rm -rf ~/.vimrc.before
+}
+
+    w_ssh-keygen_rsa() {
     ssh-keygen -t rsa -C 'tazjel@gmail.com'
     xclip -sel clip < ~/.ssh/id_rsa.pub
     ssh -T git@github.com;
@@ -338,18 +347,8 @@ z__now() {
 }
 
 
-z_install_vimrc(){
-    endpath="$HOME/.$app_name-3"
-    lnif "$endpath/.vimrc"              "$HOME/.vimrc"
-    lnif "$endpath/.vimrc.bundles"      "$HOME/.vimrc.bundles"
-    lnif "$endpath/.vimrc.before"       "$HOME/.vimrc.before"
-    lnif "$endpath/.vim"                "$HOME/.vim"
+#
 
-    # Useful for fork maintainers
-    lnif "$LINKS/.vimrc.local" "$HOME/.vimrc.local"
-    # Useful for fork maintainers
-    lnif "$LINKS/.vimrc.local" "$HOME/.vimrc.local"
-}
 
 
 z_symlink_easystroke () {
@@ -379,57 +378,68 @@ z_check_f() {
         [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || z_error "actions-0.5.6"
     [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
     [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
-
 }
 
 z__install_spf() {
    #. /home/w/zdotfiles/0/spf3-new.sh
     sudo apt-get install curl
-    sh <(curl http://j.mp/spf13-vim3 -L)
-}
+        sh <(curl http://j.mp/spf13-vim3 -L)
+    }
 
-
-wWw_git_up() {
-    cd $HOME/zdotfiles
-    git add -A
-    git commit -a
-    git push --all
-    git push origin --all && git push origin --tags;
-}
-
-
-
-function w_tmp() {
-    tempfile='/tmp/chosendir'
-    /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
-    test -f "$tempfile" &&
-    if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
-        cd -- "$(cat "$tempfile")"
+z_symlink_local() {
+    if [ -e "$HOME/.vimrc.local" ]; then
+        rm -rf "$HOME/.vimrc.local" && \
+            lnif "$LINKS/.vimrc.local" "$HOME/.vimrc.local" && \
+            success "We linked Your vimrc.local"
+    else
+        z_error "$LINKS/.vimrc.local to " "$HOME/.vimrc.local"
     fi
-    rm -f -- "$tempfile"
-}
-
-w_Do_we_have_command() {
-    which "$1" > /dev/null 2>&1 && echo "Success!";
 }
 
 
+    wWw_git_up() {
+        cd $HOME/zdotfiles
+        git add -A
+        git commit -a
+        git push --all
+        git push origin --all && git push origin --tags;
+    }
+
+
+
+    function w_tmp() {
+        tempfile='/tmp/chosendir'
+        /usr/bin/ranger --choosedir="$tempfile" "${@:-$(pwd)}"
+        test -f "$tempfile" &&
+        if [ "$(cat -- "$tempfile")" != "$(echo -n `pwd`)" ]; then
+            cd -- "$(cat "$tempfile")"
+        fi
+        rm -f -- "$tempfile"
+    }
+
+    w_Do_we_have_command() {
+        which "$1" > /dev/null 2>&1 && echo "Success!";
+}
 
 
 while :
 do
 case $1 in
-        i|-i) z_install_basic ;;
-        -r) z_restore ;;
-        c|-c) z_check_f ;;
-        -l) z_link_f ;;
-        e|-e) z_symlink_easystroke ;;
-        -L) z_un_link_HOME ;;
-        -g) z_install_git ;;
-        s|-s) z__install_spf ;;
-        w|-w) wWw_git_up ;;
-        -*) error "bad argument $1";;
-        *) break;;
+    i|-i) z_install_basic ;;
+    r|-r) z_restore ;;
+    c|-c) z_check_f ;;
+    l|-l) z_link_f ;;
+    e|-e) z_symlink_easystroke ;;
+    l|-L) z_un_link_HOME ;;
+    g|-g) z_install_git ;;
+    s|-s) z__install_spf ;;
+    w|-w) wWw_git_up ;;
+    v|-v) z_symlink_local ;;
+    R|-R) z_clear_vimrc ;;
+    
+    h|-h) z_symlink_local ;;
+   ---*|-*) error "bad argument $1";;
+    *) break;;
 esac
 shift
 done

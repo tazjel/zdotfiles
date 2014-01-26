@@ -1,0 +1,19 @@
+
+www=http://dotfiles.org/
+
+
+function Capture_website() {
+    curl  $www
+    echo " $www
+}
+
+#wget -O - http://dotfiles.org/.vimrc VV | grep -o '<a href=['"'"'"][^"'"'"']*['"'"'"]' | sed -e 's/^<a href=["'"'"']//' -e 's/["'"'"']$//'
+
+function extract_urls () {
+    sed -n "/href=/s/.*href=\([^>]*\).*/\1/p" "$@"| sed "s/^'\///g" | sed "s/'$//g" "$@"
+    cat $extracted_urls
+    echo ""
+    echo "Done"
+}
+
+extract_urls < $(Capture_website)

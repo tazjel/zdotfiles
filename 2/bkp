@@ -23,9 +23,9 @@ source ~/zdotfiles/2/zplugin/zabz.vim
 "source ~/zdotfiles/2/zplugin/zabz.vim
 "source ~/zdotfiles/2/zplugin/zbuff.vim
 
-source ~/zdotfiles/2/zplugin/zfunctionz.vim
-source ~/zdotfiles/2/zplugin/zmapz.vim
-set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
+"source ~/zdotfiles/2/zplugin/zfunctionz.vim
+"source ~/zdotfiles/2/zplugin/zmapz.vim
+"set rtp+=/usr/local/lib/python2.7/dist-packages/powerline/bindings/vim/
 
 function! ToggleSyntax()
     if exists("g:syntax_on")
@@ -182,21 +182,6 @@ nnoremap <silent> <C-S-F5> nnoremap <silent> <C-F5> :vsplit ~/zdotfiles/link/wal
 map <F8> :TagbarToggle<CR>
 map <S-F8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
 map <f8><f8> :diffoff<cr>
-map <Space><Space> ]c
-        set diffopt=filler,context:4,iwhite
-" <F9>
-        nnoremap <silent> <F9> :SessionList<CR>
-        nnoremap <silent> <S-F9> :SessionSave<CR>
-        nnoremap <M-F9> :sessionopen
-        nnoremap <C-F9> :SessionSaveAs
-
-if &diff
-    "Vimdiff use c-j and c-k to navigate
-    nnoremap <C-j> ]c
-    nnoremap <C-k> [c
-
-    "Vimdiff quit without changes
-    nnoremap q :qa! <CR>
 endif
 
 " if using vimdiff:
@@ -783,10 +768,9 @@ let g:pymode_lint_todo_symbol = '⚠'
 let g:pymode_lint_comment_symbol = '⑊'
 let g:pymode_lint_visual_symbol = '⑆'
 let g:pymode_lint_error_symbol = '✘'
-let g:pymode_lint_info_symbol = '●'
+let g:pymode_lint_info_symbol = s●'
 let g:pymode_lint_pyflakes_symbol = '●'
 " Font
 let g:Powerline_symbols = 'fancy'
 
-iabbrev www #
 "%s/^=.*\|^<.*\|^|.*//gc

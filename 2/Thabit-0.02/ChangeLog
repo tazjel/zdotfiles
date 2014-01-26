@@ -1,0 +1,93 @@
+2008-08-09  Khaled Hosny <khaledhosny@eglug.org>
+	* Thabit.sfd, Thabit-Bold.sfd:
+	  * Correct mark class for mark ligatures
+	  * Removed IBM copyright notice, should be added by build script
+	  * Removed non-arabic glyphs
+	* Thabit.fea: Renmoved latin ligaturs lookup
+	* helper.py: A new build script, that also builds oblique fonts.
+	* make.pe: Removed.
+
+2008-07-29  Khaled Hosny <khaledhosny@eglug.org>
+	* Thabit.sfd, Thabit-Bold.sfd: restore the broken GPOS lookups from svn
+	  revision 282
+
+2008-07-18  Khaled Hosny <khaledhosny@eglug.org>
+	* Thabit.sfd, Thabit-Bold.sfd: 
+	  * Added Indo-Arabic digits
+	  * Merge GPOS tables back to the font
+	* Thabit.fea: Remove GPOS data
+
+2008-07-17  Khaled Hosny <khaledhosny@eglug.org>
+	* Thabit.sfd, Thabit-Bold.sfd: Added Tcheh contextual forms
+
+2008-07-16  Khaled Hosny <khaledhosny@eglug.org>
+
+	* make.pe: Simple make script
+	* Thabit-Bold.sfd: 
+	  * Added missing Pashto glyphs
+	  * Removed lookups
+	* Thabit.fea: OpenType feature file (eventually will be used by all fonts in
+	  the family)
+	* Thabit.sfd: Remove lookups, to be merged from fea file at build time
+	* Thabit.sfd, Thabit-Bold.sfd: Remove empty lookup
+
+2008-06-07  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd: Fix yeh with to vertical dots
+
+2008-06-04  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd: Full Pashto support (really this time)
+
+2008-05-29  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd: Full Pashto support
+
+2008-05-24  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd: more persian and pashto support
+
+2008-02-02  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd: 
+	  * Partial Pashto support.
+	  * Heh and teh marbota now more wider.
+
+2008-01-29  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd: Dad dot was missing.
+	* Thabit.sfd: Qaf an Feh are now larger and more distinguishable.
+	* Thabit.sfd, Thabit-Bold.sfd: Added place holder glyphs for some 
+	Unicode control characters.
+
+2008-01-28  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd, Thabit-Bold.sfd: Merged all Latin glyphs from courier font.
+
+2008-01-27  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit.sfd, Thanit-Bold.sfd: 
+	  * Added new glyphs for stacked harakat.
+	  * Removed Allah ligature, not needed in a fixed width font.
+	  * Font ascent and descent now are fixed values not an offset.
+	* Thabit.sfd: Make sure all glyphs are in normal not spiros mode.
+	* Thabit.sfd: Various fixes to make the glyphs clearer at small sizes.
+	* Thabit.sfd: Increased the space between the dots and their base glyphs.
+	* Thabit.sfd: 
+	  * Now it is more lighter.
+	  * Made the dots (2 and 3 dots) more spaced.
+	* Thabit.sfd, Thabit-Bold.sfd: Added localized (Arabic) family,
+	fullname and style strings.
+	* Thabit.sfd: Regular weight, initial import.
+	* Thabit-Bold.sfd: 
+	  * Decreased baseline to baseline spacing.
+	  * Added basic Latin glyphs, from IBM's public domain courier
+	  font.
+	  * Updated the license and copyright, the font is OFL'd now.
+	  * fixed anchor points of hehinitial and hehmedial.
+	  * fixed lamaleffinal ligature.
+
+2008-01-26  Khaled Hosny <khaledhosny@eglug.org>
+
+	* Thabit-Bold.sfd: Fixed width font based on Rasheeq, initial import.
+
