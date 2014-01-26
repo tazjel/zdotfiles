@@ -7,22 +7,53 @@ app_version='0.3'
 W_zdotfiles=$HOME/zdotfiles
 W_LINKS=$HOME/zdotfiles/link
 W_ZSHRC=$HOME/.zshrc
-############################  BASIC SETUP TOOLS
 W_SIXAD=/var/lib/sixad/profiles
-WW_msg() {
+###########################  BASIC SETUP TOOLS
+
+
+# {{{
+	W_Do_we_have_command() {
+		which "$1" > /dev/null 2>&1 && echo "Success!";
+	}
+
+	w_remove_bashrc() {
+		rm -rf ~/.bashrc
+	}
+
+	w_remove_zshrc() {
+		rm -rf ~/.zshrc
+	}
+
+	w_remove_vimrc() {
+		rm -rf ~/.vimrc
+	}
+
+	w_remove_vimrc_local() {
+		rm -rf ~/.vimrc.local
+	}
+
+	w_remove_spf_vimrc() {
+    w_remove_vimrc
+    rm -rf ~/.vim \
+    rm -rf ~/.vimrc.bundles \
+    rm -rf ~/.vimrc.before
+	}
+# }}}
+
+msg() {
     printf '%b\n' "$1" >&2
 }
 
-WW_success() {
+success() {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
 
-WW_error() {
+error() {
     msg "\e[31m[✘]\e[0m ${1}${2}"
 }
 
 
-WW_lnif() {
+lnif() {
     if [ -e "$1" ]; then
         ln -sf "$1" "$2"
     fi
@@ -127,39 +158,9 @@ w__HOME_DOTFILES=`cd $HOME;find . -maxdepth 1 \
     -not -name "\." \
     -exec basename {} \;`
 ############################  SETUP PARAMETERS
-    #for FF in $(echo $XXP) ; do if [ -L $FF ] ; then echo -e ">>>>>> $FF ]]" ; else echo -e "$FF" ;fi;done
-    #for FF in $(find $HOME -maxdepth 1 -exec basename {} \;) ; do if [ -L $FF ] ; then echo -e "0 = $FF" ;else echo "1= $FF";fi;done
     XXP=$(find $HOME -maxdepth 1)
 ############################  BASIC SETUP TOOLS
 
-error() {
-    msg "\e[31m[✘]\e[0m ${1}${2}"
-}
-
-
-lnif()
- {
-    if [ -e "$1" ]; then
-        ln -sf "$1" "$2"
-    fi
-    ret="$?"
-}
-
-success() {
-    msg "\e[32m[✔]\e[0m ${1}${2}"
-}
-
-error() {
-    msg "\e[31m[✘]\e[0m ${1}${2}"
-}
-
-
-lnif() {
-    if [ -e "$1" ]; then
-        ln -sf "$1" "$2"
-    fi
-    ret="$?";
-}
 
 #####################################################
 #http://www.pythonforbeginners.com/systems-programming/how-to-use-fabric-in-python/
@@ -254,28 +255,6 @@ usage() {
 }
 
 
-w_remove_bashrc() {
-    rm -rf ~/.bashrc
-}
-
-w_remove_zshrc() {
-    rm -rf ~/.zshrc
-}
-
-w_remove_vimrc() {
-    rm -rf ~/.vimrc
-}
-
-w_remove_vimrc_local() {
-    rm -rf ~/.vimrc.local
-}
-
-w_remove_spf_vimrc() {
-    w_remove_vimrc
-    rm -rf ~/.vim \
-    rm -rf ~/.vimrc.bundles \
-    rm -rf ~/.vimrc.before
-}
 
     w_ssh-keygen_rsa() {
     ssh-keygen -t rsa -C 'tazjel@gmail.com'
@@ -417,9 +396,12 @@ z_symlink_local() {
         rm -f -- "$tempfile"
     }
 
-    w_Do_we_have_command() {
-        which "$1" > /dev/null 2>&1 && echo "Success!";
-}
+
+#========================================#
+
+if [ -f $HOME/.zshrc ]; then
+   . $HOME/.zshrc && success "On"
+fi
 
 
 while :
