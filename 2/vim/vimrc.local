@@ -1,5 +1,5 @@
 "Modeline and Notes {
-vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+"vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
 "
 "   _____       _______        ___ __
 "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
@@ -18,9 +18,9 @@ set nocompatible "necessary for project plugin
 set clipboard+=unnamed "use x clipboard (Linux) instead of buffer
 set clipboard=unnamedplus
 set encoding=utf-8
-
+set syntax=vim
 "automatically re-source .vimrc when file is changed
-:au! BufWritePost $MYVIMRC source $MYVIMRC
+au! BufWritePost $MYVIMRC source $MYVIMRC
 
 source $VIMRUNTIME/mswin.vim
 
@@ -73,13 +73,10 @@ endfun
 
 "vnoremap <C-F3> y<C-W><C-W>G$]P<C-W><C-W>
 ""verbose map "F4
-map <F3> ]c
-map <s-F3> [c
-map <C-F3> dp
-map <M-F3> do
+"map <F3> ]c map <s-F3> [c map <C-F3> dp map <M-F3> do
 
-                                                "commenter"
-""map <F1> ,cc
+    "commenter"
+"map <F1> ,cc
 map <F1> ,c<Space>
 ""verbose map "F4
 
@@ -101,7 +98,7 @@ nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 nnoremap <F2> :set nonumber!<CR>:set foldcolumn=0<CR>
 
 
- "substitute 
+ "substitute
 map <F7> :%s//gc<Left><Left><Left>
 map <F8> :%s/<[^>]*>//gi<cr>
 

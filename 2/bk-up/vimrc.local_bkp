@@ -1,761 +1,141 @@
-    "
-    "   _____       _______        ___ __
-    "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
-    "    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
-    "    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
-    "    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
-    "
-    "   This is the personal .vimrc file of Ahmed Alghamdi.
-
-    "   While much of it is beneficial for general use, I would
-    "   recommend picking out the parts you want and understand.
-    "
-    "   This is a mirror of :http://spf13.com
-    """""""""""""""""""""""""""""""""""""""""""""""""
-    " set
-    """""""""""""""""""""""""""""""""""""""""""""""""
-
-" set {folding
-    setlocal foldmethod=expr
-    setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
-    set foldtext=getline(v:foldstart)
-    set fillchars=fold:\ "(there's a space after that \)
-    highlight Folded ctermfg=DarkGreen ctermbg=Black
-    "map
-
-        nnoremap <space> za
-        vnoremap <space> zf
-
-    "set
-        set t_vb=
-        set novisualbell
-        set mousehide
-        set grepprg=ack-grep
-        set modifiable
-        set autoread
-        set wildmenu
-        set history=500
-        set t_Co=256
-        set nocompatible
-        set encoding=utf-8
-        set fileencoding=utf-8
-        set clipboard+=unnamed
-        set modifiable
-        set showmatch
-        set noro
-        set shell=/bin/zsh
-        set showcmd
-        set background=dark
-        set showfulltag
-        set splitright
-        set showtabline=2 " always show tab bar
-        set timeoutlen=250        " Time to wait after ESC (default causes an annoying delay)
-        set hidden
-        set termencoding=utf-8  " force terminal encoding
-    "bog
-    "colorscheme p256-grayvim
-        "colorscheme blazer
-        "colorscheme 256-grayvim
-
-
-"molokai "blazer
-    "white and light
-    "asu1dark
-
-    "blueprint
-    "bayQua
-    "mayansmoke
-        "colorscheme autumn
-
-"calmar256-light
-        "colorscheme bensday
-    "Dark
-    "busierbee
-    "blacklight
-
-        "colorscheme badwolf
-
-        "colorscheme black_angus
-
-        "colorscheme bvemu
-
-"Transparent
-        "colorscheme codeblocks_dark
-        "colorscheme cobalt
-        "colorscheme astronaut
-        "colorscheme billw
-        "colorscheme basic
-        "koehler
-"colorscheme buttercream
-        "colorscheme blacklight
-        "colorscheme candyman
-        "colorscheme colorful256
-        "colorscheme blazer
-
-        "colorscheme buttercream
-        "colorscheme busierbee
-        "colorscheme candyman
-        "colorscheme codeblocks_dark
-        "colorscheme codeblocks_dark
-        "colorscheme coldgreen
-        colorscheme random
-
-    "  <F[1-12]>
-        " <F1>
-            map <F1> ,c<space>
-            map <S-F1> ,c<space>
-        " <F2>
-            nnoremap <F2> :reg<CR>
-            nnoremap <S-F2> :marks<CR>
-        " <F3>
-            " Fold
-                map <F3> :ls<CR>:sb
-        " <F4>
-            "UndotreeToggle
-            nnoremap <F4> :verbos map
-            nnoremap <S-F4> :let @*=colors_name<CR>
-        " <F5>
-            nnoremap <silent> <F5> :vsplit ~/zdotfiles/2/.vimrc.local<CR>
-            nnoremap <C-F5> :source ~/zdotfiles/2/.vimrc.local<CR>
-            nnoremap <S-F5> :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR>
-        " <F7>
-                    vnoremap <f7> :s/xxx/\$\{1\:#\}/g
- "Tab
-                        vmap <Tab> ><Space>
-                        nmap <Tab> ><Space>
-                    nmap <S-Tab> <<Space>
-                    vmap <S-Tab> <<Space>
-            imap <Tab> <C-K>
-            "imap <C-Space> <C-n>
-                map Y y$
-                map W :w!<CR>
-            map <C-c> "+y<CR>
-        " <F6>
-            "beauty256
-        "bvemu
-            abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
-                "abbreviate CAR Conflict Analysis & Resolution
-                nnoremap <silent> <F6> :vsplit ~/zdotfiles/5/DCAR.snippets<CR>
-                nnoremap <silent> <S-F6> :vsplit ~/zdotfiles/5/Process/DCAR-key-words.txt<CR>
-                nnoremap <silent> <C-F6> :vsplit ~/zdotfiles/5/Process/phrase-bank.snippets<CR>
-                "g/^$/;/^$/-1!sort
-
-    imap <Tab> <C-K>
-    vmap <Tab> >
-    "map <S-Enter> O<Esc>j
-    "map <CR> o<Esc>k
-
-
-
-            "Mouse
-
-            "Keyboard
-            "registers
-            "marks
-            "map
-            "abbreviation
-            ""Plug
-            ""Syntax
-            "Colors
-            "Fonts
-            "vimrc
-            "function
-            "buffer
-            "Commands
-            "Snippets
-            "Dictionaries
-        " <F8>
-            map <f8> :diffthis<cr><esc><c-w><c-w>:diffthis<cr>
-            map <f8><f8> :diffoff<cr>
-            set diffopt=filler,context:4,iwhite	" options for using diff mode
-
-            " set the commandheight
-        " <F9>
-            nnoremap <silent> <F9> :SessionList<CR>
-            nnoremap <silent> <S-F9> :SessionSave<CR>
-            nnoremap <M-F9> :sessionopen
-            nnoremap <C-F9> :SessionSaveAs
-        " <F10>
-            "
-        " <F11>
-            """""""""""""""""""""""""""""""""""""""""
-        " <F12>
-
-    "cabbrev
-    cab wm !mv <C-R>% ~/<left><left><left>
-    cab wres !rsync -avz --progress -e $HOME/.easystroke ~/zdotfiles/6/.easystroke
-    cabbrev ww s/^\(.*\)$/    \1/gc
-
-
-    cabbrev wso sort
-    cabbrev wsou sort u
-
-    cabbrev wss %s/\s\+$//gc
-    cabbrev ws_ s/\s/_/gc
-
-    cabbrev wxp set foldmethod=expr<CR>
-    ma
-
-
-" for linux
-        let g:clipbrddefaultreg = '+'
-
-        nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.zsh<cr>
-            "nnoremap <silent> ww :vsplit ~/zdotfiles/2/.vimrc.localw<cr>
-            nnoremap <silent> w2 :vsplit ~/zdotfiles/2/.vimrc.localw<cr>
-
-        "imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>ka
-        cab w!! w !sudo tee "%"
-        map ws :!rm ~/.vimswap/*<cr>
-        "install unhtml
-        "map wh :!rm ~/tst/vhtml<cr>:r!unhtml % > ~/tst/vhtml<cr><esc>:vsplit ~/tst/vhtml<cr>
-    " The W culture "
-
-
-
-
-                ca w!! w !sudo tee "%"
-                    map ws :!rm ~/.vimswap/*<cr>
-
-
-                    "vnoremap 1 :w! >> ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>
-
-                nnoremap <silent> ; :q!<CR>
-            "nnoremap ,1 y:vsplit ~/Dropbox/C/Foundation/snippets/dcar.txt<CR>i<CR>iiiiii<C-R>"p<Esc>p
-
-            cabbrev fdf ~/Dropbox/C/Foundation/
-
-                "$\{1\:#\}/gc
-                "w! ~/zdotfiles/2/english/english.snippet
-                    "%s/X/\$\{1\:#\}/gc
-                    "%s/X/\$\{2\:#\}/gc
-            "%s/Y/\$\{2\:#\}/gc
-            "%s/Z/\$\{3\:#\}/gc
-
-            cabbrev ws %s:^:snippet$\{0\:#\}:gc
-            cabbrev wW r!echo""<left>
-
-
-
-
-        cabbrev wsh !bash %
-
-        cab zz e ~/zdotfiles/1/.zsh
-        cab vv w! ~/zdotfiles/2/
-        cab wx :!chmod u+x<CR>
-cab wex !sh %<CR>
-            cab abo vsplit ~/Dropbox/abobanirc
-
-    " [QA-Stack]
-    cab qmd vsplit ~/zdotfiles/9/web2py/applications/qastack/models/db.py
-    cab qcd vsplit ~/zdotfiles/9/web2py/applications/qastack/controllers/default.py<CR>
-    cab qvd vsplit ~/zdotfiles/9/web2py/applications/qastack/views/default/index.html<CR>
-    cabbrev W !echo""<left>
-
-"maped to the [1-10]
-        cab w77 w! ~/zdotfiles/7/
-        cab w66 w! ~/zdotfiles/6/
-        cab w55 w! ~/zdotfiles/6/
-        cab w44 w! ~/zdotfiles/5/
-        cab w33 w! ~/zdotfiles/4/
-            cab w22 w! ~/zdotfiles/2/
-        cab w11 w! ~/zdotfiles/1/
-    cab w00 w! ~/zdotfiles/0/
-
-    cab wdr w! ~/Dropbox/C/Foundation/
-
-    "Install unhtml
-    "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
-
-    "html substitute
-        "!sed 's/<[^>]*>//g' %
-
-" Split the Line at Cursor
-    nnoremap Ki<cr><esc><right>
-
-
-    "Enter
-            nnoremap <C-Up> m`o<Esc>``
-            nnoremap <C-Down> m`O<Esc>``
-    fun! RangerChooser()
-        exec "silent !ranger --choosefile=/tmp/chosenfile " . expand("%:p:h")
-        if filereadable('/tmp/chosenfile')
-            exec 'edit ' . system('cat /tmp/chosenfile')
-            call system('rm /tmp/chosenfile')
-        endif
-        redraw!
-    endfun
-        map ,r :call RangerChooser()<CR>
-
-
-fun! FindFiles()
-    let $filename = input("Enter file name to find: ")
-    let $error_file = $HOME."/.findfile.output"
-    silent! exe "!find . -iname \"".$filename."\" \| xargs file \| perl -pe 's/:/:1:/' > ".$error_file
-    cfile $error_file
-    copen
-    redraw!
-    endfun
-
-" Split the Line at Cursor
-nnoremap K i<cr><esc><right>
-    " html substitute
-
-    nnoremap xw :%s/<[^>]*>//gi<cr><CR>
-    "!sed 's/<[^>]*>//g' %
-
-    imap <Tab> <C-K>
-    vmap <Tab> >
-
-    "map <S-Enter> O<Esc>j
-
-    "map <CR> o<Esc>k
-
-"find files
-    "map zz :vsplit ~/zdotfiles/1/.zsh/al.zsh<CR><CR><ESC><ESC>Gp<ESC><C-W>q
-    "cab wz w ~/zdotfiles/1/
-    "cab wv w ~/zdotfiles/2/
-
-    fun! FindFiles()
-        let $filename = input("Enter file name to find: ")
-        let $error_file = $HOME."/.findfile.output"
-        silent! exe "!find . -iname \"".$filename."\" \| xargs file \| perl -pe 's/:/:1:/' > ".$error_file
-        cfile $error_file
-        copen
-        redraw!
-    endfun
-
-    "-----------------------------
-"   Pasteboard
-    "-----------------------------
-    map <F11> <C-W>n<C-W>Lp:w ~/Dropbox/1/
-
-    "white space
-    "%s/[\r \t]\+$//
-    let g:BASH_SyntaxCheckOptionsGlob  = "-O extglob"
-
-    cab w2a vsp ~/zdotfiles/9/web2py_arabic_admin.py
-        "nnoremap <F6> :set arabic<CR>
-        "nnoremap <S-F6>:set noarabic<CR>
-        "nnoremap <S-F6> :set rightleft<CR>
-        "nnoremap <C-F6> :set norightleft<CR>
-
-        "highlight WhitespaceEOL ctermbg=red guibg=red
-        "match WhitespaceEOL /\s\+$/
-        noremap wt :%s/[ ^I]*$//g
-            set selectmode=mouse
-
-" do not keep a backup files
-    set nobackup
-    set nowritebackup
-
-set noswapfile
-    " 4 spaces for indenting
-        set shiftwidth=4
-
-" 4 stops
-        set tabstop=4
-
-" Replace tabs with spaces
-    set expandtab
-    set autoread
-    set number
-    set smarttab
-" 4 spaces in tab
-    set softtabstop=4
-"remove redundant spaces
-    set shiftround
-    " Search
-    set smartcase
-
-    " //indent
-set smartindent
-    " Always set auto indenting on
-    " inherit indent
-    set autoindent
-
-" Set 52 lines for the display, 1 for the status line.
-    " and other display options
-    if has('gui_running')
-    " i like about 80 character width lines
-
-  set textwidth=78 " disabled
-    " 2 for the command line
-    set lines=52
-    " add columns for the Project plugin
-
-    set columns=110
-    " enable use of mouse
-    set mouse=a
+" Modeline and Notes {
+" vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
+"
+" =============================================================================
+"
+" File: .vimrc.local
+" Author:  Ahmed Alghamdi <tazjel@gmail.com>
+" Last Change: Sun Jan 26 00:06:11 AST 2014
+" Version: 0.1
+" WebPage: http://github.com/tazjel/zdotfiles.git
+" License: BSD
+"
+" References : http://github.com/tazjel/zdotfiles.git
+"
+" script type: plugin
+" }
+
+if exists('g:loaded_zvim')
+  finish
+endif
+let g:loaded_zvim =1
+
+
+if !exists('g:spf13_no_autochdir')
+    autocmd BufEnter * if bufname("") !~ "^\[A-Za-z0-9\]*://" | lcd %:p:h | endif
+    " Always switch to the current file directory
+endif
+" Use local vimrc if available {
+    if filereadable(expand("~/.vimrc.local"))
+        source ~/.vimrc.local
     endif
+" }
 
-    " keep 1000 lines of command line history
-    set history=1000
-
-    " show the cursor position all the time
-    set ruler
-
-" show incomplete command in status bar
-    set showcmd
-
-    " do incremental searches (annoying but handy);
-        set incsearch
-
-" Show tab characters. Visual Whitespace.
-    "set list
-    "set listchars=tab:>.
-    "set listchars=nbsp:-,tab:>-,trail:~,extends:>,precedes:<,eol:$
-
-" Make searches case-sensitive only if they contain upper-case characters
-    set ignorecase
-    set smartcase
-
-" smart search (override 'ic' when pattern has uppers)
-        set scs
-
-" Set status line
-    set statusline=%<%f%=\ [%1*%M%*%n%R%H]\ %-19(%3l,%02c%03V%)%O'%02b'
-    hi User1 term=inverse,bold cterm=inverse,bold ctermfg=red
-
-    " GRB: clear the search buffer when hitting return
-    "nnoremap <CR> :nohlsearch<CR>/<BS>
-
-" Always display a status line at the bottom of the window
-    set laststatus=2
-
-    " Insert two spaces after a period with every joining of lines.
-
-    " I like this as it makes reading texts easier (for me, at least).
-    set joinspaces
-
-" showmatch: Show the matching bracket for the last ')'?
-    set showmatch
-
-" wrapping
-    set nowrap
-
-"wrap by word
-    set linebreak
-
-" Java specific stuff
-    let java_highlight_all=1
-    let java_highlight_debug=1
-    let java_ignore_javadoc=1
-    let java_highlight_functions=1
-    let java_mark_braces_in_parens_as_errors=1
-
-" Commands for :Explore
-    let g:explVertical=1 " open vertical split winow
-    let g:explSplitRight=1 " Put new window to the right of the explorer
-    let g:explStartRight=0 " new windows go to right of explorer window
-
-"for the TOhtml command
-    let html_use_css=1
-
-    " Switch syntax highlighting on, when the terminal has colors
-    " Also switch on highlighting the last used search pattern.
-    if &t_Co > 2 || has("gui_running")
-    syntax on
-    set hlsearch
+" Use bundles config {
+    if filereadable(expand("~/.vimrc.bundles"))
+        source ~/.vimrc.bundles
     endif
-
-" when capslock is pressed - standart commands works too
-    command! Q quit
-    command! W write
-" C Y G W I N
-    "set shell=C:/cygwin/bin/bash
-
-    "set shellcmdflag=--login\ -c
-    "set shellxquote=\"
-
-" *****************************************************
-" E N C O D I N G S"
-    set encoding=utf8
-    "set fileencodings=utf8,cp1251
-
-" C O M M A N D S
-    "switch to directory of current file
-    command! CD cd %:p:h
-
-" K E Y M A P P I N G S
-    "map <Leader>e :Explore<cr>
-    "map <Leader>s :Sexplore<cr>
-
-    " pressing < or > will let you indent/unident selected lines
-
-    vnoremap < <gv
-    vnoremap > >gv
-
-    " Make p in Visual mode replace the selected text with the "" register.
-
-    vnoremap p <Esc>:let current_reg = @"<CR>gvs<C-R>=current_reg<CR><Esc>
-
-" Make tab in v mode work like I think it should (keep highlighting):
-    "vmap <tab> >gv
-    "vmap <s-tab> <gv
-
-    map ,L :let @z=TimeStamp()<Cr>"zpa
-    map ,datetime :let @z=strftime("%d %b %Y %X")<Cr>"zpa
-" Map <c-s> to write current buffer.
-        map <c-s> :w<cr>
-        imap <c-s> <c-o><c-s>
-        imap <c-s> <esc><c-s>
-"map ,date :let @z=strftime("%d %b %Y")<Cr>"zpa
-    " Buffer naviation
-    map <M-Left> :bprevious<CR>
-    map <M-Right> :bnext<CR>
-
-    " Select all.
-    map <c-a> ggVG
-
-    " Undo in insert mode.
-    imap <c-z> <c-o>u
-" ************************************************************************
-" B E G I N A U T O C O M M A N D S
-    "au BufNewFile,BufEnter *.c,*.h,*.java,*.jsp set formatoptions-=t tw=79
-    "i , A B B R E V I A T I O N S
-    "map <Del> D
-
-"iabbrev $$ ${:}<left><left>
-    abbr #b #!/bin/bash
-    abbr #p #!/bin/Python
-
-" abbreviation to manually enter a timestamp. Just type YTS in insert mode
-    iab YDATETIME <c-r>=strftime(": %a %b %d, %Y %H:%M:%S %Z")<cr>
-" ************************************************************************
-" F U N C T I O N S
-    " do not redraw, when running macros..lazyredraw
-    set lz
-    set complete=.,w,b,u,t,i
-
-" Folding
-    "z;f1G      : fold everything before this line [N]
-        " folding : hide sections to allow easier comparisons
-        "zf}                               : fold paragraph using motion
-    "v}zf                              : fold paragraph using visual
-        "zf'a                              : fold to mark
-        "zo                                : open fold
-        "zc                                : re-close fold
-                    "also visualise a section of code then type zf [N]
-            ":help folding
-    "zfG      : fold everything after this line [N]
-            "----------------
-        iabbrev wf Capture<CR>
-        \Process<CR>
-            \Organize<CR>
-            \Review<CR>
-            \Done<CR>
-
-    iabbrev w10 0<CR>
-        \1<CR>
-    \2<CR>
-    \3<CR>
-    \4<CR>
-    \5<CR>
-    \6<CR>
-    \7<CR>
-    \8<CR>
-    \9<CR>
-    \10<CR>
-" open folding using space
-    " GRB: Always source python.vim for Python files
-    au FileType python source ~/.vim/scripts/python.vim
-
-    " GRB: Use custom python.vim syntax file
-    "au! Syntax python source ~/.vim/syntax/python.vim
-    let python_highlight_all = 1
-    let python_slow_sync = 1
-
-    " support highlighting
-    let python_highlight_all = 1
-        autocmd FileType python set omnifunc=pythoncomplete#Complete
-            au FileType py set autoindent
-    au FileType py set smartindent
-
-    set complete=""
-        set complete+=.
-            set complete+=k
-            set complete+=b
-        set complete+=t
-            set completeopt-=preview
-        set completeopt+=longest
-
-    autocmd BufRead *.py set smartindent
-    set cinwords=if,elif,else,for,while,try,except,finally,def,class
-
-    "let g:Tlist_Ctags_Cmd="D:/opt/ctags58/ctags.exe"
-        let g:Tlist_Show_One_File=1
-        let g:Tlist_GainFocus_On_ToggleOpen = 1
-        let g:Tlist_Auto_Update = 1
-        let g:Tlist_Compact_Format = 1
-        let Tlist_Use_Right_Window = 1
-
-        augr class
-        au!
-    au bufreadpost,filereadpost *.class %!d:\bin\jad.exe -noctor -ff -i -p %
-    au bufreadpost,filereadpost *.class set readonly
-        au bufreadpost,filereadpost *.class set ft=java
-    au bufreadpost,filereadpost *.class normal gg=G
-    au bufreadpost,filereadpost *.class set nomodified
-    augr END
-
-" Search for selected text, forwards or backwards.
-        vnoremap <silent> * :<C-U>
-    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-    \gvy/<C-R><C-R>=substitute(
-    \escape(@", '/\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-    \gV:call setreg('"', old_reg, old_regtype)<CR>
-
-    vnoremap <silent> # :<C-U>
-    \let old_reg=getreg('"')<Bar>let old_regtype=getregtype('"')<CR>
-    \gvy?<C-R><C-R>=substitute(
-    \escape(@", '?\.*$^~['), '\_s\+', '\\_s\\+', 'g')<CR><CR>
-    \gV:call setreg('"', old_reg, old_regtype)<CR>
-" => Status line
-    """"""""""""""""""""""""""""""
-        " Always show the status line
-            "set laststatus=2
-
-            " Format the status line
-                "set statusline=\ %{HasPaste()}%F%m%r%h\ %w\ \ CWD:\ %r%{getcwd()}%h\ \ \ Line:\ %l
-" => Editing mappings
-" Remap VIM 0 to first non-blank character
-    map 0 ^
-
-    " Move a line of text using ALT+[jk] or Comamnd+[jk] on mac
-        nmap <M-j> mz:m+<cr>`z
-        nmap <M-k> mz:m-2<cr>`z
-        vmap <M-j> :m'>+<cr>`<my`>mzgv`yo`z
-        vmap <M-k> :m'<-2<cr>`>my`<mzgv`yo`z
-
-        if has("mac") || has("macunix")
-        nmap <D-j> <M-j>
-        nmap <D-k> <M-k>
-        vmap <D-j> <M-j>
-        vmap <D-k> <M-k>
-        endif
-
-            " Delete trailing white space on save, useful for Python and CoffeeScript ;)
-                func! DeleteTrailingWS()
-                exe "normal mz"
-                %s/\s\+$//ge
-                exe "normal `z"
-                endfunc
-
-            autocmd BufWrite *.py :call DeleteTrailingWS()
-            autocmd BufWrite *.coffee :call DeleteTrailingWS()
-    " => vimgrep searching and cope displaying
-
-        cabbrev wdd :%s/^\(.*\)\1$/\1/gc<CR>
-    " When you press gv you vimgrep after the selected text
-        vnoremap <silent> gv :call VisualSelection('gv')<CR>
-
-    " Open vimgrep and put the cursor in the right position
-        map <leader>g :vimgrep // **/*.<left><left><left><left><left><left><left>
-
-    " Vimgreps in the current file
-        map <leader><space> :vimgrep // <C-R>%<C-A><right><right><right><right><right><right><right><right><right>
-
-    " When you press <leader>r you can search and replace the selected text
-        vnoremap <silent> <leader>r :call VisualSelection('replace')<CR>
-
-        " Do :help cope if you are unsure what cope is. It's super useful!
-            "
-                " When you search with vimgrep, display your results in cope by doing:
-                    "   <leader>cc
-    "
-    " To go to the next search result do:
-        "   <leader>n
-    " To go to the previous search results do:
-        "   <leader>p
-        map <leader>cc :botright cope<cr>
-        map <leader>co ggVGy:tabnew<cr>:set syntax=qf<cr>pgg
-        map <leader>n :cn<cr>
-        map <leader>p :cp<cr>
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " => Spell checking
-    """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-    " Pressing ,ss will toggle and untoggle spell checking
-        map <leader>ss :setlocal spell!<cr>
-
-    " Shortcuts using <leader>
-        map <leader>sn ]s
-        map <leader>sp [s
-        map <leader>sa zg
-        map <leader>s? z=
-    " => Misc
-    " Remove the Windows ^M - when the encodings gets messed up
-        noremap <Leader>m mmHmt:%s/<C-V><cr>//ge<cr>'tzt'm
-
-        " Quickly open a buffer for scripbble
-            map <leader>q :e ~/buffer<cr>
-
-        " Toggle paste mode on and off
-            map <leader>pp :setlocal paste!<cr>
-
-        " Helper functions
-            function! CmdLine(str)
-                exe "menu Foo.Bar :" . a:str
-                emenu Foo.Bar
-                unmenu Foo
-            endfunction
+" }
 
 
-        "VisualSelection
-            function! VisualSelection(direction) range
-                let l:saved_reg = @"
-                execute "normal! vgvy"
+" Adjust viewports to the same size
+map <Leader>= <C-w>=
+map <CR> :
+map ;; :q!<CR>
+let mapleader = ','
+let maplocalleader = ','
+""""""""""""""
 
-                let l:pattern = escape(@", '\\/.*$^~[]')
-                let l:pattern = substitute(l:pattern, "\n$", "", "")
+" Togglesyntax
+function! ToggleSyntax()
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax enable
+        scriptencoding utf-8
+    endif
+endfunction
 
-                if a:direction == 'b'
-                    execute "normal ?" . l:pattern . "^M"
-                elseif a:direction == 'gv'
-                    call CmdLine("vimgrep " . '/'. l:pattern . '/' . ' **/*.')
-                elseif a:direction == 'replace'
-                    call CmdLine("%s" . '/'. l:pattern . '/')
-                elseif a:direction == 'f'
-                    execute "normal /" . l:pattern . "^M"
-                endif
 
-                let @/ = l:pattern
-                let @" = l:saved_reg
-            endfunction
+" diff
+function! WW__diff_map()
+    if &diff
+        nnoremap <C-j> ]c
+        nnoremap <C-k> [c
+        colorscheme inkpot
+        "Vimdiff quit without changes
+        nnoremap q :qa! <CR>
+    endif
+endfunction
+"
 
-        " Returns true if paste mode is enabled
-            function! HasPaste()
-                if &paste
-                    return 'PASTE MODE  '
-                en
-                return ''
-            endfunction
+" find files
+fun! WW__FindFiles()
+  let $filename = input("Enter file name to find: ")
+  let $error_file = $HOME."/.findfile.output"
+  silent! exe "!find . -iname \"".$filename."\" \| xargs file \| perl -pe 's/:/:1:/' > ".$error_file
+  cfile $error_file
+  copen
+  redraw!
+endfun
+"
+"References less.vim"
+" Switch to editing (switch off less mode)
+" map v :silent call <SID>End()<CR>"
+fun! s:End()
+    set ma
+    if exists('s:lz')
+    let &lz = s:lz
+    endif
+    unmap h
+    unmap H
+    unmap <Space>
+    unmap <C-V>
+    unmap f
+    unmap <C-F>
+    unmap z
+    unmap <Esc><Space>
+    unmap F
+    unmap d
+    unmap <C-D>
+    unmap <CR>
+    unmap <C-N>
+    unmap e
+    unmap <C-E>
+    unmap j
+    unmap <C-J>
+    unmap b
+    unmap <C-B>
+    unmap w
+    unmap <Esc>v
+    unmap u
+    unmap <C-U>
+    unmap k
+    unmap y
+    unmap <C-Y>
+    unmap <C-P>
+    unmap <C-K>
+    unmap r
+    unmap <C-R>
+    unmap R
+    unmap g
+    unmap <
+    unmap <Esc><
+    unmap G
+    unmap >
+    unmap <Esc>>
+    unmap %
+    unmap p
+    unmap n
+    unmap N
+    unmap q
+    unmap v
+    unmap /
+    unmap ?
+endfun
 
-        " Don't close window, when deleting a buffer
-            command! Bclose call <SID>BufcloseCloseIt()
-            function! <SID>BufcloseCloseIt()
-            let l:currentBufNum = bufnr("%")
-            let l:alternateBufNum = bufnr("#")
 
-            if buflisted(l:alternateBufNum)
-                buffer #
-            else
-                bnext
-            endif
-
-            if bufnr("%") == l:currentBufNum
-                new
-            endif
-
-            if buflisted(l:currentBufNum)
-                execute("bdelete! ".l:currentBufNum)
-            endif
-            endfunction
-
-        " txt
-            au BufRead,BufNewFile *.txt set filetype=txt
-            au! Syntax newlang source ~/.vim/syntax/txt.vim
-
+""command! -nargs=? -range=% PasteBin :call PasteBin(<line1>, <line2>)
+" =============================================================================
+" Section: Plugin completion
+let g:loaded_zvim=2

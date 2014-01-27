@@ -2,7 +2,6 @@
 
 
 w__check() {
-
     echo "environment"
     echo "Installed applications versions"
     echo "symlink"
