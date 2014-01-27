@@ -34,9 +34,6 @@ export PS1="${BLUE}\h:\W \$${COLOR_NONE} "
 #WHITE='\[\e[1;37m\]'
 #NC='\[\e[0m\]'
 
-function is_vim_running {
-  jobs | grep -o 'vim' &> /dev/null
-}
 
 PROMPT_INFO="${BLACK}[\A] ${green}\u${NC} ${BLUE}\w"
 PROMPT_RUBY="[\$(rbenv version | sed -e 's/ .*//')]"
@@ -195,6 +192,5 @@ export PATH="bin:.bundle/bin:$PATH"
 source $HOME/.bashrc
 
 if [ -f $HOME/.zshrc ]; then
-      . $HOME/.zshrc
-  fi
-  
+      source $HOME/.zshrc
+fi

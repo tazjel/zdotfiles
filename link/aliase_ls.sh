@@ -1,5 +1,6 @@
+#!/usr/bin/env bash
 
-alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
+    alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__00'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__11'='clear;pwd;cd ~/zdotfiles/1;ls -X'
     alias 'www__22'='clear;pwd;cd ~/zdotfiles/2;ls -X'
@@ -28,7 +29,7 @@ alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__lrt'='ls -lart'
     alias 'www__ls='ls --color'=tty'
     alias 'www__lsd'='ls -Gal | grep ^d'
-alias 'www__build'='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
+    alias 'www__build'='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
 
     alias 'www__lt='ls --sort'=time'
     alias 'www__netlisteners'='lsof -i -P | grep LISTEN'
