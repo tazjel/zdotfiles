@@ -1,0 +1,683 @@
+# .zshrc interactive configuration file for zsh
+# thanks to klapmuetz, caphuso, Mikachu, zshwiki.org.
+# first revision: 24mar2007  +chris+
+
+# == OPTIONS
+
+setopt NO_BEEP
+setopt C_BASES
+setopt OCTAL_ZEROES
+setopt PRINT_EIGHT_BIT
+setopt SH_NULLCMD
+setopt AUTO_CONTINUE
+setopt PATH_DIRS
+setopt NO_NOMATCH
+setopt EXTENDED_GLOB
+disable -p '^'
+
+setopt LIST_PACKED
+setopt COMPLETE_IN_WORD
+setopt BASH_AUTO_LIST
+setopt NO_AUTO_MENU
+setopt NO_CORRECT
+setopt NO_ALWAYS_LAST_PROMPT
+
+setopt AUTO_PUSHD
+setopt PUSHD_IGNORE_DUPS
+setopt PUSHD_MINUS
+
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_SPACE
+setopt INC_APPEND_HISTORY
+setopt EXTENDED_HISTORY
+
+SAVEHIST=9000
+HISTSIZE=9000
+HISTFILE=~/.zsh_history
+
+LISTMAX=0
+REPORTTIME=60
+TIMEFMT="%J  %U user %S system %P cpu %MM memory %*E total"
+MAILCHECK=0
+
+# == MISC
+
+umask 002
+
+# This needs to run before compinit installs keybindings.
+# 12mar2013  +chris+
+bindkey -e
+
+# == PROMPT
+
+# gitpwd - print %~, limited to $NDIR segments, with inline git branch
+NDIRS=2
+gitpwd() {
+  local -a segs splitprefix; local prefix branch
+  segs=("${(Oas:/:)${(D)PWD}}")
+
+  if gitprefix=$(git rev-parse --show-prefix 2>/dev/null); then
+    splitprefix=("${(s:/:)gitprefix}")
+    branch=$(git symbolic-ref -q --short HEAD ||
+             git name-rev --name-only HEAD 2>/dev/null)
+    if (( $#splitprefix > NDIRS )); then
+      print -n "${segs[$#splitprefix]}@$branch "
+    else
+      segs[$#splitprefix]+=@$branch
+    fi
+  fi
+
+  print "${(j:/:)${(@Oa)segs[1,NDIRS]}}"
+}
+
+cnprompt6() {
+  case "$TERM" in
+    xterm*|rxvt*)
+      precmd() {  print -Pn "\e]0;%m: %~\a" }
+      preexec() { printf "\e]0;$HOST: %s\a" $1 };;
+  esac
+  setopt PROMPT_SUBST
+  nbsp=$'\u00A0'
+  PS1='%B%m%(?.. %??)%(1j. %j&.)%b $(gitpwd)%B%(!.%F{red}.%F{yellow})%#${SSH_CLIENT:+%#}$nbsp%b'
+  RPROMPT=''
+}
+
+cnprompt6
+
+# == COMPLETION
+
+zmodload zsh/complist
+autoload -Uz compinit && compinit
+
+zstyle ':completion:*' squeeze-slashes true
+zstyle ':completion:*' special-dirs ..
+zstyle ':completion::complete:*' use-cache on
+zstyle ':completion::complete:*' rehash true
+
+# Colors, like ls(1).
+# 25mar2007  +chris+
+# 25feb2011  +chris+
+export LS_COLORS='rs=0:di=01;34:ln=01;36:mh=00:pi=40;33:so=01;35:do=01;35:bd=40;33;01:cd=40;33;01:or=40;31;01:su=37;41:sg=30;43:ca=30;41:tw=30;42:ow=34;42:st=37;44:ex=01;32'
+zstyle ':completion:*' list-colors ''
+zstyle ':completion:*:default' list-colors ${(s.:.)LS_COLORS}
+
+zstyle ':completion:*:functions'           ignored-patterns '_*'
+zstyle ':completion:*:*:*:*:processes*'    force-list always
+zstyle ':completion:*:*:kill:*:processes'  insert-ids single
+zstyle ':completion:*:*:kill:*:processes'  sort false
+zstyle ':completion:*:*:kill:*:processes'  command 'ps -u "$USER"'
+zstyle ':completion:*:processes-names'     command "ps -eo cmd= | sed 's:\([^ ]*\).*:\1:;s:\(/[^ ]*/\)::;/^\[/d'"
+zstyle ':completion:*:evince::' \
+  file-patterns '*.(#i)(dvi|djvu|tiff|pdf|ps|xps)(|.bz2|.gz|.xz|.z) *(-/)' '*'
+compdef pkill=killall
+compdef ping6=ping
+compdef _gnu_generic cat curl df file grep head idn ln localedef
+compdef _gnu_generic mv paste tail touch scrot shred watch wc wget zsh
+compdef _gnu_generic emacs emacsclient
+compdef _git gitk=git-rev-list
+
+# Don't complete the same twice for kill/diff.
+# 25nov2010  +chris+
+zstyle ':completion:*:(kill|diff):*'       ignore-line yes
+
+# Don't complete backup files as commands.
+# 29sep2012  +chris+
+zstyle ':completion:*:complete:-command-::*' ignored-patterns '*\~'
+
+# Cycle through history completion (M-/, M-,).
+# 12mar2013  +chris+
+zstyle ':completion:history-words:*:history-words' stop yes
+zstyle ':completion:history-words:*:history-words' list no
+zstyle ':completion:history-words:*' remove-all-dups yes
+
+# == ZLE
+
+# Emacs keybindings have been set above.
+
+# This is even better than copy-prev-shell-word, can be called repeatedly.
+# 12mar2013  +chris+
+autoload -Uz copy-earlier-word
+zle -N copy-earlier-word
+bindkey "^[m" copy-earlier-word
+
+# Remove prompt on line paste (cf. last printed char in cnprompt6).
+# 09mar2013  +chris+
+bindkey -s $nbsp '^u'
+
+# Standard keybindings
+# 07apr2011  +chris+
+# 04jan2013  +chris+  page-up/down for menu-select
+[[ -n $terminfo[khome] ]] && bindkey $terminfo[khome] beginning-of-line
+[[ -n $terminfo[kend]  ]] && bindkey $terminfo[kend]  end-of-line
+[[ -n $terminfo[kdch1] ]] && bindkey $terminfo[kdch1] delete-char
+[[ -n $terminfo[kpp]   ]] && bindkey $terminfo[kpp] backward-word
+[[ -n $terminfo[knp]   ]] && bindkey $terminfo[knp] forward-word
+
+# Move by physical lines, like gj/gk in vim
+# 09apr2013  +chris+
+_physical_up_line()   { zle backward-char -n $COLUMNS }
+_physical_down_line() { zle forward-char  -n $COLUMNS }
+zle -N physical-up-line _physical_up_line
+zle -N physical-down-line _physical_down_line
+bindkey "\e\e[A" physical-up-line
+bindkey "\e\e[B" physical-down-line
+
+# M-DEL should stop at /.
+# 25mar2007  +chris+
+# 28feb2011  +chris+
+WORDCHARS="*?_-.[]~&;$%^+"
+
+# backward-kill-default-word (with $WORDCHARS from zsh -f)
+# 26jun2012  +chris+
+_backward_kill_default_word() {
+  WORDCHARS='*?_-.[]~=/&;!#$%^(){}<>' zle backward-kill-word
+}
+zle -N backward-kill-default-word _backward_kill_default_word
+bindkey '\e=' backward-kill-default-word   # = is next to backspace
+
+# History search with globs.
+# 21sep2011  +chris+
+# 05jun2012  +chris+  and keeping the rest of the line
+autoload -Uz narrow-to-region
+_history-incremental-preserving-pattern-search-backward() {
+  local state
+  MARK=CURSOR  # magick, else multiple ^R don't work
+  narrow-to-region -p "$LBUFFER${BUFFER:+>>}" -P "${BUFFER:+<<}$RBUFFER" -S state
+  zle end-of-history
+  zle history-incremental-pattern-search-backward
+  narrow-to-region -R state
+}
+zle -N _history-incremental-preserving-pattern-search-backward
+bindkey "^R" _history-incremental-preserving-pattern-search-backward
+bindkey -M isearch "^R" history-incremental-pattern-search-backward
+bindkey "^S" history-incremental-pattern-search-forward
+
+# Quote stuff that looks like URLs automatically.
+# 19jul2008  +chris+
+autoload -U url-quote-magic
+zle -N self-insert url-quote-magic
+
+# Edit command line with $VISUAL.
+# 26jul2010  +chris+
+autoload -z edit-command-line
+zle -N edit-command-line
+bindkey "^X^E" edit-command-line
+
+# Force file name completion on C-x TAB, Shift-TAB.
+# 23dec2010  +chris+
+zle -C complete-files complete-word _generic
+zstyle ':completion:complete-files:*' completer _files
+zstyle ':completion:complete-files:*' force-list always
+bindkey "^X^I" complete-files
+bindkey "^[[Z" complete-files
+
+# Force menu on C-f.
+# 29dec2010  +chris+
+# 21sep2011  +chris+
+# 04jan2013  +chris+  rewritten using menu-select
+zle -C complete-menu menu-select _generic
+_complete_menu() {
+  setopt localoptions alwayslastprompt
+  zle complete-menu
+}
+zle -N _complete_menu
+bindkey '^F' _complete_menu
+bindkey -M menuselect '^F' accept-and-infer-next-history
+bindkey -M menuselect '/'  accept-and-infer-next-history
+bindkey -M menuselect '^?' undo
+bindkey -M menuselect ' ' accept-and-hold
+bindkey -M menuselect '*' history-incremental-search-forward
+
+# Move to where the arguments belong.
+# 24dec2010  +chris+
+after-first-word() {
+  zle beginning-of-line
+  zle forward-word
+}
+zle -N after-first-word
+bindkey "^X1" after-first-word
+
+# Complete from tmux pane.
+# http://blog.plenz.com/2012-01/zsh-complete-words-from-tmux-pane.html
+# 20jan2012  +chris+
+_tmux_pane_words() {
+  local expl
+  local -a w
+  if [[ -z "$TMUX_PANE" ]]; then
+    _message "not running inside tmux!"
+    return 1
+  fi
+  w=( ${(u)=$(tmux capture-pane \; show-buffer \; delete-buffer)} )
+  _wanted values expl 'words from current tmux pane' compadd -a w
+}
+zle -C tmux-pane-words-prefix   complete-word _generic
+bindkey '^X^T' tmux-pane-words-prefix
+zstyle ':completion:tmux-pane-words-prefix:*' completer _tmux_pane_words
+zstyle ':completion:tmux-pane-words-prefix:*' ignore-line current
+
+# fg editor on ^Z
+# 27sep2011  +chris+
+# 17feb2012  +chris+
+foreground-vi() {
+  fg %vi
+}
+zle -N foreground-vi
+bindkey '^Z' foreground-vi
+
+# Allow to recover from C-c or failed history expansion (thx Mikachu).
+# 26may2012  +chris+
+_recover_line_or_else() {
+  if [[ -z $BUFFER && $CONTEXT = start && $zsh_eval_context = shfunc
+        && -n $ZLE_LINE_ABORTED
+        && $ZLE_LINE_ABORTED != $history[$((HISTCMD-1))] ]]; then
+    LBUFFER+=$ZLE_LINE_ABORTED
+    unset ZLE_LINE_ABORTED
+  else
+    zle .$WIDGET
+  fi
+}
+zle -N up-line-or-history _recover_line_or_else
+_zle_line_finish() {
+  ZLE_LINE_ABORTED=$BUFFER
+}
+zle -N zle-line-finish _zle_line_finish
+
+# Increase/decrease last numeric word.
+# 04jan2013  +chris+  using incarg
+# 12mar2013  +chris+  revert to own implementation, improved
+_increase_number() {
+  local -a match mbegin mend
+  [[ $LBUFFER =~ '([0-9]+)[^0-9]*$' ]] &&
+    LBUFFER[mbegin,mend]=$(printf %0${#match[1]}d $((10#$match+${NUMERIC:-1})))
+}
+zle -N increase-number _increase_number
+bindkey '^Xa' increase-number
+bindkey -s '^Xx' '^[-^Xa'
+
+# == ALIASES
+
+alias ls="LC_COLLATE=C /bin/ls -F --dereference-command-line-symlink-to-dir --color=auto"
+alias sort="LC_ALL=C /usr/bin/sort"
+alias vi="vim -p"
+alias mc="/usr/bin/mc -c"
+alias texclean='rm -f *.toc *.aux *.log *.cp *.fn *.tp *.vr *.pg *.ky'
+alias dotf='ls .[a-zA-Z0-9_]*'
+alias vil='vim *(.om[1]^D)'
+alias mtr='/usr/sbin/mtr -t'
+alias netcfg='sudo netcfg'
+alias packer='COLOR=NO packer'
+alias cad='cat >/dev/null'
+alias fscp='scp -o Ciphers=arcfour128 -o MACs=umac-64@openssh.com'
+alias fssh='ssh -o Ciphers=arcfour128 -o MACs=umac-64@openssh.com'
+alias cssh='ssh -F /dev/null -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias cscp='scp -F /dev/null -o StrictHostKeyChecking=no -o UserKnownHostsFile=/dev/null'
+alias mplayer='ALSA_OUTPUT=mplayer mpv'
+alias j='jobs -l | spongegrep . || echo no jobs running'
+alias d.='df -h . |sed 1d'
+
+autoload zmv
+alias zzmv='noglob zmv -W'
+
+hash -d mess=~/mess/current
+hash -d uni=~/uni/current
+hash -d wwwtmp=chneukirchen.org:/home/domains/chneukirchen.org/sites/chneukirchen.org/tmp
+
+# e.g: echo *($SHUF)  (NB: slightly biased shuffle)
+SHUF='oe|REPLY=${(l:5::0:)RANDOM}${(l:5::0:)RANDOM}${(l:5::0:)RANDOM}|'
+
+# == FUNCTIONS
+
+# mess -- switch to current mess folder, creating it if needed
+# 17may2008  +chris+
+mess() {
+  set +e
+  DIR=~/mess/$(date +%Y/%V)
+  [[ -d $DIR ]] || {
+    mkdir -p $DIR
+    ln -sfn $DIR ~/mess/current
+    echo "Created $DIR."
+  }
+  cd ~/mess/current
+}
+
+# 29feb2008  +chris+
+# 13apr2010  +chris+  allow completion
+# 18dec2012  +chris+  set work tree too
+alias homegit="GIT_DIR=~/prj/dotfiles/.git GIT_WORK_TREE=~ git"
+
+# preserve cd -
+# 21feb2011  +chris+
+# 12feb2012  +chris+  save full dirstack, adopted from grml
+# 02feb2013  +chris+  only add $PWD to file, better for multiple shells
+DIRSTACKSIZE=9
+DIRSTACKFILE=~/.zdirs
+if [[ -f $DIRSTACKFILE ]] && [[ $#dirstack -eq 0 ]]; then
+  dirstack=( ${(f)"$(< $DIRSTACKFILE)"} )
+  [[ -d $dirstack[1] ]] && cd $dirstack[1] && cd $OLDPWD
+fi
+chpwd() {
+  local -a dirs; dirs=( "$PWD" ${(f)"$(< $DIRSTACKFILE)"} )
+  print -l ${${(u)dirs}[0,$DIRSTACKSIZE]} >$DIRSTACKFILE
+}
+
+# search dirstack with ~[name]
+# 16nov2013  +chris+
+_mydirstack() {
+  local -a lines list
+  for d in $dirstack; do
+    lines+="$(($#lines+1)) -- $d"
+    list+="$#lines"
+  done
+  _wanted -V directory-stack expl 'directory stack' \
+    compadd "$@" -ld lines -S']/' -Q -a list
+}
+zsh_directory_name() {
+  case $1 in
+    c) _mydirstack;;
+    n) case $2 in
+         <0-9>) reply=($dirstack[$2]);;
+         *) reply=($dirstack[(r)*$2*]);;
+       esac;;
+    d) false;;
+  esac
+}
+
+# translate -- grep de-en dictionary
+# 22feb2010  +chris+
+translate() { grep -i -w -e $1 ~/.translate.de-en } 
+
+# mcd -- mkdir and cd at once
+# 16may2010  +chris+
+# 12feb2012  +chris+
+mcd() { mkdir -p "$1" && cd "$1" }
+compdef mcd=mkdir
+
+# img -- display given or all images with the currently preferred viewer
+# 01jun2010  +chris+
+# 01apr2013  +chris+  back to feh
+# 15sep2013  +chris+  back to qiv
+img() {
+  qiv -ftuNRi ${*:-.}
+}
+
+# h -- grep history
+# 08mar2011  +chris+
+# 14mar2011  +chris+
+# 08dec2011  +chris+
+h() {
+  fc -l 0 -1 | sed -n "/$1/s/^ */!/p" | tail -n ${2:-10}
+}
+alias h=' h'
+
+# sucdo -- su -c like sudo without quotes
+# 21mar2011  +chris+
+sucdo() {
+  su -c "$*"
+}
+compdef sucdo=sudo
+
+# pstop -- ps with top-like output
+# 16aug2011  +chris+
+pstop() {
+  ps -eo pid,user,pri,ni,vsz,rsz,stat,pcpu,pmem,time,comm --sort -pcpu |
+    head "${@:--n 20}"
+}
+
+# sfetch (sftp|scp)://HOST/PATH [DEST] -- file by scp/sftp with resuming
+# 19sep2011  +chris+
+sfetch() {
+  curl -k -u $USER -C- ${2:--O}${2:+-o $2} $1
+}
+
+# zman -- easier browsing of zsh manpage
+# 20sep2011  +chris+
+zman() {
+  PAGER="less -g -s '+/^       "$1"'" man zshall
+}
+
+# g -- call grep recursively with useful defaults
+# 02oct2011  +chris+
+# 10jan2012  +chris+  take an directory as possible last argument
+# 28nov2012  +chris+  use grep -r
+# 15dec2013  +chris+  use LC_ALL=C for speed and UTF-8 segfaults with -P
+g() {
+  local p=$argv[-1]
+  [[ -d $p ]] && { p=$p/; argv[-1]=(); } || p=''
+  LC_ALL=C grep --exclude "*~" --exclude "*.o" --exclude "tags" \
+    --exclude-dir .bzr --exclude-dir .git --exclude-dir .hg --exclude-dir .svn \
+    --exclude-dir CVS  --exclude-dir RCS --exclude-dir _darcs \
+    --exclude-dir _build \
+    -r -P ${@:?regexp missing} $p
+}
+
+# l -- find file names, recursively
+# 20jun2012  +chris+  take an directory as possible last argument
+l() {
+  local p=$argv[-1]
+  [[ -d $p ]] && { argv[-1]=(); } || p='.'
+  find $p ! -type d | sed 's:^./::' | egrep "${@:-.}"
+}
+
+# lr -- a saner ls -R (using find)
+# 07jun2013  +chris+
+lr() {
+  zparseopts -D -E S=S t=t r=r h=h U=U l=l F=F d=d
+  local sort="sort -t/ -k2"                                # by name (default)
+  local numfmt="cat"
+  local long='s:[^/]* /::; s:^\./\(.\):\1:;'               # strip detail
+  local classify=''
+  [[ -n $F ]] && classify='/^d/s:$:/:; /^-[^ ]*x/s:$:*:;'  # dir/ binary*
+  [[ -n $l ]] && long='s: /\(\./\)\?: :;'                  # show detail
+  [[ -n $S ]] && sort="sort -n -k5"                        # by size
+  [[ -n $r ]] && sort+=" -r"                               # reverse
+  [[ -n $t ]] && sort="sort -k6" && { [[ -n $r ]] || sort+=" -r" } # by date
+  [[ -n $U ]] && sort=cat                                  # no sort, live output
+  [[ -n $h ]] && numfmt="numfmt --field=5 --to=iec --padding=6"  # human fmt
+  [[ -n $d ]] && set -- "$@" -prune                        # don't enter dirs
+  find "$@" -printf "%M %2n %u %g %9s %TY-%Tm-%Td %TH:%TM /%p -> %l\n" |
+    $=sort | $=numfmt |
+    sed '/^[^l]/s/ -> $//; '$long' '$classify
+}
+alias lr='lr -F'
+
+# use-context -- enable ConTeXt paths
+# 16aug2011  +chris+
+use-context() {
+  export TEXMFOS=/opt/context-minimals/texmf-linux-64
+  export TEXMFCACHE=$HOME/.cache/texmf-cache
+  export PATH=$TEXMFOS/bin:$PATH
+  export OSFONTDIR="$HOME/.fonts;/usr/share/fonts;"
+}
+
+# pacgrep -- search arch package contents
+# 21nov2011  +chris+
+# 08dec2011  +chris+
+pacgrep() {
+  PATTERN=${1:?pattern missing}
+  shift
+  pacman -Qlq "$@" | xargs grep -d skip -e "$PATTERN"
+}
+_pacgrep() {
+  _pacman  # force autoload
+  _arguments : '1:pattern:' '*:package:_pacman_completions_installed_packages'
+}
+compdef _pacgrep pacgrep
+
+# imv -- interactive rename, using vared
+# 03sep2012  +chris+
+imv() {
+  local src dst
+  for src; do
+    [[ -e $src ]] || { print -u2 "$src does not exist"; continue }
+    dst=$src
+    vared dst
+    [[ $src != $dst ]] && mkdir -p $dst:h && mv -n $src $dst
+  done
+}
+
+# hl -- highlight regexps
+# 06sep2012  +chris+
+hl() {
+  egrep --color=always -e '' -e${^*}
+}
+
+# don't export $COLUMNS for ps, to allow long lines on "ps | grep ..."
+# 09nov2012  +chris+
+ps() {
+  ( unset COLUMNS; command ps "$@" )
+}
+
+# noq -- remove query string from filenames
+# 01dec2012  +chris+
+noq() {
+  for f (${@:-*\?*}) mv -nv $f ${f%%\?*}
+}
+
+# jkill -- kill all jobs of the current shell
+# 23dec2012  +chris+
+jkill() {
+  kill "$@" %${(k)^jobstates}
+}
+
+# k1 -- kill oldest job of the current shell
+# 15dec2013  +chris+
+k1() {
+  local pids=${(j:,:)${jobstates#*:*:}%=*}
+  kill "$@" ${(f)$(ps -o pid= --sort start -p $pids)[1]}
+}
+
+# jpid -- map job ids to pids
+# 23dec2012  +chris+
+jpid() {
+  local p
+  # $jobstates uses jobs.c:getjob() and can do %1 or %foo as well.
+  for id; p+=(${${${jobstates[$id]}#*:*:}%=*})
+  print $p
+}
+
+# zconvert -- zmv calling convert
+# 05feb2013  +chris+
+zconvert() {
+  zparseopts -D n=n
+  zmv -vf -W -p convert $n "-o ${*[1,-3]}" "$@[-2]" "$@[-1]"
+}
+alias zconvert='noglob zconvert'
+
+# px -- verbose pgrep
+px() {
+  ps uwwp ${$(pgrep -d, "${(j:|:)@}"):?no matches}
+}
+
+# crun -- compile and run .c program
+crun() {
+  local cprog=$1; shift
+  local n=$@[(i)--]
+  gcc -o ${cprog%.*} $cprog $@[1,n-1] && ./${cprog%.*} $@[n+1,-1]
+}
+
+# tracing -- run zsh function with tracing
+tracing() {
+  local f=$1; shift
+  functions -t $f
+  $f "$@"
+  functions +t $f
+}
+
+# bins -- list all executable files in $PATH as called by basename
+bins() {
+  rehash
+  whence -p ${(kon)commands}
+}
+
+# v -- open file:line: in vim, defaulting to X selection
+# 28aug2013  +chris+
+v() {
+  case ${1:=$(xsel)} in
+    *:<->:) v ${1%:};;
+    *:<->) [[ -e ${1%:*} ]] && vim +${1##*:} ${1%:*};;
+    *) [[ -e $1 ]] && vim $1
+  esac
+}
+
+# up [|N|pat] -- go up 1, N or until basename matches pat many directories
+#   just output directory when not used interactively, e.g. in backticks
+# 06sep2013  +chris+
+up() {
+  local op=print
+  [[ -t 1 ]] && op=cd
+  case "$1" in
+    '') up 1;;
+    -*|+*) $op ~$1;;
+    <->) $op $(printf '../%.0s' {1..$1});;
+    *) local -a seg; seg=(${(s:/:)PWD%/*})
+       local n=${(j:/:)seg[1,(I)$1*]}
+       if [[ -n $n ]]; then
+         $op /$n
+       else
+         print -u2 up: could not find prefix $1 in $PWD
+         return 1
+       fi
+  esac
+}
+
+# n -- quickest note taker
+# 21nov2013  +chris+
+n() {
+  [[ $# == 0 ]] && tail ~/.n || echo "$(date +'%F %R'): $*" >>~/.n
+}
+alias n=' noglob n'
+
+# allowcore -- permit coredumps
+# 11jan2014  +chris+
+allowcore() {
+  for pid in $(pgrep "$@"); do
+    prlimit --core=unlimited --pid $pid
+  done
+}
+
+
+# == SPECIAL ENVIRONMENTS
+
+case "$TERM" in
+  9term|win)
+    chpwd() { awd }
+    ;&
+  network|dumb)
+    export LS_COLORS=
+    zstyle -d ':completion:*' list-colors
+    zstyle -d ':completion:*:default' list-colors
+    alias ls="LC_COLLATE=C /bin/ls -F --color=never"
+
+    setopt SINGLE_LINE_ZLE NO_PROMPT_CR NO_BASH_AUTO_LIST
+    _expand_or_complete_newline() {
+      zle expand-or-complete
+      echo
+      zle reset-prompt
+    }
+    zle -N expand-or-complete-newline _expand_or_complete_newline
+    bindkey "^D" expand-or-complete-newline
+    export PAGER=cat
+    export GIT_PAGER=cat
+
+    PS1='%m%(?.. %??)%(1j. %j&.) %${NDIRS:-2}~%#${SSH_CLIENT:+%#} '
+
+    alias vi="TERM=xterm gvim -p"
+    alias vim=vi
+    alias lf="9 lc -F"
+esac
+
+# Interactive zsh, but automatically execute given command.
+# zsh -is eval $COMMAND
+# c.f. http://www.zsh.org/mla/users/2005/msg00599.html
+# 12jan2013  +chris+
+if [[ $1 == eval ]]; then
+  shift
+  ICMD="$@"
+  set --
+  zle-line-init() {
+    BUFFER="$ICMD"
+    zle accept-line
+    zle -D zle-line-init
+  }
+  zle -N zle-line-init
+fi

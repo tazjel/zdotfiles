@@ -12,6 +12,11 @@
     XXP=$(find $HOME -maxdepth 1)
 ############################  BASIC SETUP TOOLS
 
+function ls {
+    command ls -l "$@"
+}
+
+
 msg() {
     printf '%b\n' "$1" >&2
 }

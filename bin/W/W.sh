@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env zsh
 
 export LESS='-R'
 export LESSOPEN='|~/.lessfilter %s'
@@ -14,6 +14,13 @@ msg() {
 success () {
     msg "\e[32m[✔]\e[0m ${1}${2}"
 }
+
+# -------------------------------------------------------------------
+# (s)ave or (i)nsert a directory.
+# -------------------------------------------------------------------
+www_save_dir() { pwd >> ~/.save_dir ; }
+www_read_dir() {
+    cat ~/.save_dir; }
 
 export LC_ALL="en_US.UTF-8"
 export LANG="en_US.UTF-8"

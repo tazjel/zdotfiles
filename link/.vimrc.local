@@ -299,7 +299,7 @@ cab wx !chmod u+x %
                 " Undo in insert mode.
         imap <c-z> <c-o>u
 
-"let g:neosnippet#disable_runtime_snippets
+let g:neosnippet#disable_runtime_snippets
 
 
 "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip

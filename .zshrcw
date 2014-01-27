@@ -15,33 +15,11 @@ source $HOME/zdotfiles/1/.zsh/setopt.zsh
 source $HOME/zdotfiles/1/.zsh/zsh_hooks.zsh
 #
 source $HOME/zdotfiles/WWw.sh
-source $HOME/zdotfiles/1/config
+
 source $HOME/zdotfiles/1/aliase_ls.sh
 
-function chpwd() {
-  ls
-}
 
-function ls {
-    command ls -l "$@"
-}
 
-function cd {
-  builtin cd "$@" && ls -F
-}
-
-function complete-no-hash
-{
-  hash -r # rehash automatically in order to find new executables (if any)
-  zle expand-or-complete # fortunately we don't need to forward any arguments here or it would get more complex
-}
-setopt INTERACTIVE_COMMENTS
-zle -N complete complete-no-hash
-bindkey '^I' complete
-#To make sure that cd and other commands dereference symlinks, add:
-
-setopt CHASE_LINKS
-bindkey "^[r" history-incremental-search-forward
 bindkey -v
 
 bindkey '^P' up-history

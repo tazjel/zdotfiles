@@ -12,34 +12,32 @@ W_SIXAD=/var/lib/sixad/profiles
 ###########################  BASIC SETUP TOOLS
 
 
-# {{{
-	W_Do_we_have_command() {
-		which "$1" > /dev/null 2>&1 && echo "Success!";
-	}
+W_Do_we_have_command() {
+    which "$1" > /dev/null 2>&1 && echo "Success!";
+}
 
-	w_remove_bashrc() {
-		rm -rf ~/.bashrc
-	}
+w_remove_bashrc() {
+    rm -rf ~/.bashrc
+}
 
-	w_remove_zshrc() {
-		rm -rf ~/.zshrc
-	}
+w_remove_zshrc() {
+    rm -rf ~/.zshrc
+}
 
-	w_remove_vimrc() {
-		rm -rf ~/.vimrc
-	}
+w_remove_vimrc() {
+    rm -rf ~/.vimrc
+}
 
-	w_remove_vimrc_local() {
-		rm -rf ~/.vimrc.local
-	}
+w_remove_vimrc_local() {
+    rm -rf ~/.vimrc.local
+}
 
-	w_remove_spf_vimrc() {
-    w_remove_vimrc
+w_remove_spf_vimrc() {
+    w_remove_vimrc \
     rm -rf ~/.vim \
     rm -rf ~/.vimrc.bundles \
     rm -rf ~/.vimrc.before
-	}
-# }}}
+}
 
 msg() {
     printf '%b\n' "$1" >&2
@@ -419,7 +417,7 @@ case $1 in
     w|-w) wWw_git_up ;;
     v|-v) z_symlink_local ;;
     R|-R) z_clear_vimrc ;;
-    
+
     h|-h) z_symlink_local ;;
    ---*|-*) error "bad argument $1";;
     *) break;;
