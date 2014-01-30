@@ -3,18 +3,19 @@
 echo ===============BASH MAGIC===============
 date
 WW_diff() {
-	if  [  -f  "$1" ]; then
-	    echo "$1  exists..."
-	    if diff "$1" "$2"> /dev/null; then
-		    echo "file has not changed"
-	    else
-	    	echo "$1 has changed! Copying to backup..."
-	    	cp -f "$1" "$2"
-		fi
-	else
-		echo "$1  does not exists..."
-	fi
+    if  [  -f  "$1" ]; then
+        echo "$1  exists..."
+        if diff "$1" "$2"> /dev/null; then
+            echo "file has not changed"
+        else
+            echo "$1 has changed! Copying to backup..."
+            cp -f "$1" "$2"
+        fi
+    else
+        echo "$1  does not exists..."
+    fi
 }
+
 filesz='$home/.kde/share/config '
 
 old_dir=`pwd`
@@ -60,7 +61,7 @@ else
     cp -f $home/.screenrc $bin_dir/screenrc
 fi
 else
-echo ".screenrc does not exist"
+    echo ".screenrc does not exist"
 fi
 
 # check if .tmux.conf exists

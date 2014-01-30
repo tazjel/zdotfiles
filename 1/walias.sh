@@ -1,4 +1,3 @@
-#!/bin/bash
 
 
 
@@ -7,7 +6,12 @@
 
 
 
-    alias 'wx'='chmod +x'; alias 'wX'='chmod -x'
+
+
+
+
+
+
 
     #alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail
     #alias 'wfx'='find ./ -name "*.sh" -exec chmod +x {} \;'
@@ -42,19 +46,13 @@
     alias 'h'='cd $HOME'
     alias 'kk'='kate'
     alias 'n1'='dpkg --get-selections | grep linux-image'
-
     alias 'ppa'='sudo add-apt-repository $1'
     alias 'ppp'='sudo add-apt-repository $1'
     alias 'ppr'='sudo add-apt-repository --remove $1'
-
     alias 'rmm'='rm -rf'
-
     alias 'vv'='vim ~/zdotfiles/2/.vimrc.local'
-
     alias 'w7'='ssh'
-
     alias 'wG'='grep -E "(.*)($1)(.*)($2)(.*)"'
-
     alias 'wW_grep_1'='grep -GRh $1 ~ | sort | uniq -c | sort -nr >> $2 && tail  $2'
     alias 'wWw'='/usr/bin/python ~/zdotfiles/9/web2py/web2py.py'
     alias 'w_RANDOMi'='echo $[RANDOM % 100]  # range 0-99'
@@ -101,6 +99,7 @@
     alias 'wwww'='cats'
     alias 'wwww_clean_history_get_install'="lg install | sed 's/install//g' | sed 's/^ //g' | sed 's/sudo aptitude//g' | sed 's/^[ ]apt-get//g'| sed 's/^alg.*$//g"
     alias 'wwww_which_ubuntu_dist'='cat /etc/issue'
+    alias 'wx'='chmod +x'; alias 'wX'='chmod -x'
     alias 'x'='exit'
     alias 'z'='vim $HOME/zdotfiles/1/.zsh/al.zsh && source $HOME/zdotfiles/1/.zsh/al.zsh'
     alias 'zzzz'=' vim $HOME/.zshrc && source $HOME/.zshrc'
@@ -259,6 +258,7 @@
     alias xclip='xclip -selection c'
     alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
 #
+#!/bin/bash
 ####################################################
 #####################################################
 #alias 'wgt'='grep --color=always -nr "$1" --include=*txt'

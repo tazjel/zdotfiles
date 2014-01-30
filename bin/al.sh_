@@ -10,3 +10,11 @@ function chpwd() {
 function cd {
   builtin cd "$@" && ls -F
 }
+
+WWW() {
+    #Names
+    case $1 in
+        w)
+            w;;
+    esac
+}

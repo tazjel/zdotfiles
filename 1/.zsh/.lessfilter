@@ -3,6 +3,7 @@
 #export LESS='-R'
 #export LESSOPEN='|~/.lessfilter %s'
 
+
 case "$1" in
     *.awk|*.groff|*.java|*.js|*.m4|*.php|*.pl|*.pm|*.pod|*.sh|\
     *.ad[asb]|*.asm|*.inc|*.[ch]|*.[ch]pp|*.[ch]xx|*.cc|*.hh|\

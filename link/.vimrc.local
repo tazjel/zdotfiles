@@ -300,7 +300,8 @@ cab wx !chmod u+x %
         imap <c-z> <c-o>u
 
 let g:neosnippet#disable_runtime_snippets
-
+map N Nzz
+map n nzz
 
 "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
 "map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
@@ -531,8 +532,19 @@ endfunction
             cabbrev wpy !python %
             cabbrev wak vsplit ~/zdotfiles/6/autokey/data/API/AK/ak_vim.txt
 
-"
-"
+" Diff operations made shorter (Great for merges)
+function! SetDiffMappings()
+    nnoremap <Leader>du  :diffupdate<cr>
+    nnoremap <Leader>dg  :diffget<cr>
+    nnoremap <Leader>dp  :diffput<cr>
+    nnoremap <Leader>dg1 :diffget 1<cr>
+    nnoremap <Leader>dg2 :diffget 2<cr>
+    nnoremap <Leader>dg3 :diffget 3<cr>
+endfunction
+if &diff
+    call SetDiffMappings()
+endif
+
 "
 "spelllang
 function! Spell_new_word()
@@ -543,8 +555,10 @@ endfunction
 
 nnoremap ,d :call Spell_new_word()
 inoremap ,d :call Spell_next_word()
-" Search
-
+" Make shift insert work in the gui as it does in the shell.
+if has('gui_running')
+    silent noremap! <S-Insert> <MiddleMouse>
+endif
 
         function! InsertCmd( cmd )
                exe ':silent !'.a:cmd.' > /tmp/vim.insert.xxx 2>/dev/null'
@@ -731,7 +745,8 @@ map <F1> <plug>NERDCommenterToggle<CR>
 
 " Add the virtualenv's site-packages to vim path
 
-
+" PythonSyntax: Highlight everything
+let python_highlight_all=1
 
 " Font
 "set guifont=Monaco\ for\ Powerline:h11
@@ -747,6 +762,7 @@ let g:airline#extensions#tabline#enabled = 2
 let g:airline#extensions#tabline#fnamemod = ':t'
 let g:airline#extensions#tabline#buffer_min_count = 1
 
+let g:syntastic_python_checkers = ['pyflakes']
 
 " indentLine
 let g:indentLine_char = '┊'
@@ -805,3 +821,17 @@ let g:Powerline_symbols = 'fancy'
 
 "%s/^=.*\|^<.*\|^|.*//gc
 """""""
+
+" USe the current system list of words as dictionary for completion with
+" C-X C-K  ( :he i_CTRL-X_CTRL-K )
+if filereadable("/usr/share/dict/words")
+    set dictionary+=/usr/share/dict/words
+endif
+
+" Set British English as the language for spelling corrections
+set spelllang=en_gb
+
+
+
+" Tagbar: show the tag corresponding to the current cursor position
+let g:tagbar_autoshowtag = 1

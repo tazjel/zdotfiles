@@ -134,7 +134,13 @@ wwww_pdf()
 
 www_find()
 {
-    find . -iname '*filename*.doc' | { while read line; do antiword "$line"; done; } | grep -C4 "$1";
+    case $1 in
+        sh|w)
+            ;;
+    esac
+    find . -iname '*filename*.doc' | {
+    while read line; do
+        antiword "$line"; done; } | grep -C4 "$1";
 }
 
 #
@@ -441,8 +447,18 @@ alias wabout="lsb_release -a"
 star_Level_one
 #cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
 echo -e "\t\t\t\t $(date)"
-alias WWW_z="vim ~/.zshrc && source ~/.zshrc"
-alias WWW_zz="vim ~/zdotfiles/1/.zsh/al.zsh && source ~/zdotfiles/1/.zsh/al.zsh"
-alias WWW_v="vim ~/zdotfiles/2/.vimrc.local && source ~/zdotfiles/2/.vimrc.local"
 
+#=-=-=-= ww
+alias ww_zshrc="vim ~/.zshrc && source ~/.zshrc"
+alias ww_al="vim ~/zdotfiles/1/.zsh/al.zsh && source ~/zdotfiles/1/.zsh/al.zsh"
+alias ww_vimrc_local="vim ~/.vimrc.local && source ~/.vimrc.local"
+alias ww_vimrc="vim ~/.vimrc && source ~/.vimrc"
+
+    #<(find $HOME/zdotfiles/link -maxdepth 1 -type f -iname "$2");
+
+z_colordiff()
+{
+    colordiff -yr <(find $HOME/. -type l -maxdepth 1 -exec basename {} \;) <(find $HOME/zdotfiles/link -maxdepth 1 -exec basename {} \;)
+}
+#z_colordiff "$1" "$2"
 
