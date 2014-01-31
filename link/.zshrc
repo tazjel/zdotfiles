@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 
+source $HOME/zdotfiles/1/.zsh/find.zsh
 source $HOME/zdotfiles/1/.zsh/al.zsh
 source $HOME/zdotfiles/1/.zsh/shell.zsh
 source $HOME/zdotfiles/1/.zsh/bindkeys.zsh

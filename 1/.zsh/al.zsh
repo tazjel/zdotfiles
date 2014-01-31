@@ -1,29 +1,6 @@
 #!/bin/zsh
 
 
-# If not running interactively, don't do anything
-[ -z "$PS1" ] && return
-source ~/zdotfiles/1/walias.sh
-
-today=`date +%Y_%m_%d_%h_%s`
-
-l()
-{
-    ls -alt
-}
-
-function w()
-{
-    clear;ls -al;date;pwd
-    echo "$TERM"
-    echo "$SHELL"
-}
-
-ن()
-{
-    الحمد
-}
-
 ########################################################
 # Author : AHMED BANI
 #####################################################
@@ -31,7 +8,156 @@ function w()
 ##
 #####################################################
 
+# If not running interactively, don't do anything
+[ -z "$PS1" ] && return
+
+alias 'wi'='sudo apt-get install'
+
+msg() {
+    printf '%b\n' "$1" >&2
+}
+
+
+success() {
+    msg "\e[32m[✔]\e[0m ${1}${2}"
+}
+
+
+error() {
+    msg "\e[31m[✘]\e[0m ${1}${2}"
+}
+
+
+debug() {
+    if [ "$debug_mode" -eq '1' ] && [ "$ret" -gt '1' ]; then
+      msg "An error occured in function \"${FUNCNAME[$i+1]}\" on line ${BASH_LINENO[$i+1]}, we're sorry for that."
+    fi
+}
+
+
+Confirm() {
+    echo -n "$1 [y/n]?";
+    read reply;
+    case $reply in
+        Y*|y*)
+        true
+        ;; *)
+            false ;;
+    esac
+}
+
+zselect() {
+    PS3="Enter a number: "
+    select f in "$@";do
+        #$EDITOR $f;
+        echo $f
+    break;
+    done
+}
+
+wWw_diff() {
+    diff -y <(echo "$1") <(echo "$2") | vim - ;
+}
+
+
+success() {
+    msg "\e[32m[✔]\e[0m ${1}${2}";
+}
+
+
+wwww() {
+    pygmentize $1 | less -N;
+}
+
+alias 'x'="exit"
+alias 'wWw__exit'="exit"
+alias 'wWw__zsh'="zsh"
+
+#AMD/ATI
+W_AMD_VGA(){
+    lspci | grep VGA
+    sudo lshw -C video
+}
+
+ZSRC=$(find ~/zdotfiles/link -exec basename {} \;)
+DHOME=$(find ~/ -type l -exec basename {} \;)
+WROOT=$(find . -user root)
+
+w() {
+    clear
+    success "Symlinks at HOME = " "$(echo $DHOME | wc -l)"
+    success "Dotfiles at zdotfiles/link = " "$( echo $ZSRC | wc -l )";
+    success "Root files = " "$(echo $WROOT | wc -l)";
+    echo "$(echo $WROOT)";
+}
+
+cmdfu() {
+    curl "http://www.commandlinefu.com/commands/matching/$(echo "$@" | sed 's/ /-/g')/$(echo -n $@ | base64)/plaintext" --silent | vim -R - ;
+}
+
+setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
+setxkbmap -option ctrl:nocaps
+
+alias "wWw___eeasystroke"="asystroke -c ~/zdotfiles/link/.easystroke"
+
+alias 'W_00_acs'='apt-cache search'
+alias 'wWw___acsh'='apt-cache show'
+
+alias "ww"="vim"
+
+#alias 'wW'='ls -RlhFAa | egrep ">" | wc -l'
+
+alias 'wi_install'='sudo apt-get install'
+alias 'wx'='chmod +x'; alias 'wX'='chmod -x'
+
+alias 'www'='python ~/zdotfiles/5/ranger-1.6.1/ranger.py'
+
+#easystroke -c ~/zdotfiles/link/.easystroke
+
+WWWWWWW_reboot() {
+    sudo reboot;
+}
+
+alias listips='nmap -sP 192.168.1.1/24'
+
+
+wWW_findzdotfiles()
+{
+    find ~/zdotfiles -name "$1" -type f -print | xargs egrep --color=always "$2";
+}
+
+alias -g wv='| vim -'
+alias -g 'H'="--help"
+alias -g G='| grep'
+alias -g H='|head'
+
+alias "w__zsh"="zsh"
+alias "ww_bashrc"="vim $HOME/.bashrc"
+alias 'wwww'="pygmentize"
+alias 'agg'='sudo apt-get update && sudo apt-get upgrade'
+
+
+
+#alias -g M='|more'
+#alias -g T='|tail'
+
+# Matching Strings
+#grep -l <string-to-match> * | xargs grep -c <string-not-to-match> | grep '\:0'
+
+# Deleting directory recurcive. Directories will be deleled when empty or contains only .svn subdirectory
+#for I in $(find . -depth -type d -not -path  "*/.svn*" -print) ; do N="$(ls -1A ${I} | wc -l)"; if [[ "${N}" -eq 0 || "${N}" -eq 1 &&  -n $(ls -1A | grep .svn) ]] ; then svn rm --force "${I}"; fi ; done
+#find . -type f ! -perm /u+x -printf "\"%p\"\n"
+today=`date +%Y_%m_%d_%h_%s`
+
+function w()
+{
+    clear;ls -al;date;pwd
+    echo "$TERM"
+    echo "$SHELL"
+}
 source ~/zdotfiles/1/z_arabic.sh
+#source ~/zdotfiles/1/.zsh/a
+
 
 show_code()
 {
@@ -129,27 +255,10 @@ wwww_pdf()
 }
 
 
-#
-# find and grep Word docs
-
-www_find()
-{
-    case $1 in
-        sh|w)
-            ;;
-    esac
-    find . -iname '*filename*.doc' | {
-    while read line; do
-        antiword "$line"; done; } | grep -C4 "$1";
-}
-
-#
 compare_two_doc()
 {
     meld <(antiword microsoft_word_a.doc) <(antiword microsoft_word_b.doc)
 }
-
-
 
 wwww_doc()
 {
@@ -160,18 +269,10 @@ wwww_doc()
     done
 }
 
-
 ########################################################
 # F2
 ########################################################
-#
-#
-#
-#
-#
-#
 # <F3>
-
 
 wg_txt() {
     find . -type f -and -iregex '.*\.txt$' -and -print0 -exec grep --color=always -Hn "$1" {} \;
@@ -300,7 +401,6 @@ glll()
     git push origin --all && git push origin --tags
 }
 
-#ww_sort() { sort -u }
 
 wpkl()
 {
@@ -372,7 +472,6 @@ wpic()
 }
 
 
-#$(pgrep easystroke)
 
 alias "wea_easystroke"="easystroke -c ~/.easystroke"
 #echo ${TERM}
@@ -446,15 +545,14 @@ star_Level_one
 #cat /home/ahmed/zdotfiles/4/time/jeddah-pt | grep "^$(date '+%d')"
 echo -e "\t\t\t\t $(date)"
 
-#=-=-=-= ww
-alias ww_zshrc="vim ~/.zshrc && source ~/.zshrc"
+alias www__zshrc="vim ~/.zshrc && source ~/.zshrc"
 alias ww_al="vim ~/zdotfiles/1/.zsh/al.zsh && source ~/zdotfiles/1/.zsh/al.zsh"
 alias ww_vimrc_local="vim ~/.vimrc.local && source ~/.vimrc.local"
 alias ww_vimrc="vim ~/.vimrc && source ~/.vimrc"
 
     #<(find $HOME/zdotfiles/link -maxdepth 1 -type f -iname "$2");
 
-z_colordiff()
+www_colordiff()
 {
     colordiff -yr <(find $HOME/. -type l -maxdepth 1 -exec basename {} \;) <(find $HOME/zdotfiles/link -maxdepth 1 -exec basename {} \;)
 }
@@ -464,5 +562,38 @@ WWW_find_sh() { find . -name "*sh" -exec grep -is "$1" {} \; }
 WWW_find_py() { find . -name "*py" -exec grep -is "$1" {} \; }
 WWW_find_vim() { find . -name "*vim" -exec grep -is "$1" {} \; }
 
+www_easystroke() {
+    if [ -n "`pgrep easystroke`" ]; then
+        echo "easystroke is On" && kill -KILL $(pgrep easystroke)
+    else
+        echo "easystroke is Off"
+        easystroke -g -c $HOME/.easystroke && echo "running easystroke"
+    fi
+}
+
+
+alias colorize='colorize_via_pygmentize'
+
+colorize_via_pygmentize() {
+    if [ ! -x $(which pygmentize) ]; then
+        echo package \'pygmentize\' is not installed!
+        exit -1
+    fi
+
+    if [ $# -eq 0 ]; then
+        pygmentize -g $@
+    fi
+
+    for FNAME in $@
+    do
+        filename=$(basename "$FNAME")
+        lexer=`pygmentize -N \"$filename\"`
+        if [ "Z$lexer" != "Ztext" ]; then
+            pygmentize -l $lexer "$FNAME"
+        else
+            pygmentize -g "$FNAME"
+        fi
+    done
+}
 
 

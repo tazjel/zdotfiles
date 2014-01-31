@@ -44,12 +44,15 @@ check_zdotfiles_dir() {
     else error "No zdotfilesc" fi }
 
 usage() { cat << EOF
-usage: $0 options
+    usage: $0 options
 
-This script make and install Blender
-EOF
+    This script make and install Blender
+    EOF
 }
-ll_dotfiles_dir() { ls -1 ./.* | wc -l; }
+
+ll_dotfiles_dir() {
+    ls al | wc -l
+}
 dir_DOTFILES=$(cd ~;ls .*)
 src=$HOME/zdotfiles/link
 BKUP=$HOME/bkup
@@ -64,11 +67,11 @@ z_restore() {
 
 restore_x_bkup() {
     for f in $LINKS; do
-        source="${PWD}/$f"
+        source="${LINKS}/$f"
         target="${HOME}/$f"
-    if [ "$1" = "restore" ]; then
-        echo "# Restore backups if found"
-    fi
+    #if [ "$1" = "restore" ]; then
+        #echo "# Restore backups if found"
+    #fi
 
     if [ -e "${target}_bkup" ] && [ -L "${target}" ]; then
         unlink "${target}"

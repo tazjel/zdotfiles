@@ -1,8 +1,6 @@
 
-" vim: set ft=vim :
-""
-""
-""   This is the personal .vimrc file of Ahmed Alghamdi.
+" first set runtimepath to this directory.
+"let &runtimepath.=','.escape(expand('<sfile>:p:h'), '\,')
 
 
 set nocompatible
@@ -48,7 +46,10 @@ if has('syntax') && !exists('g:syntax_on')
 endif
 
 
+set complete=.,w,b,k,d,i,t
 
+"  complete menu
+set wildmenu
 set noswapfile nobackup nowritebackup
 set showmatch matchtime=3 matchpairs+=<:>
 
@@ -86,7 +87,7 @@ vnoremap <space> zf
     nnoremap <Space><CR> :nohlsearch<CR><CR>
 
 " <F[1-12]>
-    "map <C-w> :w<CR><F5>
+    map <C-w> :w<CR><F5>
     "map <S-C-w> :vsplit $HOME/.vim/bundle<CR>
 
 "<F[1-12]>
@@ -187,8 +188,6 @@ if &diff
     nnoremap <C-k> [c
     nnoremap <C-Left> :diffupdate
     colorscheme inkpot
-
-    "Vimdiff quit without changes
     nnoremap q :qa! <CR>
 endif
 
@@ -221,7 +220,7 @@ endfun
 
 nnoremap <C-Left> :call RangerChooser()<CR>
 
-"" <F11>
+" <F11>
 
 
 
@@ -239,13 +238,15 @@ nnoremap <C-Left> :call RangerChooser()<CR>
 cab w!! w !sudo tee "%"
 nnoremap <silent> ; :q!<CR>
 
-        cabbrev wsh !bash %
+cabbrev wsh !bash %
 
 cabbrev w99 w! ~/zdotfiles/9/web2py/applications/qastack/
 
-cab zz e ~/zdotfiles/1/.zsh
-cab vv w! ~/zdotfiles/2/
-cab wx !chmod u+x %
+" Search options (search as you type + highlight)
+    set hlsearch
+    set incsearch
+    set history=1000
+    set undolevels=1000
 
 
     iabbrev ## #####################################################<CR>
@@ -274,20 +275,17 @@ cab wx !chmod u+x %
     cab w00 w! ~/zdotfiles/0/
 
 
-                    "Install unhtml
-                        "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
+    "Install unhtml "map wh :!rm ~/tst/vhtml<CR>:r!unhtml % > ~/tst/vhtml<CR><Esc>:vsplit ~/tst/vhtml<CR>
 
-          "html substitute
-                    "
-            "!sed 's/<[^>]*>//g' %
+      "html substitute "!sed 's/<[^>]*>//g' %
 
         " Split the Line at Cursor
-        nnoremap K i<cr><esc><right>
-
+            nnoremap K i<cr><esc><right>
 
         "Enter
-" nnoremap <C-Up> m`o<Esc>``
-" nnoremap <C-Down> m`O<Esc>``
+             nnoremap <C-Up> m`o<Esc>``
+
+             nnoremap <C-Down> m`O<Esc>``
 
         "!sed 's/<[^>]*>//g' %
         "iabbrev $$ ${0: }<left><left>
@@ -296,16 +294,16 @@ cab wx !chmod u+x %
         abbr #b #!/usr/bin/env bash
         abbr #p #!/usr/bin/env python<CR>
                         " Select all.
-        map <c-a> ggVG
-                " Undo in insert mode.
-        imap <c-z> <c-o>u
+map <c-a> ggVG
+            " Undo in insert mode.
+imap <c-z> <c-o>u
 
 let g:neosnippet#disable_runtime_snippets
 map N Nzz
 map n nzz
 
-"map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
-"map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
+        "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
+        "map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
 
 "function! LineCompleteFromFile(findstart,base)
 "    if a:findstart
@@ -327,7 +325,7 @@ map n nzz
 
 "set completefunc=LineCompleteFromFile
 
-    "nmap ,, : vsplit ~/.vimrc
+"nmap ,, : vsplit ~/.vimrc.local
         imap <C-s> <C-o>:w<CR>
         map <C-s> :w<CR>
 
@@ -449,18 +447,18 @@ map n nzz
 noremap <CR> :
 
 "auto-complete " nice bash-like filename auto-complete
-                set listchars=tab:>-,trail:-
-                set list
-                set wildmode=longest,list,full
-                set wildmode=full:list
-                set wildmenu
+    set listchars=tab:>-,trail:-
+    set list
+    set wildmode=longest,list,full
+    set wildmode=full:list
+    set wildmenu
 
 
 function! Smart_TabComplete()
-    let line = getline('.') 					" curline
-    let substr = strpart(line, -1, col('.'))	" from start to cursor
+        let line = getline('.') " curline
+        let substr = strpart(line, -1, col('.'))" from start to cursor
 
-        return "\<C-X>\<C-l>"					" plugin matching
+        return "\<C-X>\<C-l>"" plugin matching
     endif
 endfunction
 
@@ -468,8 +466,7 @@ endfunction
 inoremap <tab> <c-r>=Smart_TabComplete()<CR>
 set cpt=.,k,w,b,t,i
 
-    "Register
-        " Make p in Visual mode replace the selected text with the "" register.
+    " Make p in Visual mode replace the selected text with the "" register.
         vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
     "Marks
@@ -503,31 +500,20 @@ endfun
 
 
 
-function! Ctaz()
-python << EOF
-import vim, re
-curfile = vim.current.buffer.name
-if curfile:
-    print "w :%s" % curfile
-
-print "Done"
-
-EOF
-endfunction
-
-
-                                " commet (#)
-                                        nmap sc 0i# <ESC>
-                                        vmap <silent> sc :s/^/# /<CR>:silent noh<CR>
-                                        " uncomment (#)
-                                        nmap su :s/^# //<CR>
-                                        vmap <silent> su :s/^# //<CR>:silent noh<CR>
+"function! Ctaz()
+"python << EOF
+"import vim, re
+"curfile = vim.current.buffer.name
+"if curfile:
+    "print "w :%s" % curfile
+"print "Done"
+"EOF
+"endfunction
 
 
 "ipython"
 
 "API
-    "path
             cabbrev wpy vsplit ~/.config/ipython/profile_default/startup/w.ipy
             cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
             cabbrev wpy !python %
@@ -542,11 +528,11 @@ function! SetDiffMappings()
     nnoremap <Leader>dg2 :diffget 2<cr>
     nnoremap <Leader>dg3 :diffget 3<cr>
 endfunction
+
 if &diff
     call SetDiffMappings()
 endif
 
-"
 "spelllang
 function! Spell_new_word()
     "set spell!
@@ -704,16 +690,16 @@ cnoremap <C-Left> :diffput \| diffupdate <CR>
 "#####################################################
 "#
 "####################################################
-"let g:neocomplete#enable_at_startup                 = 1
-"let g:neocomplete#sources#syntax#min_keyword_length = 3
-"let g:neocomplete#min_keyword_length                = 0
-"let g:neocomplete#enable_auto_delimiter             = 1
-"let g:neosnippet#enable_snipmate_compatibility      = 1
-"let g:neocomplete#enable_insert_char_pre            = 1
-"let g:neocomplete#enable_smart_case                 = 1
-"let g:neocomplete#enable_fuzzy_completion           = 1
-"let g:neocomplete#enable_auto_select                = 0
-"let g:neocomplete#enable_refresh_always             = 0
+let g:neocomplete#enable_at_startup                 = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#min_keyword_length                = 0
+let g:neocomplete#enable_auto_delimiter             = 1
+let g:neosnippet#enable_snipmate_compatibility      = 1
+let g:neocomplete#enable_insert_char_pre            = 1
+let g:neocomplete#enable_smart_case                 = 1
+let g:neocomplete#enable_fuzzy_completion           = 1
+let g:neocomplete#enable_auto_select                = 0
+let g:neocomplete#enable_refresh_always             = 0
 
 "imap <expr><space> !pumvisible() ? "\<space>" :
 "            \ neosnippet#expandable() ? "\<Plug>(neosnippet_expand)" :
@@ -814,7 +800,6 @@ if has("multi_byte")
   endif
   set encoding=utf-8                     " better default than latin1
   setglobal fileencoding=utf-8           " change default file encoding when writing new files
-endif
 
 
 " Font

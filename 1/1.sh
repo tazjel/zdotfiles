@@ -16,10 +16,10 @@
         LOGPATH=${CONFIGPATH}/log
 
     #date and time
-        date() {
-            #date +%Y-%m-%d*/
-        echo "date"
-        }
+date() {
+    #date +%Y-%m-%d*/
+    echo "date"
+}
 
 license() {
     cat - <<EOF

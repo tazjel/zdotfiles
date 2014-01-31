@@ -83,11 +83,12 @@ alias wzi='rsync -e ssh -r --progress root@zphone.local:/var/mobile/qq.sh ~/qq.s
 ##alias 'wadd'='rsync -avz --progress -e  "ssh -p 2233" root@192.168.1.5:/var/mobile/AddressBook.sqlitedb ~/'
 ###############################
 alias 'zrf1'="rsync -avz --progress '$1' '/media/Transcend/w/$1'"
-function zbp {
-for xx in ~/.* ;do
+function zbp() {
+    for xx in ~/.* ;do
     rsync -avz --progress $HOME/.* $HOME/zrsync
     echo $xx
-done;}
+done;
+}
 
 #sudo showkey -k
 alias xxx="sudo sixpair;sudo sixad --stop;sudo sixad --start"
@@ -154,11 +155,11 @@ function WW {
 }
 
 
-function ccc {
-echo "$1" >> /home/bani/zdotfiles/Tools/1/aliasw.sh
-echo "Now, we got '$1' "
-cat '/home/bani/zdotfiles/Tools/1/aliasw.sh'
-echo '/home/bani/zdotfiles/Tools/1/aliasw.sh'
+function ccc() {
+    echo "$1" >> /home/bani/zdotfiles/Tools/1/aliasw.sh
+    echo "Now, we got '$1' "
+    cat '/home/bani/zdotfiles/Tools/1/aliasw.sh'
+    echo '/home/bani/zdotfiles/Tools/1/aliasw.sh'
 }
 
 

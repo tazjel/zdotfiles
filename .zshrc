@@ -26,7 +26,5 @@ source $HOME/zdotfiles/1/.zsh/config
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 setopt prompt_subst
 
-#. /usr/share/zsh/site-contrib/powerline.zsh
 
-#.  /home/w/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
-#. /home/w/.local/lib/python2.7/site-packages/powerline/bindings/zsh/powerline.zsh
+. /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
