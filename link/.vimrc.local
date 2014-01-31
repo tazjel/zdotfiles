@@ -182,12 +182,14 @@ set diffopt=filler,context:4,iwhite
         nnoremap <C-F9> :SessionSaveAs
 
 if &diff
-"Vimdiff use c-j and c-k to navigate"
-nnoremap <C-j> ]c
-nnoremap <C-k> [c
-colorscheme inkpot
-"Vimdiff quit without changes
-nnoremap q :qa! <CR>
+    "Vimdiff use c-j and c-k to navigate"
+    nnoremap <C-j> ]c
+    nnoremap <C-k> [c
+    nnoremap <C-Left> :diffupdate
+    colorscheme inkpot
+
+    "Vimdiff quit without changes
+    nnoremap q :qa! <CR>
 endif
 
 
@@ -217,10 +219,9 @@ fun! RangerChooser()
 endfun
 
 
-"nnoremap <C-Left> :call RangerChooser()<CR>
+nnoremap <C-Left> :call RangerChooser()<CR>
 
-
-" <F11>
+"" <F11>
 
 
 

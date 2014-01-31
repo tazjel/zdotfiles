@@ -212,26 +212,24 @@ function WWW {
     echo '# "$1"="$2" ' >> $WWW_path
     tail -7 $WWW_path
 }
+
 function wW_grep_logs(){
     grep "$1" */logs/*.log
 }
-function WW {
 
+function WW() {
     zal=~/zdotfiles/1/.zsh/al.zsh
-
     desc="ADD DESCRIPTION..."
     if [ -n "$3" ]; then
         desc="$3"
     fi
-    echo "" >> $zal
-    source $zal
+    if [ -e "$zal" ]; then
+        echo "" >> $zal
+        tail $zal
+        source $zal
+    fi
+}
 
-    echo "" >> $zal
-    tail $zal
-}
-function Ww() {
-    ag -C 3 $(echo "$1") $(echo $HOME/zdotfiles)
-}
 function ww-bluetooth_restart {
     sudo service bluetooth restart;
 }
@@ -461,4 +459,10 @@ z_colordiff()
     colordiff -yr <(find $HOME/. -type l -maxdepth 1 -exec basename {} \;) <(find $HOME/zdotfiles/link -maxdepth 1 -exec basename {} \;)
 }
 #z_colordiff "$1" "$2"
+WWW_find_sh() { find . -name "*sh" -exec grep -is "$1" {} \; }
+
+WWW_find_py() { find . -name "*py" -exec grep -is "$1" {} \; }
+WWW_find_vim() { find . -name "*vim" -exec grep -is "$1" {} \; }
+
+
 

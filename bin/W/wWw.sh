@@ -334,9 +334,7 @@ z_symlink_easystroke () {
     [ -e $HOME/.easystroke/actions-0.5.6 ] && rm -rf "$HOME/.easystroke/actions-0.5.6" && z_error "Removed easystroke/actions-0.5.6" && ls -al ~/.easystroke/ && ls -al ~/.easystroke && read -p "w" wpw || success "no -e  symlink";
     #
     lnif "$HOME/zdotfiles/link/.easystroke/actions-0.5.6" "$HOME/.easystroke/actions-0.5.6" && success "link easystroke/actions-0.5.6" && ls -al ~/.easystroke/;
-    #
-   lnif "/home/w/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/preferences-0.5.5" && success "link easystroke";
-
+    lnif "/home/w/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/preferences-0.5.5" && success "link easystroke";
     #lnif "$HOME/zdotfiles/link/.easystroke/preferences-0.5.5" "$HOME/.easystroke/actions-0.5.6" \
         #&& success "B"
 

@@ -6,17 +6,19 @@ import os, sys
 import shutil
 from os import listdir
 from os.path import islink, join, expanduser
-
+shutil.abspath('.')
+cwd = os.getcwd()
 home = expanduser("~/")
 directory = expanduser("~/zdotfiles/link")
 easystroke_directory = expanduser("~/zdotfiles/link/.easystroke")
 easystroke_home = expanduser("~/.easystroke")
 excludes = ["pure",]
 linux_only_excludes = ["Xresources", "xinitrc", "xmobarrc", "xmonad.hs", "zprofile"]
-#os.mkdir
-#shutil.move(src, dst)
 
-shutil.abspath('.')
+def ww():
+    for root, dirs, files in os.walk('.'):
+        print("{0} has {1} files".format(root, len(files)))
+
 
 try:
     if sys.argv[1] == "linux":
@@ -45,5 +47,4 @@ def z_link(directory, home):
             except OSError:
                 pass
 
-z_link(directory, home)
-z_link(easystroke_directory, easystroke_home)
+
