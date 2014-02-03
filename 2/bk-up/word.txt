@@ -1,0 +1,5 @@
+SaveWord
+duplicate
+endfunction
+SaveWord
+delete

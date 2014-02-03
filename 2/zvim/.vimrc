@@ -107,7 +107,7 @@ nmap <BS> <C-T>
 
 " Map <C-right> to go next buffer
 map <C-right> <ESC>:bn<CR>
-" Map <C-left> to go previous buffer
+    " Map <C-left> to go previous buffer
 map <C-left> <ESC>:bp<CR>
 
 " Using templates
@@ -158,6 +158,5 @@ function! SuperCleverTab()
       return "\<C-N>"
     endif
   endif
-endfunction
-" bind funciton to the tab key
+  x;vcx
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
