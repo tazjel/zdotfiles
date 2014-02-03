@@ -1,15 +1,18 @@
+#!/usr/bin/env bash
+
+
 
 alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__00'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
-    alias 'www__11'='clear;pwd;cd ~/zdotfiles/1;ls -X'
-    alias 'www__22'='clear;pwd;cd ~/zdotfiles/2;ls -X'
-    alias 'www__33'='clear;pwd;cd ~/zdotfiles/3;ls -X'
-    alias 'www__44'='clear;pwd;cd ~/zdotfiles/4;ls -X'
-    alias 'www__55'='clear;pwd;cd ~/zdotfiles/5;ls -X'
-    alias 'www__66'='clear;pwd;cd ~/zdotfiles/6;ls -X'
-    alias 'www__77'='clear;pwd;cd ~/zdotfiles/7;ls -X'
-    alias 'www__88'='clear;pwd;cd ~/zdotfiles/8;ls -X'
-    alias 'www__99'='clear;pwd;cd ~/zdotfiles/9;ls -X'
+    alias 'www__11'='clear;pwd;cd ~/zdotfiles/1;ls -alX'
+    alias 'www__22'='clear;pwd;cd ~/zdotfiles/2;ls -alX'
+    alias 'www__33'='clear;pwd;cd ~/zdotfiles/3;ls -alX'
+    alias 'www__44'='clear;pwd;cd ~/zdotfiles/4;ls -alX'
+    alias 'www__55'='clear;pwd;cd ~/zdotfiles/5;ls -alX'
+    alias 'www__66'='clear;pwd;cd ~/zdotfiles/6;ls -alX'
+    alias 'www__77'='clear;pwd;cd ~/zdotfiles/7;ls -alX'
+    alias 'www__88'='clear;pwd;cd ~/zdotfiles/8;ls -alX'
+    alias 'www__99'='clear;pwd;cd ~/zdotfiles/9;ls -alF'
 
     alias 'www__clr'='clear;pwd;ls'
     alias 'www__gf'='git ls-files | grep'

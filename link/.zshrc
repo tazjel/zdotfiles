@@ -1,8 +1,13 @@
 #!/usr/bin/env zsh
 
+source $HOME/zdotfiles/1/.zsh/aliase_ls.sh
+#source $HOME/zdotfiles/WWw.sh
 
-source $HOME/zdotfiles/1/.zsh/find.zsh
+#source $HOME/zdotfiles/1/.zsh/zgit.sh
+#source $HOME/zdotfiles/1/.zsh/zapt.sh
+#source $HOME/zdotfiles/1/.zsh/find.sh
 source $HOME/zdotfiles/1/.zsh/al.zsh
+
 source $HOME/zdotfiles/1/.zsh/shell.zsh
 source $HOME/zdotfiles/1/.zsh/bindkeys.zsh
 source $HOME/zdotfiles/1/.zsh/checks.zsh
@@ -14,9 +19,6 @@ source $HOME/zdotfiles/1/.zsh/history.zsh
 source $HOME/zdotfiles/1/.zsh/prompt.zsh
 source $HOME/zdotfiles/1/.zsh/setopt.zsh
 source $HOME/zdotfiles/1/.zsh/zsh_hooks.zsh
-#
-source $HOME/zdotfiles/WWw.sh
-source $HOME/zdotfiles/1/.zsh/aliase_ls.sh
 
 alias ranger='PYTHONOPTIMIZE=2 EDITOR=vim TERMCMD=xfce4-terminal ranger'
 

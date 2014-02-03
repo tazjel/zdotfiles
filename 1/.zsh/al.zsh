@@ -98,7 +98,7 @@ cmdfu() {
 setxkbmap -option grp:switch,grp:alt_shift_toggle,grp_led:scroll us,ar
 setxkbmap -option ctrl:nocaps
 
-alias "wWw___eeasystroke"="asystroke -c ~/zdotfiles/link/.easystroke"
+alias "wWw___eeasystroke"="easystroke -c ~/zdotfiles/link/.easystroke"
 
 alias 'W_00_acs'='apt-cache search'
 alias 'wWw___acsh'='apt-cache show'
@@ -473,7 +473,6 @@ wpic()
 
 
 
-alias "wea_easystroke"="easystroke -c ~/.easystroke"
 #echo ${TERM}
 
 alias "w_term_colors"="msgcat --color=test"
@@ -562,12 +561,12 @@ WWW_find_sh() { find . -name "*sh" -exec grep -is "$1" {} \; }
 WWW_find_py() { find . -name "*py" -exec grep -is "$1" {} \; }
 WWW_find_vim() { find . -name "*vim" -exec grep -is "$1" {} \; }
 
-www_easystroke() {
+wwww_easystroke() {
     if [ -n "`pgrep easystroke`" ]; then
         echo "easystroke is On" && kill -KILL $(pgrep easystroke)
     else
         echo "easystroke is Off"
-        easystroke -g -c $HOME/.easystroke && echo "running easystroke"
+        easystroke -c $HOME/zdotfiles/link/.easystroke && echo "running easystroke"
     fi
 }
 

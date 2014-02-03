@@ -41,3 +41,11 @@ zselect() {
     break;
     done
 }
+
+
+alias -g wv='| vim -'
+alias -g H='--help'
+alias -g G='| grep'
+#alias -g He='|head'
+
+

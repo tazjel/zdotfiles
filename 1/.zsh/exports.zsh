@@ -1,4 +1,5 @@
 export KEYTIMEOUT=1
+
 #Time zone
 export TZ=Asia/Riyadh
 
