@@ -17,8 +17,7 @@
 "
 "   This is a mirror of :http://spf13.com
 
-
-        au FocusLost * :wa
+au FocusLost * :wa
         set cursorline
         set wrap
         set textwidth=79
@@ -28,19 +27,19 @@
         set termencoding=utf-8
         set encoding=utf-8
 
-        "syntax
-        set background=dark
-        "encoding
-        set encoding=utf-8
-        " change default file encoding when writing new files
-        setglobal fileencoding=utf-8
-        set fillchars+=stl:\ ,stlnc:\
+            "syntax
+                    set background=dark
+                        "encoding
+                            set encoding=utf-8
+                            " change default file encoding when writing new files
+                            setglobal fileencoding=utf-8
+                            set fillchars+=stl:\ ,stlnc:\
 
-        "  complete menu
-        set wildmenu
-        set noswapfile nobackup nowritebackup
-        set showmatch matchtime=3 matchpairs+=<:>
-        set complete=.,w,b,k,d,i,t
+                        "  complete menu
+                            set wildmenu
+                            set noswapfile nobackup nowritebackup
+                            set showmatch matchtime=3 matchpairs+=<:>
+                            set complete=.,w,b,k,d,i,t
 
                         "" Fix slow O inserts
                             set timeout timeoutlen=1000 ttimeoutlen=100
@@ -141,7 +140,6 @@
                 map <silent> <F10> <Esc>:call InsertCmd( '' )<CR><Insert>
                 map N Nzz
                 map n nzz
-                "
                     "imap <silent> <F10> <Esc>:call InsertCmd( zwz )<CR><Insert>
                     "map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
                     "nnoremap <C-F10> call setqflist([]) | :bufdo grepadd! w %
@@ -172,9 +170,7 @@
 
 
 
-set background=dark
-colorscheme solarized
-let g:solarized_termcolors=256
+
                 " Syntastic settings
                     let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
                     let g:syntastic_check_on_open=1         " Check for errors on buffer load
@@ -393,7 +389,7 @@ let g:solarized_termcolors=256
                                     endif
                                     redraw!
                                 endfun
-                                    "nnoremap <C-Left> :call RangerChooser()<CR>
+                                    nnoremap <C-Left> :call RangerChooser()<CR>
 
                             " Split the Line at Cursor
                                 nnoremap K i<cr><esc><right>
@@ -423,8 +419,7 @@ let g:solarized_termcolors=256
                 call setline(1, a:cmdline)
                 call setline(2, substitute(a:cmdline, '.', '=', 'g'))
                 execute 'silent $read !' . escape(a:cmdline, '%#')
-                "setlocal nomodifiable
-                redraw!
+                setlocal nomodifiable
                 setlocal syntax=vim
                 1
             endfunction
@@ -491,12 +486,47 @@ let g:solarized_termcolors=256
          "Map Ctrl+j for jumping between templates placeholders
         nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
         inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
+
+        " Match template placeholders
+        " match Todo /<+.\++>/
+
+        " Extending CleverTab and map Tab to autocompletion
+        function! SuperCleverTab()
+        " check if at beginning of line or after a space
+          if strpart(getline('.'), 0, col('.') - 1) =~ '^\s*$'
+            return "\<Tab>"
+          else
+        " do we have omni completion available
+            if &omnifunc != ''
+        " use omni-completion 1. priority
+              return "\<C-X>\<C-O>"
+            elseif &dictionary != ''
+        " no omni-completion, try dictionary completion
+              return "\<C-K>"
+            else
+        " use known-word completion
+                      return "\<C-N>"
+                    endif
+                  endif
+                endfunction
+                "
+                " bind funciton to the tab key
                 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
                 " Map <C-right> to go next buffer
                     map <C-right> <ESC>:bn<CR>
                 " Map <C-left> to go previous buffer
                     map <C-left> <ESC>:bp<CR>
+                ""
+                "imap <Left> h
+                "imap <Right> l
+                "map <Up> k
+                "map <Down> j
+                "
+                " Enable heavy omni completion.
+                if !exists('g:neocomplcache_omni_patterns')
+                  let g:neocomplcache_omni_patterns = {}
+                endif
 
                 let g:acp_enableAtStartup = 0
                 " Use neocomplcache.
@@ -514,7 +544,18 @@ let g:solarized_termcolors=256
                 let g:neocomplcache_enable_underbar_completion = 1
 
                 " Define dictionary.
+                let g:neocomplcache_dictionary_filetype_lists = {
+                    \ 'default' : '',
+                    \ 'vimshell' : $HOME.'/.vimshell_hist',
+                    \ 'scheme' : $HOME.'/.gosh_completions'
+                        \ }
 
+                " Define keyword.
+                if !exists('g:neocomplcache_keyword_patterns')
+                    let g:neocomplcache_keyword_patterns = {}
+                endif
+                let g:neocomplcache_keyword_patterns['default'] = '\h\w*'
+                l
                 " Plugin key-mappings.
                 inoremap <expr><C-g>     neocomplcache#undo_completion()
                 inoremap <expr><C-l>     neocomplcache#complete_common_string()
@@ -566,10 +607,19 @@ let g:solarized_termcolors=256
                 autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
 
                 " Enable heavy omni completion.
+                if !exists('g:neocomplcache_omni_patterns')
+                  let g:neocomplcache_omni_patterns = {}
+                endif
                 let g:neocomplcache_omni_patterns.php = '[^. \t]->\h\w*\|\h\w*::'
                 let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
                 let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
+                " For perlomni.vim setting.
+                " https://github.com/c9s/perlomni.vim
+                let g:neocomplcache_omni_patterns.perl = '\h\w*->\h\w*\|\h\w*::'
+
+
+                """"""
 
                 map ,, :call SaveLine()
                 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
@@ -585,6 +635,9 @@ let g:solarized_termcolors=256
                 autocmd filetype python setlocal expandtab shiftwidth=4 tabstop=4 softtabstop=4
                 autocmd filetype python setlocal textwidth=78
                 autocmd filetype python match ErrorMsg '\%>120v.\+'
+
+        "w
+        " " Python runners
                 autocmd filetype python noremap <buffer> <F5> :w<CR>:!python %<CR>
                 autocmd filetype python inoremap <buffer> <F5> <Esc>:w<CR>:!python %<CR>
                 autocmd filetype python noremap <buffer> <S-F5> :w<CR>:!ipython %<CR>
@@ -603,12 +656,69 @@ let g:solarized_termcolors=256
         set browsedir=current
         set completeopt=menuone,longest
 
+        vnoremap ( s()<Esc>P<Right>%
+        vnoremap [ s[]<Esc>P<Right>%
+        vnoremap { s{}<Esc>P<Right>%
 
 
+            "lang support
+                "set keymap+=greek_utf-8
+                "set imi=0 ims=0 "start with a additional keymap
+                "set but inactive
+
+        set dictionary+=/usr/share/dict/words
+
+        " useful for restore view plugin
+        set viewoptions=cursor,folds,slash,unix
+        " let g:skipview_files = ['*\.vim'] ]
+
+        "-----------------------------------------------------------------------------
+        " to preserve view of the file (includes folds...)
+
+        if exists("g:loaded_restore_view")
+            finish
+        endif
+        let g:loaded_restore_view = 1
+
+
+        if !exists("g:skipview_files")
+            let g:skipview_files = []
+        endif
+
+        function! MakeViewCheck()
+            if has('quickfix') && &buftype =~ 'nofile' | return 0 | endif
+            if expand('%') =~ '\[.*\]' | return 0 | endif
+            if empty(glob(expand('%:p'))) | return 0 | endif
+            if &modifiable == 0 | return 0 | endif
+            if len($TEMP) && expand('%:p:h') == $TEMP | return 0 | endif
+            if len($TMP) && expand('%:p:h') == $TMP | return 0 | endif
+
+            let file_name = expand('%:p')
+            for ifiles in g:skipview_files
+                if file_name =~ ifiles
+                    return 0
+                endif
+            endfor
+
+            return 1
+        endfunction
+
+        augroup AutoView
+            autocmd!
+        " Autosave & Load Views.
+            autocmd BufWritePost,WinLeave,BufWinLeave ?* if MakeViewCheck() | mkview | endif
+            autocmd BufWinEnter ?* if MakeViewCheck() | silent! loadview | endif
+        augroup END
+
+"w
+autocmd filetype vim setlocal list
+
+" Quick alignment of text
 nmap ,al :left<CR>
 nmap ,ar :right<CR>
 nmap ,ac :center<CR>
 " }}}
+
 " Working with tabs {{{
 nmap ,t <Esc>:tabedit .<CR>
 nmap ,T <Esc>:tabnew<CR>
@@ -626,60 +736,3 @@ nmap ,9 :tabn 9<CR>
 nmap ,0 :tabn 10<CR>
 nmap ,<Left> :tabprevious<CR>
 nmap ,<Right> :tabnext<CR>
-"
-"
-" NERDTree settings {{{from :
-"https://github.com/cmdel/config-rc-files/blob/fc67f12b400e344dcc70a03f77f906199557d0e4/.vimrc
-" Put focus to the NERD Tree with F3 (tricked by quickly closing it and
-" immediately showing it again, since there is no :NERDTreeFocus command)
-nmap ,n :NERDTreeClose<CR>:NERDTreeToggle<CR>
-nmap ,m :NERDTreeClose<CR>:NERDTreeFind<CR>
-nmap ,N :NERDTreeClose<CR>
-" Store the bookmarks file
-let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
-let NERDTreeQuitOnOpen=1
-" Highlight the selected entry in the tree
-let NERDTreeHighlightCursorline=1
-" Use a single click to fold/unfold directories and a double click to open
-" files
-let NERDTreeMouseMode=2
-nnoremap j gj
-nnoremap k gk
-
-map <C-h> <C-w>h
-map <C-j> <C-w>j
-map <C-k> <C-w>k
-map <C-l> <C-w>l
-nnoremap <leader>w <C-w>v<C-w>l
-
-" Yank/paste to the OS clipboard with ,y and ,p
-nmap <leader>y "+y
-nmap <leader>Y "+yy
-nmap <leader>p "+p
-nmap <leader>P "+P
-
-" YankRing stuff
-let g:yankring_history_dir = '$HOME/.vim/.tmp'
-
-nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
-"
-"from : "https://github.com/cmdel/config-rc-files/blob/fc67f12b400e344dcc70a03f77f906199557d0e4/.vimrc
-" Reselect text that was just pasted with ,v
-nnoremap <leader>v V`]
-map ,# :s/^/#/<CR>
-map ,/ :s/^/\/\//<CR>
-map ,> :s/^/> /<CR>
-map ," :s/^/\"/<CR>
-map ,% :s/^/%/<CR>
-map ,! :s/^/!/<CR>
-map ,; :s/^/;/<CR>
-map ,- :s/^/--/<CR>
-map ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>
-
-" wrapping comments
-map ,* :s/^\(.*\)$/\/\* \1 \*\//<CR>
-map ,( :s/^\(.*\)$/\(\* \1 \*\)/<CR>
-map ,< :s/^\(.*\)$/<!-- \1 -->/<CR>
-map ,d :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>
-
-nnoremap <space><down> :normal Go<CR>

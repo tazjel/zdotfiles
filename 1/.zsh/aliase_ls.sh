@@ -1,10 +1,18 @@
 #!/usr/bin/env bash
 
+alias ls="ls --color=auto"
+alias w_zrc='vim ~/.zshrc && source ~/.zshrc'
 
 
-alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
+alias w_alias_ls='vim $HOME/zdotfiles/1/.zsh/aliase_ls.sh && source $HOME/zdotfiles/1/.zsh/aliase_ls.sh'
+alias w_vimrc='vim /home/bani/.vimrc.local && source /home/bani/.vimrc.local'
+
+
+    alias 'www__11'='clear;pwd;cd ~/zdotfiles/1;ls -alht'
+
+
+    alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__00'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
-    alias 'www__11'='clear;pwd;cd ~/zdotfiles/1;ls -alX'
     alias 'www__22'='clear;pwd;cd ~/zdotfiles/2;ls -alX'
     alias 'www__33'='clear;pwd;cd ~/zdotfiles/3;ls -alX'
     alias 'www__44'='clear;pwd;cd ~/zdotfiles/4;ls -alX'
@@ -31,7 +39,7 @@ alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__lrt'='ls -lart'
     alias 'www__ls='ls --color'=tty'
     alias 'www__lsd'='ls -Gal | grep ^d'
-alias 'www__build'='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
+    alias 'www__build'='mkdir build ; cd build && cmake .. && make ; cd .. && ls'
 
     alias 'www__lt='ls --sort'=time'
     alias 'www__netlisteners'='lsof -i -P | grep LISTEN'

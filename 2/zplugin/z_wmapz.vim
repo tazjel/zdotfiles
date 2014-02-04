@@ -119,6 +119,7 @@ nnoremap ww <F5>
 nnoremap ww Y
 nnoremap xw :%s/<[^>]*>//gi<cr><CR>
 noremap <CR> :
+fun
 smap <expr><TAB> neosnippet#expandable_or_jumpable() ?
 vmap <silent> sc :s/^/# /<CR>:silent noh<CR>
 vmap <silent> su :s/^# //<CR>:silent noh<CR>
