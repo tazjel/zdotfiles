@@ -1,3 +1,4 @@
+
 "Modeline and Notes {
 
 " vim: set sw=4 ts=4 sts=4 et tw=78 foldmarker={,} foldlevel=0 foldmethod=marker spell:
@@ -17,31 +18,41 @@
 "   This is a mirror of :http://spf13.com
 
 
-        "au FocusLost * :wa
+        au FocusLost * :wa
         set cursorline
+        set wrap
+        set textwidth=79
+        call matchadd('ColorColumn', '\%81v.', 100)
+        syntax on
+        syntax enable
         set termencoding=utf-8
         set encoding=utf-8
 
         "syntax
         set background=dark
         "encoding
+        set encoding=utf-8
         " change default file encoding when writing new files
         setglobal fileencoding=utf-8
         set fillchars+=stl:\ ,stlnc:\
 
         "  complete menu
-        "set complete=.,w,b,k,d,i,t
+        set wildmenu
+        set noswapfile nobackup nowritebackup
+        set showmatch matchtime=3 matchpairs+=<:>
+        set complete=.,w,b,k,d,i,t
 
-                        "" Fix slow O inserts
-                            "set timeout timeoutlen=1000 ttimeoutlen=100
-                            "set timeout timeoutlen=5000 ttimeoutlen=100
-                            "set shortmess=aTI
+            "" Fix slow O inserts
+                set timeout timeoutlen=1000 ttimeoutlen=100
+                set timeout timeoutlen=5000 ttimeoutlen=100
+                set shortmess=aTI
 
                         " set folding
                             setlocal foldmethod=expr
                             setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
                             set foldtext=getline(v:foldstart)
                             set fillchars=fold:\ "(there's a space after that \)
+                            highlight Folded ctermfg=DarkGreen ctermbg=Black
 
                             function! ToggleSyntax()
                                 if exists("g:syntax_on")
@@ -98,7 +109,7 @@
 
 
             " <F7>
-                map <F7> :let @a=''\|g/ /y A \|:let @*=@a <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
+                map <F7> :let @a.=''\|g/ /y A \|:let @*=@a <Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left><Left>
                 map <S-F7> :%s/<C-r><C-w>//gc<Left><Left><Left>
 
                 imap <F7> <C-X><C-l>
@@ -109,16 +120,16 @@
                     set diffopt=filler,context:4,iwhite
 
                         if &diff
+                            "Vimdiff use c-j and c-k to navigate"
                             nnoremap <C-j> ]c
                             nnoremap <C-Right> ]c
-                            nnoremap <C-Left> [c
-                            nnoremap <C-Up> :diffupdate
-                            cnoremap <C-Left> :diffput \| diffupdate <CR>
+                            nnoremap <C-k> [c
+                            nnoremap <C-Left> :diffupdate
                             colorscheme solarized
                             nnoremap q :qa! <CR>
                         endif
+                        cnoremap <C-Left> :diffput \| diffupdate <CR>
 
-                            "exec "no"
 
             " <F9>
                 nnoremap <silent> <F9> :SessionList<CR>
@@ -131,8 +142,9 @@
                 map N Nzz
                 map n nzz
                 "
-                "
-                "
+                    "imap <silent> <F10> <Esc>:call InsertCmd( zwz )<CR><Insert>
+                    "map <silent> <F10>  :call InsertCmd( 'hostname' )<CR>
+                    "nnoremap <C-F10> call setqflist([]) | :bufdo grepadd! w %
             " <F11>
                 "map <F11> y<C-W>n<C-W>Lp:w ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_ak.snip
                 "map <F11> y:vsplit ~/.vim/bundle/neosnippet/autoload/neosnippet/snippets/_w.snip<CR>
@@ -160,89 +172,97 @@
 
 
 
+set background=dark
+colorscheme solarized
+let g:solarized_termcolors=256
                 " Syntastic settings
-"                    let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
-"                    let g:syntastic_check_on_open=1         " Check for errors on buffer load
-"                    let g:syntastic_auto_loc_list=1         " Open Error window automatically
-"                    let g:syntastic_auto_jump=1             " Automatically jump to first detected error
-"                    let g:syntastic_loc_list_height=3
-                    "let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+                    let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
+                    let g:syntastic_check_on_open=1         " Check for errors on buffer load
+                    let g:syntastic_auto_loc_list=1         " Open Error window automatically
+                    let g:syntastic_auto_jump=1             " Automatically jump to first detected error
+                    let g:syntastic_loc_list_height=3
+                    let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
 
-                 Gist settings
-                        "let g:gist_open_browser_after_post=1
-                        "let g:gist_detect_filetype=1
-"                        let g:gist_browser_command = 'w3m %URL%'"{"}
-"                        let g:gist_clip_command = 'xclip -selection clipboard'
-"                        let g:gist_get_multiplefile = 1
-"                        let g:gist_post_private = 1
+                " Gist settings
+                        let g:gist_open_browser_after_post=1
+                        let g:gist_detect_filetype=1
+                        let g:gist_browser_command = 'w3m %URL%'
+                        let g:gist_clip_command = 'xclip -selection clipboard'
+                        let g:gist_get_multiplefile = 1
+                        let g:gist_post_private = 1
 
 
                             " Python
-                                "let python_highlight_all = 1
-                                "hi pythonBuiltin        ctermfg=blue    cterm=NONE
-                                "hi pythonSync           ctermfg=red
+                                let python_highlight_all = 1
+                                hi pythonBuiltin        ctermfg=blue    cterm=NONE
+                                hi pythonSync           ctermfg=red
 
-                                "autocmd FileType python setl autoindent
-                                "autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
-                                "autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
-                                "autocmd FileType python setl omnifunc=pythoncomplete#Complete
+                                autocmd FileType python setl autoindent
+                                autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+                                autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+                                autocmd FileType python setl omnifunc=pythoncomplete#Complete
 
 
-"                     Neosnippet
-"                        let g:neosnippet#disable_runtime_snippets
-"                        let g:neosnippet#enable_snipmate_compatibility = 1
-"                        let g:neocomplete#enable_at_startup                 = 1
-"                        let g:neocomplete#sources#syntax#min_keyword_length = 3
-"                        let g:neocomplete#min_keyword_length                = 0
-"                        let g:neocomplete#enable_auto_delimiter             = 1
-"                        let g:neosnippet#enable_snipmate_compatibility      = 1
-"                        let g:neocomplete#enable_insert_char_pre            = 1
-"                        let g:neocomplete#enable_smart_case                 = 1
-"                        let g:neocomplete#enable_fuzzy_completion           = 1
-"                        let g:neocomplete#enable_auto_select                = 0
-"                        let g:neocomplete#enable_refresh_always             = 0
-"
+                    " Neosnippet
+                        let g:neosnippet#disable_runtime_snippets
+                        let g:neosnippet#enable_snipmate_compatibility = 1
+                        let g:neocomplete#enable_at_startup                 = 1
+                        let g:neocomplete#sources#syntax#min_keyword_length = 3
+                        let g:neocomplete#min_keyword_length                = 0
+                        let g:neocomplete#enable_auto_delimiter             = 1
+                        let g:neosnippet#enable_snipmate_compatibility      = 1
+                        let g:neocomplete#enable_insert_char_pre            = 1
+                        let g:neocomplete#enable_smart_case                 = 1
+                        let g:neocomplete#enable_fuzzy_completion           = 1
+                        let g:neocomplete#enable_auto_select                = 0
+                        let g:neocomplete#enable_refresh_always             = 0
 
+
+                        " PythonSyntax: Highlight everything
+                            let python_highlight_all=1
+                            autocmd FileType python setl omnifunc=pythoncomplete#Complete
                             " Font
-                           "set guifont=Monaco\ for\ Powerline:h11
+                           set guifont=Monaco\ for\ Powerline:h11
                             " Airline
-                                    "let g:airline_theme = 'solarized'
-                                    "let g:airline_enable_branch = 1
-                                    "let g:airline_powerline_fonts = 1
-                                    "let g:airline_detect_whitespace = 1
-                                    "let g:airline#extensions#hunks#non_zero_only = 1
-                                    "let g:airline#extensions#tabline#enabled = 2
-                                    "let g:airline#extensions#tabline#fnamemod = ':t'
-                                    "let g:airline#extensions#tabline#buffer_min_count = 1
+                                    set noshowmode
+                                    let g:airline_theme = 'solarized'
+                                    let g:airline_enable_branch = 1
+                                    let g:airline_powerline_fonts = 1
+                                    let g:airline_detect_whitespace = 1
+                                    let g:airline#extensions#hunks#non_zero_only = 1
+                                    let g:airline#extensions#tabline#enabled = 2
+                                    let g:airline#extensions#tabline#fnamemod = ':t'
+                                    let g:airline#extensions#tabline#buffer_min_count = 1
 
-                                    "let g:syntastic_python_checkers = ['pyflakes']
+                                    let g:syntastic_python_checkers = ['pyflakes']
 
                                     " indentLine
-                                    "let g:indentLine_char = '┊'
-                                    "let g:indentLine_color_term = 239
+                                    let g:indentLine_char = '┊'
+                                    let g:indentLine_color_term = 239
 
 
-                                 "Syntastic
-"                                        let g:syntastic_error_symbol = '✘'
-"                                        let g:syntastic_warning_symbol = '⚠'
-"                                        let g:syntastic_style_error_symbol = '⚡'
-"                                        let g:syntastic_style_warning_symbol = '⚡'
-"
-"                                            let g:pymode_lint_checker = 'pylint,pep8,mccabe,pep257'
-"                                            let g:pymode_lint_config = $HOME.'/.pylintrc'
-"                                            let g:pymode_lint_cwindow = 0
-"
-"                                        " Custom symbols will be supported in the future (I hope).
-"                                        " See: https://github.com/klen/python-mode/pull/295
-"                                        let g:pymode_lint_todo_symbol = '⚠'
-"                                        let g:pymode_lint_comment_symbol = '⑊'
-"                                        let g:pymode_lint_visual_symbol = '⑆'
-"                                        let g:pymode_lint_error_symbol = '✘'
-"                                        let g:pymode_lint_info_symbol = '●'
-"                                        let g:pymode_lint_pyflakes_symbol = '●'
+                                " Syntastic
+                                        let g:syntastic_python_pylint_exe = "pylint2"
+                                        let g:syntastic_error_symbol = '✘'
+                                        let g:syntastic_warning_symbol = '⚠'
+                                        let g:syntastic_style_error_symbol = '⚡'
+                                        let g:syntastic_style_warning_symbol = '⚡'
+
+                                            let g:pymode_lint_checker = 'pylint,pep8,mccabe,pep257'
+                                            let g:pymode_lint_config = $HOME.'/.pylintrc'
+                                            let g:pymode_lint_cwindow = 0
+
+                                        " Custom symbols will be supported in the future (I hope).
+                                        " See: https://github.com/klen/python-mode/pull/295
+                                        let g:pymode_lint_todo_symbol = '⚠'
+                                        let g:pymode_lint_comment_symbol = '⑊'
+                                        let g:pymode_lint_visual_symbol = '⑆'
+                                        let g:pymode_lint_error_symbol = '✘'
+                                        let g:pymode_lint_info_symbol = '●'
+                                        let g:pymode_lint_pyflakes_symbol = '●'
 
                     " Font
-                        "let g:Powerline_symbols = 'fancy'
+                        let g:Powerline_symbols = 'fancy'
 
                             " USe the current system list of words as dictionary for completion with
                                 " C-X C-K  ( :he i_CTRL-X_CTRL-K )
@@ -254,7 +274,7 @@
                             set spelllang=en_gb
 
                         " Tagbar: show the tag corresponding to the current cursor position
-                                "let g:tagbar_autoshowtag = 1
+                                let g:tagbar_autoshowtag = 1
                             "tab
                                 cmap <C-Left> :tabprevious<cr>
                                 cmap <C-Right> :tabnext<cr>
@@ -325,57 +345,53 @@
                                 cabbrev h tab h
                                 nmap w<left> :exe "normal \<c-o>"<CR>
                                 nmap w<right> :exec "normal gf"<CR>
-                                    "w | so %
                                 nnoremap <silent> ; :q!<CR>
                                 nnoremap ww Y
-        ":let @a=""\|:let @a=colors_name\|:let @"=@a<CR>\|:echo @"<CR>
-                            "normal"
-                                cabbrev wh !bash %
+                                ":let @a=""\|:let @a=colors_name\|:let @"=@a<CR>\|:echo @"<CR>
+                                "normal"
+                                cabbrev wsh !bash %
                                 imap <C-s> <C-o>:w<CR>
                                 map <C-s> :w<CR>
 
-noremap <up> g<up>
-noremap <down> g<down>
                                 nmap <Space><Left> %
                                 nmap <Space><Right> *
-nnoremap <Space><CR> :nohlsearch<CR><CR>
-"
-"
-"nnoremap <silent> wF :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
-""map W :NeoSnippetEdit -vertical<CR>
+                                nnoremap <Space><CR> :nohlsearch<CR><CR>
+                                "html substitute "!sed 's/<[^>]*>//g' %
+                                "imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>ka
+                                "nnoremap <silent> wF :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
+                                map W :NeoSnippetEdit -vertical<CR>
 
-        vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+                                vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
 
-        cabbrev ww <C-r>"<BS>
-        cabbrev www <C-r>%
-        cabbrev wwww <C-r>#
-        let @a=@q
-        let @x="V}y<Esc>:vsplit ~/.vimrc.local.w<CR>ggGp<ESC><C-W><C-W>:w"
-        map <CR> :
-
-        "Close Quickfix window (,qq)
-        map <leader>qq :cclose<CR>
-
-        "vnoremap <silent> ww yy<C-W><C-W>Gp<C-W><C-W>
-        nnoremap <silent> ww yy<C-W><C-W>Gp<C-W><C-W>
-        vnoremap <silent> ww yy<C-W><C-W>Gp<C-W><C-W>
-        " Select all.
-        map <c-a> ggVG
-        " Undo in insert mode.
-        imap <c-z> <c-o>u
+                            cabbrev wwww <C-r>#
+                            cabbrev www <C-r>%
+                            cabbrev ww <C-r>"<BS>
+                                let @a=@q
+                            let @x="V}y<Esc>:vsplit ~/.vimrc.local.w<CR>ggGp<ESC><C-W><C-W>"
+                                    map <CR> :
 
 
 
+            vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
+            nnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
+            vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
+                                " Select all.
+                                    map <c-a> ggVG
+                                " Undo in insert mode.
+                                    imap <c-z> <c-o>u
 
-        fun! RangerChooser()
-            exec "silent !python ~/zdotfiles/5/ranger-1.6.1/ranger.py --choosefile=/tmp/chosenfile " . expand("%:p:h")
-            if filereadable('/tmp/chosenfile')
-                exec 'edit ' . system('cat /tmp/chosenfile')
-                call system('rpythonm /tmp/chosenfile')
-            endif
-            redraw!
-        endfun
-        "nnoremap <C-Left> :call RangerChooser()<CR>
+
+
+
+                                fun! RangerChooser()
+                                    exec "silent !python ~/zdotfiles/5/ranger-1.6.1/ranger.py --choosefile=/tmp/chosenfile " . expand("%:p:h")
+                                    if ilereadable('/tmp/chosenfile')
+                                        exec 'edit ' . system('cat /tmp/chosenfile')
+                                        call system('rpythonm /tmp/chosenfile')
+                                    endif
+                                    redraw!
+                                endfun
+                                    "nnoremap <C-Left> :call RangerChooser()<CR>
 
                             " Split the Line at Cursor
                                 nnoremap K i<cr><esc><right>
@@ -384,40 +400,40 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
 
                             "Fold System
                                 nnoremap 8 zMzvzz
-                            nnoremap 9 zM
+                                nnoremap 9 zM
                                 nnoremap 0 zR
                                 nnoremap <space> za
                                 vnoremap <space> zf
 
                                 cnoremap <C-e> <End>
-                                "
         " Shell command {
-            function! s:W_vim(cmdline)
+            function! s:W_find_py(cmdline)
                 botright new
                 setlocal buftype=nofile
                 setlocal bufhidden=delete
                 setlocal nobuflisted
                 setlocal noswapfile
                 setlocal nowrap
-                setlocal filetype=vim
-                setlocal syntax=vim
+                setlocal filetype=python
+                setlocal syntax=py
                 colorscheme solarized
 
                 call setline(1, a:cmdline)
                 call setline(2, substitute(a:cmdline, '.', '=', 'g'))
                 execute 'silent $read !' . escape(a:cmdline, '%#')
+                "setlocal nomodifiable
                 redraw!
+                setlocal syntax=vim
                 1
-                set filetype=sh | syntax on | wincmd o
             endfunction
 
-            command! -complete=file -nargs=+ WW call s:W_vim(<q-args>)
+            command! -complete=file -nargs=+ Wfindpy call s:W_find_py(<q-args>)
                 " e.g. Grep current file for <search_term>: Shell grep -Hn <search_term> %
 
                         "let zwz = 'grep -RHn' "let cmd = @a
 
                         function! Zshell(cmd)
-                            exe ':silent !'.a:cmd.' >> /tmp/vim.insert.xxx 2>/dev/null'
+                            exe ':silent !'.a:cmd.' > /tmp/vim.insert.xxx 2>/dev/null'
                             botright new
                             setlocal buftype=nofile
                             setlocal bufhidden=delete
@@ -454,6 +470,12 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
             redraw!
         endfun
 
+        " A function to save word under cursor to a file
+        function! SaveWord()
+           normal yiw
+           exe ':!echo '.@0.' >> $HOME/.vimrc.local.w'
+        endfunction
+        map <C-F6> :call SaveWord()<CR>
 
 
         " Using templates
@@ -465,7 +487,7 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
          "autocmd BufNewFile * silent! call LoadTemplate('%:e')
 
          "Map Ctrl+j for jumping between templates placeholders
-        nnoremap <c-j> /<cr>c/+>/e<cr>
+        nnoremap <c-j> /<+.\{-1,}+><cr>c/+>/e<cr>
         inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
                 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
 
@@ -474,18 +496,83 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
                 " Map <C-left> to go previous buffer
                     map <C-left> <ESC>:bp<CR>
 
+                let g:acp_enableAtStartup = 0
+                " Use neocomplcache.
+                let g:neocomplcache_enable_at_startup = 1
+                " Use smartcase.
+                let g:neocomplcache_enable_smart_case = 1
+                " Set minimum syntax keyword length.
+                let g:neocomplcache_min_syntax_length = 1
+                let g:neocomplcache_lock_buffer_name_pattern = '\*ku\*'
+
+                " Enable heavy features.
+                " Use camel case completion.
+                let g:neocomplcache_enable_camel_case_completion = 1
+                " Use underbar completion.
+                let g:neocomplcache_enable_underbar_completion = 1
 
                 " Define dictionary.
 
                 " Plugin key-mappings.
+                inoremap <expr><C-g>     neocomplcache#undo_completion()
+                inoremap <expr><C-l>     neocomplcache#complete_common_string()
+
+                " Recommended key-mappings.
+                " <CR>: close popup and save indent.
+                inoremap <silent> <CR> <C-r>=<SID>my_cr_function()<CR>
+                function! s:my_cr_function()
+                  return neocomplcache#smart_close_popup() . "\<CR>"
+                  " For no inserting <CR> key.
+                  "return pumvisible() ? neocomplcache#close_popup() : "\<CR>"
+                endfunction
+                " <TAB>: completion.
+                inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+                " <C-h>, <BS>: close popup and delete backword char.
+                inoremap <expr><C-h> neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr><BS> neocomplcache#smart_close_popup()."\<C-h>"
+                inoremap <expr><C-y>  neocomplcache#close_popup()
+                inoremap <expr><C-e>  neocomplcache#cancel_popup()
+                " Close popup by <Space>.
                 "inoremap <expr><Space> pumvisible() ? neocomplcache#close_popup() : "\<Space>"
 
+                " For cursor moving in insert mode(Not recommended)
+                inoremap <expr><Left>  neocomplcache#close_popup() . "\<Left>"
+                inoremap <expr><Right> neocomplcache#close_popup() . "\<Right>"
+                inoremap <expr><Up>    neocomplcache#close_popup() . "\<Up>"
+                inoremap <expr><Down>  neocomplcache#close_popup() . "\<Down>"
+                "
+                " Or set this.
+
+                let g:neocomplcache_enable_cursor_hold_i = 1
+                " Or set this.
+                let g:neocomplcache_enable_insert_char_pre = 1
+
+                " AutoComplPop like behavior.
+                let g:neocomplcache_enable_auto_select = 1
+
+                " Shell like behavior(not recommended).
+                set completeopt+=longest
+                let g:neocomplcache_enable_auto_select = 1
+                let g:neocomplcache_disable_auto_complete = 1
+                inoremap <expr><TAB>  pumvisible() ? "\<Down>" : "\<C-x>\<C-u>"
+
+                " Enable omni completion.
+                autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+                autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+                autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+                autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+                autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+
+                " Enable heavy omni completion.
+                let g:neocomplcache_omni_patterns.c = '[^.[:digit:] *\t]\%(\.\|->\)'
+                let g:neocomplcache_omni_patterns.cpp = '[^.[:digit:] *\t]\%(\.\|->\)\|\h\w*::'
 
 
+                map ,, :call SaveLine()
                 map ,e :e <C-R>=expand("%:p:h") . "/" <CR>
                 map ,h :sp <C-R>=expand("%:p:h") . "/" <CR>
                 map ,l :call LoadTemplate()
-                "map ,l :call SaveLine()
+                map ,l :call SaveLine()
                 map ,v :vsp <C-R>=expand("%:p:h") . "/" <CR>
                 inoremap <c-f> <c-r>=expand('%:r')<cr>
                 match ErrorMsg '^\(<\|=\|>\)\{7\}\([^=].\+\)\?$'
@@ -506,12 +593,12 @@ nnoremap <Space><CR> :nohlsearch<CR><CR>
         highlight WhitespaceEOL ctermbg=red guibg=red
         match WhitespaceEOL /\s\+$/
 
-        ""autocmd BufNewFile,Bufread * set fileformat=unix
+        autocmd BufNewFile,Bufread * set fileformat=unix
         autocmd BufLeave *.* silent mkview
         autocmd BufEnter *.* silent loadview
 
+        set browsedir=current
         set completeopt=menuone,longest
-
 
 
 
@@ -546,11 +633,17 @@ nmap ,n :NERDTreeClose<CR>:NERDTreeToggle<CR>
 nmap ,m :NERDTreeClose<CR>:NERDTreeFind<CR>
 nmap ,N :NERDTreeClose<CR>
 " Store the bookmarks file
+let NERDTreeBookmarksFile=expand("$HOME/.vim/NERDTreeBookmarks")
+let NERDTreeQuitOnOpen=1
+" Highlight the selected entry in the tree
+let NERDTreeHighlightCursorline=1
 " Use a single click to fold/unfold directories and a double click to open
 " files
+let NERDTreeMouseMode=2
 nnoremap j gj
 nnoremap k gk
 
+nnoremap <leader>w <C-w>v<C-w>l
 
 " Yank/paste to the OS clipboard with ,y and ,p
 nmap <leader>y "+y
@@ -559,13 +652,14 @@ nmap <leader>p "+p
 nmap <leader>P "+P
 
 " YankRing stuff
-"let g:yankring_history_dir = '$HOME/.vim/.tmp'
+let g:yankring_history_dir = '$HOME/.vim/.tmp'
 
 nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
 "
+"from : "https://github.com/cmdel/config-rc-files/blob/fc67f12b400e344dcc70a03f77f906199557d0e4/.vimrc
 " Reselect text that was just pasted with ,v
 nnoremap <leader>v V`]
-"#map ,# :s/^/#/<CR>
+map ,# :s/^/#/<CR>
 map ,/ :s/^/\/\//<CR>
 map ,> :s/^/> /<CR>
 map ," :s/^/\"/<CR>
@@ -591,99 +685,13 @@ nnoremap <space><down> :normal Go<CR>
     "" }
 
 
+cabbrev WWw wincmd v
 
 if bufwinnr(1)
   map + <C-W>+
   map - <C-W>-
 endif
 
-"w
-"
-function!Wadd()
-    exe 'normal "+y'
-    let a:zstr .= @"
-endfunction
 
-function!Wviw()
-    wincmd n | wincmd L
-    execute 'normal! o' "#_____________#"
-    execute 'normal! o' "reg = "
-    execute '0r ~/word.txt'
-    execute 'normal! i' .a:zstr
-    wincmd w
-    redraw!
-endfunction
-
-    "vsplit %.wreg
-"windows
-nmap <space><Down> :exec "normal Go"<CR>
-nmap <space><space> `
-function! Zwin()
-    wincmd n | wincmd L
-    wincmd w
-    syntax on
-    set cursorcolumn
-endfunction
-
-syntax on
-
-function! Zcopy()
-    let xx = @+
-    exe ':!echo '.xx ' >> ~/word.txt'
-endf
-
-function! LoadTemplate(file)
-    silent exe "0read " . a:file
-    normal G
-    normal dd
-    silent %s/<?\(\(\(?>\)\@!.\)*\)?>/\=<SID>Compute(submatch(1))/ge
-    silent %s/<!\(\(\(!>\)\@!.\)*\)!>/\=<SID>Execute(submatch(1))/ge
-    execute 0
-    syntax match TemplateMarker "<+\(\(+>\)\@!.\)*+>" containedin=ALL
-    highlight link TemplateMarker Search
-endfunction
-
-function! Zconfirm()
-    let choice = confirm("Load template file " . a:file . "?:", "&yes\n&no\n")
-    return choice == 1
-endfunction
-
-
-function! Zpy()
-python << EOF
-import sys
-import string
-import vim
-print "A"
-EOF
-endfunction
-
-"python
-"
-":py print "Hello"		# displays a message
-":py vim.command(cmd)		# execute an Ex command
-":py w = vim.windows[n]		# gets window "n"
-":py cw = vim.current.window	# gets the current window
-":py b = vim.buffers[n]		# gets buffer "n"
-":py cb = vim.current.buffer	# gets the current buffer
-":py w.height = lines		# sets the window height
-":py w.cursor = (row, col)	# sets the window cursor position
-":py pos = w.cursor		# gets a tuple (row, col)
-":py name = b.name		# gets the buffer file name
-":py line = b[n]			# gets a line from the buffer
-":py lines = b[n:m]		# gets a list of lines
-":py num = len(b)		# gets the number of lines
-":py b[n] = str			# sets a line in the buffer
-":py b[n:m] = [str1, str2, str3]	# sets a number of lines at once
-":py del b[n]			# deletes a line
-":py del b[n:m]			# deletes a number of lines
-
-function! Zcheck_py()
-    if has('python')
-      echo 'there is Python 2.x'
-    elseif has('python3')
-      echo 'there is Python 3.x'
-    endif
-endfunction
 
 

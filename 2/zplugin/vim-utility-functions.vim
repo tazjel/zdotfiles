@@ -1,68 +1,80 @@
-func! PL(str) " Print string into the current buffer
+func!ZPL(str) " Print string into the current buffer
   exe "normal o" . a:str
 endf
 
-func! NL()
+func!ZNL()
     exe "normal o"
 endf
 
-func! Print(str) " Print string into the current buffer
+func!ZPrint(str) " Print string into the current buffer
     exe "normal i" . a:str
 endf
 
-func! P(str) " Print string into the current buffer
+func!ZP(str) " Print string into the current buffer
     call Print(a:str)
 endf
 
-func! SelectAll() " Select all of current buffer
+func!ZSelectAll() " Select all of current buffer
     exe "normal ggVG"
 endf
 
-func! SA() " Select all of current buffer
+func!ZSA() " Select all of current buffer
     call SelectAll()
 endf
 
-func! SelectLine() " Select current line
+func!ZSelectLine() " Select current line
     exe "normal V"
 endf
 
-func! SL() " Select current line
+func!ZSL() " Select current line
     call SelectLine()
 endf
 
-func! Copy() " Copy current selection to clipboard
+func!ZCopy() " Copy current selection to clipboard
     exe 'normal "+y'
 endf
 
-func! CP() " Copy current selection to clipboard
+func!ZCP() " Copy current selection to clipboard
     call Copy()
 endf
 
-func! CopyAll() " Copy current buffer contents to clipboard
+func!ZCopyAll() " Copy current buffer contents to clipboard
     call SelectAll()
     call Copy()
 endf
 
-func! CPA() " Copy current buffer contents to clipboard
+func!ZCPA() " Copy current buffer contents to clipboard
     call CopyAll()
 endf
 
-func! CopyLine() " Copy a single line
+func!ZCopyLine() " Copy a single line
     call SelectLine()
     call Copy()
 endf
 
-func! CPL() " Copy a single line
+func!ZCPL() " Copy a single line
     call CopyLine()
 endf
 
-func! Cut() " Cut current buffer contents to clipboard
+func!ZCut() " Cut current buffer contents to clipboard
     call CopyAll()
     %d
 endf
 
-func! S2C(str) " Put string on clipboard
+func!ZS2C(str) " Put string on clipboard
     %d
     call P(a:str)
     call Cut()
 endf
+
+func!Zdisplay()
+    let Z_a=@a
+    let Z_A="Reg a ="
+    let Z_x=@x
+    let Z_X="Reg x =" .Z_x
+    exe 'normal o' .Z_X
+    syntax on
+    set filetype=vim
+    set syntax=vim
+endf
+

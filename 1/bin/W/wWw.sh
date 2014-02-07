@@ -351,7 +351,7 @@ z_symlink_easystroke () {
 
 
 z_check_f() {
-        [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || z_error "actions-0.5.6"
+    [ -e $HOME/.easystroke ] && success "actions-0.5.6" "Yes" || z_error "actions-0.5.6"
     [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
     [ -e $(pgrep easystroke) ] && success "easystroke" "On" || z_error "Off";
 }

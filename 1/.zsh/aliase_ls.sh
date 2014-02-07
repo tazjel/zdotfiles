@@ -1,17 +1,16 @@
 #!/usr/bin/env bash
 
 alias ls="ls --color=auto"
-alias w_zrc='vim ~/.zshrc && source ~/.zshrc'
-
-
+alias WW_zshrc='vim ~/.zshrc && source ~/.zshrc'
 alias w_alias_ls='vim $HOME/zdotfiles/1/.zsh/aliase_ls.sh && source $HOME/zdotfiles/1/.zsh/aliase_ls.sh'
-alias w_vimrc='vim /home/bani/.vimrc.local && source /home/bani/.vimrc.local'
+
+alias WW_vimrc='vim ~/.vimrc.local && source ~/.vimrc.local'
 
 
     alias 'www__11'='clear;pwd;cd ~/zdotfiles/1;ls -alht'
 
 
-    alias 'www__'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
+    alias 'www_link'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__00'='clear;pwd;cd ~/zdotfiles/link/;ls -alX'
     alias 'www__22'='clear;pwd;cd ~/zdotfiles/2;ls -alX'
     alias 'www__33'='clear;pwd;cd ~/zdotfiles/3;ls -alX'

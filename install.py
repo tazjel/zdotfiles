@@ -1,22 +1,24 @@
 #!/usr/bin/env python
 #
 # -*- coding: utf-8 -*-
-
 import os, sys
 import shutil
 from os import listdir
 from os.path import islink, join, expanduser
 
+
+#os.mkdir(udir, 0755)
+did_mkdir = False
+did_mkdir = True
+
 home = expanduser("~/")
 directory = expanduser("~/zdotfiles/link")
+
 easystroke_directory = expanduser("~/zdotfiles/link/.easystroke")
 easystroke_home = expanduser("~/.easystroke")
 excludes = ["pure",]
 linux_only_excludes = ["Xresources", "xinitrc", "xmobarrc", "xmonad.hs", "zprofile"]
-#os.mkdir
-#shutil.move(src, dst)
-
-shutil.abspath('.')
+zfolder = directory
 
 try:
     if sys.argv[1] == "linux":
@@ -29,6 +31,11 @@ def z_link(directory, home):
     for X in files:
         src = join(directory, X)
         dest = join(home, X)
+        if not os.path.exists(zfolder):
+            os.mkdir(zfolder)
+        else:
+            shutil.move(src, dest)
+
         if not islink(dest):
             print("linking %s to %s") % (src, dest)
             try:
@@ -47,3 +54,4 @@ def z_link(directory, home):
 
 z_link(directory, home)
 z_link(easystroke_directory, easystroke_home)
+

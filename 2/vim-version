@@ -1,0 +1,43 @@
+VIM - Vi IMproved 7.4 (2013 Aug 10, compiled Jan  7 2014 11:50:48)
+Included patches: 1-135
+Compiled by w@wDell
+Huge version with GTK2 GUI.  Features included (+) or not (-):
++acl             +farsi           +mouse_netterm   +syntax
++arabic          +file_in_path    +mouse_sgr       +tag_binary
++autocmd         +find_in_path    -mouse_sysmouse  +tag_old_static
++balloon_eval    +float           +mouse_urxvt     -tag_any_white
++browse          +folding         +mouse_xterm     -tcl
+++builtin_terms  -footer          +multi_byte      +terminfo
++byte_offset     +fork()          +multi_lang      +termresponse
++cindent         +gettext         -mzscheme        +textobjects
++clientserver    -hangul_input    +netbeans_intg   +title
++clipboard       +iconv           +path_extra      +toolbar
++cmdline_compl   +insert_expand   -perl            +user_commands
++cmdline_hist    +jumplist        +persistent_undo +vertsplit
++cmdline_info    +keymap          +postscript      +virtualedit
++comments        +langmap         +printer         +visual
++conceal         +libcall         +profile         +visualextra
++cryptv          +linebreak       +python/dyn      +viminfo
++cscope          +lispindent      +python3/dyn     +vreplace
++cursorbind      +listcmds        +quickfix        +wildignore
++cursorshape     +localmap        +reltime         +wildmenu
++dialog_con_gui  -lua             +rightleft       +windows
++diff            +menu            +ruby            +writebackup
++digraphs        +mksession       +scrollbind      +X11
++dnd             +modify_fname    +signs           -xfontset
+-ebcdic          +mouse           +smartindent     +xim
++emacs_tags      +mouseshape      -sniff           +xsmp_interact
++eval            +mouse_dec       +startuptime     +xterm_clipboard
++ex_extra        -mouse_gpm       +statusline      -xterm_save
++extra_search    -mouse_jsbterm   -sun_workshop    +xpm
+   system vimrc file: "$VIM/vimrc"
+     user vimrc file: "$HOME/.vimrc"
+ 2nd user vimrc file: "~/.vim/vimrc"
+      user exrc file: "$HOME/.exrc"
+  system gvimrc file: "$VIM/gvimrc"
+    user gvimrc file: "$HOME/.gvimrc"
+2nd user gvimrc file: "~/.vim/gvimrc"
+    system menu file: "$VIMRUNTIME/menu.vim"
+  fall-back for $VIM: "/usr/share/vim"
+Compilation: gcc -c -I. -Iproto -DHAVE_CONFIG_H -DFEAT_GUI_GTK  -pthread -I/usr/include/gtk-2.0 -I/usr/lib/x86_64-linux-gnu/gtk-2.0/include -I/usr/include/atk-1.0 -I/usr/include/cairo -I/usr/include/gdk-pixbuf-2.0 -I/usr/include/pango-1.0 -I/usr/include/gio-unix-2.0/ -I/usr/include/glib-2.0 -I/usr/lib/x86_64-linux-gnu/glib-2.0/include -I/usr/include/pixman-1 -I/usr/include/freetype2 -I/usr/include/libpng12 -I/usr/include/harfbuzz     -g -O2 -U_FORTIFY_SOURCE -D_FORTIFY_SOURCE=1      
+Linking: gcc   -L. -Wl,-Bsymbolic-functions -Wl,-z,relro -rdynamic -Wl,-export-dynamic  -L/usr/local/lib -Wl,--as-needed -o vim   -lgtk-x11-2.0 -lgdk-x11-2.0 -latk-1.0 -lgio-2.0 -lpangoft2-1.0 -lpangocairo-1.0 -lgdk_pixbuf-2.0 -lcairo -lpango-1.0 -lfreetype -lfontconfig -lgobject-2.0 -lglib-2.0   -lSM -lICE -lXpm -lXt -lX11 -lXdmcp -lSM -lICE  -lm -lnsl  -lselinux   -lncurses -ldl       -lruby-1.9.1 -lpthread -lrt -ldl -lcrypt -lm  -L/usr/lib   

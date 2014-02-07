@@ -1,0 +1,227 @@
+
+                " Syntastic settings
+"                    let g:syntastic_enable_signs=1          " Use :sign interace to mark syntax errors
+"                    let g:syntastic_check_on_open=1         " Check for errors on buffer load
+"                    let g:syntastic_auto_loc_list=1         " Open Error window automatically
+"                    let g:syntastic_auto_jump=1             " Automatically jump to first detected error
+"                    let g:syntastic_loc_list_height=3
+                    "let g:syntastic_stl_format = '[%E{Error 1/%e: line %fe}%B{, }%W{Warning 1/%w: line %fw}]'
+
+                 "Gist settings
+                        "let g:gist_open_browser_after_post=1
+                        "let g:gist_detect_filetype=1
+                        "let g:gist_browser_command = 'w3m %URL%'"{"}
+"                        let g:gist_clip_command = 'xclip -selection clipboard'
+"                        let g:gist_get_multiplefile = 1
+"                        let g:gist_post_private = 1
+
+
+                            " Python
+                                "let python_highlight_all = 1
+                                "hi pythonBuiltin        ctermfg=blue    cterm=NONE
+                                "hi pythonSync           ctermfg=red
+
+                                "autocmd FileType python setl autoindent
+                                "autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+                                "autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+                                "autocmd FileType python setl omnifunc=pythoncomplete#Complete
+
+
+"                     Neosnippet
+"                        let g:neosnippet#disable_runtime_snippets
+"                        let g:neosnippet#enable_snipmate_compatibility = 1
+"                        let g:neocomplete#enable_at_startup                 = 1
+"                        let g:neocomplete#sources#syntax#min_keyword_length = 3
+"                        let g:neocomplete#min_keyword_length                = 0
+"                        let g:neocomplete#enable_auto_delimiter             = 1
+"                        let g:neosnippet#enable_snipmate_compatibility      = 1
+"                        let g:neocomplete#enable_insert_char_pre            = 1
+"                        let g:neocomplete#enable_smart_case                 = 1
+"                        let g:neocomplete#enable_fuzzy_completion           = 1
+"                        let g:neocomplete#enable_auto_select                = 0
+"                        let g:neocomplete#enable_refresh_always             = 0
+"
+
+                            " Font
+                           "set guifont=Monaco\ for\ Powerline:h11
+                            " Airline
+                                    "let g:airline_theme = 'solarized'
+                                    "let g:airline_enable_branch = 1
+                                    "let g:airline_powerline_fonts = 1
+                                    "let g:airline_detect_whitespace = 1
+                                    "let g:airline#extensions#hunks#non_zero_only = 1
+                                    "let g:airline#extensions#tabline#enabled = 2
+                                    "let g:airline#extensions#tabline#fnamemod = ':t'
+                                    "let g:airline#extensions#tabline#buffer_min_count = 1
+
+                                    "let g:syntastic_python_checkers = ['pyflakes']
+
+                                    " indentLine
+                                    "let g:indentLine_char = '┊'
+                                    "let g:indentLine_color_term = 239
+
+
+                                 "Syntastic
+                                        """" """" """"
+                                                "map <leader>to :tabnew<cr>
+                                                " map <leader>te :tabedit
+                                                "map <leader>tc :tabclose<cr>
+                                                " map <leader>to :tabonly<cr>
+                                                "map <leader>tn :tabnext<cr>
+                                                "map <leader>tp :tabprevious<cr>
+                                                " map <leader>tf :tabfirst<cr>
+                                                " map <leader>tl :tablast<cr>
+                                                " map <leader>tm :tabmove
+                                                "nmap <C-Left> :tabpreious<cr>
+                                                "vmap <C-Left> :tabprevious<cr>
+                                                "vmap <C-Right> :tabnext<cr>
+
+"                                        let g:syntastic_error_symbol = '✘'
+"                                        let g:syntastic_warning_symbol = '⚠'
+"                                        let g:syntastic_style_error_symbol = '⚡'
+"                                        let g:syntastic_style_warning_symbol = '⚡'
+"
+"                                            let g:pymode_lint_checker = 'pylint,pep8,mccabe,pep257'
+"                                            let g:pymode_lint_config = $HOME.'/.pylintrc'
+"                                            let g:pymode_lint_cwindow = 0
+"
+"                                        " Custom symbols will be supported in the future (I hope).
+"                                        " See: https://github.com/klen/python-mode/pull/295
+"                                        let g:pymode_lint_todo_symbol = '⚠'
+"                                        let g:pymode_lint_comment_symbol = '⑊'
+"                                        let g:pymode_lint_visual_symbol = '⑆'
+"                                        let g:pymode_lint_error_symbol = '✘'
+"                                        let g:pymode_lint_info_symbol = '●'
+"                                        let g:pymode_lint_pyflakes_symbol = '●'
+
+                    " Font
+                        "let g:Powerline_symbols = 'fancy'
+
+"
+"
+"
+"Templates{{{
+    "function! LoadTemplate()
+        " load a template based on the file extension
+            "silent! .r ~/.vim/skel/tmpl.%:e
+
+            " Replace some placeholders
+            "%s/FILENAME%/\=expand("%:t")/g
+            "%s/%DATE%/\=strftime("%b %d, %Y")/g
+                "%s/%DATE%/\=strftime("%b %d, %Y")/g
+
+        " This last one deletes the placeholder
+            " %START% then leaves the cursor there.
+            "%s/%START%//g
+    "endfunction
+
+":nmap <leader>p :let @* = substitute(@*,'[^[:print:]]','','g')<cr>"*p
+        "map ,l :call LoadTemplate()
+            "silent! 0r ~/.vim/skel/tmpl.%:e
+            " }}}
+            "
+            "
+        " Using templates
+        function! LoadTemplate(extension)
+            silent! :execute '0r $HOME/.vim/templates/' . a:extension . '.tpl'
+            silent! execute 'source $HOME/.vim/templates/' . a:extension . '.patterns.tpl'
+        endfunction
+        "
+
+         "Map Ctrl+j for jumping between templates placeholders
+        nnoremap <c-j> /<cr>c/+>/e<cr>
+        inoremap <c-j> <ESC>/<+.\{-1,}+><cr>c/+>/e<cr>
+
+
+ "autocmd BufNewFile *.w silent! call LoadTemplate('%:e')
+
+"python
+"
+":py print "Hello"		# displays a message
+":py vim.command(cmd)		# execute an Ex command
+":py w = vim.windows[n]		# gets window "n"
+":py cw = vim.current.window	# gets the current window
+":py b = vim.buffers[n]		# gets buffer "n"
+":py cb = vim.current.buffer	# gets the current buffer
+":py w.height = lines		# sets the window height
+":py w.cursor = (row, col)	# sets the window cursor position
+":py pos = w.cursor		# gets a tuple (row, col)
+":py name = b.name		# gets the buffer file name
+":py line = b[n]			# gets a line from the buffer
+":py lines = b[n:m]		# gets a list of lines
+":py num = len(b)		# gets the number of lines
+":py b[n] = str			# sets a line in the buffer
+":py b[n:m] = [str1, str2, str3]	# sets a number of lines at once
+":py del b[n]			# deletes a line
+":py del b[n:m]			# deletes a number of lines
+
+        "  complete menu
+        "set complete=.,w,b,k,d,i,t
+
+                        "" Fix slow O inserts
+                            "set timeout timeoutlen=1000 ttimeoutlen=100
+                            "set timeout timeoutlen=5000 ttimeoutlen=100
+                            "set shortmess=aTI
+                            function! ToggleSyntax()
+                                if exists("g:syntax_on")
+                                    syntax off
+                                else
+                                    syntax enable
+                                endif
+                            endfunction
+                            nmap <silent>  wn :call ToggleSyntax()<CR>
+
+                        if exists("syntax_on")
+                            syntax reset
+                        endif
+
+                        if has('autocmd')
+                            filetype plugin indent on
+                        endif
+
+                        if has('syntax') && !exists('g:syntax_on')
+                            syntax enable
+                        endif
+
+                        if has("multi_byte")
+                            if &termencoding == ""
+                                let &termencoding = &encoding
+                            endif
+                        endif
+
+        ""autocmd BufNewFile,Bufread * set fileformat=unix
+        "autocmd BufLeave *.* silent mkview
+        "autocmd BufEnter *.* silent loadview
+
+        "set completeopt=menuone,longest
+
+
+                            set spelllang=en_gb
+"zsh function replace WWW
+"%s/^\(.*\)\ \(.*\){/WWW\1 \2/gc
+"
+nnoremap <leader>W :%s/\s\+$//<CR>:let @/=''<CR>
+"
+" Reselect text that was just pasted with ,v
+nnoremap <leader>v V`]
+"#map ,# :s/^/#/<CR>
+map ,/ :s/^/\/\//<CR>
+map ,> :s/^/> /<CR>
+map ," :s/^/\"/<CR>
+map ,% :s/^/%/<CR>
+map ,! :s/^/!/<CR>
+map ,; :s/^/;/<CR>"{
+map ,- :s/^/--/<CR>
+map ,c :s/^\/\/\\|^--\\|^> \\|^[#"%!;]//<CR>"}
+
+" wrapping comments
+map ,* :s/^\(.*\)$/\/\* \1 \*\//<CR>
+map ,( :s/^\(.*\)$/\(\* \1 \*\)/<CR>
+map ,< :s/^\(.*\)$/<!-- \1 -->/<CR>
+map ,d :s/^\([/(]\*\\|<!--\) \(.*\) \(\*[/)]\\|-->\)$/\2/<CR>
+
+" Yank/paste to the OS clipboard with ,y and ,p
+nmap <leader>y "+y
+nmap <leader>Y "+yy
+nmap <leader>p "+p
+nmap <leader>P "+P
