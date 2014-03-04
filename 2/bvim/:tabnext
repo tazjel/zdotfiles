@@ -116,7 +116,7 @@ map <C-left> <ESC>:bp<CR>
 "   silent! execute 'source $HOME/.vim/templates/' . a:extension .
 "   '.patterns.tpl'
 " endfunction
-" 
+"
 " autocmd BufNewFile * silent! call LoadTemplate('%:e')
 
 " Map Ctrl+j for jumping between templates placeholders
@@ -161,3 +161,4 @@ function! SuperCleverTab()
 endfunction
 " bind funciton to the tab key
 inoremap <Tab> <C-R>=SuperCleverTab()<cr>
+

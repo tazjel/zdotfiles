@@ -595,4 +595,4 @@ colorize_via_pygmentize() {
     done
 }
 
-
+echo "from al.zsh"
