@@ -21,3 +21,4 @@ mkdir -p
 ln -s ~/zdotfiles/link/.vimrc.local zsh && ranger
 
 
+i7
