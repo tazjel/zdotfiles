@@ -1,10 +1,12 @@
-
 Work in progress...
 
 #
 
 A Brief Description of zdotfiles
 Features
+
+Raspberry Pi WebIDE Installation & Setup
+
 Introduction
 A Brief Description
 A Brief History
