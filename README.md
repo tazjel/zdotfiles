@@ -7,7 +7,7 @@ Features
 
 Raspberry Pi WebIDE Installation & Setup
 
-Introduction
+Introduction/
 A Brief Description
 A Brief History
 Future Directions
@@ -71,7 +71,8 @@ zdotfiles
 
 ### 7- Seventh Diminsion :
      Access : Root - System Administration
-     Commands = [fdisk, mount, hcitool]
+    
+Commands = [fdisk, mount, dd, parted, modprobe, df, proot, ]
 
 ### 8- Eighth Diminsion
      Access : Other's servers
