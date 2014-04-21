@@ -5,8 +5,9 @@ Work in progress...
 A Brief Description of zdotfiles
 Features
 
-Raspberry Pi WebIDE Installation & Setup
-
+Raspberry Pi WebIDE 
+Installation & Setup
+CreatePackageFromPPA
 Introduction/
 A Brief Description
 A Brief History
@@ -43,6 +44,8 @@ The UNIX philosophy - "Write programs that do one thing and do it well. Write pr
 -- Ref: uzbl.org
 
 zdotfiles
+### 0- Zero Diminsion :
+Commands = [ git, apt-get, dpkg, ] 
 
 ### 1-First Diminsion :
     Command line
