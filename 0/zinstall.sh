@@ -66,3 +66,14 @@ optipng colortail mercurial grc coreutils bzr htop apg fontforge"
 
 BIN_PACKAGES="audacity avidemux firefox gimp inkscape vlc blender thunderbird virtualbox
 bitcoin-qt wireshark prey"
+
+zbasic() {
+    sudo apt-get install zsh curl vim ranger;
+    }
+
+z_zsh() {
+    curl -L https://github.com/robbyrussell/oh-my-zsh/raw/master/tools/install.sh | sh
+    
+}
+
+
