@@ -2,17 +2,7 @@ Work in progress...
 
 #
 
-A Brief Description of zdotfiles
-Features
-Installation & Setup
-Introduction/
-A Brief Description
-A Brief History
-Future Directions
-Technical Appendix
-Tips and Tricks
-
-
+            
 Conflict Analysis and Resolution
 
 ### بسم الله الرحمن الرحيم
