@@ -1,0 +1,8 @@
+# How to install pyserial for blender 
+# Download pyserial
+ tar -xzf pyserial-2.6.tar.gz 
+# install it :
+sudo python3 setup.py install
+
+
+
