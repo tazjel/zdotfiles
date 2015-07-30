@@ -8,6 +8,8 @@ zapt_wheezy ()
 apt-get install zsh git curl ranger python 
 }
 
+sudo apt-get install -t iceweasel
+
 cd $HOME && git clone 
 
 https://github.com/tazjel/zdotfiles.git
