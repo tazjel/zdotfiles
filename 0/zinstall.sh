@@ -68,7 +68,7 @@ BIN_PACKAGES="audacity avidemux firefox gimp inkscape vlc blender thunderbird vi
 bitcoin-qt wireshark prey"
 
 zbasic() {
-    sudo apt-get install zsh curl vim ranger;
+    sudo apt-get install zsh curl vim ranger python-pip;
     }
 
 z_zsh() {
@@ -76,4 +76,12 @@ z_zsh() {
     
 }
 
+zpython() {
+    sudo pip install gitpython
+    }
 
+# zbasic
+# z_zsh
+# zpython
+
+}
