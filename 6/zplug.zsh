@@ -6,7 +6,9 @@ W_SIXAD=/var/lib/sixad/profiles
 echo "Usage: /etc/init.d/sixad {start|stop|restart|status}" >&2
 
 install_sixad_joystick() {
-    sudo apt-get
+    sudo apt-add-repository ppa:falk-t-j/qtsixa
+    sudo apt-get update
+    sudo apt-get install sixad
 }
 
 
