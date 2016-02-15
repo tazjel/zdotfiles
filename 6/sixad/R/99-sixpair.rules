@@ -1,0 +1,10 @@
+
+sudo vim  /etc/udev/rules.d/99-sixpair.rules
+
+# copy and paste 
+
+ACTION=="add", KERNEL=="js[0-9]*", SUBSYSTEM=="input", SUBSYSTEMS=="usb", RUN+="/usr/sbin/sixpair"
+
+# close the file
+# sudo chmod 777 /etc/udev/rules.d
+  
