@@ -23,7 +23,7 @@ enable_accon 0
 enable_speed 0
 enable_pos 0
 
-# Input - "KDE", by "falkTX"
+# 
 key_select 111
 key_l3 42
 key_r3 125
