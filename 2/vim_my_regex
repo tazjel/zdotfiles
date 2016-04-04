@@ -1,0 +1,6 @@
+
+
+history | vim -
+
+# clean up the history file with :
+%s/^\s.*\s\(\s.*$\)/\1/gi
