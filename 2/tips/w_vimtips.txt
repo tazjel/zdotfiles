@@ -654,10 +654,10 @@ do                         : "get" difference under cursor from other file
 :windo diffthis 
 ----------------------------------------
 " Vim traps
-In regular expressions you must backslash + (match 1 or more)
-In regular expressions you must backslash | (or)
-In regular expressions you must backslash ( (group)
-In regular expressions you must backslash { (count)
+    In regular expressions you must backslash + (match 1 or more)
+    In regular expressions you must backslash | (or)
+    In regular expressions you must backslash ( (group)
+    In regular expressions you must backslash { (count)
 /fred\+/                   : matches fred/freddy but not free
 /\(fred\)\{2,3}/           : note what you have to break
 ----------------------------------------
@@ -666,12 +666,12 @@ In regular expressions you must backslash { (count)
 /\vcodes(\n|\s)*where   : very magic
 ----------------------------------------
 " pulling objects onto command/search line (SUPER)
-<C-R><C-W> : pull word under the cursor into a command line or search
-<C-R><C-A> : pull WORD under the cursor into a command line or search
-<C-R>-                  : pull small register (also insert mode)
-<C-R>[0-9a-z]           : pull named registers (also insert mode)
-<C-R>%                  : pull file name (also #) (also insert mode)
-<C-R>=somevar           : pull contents of a variable (eg :let sray="ray[0-9]")
+    <C-R><C-W> : pull word under the cursor into a command line or search
+    <C-R><C-A> : pull WORD under the cursor into a command line or search
+    <C-R>-                  : pull small register (also insert mode)
+    <C-R>[0-9a-z]           : pull named registers (also insert mode)
+    <C-R>%                  : pull file name (also #) (also insert mode)
+    <C-R>=somevar           : pull contents of a variable (eg :let sray="ray[0-9]")
 ----------------------------------------
 " List your Registers
 :reg             : display contents of all registers
@@ -687,13 +687,13 @@ qaq              : empty register "a"
 "_dd             : Delete to blackhole register "_ , don't affect any register [N]
 ----------------------------------------
 " manipulating registers
-:let @a=@_              : clear register a
-:let @a=""              : clear register a
-:let @a=@"              : Save unnamed register [N]
-:let @*=@a              : copy register a to paste buffer
-:let @*=@:              : copy last command to paste buffer
-:let @*=@/              : copy last search to paste buffer
-:let @*=@%              : copy current filename to paste buffer
+    :let @a=@_              : clear register a
+    :let @a=""              : clear register a
+    :let @a=@"              : Save unnamed register [N]
+    :let @*=@a              : copy register a to paste buffer
+    :let @*=@:              : copy last command to paste buffer
+    :let @*=@/              : copy last search to paste buffer
+    :let @*=@%              : copy current filename to paste buffer
 ----------------------------------------
 " help for help (USE TAB)
 :h quickref             : VIM Quick Reference Sheet (ultra)

@@ -1,0 +1,3 @@
+
+alias 'Bani'='good' 
+

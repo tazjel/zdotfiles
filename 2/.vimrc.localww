@@ -97,7 +97,7 @@ set splitbelow splitright
 
 set foldtext=getline(v:foldstart)
 set fillchars=fold:\ "(there's a space after that \)
-highlight Folded ctermfg=DarkGreen ctermbg=Black
+ighlight Folded ctermfg=DarkGreen ctermbg=Black
 
 
 "Fold System

@@ -4,7 +4,7 @@
 #source ~/zdotfiles/1/walias.sh
 
 alias w_ zshrc="vim $HOME/.zshrc $HOME/zdotfiles/1/.zsh/al.zsh"
-alias w_ zsh_alias="vim 
+alias w_ zsh_alias="vim
 alias w_bashrc="vim $HOME/.bashrc"
 
 today=`date +%Y_%m_%d_%h_%s`

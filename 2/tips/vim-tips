@@ -812,7 +812,7 @@ Websites   " finding empty lines
            " Digraphs (non alpha-numerics)
            :digraphs                         : display table
            :h dig                            : help
-           i<C-K>e'                          : enters  
+           i<C-K>e'                          : enters
            i<C-V>233                         : enters   (Unix)
            i<C-Q>233                         : enters   (Win32)
            ga                                : View hex value of any character

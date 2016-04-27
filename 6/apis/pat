@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+#
+# -*- coding: utf-8 -*-
+
+
+
+import os, sys, re
+
+
     ### fix paths in images
 data_file = open(path, 'rb')
 def get_iter(pattern, text):
@@ -1255,7 +1264,7 @@ from nltk.compat import total_ordering
         if not isinstance(s, compat.string_types):
 from nltk.compat import text_type, string_types, python_2_unicode_compatible
 @python_2_unicode_compatible
-        # @python_2_unicode_compatible decorator (because non-ASCII characters 
+        # @python_2_unicode_compatible decorator (because non-ASCII characters
 @python_2_unicode_compatible
 @python_2_unicode_compatible
 @python_2_unicode_compatible
@@ -1273,7 +1282,7 @@ from nltk.compat import text_type, string_types, python_2_unicode_compatible
     def frames_by_lemma(self, pat):
         ``pat``. Note that LU names are composed of "lemma.POS", where
         return PrettyList(f for f in self.frames() if any(re.search(pat, luName) for luName in f.lexUnit))
-        needed. In principle, valence patterns could be loaded here too, 
+        needed. In principle, valence patterns could be loaded here too,
         locpath = os.path.join("{0}".format(self._root), self._lu_dir, fname)
         #print(locpath, file=sys.stderr)
             elt = XMLCorpusView(locpath, 'lexUnit')[0]

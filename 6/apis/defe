@@ -1,3 +1,12 @@
+#!/usr/bin/env python
+#
+# -*- coding: utf-8 -*-
+
+
+
+import os, sys, re
+
+
 def getwords(text, splitchars=' \t|!?.;:,"_'):
     words_iter = re.finditer("([%s]+)" % "".join([("^" + c) for c in splitchars]),text)text)text)text
 #regex_quote_left = re.compile('"(?=\w)')
@@ -226,7 +235,7 @@ def chapter():
         content = XML(open(dest).read())
         return locals()
 
-def search():
+# def search():
     book_id = request.args(0) or redirect(URL('index'))
     search = request.vars.search or redirect(URL('chapter',args=book_id))
     subfolder = get_subfolder(book_id)
@@ -296,8 +305,8 @@ def reference():
 --
  from PySide.QtCore import *
  from PySide.QtGui import *
-  
-def index(): 
+
+def index():
     app = QApplication(sys.argv)
     button = QPushButton(u"".join("wwww"))
     button.clicked.connect(u"".join("wwwwww"))
@@ -507,7 +516,7 @@ def wproc():
 
 def windex():
     redirect(URL('wproc'))
-    
+
 def index():
     redirect(URL('proc'))
 
@@ -526,7 +535,7 @@ def markup(text):
 def proc():
     os.system('ps auxw > applications/sysadmin/cache/ps.tmp')
     table=TABLE()
-    table.components.append(TR(TH('USER'),TH('PID'),TH(),TH('%CPU'),TH('%MEM'), 
+    table.components.append(TR(TH('USER'),TH('PID'),TH(),TH('%CPU'),TH('%MEM'),
 --
         table.components.append(TR(*items[:12]))
     return dict(table=table)
@@ -2517,13 +2526,13 @@ def get_reshaped_glyph(target, location):
 		return ARABIC_GLYPHS[target][location]
 	else:
 		return target
-		
+
 def get_glyph_type(target):
 	if target in ARABIC_GLYPHS:
 		return ARABIC_GLYPHS[target][5]
 	else:
 		return 2
-		
+
 def is_haraka(target):
 	return target in HARAKAT
 
@@ -2542,28 +2551,28 @@ def replace_lam_alef(unshaped_word):
 			lam_position = i
 			haraka_position = i + 1
 --
-			
+
 	return u''.join(list_word).replace(u' ', u'')
-		
+
 def get_lam_alef(candidate_alef, candidate_lam, is_end_of_word):
 	shift_rate = 1
 	reshaped_lam_alef = u''
 	if is_end_of_word:
 		shift_rate += 1
-	
+
 	if DEFINED_CHARACTERS_ORGINAL_LAM == candidate_lam:
 		if DEFINED_CHARACTERS_ORGINAL_ALF_UPPER_MDD == candidate_alef:
 			reshaped_lam_alef = LAM_ALEF_GLYPHS[0][shift_rate]
-		
+
 		if DEFINED_CHARACTERS_ORGINAL_ALF_UPPER_HAMAZA == candidate_alef:
 			reshaped_lam_alef = LAM_ALEF_GLYPHS[1][shift_rate]
-		
+
 		if DEFINED_CHARACTERS_ORGINAL_ALF == candidate_alef:
 			reshaped_lam_alef = LAM_ALEF_GLYPHS[2][shift_rate]
-		
+
 		if DEFINED_CHARACTERS_ORGINAL_ALF_LOWER_HAMAZA == candidate_alef:
 			reshaped_lam_alef = LAM_ALEF_GLYPHS[3][shift_rate]
-	
+
 	return reshaped_lam_alef
 
 class DecomposedWord(object):
@@ -2601,12 +2610,12 @@ def reshape_it(unshaped_word):
 
 def is_arabic_character(target):
 	return target in ARABIC_GLYPHS or target in HARAKAT
-	
+
 def get_words(sentence):
 	if sentence:
 		return re.split('\\s', sentence)
 	return []
-	
+
 def has_arabic_letters(word):
 	for c in word:
 		if is_arabic_character(c):
@@ -2618,7 +2627,7 @@ def is_arabic_word(word):
 		if not is_arabic_character(c):
 			return False
 	return True
-	
+
 def get_words_from_mixed_word(word):
 	temp_word = u''
 	words = []
@@ -2626,7 +2635,7 @@ def get_words_from_mixed_word(word):
 --
 		words.append(temp_word)
 	return words
-	
+
 def reshape(text):
 	if text:
 		lines = re.split('\\r?\\n', text)
@@ -2634,7 +2643,7 @@ def reshape(text):
 --
 		return u'\n'.join(lines)
 	return u''
-	
+
 def reshape_sentence(sentence):
 	words = get_words(sentence)
 	for i in range(len(words)):
@@ -6701,7 +6710,7 @@ from nltk.stem.api import StemmerI
         ## --NEW--
         ## This is a table of irregular forms. It is quite short, but still
 --
-                
+
         self.vowels = frozenset(['a', 'e', 'i', 'o', 'u'])
 
     def _cons(self, word, i):
@@ -6748,7 +6757,7 @@ from nltk.stem.api import StemmerI
 
            caresses  ->  caress
 --
-                
+
         return word
 
     def _step1c(self, word):
@@ -6769,7 +6778,7 @@ from nltk.stem.api import StemmerI
 
     def _step3(self, word):
         """step3() deals with -ic-, -full, -ness etc. similar strategy to step2."""
-        
+
         ch = word[-1]
 --
         else:
@@ -6777,8 +6786,8 @@ from nltk.stem.api import StemmerI
 
     def _step4(self, word):
         """step4() takes off -ant, -ence etc., in context <c>vcvc<v>."""
-        
-        if len(word) <= 1: # Only possible at this stage given unusual inputs to stem_word like 'oed'       
+
+        if len(word) <= 1: # Only possible at this stage given unusual inputs to stem_word like 'oed'
 --
         else:
             return word
@@ -6788,7 +6797,7 @@ from nltk.stem.api import StemmerI
         m() > 1.
         """
 --
-            
+
         return word
 
     def stem_word(self, p, i=0, j=None):
@@ -6798,7 +6807,7 @@ from nltk.stem.api import StemmerI
 --
         word = self._step5(word)
         return word
-        
+
     def _adjust_case(self, word, stem):
         lower = word.lower()
 
@@ -17654,11 +17663,11 @@ def _load_universal_map(fileid):
 --
         _MAPPINGS[fileid]['universal'][fine] = coarse
 
-            
+
 def tagset_mapping(source, target):
     """
     Retrieve the mapping dictionary between tagsets.
-    
+
 --
             _load_universal_map(source)
     return _MAPPINGS[source][target]
@@ -17666,7 +17675,7 @@ def tagset_mapping(source, target):
 def map_tag(source, target, source_tag):
     """
     Maps the tag from the source tagset to the target tagset.
-    
+
 --
 # URL: <http://www.nltk.org/>
 # For license information, see LICENSE.TXT
@@ -22770,7 +22779,7 @@ def _pretty_frame_relation_type(freltyp):
 --
     outstr = "<frame relation type ({0.ID}): {0.superFrameName} -- {0.name} -> {0.subFrameName}>".format(freltyp)
     return outstr
-    
+
 def _pretty_frame_relation(frel):
 
     """
@@ -22843,7 +22852,7 @@ def _pretty_frame(frame):
     def __init__(self, *args, **kwargs):
         super(AttrDict, self).__init__(*args, **kwargs)
         #self.__dict__ = self
-    
+
     def __setattr__(self, name, value):
         self[name] = value
     def __getattr__(self, name):
@@ -22863,7 +22872,7 @@ def _pretty_frame(frame):
 --
         else:
             return self.__repr__()
-        
+
     def _str(self):
         outstr = ""
 
@@ -22871,7 +22880,7 @@ def _pretty_frame(frame):
 --
         # assert isinstance(outstr, unicode) # not in Python 3.2
         return outstr
-        
+
     def __str__(self):
         return self._str()
     def __repr__(self):
@@ -22879,7 +22888,7 @@ def _pretty_frame(frame):
 
 class Future(object):
 --
-    Wraps and acts as a proxy for a value to be loaded lazily (on demand). 
+    Wraps and acts as a proxy for a value to be loaded lazily (on demand).
     Adapted from https://gist.github.com/sergey-miryanov/2935416
     """
     def __init__(self, loader, *args, **kwargs):
@@ -22895,19 +22904,19 @@ class Future(object):
             self._d = self._loader()
             self._loader = None # the data is now cached
         return self._d
- 
+
     def __nonzero__(self):
         return bool(self._data())
     def __len__(self):
         return len(self._data())
- 
+
     def __setitem__(self, key, value):
         return self._data ().__setitem__(key, value)
     def __getitem__(self, key):
         return self._data ().__getitem__(key)
     def __getattr__(self, key):
         return self._data().__getattr__(key)
- 
+
     def __str__(self):
         return self._data().__str__()
     def __repr__(self):
@@ -22915,7 +22924,7 @@ class Future(object):
 
 
 --
-    Inherits from AttrDict, so a callable value will 
+    Inherits from AttrDict, so a callable value will
     be lazily converted to an actual value.
     """
     def __init__(self, *args, **kwargs):
@@ -22979,7 +22988,7 @@ class Future(object):
         # should not be very large
         self._lu_idx = {}
 --
-            self._lu_idx[lu['ID']] = lu # populate with LU index entries. if any of these 
+            self._lu_idx[lu['ID']] = lu # populate with LU index entries. if any of these
             # are looked up they will be replaced by full LU objects.
 
     def _buildrelationindex(self):
@@ -22991,7 +23000,7 @@ class Future(object):
         self._frel_idx = {}
         self._frel_f_idx = defaultdict(set)
         self._ferel_idx = {}
-        
+
         for freltyp in freltypes:
 --
                     self._ferel_idx[ferel.ID] = ferel
@@ -23132,10 +23141,10 @@ class Future(object):
 --
                                       - 'name': name of label (e.g. 'NN1')
 
-        Under the hood, this implementation looks up the lexical unit information 
-        in the *frame* definition file. That file does not contain 
-        corpus annotations, so the LU files will be accessed on demand if those are 
-        needed. In principle, valence patterns could be loaded here too, 
+        Under the hood, this implementation looks up the lexical unit information
+        in the *frame* definition file. That file does not contain
+        corpus annotations, so the LU files will be accessed on demand if those are
+        needed. In principle, valence patterns could be loaded here too,
         though these are not currently supported.
 --
 
@@ -23143,10 +23152,10 @@ class Future(object):
 
     def _lu_file(self, lu, ignorekeys=[]):
         """
-        Augment the LU information that was loaded from the frame file 
+        Augment the LU information that was loaded from the frame file
         with additional information from the LU file.
 --
-        
+
         return lu.subCorpus
 
     def _loadsemtypes(self):
@@ -23159,12 +23168,12 @@ class Future(object):
 
     def propagate_semtypes(self):
         """
-        Apply inference rules to distribute semtypes over relations between FEs. 
+        Apply inference rules to distribute semtypes over relations between FEs.
         For FrameNet 1.5, this results in 1011 semtypes being propagated.
-        (Not done by default because it requires loading all frame files, 
-        which takes several seconds. If this needed to be fast, it could be rewritten 
+        (Not done by default because it requires loading all frame files,
+        which takes several seconds. If this needed to be fast, it could be rewritten
         to traverse the neighboring relations on demand for each FE semtype.)
-        
+
 --
                     continue
             #print(i, nPropagations, file=sys.stderr)
@@ -23176,7 +23185,7 @@ class Future(object):
 --
 
         return st
-        
+
     def semtype_inherits(self, st, superST):
         if not isinstance(st, dict):
             st = self.semtype(st)
@@ -23203,7 +23212,7 @@ class Future(object):
 
     def frame_ids_and_names(self, name=None):
         """
-        Uses the frame index, which is much faster than looking up each frame definition 
+        Uses the frame index, which is much faster than looking up each frame definition
         if only the names and IDs are needed.
         """
         if not self._frame_idx:
@@ -23232,7 +23241,7 @@ class Future(object):
 
     def lu_ids_and_names(self, name=None):
         """
-        Uses the LU index, which is much faster than looking up each LU definition 
+        Uses the LU index, which is much faster than looking up each LU definition
         if only the names and IDs are needed.
         """
         if not self._lu_idx:
@@ -23257,18 +23266,18 @@ class Future(object):
 
     def frame_relations(self, frame=None, frame2=None, type=None):
         """
-        :param frame: (optional) frame object, name, or ID; only relations involving 
+        :param frame: (optional) frame object, name, or ID; only relations involving
         this frame will be returned
 --
-        return PrettyList(sorted(rels, 
+        return PrettyList(sorted(rels,
                 key=lambda frel: (frel.type.ID, frel.superFrameName, frel.subFrameName)))
-        
+
     def fe_relations(self):
         """
         Obtain a list of frame element relations.
 
 --
-                key=lambda ferel: (ferel.type.ID, ferel.frameRelation.superFrameName, 
+                key=lambda ferel: (ferel.type.ID, ferel.frameRelation.superFrameName,
                     ferel.superFEName, ferel.frameRelation.subFrameName, ferel.subFEName)))
 
     def semtypes(self):
@@ -23344,7 +23353,7 @@ class Future(object):
                 feinfo = self._handle_fe_elt(sub)
                 frinfo['FE'][feinfo.name] = feinfo
 --
-        
+
         return frinfo
 
     def _handle_fecoreset_elt(self, elt):
@@ -23362,7 +23371,7 @@ class Future(object):
 --
 
         return info
-    
+
     def _handle_framerelation_elt(self, elt):
         """Load frame-relation element and its child fe-relation elements from frRelation.xml."""
         info = self._load_xml_attributes(AttrDict(), elt)
@@ -23425,8 +23434,8 @@ class Future(object):
 
     def _handle_lexunit_elt(self, elt, ignorekeys):
         """
-        Load full info for a lexical unit from its xml file. 
-        This should only be called when accessing corpus annotations 
+        Load full info for a lexical unit from its xml file.
+        This should only be called when accessing corpus annotations
 --
         """
         luinfo = self._load_xml_attributes(AttrDict(), elt)
@@ -26010,7 +26019,7 @@ def gt_demo():
 
     def score_ngram(self, score_fn, w1, w2):
         """Returns the score for a given bigram using the given scoring
-        function.  Following Church and Hanks (1990), counts are scaled by 
+        function.  Following Church and Hanks (1990), counts are scaled by
         a factor of 1/(window_size - 1).
 --
     constructing an instance directly.
@@ -27188,11 +27197,11 @@ class ReadingCommand(object):
 --
         """
         raise NotImplementedError()
-    
+
     def to_fol(self, expression):
         """
         Convert this expression into a First-Order Logic expression.
-        
+
 --
 
 
@@ -27215,7 +27224,7 @@ class CfgReadingCommand(ReadingCommand):
     def combine_readings(self, readings):
         """:see: ReadingCommand.combine_readings()"""
         return reduce(and_, readings)
-    
+
     def to_fol(self, expression):
         """:see: ReadingCommand.to_fol()"""
         return expression
@@ -27245,7 +27254,7 @@ class DrtGlueReadingCommand(ReadingCommand):
         """:see: ReadingCommand.combine_readings()"""
         thread_reading = reduce(add, readings)
         return resolve_anaphora(thread_reading.simplify())
-    
+
     def to_fol(self, expression):
         """:see: ReadingCommand.to_fol()"""
         return expression.fol()
@@ -36737,7 +36746,7 @@ class CollocationsView:
     def reset_current_page(self):
         self.current_page = -1
 
-    def _poll(self):   
+    def _poll(self):
         try:
             event = self.queue.get(block=False)
         except q.Empty:
@@ -38741,7 +38750,7 @@ _CORPORA = {
         self.top.bind(SEARCH_ERROR_EVENT, self.handle_search_error)
         self.top.bind(ERROR_LOADING_CORPUS_EVENT, self.handle_error_loading_corpus)
 
-    def _poll(self):   
+    def _poll(self):
         try:
             event = self.queue.get(block=False)
         except q.Empty:
@@ -44023,7 +44032,7 @@ import os
 
 def regexp_answer(strQuestion, listQuestion, articleFile):
 	"""Takes a question list tagged and tokenized and attempts to return a true/false value for easy questions."""
-	
+
 	fullStr = ""
 --
 def _should_include_path(path, includes, excludes):

@@ -1,6 +1,14 @@
+#!/usr/bin/env python
+#
+# -*- coding: utf-8 -*-
+
+
+
+import os, sys, re
+
 Use [ ] to access characters in a string:
 word = "computer"
-letter = word[0] 
+letter = word[0]
 
 Use [ # :#] to get set of letters
 word= word[0:3]
@@ -12,17 +20,17 @@ To pick from set point to end:
 word = [3:]
 
 To pick starting from the end:
-word = [-1] 
-    In Python there are a few different ways to concatenating strings. 
+word = [-1]
+    In Python there are a few different ways to concatenating strings.
 
-Concatenation combines two (or more) strings into a new string object. 
+Concatenation combines two (or more) strings into a new string object.
 
-You can use the + operator, like this:	
+You can use the + operator, like this:
 print "You can concatenate two " + "strings with the '+' operator."
- 
+
 str1 = "Hello"
 str2 = "World"
-str1 + str2    	# concatenation: a new string 
+str1 + str2    	# concatenation: a new string
 
 String literals may be concatinated by a space
 word = 'left' "right" 'left'
@@ -31,20 +39,20 @@ Any string expression may be concatinated by a +
 word = wordA + "\n" + wordB
 >>> ' '.join(['the', 'cat', 'sat', 'on', 'the', 'mat'])
 'the cat sat on the mat'
-  
+
 #Let's look at one more example of using the Join method:
 #creating a new list
 >>> music = ["Abba","Rolling Stones","Black Sabbath","Metallica"]
-  
+
 #Join a list with an empty space
 >>> print ' '.join(music)
-  
+
 #Join a list with a new line
 >>> print "\n".join(music)
 
 
 my_string = "Hello World"
- 
+
 my_string.isalnum()         #check if all char are numbers
 my_string.isalpha()         #check if all char in the string are alphabetic
 my_string.isdigit()         #test if string contains digits
