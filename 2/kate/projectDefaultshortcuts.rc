@@ -1,5 +1,6 @@
 <kpartgui version="1" name="project">
   <ActionProperties>
-    <Action shortcut="Back" name="projects_prev_project"/>
+    <Action shortcut="Ctrl+Alt+Left; Back" name="projects_prev_project"/>
+    <Action shortcut="Ctrl+Alt+Right; Forward" name="projects_next_project"/>
   </ActionProperties>
 </kpartgui>

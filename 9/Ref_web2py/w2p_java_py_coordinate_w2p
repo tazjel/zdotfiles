@@ -1,8 +1,0 @@
-def test():
-    coords = ((1,2), (3,4), (5,6))
-    return response.json(coords=coords)
-
-Returns a javascript array formatted like: [[1, 2], [3, 4], [5, 6]]
-
-Or you can use response.json(dict(coords=coords)) to get a javascript object: 
-{"coords": [[1, 2], [3, 4], [5, 6]]}
