@@ -1,0 +1,6 @@
+#Ubuntu Multimedia for Trusty
+w w https://launchpad.net/~mc3man/+archive/ubuntu/trusty-media
+
+sudo add-apt-repository ppa:mc3man/trusty-media
+sudo apt-get update
+sudo apt-get dist-upgrade
