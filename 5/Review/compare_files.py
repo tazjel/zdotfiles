@@ -23,7 +23,7 @@ def compareFiles(filename1, filename2, ignorecase):
     f2 = open(filename2, 'rU')
   except IOError:
     print 'Could not find the specified file:', filename2
-    sys.exit(1)j
+    sys.exit(1)
 
   list1 = f1.readlines()
   list2 = f2.readlines()

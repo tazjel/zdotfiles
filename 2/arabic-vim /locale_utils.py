@@ -11,7 +11,7 @@ from app import config
 
 UTF_CODEC='utf-8'
 
-def locale_to_utf(string=''): 
+def locale_to_utf(string=''):
 	if string=='' :
 		return string
 	locale=get_locale()
@@ -19,17 +19,17 @@ def locale_to_utf(string=''):
 		return string
 	return strip_line(cmd_iconv(locale, UTF_CODEC, string))
 
-def utf_to_locale(string=''): 
+def utf_to_locale(string=''):
 	if string=='' :
-		return string	
+		return string
 	locale=get_locale()
 	if locale==UTF_CODEC:
 		return string
 	return strip_line(cmd_iconv(UTF_CODEC, locale, string))
-		
-def get_locale():	
+
+def get_locale():
 	return config.preferences.system_encoding
-	
+
 def cmd_iconv(from_codec='', to_codec='', string=''):
 	if from_codec=='' or to_codec=='' or string=='' :
 		return string
@@ -39,14 +39,14 @@ def cmd_iconv(from_codec='', to_codec='', string=''):
 # 	to_bash.close()
 	from_bash.close()
 	return result
-	
+
 def strip_line(string=''):
 	if string=='' :
 		return string
 	return string[0:len(string)-1]
-	
+
 def getshell_var(s):
 	if os.confstr(s):
 		return os.environ[s]
 	return None
-	
+

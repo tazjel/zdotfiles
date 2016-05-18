@@ -23,7 +23,7 @@ def getwords(text, splitchars=' \t|!?.;:,"_'):
 options = [x for x in getwords(stext)]
 
 
-                                        ####get link
+# get link
 
 keyboard.send_keys("<f6>")
 keyboard.send_keys("<ctrl>+x")

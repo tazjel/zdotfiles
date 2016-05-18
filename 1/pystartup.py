@@ -22,6 +22,7 @@ readline.parse_and_bind('tab: complete')
 
 historyPath = os.path.expanduser("~/.pyhistory")
 
+
 def save_history(historyPath=historyPath):
     import readline
     readline.write_history_file(historyPath)

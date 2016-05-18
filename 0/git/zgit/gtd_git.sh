@@ -1,7 +1,5 @@
 #! /usr/bin/env bash
 
-. ~/.gen/config
-
 name=$2
 arg=$3
 

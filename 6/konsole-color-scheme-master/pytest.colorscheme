@@ -1,0 +1,84 @@
+[Background]
+Color=45, 44, 40
+Transparency=false
+
+[BackgroundIntense]
+Color=45, 44, 40
+Transparency=false
+[Color0]
+Color=91, 89, 85
+Transparency=false
+
+[Color0Intense]
+Color=112, 114, 119
+Transparency=false
+
+[Color1]
+Color=196, 117, 110
+Transparency=false
+
+[Color1Intense]
+Color=246, 162, 153
+Transparency=false
+
+[Color2]
+Color=85, 154, 106
+Transparency=false
+
+[Color2Intense]
+Color=130, 200, 150
+Transparency=false
+
+[Color3]
+Color=155, 138, 75
+Transparency=false
+
+[Color3Intense]
+Color=202, 183, 117
+Transparency=false
+
+[Color4]
+Color=106, 141, 202
+Transparency=false
+
+[Color4Intense]
+Color=152, 187, 251
+Transparency=false
+
+[Color5]
+Color=181, 119, 172
+Transparency=false
+
+[Color5Intense]
+Color=229, 164, 219
+Transparency=false
+
+[Color6]
+Color=1, 155, 170
+Transparency=false
+
+[Color6Intense]
+Color=83, 202, 217
+Transparency=false
+
+[Color7]
+Color=219, 221, 226
+Transparency=false
+
+[Color7Intense]
+Color=247, 249, 255
+Transparency=false
+
+[Foreground]
+Color=164, 166, 171
+Transparency=false
+
+[ForegroundIntense]
+Bold=true
+Color=164, 166, 171
+Transparency=false
+
+[General]
+Description=pytest
+Opacity=0.9
+Wallpaper=

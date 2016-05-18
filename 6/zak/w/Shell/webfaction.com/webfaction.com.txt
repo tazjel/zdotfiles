@@ -1,6 +1,0 @@
-Settings
-
-     Your server name(s): web183.webfaction.com
-     Your server IP address(es): 75.125.121.236
-     Your incoming (POP & IMAP) mail server name: mail.webfaction.com
-     Your outgoing (SMTP) mail server name: smtp.webfaction.com

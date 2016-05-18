@@ -815,5 +815,4 @@ AA() {
 
 alias 'wgc_cd_src_git_clone'='cd ~/src ;git clone'
 
-alias 'wrz'='~/zdotfiles/6/summarize.py/summarize/summarize.py'
 
