@@ -1,6 +1,0 @@
-
-mkdir -p ~/.config/fontconfig/
-mv -i ~/.fonts.conf ~/.config/fontconfig/fonts.conf
-
-#Ref
-#http://askubuntu.com/questions/206271/how-can-i-bypass-this-fontconfig-warning-to-edit-grub-successfully

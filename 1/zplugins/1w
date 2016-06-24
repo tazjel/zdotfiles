@@ -1,16 +1,7 @@
-        # Zdotfiles
-                app_name='zdotfiles'
-                git_uri='https://github.com/tazjel/zdotfiles.git'
-                git_branch='master'
-                debug_mode='0'
-                fork_maintainer='0'
-            # Bibliography
-                NBIB='Bibliography'
-                MONTH=`date +%B`
-                vim_snip=~/zdotfiles/2/Ref.snip
-                DCAR_Bib=~/Dropbox/DCAR/presentation/Bibliography.txt
-                DCAR_Bib_Notes=~/Dropbox/DCAR/presentation/Bibliography.txt
-                BRA=~/zdotfiles/1/References.txt
+app_name='zdotfiles'
+git_uri='https://github.com/tazjel/zdotfiles.git'
+git_branch='master'
+debug_mode='0
 
 
 
