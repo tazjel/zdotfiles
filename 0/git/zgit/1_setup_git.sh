@@ -11,7 +11,7 @@ zssh_make_new_key ()
 
 zssh_check_github ()
 {
-     ssh -T git@github.com
+    ssh -T git@github.com
 
 }
 ssh-keygen_rsa ()

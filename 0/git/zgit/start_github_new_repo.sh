@@ -9,6 +9,7 @@ sas_dev='/home/www-data/sas'
 
 
 function create_new {
+    cd ~
     mkdir $repo
     cd $repo
     git init
