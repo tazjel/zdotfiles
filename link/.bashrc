@@ -44,12 +44,12 @@ force_color_prompt=yes
 
 if [ -n "$force_color_prompt" ]; then
     if [ -x /usr/bin/tput ] && tput setaf 1 >&/dev/null; then
-	# We have color support; assume it's compliant with Ecma-48
-	# (ISO/IEC-6429). (Lack of such support is extremely rare, and such
-	# a case would tend to support setf rather than setaf.)
-	color_prompt=yes
+        # We have color support; assume it's compliant with Ecma-48
+        # (ISO/IEC-6429). (Lack of such support is extremely rare, and such
+        # a case would tend to support setf rather than setaf.)
+        color_prompt=yes
     else
-	color_prompt=
+        color_prompt=
     fi
 fi
 
@@ -112,11 +112,26 @@ fi
 # ranger is a console file manager with VI key bindings.
 
 if [ -f ~/bash_automatic_cd.sh ]; then
-	source ~/bash_automatic_cd.sh
+  source ~/bash_automatic_cd.sh
 fi
 
 export EDITOR=/usr/local/bin/vim
 export VISUAL=/usr/local/bin/vim
 
-alias rrr="cd ~/Zdotfiles/ranger && python ranger.py"
-alias www="cd ~/Zdotfiles/9/web2py && python web2py.py -a '<recycle>' -i 127.0.0.1 -p 8000"
+source ~/.bash-git-prompt/gitprompt.sh
+GIT_PROMPT_ONLY_IN_REPO=1
+
+export PYTHONSTARTUP=~/.pystartup
+# virtualenv and virtualenvwrapper
+export WORKON_HOME=$HOME/.virtualenvs
+source /usr/local/bin/virtualenvwrapper.sh
+
+# OpenCV
+PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
+export PKG_CONFIG_PATH
+
+
+ #export ANDROIDAPI="14"
+export ANDROIDNDKVER="r9c"
+export ANDROID_HOME="/home/tazjel/.buildozer/android/platform/android-sdk-20/"
+export ANDROIDSDK="/home/tazjel/.buildozer/android/platform/android-ndk-r9c/"
