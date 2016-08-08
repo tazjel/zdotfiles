@@ -6,7 +6,8 @@
 ############################  SETUP PARAMETERS
 app_name='zdotfiles'
 [ -z "$APP_PATH" ] && APP_PATH="$HOME/zdotfiles"
-[ -z "$REPO_URI" ] && REPO_URI='https://github.com/tazjel/zdotfiles.git'
+[ -z "$APP_PATH/APP_PATH_link" ] && APP_PATH_link="$HOME/zdotfiles/link"
+[ -z "$REPO_URI" ] && REPO_URI="https://github.com/tazjel/zdotfiles.git"
 [ -z "$REPO_BRANCH" ] && REPO_BRANCH='Z'
 debug_mode='0'
 fork_maintainer='0'
@@ -66,7 +67,7 @@ lnif() {
         ln -sf "$1" "$2"
     fi
     ret="$?"
-    debug
+    ebug
 }
 
 ############################ SETUP FUNCTIONS
@@ -168,16 +169,18 @@ variable_set "$HOME"
 program_must_exist "vim"
 program_must_exist "git"
 
-do_backup       "$HOME/.vim" \
+backup_vim() {
+    do_backup  "$HOME/.vim" \
                 "$HOME/.vimrc" \
                 "$HOME/.gvimrc"
+}
 
-sync_repo       "$APP_PATH" \
+sync_repo       "$APP_PATH_link" \
                 "$REPO_URI" \
                 "$REPO_BRANCH" \
                 "$app_name"
 
-create_symlinks "$APP_PATH" \
+create_symlinks "$APP_PATH_link" \
                 "$HOME"
 
 setup_fork_mode "$fork_maintainer" \
