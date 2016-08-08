@@ -130,8 +130,8 @@ source /usr/local/bin/virtualenvwrapper.sh
 PKG_CONFIG_PATH=$PKG_CONFIG_PATH:/usr/local/lib/pkgconfig
 export PKG_CONFIG_PATH
 
-
- #export ANDROIDAPI="14"
+export PYTHONSTARTUP=$HOME/.pystartup
+export ANDROIDAPI="14"
 export ANDROIDNDKVER="r9c"
 export ANDROID_HOME="/home/tazjel/.buildozer/android/platform/android-sdk-20/"
 export ANDROIDSDK="/home/tazjel/.buildozer/android/platform/android-ndk-r9c/"
