@@ -35,6 +35,16 @@
         endif
     endif
 "}
+
+
+" hide buffers, not close them {
+    set hidden
+"}
+
+" lazy file name tab completion {
+    set wildignorecase
+"}
+
 "The Following setup is for tazjel.com {
     map W :w<CR>
     map ; :q!<CR>
@@ -49,10 +59,82 @@ set encoding=utf-8
 setglobal fileencoding=utf-8
 
 
+" case insensitive search
+set ignorecase
+set smartcase
+set infercase
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+
+" searching
+set hlsearch
+set incsearch
+
+" use indents of 4 spaces
+set shiftwidth=2
+
+" tabs are spaces, not tabs
+set expandtab
+
+" an indentation every four columns
+set tabstop=2
+
+
+" let backspace delete indent
+set softtabstop=2
+
+" enable auto indentation
+set autoindent
+
+" remove trailing whitespaces and ^M chars
+autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+" let mapleader=","
+vnoremap <silent> <leader>y :w !xsel -i -b<CR>
+nnoremap <silent> <leader>y V:w !xsel -i -b<CR>
+nnoremap <silent> <leader>p :silent :r !xsel -o -b<CR>
+
+" show matching brackets/parenthesis
+set showmatch
 
 " set folding
     setlocal foldmethod=expr
     setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
+" disable startup message
+set shortmess+=I
+
+" syntax highlighting and colors
+syntax on
+colorscheme sourcerer
+filetype off
+" stop unnecessary rendering
+set lazyredraw
+" show line numbers
+set number
+" no line wrapping
+set nowrap
+
+" don't wrap long lines
+set nowrap
+
+" highlight column
+set cursorcolumn
+
+" no folding
+" set foldlevel=99
+" set foldminlines=99
+  " syntatic http://git.io/syntastic.vim
+  " linters: (from aur) nodejs-jshint, nodejs-jsonlint, csslint, checkbashisms
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  highlight SyntasticErrorSign ctermfg=red ctermbg=237
+  highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
+  highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
+  highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
+
+
 
 set foldtext=getline(v:foldstart)
 set fillchars=fold:\ "(there's a space after that \)
