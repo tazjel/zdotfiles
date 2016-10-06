@@ -1,0 +1,21 @@
+
+
+# Reference : 
+# http://www.ubuntubuzz.com/2016/09/how-to-create-deepin-153-gnulinux-bootable-usb.html
+
+# lsblk shows a tree of drives from your computer
+# Find your USB drive
+
+
+
+# Open Terminal and run this dd command line:
+sudo dd if=file.iso of=/dev/sdc bs=4M
+
+# if: input file
+# of: output file
+# file.iso: change this name into your deepin iso file name
+# /dev/sdc: change this address into the correct address of your USB drive
+
+
+# Open a new Terminal and perform this command line:
+sudo pkill -USR1 -x -n dd
