@@ -1,0 +1,20 @@
+lsb_release -a
+sudo apt-get install gksu
+cat /proc/sys/vm/swappiness
+gksudo leafpad /etc/sysctl.conf
+sudo reboot
+cat /proc/sys/vm/swappiness
+sudo apt-get install xubuntu-restricted-extras
+iwconfig
+sudo apt-get purge bcmwl-kernel-source
+1update
+sudo update-pciids
+lspci -nn -d 14e4
+lspci -nn -d 14e4:
+sudo apt install firmware-b43-installer
+sudo apt-get install firmware-b43-installer b43-fwcutter
+dmesg | grep b43
+sudo modprobe -r b43 ssb wl
+sudo modprobe wl 
+sudo apt-get install build-essential linux-headers-generic
+  
