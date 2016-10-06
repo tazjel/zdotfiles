@@ -102,6 +102,15 @@ git_clone_zdotfiles ()
 }
 
 
+install_qtsixad()
+{
+    sudo apt-get install libusb-dev libjack-dev libbluetooth-dev pyqt4-dev-tools
+    cd Downloads
+    git clone https://github.com/falkTX/qtsixa.git
+    cd qtsixa
+    make
+     sudo make install
+}
 install_on_ubuntu ()
 {
     while true ; do
