@@ -1,0 +1,30 @@
+{{extend 'default/userlayout.html'}}
+
+<h3>Register</h3>
+{{if form.errors:}}
+    Your submitted form contains the following errors:
+    <ul>
+        {{for fieldname in form.errors:}}
+            <li>{{=fieldname}} error: {{=form.errors[fieldname]}}</li>
+        {{pass}}
+    </ul>
+    {{form.errors.clear()}}
+{{pass}}
+{{=form.custom.begin}}
+    <div class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="Username" value="{{=form.custom.widget.username['value']}}" autofocus>
+    </div>
+    <div class="form-group">
+        <input type="email" class="form-control" name="email" placeholder="Email" value="{{=form.custom.widget.email['value']}}">
+    </div>
+    <div class="form-group">
+        <input type="text" class="form-control" name="name" placeholder="Real Name"  value="{{=form.custom.widget.name['value']}}">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" name="password_two" placeholder="Confirm Password">
+    </div>
+    <button type="submit" class="btn btn-default">Submit</button>
+{{=form.custom.end}}

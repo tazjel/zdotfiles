@@ -1,0 +1,373 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> global name 'btn_auction' is not defined"
+p3
+sS'layer'
+p4
+S'/home/tazjel/zweb2py/applications/belot/controllers/game.py'
+p5
+sS'code'
+p6
+S"# belot game web2py\n\nfrom game_repo import *\nfrom player_repo import *\n\n#Pages\n\ndef index():\n    return\n\n@auth.requires_login()\ndef current():\n    games = db((db.game.id == db.player.game_id) & (db.player.user_id == auth.user_id)).select(db.game.ALL)\n\n    return dict(games = games)\n\ndef info():\n    game = GetGame(request.args[0])\n\n    if game is None:\n        return response.render('game/notfound.html')\n\n    players = GetPlayersByGame(game.id)\n\n    return dict(game = game, players = players)\n\n#Partial Pages\n\ndef _gamebuttons():\n    game = GetGame(request.args[0])\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n    btn = {'join':False, 'leave':False, 'start':False, 'delete':False, 'edit':False}\n\t#\n#     btn_auction = {'join':False, 'leave':False, 'start':False, 'delete':False, 'edit':False}\n\n    if auth.user is None:\n        return dict(game = game, btn = btn, btn_auction = btn_auction)\n\n    if player is None and game.status_id.name == 'not started':\n        btn['join'] = True\n\n    if player is not None and player.role_id.name != 'host':\n        btn['leave'] = True\n\n    if (player is not None) and (player.role_id.name == 'host'):\n        btn['delete'] = True\n        btn['edit'] = True\n        if game.status_id.name == 'not started':\n            btn['start'] = True\n\n    return dict(game = game, btn = btn)\n\ndef _offer():\n    if not auth.user_id:\n        return ''\n\n    game = GetGame(request.args[0])\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n    cards = [Card(c[0], c[1]) for c in itertools.product(range(7, 15), ['Heart', 'Diamond', 'Spade', 'Club'])]\n    if not player:\n        return ''\n\n#     if game.status_id.name == 'started':\n#         return ''\n#     if game.status_id.name == 'started':\n#         return ''\n\n    return dict(game = game, player = player, cards = cards)\n\n#\ndef _deal_btn():\n    game = GetGame(request.args[0])\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n    btn = {'sun':False, 'trump':False, 'pass':False, 'no':False, 'more':False}\n    if (player is not None) and (player.role_id.name == 'host'):\n#         btn['trump'] = True\n#         btn['sun'] = True\n        if game.status_id.name == 'started':\n            btn['pass'] = True\n            btn['trump'] = True\n            btn['sun'] = True\n\n    return dict(game = game, btn = btn)\n\n\n@auth.requires_login()\ndef sun():\n    game = GetGame(request.post_vars.id)\n\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n\n    if player:\n        return dict(success = False)\n\n    id = db.player.insert(game_id = game.id, user_id = auth.user_id, role_id = 2, status_id = 1)\n    return dict(success = True)\n\n\n\ndef _playerinfo():\n    if not auth.user_id:\n        return ''\n\n    game = GetGame(request.args[0])\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n\n    if not player:\n        return ''\n\n    if game.status_id.name == 'not started':\n        return ''\n\n    return dict(game = game, player = player)\n\n#Ajax\n@auth.requires_login()\ndef deletegame():\n    game = GetGame(request.post_vars.id)\n\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n\n    if player is None:\n        return dict(success = False)\n    if not player.role_id == db.player_type(db.player_type.name == 'host'):\n        return dict(success = False)\n\n    db(db.game.id == game.id).delete()\n    return dict(success = True)\n\n@auth.requires_login()\ndef joingame():\n    game = GetGame(request.post_vars.id)\n\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n\n    if player:\n        return dict(success = False)\n\n    id = db.player.insert(game_id = game.id, user_id = auth.user_id, role_id = 2, status_id = 1)\n    return dict(success = True)\n\n@auth.requires_login()\ndef leavegame():\n    game = GetGame(request.post_vars.id)\n\n    player = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n\n    if not player:\n        return dict(success = False)\n\n    if player.role_id.name == 'host':\n        return dict(success = False)\n\n    db(db.player.id == player.id).delete()\n\n\n    return dict(success = True)\n\n@auth.requires_login()\ndef startgame():\n    game = GetGame(request.post_vars.id)\n\n    hostplayer = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n\n    if hostplayer is None:\n        return dict(success = False)\n    if not hostplayer.role_id.name == 'host':\n        return dict(success = False)\n\n    players = db(db.player.game_id == game.id).select(orderby='<random>')\n\n    player = players[-1]\n    target = players[0]\n    player.update_record(target_id = target.id, status_id = 1)\n\n    for i in range (0, len(players)-1):\n\t\tplayer = players[i]\n\t\ttarget = players[i+1]\n\t\tplayer.update_record(target_id = target.id, status_id = 1)\n\n    game.update_record(status_id = 2)\n\n    return dict(success = True)\n\n@auth.requires_login()\ndef killplayer():\n    player = db.player(request.post_vars.id)\n    game = GetGame(player.game_id)\n    hostplayer = db.player((db.player.user_id == auth.user_id) & (db.player.game_id == game.id))\n\n    if player.user_id == auth.user_id:\n        pass\n    elif hostplayer is not none:\n        pass\n    else:\n        return dict(success = False, message = 'Nice try buddy')\n\n    if game.status_id.name == 'started':\n        db(db.player.target_id == player.id).update(target_id = player.target_id)\n        player.update_record(target_id = player.id, status_id = 2)\n        CheckEndGame(game.id)\n\n    return dict(success = True)\n\n#Private?\n\ndef CheckEndGame(game_id):\n    aliveplayers = db((db.player.status_id.name == 'alive') & (db.player.game_id == game_id)).select()\n    if len(aliveplayers) <= 1:\n        db(db.game.id == game_id).update(status_id = 3)\n    return\n\nresponse._vars=response._caller(_gamebuttons)\n"
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p23
+sS'args'
+p24
+S'("global name \'btn_auction\' is not defined",)'
+p25
+sS'__reduce__'
+p26
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p27
+sS'__str__'
+p28
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p29
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.NameError object>'
+p31
+sS'__getattribute__'
+p32
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.NameError'>"
+p35
+sS'__unicode__'
+p36
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p37
+sS'__delattr__'
+p38
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p39
+sS'__subclasshook__'
+p40
+S'<built-in method __subclasshook__ of type object>'
+p41
+sS'__repr__'
+p42
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p47
+sS'__doc__'
+p48
+S"'Name not found globally.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"global name 'btn_auction' is not defined"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\x98q\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>belot</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>4L</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>c957108909274</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>129.208.2.129</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>game</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>129.208.2.129-15001bbb-1f07-497e-b2d2-a80f5a6e1ea1<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_belot</td><td style="vertical-align:top;">:</td><td><div>129.208.2.129-496acfc8-f5d0-4b59-a947-c476dc2e8820<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">CONTENT_LENGTH</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">CONTENT_TYPE</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/usr/local/openresty/nginx/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTPS</td><td style="vertical-align:top;">:</td><td><div>on</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>close</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>_ga=GA1.2.66530172.1476043970; session_id_belot=129.208.2.129-496acfc8-f5d0-4b59-a947-c476dc2e8820; session_id_admin=129.208.2.129-15001bbb-1f07-497e-b2d2-a80f5a6e1ea1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_UPGRADE_INSECURE_REQUESTS</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:51.0) Gecko/20100101 Firefox/51.0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_X_FORWARDED_FOR</td><td style="vertical-align:top;">:</td><td><div>129.208.2.129</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_X_REAL_IP</td><td style="vertical-align:top;">:</td><td><div>129.208.2.129</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/belot/game/info/4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>10.155.6.104</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>38881</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_URI</td><td style="vertical-align:top;">:</td><td><div>/belot/game/info/4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/tazjel/zweb2py/applications/admin/&#x27;, &#x27;/home/tazjel/zweb2py/applications/welcome/&#x27;, &#x27;/home/tazjel/zweb2py/applications/belot/&#x27;, &#x27;/home/tazjel/zweb2py/applications/examples/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">content_length</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">content_type</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">document_root</td><td style="vertical-align:top;">:</td><td><div>/usr/local/openresty/nginx/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>en-US,en;q=0.5</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>close</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>_ga=GA1.2.66530172.1476043970; session_id_belot=129.208.2.129-496acfc8-f5d0-4b59-a947-c476dc2e8820; session_id_admin=129.208.2.129-15001bbb-1f07-497e-b2d2-a80f5a6e1ea1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_upgrade_insecure_requests</td><td style="vertical-align:top;">:</td><td><div>1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:51.0) Gecko/20100101 Firefox/51.0</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_web2py_component_element</td><td style="vertical-align:top;">:</td><td><div>c957108909274</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_web2py_component_location</td><td style="vertical-align:top;">:</td><td><div>/belot/game/info/4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_x_forwarded_for</td><td style="vertical-align:top;">:</td><td><div>129.208.2.129</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_x_real_ip</td><td style="vertical-align:top;">:</td><td><div>129.208.2.129</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">https</td><td style="vertical-align:top;">:</td><td><div>on</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>glenn-liveweb1</div></td></tr><tr><td><div>localhost</div></td></tr><tr><td><div>50.19.109.98</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/belot/game/_gamebuttons/4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>10.155.6.104</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>38881</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/belot/game/info/4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi.node</td><td style="vertical-align:top;">:</td><td><div>glenn-liveweb1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi.version</td><td style="vertical-align:top;">:</td><td><div>2.0.5.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi_node</td><td style="vertical-align:top;">:</td><td><div>glenn-liveweb1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi_version</td><td style="vertical-align:top;">:</td><td><div>2.0.5.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7f296f67b2d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;built-in function uwsgi_sendfile&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi._Input object at 0x7f2979b91f60&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7f296f67b2d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;built-in function uwsgi_sendfile&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi._Input object at 0x7f2979b91f60&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py/applications/belot/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>_gamebuttons</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">get_vars</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/tazjel/zweb2py/applications/admin/&#x27;, &#x27;/home/tazjel/zweb2py/applications/welcome/&#x27;, &#x27;/home/tazjel/zweb2py/applications/belot/&#x27;, &#x27;/home/tazjel/zweb2py/applications/examples/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>glenn-liveweb1</div></td></tr><tr><td><div>localhost</div></td></tr><tr><td><div>50.19.109.98</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 10, 10, 3, 18, 31, 710548)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">post_vars</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div>4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">restful</td><td style="vertical-align:top;">:</td><td><div>&lt;bound method ?.restful of &lt;Storage {&#x27;_vars&#x27;: None, &#x27;function&#x27;: &#x27;_gamebuttons&#x27;, &#x27;cookies&#x27;: &lt;SimpleCookie: _ga=&#x27;GA1.2.66530172.1476043970&#x27; session_id_admin=&#x27;129.208.2.129-15001bbb-1f07-497e-b2d2-a80f5a6e1ea1&#x27; session_id_belot=&#x27;129.208.2.129-496acfc8-f5d0-4b59-a947-c476dc2e8820&#x27;&gt;, &#x27;args&#x27;: [4L], &#x27;env&#x27;: &lt;Storage {&#x27;content_length&#x27;: &#x27;&#x27;, &#x27;uwsgi.version&#x27;: &#x27;2.0.5.1&#x27;, &#x27;SCRIPT_NAME&#x27;: &#x27;&#x27;, &#x27;REQUEST_METHOD&#x27;: &#x27;GET&#x27;, &#x27;SERVER_PROTOCOL&#x27;: &#x27;HTTP/1.1&#x27;, &#x27;wsgi_input&#x27;: &lt;uwsgi._Input object at 0x7f2979b91f60&gt;, &#x27;uwsgi_version&#x27;: &#x27;2.0.5.1&#x27;, &#x27;web2py_path&#x27;: &#x27;/home/tazjel/zweb2py&#x27;, &#x27;CONTENT_LENGTH&#x27;: &#x27;&#x27;, &#x27;wsgi_url_scheme&#x27;: &#x27;https&#x27;, &#x27;wsgi_file_wrapper&#x27;: &lt;built-in function uwsgi_sendfile&gt;, &#x27;wsgi_multiprocess&#x27;: True, &#x27;applications_parent&#x27;: &#x27;/home/tazjel/zweb2py&#x27;, &#x27;HTTP_X_FORWARDED_FOR&#x27;: &#x27;129.208.2.129&#x27;, &#x27;wsgi_errors&#x27;: &lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7f296f67b2d0&gt;, &#x27;request_method&#x27;: &#x27;GET&#x27;, &#x27;remote_addr&#x27;: &#x27;10.155.6.104&#x27;, &#x27;https&#x27;: &#x27;on&#x27;, &#x27;http_upgrade_insecure_requests&#x27;: &#x27;1&#x27;, &#x27;REQUEST_URI&#x27;: &#x27;/belot/game/info/4&#x27;, &#x27;uwsgi.node&#x27;: &#x27;glenn-liveweb1&#x27;, &#x27;DOCUMENT_ROOT&#x27;: &#x27;/usr/local/openresty/nginx/html&#x27;, &#x27;wsgi_multithread&#x27;: False, &#x27;SERVER_PORT&#x27;: &#x27;443&#x27;, &#x27;web2py_version&#x27;: &#x27;2.14.6-stable+timestamp.2016.05.10.00.21.47&#x27;, &#x27;HTTP_HOST&#x27;: &#x27;tazjel.pythonanywhere.com&#x27;, &#x27;script_name&#x27;: &#x27;&#x27;, &#x27;content_type&#x27;: &#x27;&#x27;, &#x27;HTTP_UPGRADE_INSECURE_REQUESTS&#x27;: &#x27;1&#x27;, &#x27;request_uri&#x27;: &#x27;/belot/game/info/4&#x27;, &#x27;HTTP_ACCEPT&#x27;: &#x27;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#x27;, &#x27;http_web2py_component_location&#x27;: &#x27;/belot/game/info/4&#x27;, &#x27;http_connection&#x27;: &#x27;close&#x27;, &#x27;local_hosts&#x27;: [&#x27;tazjel.pythonanywhere.com&#x27;, &#x27;::ffff:127.0.0.1&#x27;, &#x27;::1&#x27;, &#x27;glenn-liveweb1&#x27;, &#x27;localhost&#x27;, &#x27;50.19.109.98&#x27;, &#x27;127.0.0.1&#x27;], &#x27;wsgi.run_once&#x27;: False, &#x27;wsgi.errors&#x27;: &lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7f296f67b2d0&gt;, &#x27;wsgi.multiprocess&#x27;: True, &#x27;wsgi.version&#x27;: (1, 0), &#x27;http_accept_encoding&#x27;: &#x27;gzip, deflate, br&#x27;, &#x27;app_folders&#x27;: set([&#x27;/home/tazjel/zweb2py/applications/admin/&#x27;, &#x27;/home/tazjel/zweb2py/applications/welcome/&#x27;, &#x27;/home/tazjel/zweb2py/applications/belot/&#x27;, &#x27;/home/tazjel/zweb2py/applications/examples/&#x27;]), &#x27;uwsgi_node&#x27;: &#x27;glenn-liveweb1&#x27;, &#x27;http_web2py_component_element&#x27;: &#x27;c957108909274&#x27;, &#x27;debugging&#x27;: True, &#x27;http_user_agent&#x27;: &#x27;Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:51.0) Gecko/20100101 Firefox/51.0&#x27;, &#x27;HTTP_COOKIE&#x27;: &#x27;_ga=GA1.2.66530172.1476043970; session_id_belot=129.208.2.129-496acfc8-f5d0-4b59-a947-c476dc2e8820; session_id_admin=129.208.2.129-15001bbb-1f07-497e-b2d2-a80f5a6e1ea1&#x27;, &#x27;HTTP_ACCEPT_LANGUAGE&#x27;: &#x27;en-US,en;q=0.5&#x27;, &#x27;http_x_forwarded_for&#x27;: &#x27;129.208.2.129&#x27;, &#x27;PATH_INFO&#x27;: &#x27;/belot/game/info/4&#x27;, &#x27;server_protocol&#x27;: &#x27;HTTP/1.1&#x27;, &#x27;QUERY_STRING&#x27;: &#x27;&#x27;, &#x27;HTTP_X_REAL_IP&#x27;: &#x27;129.208.2.129&#x27;, &#x27;http_accept&#x27;: &#x27;text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8&#x27;, &#x27;HTTP_USER_AGENT&#x27;: &#x27;Mozilla/5.0 (X11; Ubuntu; Linux i686; rv:51.0) Gecko/20100101 Firefox/51.0&#x27;, &#x27;HTTP_CONNECTION&#x27;: &#x27;close&#x27;, &#x27;SERVER_NAME&#x27;: &#x27;tazjel.pythonanywhere.com&#x27;, &#x27;REMOTE_PORT&#x27;: &#x27;38881&#x27;, &#x27;is_jython&#x27;: False, &#x27;http_accept_language&#x27;: &#x27;en-US,en;q=0.5&#x27;, &#x27;wsgi_version&#x27;: (1, 0), &#x27;wsgi.url_scheme&#x27;: &#x27;https&#x27;, &#x27;is_source&#x27;: True, &#x27;server_port&#x27;: &#x27;443&#x27;, &#x27;remote_port&#x27;: &#x27;38881&#x27;, &#x27;http_x_real_ip&#x27;: &#x27;129.208.2.129&#x27;, &#x27;document_root&#x27;: &#x27;/usr/local/openresty/nginx/html&#x27;, &#x27;http_cookie&#x27;: &#x27;_ga=GA1.2.66530172.1476043970; session_id_belot=129.208.2.129-496acfc8-f5d0-4b59-a947-c476dc2e8820; session_id_admin=129.208.2.129-15001bbb-1f07-497e-b2d2-a80f5a6e1ea1&#x27;, &#x27;gluon_parent&#x27;: &#x27;/home/tazjel/zweb2py&#x27;, &#x27;wsgi.input&#x27;: &lt;uwsgi._Input object at 0x7f2979b91f60&gt;, &#x27;http_host&#x27;: &#x27;tazjel.pythonanywhere.com&#x27;, &#x27;path_info&#x27;: &#x27;/belot/game/_gamebuttons/4&#x27;, &#x27;HTTPS&#x27;: &#x27;on&#x27;, &#x27;wsgi.multithread&#x27;: False, &#x27;server_name&#x27;: &#x27;tazjel.pythonanywhere.com&#x27;, &#x27;is_pypy&#x27;: False, &#x27;REMOTE_ADDR&#x27;: &#x27;10.155.6.104&#x27;, &#x27;db_sessions&#x27;: set([]), &#x27;CONTENT_TYPE&#x27;: &#x27;&#x27;, &#x27;query_string&#x27;: &#x27;&#x27;, &#x27;wsgi_run_once&#x27;: False, &#x27;wsgi.file_wrapper&#x27;: &lt;built-in function uwsgi_sendfile&gt;, &#x27;HTTP_ACCEPT_ENCODING&#x27;: &#x27;gzip, deflate, br&#x27;}&gt;, &#x27;vars&#x27;: &lt;Storage {}&gt;, &#x27;global_settings&#x27;: &lt;Storage {&#x27;debugging&#x27;: True, &#x27;is_pypy&#x27;: False, &#x27;local_hosts&#x27;: [&#x27;tazjel.pythonanywhere.com&#x27;, &#x27;::ffff:127.0.0.1&#x27;, &#x27;::1&#x27;, &#x27;glenn-liveweb1&#x27;, &#x27;localhost&#x27;, &#x27;50.19.109.98&#x27;, &#x27;127.0.0.1&#x27;], &#x27;is_source&#x27;: True, &#x27;gluon_parent&#x27;: &#x27;/home/tazjel/zweb2py&#x27;, &#x27;is_jython&#x27;: False, &#x27;applications_parent&#x27;: &#x27;/home/tazjel/zweb2py&#x27;, &#x27;app_folders&#x27;: set([&#x27;/home/tazjel/zweb2py/applications/admin/&#x27;, &#x27;/home/tazjel/zweb2py/applications/welcome/&#x27;, &#x27;/home/tazjel/zweb2py/applications/belot/&#x27;, &#x27;/home/tazjel/zweb2py/applications/examples/&#x27;]), &#x27;db_sessions&#x27;: set([]), &#x27;web2py_version&#x27;: &#x27;2.14.6-stable+timestamp.2016.05.10.00.21.47&#x27;}&gt;, &#x27;raw_extension&#x27;: None, &#x27;_body&#x27;: None, &#x27;_uuid&#x27;: None, &#x27;raw_args&#x27;: &#x27;4&#x27;, &#x27;controller&#x27;: &#x27;game&#x27;, &#x27;application&#x27;: &#x27;belot&#x27;, &#x27;utcnow&#x27;: datetime.datetime(2016, 10, 10, 3, 18, 31, 710570), &#x27;now&#x27;: datetime.datetime(2016, 10, 10, 3, 18, 31, 710548), &#x27;is_local&#x27;: False, &#x27;wsgi&#x27;: &lt;gluon.main.LazyWSGI object at 0x7f295e22ab50&gt;, &#x27;is_shell&#x27;: False, &#x27;extension&#x27;: &#x27;html&#x27;, &#x27;cid&#x27;: &#x27;c957108909274&#x27;, &#x27;url&#x27;: &#x27;/belot/game/info/4&#x27;, &#x27;_get_vars&#x27;: None, &#x27;ajax&#x27;: False, &#x27;is_https&#x27;: True, &#x27;_post_vars&#x27;: None, &#x27;client&#x27;: &#x27;129.208.2.129&#x27;, &#x27;is_restful&#x27;: False, &#x27;is_scheduler&#x27;: False, &#x27;get_vars&#x27;: &lt;Storage {}&gt;, &#x27;folder&#x27;: &#x27;/home/tazjel/zweb2py/applications/belot/&#x27;, &#x27;restful&#x27;: &lt;bound method ?.restful of &lt;Storage {...}&gt;&gt;, &#x27;post_vars&#x27;: &lt;Storage {}&gt;}&gt;&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/belot/game/info/4</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 10, 10, 3, 18, 31, 710570)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">vars</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7f295e22ab50&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/home/tazjel/zweb2py/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 0x7f295d5f6730, file "/.../applications/belot/controllers/game.py", line 3>'
+p69
+ssS'lnum'
+p70
+I227
+sS'lines'
+p71
+(dp72
+I224
+S'            ccode = code'
+p73
+sI225
+S'        else:'
+p74
+sI226
+S'            ccode = compile2(code, layer)'
+p75
+sI227
+S'        exec ccode in environment'
+p76
+sI228
+S'    except HTTP:'
+p77
+sI229
+S'        raise'
+p78
+sI230
+S'    except RestrictedError:'
+p79
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p80
+sI222
+S'    try:'
+p81
+sI223
+S'        if isinstance(code, types.CodeType):'
+p82
+ssS'call'
+p83
+S"(code='# belot game web2py\\n\\nfrom game_repo import *\\nfro...n\\n\\nresponse._vars=response._caller(_gamebuttons)\\n', environment={'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, ...}, layer='/home/tazjel/zweb2py/applications/belot/controllers/game.py')"
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'/home/tazjel/zweb2py/applications/belot/controllers/game.py'
+p88
+sg64
+(dp89
+sg70
+I213
+sg71
+(dp90
+I202
+S''
+sI203
+S'    return dict(success = True)'
+p91
+sI204
+S''
+sI205
+S'#Private?'
+p92
+sI206
+S''
+sI207
+S'def CheckEndGame(game_id):'
+p93
+sI208
+S"    aliveplayers = db((db.player.status_id.name == 'alive') & (db.player.game_id == game_id)).select()"
+p94
+sI209
+S'    if len(aliveplayers) <= 1:'
+p95
+sI210
+S'        db(db.game.id == game_id).update(status_id = 3)'
+p96
+sI211
+S'    return'
+p97
+ssg83
+S'()'
+p98
+sg85
+S'<module>'
+p99
+sa(dp100
+g62
+S'/home/tazjel/zweb2py/gluon/globals.py'
+p101
+sg64
+(dp102
+S'self'
+p103
+S'undefined'
+p104
+sS'f'
+S'<function _gamebuttons>'
+p105
+ssg70
+I417
+sg71
+(dp106
+I416
+S'        self._vars = None'
+p107
+sI417
+S'        self._caller = lambda f: f()'
+p108
+sI418
+S'        self._view_environment = None'
+p109
+sI419
+S'        self._custom_commit = None'
+p110
+sI420
+S'        self._custom_rollback = None'
+p111
+sI421
+S"        self.generic_patterns = ['*']"
+p112
+sI412
+S"        self.flash = ''            # used by the default view layout"
+p113
+sI413
+S'        self.meta = Storage()      # used by web2py_ajax.html'
+p114
+sI414
+S'        self.menu = []             # used by the default view layout'
+p115
+sI415
+S'        self.files = []            # used by web2py_ajax.html'
+p116
+ssg83
+S'(f=<function _gamebuttons>)'
+p117
+sg85
+S'<lambda>'
+p118
+sa(dp119
+g62
+S'/home/tazjel/zweb2py/applications/belot/controllers/game.py'
+p120
+sg64
+(dp121
+S'game'
+p122
+S"<Row {'description': '', 'status_id': 3L, 'playe...et (player.game_id = 4)>, 'id': 4L, 'name': 'w'}>"
+p123
+sS'btn'
+p124
+S"{'delete': False, 'edit': False, 'join': False, 'leave': False, 'start': False}"
+p125
+sS'btn_auction'
+p126
+g104
+sS'builtindict'
+p127
+S"<type 'dict'>"
+p128
+ssg70
+I37
+sg71
+(dp129
+I32
+S"    btn = {'join':False, 'leave':False, 'start':False, 'delete':False, 'edit':False}"
+p130
+sI33
+S'\t#'
+p131
+sI34
+S"#     btn_auction = {'join':False, 'leave':False, 'start':False, 'delete':False, 'edit':False}"
+p132
+sI35
+S''
+sI36
+S'    if auth.user is None:'
+p133
+sI37
+S'        return dict(game = game, btn = btn, btn_auction = btn_auction)'
+p134
+sI38
+S''
+sI39
+S"    if player is None and game.status_id.name == 'not started':"
+p135
+sI40
+S"        btn['join'] = True"
+p136
+sI41
+S''
+ssg83
+S'()'
+p137
+sg85
+S'_gamebuttons'
+p138
+sasS'pyver'
+p139
+S'Python 2.7.6: /usr/local/bin/uwsgi (prefix: /usr)'
+p140
+sS'session'
+p141
+g57
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp142
+sS'etype'
+p143
+S"<type 'exceptions.NameError'>"
+p144
+sS'date'
+p145
+S'Mon Oct 10 03:18:32 2016'
+p146
+sS'response'
+p147
+g57
+(S'sJ\t\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7f295ea401b8&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div>: </div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>table3cols</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>game/_gamebuttons.html</div></td></tr></table></div>'
+tRp148
+sS'locals'
+p149
+(dp150
+S'player'
+p151
+S'None'
+p152
+sS'game'
+p153
+S"<Row {'description': '', 'status_id': 3L, 'playe...et (player.game_id = 4)>, 'id': 4L, 'name': 'w'}>"
+p154
+sS'btn'
+p155
+S"{'delete': False, 'edit': False, 'join': False, 'leave': False, 'start': False}"
+p156
+sssS'traceback'
+p157
+S'Traceback (most recent call last):\n  File "/home/tazjel/zweb2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/tazjel/zweb2py/applications/belot/controllers/game.py", line 213, in <module>\n  File "/home/tazjel/zweb2py/gluon/globals.py", line 417, in <lambda>\n    self._caller = lambda f: f()\n  File "/home/tazjel/zweb2py/applications/belot/controllers/game.py", line 37, in _gamebuttons\n    return dict(game = game, btn = btn, btn_auction = btn_auction)\nNameError: global name \'btn_auction\' is not defined\n'
+p158
+s.

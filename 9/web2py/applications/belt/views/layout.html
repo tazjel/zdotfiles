@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<head>
+<title>{{=response.title or request.application}}</title>
+  <meta charset="utf-8" />
+  <meta name="application-name" content="{{=request.application}}" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <link rel="shortcut icon" href="{{=URL('static','images/favicon.ico')}}" type="image/x-icon">
+  <link rel="apple-touch-icon" href="{{=URL('static','images/favicon.png')}}">
+
+  <!-- include stylesheets -->
+  <script src="{{=URL("static","js/jquery.js")}}" type="text/javascript"></script>
+  <link href="{{=URL("static","bootstrap/css/bootstrap.min.css")}}" rel="stylesheet" type="text/css">
+  <link href="{{=URL("static","css/assassins.css")}}" rel="stylesheet" type="text/css">
+  <link href="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.css" rel="stylesheet" type="text/css">
+
+</head>
+
+<body>
+    {{ include "_navbar.html" }}
+    {{include}}
+    <script src="{{=URL('static','bootstrap/js/bootstrap.min.js')}}"></script>
+    <script src="//cdn.datatables.net/1.10.4/js/jquery.dataTables.min.js" type="text/javascript"></script>
+    <script src="//cdn.datatables.net/plug-ins/9dcbecd42ad/integration/bootstrap/3/dataTables.bootstrap.js" type="text/javascript"></script>
+</body>
+</html>
+

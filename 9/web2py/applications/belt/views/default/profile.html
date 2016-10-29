@@ -1,0 +1,27 @@
+{{extend 'default/userlayout.html'}}
+
+<h3>Profile</h3>
+{{if form.errors:}}
+    Your submitted form contains the following errors:
+    <ul>
+        {{for fieldname in form.errors:}}
+            <li>{{=fieldname}} error: {{=form.errors[fieldname]}}</li>
+        {{pass}}
+    </ul>
+    {{form.errors.clear()}}
+{{pass}}
+{{=form.custom.begin}}
+    <div class="form-group">
+        <label>Username</label>
+        <input type="text" class="form-control" name="username" placeholder="Username" value="{{=form.custom.widget.username['value']}}">
+    </div>
+    <div class="form-group">
+        <label>Email</label>
+        <input type="email" class="form-control" name="email" placeholder="Email" value="{{=form.custom.widget.email['value']}}">
+    </div>
+    <div class="form-group">
+        <label>Real Name</label>
+        <input type="text" class="form-control" name="name" placeholder="Real Name" value="{{=form.custom.widget.name['value']}}">
+    </div>
+    <button type="submit" class="btn btn-default">Apply Changes</button>
+{{=form.custom.end}}

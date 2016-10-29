@@ -1,0 +1,406 @@
+<!-- cards container -->
+      <script src="{{=URL('static','js/belot.js')}}"></script>
+
+      <script src="{{=URL('static','js/jq.js')}}"></script>
+
+<link rel="stylesheet" href="{{=URL('static','css/belt.css')}}"/>
+
+
+
+{{from deck import Deck}}
+{{from players.playerRandomPlayableCards import PlayerRandomPlayableCards}}
+{{from players.playerDummy import PlayerDummy}}
+{{from order import Order}}
+{{from game import Game}}
+
+{{deck = Deck()}}
+{{order = Order()}}
+
+{{P1_hand = []}}
+
+{{P0_hand = []}}
+
+{{cards = [(c[0], c[1]) for c in itertools.product(range(7, 15), ['H', 'D', 'S', 'C'])]}}
+{{random.shuffle(cards)}}
+
+{{P0_hand.append(cards[:5])}}
+CARDS = {(7, 'C'): '7spatiq.png', (7, 'D'): '7karo.png',
+         (7, 'H'): '7kupa.png', (7, 'S'): '7pika.png',
+         (8, 'C'): '8spatiq.png', (8, 'D'): '8karo.png',
+         (8, 'H'): '8kupa.png', (8, 'S'): '8pika.png',
+         (9, 'C'): '9spatiq.png', (9, 'D'): '9karo.png',
+         (9, 'H'): '9kupa.png', (9, 'S'): '9pika.png',
+         (10, 'C'): '10spatiq.png', (10, 'D'): '10karo.png',
+         (10, 'H'): '10kupa.png', (10, 'S'): '10pika.png',
+         (11, 'C'): '11spatiq.png', (11, 'D'): '11karo.png',
+         (11, 'H'): '11kupa.png', (11, 'S'): '11pika.png',
+         (12, 'C'): '12spatiq.png', (12, 'D'): '12karo.png',
+         (12, 'H'): '12kupa.png', (12, 'S'): '12pika.png',
+         (13, 'C'): '13spatiq.png', (13, 'D'): '13karo.png',
+         (13, 'H'): '13kupa.png', (13, 'S'): '13pika.png',
+         (14, 'C'): '14spatiq.png', (14, 'D'): '14karo.png',
+         (14, 'H'): '14kupa.png', (14, 'S'): '14pika.png'}
+
+
+<!-- <link rel="stylesheet" href="{{=URL('static','css/belt.css')}}"/> -->
+
+<h1>Animating Playing Cards</h1> <small>Click the "Stack" button to move cards back to initial position</small><br><br>
+<button type='button' onclick='reset_cards()'>Stack</button>
+<button type='button' onclick='animate_card(45)'>Animate 45</button>
+<button type='button' onclick='animate_card(360)'>Animate 360</button>
+<button type='button' onclick='flower_animation()'>Flower Animation</button>
+<br><br>
+<button type='button' onclick='separate_instantly()'>Separate instantly</button>
+<button type='button' onclick='separate_one_by_one()'>Separate slowly</button>
+<button type='button' onclick='open_all_cards()'>Open all</button>
+<button type='button' onclick='close_all_cards()'>Close all</button>
+<br><br>
+<button type='button' onclick='shufle_cards()'>Shuffle</button>
+<button type='button' onclick='begin_madness()'>Go Mad</button>
+<button type='button' onclick='stop_madness()'>Back to Normal</button>
+
+
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">صن</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">حكم</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">حكم</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">المشاريع</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">قيدها</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">سوا</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">سرا</button>{{pass}}
+
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">50</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">100</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">400</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">بلوت</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">تأكيد حكم</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">يقلب صن</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">دبل</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">ثري</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">فور/button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">الصوت</button>{{pass}}
+
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">دردشة</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">مشاركة</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">المزيد</button>{{pass}}
+
+
+ <style> img.bottom { vertical-align: text-bottom; } </style>
+     <img src={{=URL('static','images',args='images/10spatiq.png')}} alt="golem"class=bottom>
+<!-- cards container -->
+<div id='pack_cont'>
+	
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='A' data-title='A ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='2' data-title='2 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='3' data-title='3 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='4' data-title='4 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='5' data-title='5 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='6' data-title='6 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='7' data-title='7 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='8' data-title='8 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='9' data-title='9 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card' >
+		<span data-value='10' data-title='10 ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='J' data-title='J ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='Q' data-title='Q ♣'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='K' data-title='K ♣'></span>
+	</div>
+	<!-- single card -->
+
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='A' data-title='A ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='2' data-title='2 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='3' data-title='3 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='4' data-title='4 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='5' data-title='5 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='6' data-title='6 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='7' data-title='7 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='8' data-title='8 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='9' data-title='9 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red' >
+		<span data-value='10' data-title='10 ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='J' data-title='J ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='Q' data-title='Q ♦'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='K' data-title='K ♦'></span>
+	</div>
+	<!-- single card -->
+
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='A' data-title='A ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='2' data-title='2 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='3' data-title='3 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='4' data-title='4 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='5' data-title='5 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='6' data-title='6 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='7' data-title='7 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='8' data-title='8 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='9' data-title='9 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red' >
+		<span data-value='10' data-title='10 ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='J' data-title='J ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='Q' data-title='Q ♥'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card red'>
+		<span data-value='K' data-title='K ♥'></span>
+	</div>
+	<!-- single card -->
+
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='A' data-title='A ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='2' data-title='2 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='3' data-title='3 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='4' data-title='4 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='5' data-title='5 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='6' data-title='6 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='7' data-title='7 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='8' data-title='8 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='9' data-title='9 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card' >
+		<span data-value='10' data-title='10 ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='J' data-title='J ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='Q' data-title='Q ♠'></span>
+	</div>
+	<!-- single card -->
+
+	<!-- single card -->
+	<div class='card'>
+		<span data-value='K' data-title='K ♠'></span>
+	</div>
+	<!-- single card -->				
+</div>

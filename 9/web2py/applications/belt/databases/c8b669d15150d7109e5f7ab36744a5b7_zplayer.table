@@ -1,0 +1,143 @@
+(dp1
+S'hand_0'
+p2
+(dp3
+S'length'
+p4
+I512
+sS'unique'
+p5
+I00
+sS'sortable'
+p6
+I5
+sS'sql'
+p7
+S'INTEGER REFERENCES hand_0 (id) ON DELETE CASCADE  '
+p8
+sS'notnull'
+p9
+I00
+sS'type'
+p10
+S'reference hand_0'
+p11
+ssS'user_id'
+p12
+(dp13
+g4
+I512
+sg5
+I00
+sg6
+I3
+sg7
+S'INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  NOT NULL '
+p14
+sg9
+I01
+sg10
+S'reference auth_user'
+p15
+ssS'status_id'
+p16
+(dp17
+g4
+I512
+sg5
+I00
+sg6
+I7
+sg7
+S'INTEGER REFERENCES player_status (id) ON DELETE CASCADE  NOT NULL '
+p18
+sg9
+I01
+sg10
+S'reference player_status'
+p19
+ssS'game_id'
+p20
+(dp21
+g4
+I512
+sg5
+I00
+sg6
+I2
+sg7
+S'INTEGER REFERENCES game (id) ON DELETE CASCADE  NOT NULL '
+p22
+sg9
+I01
+sg10
+S'reference game'
+p23
+ssS'role_id'
+p24
+(dp25
+g4
+I512
+sg5
+I00
+sg6
+I8
+sg7
+S'INTEGER REFERENCES player_type (id) ON DELETE CASCADE  NOT NULL '
+p26
+sg9
+I01
+sg10
+S'reference player_type'
+p27
+ssS'target_id'
+p28
+(dp29
+g4
+I512
+sg5
+I00
+sg6
+I4
+sg7
+S'INTEGER REFERENCES player (id) ON DELETE CASCADE  '
+p30
+sg9
+I00
+sg10
+S'reference player'
+p31
+ssS'id'
+p32
+(dp33
+g4
+I512
+sg5
+I00
+sg6
+I1
+sg7
+S'INTEGER PRIMARY KEY AUTOINCREMENT'
+p34
+sg9
+I00
+sg10
+S'id'
+p35
+ssS'hand'
+p36
+(dp37
+g4
+I512
+sg5
+I00
+sg6
+I6
+sg7
+S'INTEGER REFERENCES hand_0 (id) ON DELETE CASCADE  '
+p38
+sg9
+I00
+sg10
+g11
+ss.

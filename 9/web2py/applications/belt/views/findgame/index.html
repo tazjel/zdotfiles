@@ -1,0 +1,12 @@
+{{extend 'contentlayout.html'}}
+
+<h3>Find a game</h3>
+
+{{for game in games:}}
+    <div class="panel">
+        <a href="{{=URL("game","info")}}/{{=game.id}}" class="panel-body">
+            <span>{{=game.name}}</span>
+            <span class="pull-right">{{=game.status_id.name}}</span>
+        </a>
+    </div>
+{{pass}}

@@ -1,0 +1,54 @@
+{{if any(btn.values()):}}
+{{if btn['sun']:}}<button id="sun" class="btn btn-default">صن</button>{{pass}}
+{{if btn['trump']:}}<button id="trump" class="btn btn-default">حكم</button>{{pass}}
+{{if btn['pass']:}}<button id="pass" class="btn btn-default">بس</button>{{pass}}
+{{if btn['more']:}}<button id="more" class="btn btn-default">ولا</button>{{pass}}
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sun").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","sun.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+
+        $("#trump").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","trump.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+
+        $("#startgame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","startgame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+
+        $("#pass").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","pass.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:function () {
+					success:location.reload(true)
+//                     window.location.href = "{{=URL("game","current")}}"
+                }
+            })
+        });
+    });
+</script>
+{{pass}}

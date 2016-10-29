@@ -1,0 +1,814 @@
+(dp1
+S'output'
+p2
+S"<type 'exceptions.NameError'> name 'itertools' is not defined"
+p3
+sS'layer'
+p4
+S'/home/tazjel/zweb2py/applications/belot/models/db.py'
+p5
+sS'code'
+p6
+S'# -*- coding: utf-8 -*-\n\n#########################################################################\n## This scaffolding model makes your app work on Google App Engine too\n## File is released under public domain and you can use without limitations\n#########################################################################\n\n## if SSL/HTTPS is properly configured and you want all HTTP requests to\n## be redirected to HTTPS, uncomment the line below:\n# request.requires_https()\n\nif not request.env.web2py_runtime_gae:\n    ## if NOT running on Google App Engine use SQLite or other DB\n    db = DAL(\'sqlite://storage.sqlite\',pool_size=1,check_reserved=[\'all\'])\nelse:\n    ## connect to Google BigTable (optional \'google:datastore://namespace\')\n    db = DAL(\'google:datastore+ndb\')\n    ## store sessions and tickets there\n    session.connect(request, response, db=db)\n    ## or store session in Memcache, Redis, etc.\n    ## from gluon.contrib.memdb import MEMDB\n    ## from google.appengine.api.memcache import Client\n    ## session.connect(request, response, db = MEMDB(Client()))\n\n## by default give a view/generic.extension to all actions from localhost\n## none otherwise. a pattern can be \'controller/function.extension\'\nresponse.generic_patterns = [\'*\'] if request.is_local else []\n\n## (optional) optimize handling of static files\n# response.optimize_css = \'concat,minify,inline\'\n# response.optimize_js = \'concat,minify,inline\'\n## (optional) static assets folder versioning\n# response.static_version = \'0.0.0\'\n#########################################################################\n## Here is sample code if you need for\n## - email capabilities\n## - authentication (registration, login, logout, ... )\n## - authorization (role based authorization)\n## - services (xml, csv, json, xmlrpc, jsonrpc, amf, rss)\n## - old style crud actions\n## (more options discussed in gluon/tools.py)\n#########################################################################\n\nfrom gluon.tools import Auth, Service, PluginManager\n\nauth = Auth(db)\nservice = Service()\nplugins = PluginManager()\n\n# before define_tables()\nauth.settings.extra_fields[\'auth_user\'] = [\n    Field(\'username\', unique=True),\n    Field(\'name\', required=IS_NOT_EMPTY())\n    ]\n\n## create all tables needed by auth if not custom tables\nauth.define_tables(username=False, signature=False)\n\n## configure email\nmail = auth.settings.mailer\nmail.settings.server = \'logging\' if request.is_local else \'smtp.gmail.com:587\'\nmail.settings.sender = \'tazjel@gmail.com\'\nmail.settings.login = \'tazjel@gmail.com:WQazzaq1\'\n\n## configure auth policy\nauth.settings.registration_requires_verification = False\nauth.settings.registration_requires_approval = False\nauth.settings.reset_password_requires_verification = True\n\n## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.\n## register with janrain.com, write your domain:api_key in private/janrain.key\nfrom gluon.contrib.login_methods.janrain_account import use_janrain\nuse_janrain(auth, filename=\'private/janrain.key\')\n\n#########################################################################\n## Define your tables below (or better in another model file) for example\n##\n## >>> db.define_table(\'mytable\',Field(\'myfield\',\'string\'))\n##\n## Fields can be \'string\',\'text\',\'password\',\'integer\',\'double\',\'boolean\'\n##       \'date\',\'time\',\'datetime\',\'blob\',\'upload\', \'reference TABLENAME\'\n## There is an implicit \'id integer autoincrement\' field\n## Consult manual for more options, validators, etc.\n##\n## More API examples for controllers:\n##\n## >>> db.mytable.insert(myfield=\'value\')\n## >>> rows=db(db.mytable.myfield==\'value\').select(db.mytable.ALL)\n## >>> for row in rows: print row.id, row.myfield\n#########################################################################\n\n## after defining tables, uncomment below to enable auditing\n# auth.enable_record_versioning(db)\n\ndb.auth_user.first_name.readable = db.auth_user.first_name.writable = False\ndb.auth_user.last_name.readable = db.auth_user.last_name.writable = False\nauth.settings.login_next = URL("game","current")\nauth.settings.logout_next = URL("default","login")\nauth.settings.login_url = URL("default", "login")\n\ndb.define_table(\'game_status\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'player_status\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'player_type\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'game\',\n    Field(\'name\', default=\'Default Game\', required=IS_NOT_EMPTY()),\n    Field(\'description\', \'text\', default=\'\'),\n    Field(\'status_id\', \'reference game_status\', notnull=True)\n    )\n\ndb.define_table(\'player\',\n    Field(\'game_id\', \'reference game\', notnull=True),\n    Field(\'user_id\', \'reference auth_user\', notnull=True),\n    Field(\'target_id\', \'reference player\'),\n    Field(\'status_id\', \'reference player_status\', notnull=True),\n    Field(\'role_id\', \'reference player_type\', notnull=True)\n    )\n\nfrom gluon import current\ncurrent.db = db\n\ndb.game_status.update_or_insert(id = 1, name = \'not started\')\ndb.game_status.update_or_insert(id = 2, name = \'started\')\ndb.game_status.update_or_insert(id = 3, name = \'finished\')\ndb.player_status.update_or_insert(id = 1, name = \'alive\')\ndb.player_status.update_or_insert(id = 2, name = \'dead\')\ndb.player_type.update_or_insert(id = 1, name = \'host\')\ndb.player_type.update_or_insert(id = 2, name = \'player\')\ndb.player_type.update_or_insert(id = 3, name = \'banned\', description = \'A player that is no longer allowed to join this game\')\ndb.player_type.update_or_insert(id = 4, name = \'gone\', description = \'A player that has left the game after it has started\')\n\n########################\n\norder_classic = [11, 10, 14, 13, 12, 9, 8, 7]\norder_trump = [12, 9, 11, 10, 14, 13, 8, 7]\n\nvalue_classic = [11, 10, 4, 3, 2, 0, 0, 0]\nvalue_trump = [20, 14, 11, 10, 4, 3, 0, 0]\n\ndb.define_table(\'deck\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\n\ndb.define_table(\'cards\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\'),\n\tField(\'cards_value\'),\n\tField(\'color\'),\n\tField(\'trump\'),\n    )\n# db.cards.update_or_insert(id = 0, name = \'gone\', description = \'A player that has left the game after it has started\')\n\ndb.define_table(\'state_now\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'loot\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\ndb.define_table(\'cards_order_\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\ndb.define_table(\'deal\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'cards_values\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\ndb.define_table(\'auction\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'auction_history\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'contract\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\ndb.define_table(\'bonus_value_team_1\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\ndb.define_table(\'bonus_value_team_2\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\ndb.define_table(\'check_for_belote\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\ndb.define_table(\'check_for_con\',\n    Field(\'name\', required=IS_NOT_EMPTY()),\n    Field(\'description\')\n    )\n\n\n\ncards_list = [Card(c[0], c[1]) for c in itertools.product(range(7, 15), [\'Heart\', \'Diamond\', \'Spade\', \'Club\'])]\n\n\n\n\n#     def __init__(self):\n#         deck = [Card(c[0], c[1]) for c in itertools.product(range(7, 15), [\'Heart\', \'Diamond\', \'Spade\', \'Club\'])]\nimport random\nimport itertools\n\n\ndef shuffle():\n\trandom.shuffle(deck)\n\ndef display_deck():\n\tdisplay = "Display Deck"\n\ndef set_trump(card_color):\n\tfor card in deck:\n\t\tif card.color == card_color:\n\t\t\tcard.trump = True\n\t\telse:\n\t\t\tard.trump = False\n\n\n\n\n# loot_team_1 = []\n# bonus_value_team_1 = 0\n# loot_team_2 = []\n# bonus_value_team_2 = 0\n# players_list = [player_1, player_2, player_3, player_4]\n\n# deal(player_1, player_2, player_3, player_4, deck)\n\n# contract_value, trump, contracting_team = launch_auction()\n\n# set_trump(deck, trump)\n# deal(player_1, player_2, player_3, player_4, deck)\n# check_for_belote(player_1, player_2, player_3, player_4)\n\n# \xd9\x82\xd8\xa7\xd8\xb7\xd8\xb9 \xd8\xa3\xd9\x88 \xd8\xbb\xd8\xa7\xd8\xb7\xd8\xb9: \xd8\xaa\xd8\xb9\xd9\x86\xd9\x8a \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd8\xa7\xd9\x84\xd8\xb0\xd9\x8a \xd9\x8a\xd9\x84\xd8\xb9\xd8\xa8 \xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd9\x85\xd8\xae\xd8\xa7\xd9\x84\xd9\x81\xd8\xa9 \xd9\x84\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd8\xa7\xd9\x84\xd9\x85\xd9\x88\xd8\xac\xd9\x88\xd8\xaf\xd8\xa9 \xd8\xb9\xd9\x84\xd9\x89 \xd8\xa7\xd9\x84\xd8\xa3\xd8\xb1\xd8\xb6\xd8\x8c \xd9\x81\xd9\x8a\xd9\x8f\xd9\x82\xd8\xa7\xd9\x84 \xd8\xb9\xd9\x84\xd9\x8a \xd8\xb3\xd8\xa8\xd9\x8a\xd9\x84 \xd8\xa7\xd9\x84\xd9\x85\xd8\xab\xd8\xa7\xd9\x84 \xd9\x82\xd8\xa7\xd8\xb7\xd8\xb9 \xd8\xb3\xd8\xa8\xd9\x8a\xd8\xaa \xd8\xa3\xd9\x8a \xd8\xa3\xd9\x86 \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd8\xb1\xd9\x85\xd9\x89 \xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xb3\xd8\xa8\xd9\x8a\xd8\xaa \xd9\x88\xd8\xa7\xd9\x84\xd9\x84\xd8\xb9\xd8\xa8 \xd8\xa3\xd8\xb3\xd8\xa7\xd8\xb3\xd8\xa7\xd9\x8b \xd9\x83\xd8\xa7\xd9\x86 \xd9\x81\xd9\x8a \xd8\xba\xd9\x8a\xd8\xb1 \xd8\xa7\xd9\x84\xd8\xb3\xd8\xa8\xd9\x8a\xd8\xaa.\n# \xd8\xad\xd9\x84\xd9\x92 \xd8\xa7\xd9\x84\xd8\xa5\xd9\x83\xd9\x87: \xd8\xaa\xd8\xb9\xd9\x86\xd9\x8a \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd8\xa7\xd9\x84\xd8\xb0\xd9\x8a \xd9\x8a\xd8\xa8\xd8\xaf\xd8\xa3 \xd8\xa7\xd9\x84\xd9\x84\xd8\xb9\xd8\xa8 \xd9\x81\xd9\x8a \xd8\xa7\xd9\x84\xd8\xb5\xd9\x86 \xd8\xa8\xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xa5\xd9\x83\xd9\x87 \xd9\x88\xd9\x87\xd9\x8a \xd8\xa3\xd9\x83\xd8\xa8\xd8\xb1 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd9\x82\xd9\x8a\xd9\x85\xd8\xa9\xd9\x8b \xd9\x81\xd9\x8a \xd8\xa7\xd9\x84\xd8\xb5\xd9\x86\xd8\x8c \xd9\x88\xd9\x87\xd9\x8a \xd8\xb7\xd8\xb1\xd9\x8a\xd9\x82\xd8\xa9 \xd9\x84\xd8\xb6\xd9\x85\xd8\xa7\xd9\x86 \xd8\xa3\xd9\x86 \xd9\x84\xd8\xa7 \xd8\xaa\xd9\x83\xd9\x88\xd9\x86 \xd8\xac\xd9\x85\xd9\x8a\xd8\xb9 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd9\x84\xd9\x84\xd9\x81\xd8\xb1\xd9\x8a\xd9\x82 \xd8\xa7\xd9\x84\xd8\xa2\xd8\xae\xd8\xb1 \xd9\x81\xd9\x8a\xd8\xad\xd8\xb5\xd9\x84\xd9\x88\xd8\xa7 \xd8\xb9\xd9\x84\xd9\x89 \xd8\xa7\xd9\x84\xd9\x86\xd9\x82\xd8\xa7\xd8\xb7 \xd8\xa7\xd9\x84\xd9\x83\xd8\xa7\xd9\x85\xd9\x84\xd8\xa9.\n# \xd8\xb9\xd9\x85\xd9\x84\xd9\x8a\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xaa\xd8\xb1\xd8\xa8\xd9\x8a\xd8\xb9: \xd9\x88\xd8\xaa\xd8\xb9\xd9\x86\xd9\x8a \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd8\xa7\xd9\x84\xd8\xb0\xd9\x8a \xd9\x8a\xd8\xa8\xd8\xaf\xd8\xa3 \xd8\xa8\xd8\xb1\xd9\x85\xd9\x8a \xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xad\xd9\x83\xd9\x85\xd8\x8c \xd9\x81\xd9\x8a\xd9\x8f\xd9\x82\xd8\xa7\xd9\x84 \xd8\xb1\xd8\xa8\xd9\x91\xd8\xb9 \xd9\x81\xd9\x84\xd8\xa7\xd9\x86 \xd8\xa3\xd9\x8a \xd8\xa8\xd8\xaf\xd8\xa3 \xd8\xa8\xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xad\xd9\x83\xd9\x85\xd8\x8c \xd9\x88\xd8\xb9\xd9\x85\xd9\x84\xd9\x8a\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xaa\xd8\xb1\xd8\xa8\xd9\x8a\xd8\xb9 \xd9\x85\xd9\x85\xd9\x86\xd9\x88\xd8\xb9\xd8\xa9 \xd9\x81\xd9\x8a \xd8\xa7\xd9\x84\xd8\xaf\xd8\xa8\xd9\x84 \xd9\x88\xd8\xa7\xd9\x84\xd8\xaf\xd8\xa8\xd9\x84 \xd9\x81\xd9\x88\xd8\xb1.\n# \xd8\xa7\xd9\x84\xd8\xaa\xd9\x83\xd9\x88\xd9\x8a\xd8\xb4 \xd8\xa3\xd9\x88 \xd8\xa7\xd9\x84\xd8\xaa\xd8\xae\xd9\x8a\xd9\x8a\xd8\xb4: \xd9\x88\xd9\x87\xd9\x8a \xd8\xa7\xd9\x84\xd8\xb9\xd9\x85\xd9\x84\xd9\x8a\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xaa\xd9\x8a \xd9\x8a\xd8\xad\xd8\xb5\xd9\x84 \xd9\x81\xd9\x8a\xd9\x87\xd8\xa7 \xd8\xa3\xd8\xad\xd8\xaf \xd8\xa7\xd9\x84\xd9\x81\xd8\xb1\xd9\x8a\xd9\x82\xd9\x8a\xd9\x86 \xd8\xb9\xd9\x84\xd9\x89 \xd9\x86\xd9\x82\xd8\xa7\xd8\xb7 \xd8\xa7\xd9\x84\xd9\x84\xd8\xb9\xd8\xa8\xd8\xa9 \xd8\xa5\xd9\x85\xd8\xa7 \xd8\xa8\xd8\xb3\xd8\xa8\xd8\xa8 \xd9\x85\xd8\xad\xd8\xa7\xd9\x88\xd9\x84\xd8\xa9 \xd8\xba\xd8\xb4 \xd8\xa7\xd9\x84\xd9\x81\xd8\xb1\xd9\x8a\xd9\x82 \xd8\xa7\xd9\x84\xd8\xa2\xd8\xae\xd8\xb1 \xd8\xa3\xd9\x88 \xd8\xae\xd8\xb1\xd9\x82 \xd8\xa7\xd9\x84\xd9\x82\xd9\x88\xd8\xa7\xd9\x86\xd9\x8a\xd9\x86.\n# \xd8\xa7\xd9\x84\xd8\xb5\xd9\x83\xd8\xa9 \xd8\xa3\xd9\x88 \xd8\xa7\xd9\x84\xd8\xb7\xd9\x82\xd8\xa9: \xd9\x87\xd9\x8a \xd8\xa7\xd9\x84\xd8\xaf\xd9\x88\xd8\xb1\xd8\xa9 \xd8\xa7\xd9\x84\xd9\x88\xd8\xa7\xd8\xad\xd8\xaf\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xaa\xd9\x8a \xd9\x8a\xd9\x82\xd9\x88\xd9\x85 \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8\xd9\x8a\xd9\x86 \xd8\xa8\xd8\xb1\xd9\x85\xd9\x8a \xd8\xac\xd9\x85\xd9\x8a\xd8\xb9 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd8\xa7\xd9\x84\xd9\x80 32.\n# \xd8\xaf\xd9\x90\xd8\xb3\xd9\x8e\xd9\x85\xd9\x92: \xd9\x88\xd9\x87\xd9\x8a \xd8\xa3\xd9\x86 \xd9\x8a\xd8\xb1\xd9\x85\xd9\x8a \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd8\xa3\xd9\x83\xd8\xa8\xd8\xb1 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd9\x82\xd9\x8a\xd9\x85\xd8\xa9\xd9\x8b \xd8\xa5\xd8\xb0\xd8\xa7 \xd9\x83\xd8\xa7\xd9\x86\xd8\xaa \xd8\xa7\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd8\xa7\xd9\x84\xd8\xaa\xd9\x8a \xd9\x81\xd9\x8a \xd8\xa7\xd9\x84\xd8\xa3\xd8\xb1\xd8\xb6 \xd9\x84\xd8\xb5\xd8\xa7\xd9\x84\xd8\xad \xd8\xb2\xd9\x85\xd9\x8a\xd9\x84\xd9\x87 \xd9\x81\xd9\x8a \xd8\xa7\xd9\x84\xd9\x84\xd8\xb9\xd8\xa8.\n# \xd8\xa7\xd9\x84\xd8\xaa\xd9\x87\xd8\xb1\xd9\x8a\xd8\xa8: \xd9\x87\xd9\x8a \xd8\xb9\xd9\x85\xd9\x84\xd9\x8a\xd8\xa9 \xd8\xb0\xd9\x83\xd9\x8a\xd8\xa9 \xd9\x8a\xd9\x82\xd9\x88\xd9\x85 \xd9\x81\xd9\x8a\xd9\x87\xd8\xa7 \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd8\xa8\xd8\xb1\xd9\x85\xd9\x8a \xd8\xa7\xd9\x84\xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xaa\xd9\x8a \xd9\x84\xd8\xa7 \xd9\x8a\xd8\xad\xd8\xaa\xd8\xa7\xd8\xac\xd9\x87\xd8\xa7\xd8\x8c \xd9\x84\xd9\x83\xd9\x8a \xd9\x8a\xd9\x81\xd9\x87\xd9\x85 \xd8\xb2\xd9\x85\xd9\x8a\xd9\x84\xd9\x87 \xd8\xa3\xd9\x86\xd9\x87 \xd9\x8a\xd8\xb1\xd9\x8a\xd8\xaf \xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd8\xba\xd9\x8a\xd8\xb1 \xd8\xa7\xd9\x84\xd8\xaa\xd9\x8a \xd8\xb1\xd9\x85\xd8\xa7\xd9\x87\xd8\xa7.\n# \xd8\xaa\xd9\x81\xd8\xb1\xd9\x86\xd9\x83: \xd8\xb9\xd9\x86\xd8\xaf\xd9\x85\xd8\xa7 \xd9\x8a\xd9\x85\xd9\x84\xd9\x83 \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82\xd8\xa7\xd9\x8b \xd9\x82\xd9\x88\xd9\x8a\xd8\xa9 \xd9\x81\xd9\x8a "\xd8\xb2\xd8\xa7\xd8\xaa" \xd8\xa3\xd9\x88 \xd9\x86\xd9\x88\xd8\xb9 \xd9\x85\xd8\xb9\xd9\x8a\xd9\x86 \xd9\x85\xd9\x86 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 (\xd9\x85\xd8\xab\xd8\xa7\xd9\x84 \xd8\xa7\xd9\x84\xd8\xb9\xd8\xb4\xd8\xb1\xd8\xa9 \xd9\x88\xd8\xa7\xd9\x84\xd8\xa8\xd8\xa7\xd8\xb4 \xd9\x88\xd8\xa7\xd9\x84\xd9\x85\xd9\x8a\xd9\x85) \xd9\x88\xd9\x84\xd8\xa7 \xd9\x8a\xd9\x85\xd9\x84\xd9\x83 \xd8\xa7\xd9\x84\xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x83\xd8\xa8\xd8\xb1 \xd9\x88\xd9\x87\xd9\x8a \xd8\xa7\xd9\x84\xd8\xa5\xd9\x83\xd9\x87\xd8\x8c \xd9\x81\xd9\x8a\xd8\xb1\xd9\x85\xd9\x8a \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8 \xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd9\x82\xd9\x84\xd9\x8a\xd9\x84\xd8\xa9 \xd8\xa7\xd9\x84\xd9\x82\xd9\x8a\xd9\x85\xd8\xa9 \xd9\x83\xd8\xb6\xd8\xad\xd9\x8a\xd8\xa9 \xd9\x85\xd9\x86 \xd8\xa3\xd8\xac\xd9\x84 \xd8\xa3\xd9\x86 \xd9\x8a\xd8\xa3\xd9\x83\xd9\x84\xd9\x87\xd8\xa7 \xd8\xa3\xd8\xad\xd8\xaf \xd8\xa7\xd9\x84\xd9\x84\xd8\xa7\xd8\xb9\xd8\xa8\xd9\x8a\xd9\x86 \xd8\xa7\xd9\x84\xd8\xb0\xd9\x8a \xd9\x8a\xd9\x85\xd9\x84\xd9\x83 \xd9\x88\xd8\xb1\xd9\x82\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xa5\xd9\x83\xd9\x87\xd8\x8c \xd9\x88\xd9\x8a\xd9\x86\xd9\x81\xd8\xb1\xd8\xaf \xd9\x87\xd9\x88 \xd8\xa8\xd8\xa7\xd9\x84\xd8\xb2\xd8\xa7\xd8\xaa.\n# \xd9\x83\xd8\xa8\xd9\x88\xd8\xaa: \xd9\x87\xd9\x8a \xd8\xa7\xd9\x84\xd8\xb9\xd9\x85\xd9\x84\xd9\x8a\xd8\xa9 \xd8\xa7\xd9\x84\xd8\xaa\xd9\x8a \xd9\x8a\xd8\xad\xd8\xb5\xd9\x84 \xd9\x81\xd9\x8a\xd9\x87\xd8\xa7 \xd8\xa3\xd8\xad\xd8\xaf \xd8\xa7\xd9\x84\xd9\x81\xd8\xb1\xd9\x8a\xd9\x82\xd9\x8a\xd9\x86 \xd8\xb9\xd9\x84\xd9\x89 \xd8\xac\xd9\x85\xd9\x8a\xd8\xb9 \xd8\xa7\xd9\x84\xd8\xa3\xd9\x88\xd8\xb1\xd8\xa7\xd9\x82 \xd9\x81\xd9\x8a "\xd8\xb5\xd9\x83\xd8\xa9" \xd9\x88\xd8\xa7\xd8\xad\xd8\xaf\xd8\xa9.\n\n\n\n\n\n\n\n\n#\n\ndef compare_cards_is_bigger(card_1, card_2):\n\tif card_1.trump == card_2.trump:\n\t\tif card_1.trump:\n\t\t\treturn order_trump.index(card_1.value) < order_trump.index(card_2.value)\n\t\telse:\n\t\t\tif card_1.color == card_2.color:\n\t\t\t\treturn order_classic.index(card_1.value) < order_classic.index(card_2.value)\n\t\t\telse:\n\t\t\t\treturn True\n\telse:\n\t\treturn card_1.trump\n\nprint(" ------- Game On -------")\nfor i in range(1, 9):\n\tstate = []\n\tadd_card_to_state(player_1)\n\tadd_card_to_state(player_2)\n\tadd_card_to_state(player_3)\n\tadd_card_to_state(player_4)\n\n#             print("---------- state " + str(i) + "  ----------")\n#             self.display_state()\n'
+p7
+sS'snapshot'
+p8
+(dp9
+S'exception'
+p10
+(dp11
+S'__hash__'
+p12
+S"<method-wrapper '__hash__' of exceptions.NameError object>"
+p13
+sS'__setattr__'
+p14
+S"<method-wrapper '__setattr__' of exceptions.NameError object>"
+p15
+sS'__reduce_ex__'
+p16
+S'<built-in method __reduce_ex__ of exceptions.NameError object>'
+p17
+sS'__getslice__'
+p18
+S"<method-wrapper '__getslice__' of exceptions.NameError object>"
+p19
+sS'__getitem__'
+p20
+S"<method-wrapper '__getitem__' of exceptions.NameError object>"
+p21
+sS'__setstate__'
+p22
+S'<built-in method __setstate__ of exceptions.NameError object>'
+p23
+sS'args'
+p24
+S'("name \'itertools\' is not defined",)'
+p25
+sS'__reduce__'
+p26
+S'<built-in method __reduce__ of exceptions.NameError object>'
+p27
+sS'__str__'
+p28
+S"<method-wrapper '__str__' of exceptions.NameError object>"
+p29
+sS'__format__'
+p30
+S'<built-in method __format__ of exceptions.NameError object>'
+p31
+sS'__getattribute__'
+p32
+S"<method-wrapper '__getattribute__' of exceptions.NameError object>"
+p33
+sS'__class__'
+p34
+S"<type 'exceptions.NameError'>"
+p35
+sS'__unicode__'
+p36
+S'<built-in method __unicode__ of exceptions.NameError object>'
+p37
+sS'__delattr__'
+p38
+S"<method-wrapper '__delattr__' of exceptions.NameError object>"
+p39
+sS'__subclasshook__'
+p40
+S'<built-in method __subclasshook__ of type object>'
+p41
+sS'__repr__'
+p42
+S"<method-wrapper '__repr__' of exceptions.NameError object>"
+p43
+sS'__dict__'
+p44
+S'{}'
+p45
+sS'__sizeof__'
+p46
+S'<built-in method __sizeof__ of exceptions.NameError object>'
+p47
+sS'__doc__'
+p48
+S"'Name not found globally.'"
+p49
+sS'__init__'
+p50
+S"<method-wrapper '__init__' of exceptions.NameError object>"
+p51
+sS'__new__'
+p52
+S'<built-in method __new__ of type object>'
+p53
+ssS'evalue'
+p54
+S"name 'itertools' is not defined"
+p55
+sS'request'
+p56
+cgluon.html
+XML_unpickle
+p57
+(S's\x8dO\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">ajax</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">application</td><td style="vertical-align:top;">:</td><td><div>belot</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">args</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cid</td><td style="vertical-align:top;">:</td><td><div>c943863831969</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">client</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">controller</td><td style="vertical-align:top;">:</td><td><div>appadmin</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_admin</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1-632c2fcf-229d-481b-9366-923d29b2134f<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">env</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">CONTENT_LENGTH</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">CONTENT_TYPE</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">DOCUMENT_ROOT</td><td style="vertical-align:top;">:</td><td><div>/usr/local/openresty/nginx/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTPS</td><td style="vertical-align:top;">:</td><td><div>on</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT</td><td style="vertical-align:top;">:</td><td><div>*/*</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_ENCODING</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_ACCEPT_LANGUAGE</td><td style="vertical-align:top;">:</td><td><div>ar,en-GB;q=0.8,en;q=0.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_CONNECTION</td><td style="vertical-align:top;">:</td><td><div>close</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_COOKIE</td><td style="vertical-align:top;">:</td><td><div>_ga=GA1.2.1675182600.1470181097; session_id_admin=90.148.254.1-632c2fcf-229d-481b-9366-923d29b2134f</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_HOST</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_REFERER</td><td style="vertical-align:top;">:</td><td><div>https://tazjel.pythonanywhere.com/admin/default/edit/belot/models/db.py?id=models__db__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_USER_AGENT</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_WEB2PY_COMPONENT_ELEMENT</td><td style="vertical-align:top;">:</td><td><div>c943863831969</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_WEB2PY_COMPONENT_LOCATION</td><td style="vertical-align:top;">:</td><td><div>https://tazjel.pythonanywhere.com/admin/default/edit/belot/models/db.py?id=models__db__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_X_FORWARDED_FOR</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_X_REAL_IP</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">HTTP_X_REQUESTED_WITH</td><td style="vertical-align:top;">:</td><td><div>XMLHttpRequest</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">PATH_INFO</td><td style="vertical-align:top;">:</td><td><div>/belot/appadmin/hooks</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">QUERY_STRING</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_ADDR</td><td style="vertical-align:top;">:</td><td><div>10.155.6.104</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REMOTE_PORT</td><td style="vertical-align:top;">:</td><td><div>60315</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_METHOD</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">REQUEST_URI</td><td style="vertical-align:top;">:</td><td><div>/belot/appadmin/hooks</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SCRIPT_NAME</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_NAME</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PORT</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">SERVER_PROTOCOL</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/tazjel/zweb2py/applications/admin/&#x27;, &#x27;/home/tazjel/zweb2py/applications/belot/&#x27;, &#x27;/home/tazjel/zweb2py/applications/balot/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">content_length</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">content_type</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">document_root</td><td style="vertical-align:top;">:</td><td><div>/usr/local/openresty/nginx/html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept</td><td style="vertical-align:top;">:</td><td><div>*/*</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_encoding</td><td style="vertical-align:top;">:</td><td><div>gzip, deflate, sdch, br</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_accept_language</td><td style="vertical-align:top;">:</td><td><div>ar,en-GB;q=0.8,en;q=0.6</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_connection</td><td style="vertical-align:top;">:</td><td><div>close</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_cookie</td><td style="vertical-align:top;">:</td><td><div>_ga=GA1.2.1675182600.1470181097; session_id_admin=90.148.254.1-632c2fcf-229d-481b-9366-923d29b2134f</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_host</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_referer</td><td style="vertical-align:top;">:</td><td><div>https://tazjel.pythonanywhere.com/admin/default/edit/belot/models/db.py?id=models__db__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_user_agent</td><td style="vertical-align:top;">:</td><td><div>Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/53.0.2785.143 Safari/537.36</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_web2py_component_element</td><td style="vertical-align:top;">:</td><td><div>c943863831969</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_web2py_component_location</td><td style="vertical-align:top;">:</td><td><div>https://tazjel.pythonanywhere.com/admin/default/edit/belot/models/db.py?id=models__db__py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_x_forwarded_for</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_x_real_ip</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">http_x_requested_with</td><td style="vertical-align:top;">:</td><td><div>XMLHttpRequest</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">https</td><td style="vertical-align:top;">:</td><td><div>on</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>glenn-liveweb1</div></td></tr><tr><td><div>localhost</div></td></tr><tr><td><div>50.19.109.98</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path_info</td><td style="vertical-align:top;">:</td><td><div>/belot/appadmin/hooks</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">query_string</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_addr</td><td style="vertical-align:top;">:</td><td><div>10.155.6.104</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">remote_port</td><td style="vertical-align:top;">:</td><td><div>60315</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_method</td><td style="vertical-align:top;">:</td><td><div>GET</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">request_uri</td><td style="vertical-align:top;">:</td><td><div>/belot/appadmin/hooks</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">script_name</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_name</td><td style="vertical-align:top;">:</td><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_port</td><td style="vertical-align:top;">:</td><td><div>443</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">server_protocol</td><td style="vertical-align:top;">:</td><td><div>HTTP/1.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi.node</td><td style="vertical-align:top;">:</td><td><div>glenn-liveweb1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi.version</td><td style="vertical-align:top;">:</td><td><div>2.0.5.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi_node</td><td style="vertical-align:top;">:</td><td><div>glenn-liveweb1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">uwsgi_version</td><td style="vertical-align:top;">:</td><td><div>2.0.5.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_path</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.errors</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7f558818d2d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;built-in function uwsgi_sendfile&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.input</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi._Input object at 0x7f55926a3e70&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multiprocess</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.multithread</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi.version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_errors</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi_file__bin_user_wsgi_wrapper.ErrorLogFile object at 0x7f558818d2d0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_file_wrapper</td><td style="vertical-align:top;">:</td><td><div>&lt;built-in function uwsgi_sendfile&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_input</td><td style="vertical-align:top;">:</td><td><div>&lt;uwsgi._Input object at 0x7f55926a3e70&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multiprocess</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_multithread</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_run_once</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_url_scheme</td><td style="vertical-align:top;">:</td><td><div>https</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi_version</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>1</div></td></tr><tr><td><div>0</div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">extension</td><td style="vertical-align:top;">:</td><td><div>html</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">folder</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py/applications/belot/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">function</td><td style="vertical-align:top;">:</td><td><div>hooks</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">global_settings</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">app_folders</td><td style="vertical-align:top;">:</td><td><div>set([&#x27;/home/tazjel/zweb2py/applications/admin/&#x27;, &#x27;/home/tazjel/zweb2py/applications/belot/&#x27;, &#x27;/home/tazjel/zweb2py/applications/balot/&#x27;])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">applications_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">db_sessions</td><td style="vertical-align:top;">:</td><td><div>set([])</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">debugging</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">gluon_parent</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_jython</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_pypy</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_source</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">local_hosts</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>tazjel.pythonanywhere.com</div></td></tr><tr><td><div>::ffff:127.0.0.1</div></td></tr><tr><td><div>::1</div></td></tr><tr><td><div>glenn-liveweb1</div></td></tr><tr><td><div>localhost</div></td></tr><tr><td><div>50.19.109.98</div></td></tr><tr><td><div>127.0.0.1</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">web2py_version</td><td style="vertical-align:top;">:</td><td><div>2.14.6-stable+timestamp.2016.05.10.00.21.47</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_https</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_local</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_restful</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_scheduler</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">is_shell</td><td style="vertical-align:top;">:</td><td><div>False</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">now</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 10, 9, 2, 7, 51, 308734)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_args</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">raw_extension</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">url</td><td style="vertical-align:top;">:</td><td><div>/belot/appadmin/hooks</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">utcnow</td><td style="vertical-align:top;">:</td><td><div>datetime.datetime(2016, 10, 9, 2, 7, 51, 308748)</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">wsgi</td><td style="vertical-align:top;">:</td><td><div>&lt;gluon.main.LazyWSGI object at 0x7f55757d51d0&gt;</div></td></tr></table></div>'
+tRp58
+sS'frames'
+p59
+(lp60
+(dp61
+S'file'
+p62
+S'/home/tazjel/zweb2py/gluon/restricted.py'
+p63
+sS'dump'
+p64
+(dp65
+S'environment'
+p66
+S"{'A': <class 'gluon.html.A'>, 'ANY_OF': <class 'gluon.validators.ANY_OF'>, 'ASSIGNJS': <function ASSIGNJS>, 'Auth': <class 'gluon.tools.Auth'>, 'B': <class 'gluon.html.B'>, 'BEAUTIFY': <class 'gluon.html.BEAUTIFY'>, 'BODY': <class 'gluon.html.BODY'>, 'BR': <class 'gluon.html.BR'>, 'BUTTON': <class 'gluon.html.BUTTON'>, 'CAT': <class 'gluon.html.CAT'>, ...}"
+p67
+sS'ccode'
+p68
+S'<code object <module> at 0x7f5575c8ce30, file "/...web2py/applications/belot/models/db.py", line 12>'
+p69
+ssS'lnum'
+p70
+I227
+sS'lines'
+p71
+(dp72
+I224
+S'            ccode = code'
+p73
+sI225
+S'        else:'
+p74
+sI226
+S'            ccode = compile2(code, layer)'
+p75
+sI227
+S'        exec ccode in environment'
+p76
+sI228
+S'    except HTTP:'
+p77
+sI229
+S'        raise'
+p78
+sI230
+S'    except RestrictedError:'
+p79
+sI231
+S'        # do not encapsulate (obfuscate) the original RestrictedError'
+p80
+sI222
+S'    try:'
+p81
+sI223
+S'        if isinstance(code, types.CodeType):'
+p82
+ssS'call'
+p83
+S'(code=\'# -*- coding: utf-8 -*-\\n\\n#######################... ----------")\\n#             self.display_state()\\n\', environment={\'A\': <class \'gluon.html.A\'>, \'ANY_OF\': <class \'gluon.validators.ANY_OF\'>, \'ASSIGNJS\': <function ASSIGNJS>, \'Auth\': <class \'gluon.tools.Auth\'>, \'B\': <class \'gluon.html.B\'>, \'BEAUTIFY\': <class \'gluon.html.BEAUTIFY\'>, \'BODY\': <class \'gluon.html.BODY\'>, \'BR\': <class \'gluon.html.BR\'>, \'BUTTON\': <class \'gluon.html.BUTTON\'>, \'CAT\': <class \'gluon.html.CAT\'>, ...}, layer=\'/home/tazjel/zweb2py/applications/belot/models/db.py\')'
+p84
+sS'func'
+p85
+S'restricted'
+p86
+sa(dp87
+g62
+S'/home/tazjel/zweb2py/applications/belot/models/db.py'
+p88
+sg64
+(dp89
+S'builtinrange'
+p90
+S'<built-in function range>'
+p91
+sS'itertools'
+p92
+S'undefined'
+p93
+sS'cards_list'
+p94
+g93
+sS'c'
+g93
+sS'Card'
+p95
+g93
+ssg70
+I235
+sg71
+(dp96
+I230
+S"    Field('description')"
+p97
+sI231
+S'    )'
+p98
+sI232
+S''
+sI233
+S''
+sI234
+S''
+sI235
+S"cards_list = [Card(c[0], c[1]) for c in itertools.product(range(7, 15), ['Heart', 'Diamond', 'Spade', 'Club'])]"
+p99
+sI236
+S''
+sI237
+S''
+sI238
+S''
+sI239
+S''
+ssg83
+S'()'
+p100
+sg85
+S'<module>'
+p101
+sasS'pyver'
+p102
+S'Python 2.7.6: /usr/local/bin/uwsgi (prefix: /usr)'
+p103
+sS'session'
+p104
+g57
+(S's\x1a\x00\x00\x00<div><table></table></div>'
+tRp105
+sS'etype'
+p106
+S"<type 'exceptions.NameError'>"
+p107
+sS'date'
+p108
+S'Sun Oct  9 02:07:51 2016'
+p109
+sS'response'
+p110
+g57
+(S's\x11\x16\x00\x00<div><table><tr><td style="font-weight:bold;vertical-align:top;">body</td><td style="vertical-align:top;">:</td><td><div>&lt;cStringIO.StringO object at 0x7f5575dae6c0&gt;</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">cookies</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">session_id_belot</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1-7461e3d2-2f06-4751-90c5-18913f996f46<table><tr><td style="font-weight:bold;vertical-align:top;">comment</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">domain</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">expires</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">httponly</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">max-age</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">path</td><td style="vertical-align:top;">:</td><td><div>/</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">secure</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">version</td><td style="vertical-align:top;">:</td><td><div></div></td></tr></table></div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">delimiters</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>{{</div></td></tr><tr><td><div>}}</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">files</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">flash</td><td style="vertical-align:top;">:</td><td><div></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">form_label_separator</td><td style="vertical-align:top;">:</td><td><div>: </div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">formstyle</td><td style="vertical-align:top;">:</td><td><div>table3cols</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">generic_patterns</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">headers</td><td style="vertical-align:top;">:</td><td><div><table><tr><td style="font-weight:bold;vertical-align:top;">X-Powered-By</td><td style="vertical-align:top;">:</td><td><div>web2py</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">menu</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">meta</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">models_to_run</td><td style="vertical-align:top;">:</td><td><div><table><tr><td><div>^\\w+\\.py$</div></td></tr><tr><td><div>^appadmin/\\w+\\.py$</div></td></tr><tr><td><div>^appadmin/hooks/\\w+\\.py$</div></td></tr></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">postprocessing</td><td style="vertical-align:top;">:</td><td><div><table></table></div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_client</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_compression_level</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_cookie_expires</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_data_name</td><td style="vertical-align:top;">:</td><td><div>session_data_belot</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_file</td><td style="vertical-align:top;">:</td><td><div>None</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_filename</td><td style="vertical-align:top;">:</td><td><div>/home/tazjel/zweb2py/applications/belot/sessions/90.148.254.1-7461e3d2-2f06-4751-90c5-18913f996f46</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_hash</td><td style="vertical-align:top;">:</td><td><div>c0762cbf4baf7f9af97c051e7fcb8083</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id</td><td style="vertical-align:top;">:</td><td><div>90.148.254.1-7461e3d2-2f06-4751-90c5-18913f996f46</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_id_name</td><td style="vertical-align:top;">:</td><td><div>session_id_belot</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_masterapp</td><td style="vertical-align:top;">:</td><td><div>belot</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_new</td><td style="vertical-align:top;">:</td><td><div>True</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">session_storage_type</td><td style="vertical-align:top;">:</td><td><div>file</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">status</td><td style="vertical-align:top;">:</td><td><div>200</div></td></tr><tr><td style="font-weight:bold;vertical-align:top;">view</td><td style="vertical-align:top;">:</td><td><div>appadmin/hooks.html</div></td></tr></table></div>'
+tRp111
+sS'locals'
+p112
+(dp113
+S'Service'
+p114
+S"<class 'gluon.tools.Service'>"
+p115
+sS'OBJECT'
+p116
+S"<class 'gluon.html.OBJECT'>"
+p117
+sS'SQLDB'
+p118
+S"<class 'pydal.base.DAL'>"
+p119
+sg104
+S'<Storage {}>'
+p120
+sS'LINK'
+p121
+S"<class 'gluon.html.LINK'>"
+p122
+sS'BR'
+p123
+S"<class 'gluon.html.BR'>"
+p124
+sS'local_import'
+p125
+S'<function <lambda>>'
+p126
+sS'OPTGROUP'
+p127
+S"<class 'gluon.html.OPTGROUP'>"
+p128
+sS'LI'
+p129
+S"<class 'gluon.html.LI'>"
+p130
+sS'PRE'
+p131
+S"<class 'gluon.html.PRE'>"
+p132
+sS'IS_INT_IN_RANGE'
+p133
+S"<class 'gluon.validators.IS_INT_IN_RANGE'>"
+p134
+sS'IS_LOWER'
+p135
+S"<class 'gluon.validators.IS_LOWER'>"
+p136
+sS'IS_STRONG'
+p137
+S"<class 'gluon.validators.IS_STRONG'>"
+p138
+sS'cache'
+p139
+S'<gluon.cache.Cache object>'
+p140
+sS'IS_IN_DB'
+p141
+S"<class 'gluon.validators.IS_IN_DB'>"
+p142
+sS'TAG'
+p143
+S'<gluon.html.__TAG__ object>'
+p144
+sS'SQLField'
+p145
+S"<class 'pydal.objects.Field'>"
+p146
+sS'mail'
+p147
+S'<gluon.tools.Mail object>'
+p148
+sS'BODY'
+p149
+S"<class 'gluon.html.BODY'>"
+p150
+sS'IS_DATE_IN_RANGE'
+p151
+S"<class 'gluon.validators.IS_DATE_IN_RANGE'>"
+p152
+sS'random'
+p153
+S"<module 'random' from '/usr/lib/python2.7/random.pyc'>"
+p154
+sS'TH'
+p155
+S"<class 'gluon.html.TH'>"
+p156
+sS'URL'
+p157
+S'<function URL>'
+p158
+sS'__file__'
+p159
+S"'/home/tazjel/zweb2py/applications/belot/models/db.py'"
+p160
+sS'db'
+p161
+S'<DAL uri="sqlite://storage.sqlite">'
+p162
+sS'auth'
+p163
+S'<gluon.tools.Auth object>'
+p164
+sS'P'
+S"<class 'gluon.html.P'>"
+p165
+sS'TFOOT'
+p166
+S"<class 'gluon.html.TFOOT'>"
+p167
+sS'value_classic'
+p168
+S'[11, 10, 4, 3, 2, 0, 0, 0]'
+p169
+sS'XHTML'
+p170
+S"<class 'gluon.html.XHTML'>"
+p171
+sS'ON'
+p172
+S'True'
+p173
+sS'OL'
+p174
+S"<class 'gluon.html.OL'>"
+p175
+sS'TEXTAREA'
+p176
+S"<class 'gluon.html.TEXTAREA'>"
+p177
+sS'Deck'
+p178
+S'<class applications.belot.modules.deck.Deck>'
+p179
+sS'MENU'
+p180
+S"<class 'gluon.html.MENU'>"
+p181
+sS'IS_LIST_OF'
+p182
+S"<class 'gluon.validators.IS_LIST_OF'>"
+p183
+sS'LOAD'
+p184
+S'<function LOAD>'
+p185
+sS'CODE'
+p186
+S"<class 'gluon.html.CODE'>"
+p187
+sS'HTTP'
+p188
+S"<class 'gluon.http.HTTP'>"
+p189
+sS'HR'
+p190
+S"<class 'gluon.html.HR'>"
+p191
+sS'IS_DATETIME'
+p192
+S"<class 'gluon.validators.IS_DATETIME'>"
+p193
+sS'HEAD'
+p194
+S"<class 'gluon.html.HEAD'>"
+p195
+sS'LABEL'
+p196
+S"<class 'gluon.html.LABEL'>"
+p197
+sS'CLEANUP'
+p198
+S"<class 'gluon.validators.CLEANUP'>"
+p199
+sS'plugins'
+p200
+S'<gluon.tools.PluginManager object>'
+p201
+sS'SELECT'
+p202
+S"<class 'gluon.html.SELECT'>"
+p203
+sS'use_janrain'
+p204
+S'<function use_janrain>'
+p205
+sS'CENTER'
+p206
+S"<class 'gluon.html.CENTER'>"
+p207
+sS'Auth'
+p208
+S"<class 'gluon.tools.Auth'>"
+p209
+sS'current'
+p210
+S'<thread._local object>'
+p211
+sS'__builtins__'
+p212
+S"{'ArithmeticError': <type 'exceptions.ArithmeticError'>, 'AssertionError': <type 'exceptions.AssertionError'>, 'AttributeError': <type 'exceptions.AttributeError'>, 'BaseException': <type 'exceptions.BaseException'>, 'BufferError': <type 'exceptions.BufferError'>, 'BytesWarning': <type 'exceptions.BytesWarning'>, 'DeprecationWarning': <type 'exceptions.DeprecationWarning'>, 'EOFError': <type 'exceptions.EOFError'>, 'Ellipsis': Ellipsis, 'EnvironmentError': <type 'exceptions.EnvironmentError'>, ...}"
+p213
+sS'Game'
+p214
+S'<class __restricted__.Game>'
+p215
+sS'HTML'
+p216
+S"<class 'gluon.html.HTML'>"
+p217
+sS'SQLFORM'
+p218
+S"<class 'gluon.sqlhtml.SQLFORM'>"
+p219
+sS'EM'
+p220
+S"<class 'gluon.html.EM'>"
+p221
+sS'redirect'
+p222
+S'<function redirect>'
+p223
+sS'FIELDSET'
+p224
+S"<class 'gluon.html.FIELDSET'>"
+p225
+sS'IS_EQUAL_TO'
+p226
+S"<class 'gluon.validators.IS_EQUAL_TO'>"
+p227
+sS'embed64'
+p228
+S'<function embed64>'
+p229
+sS'value_trump'
+p230
+S'[20, 14, 11, 10, 4, 3, 0, 0]'
+p231
+sS'__name__'
+p232
+S"'__restricted__'"
+p233
+sS'EMBED'
+p234
+S"<class 'gluon.html.EMBED'>"
+p235
+sS'FORM'
+p236
+S"<class 'gluon.html.FORM'>"
+p237
+sS'H6'
+p238
+S"<class 'gluon.html.H6'>"
+p239
+sS'H2'
+p240
+S"<class 'gluon.html.H2'>"
+p241
+sS'H3'
+p242
+S"<class 'gluon.html.H3'>"
+p243
+sS'BUTTON'
+p244
+S"<class 'gluon.html.BUTTON'>"
+p245
+sS'H1'
+p246
+S"<class 'gluon.html.H1'>"
+p247
+sS'order_classic'
+p248
+S'[11, 10, 14, 13, 12, 9, 8, 7]'
+p249
+sS'H4'
+p250
+S"<class 'gluon.html.H4'>"
+p251
+sS'H5'
+p252
+S"<class 'gluon.html.H5'>"
+p253
+sS'UL'
+p254
+S"<class 'gluon.html.UL'>"
+p255
+sS'IS_UPPER'
+p256
+S"<class 'gluon.validators.IS_UPPER'>"
+p257
+sS'xmlescape'
+p258
+S'<function xmlescape>'
+p259
+sS'TT'
+p260
+S"<class 'gluon.html.TT'>"
+p261
+sS'IS_TIME'
+p262
+S"<class 'gluon.validators.IS_TIME'>"
+p263
+sS'OPTION'
+p264
+S"<class 'gluon.html.OPTION'>"
+p265
+sS'TITLE'
+p266
+S"<class 'gluon.html.TITLE'>"
+p267
+sS'CRYPT'
+p268
+S"<class 'gluon.validators.CRYPT'>"
+p269
+sS'IS_EMPTY_OR'
+p270
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p271
+sS'MARKMIN'
+p272
+S"<class 'gluon.html.MARKMIN'>"
+p273
+sS'INPUT'
+p274
+S"<class 'gluon.html.INPUT'>"
+p275
+sS'STRONG'
+p276
+S"<class 'gluon.html.STRONG'>"
+p277
+sS'COL'
+p278
+S"<class 'gluon.html.COL'>"
+p279
+sS'service'
+p280
+S'<gluon.tools.Service object>'
+p281
+sS'SCRIPT'
+p282
+S"<class 'gluon.html.SCRIPT'>"
+p283
+sg110
+S"<Storage {'body': <cStringIO.StringO object at 0... 0x7f5575b70140>, 'view': 'appadmin/hooks.html'}>"
+p284
+sS'TABLE'
+p285
+S"<class 'gluon.html.TABLE'>"
+p286
+sS'IS_IPV4'
+p287
+S"<class 'gluon.validators.IS_IPV4'>"
+p288
+sS'IS_LENGTH'
+p289
+S"<class 'gluon.validators.IS_LENGTH'>"
+p290
+sS'IS_IPV6'
+p291
+S"<class 'gluon.validators.IS_IPV6'>"
+p292
+sS'XML'
+p293
+S"<class 'gluon.html.XML'>"
+p294
+sS'B'
+S"<class 'gluon.html.B'>"
+p295
+sS'IMG'
+p296
+S"<class 'gluon.html.IMG'>"
+p297
+sS'SQLTABLE'
+p298
+S"<class 'gluon.sqlhtml.SQLTABLE'>"
+p299
+sS'IS_MATCH'
+p300
+S"<class 'gluon.validators.IS_MATCH'>"
+p301
+sS'IS_ALPHANUMERIC'
+p302
+S"<class 'gluon.validators.IS_ALPHANUMERIC'>"
+p303
+sS'order_trump'
+p304
+S'[12, 9, 11, 10, 14, 13, 8, 7]'
+p305
+sS'SPAN'
+p306
+S"<class 'gluon.html.SPAN'>"
+p307
+sS'IS_JSON'
+p308
+S"<class 'gluon.validators.IS_JSON'>"
+p309
+sS'IS_IPADDRESS'
+p310
+S"<class 'gluon.validators.IS_IPADDRESS'>"
+p311
+sS'IS_SLUG'
+p312
+S"<class 'gluon.validators.IS_SLUG'>"
+p313
+sS'BEAUTIFY'
+p314
+S"<class 'gluon.html.BEAUTIFY'>"
+p315
+sS'META'
+p316
+S"<class 'gluon.html.META'>"
+p317
+sS'IS_DATE'
+p318
+S"<class 'gluon.validators.IS_DATE'>"
+p319
+sS'IS_EMAIL'
+p320
+S"<class 'gluon.validators.IS_EMAIL'>"
+p321
+sS'IS_NOT_EMPTY'
+p322
+S"<class 'gluon.validators.IS_NOT_EMPTY'>"
+p323
+sS'IS_FLOAT_IN_RANGE'
+p324
+S"<class 'gluon.validators.IS_FLOAT_IN_RANGE'>"
+p325
+sS'TBODY'
+p326
+S"<class 'gluon.html.TBODY'>"
+p327
+sS'CAT'
+p328
+S"<class 'gluon.html.CAT'>"
+p329
+sS'Field'
+p330
+S"<class 'pydal.objects.Field'>"
+p331
+sS'IS_LIST_OF_EMAILS'
+p332
+S"<class 'gluon.validators.IS_LIST_OF_EMAILS'>"
+p333
+sS'DIV'
+p334
+S"<class 'gluon.html.DIV'>"
+p335
+sS'LEGEND'
+p336
+S"<class 'gluon.html.LEGEND'>"
+p337
+sS'COLGROUP'
+p338
+S"<class 'gluon.html.COLGROUP'>"
+p339
+sS'DAL'
+p340
+S"<class 'pydal.base.DAL'>"
+p341
+sS'ASSIGNJS'
+p342
+S'<function ASSIGNJS>'
+p343
+sS'TR'
+p344
+S"<class 'gluon.html.TR'>"
+p345
+sS'__package__'
+p346
+S'None'
+p347
+sS'IFRAME'
+p348
+S"<class 'gluon.html.IFRAME'>"
+p349
+sS'TD'
+p350
+S"<class 'gluon.html.TD'>"
+p351
+sS'PluginManager'
+p352
+S"<class 'gluon.tools.PluginManager'>"
+p353
+sS'IS_URL'
+p354
+S"<class 'gluon.validators.IS_URL'>"
+p355
+sS'A'
+S"<class 'gluon.html.A'>"
+p356
+sS'STYLE'
+p357
+S"<class 'gluon.html.STYLE'>"
+p358
+sS'IS_DATETIME_IN_RANGE'
+p359
+S"<class 'gluon.validators.IS_DATETIME_IN_RANGE'>"
+p360
+sS'IS_IMAGE'
+p361
+S"<class 'gluon.validators.IS_IMAGE'>"
+p362
+sS'I'
+S"<class 'gluon.html.I'>"
+p363
+sS'IS_NOT_IN_DB'
+p364
+S"<class 'gluon.validators.IS_NOT_IN_DB'>"
+p365
+sS'Order'
+p366
+S'<class applications.belot.modules.order.Order>'
+p367
+sS'THEAD'
+p368
+S"<class 'gluon.html.THEAD'>"
+p369
+sS'ANY_OF'
+p370
+S"<class 'gluon.validators.ANY_OF'>"
+p371
+sS'IS_NULL_OR'
+p372
+S"<class 'gluon.validators.IS_EMPTY_OR'>"
+p373
+sg56
+S"<Storage {'_vars': None, 'function': 'hooks', 'c...er': '/home/tazjel/zweb2py/applications/belot/'}>"
+p374
+sS'IS_EXPR'
+p375
+S"<class 'gluon.validators.IS_EXPR'>"
+p376
+sS'IS_IN_SET'
+p377
+S"<class 'gluon.validators.IS_IN_SET'>"
+p378
+sS'IS_UPLOAD_FILENAME'
+p379
+S"<class 'gluon.validators.IS_UPLOAD_FILENAME'>"
+p380
+sS'IS_DECIMAL_IN_RANGE'
+p381
+S"<class 'gluon.validators.IS_DECIMAL_IN_RANGE'>"
+p382
+sS'order'
+p383
+S'<applications.belot.modules.order.Order instance>'
+p384
+sS'T'
+S'<gluon.languages.translator object>'
+p385
+sssS'traceback'
+p386
+S'Traceback (most recent call last):\n  File "/home/tazjel/zweb2py/gluon/restricted.py", line 227, in restricted\n    exec ccode in environment\n  File "/home/tazjel/zweb2py/applications/belot/models/db.py", line 235, in <module>\n    cards_list = [Card(c[0], c[1]) for c in itertools.product(range(7, 15), [\'Heart\', \'Diamond\', \'Spade\', \'Club\'])]\nNameError: name \'itertools\' is not defined\n'
+p387
+s.

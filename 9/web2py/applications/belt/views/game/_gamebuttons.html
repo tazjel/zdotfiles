@@ -1,0 +1,56 @@
+{{if any(btn.values()):}}
+
+{{if btn['join']:}}<button id="joingame" class="btn btn-default">Join Game</button>{{pass}}
+{{if btn['leave']:}}<button id="leavegame" class="btn btn-default">Leave Game</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">Start Game</button>{{pass}}
+{{if btn['delete']:}}<button id="deletegame" class="btn btn-default">Delete Game</button>{{pass}}
+{{if btn['edit']:}}<button id="" class="btn btn-default">Edit Game</button>{{pass}}
+
+<hr>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#joingame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","joingame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#leavegame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","leavegame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#startgame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","startgame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#deletegame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","deletegame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:function () {
+                    window.location.href = "{{=URL("game","current")}}"
+                }
+            })
+        });
+    });
+</script>
+{{pass}}

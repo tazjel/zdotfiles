@@ -1,0 +1,86 @@
+{{if any(btn.values()):}}
+
+{{if btn['join']:}}<button id="joingame" class="btn btn-default">صن</button>{{pass}}
+{{if btn['leave']:}}<button id="leavegame" class="btn btn-default">حكم</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">بس</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">ولا</button>{{pass}}
+
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">صن</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">حكم</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">حكم</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">المشاريع</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">قيدها</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">سوا</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">سرا</button>{{pass}}
+
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">50</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">100</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">400</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">بلوت</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">تأكيد حكم</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">يقلب صن</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">دبل</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">ثري</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">فور/button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">الصوت</button>{{pass}}
+
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">دردشة</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">مشاركة</button>{{pass}}
+{{if btn['start']:}}<button id="startgame" class="btn btn-default">المزيد</button>{{pass}}
+
+
+
+
+
+
+{{if btn['delete']:}}<button id="deletegame" class="btn btn-default">Delete Game</button>{{pass}}
+ 
+
+<hr>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#joingame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","joingame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#leavegame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","leavegame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#startgame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","startgame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#deletegame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","deletegame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:function () {
+                    window.location.href = "{{=URL("game","current")}}"
+                }
+            })
+        });
+    });
+</script>
+{{pass}}

@@ -77,10 +77,10 @@ function doClickSave() {
       t.attr('disabled', '');
 	  var flash = xhr.getResponseHeader('web2py-component-flash');
       if(flash) {
-        $('.flash').html(decodeURIComponent(flash))
+        $('.w2p_flash').html(decodeURIComponent(flash))
           .append('<a href="#" class="close">&times;</a>')
           .slideDown();
-      } else $('.flash').hide();
+      } else $('.w2p_flash').hide();
       try {
         if(json.error) {
           window.location.href = json.redirect;
@@ -158,10 +158,10 @@ function doToggleBreakpoint(filename, url, sel) {
       // show flash message (if any)
       var flash = xhr.getResponseHeader('web2py-component-flash');
       if(flash) {
-        $('.flash').html(decodeURIComponent(flash))
+        $('.w2p_flash').html(decodeURIComponent(flash))
           .append('<a href="#" class="close">&times;</a>')
           .slideDown();
-      } else $('.flash').hide();
+      } else $('.w2p_flash').hide();
       try {
         if(json.error) {
           window.location.href = json.redirect;
@@ -249,14 +249,7 @@ function keepalive(url) {
 }
 
 function load_file(url, lineno) {
-  $.ajax({
-    type: "GET",
-    contentType: 'application/json',
-    cache: false,
-    dataType: 'json',
-    url: url,
-    timeout: 1000,
-    success: function (json) {
+  $.getJSON(url, function (json) {
       if(typeof (json['plain_html']) !== undefined) {
         if($('#' + json['id']).length === 0 || json['force'] === true) {
           // Create a tab and put the code in it
@@ -271,11 +264,10 @@ function load_file(url, lineno) {
         }
         $("a[href='#" + json['id'] + "']").trigger('click', lineno);
       }
-    },
-    error: function (x) {
+  }).fail(function() {
       on_error();
-    }
   });
+  return false;
 }
 
 function set_font(editor, incr) {

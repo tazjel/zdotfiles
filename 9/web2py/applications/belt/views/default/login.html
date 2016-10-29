@@ -1,0 +1,33 @@
+{{extend 'default/userlayout.html'}}
+
+<h3>Log In</h3>
+{{if form.errors:}}
+    Your submitted form contains the following errors:
+    <ul>
+        {{for fieldname in form.errors:}}
+            <li>{{=fieldname}} error: {{=form.errors[fieldname]}}</li>
+        {{pass}}
+    </ul>
+    {{form.errors.clear()}}
+{{pass}}
+{{=form.custom.begin}}
+    <div class="form-group">
+        <input type="text" class="form-control" name="username" placeholder="Username" autofocus>
+    </div>
+    <div class="form-group">
+        <input type="password" class="form-control" name="password" placeholder="Password">
+    </div>
+    <div class="form-group">
+        <div class="checkbox">
+            <label>
+                <input class="boolean" id="auth_user_remember_me" name="remember_me" type="checkbox" value="on"> Remember Me
+            </label>
+        <a class="pull-right" href="{{=URL("default","forgotpassword")}}">Forgot password?</a>
+        </div>
+    </div>
+    <div class="form-group">
+    </div>
+    <button type="submit" class="btn btn-default">Log In</button>
+{{=form.custom.end}}
+
+

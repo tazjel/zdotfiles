@@ -1,0 +1,26 @@
+<div class="panel panel-target square">
+    <div class="panel-body">
+        {{if game.status_id.name == 'started' and player.status_id.name == 'alive':}}<h3>Your current target is {{=player.target_id.user_id.name}}</h3>{{pass}}
+        {{if player.status_id.name == 'dead':}}<h3>You are dead! Too bad :(</h3>{{pass}}
+        {{if game.status_id.name == 'finished' and player.status_id.name == 'alive':}}<h3>You are the winner!</h3>{{pass}}
+        {{if game.status_id.name == 'started' and player.status_id.name == 'alive':}}
+            <button id="dead" class="btn btn-default">Actually, I'm dead</button>
+        {{pass}}
+    </div>
+</div>
+
+<hr>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#dead").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","killplayer.json")}}",
+                data:{id:{{=player.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+    });
+</script>

@@ -1,0 +1,31 @@
+<nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+    <ul class="nav navbar-nav">
+        {{if auth.user:}}
+            <li><a href="{{=URL('game','current')}}">My current games</a></li>
+            <li><a href="{{=URL('findgame','index')}}">Find a game</a></li>
+            <li><a href="{{=URL('creategame','index')}}">Create a game</a></li>
+            <li class="visible-xs"><a href="{{=URL('default','profile')}}">{{=auth.user.name}}'s profile</a></li>
+            <li class="visible-xs"><a href="{{=URL('default','changepassword')}}">Change password</a></li>
+            <li class="visible-xs"><a href="{{=URL('default','user', args = ['logout'])}}">Log out</a></li>
+        {{else:}}
+            <li class="visible-xs"><a href="{{=URL('default','login')}}">Log in</a></li>
+            <li class="visible-xs"><a href="{{=URL('default','register')}}">Register</a></li>
+        {{pass}}        
+    </ul>
+    <ul class="nav navbar-nav navbar-right hidden-xs">
+        {{if auth.user:}}
+            <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true">{{=auth.user.name}} <span class="caret"></span></a>
+                <ul class="dropdown-menu" role="menu">
+                    <li><a href="{{=URL('default','profile')}}">Profile</a></li>
+                    <li><a href="{{=URL('default','changepassword')}}">Change password</a></li>
+                    <li class="divider"></li>
+                    <li><a href="{{=URL('default','user', args = ['logout'])}}">Log out</a></li>
+                </ul>
+            </li>
+        {{else:}}
+            <li><a href="{{=URL('default','login')}}">Log in</a></li>
+            <li><a href="{{=URL('default','register')}}">Register</a></li>
+        {{pass}}
+    </ul>
+</nav>

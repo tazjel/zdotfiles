@@ -1,0 +1,53 @@
+{{if any(btn.values()):}}
+{{if btn['sun']:}}<button id="sun" class="btn btn-default">صن</button>{{pass}}
+{{if btn['trump']:}}<button id="trump" class="btn btn-default">حكم</button>{{pass}}
+{{if btn['pass']:}}<button id="pass" class="btn btn-default">بس</button>{{pass}}
+<!-- {{if btn['start']:}}<button id="startgame" class="btn btn-default">ولا</button>{{pass}} -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $("#sun").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","sun.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#leavegame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","leavegame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#startgame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","startgame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:location.reload(true)
+            })
+        });
+        
+        $("#deletegame").on("click", function () {
+            $.ajax({
+                type:"POST",
+                url:"{{=URL("game","deletegame.json")}}",
+                data:{id:{{=game.id}}},
+                async:false,
+                success:function () {
+                    window.location.href = "{{=URL("game","current")}}"
+                }
+            })
+        });
+    });
+</script>
+{{pass}}

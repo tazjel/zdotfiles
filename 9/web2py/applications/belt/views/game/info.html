@@ -1,0 +1,116 @@
+{{extend 'contentlayout.html'}}
+
+      <script src="{{=URL('static','js/belot.js')}}"></script>
+
+      <script src="{{=URL('static','js/jq.js')}}"></script>
+
+<link rel="stylesheet" href="{{=URL('static','css/belt.css')}}"/>
+
+{{CARDS = {(7, 'C'): '7spatiq.png', (7, 'D'): '7karo.png',
+         (7, 'H'): '7kupa.png', (7, 'S'): '7pika.png',
+         (8, 'C'): '8spatiq.png', (8, 'D'): '8karo.png',
+         (8, 'H'): '8kupa.png', (8, 'S'): '8pika.png',
+         (9, 'C'): '9spatiq.png', (9, 'D'): '9karo.png',
+         (9, 'H'): '9kupa.png', (9, 'S'): '9pika.png',
+         (10, 'C'): '10spatiq.png', (10, 'D'): '10karo.png',
+         (10, 'H'): '10kupa.png', (10, 'S'): '10pika.png',
+         (11, 'C'): '11spatiq.png', (11, 'D'): '11karo.png',
+         (11, 'H'): '11kupa.png', (11, 'S'): '11pika.png',
+         (12, 'C'): '12spatiq.png', (12, 'D'): '12karo.png',
+         (12, 'H'): '12kupa.png', (12, 'S'): '12pika.png',
+         (13, 'C'): '13spatiq.png', (13, 'D'): '13karo.png',
+         (13, 'H'): '13kupa.png', (13, 'S'): '13pika.png',
+         (14, 'C'): '14spatiq.png', (14, 'D'): '14karo.png',
+         (14, 'H'): '14kupa.png', (14, 'S'): '14pika.png'}
+}}
+
+
+
+{{from deck import Deck}}
+{{from players.playerRandomPlayableCards import PlayerRandomPlayableCards}}
+{{from players.playerDummy import PlayerDummy}}
+{{from order import Order}}
+{{from game import Game}}
+
+{{deck = Deck()}}
+{{order = Order()}}
+
+{{P1_hand = []}}
+
+{{P0_hand = []}}
+
+{{cards = [(c[0], c[1]) for c in itertools.product(range(7, 15), ['H', 'D', 'S', 'C'])]}}
+{{random.shuffle(cards)}}
+
+{{P0_hand.append(cards[:5])}}
+{{P1_hand.append(cards[5:10])}}
+
+{{player_1 = PlayerRandomPlayableCards("player_1", 1, 1)}}
+{{player_2 = PlayerRandomPlayableCards("player_2", 2, 2)}}
+{{player_3 = PlayerRandomPlayableCards("player_3", 3, 1)}}
+{{player_4 = PlayerRandomPlayableCards("player_4", 4, 2)}}
+
+{{end, v1, v2, con = Game(player_1, player_2, player_3, player_4, deck).display_loot()}}
+
+<style> img.bottom { vertical-align: text-bottom; } </style>
+
+
+{{for ll in P0_hand:}}
+
+{{for hh in ll:}}
+    str = """ <img src={{=URL('static','images',args='images/%names')}} alt="golem"class=bottom> """
+
+<!-- {{pass}} -->
+
+<!-- {{pass}} -->
+
+{{from gluon.contrib.markdown import markdown2}}
+
+{{=LOAD("game","_playerinfo", args=[game.id])}}
+
+{{=LOAD("game","_gamebuttons", args=[game.id])}}
+<h1>{{=game.name}}</h1>
+<h4>{{=game.status_id.description}}</h4>
+<hr>
+{{=XML(markdown2.markdown(game.description))}}
+<h4>Players</h4>
+{{for player in players:}}
+    <span class="{{=player.role_id.name}} {{=player.status_id.name}}">{{=player.user_id.name}}</span><br>
+{{pass}}
+
+{{=LOAD("game","_deal_btn", args=[game.id])}}
+
+{{=LOAD("game","_playerinfo", args=[game.id])}}
+
+<div>
+	{{=v1}}
+
+</div> 
+<div>
+	{{=v2}}
+
+</div> 
+</br>
+</br>
+لنا 
+
+{{=v1}}
+</br>
+</br>
+لهم {{=v2}}
+
+</br>
+</br>
+
+{{=end}}
+
+
+</br>
+</br>
+النتيجة
+{{=con}}
+
+{{for item in cards[:5]:}}
+                        {{=XML(item)}}
+                    {{pass}}
+<!-- {{=LOAD("game","_cards", args=[game.id])}} -->

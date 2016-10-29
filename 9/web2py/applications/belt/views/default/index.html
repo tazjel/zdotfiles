@@ -1,0 +1,41 @@
+{{extend 'layout.html'}}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Edit Players</h3>
+    </div>
+    <table class="table table-striped">
+        <tbody>
+            <tr>
+                <td>James (host)</td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Dead</button>
+                        <button type="button" class="btn btn-default active">Alive</button>
+                    </div>
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default">Host</button>
+                        <button type="button" class="btn btn-default active">Player</button>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td><span class="dead">Rachel</span></td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default active">Dead</button>
+                        <button type="button" class="btn btn-default">Alive</button>
+                    </div>
+                </td>
+                <td>
+                    <div class="btn-group" role="group" aria-label="...">
+                        <button type="button" class="btn btn-default active">Host</button>
+                        <button type="button" class="btn btn-default">Player</button>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
