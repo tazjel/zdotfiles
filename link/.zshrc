@@ -1,1 +1,0 @@
-/home/tazjel/.zsh/zshrc
