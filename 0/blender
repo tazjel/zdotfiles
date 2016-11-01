@@ -1,3 +1,0 @@
-sudo add-apt-repository ppa:irie/blender
-sudo apt-get update
-sudo apt-get install -y blender
