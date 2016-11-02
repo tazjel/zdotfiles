@@ -1,0 +1,757 @@
+" vim: set ft=vim :
+"
+" =============================================================================
+"
+" Modeline and Notes {
+    " File: .vimrc.local
+    " Author:  Ahmed Alghamdi <tazjel@gmail.com>
+    " Last Change: Sun Jan 26 00:06:11 AST 2014
+    " Version: 0.1
+    " WebPage: http://github.com/tazjel/zdotfiles.git
+    " License: BSD
+    "
+    " References : http://github.com/tazjel/zdotfiles.git
+    "
+    " script type: plugin
+" }
+
+" Logo {
+    "   _____       _______        ___ __
+    "  |_   _| ___/|\___  /   (_) / _ |||       __   __(_)_ __ ___
+    "    | |  / _ ||   / /    | || (_)|||    ___\ \ / /| | '_ ` _ \
+    "    | | | (_) | _/ /__  _| || \_  ||__ |___|\ V / | | | | | | |
+    "    |_|  \.__/\|_____/ |___| \__| |___|      \_/  |_|_| |_| |_|
+"}
+
+" TERM=konsole-256color
+set nocompatible        " Must be first line
+
+"set syntax=vim
+""""""""""""""
+
+
+
+set background=dark
+"hi clear
+
+if exists("syntax_on")
+  syntax reset
+endif
+
+if has('autocmd')
+  filetype plugin indent on
+endif
+
+if has('syntax') && !exists('g:syntax_on')
+  syntax enable
+endif
+"
+
+"""""
+"abbreviate w #
+    set fileformats=unix
+" Always show statusline
+    set laststatus=2
+" Use 256 colours (Use this setting only if your terminal supports 256 colours)
+    set t_Co=256
+function! ToggleSyntax()
+    if exists("g:syntax_on")
+        syntax off
+    else
+        syntax enable
+    endif
+endfunction
+
+nmap <silent>  wn :call ToggleSyntax()<CR>
+
+" no backups "
+set nobackup
+set nowritebackup
+
+" <colorscheme>
+
+map <C-S-F10> :source ~/zdotfiles/2/colors/jellybeans.vim
+map <S-F10> :colorscheme random
+" Vim colorscheme
+set background=dark
+"colorscheme murphy
+
+"source ~/zdotfiles/2/colors/aldmeris.vim
+"  Background
+function! ToggleBG()
+    let s:tbg = &background
+    " Inversion
+    if s:tbg == "dark"
+        set background=light
+    else
+        set background=dark
+    endif
+endfunction
+noremap <leader>bg :call ToggleBG()<CR>
+
+filetype plugin indent on   " Automatically detect file types.
+
+" syntax highlighting and colors
+syntax on
+set mouse=a                 " Automatically enable mouse usage
+set mousehide               " Hide the mouse cursor while typing
+scriptencoding utf-8
+" START Load vim-airline plugin "
+set t_Co=256
+
+    set shortmess+=filmnrxoOtT          " Abbrev. of messages (avoids 'hit enter')
+    set viewoptions=folds,options,cursor,unix,slash " Better Unix / Windows compatibility
+    set virtualedit=onemore             " Allow for cursor beyond last character
+    set history=1000                    " Store a ton of history (default is 20)
+    set hidden                          " Allow buffer switching without saving
+
+    " Instead of reverting the cursor to the last position in the buffer, we
+    " set it to the first line when editing a git commit message
+    au FileType gitcommit au! BufEnter COMMIT_EDITMSG call setpos('.', [0, 1, 1, 0])
+
+    " Setting up the directories {
+        set backup                  " Backups are nice ...
+        if has('persistent_undo')
+            set undofile                " So is persistent undo ...
+            set undolevels=1000         " Maximum number of changes that can be undone
+            set undoreload=10000        " Maximum number lines to save for undo on a buffer reload
+        endif
+
+
+    highlight clear SignColumn      " SignColumn should match background
+    highlight clear LineNr          " Current line number row will have same background color in relative mode
+    "highlight clear CursorLineNr    " Remove highlight color from current line number
+
+    if has('cmdline_info')
+        set ruler                   " Show the ruler
+        set rulerformat=%30(%=\:b%n%y%m%r%w\ %l,%c%V\ %P%) " A ruler on steroids
+        set showcmd                 " Show partial commands in status line and
+                                    " Selected characters/lines in visual mode
+    endif
+
+    if has('statusline')
+        set laststatus=2
+
+        " Broken down into easily includeable segments
+        set statusline=%<%f\                     " Filename
+        set statusline+=%w%h%m%r                 " Options
+        set statusline+=\ [%{&ff}/%Y]            " Filetype
+        set statusline+=\ [%{getcwd()}]          " Current dir
+        set statusline+=%=%-14.(%l,%c%V%)\ %p%%  " Right aligned file nav info
+    endif
+
+    set backspace=indent,eol,start  " Backspace for dummies
+    set linespace=0                 " No extra spaces between rows
+    set number                      " Line numbers on
+    set showmatch                   " Show matching brackets/parenthesis
+    set incsearch                   " Find as you type search
+    set hlsearch                    " Highlight search terms
+    set winminheight=0              " Windows can be 0 line high
+    set ignorecase                  " Case insensitive search
+    set smartcase                   " Case sensitive when uc present
+    set wildmenu                    " Show list instead of just completing
+    set wildmode=list:longest,full  " Command <Tab> completion, list matches, then longest common part, then all.
+    set whichwrap=b,s,h,l,<,>,[,]   " Backspace and cursor keys wrap too
+    set scrolljump=5                " Lines to scroll when cursor leaves screen
+    set scrolloff=3                 " Minimum lines to keep above and below cursor
+    set foldenable                  " Auto fold code
+    set list
+    set listchars=tab:›\ ,trail:•,extends:#,nbsp:. " Highlight problematic whitespace
+
+
+
+
+"""""""""""""""""""""""""""""""
+
+    set nowrap                      " Do not wrap long lines
+    set autoindent                  " Indent at the same level of the previous line
+    set shiftwidth=4                " Use indents of 4 spaces
+    set expandtab                   " Tabs are spaces, not tabs
+    set tabstop=4                   " An indentation every four columns
+    set softtabstop=4               " Let backspace delete indent
+    set nojoinspaces                " Prevents inserting two spaces after punctuation on a join (J)
+    set splitright                  " Puts new vsplit windows to the right of the current
+    set splitbelow                  " Puts new split windows to the bottom of the current
+    "set matchpairs+=<:>             " Match, to be used with %
+    set pastetoggle=<F12>           " pastetoggle (sane indentation on pastes)
+
+
+    autocmd FileType c,cpp,java,go,php,javascript,puppet,python,rust,twig,xml,yml,perl,sql autocmd BufWritePre <buffer> if !exists('g:spf13_keep_trailing_whitespace') | call StripTrailingWhitespace() | endif
+    "autocmd FileType go autocmd BufWritePre <buffer> Fmt
+    autocmd BufNewFile,BufRead *.html.twig set filetype=html.twig
+    autocmd FileType haskell,puppet,ruby,yml setlocal expandtab shiftwidth=2 softtabstop=2
+    " preceding line best in a plugin but here for now.
+
+    autocmd BufNewFile,BufRead *.coffee set filetype=coffee
+
+
+    "if exists('g:spf13_clear_search_highlight')
+        "nmap <silent> <leader>/ :nohlsearch<CR>
+    "else
+        "nmap <silent> <leader>/ :set invhlsearch<CR>
+    "endif
+
+"""""""""""""""""""""""""""""""""""
+    cmap cwd lcd %:p:h
+    cmap cd. lcd %:p:h
+
+    " Visual shifting (does not exit Visual mode)
+    vnoremap < <gv
+    vnoremap > >gv
+
+    " Allow using the repeat operator with a visual selection (!)
+    " http://stackoverflow.com/a/8064607/127816
+    vnoremap . :normal .<CR>
+
+    " For when you forget to sudo.. Really Write the file.
+    cmap w!! w !sudo tee % >/dev/null
+
+    " Some helpers to edit mode
+    " http://vimcasts.org/e/14
+    cnoremap %% <C-R>=fnameescape(expand('%:h')).'/'<cr>
+    map <leader>ew :e %%
+    map <leader>es :sp %%
+    map <leader>ev :vsp %%
+    map <leader>et :tabe %%
+
+    " Adjust viewports to the same size
+    map <Leader>= <C-w>=
+
+    " Map <Leader>ff to display all lines with keyword under cursor
+    " and ask which one to jump to
+    nmap <Leader>ff [I:let nr = input("Which one: ")<Bar>exe "normal " . nr ."[\t"<CR>
+
+    " Easier horizontal scrolling
+    map zl zL
+    map zh zH
+
+    " Easier formatting
+    nnoremap <silent> <leader>q gwip
+
+    " FIXME: Revert this f70be548
+    " fullscreen mode for GVIM and Terminal, need 'wmctrl' in you PATH
+    map <silent> <F11> :call system("wmctrl -ir " . v:windowid . " -b toggle,fullscreen")<CR>
+
+" }
+
+
+            hi Pmenu  guifg=#000000 guibg=#F8F8F8 ctermfg=black ctermbg=Lightgray
+            hi PmenuSbar  guifg=#8A95A7 guibg=#F8F8F8 gui=NONE ctermfg=darkcyan ctermbg=lightgray cterm=NONE
+            hi PmenuThumb  guifg=#F8F8F8 guibg=#8A95A7 gui=NONE ctermfg=lightgray ctermbg=darkcyan cterm=NONE
+
+"""""""""""""""""""""""""""""""""""
+" <complete>
+
+"function! LineCompleteFromFile(findstart,base)
+"    if a:findstart
+"        " column to begin searching from (first non-whitespace column):
+"        return match(getline("."),'S')
+"    else
+"        " grep the file and build list of results:
+"        let path+= /home/ahmed/Dropbox/Causes.txt
+"        call SilentFileGrep( a:base, path )
+"        let matches = []
+"        for thismatch in getqflist()
+"            " trim leading whitespace
+"            call add(matches, matchstr(thismatch.text,'S.*'))
+"        endfor
+"        call setqflist([])
+"        return matches
+"    endif
+"endfunction
+
+"set completefunc=LineCompleteFromFile
+
+            " Enable omni completion.
+            autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+            autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+            autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+            autocmd FileType python setlocal omnifunc=pythoncomplete#Complete
+            autocmd FileType xml setlocal omnifunc=xmlcomplete#CompleteTags
+            autocmd FileType ruby setlocal omnifunc=rubycomplete#Complete
+            autocmd FileType haskell setlocal omnifunc=necoghc#omnifunc
+
+"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+"""""""""""""""""""""""""""""""""""
+" required for vim-airline status color
+if !exists('g:airline_symbols')
+let g:airline_symbols = {}
+endif
+
+" vim-airline theme
+let g:airline_theme = 'luna'
+
+" unicode symbols
+let g:airline_left_sep = '»'
+let g:airline_left_sep = '?'
+let g:airline_right_sep = '«'
+let g:airline_right_sep = '?'
+let g:airline_symbols.linenr = '?'
+let g:airline_symbols.linenr = '?'
+let g:airline_symbols.linenr = '¶'
+let g:airline_symbols.branch = '?'
+let g:airline_symbols.paste = ' ρ'
+let g:airline_symbols.paste = 'Þ'
+let g:airline_symbols.paste = '?'
+let g:airline_symbols.whitespace = ' Ξ '
+" END "
+
+" BEGIN Highlight current line "
+set cursorline
+hi CursorLine cterm=NONE ctermbg=lightyellow
+hi CursorColumn cterm=NONE ctermbg=lightyellow
+"nnoremap c :set cursorline! cursorcolumn!
+
+" setup {
+    set nospell
+
+    set t_Co=256
+
+    if has("multi_byte")
+        if &termencoding == ""
+            let &termencoding = &encoding
+        endif
+    endif
+"}
+
+
+" hide buffers, not close them {
+    set hidden
+"}
+
+" lazy file name tab completion {
+    set wildignorecase
+"}
+
+"The Following setup is for tazjel.com {
+    map W :w<CR>
+    map ; :q!<CR>
+    nnoremap <silent> ; :q!<CR>
+"lines Management {
+    nnoremap K i<cr><esc><right>
+
+    nnoremap <CR> :
+    vnoremap <CR> :
+"}
+set encoding=utf-8
+setglobal fileencoding=utf-8
+
+
+
+if has("multi_byte")
+    if &termencoding == ""
+        let &termencoding = &encoding
+    endif
+endif
+
+" case insensitive search
+set ignorecase
+set smartcase
+set infercase
+
+" make backspace behave in a sane manner
+set backspace=indent,eol,start
+
+" searching
+set hlsearch
+set incsearch
+
+" use indents of 4 spaces
+set shiftwidth=2
+
+" tabs are spaces, not tabs
+set expandtab
+
+" an indentation every four columns
+set tabstop=2
+
+
+" let backspace delete indent
+set softtabstop=2
+
+" enable auto indentation
+set autoindent
+
+" remove trailing whitespaces and ^M chars
+autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
+" let mapleader=","
+vnoremap <silent> <leader>y :w !xsel -i -b<CR>
+nnoremap <silent> <leader>y V:w !xsel -i -b<CR>
+nnoremap <silent> <leader>p :silent :r !xsel -o -b<CR>
+
+" show matching brackets/parenthesis
+set showmatch
+
+" set folding
+    setlocal foldmethod=expr
+    setlocal foldexpr=(getline(v:lnum)=~'^$')?-1:((indent(v:lnum)<indent(v:lnum+1))?('>'.indent(v:lnum+1)):indent(v:lnum))
+" disable startup message
+set shortmess+=I
+
+filetype off
+" stop unnecessary rendering
+set lazyredraw
+" show line numbers
+set number
+" no line wrapping
+set nowrap
+
+" don't wrap long lines
+set nowrap
+
+" highlight column
+"set cursorcolumn
+
+hi clear
+
+if exists("syntax_on")
+    syntax reset
+  endif
+  "
+" no folding
+" set foldlevel=99
+" set foldminlines=99
+  " syntatic http://git.io/syntastic.vim
+  " linters: (from aur) nodejs-jshint, nodejs-jsonlint, csslint, checkbashisms
+  let g:syntastic_always_populate_loc_list = 1
+  let g:syntastic_auto_loc_list = 1
+  let g:syntastic_check_on_open = 1
+  let g:syntastic_check_on_wq = 0
+  highlight SyntasticErrorSign ctermfg=red ctermbg=237
+  highlight SyntasticWarningSign ctermfg=yellow ctermbg=237
+  highlight SyntasticStyleErrorSign ctermfg=red ctermbg=237
+  highlight SyntasticStyleWarningSign ctermfg=yellow ctermbg=237
+
+
+
+set foldtext=getline(v:foldstart)
+set fillchars=fold:\ "(there's a space after that \)
+highlight Folded ctermfg=DarkGreen ctermbg=Black
+
+
+
+
+"<space><space>
+nnoremap <space> za
+vnoremap <space> zf
+
+nnoremap <space> za
+vnoremap <space> zf
+nnoremap <Space><CR> :nohlsearch<CR><CR>
+   " source vimrc
+
+
+
+
+" <w>
+
+                    " Buffer navigation
+                            map <Tab> >>
+                            map <s-tab> <<
+                            set splitbelow splitright
+                            map <M-Left> :bprevious<CR>
+                            map <M-Right> :bnext<CR>
+                            "map <S-Up> <C-W>_
+                            "map <M-Up> <C-W>j<C-W>_
+                            "map <M-Down> <C-W>k<C-W>_
+
+                                nnoremap <silent> w1 :vsplit ~/zdotfiles/1/.zsh/al.sh<cr>
+                                nnoremap <silent> w2 :vsplit ~/zdotfiles/2/.vimrc.localw<cr>
+                                "ipython"
+                                    cabbrev wpy vsplit ~/.config/ipython/profile_default/startup/w.ipy
+                                    cabbrev wwpy vsplit ~/.config/ipython/profile_default/startup/ww.ipy
+                                    cabbrev wpy !python %
+                                    cabbrev wak vsplit ~/zdotfiles/6/autokey/data/API/AK/ak_vim.txt
+                                    cabbrev wf !firefox %
+
+                            "abbreviate
+                                abbreviate CAR Conflict Analysis & Resolution
+                                abbreviate w# """"""""""""""""""""""""<CR>
+                                cabbrev ws %s/\s\+$//gc
+                                cabbrev ws_ s/\s/_/gc
+                                abbr #b #!/usr/bin/env bash
+                                abbr #p #!/usr/bin/env python<CR>
+
+                " w
+                                cabbrev h tab h
+                                nmap w<left> :exe "normal \<c-o>"<CR>
+                                nmap w<right> :exec "normal gf"<CR>
+                                nnoremap <silent> ; :q!<CR>
+                                nnoremap ww Y
+                                ":let @a=""\|:let @a=colors_name\|:let @"=@a<CR>\|:echo @"<CR>
+                                "normal"
+                                cabbrev wsh !bash %
+                                imap <C-s> <C-o>:w<CR>
+                                map <C-s> :w<CR>
+
+                                nmap <Space><Left> %
+                                nmap <Space><Right> *
+                                nnoremap <Space><CR> :nohlsearch<CR><CR>
+                                "html substitute "!sed 's/<[^>]*>//g' %
+                                "imap ,,, <esc>bdwa<<esc>pa><cr></<esc>pa><esc>ka
+                                "nnoremap <silent> wF :%s/\(.*\)\(conflict\)\(.*\)/\1\2\31/gc
+                                map W :NeoSnippetEdit -vertical<CR>
+                                vnoremap p <Esc>:let current_reg = @"<CR>gvdi<C-R>=current_reg<CR><Esc>
+
+                            cabbrev wwww <C-r>#
+                            cabbrev www <C-r>%
+                            cabbrev ww <C-r>"<BS>
+                                let @a=@q
+                            let @x="V}y<Esc>:vsplit ~/.vimrc.local.w<CR>ggGp<ESC><C-W><C-W>"
+                                    map <CR> :
+
+nnoremap <leader>w <C-w>v<C-w>l
+
+" Yank/paste to the OS clipboard with ,y and ,p
+nmap <leader>y "+y
+nmap <leader>Y "+yy
+nmap <leader>p "+p
+nmap <leader>P "+P
+                            " Split the Line at Cursor
+                                nnoremap K i<cr><esc><right>
+                                nnoremap <C-Up> m`o<Esc>``
+                                nnoremap <C-Down> m`O<Esc>``
+cabbrev ww <C-r>"<BS>
+nnoremap ww Y
+
+
+            vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
+            nnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
+            vnoremap <silent> WW y<C-W><C-W>Gp<C-W><C-W>
+
+nmap <Space><Right> *
+nmap <Space><Left> %
+
+
+
+
+
+
+
+" <F[1-12]>
+
+nnoremap <silent> <F5> :source ~/.vimrc.local<cr>
+nnoremap <silent> <C-F5> :vsplit ~/.vimrc.local<CR>
+nnoremap <silent> <C-S-F5> :vsplit ~/.vimrc<CR>
+ "substitute
+
+map <F1> ,c<Space>
+map <F7> :%s/\s\+$//e<CR>
+
+map <F8> :%s/<[^>]*>//gi<cr>
+"auto-complete " nice bash-like filename auto-complete
+set listchars=tab:>-,trail:-
+set list
+set wildmode=longest,list,full
+set wildmode=full:list
+set wildmenu
+
+"let g:airline_theme = 'solarized'
+let g:airline_enable_branch = 1
+let g:airline_powerline_fonts = 1
+let g:airline_detect_whitespace = 1
+let g:airline#extensions#hunks#non_zero_only = 1
+let g:airline#extensions#tabline#enabled = 2
+let g:airline#extensions#tabline#fnamemod = ':t'
+let g:airline#extensions#tabline#buffer_min_count = 1
+
+set laststatus=2
+let g:Powerline_symbols = 'fancy'
+
+" A function to save word under cursor to a file
+
+function! SaveWord()
+   normal ywi
+   exe ':!echo '.@".' >> ~/Desktop/word.txt'
+endfunction
+
+map ,p :call SaveWord()
+set nobackup                   " dont create backup files
+set nowritebackup
+set noswapfile
+
+" ,rr: sometimes syntax highlighting fails and put everything as string, this reset it
+"nmap <leader>rr :syntax off<cr>:syntax on<cr>
+nmap W :syntax off<cr>:syntax on<cr>
+"""""""""""
+cab w!! w !sudo tee "%"
+
+
+
+abbr #b #!/bin/bash
+abbr #p #!/usr/bin/env python<CR>
+            \#<CR>
+            \# -*- coding: utf-8 -*-<CR>
+            \<CR>
+            \<CR>
+            \<CR>
+            \import os, sys, re<CR>
+
+
+
+" function to delete duplicate lines
+function! Del()
+    if getline(".") == getline(line(".") - 1)
+      norm dd
+    endif
+endfunction
+
+":g/^/ call Del()
+
+
+"Clean
+"\%[]	A sequence of optionally matched atoms.  This always matches.
+":%s/,/^V^M/g
+"globally replace commas with newlines (yes, I know this
+"looks like it would insert DOS carriage returns, but it only inserts the
+"newlines on Unix)
+":%s/\s*$//
+"strip blanks from end of lines
+":%s/^.\{30}//
+"remove the first 30 characters from each line
+":%s/[ ^I]*$/!d
+"remove trailing whitespace (where ^I
+"is produced by pressing the tab key)
+":%s/.*/\L&/
+"convert the entire file to lowercase.
+":s/.*/\u&/
+"convert the first character of line to uppercase.
+":%s/\&lt;./\u&amp;/g
+"convert the first character of each word to uppercase
+"\&lt; matches the start of a word;
+". therefore matches the first character of a word;
+"\u tells Vi(m) to uppercase the next character in the substitution
+"string;
+"&amp; means substitute whatever was matched on the lhs;
+"%s/\(^.*install\) \(.*$\)/\2/g
+
+                        " source: http://vim.wikia.com/wiki/VimTip102
+                        " L"
+
+set splitbelow splitright
+
+"Fold System
+    nnoremap 8 zMzvzz
+    nnoremap 9 zM
+    nnoremap 0 zR
+
+""""""""""""""""""""""""""""""""""""""""""""""""
+
+"""" """" """"
+map <leader>to :tabnew<cr>
+" map <leader>te :tabedit
+map <leader>tc :tabclose<cr>
+" map <leader>to :tabonly<cr>
+map <leader>tn :tabnext<cr>
+map <leader>tp :tabprevious<cr>
+" map <leader>tf :tabfirst<cr>
+" map <leader>tl :tablast<cr>
+" map <leader>tm :tabmove
+map <C-Left> :tabprevious<cr>
+map <C-Right> :tabnext<cr>
+nmap <C-Left> :tabprevious<cr>
+vmap <C-Left> :tabprevious<cr>
+vmap <C-Right> :tabnext<cr>
+
+" map <C-h> <C-w>h
+" map <C-j> <C-w>j
+" map <C-k> <C-w>k
+" map <C-l> <C-w>l
+
+nmap w<right> :exec "normal gf"<CR>
+nmap w<left> :exe "normal \<c-o>"<CR>
+
+
+" USe the current system list of words as dictionary for completion with
+" C-X C-K  ( :he i_CTRL-X_CTRL-K )
+if filereadable("/usr/share/dict/words")
+    set dictionary+=/usr/share/dict/words
+endif
+
+let g:Powerline_symbols = 'fancy'
+
+if has("multi_byte")
+  if &termencoding == ""
+    let &termencoding = &encoding
+  endif
+  set encoding=utf-8                     " better default than latin1
+  setglobal fileencoding=utf-8           " change default file encoding when writing new files
+  endif
+"""""""""""
+
+
+" ------------------
+" <python>
+" ------------------
+let python_highlight_all = 1
+hi pythonBuiltin        ctermfg=blue    cterm=NONE
+hi pythonSync           ctermfg=red
+
+autocmd FileType python setl autoindent
+autocmd FileType python setl smartindent cinwords=if,elif,else,for,while,try,except,finally,def,class
+autocmd FileType python setl tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType python setl omnifunc=pythoncomplete#Complete
+" PythonSyntax: Highlight everything
+let python_highlight_all=1
+
+" Font
+    "set guifont=Monaco\ for\ Powerline:h11
+        "
+" Airline
+            set noshowmode
+            let g:airline_theme = 'solarized'
+            let g:airline_enable_branch = 1
+            let g:airline_powerline_fonts = 1
+            let g:airline_detect_whitespace = 1
+            let g:airline#extensions#hunks#non_zero_only = 1
+            let g:airline#extensions#tabline#enabled = 2
+            let g:airline#extensions#tabline#fnamemod = ':t'
+            let g:airline#extensions#tabline#buffer_min_count = 1
+
+            let g:syntastic_python_checkers = ['pyflakes']
+
+            " indentLine
+            let g:indentLine_char = '┊'
+            let g:indentLine_color_term = 239
+
+
+" Syntastic
+        let g:syntastic_python_pylint_exe = "pylint2"
+        let g:syntastic_error_symbol = '✘'
+        let g:syntastic_warning_symbol = '⚠'
+        let g:syntastic_style_error_symbol = '⚡'
+        let g:syntastic_style_warning_symbol = '⚡'
+        " PythonMode
+        let g:pymode_lint_checker = 'pylint,pep8,mccabe,pep257'
+        let g:pymode_lint_config = $HOME.'/.pylintrc'
+        let g:pymode_lint_cwindow = 0
+        " Custom symbols will be supported in the future (I hope).
+        " See: https://github.com/klen/python-mode/pull/295
+        let g:pymode_lint_todo_symbol = '⚠'
+        let g:pymode_lint_comment_symbol = '⑊'
+        let g:pymode_lint_visual_symbol = '⑆'
+        let g:pymode_lint_error_symbol = '✘'
+        let g:pymode_lint_info_symbol = '●'
+        let g:pymode_lint_pyflakes_symbol = '●'
+
+autocmd FileType python setl omnifunc=pythoncomplete#Complete
+"#####################################################
+"#
+"####################################################
+let g:neocomplete#enable_at_startup                 = 1
+let g:neocomplete#sources#syntax#min_keyword_length = 3
+let g:neocomplete#min_keyword_length                = 0
+let g:neocomplete#enable_auto_delimiter             = 1
+let g:neosnippet#enable_snipmate_compatibility      = 1
+let g:neocomplete#enable_insert_char_pre            = 1
+let g:neocomplete#enable_smart_case                 = 1
+let g:neocomplete#enable_fuzzy_completion           = 1
+let g:neocomplete#enable_auto_select                = 0
+let g:neocomplete#enable_refresh_always             = 0
+
