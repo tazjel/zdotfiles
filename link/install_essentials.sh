@@ -6,6 +6,10 @@ git_branch='master'
 debug_mode='0'
 fork_maintainer='0'
 
+# x86_64 or i686
+LINUX_ARCH="$(lscpu | grep 'Architecture' | awk -F\: '{ print $2 }' | tr -d ' ')"
+
+
 
 save_list_installed_packages ()
 {
