@@ -226,8 +226,13 @@ endfunction
 
 ":g/^/ call Del()
 
+" How is this useful? You could emulate grep -v by deleting lines that match foo:
 
-"Clean
+" :g/foo/normal dd
+" Or you could append all lines matching foo to register a:
+
+" :g/foo/normal "Ay
+" Clean
 "\%[]	A sequence of optionally matched atoms.  This always matches.
 ":%s/,/^V^M/g
 "globally replace commas with newlines (yes, I know this
