@@ -90,6 +90,10 @@ set autoindent
 " remove trailing whitespaces and ^M chars
 autocmd FileType c,cpp,java,php,js,python,twig,xml,yml autocmd BufWritePre <buffer> :call setline(1,map(getline(1,"$"),'substitute(v:val,"\\s\\+$","","")'))
 " let mapleader=","
+
+" Note the required backslash.
+let mapleader = "\<space>"
+
 vnoremap <silent> <leader>y :w !xsel -i -b<CR>
 nnoremap <silent> <leader>y V:w !xsel -i -b<CR>
 nnoremap <silent> <leader>p :silent :r !xsel -o -b<CR>
