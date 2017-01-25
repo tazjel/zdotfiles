@@ -32,8 +32,17 @@ sudo apt-get install -y vim zsh xclip git-core openssh-server curl wget vim-gnom
 
 install_essentials_02 ()
 {
+# dtrx archive.tar.XX
+sudo apt-get install -y dtrx
+}
+
+
+install_essentials_kde ()
+{
     sudo apt-get install -y kate nmap konsole inkscape easystroke
 }
+
+
 
 install_easystroke ()
 {
