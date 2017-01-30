@@ -1,0 +1,20 @@
+
+
+# When you type:
+adb devices
+
+# if you get :
+List of devices attached 
+....  unauthorized
+  
+# You should get below notification on your phone
+Select Ok, and then when you issue
+
+# select Always allow from this computer.
+
+# Now, when you type:
+adb devices
+
+# You should get below message :
+List of devices attached 
+308cb2ed        device
