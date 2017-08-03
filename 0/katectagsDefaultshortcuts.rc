@@ -1,8 +1,0 @@
-<kpartgui version="1" name="katectags">
-  <ActionProperties>
-    <Action shortcut="Alt+1" name="ctags_return_step"/>
-    <Action shortcut="Alt+2" name="ctags_lookup_current_as_declaration"/>
-    <Action shortcut="Alt+3" name="ctags_lookup_current_as_definition"/>
-    <Action shortcut="Alt+4" name="ctags_lookup_current"/>
-  </ActionProperties>
-</kpartgui>

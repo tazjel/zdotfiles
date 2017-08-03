@@ -1,6 +1,0 @@
-Installation instructions
-
-Ubuntu users can install Evolve from our themes PPA using the following commands,
-
-sudo add-apt-repository ppa:satyajit-happy/themes
-sudo apt-get update && sudo apt-get install evolve-gtk-theme

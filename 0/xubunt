@@ -1,4 +1,0 @@
-sudo apt-get install xubuntu-restricted-extras
- sudo apt-get install xubuntu-restricted-extras
-sudo apt-get install msttcorefonts
-sudo add-apt-repository ppa:irie/blender -y && sudo apt-get update && sudo apt-get install blender -y
