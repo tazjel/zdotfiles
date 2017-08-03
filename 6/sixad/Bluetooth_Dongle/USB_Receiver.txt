@@ -1,0 +1,44 @@
+USB Receiver
+
+Manufacturer: Logitech
+
+
+Class
+0
+((Defined at Interface level))
+Subclass
+0
+
+Protocol
+0
+
+USB Version
+2.00
+
+
+
+
+Vendor ID
+0x46d
+(Logitech, Inc.)
+Product ID
+0xc534
+(Unifying Receiver)
+Revision
+0.00
+
+
+
+
+Speed
+12 Mbit/s
+
+Channels
+0
+
+Max. Packet Size
+8
+
+
+
+

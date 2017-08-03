@@ -1,0 +1,45 @@
+EHCI Host Controller (2)
+
+Manufacturer: Linux 4.4.0-74-generic ehci_hcd
+Serial #: 0000:00:1d.0
+
+
+Class
+9
+(Hub)
+Subclass
+0
+(Unused)
+Protocol
+0
+(Full speed (or root) hub)
+USB Version
+2.00
+
+
+
+
+Vendor ID
+0x1d6b
+(Linux Foundation)
+Product ID
+0x2
+(2.0 root hub)
+Revision
+0.00
+
+
+
+
+Speed
+480 Mbit/s
+
+Channels
+2
+
+Max. Packet Size
+64
+
+
+
+
