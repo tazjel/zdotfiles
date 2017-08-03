@@ -169,30 +169,17 @@ variable_set "$HOME"
 program_must_exist "vim"
 program_must_exist "git"
 
-backup_vim() {
-    do_backup  "$HOME/.vim" \
-                "$HOME/.vimrc" \
-                "$HOME/.gvimrc"
-}
+# backup_vim() { do_backup  "$HOME/.vim" \ "$HOME/.vimrc" \ "$HOME/.gvimrc" }
 
-sync_repo       "$APP_PATH_link" \
-                "$REPO_URI" \
-                "$REPO_BRANCH" \
-                "$app_name"
+#sync_repo       "$APP_PATH_link" \ "$REPO_URI" \ "$REPO_BRANCH" \ "$app_name"
 
-create_symlinks "$APP_PATH_link" \
-                "$HOME"
+# create_symlinks "$APP_PATH_link" \ "$HOME"
 
-setup_fork_mode "$fork_maintainer" \
-                "$APP_PATH" \
-                "$HOME"
+# setup_fork_mode "$fork_maintainer" \ "$APP_PATH" \ "$HOME"
 
-sync_repo       "$HOME/.vim/bundle/vundle" \
-                "$VUNDLE_URI" \
-                "master" \
-                "vundle"
+# sync_repo       "$HOME/.vim/bundle/vundle" \ "$VUNDLE_URI" \ "master" \ "vundle"
 
-setup_vundle    "$APP_PATH/.vimrc.bundles.default"
+# setup_vundle    "$APP_PATH/.vimrc.bundles.default"
 
 msg             "\nThanks for installing $app_name."
-msg             "© `date +%Y` http://www.tazjel.com/"
+msg             "© `date +%Y` tazjel@gmail.com"
