@@ -1,7 +1,0 @@
-alias 'wi'='sudo apt-get install'
-alias 'w'='clear;ls -al;pwd;date'
-alias 'W'='echo'
-alias 'wwww'='cat'
-# wi git zsh vim wget curl 
-# git clone https://github.com/tazjel/zdotfiles.git
-alias "wh"="history > $HOME/history_dotfile; vim $HOME/history_dotfile"

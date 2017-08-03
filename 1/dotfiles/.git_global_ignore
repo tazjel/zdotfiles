@@ -1,7 +1,0 @@
-*.log
-*.sqlite3
-*.swp
-.~lock.*
-.rbenv-version
-tags
-TAGS
