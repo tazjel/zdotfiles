@@ -1,1 +1,0 @@
-sudo apt-get install bluez-utils bluez-compat bluez-hcidump libusb-dev libbluetooth-dev joystick git dialog -y

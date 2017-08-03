@@ -1,3 +1,0 @@
-You can also make this command more simpler by adding this line to .bashrc or .bash_aliases in your home folder(Ctrl+H to view hidden files).
-
-alias LANshare='python -c "import SimpleHTTPServer; SimpleHTTPServer.test();"'

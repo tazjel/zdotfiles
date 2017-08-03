@@ -1,3 +1,0 @@
-Execute a python file from the command line with blender, eg:
-
-blender --python /home/me/my_script.py

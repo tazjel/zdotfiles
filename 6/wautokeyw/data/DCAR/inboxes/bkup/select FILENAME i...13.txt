@@ -1,5 +1,0 @@
-select FILENAME in *;
-do
-     echo "You picked $FILENAME ($REPLY), it is now only accessible to you."
-     chmod go-rwx "$FILENAME"
-done

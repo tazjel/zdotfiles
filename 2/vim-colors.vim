@@ -1,5 +1,0 @@
-blackboardcalmar256-light
-calmar255-light
-busierbee
-bw
-colorercolorer

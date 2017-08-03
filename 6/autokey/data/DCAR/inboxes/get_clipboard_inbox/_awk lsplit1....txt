@@ -1,2 +1,0 @@
- awk '{l=split($1,a,"");asort(a);while(x<=l){printf "%s",a[x];x++ }print "";}'
-26914:# split a postscrip

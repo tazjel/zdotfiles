@@ -1,7 +1,0 @@
-components
-Here's an example of listing all elements in an html string:
-
-1.
-2.
-html = TAG('<a>xxx</a><b>yyy</b>')
-for item in html.components: print item

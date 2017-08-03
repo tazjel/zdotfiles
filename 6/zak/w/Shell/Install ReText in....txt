@@ -1,9 +1,0 @@
-Install ReText in Ubuntu:
-
-ppa:mitya57 contains packages of ReText for Ubuntu 10.04/10.10/11.04/11.10/12.04.
-
-sudo add-apt-repository ppa:mitya57/ppa
-
-sudo apt-get update
-
-sudo apt-get install retext

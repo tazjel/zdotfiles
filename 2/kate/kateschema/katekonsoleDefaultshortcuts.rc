@@ -1,5 +1,0 @@
-<kpartgui version="1" name="katekonsole">
-  <ActionProperties>
-    <Action shortcut="Meta+Down" name="katekonsole_tools_toggle_focus"/>
-  </ActionProperties>
-</kpartgui>

@@ -1,3 +1,0 @@
-# automate web search and open tabs in firefox
-cat search_items.txt | while read i; do surfraw google -browser=firefox $i; done
-

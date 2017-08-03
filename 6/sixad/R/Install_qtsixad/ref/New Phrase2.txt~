@@ -1,3 +1,0 @@
-I know about this, but I wasn't able to fix it in time. The problem is the sixad-dbus-blocker, which forcely blocks normal bluetooth from starting.
-
-You can remove/uninstall 'bluedevil' (KDE bluetooth stuff) and everything will work again as expected.

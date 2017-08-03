@@ -1,8 +1,0 @@
-oh, are you using USB?
-that won't work just like that... (the manual explains it).
-
-but anyway, for USB, use 'sixad-raw', like:
-Code:
-sudo sixad-raw /dev/hidrawX
-watch 'dmesg' after connecting a sixaxis to see what the 'X' value is.
-in the GUI make sure you apply the profile to the 'hidraw' device.

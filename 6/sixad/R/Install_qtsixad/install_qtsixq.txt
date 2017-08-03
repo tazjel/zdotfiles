@@ -1,6 +1,0 @@
-he first thing you’re going to want to do, assuming that you have a bluetooth dongle with drivers installed for Ubuntu, is add a repository so that we can install the one utility that we need. We will do this by typing the following code into Terminal:
-sudo add-apt-repository ppa:falk-t-j/qtsixa
-
-After that, we’ll want to update our repository list and then install QtSixA:
-sudo apt-get update
-sudo apt-get install qtsixa

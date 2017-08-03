@@ -1,6 +1,0 @@
-<kpartgui version="1" name="katexmltools">
-  <ActionProperties>
-    <Action shortcut="Ctrl+Return" name="xml_tool_insert_element"/>
-    <Action shortcut="Ctrl+&lt;" name="xml_tool_close_element"/>
-  </ActionProperties>
-</kpartgui>

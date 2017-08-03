@@ -1,5 +1,0 @@
-s = ''
-l = [s]
-match = re.compile(r'\s*[(]\d+[)]\s*$').search(s)
-if match is not None:
-    l = [s[:len(match.group(0))], s[-len(match.group(0)):].trim]

@@ -1,1 +1,0 @@
-http://nltk.googlecode.com/svn/trunk/doc/howto/collocations.html

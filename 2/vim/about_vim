@@ -1,7 +1,0 @@
-Vi (pronounce: "vee eye", not "six", not "vye") is an editor. An editor is a program to edit files. 
-
-Although other stories exist, the true one tells that Vi was originally written by Bill Joy in 1976. Bill took the sources of ed and ex, two horrendous programs for Unix that try to enable a human being to edit files, and created Vi. A truly remarkable, and somewhat paradoxical, event. Read the interview with Bill Joy for a more accurate history of Vi.
-
-People got attached to Vi, and eventually it got included in System V. From there on history has covered its traces and now Vi has evolved in many different versions for many, many platforms. The basic concept of Vi, however, has not changed over the years.
-
-The Vi Lovers Home Page has links to the latest version of different Vi implementations. In addition, there are links to useful documentation, FAQs, and other (better) Vi related resources. This is the best place to be for every Vi user or Vi user wannabe.

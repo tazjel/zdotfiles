@@ -1,3 +1,0 @@
-f = open(abbrfile, 'r') 
-for line in f: 
-    abbr, contents = line.split(sep)

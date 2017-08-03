@@ -1,6 +1,0 @@
-su
-wsudo sixpair;sudo sixad --stop; sudo sixad --start
-
-su
-w
-sudo sixpair;sudo sixad --stop; sudo sixad --start

@@ -1,1 +1,0 @@
-Since in Vim’s default configuration, almost every key is already mapped to a command, there needs to be some sort of standard “free” key where you can place custom mappings under. This is called the “mapleader”, and can be defined like this

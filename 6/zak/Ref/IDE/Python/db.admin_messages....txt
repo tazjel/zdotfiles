@@ -1,7 +1,0 @@
-db.admin_messages.insert(
-                        auth_user_id=auth_user.get_user_id(),
-                        subject=parse_content(req.subject),
-                        message=parse_content(req.message),
-                        creation_date=request.now,
-                        read_flag=False)
-                    redirect(URL(r=request, c='default', f='index'))

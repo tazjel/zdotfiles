@@ -1,6 +1,0 @@
-ok found a workaround...
-
-add to noapic and nolapic to kernel settings:
-vim /etc/default/grub
-GRUB_CMDLINE_LINUX_DEFAULT="quiet splash noapic nolapic "
-and don't forget to run update-grub

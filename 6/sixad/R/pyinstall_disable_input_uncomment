@@ -1,5 +1,0 @@
-sudo apt-get install python-usb python-pyudev python-bluez
-
-#*Some edit needed that will DISABLE any bluetooth keyboards and mouse support*/
-/etc/bluetooth/main.conf
-Uncomment DisabledPlugins, and change it to only disable input

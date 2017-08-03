@@ -1,7 +1,0 @@
-with open('C:/Twitter/user_' + str(self.id) + '.json', mode='w') as f:
-   f.write('{')
-   for i, friends in enumerate(Cursor(api.followers_ids,screen_name=self.ip).items()):
-        if i>0:
-            f.write(", ")
-        f.write("%s:%s" % (json.dumps(i), json.dumps(dict(fu=self.ip, su=friends))))
-   f.write("}")

@@ -1,4 +1,0 @@
-Most Frequent Words
-This section contains the most frequent words of the Academic Word List in the Academic Corpus. The most frequent members of the word families are grouped by sublist. Use the menu on the left to view the most frequent words for each of the sublists.
-
-Sublist 1 contains the most common words in the AWL. Sublist 2 contains the next most common words, and so on. There are 60 families in each sublist, except for sublist 10 which has 30.

@@ -1,6 +1,0 @@
-{{if person:}}
-<h1>Todo Task concerning {{=link_person(person)}}</h1>
-{{=button('calendar for '+person.name,'calendar',person.id)}}
-{{else:}}
-<h1>All Todo Task</h1>
-{{pass}}

@@ -1,2 +1,0 @@
-# command to add your new user to the sudo group 
-sudo gpasswd -a demo sudo 

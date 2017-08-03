@@ -1,9 +1,0 @@
-Thunar is a new modern file manager for the Xfce Desktop Environment. It has been designed from the ground up to be fast and easy-to-use. Its user interface is clean and intuitive, and does not include any confusing or useless options. Thunar is fast and responsive with a good start up time and directory load time.
-
-Beside the basic file management features, Thunar includes additional features that set it ahead of other file managers available for the Unix/Linux desktop today. For example, Thunar includes a so called Bulk Renamer that allows users to easily rename multiple files at once using criterions that can be specified using the available renamer plugins. Probably the most interesting renamer here is the Audio Tags renamer, which generates new file names based on the tags present in audio files.
-
-Install Thunar in Ubuntu Gnome
-
-Just run the command in Applications -> Accessories ->Terminal:
-
-sudo apt-get install thunar

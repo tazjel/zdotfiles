@@ -1,2 +1,0 @@
-Enter phrase contents
-/usr/share/kde4/apps/ktexteditor_snippets

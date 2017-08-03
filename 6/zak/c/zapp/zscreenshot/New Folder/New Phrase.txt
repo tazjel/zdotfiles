@@ -1,4 +1,0 @@
->>> import subprocess
->>> import shlex                          # to split the command that follows
->>> command = 'ffmpeg -i sample.avi'      # your command goes here
->>> subprocess.call(shlex.split(command))

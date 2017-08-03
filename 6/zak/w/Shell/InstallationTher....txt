@@ -1,6 +1,0 @@
-Installation
-There are deb packages provide in its homepage for Ubuntu installation: http://mediadownloader.cz.cc/?page_id=32
-
-You may get a dependence error while installing, for me it was missing libqt4-webkit and can be easily fixed by apt-get install command:
-
-sudo apt-get install libqt4-webkit

@@ -1,5 +1,0 @@
-echo MyPassword|sudo -S sixad -s
-
- in my 'Autostart' configuration in KDE.
-
-It's not ideal but for now it lets my less knowledgeable friends use my controllers without the extra step in a terminal.

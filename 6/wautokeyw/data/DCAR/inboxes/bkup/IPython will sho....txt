@@ -1,4 +1,0 @@
-
-IPython will show long blocks of text from many sources using a builtin pager.
-You can control where this pager appears with the ``--paging`` command-line
-flag:

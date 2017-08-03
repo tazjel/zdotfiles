@@ -1,7 +1,0 @@
-You can also use this command to view processes details:
-
-top
-
-or
-
-ps aux

@@ -1,6 +1,0 @@
-Modules & Scripts
-
-To make a simultaneously importable module and executable script:
-
-if __name__ == '__main__':
-    # script code here

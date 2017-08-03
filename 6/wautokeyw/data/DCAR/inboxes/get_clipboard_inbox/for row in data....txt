@@ -1,7 +1,0 @@
-for row in data:
-    temp_string  = nltk.clean_html(str(row[0]).strip(string.digits + string.punctuation).lower() +" "+str(row[1]).strip(string.digits + string.punctuation).lower() \
-    +" "+str(row[2]).strip(string.digits + string.punctuation).lower()+" "+str(row[3]).strip(string.digits + string.punctuation)).lower().split()
-    temp_string     = [word for word in temp_string if word not in stopwords and len(word) >= 3]
-    bigrams         = nltk.bigrams(word_tokenize(str(' '.join(temp_string))))
-    all_terms_list  = temp_string + [str(bigram).replace(",","").replace("'", "").strip("()") for bigram in bigrams]
-    [live_music_idx_list.append(row[4]) for word in live_music_word_list if word in all_terms_list]

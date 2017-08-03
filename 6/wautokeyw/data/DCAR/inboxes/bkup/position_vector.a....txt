@@ -1,1 +1,0 @@
-position_vector.append(Vector((float(1.0000), float(1.0000),float(1.0000))))

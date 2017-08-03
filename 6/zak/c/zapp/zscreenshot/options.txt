@@ -1,8 +1,0 @@
-Enter phrase contents
-
-Options:
-  -c, --current             Captures the window under the mouse on startup (instead of the desktop)
-  --fullscreen              Captures the desktop
-  --region                  Captures a region
-  --freeregion              Captures a free region (not rectangular)
-  --child                   Captures a part of windows

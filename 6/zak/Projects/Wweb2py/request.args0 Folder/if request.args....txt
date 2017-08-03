@@ -1,4 +1,0 @@
-{{if request.args(0)=='login':}}
-<a href="{{=URL(r=request,args='register')}}">register</a><br />
-<a href="{{=URL(r=request,args='retrieve_password')}}">lost password</a><br />
-{{pass}}

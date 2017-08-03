@@ -1,1 +1,0 @@
-    <link rel="stylesheet" href="{{=URL('static','css/arabic.css')}}"/>

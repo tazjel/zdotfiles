@@ -1,5 +1,0 @@
-<kpartgui version="1" name="katekonsole">
-  <ActionProperties>
-    <Action shortcut="Ctrl+F7" name="katekonsole_tools_toggle_focus"/>
-  </ActionProperties>
-</kpartgui>

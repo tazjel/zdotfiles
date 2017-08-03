@@ -1,5 +1,0 @@
-Prague Arabic Dependency Treebank 1.0
-
-Introduction
-
-Prague Arabic Dependency Treebank (PADT) not only consists of multi-level linguistic annotations over the language of Modern Standard Arabic, but even provides a variety of unique software implementations designed for general use in Natural Language Processing (NLP). This paper delivers an overview of the recent and most interesting results, findings and innovations within the project.

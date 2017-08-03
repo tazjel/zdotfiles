@@ -1,2 +1,0 @@
-ipython notebook --pylab qt
-Open IPython Notebook with popup graphs

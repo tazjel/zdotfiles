@@ -1,1 +1,0 @@
-/usr/share/sendmail/sendmail stop

@@ -1,1 +1,0 @@
-sudo apt-get install mercurial fakeroot devscripts cdbs debhelper python python-support python-setuptools python-distutils-extra python-jswebkit mimetex

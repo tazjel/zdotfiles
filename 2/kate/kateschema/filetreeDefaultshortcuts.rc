@@ -1,6 +1,0 @@
-<kpartgui version="1" name="filetree">
-  <ActionProperties>
-    <Action shortcut="Back" name="filetree_prev_document"/>
-    <Action shortcut="Alt+Right; Forward" name="filetree_next_document"/>
-  </ActionProperties>
-</kpartgui>

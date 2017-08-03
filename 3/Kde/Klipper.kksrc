@@ -1,8 +1,0 @@
-[klipper][Global Shortcuts]
-clipboard_action=none
-cycleNextAction=none
-cyclePrevAction=none
-edit_clipboard=none
-repeat_action=none
-show-barcode=none
-show-on-mouse-pos=none
