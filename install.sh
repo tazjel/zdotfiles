@@ -16,24 +16,53 @@ sudo su -c "apt-get -f install"
 
 
 
-
-
-
-
-
-
-
-
-
-sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
-pip install --user git+git://github.com/Lokaltog/powerline
-chsh ${LOGNAME} -s /bin/zsh
-sudo apt-get install python-pip git
-sudo pip -H install git+git://github.com/Lokaltog/powerline
-
-install_autokey()
+save_list_installed_packages ()
 {
-    sudo -H pip3 install --user git+https://github.com/autokey-py3/autokey
+    sudo apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > $HOME/.packages-alpha.txt
+}
+
+install_list_pacakges ()
+{
+    for xp in $(cat $HOME/zdotfiles/packages-alpha.txt) ; do echo -e "\ninstall $xp";sudo apt-get install $xp;done
+}
+
+install_ubuntu_restricted-extras() {
+    sudo apt-get install -y ubuntu-restricted-extras
+}
+
+install_essentials_01 ()
+{
+    sudo apt-get install -y ranger vim zsh xclip git-core openssh-server curl wget vim-gnome aptitude mercurial automake  liblzma-dev xsel python-pip
+}
+
+install_essentials_02 ()
+{
+    sudo apt-get install -y nmap konsole inkscape easystroke
+}
+
+
+install_full_kde ()
+{
+    sudo add-apt-repository ppa:kubuntu-ppa/backports
+    sudo apt-get update
+    sudo apt-get -y install kubuntu-full
+}
+
+
+
+install_powerline_ohmyzsh_theme()
+{
+    echo "install_powerline_ohmyzsh_theme"
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh)"
+    pip install --user git+git://github.com/Lokaltog/powerline
+    chsh ${LOGNAME} -s /bin/zsh
+    sudo pip -H install git+git://github.com/Lokaltog/powerline
+}
+
+install_powerline_ohmyzsh_theme_powerlevel()
+{
+    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
+    echo ZSH_THEME="powerlevel9k/powerlevel9k" ~/.zshrc
 }
 
 
@@ -47,42 +76,13 @@ install_powerline_fonts()
     rm -rf fonts
 }
 
-install_powerline_ohmyzsh_theme()
+
+install_autokey()
 {
-    git clone https://github.com/bhilburn/powerlevel9k.git ~/.oh-my-zsh/custom/themes/powerlevel9k
-    echo ZSH_THEME="powerlevel9k/powerlevel9k" ~/.zshrc
+    sudo -H pip3 install --user git+https://github.com/autokey-py3/autokey
 }
 
-
-
-
-save_list_installed_packages ()
-{
-    sudo apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > $HOME/.packages-alpha.txt
-}
-
-install_list_pacakges ()
-{
-    for xp in $(cat $HOME/zdotfiles/packages-alpha.txt) ; do echo -e "\ninstall $xp";sudo apt-get install $xp;done
-}
-
-    # sudo apt-get install key-mon 
-
-
-install_ubuntu_restricted-extras() {
-    sudo apt-get install -y ubuntu-restricted-extras
-}
-
-install_essentials_01 ()
-{
-    sudo apt-get install -y ranger vim zsh xclip git-core openssh-server curl wget vim-gnome aptitude mercurial automake  liblzma-dev xsel
-}
-
-install_essentials_02 ()
-{
-    sudo apt-get install -y nmap konsole inkscape easystroke
-}
-
+# sudo apt-get install key-mon 
 
 install_easystroke ()
 {
@@ -94,7 +94,6 @@ install_easystroke ()
 
 }
 
-
 install_ag ()
 {
     mkdir -p ~/src; cd ~/src
@@ -105,17 +104,9 @@ install_ag ()
 
 
 # /usr/share/qtsixa/profiles && /etc/sixad
-
 setup_sixad_profile () {
     cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/34:C7:31:35:08:44
     cp ~/zdotfiles/6/sixad/tazjel_keys_profile /var/lib/sixad/profiles/default
-}
-
-install_full_kde ()
-{
-    sudo add-apt-repository ppa:kubuntu-ppa/backports
-    sudo apt-get update
-    sudo apt-get -y install kubuntu-full
 }
 
 git_config_global ()
@@ -149,7 +140,6 @@ git_clone_zdotfiles ()
     git fetch upstream
 }
 
-install_admin_w2p
 install_admin_dependency_w2p()
 {
    sudo apt-get install python-dev graphviz libgraphviz-dev pkg-config
@@ -160,7 +150,6 @@ install_on_ubuntu ()
 {
     while true ; do
         echo ""
-        echo "all_functions"
         save_list_installed_packages
         install_essentials
         git_config_global
