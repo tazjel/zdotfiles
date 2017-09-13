@@ -15,6 +15,11 @@ apt_clean ()
 
 # sudo apt-get install key-mon 
 
+install_gnome_tweak_tool ()
+{
+	sudo apt-get install gnome-tweak-tool
+}
+
 save_list_installed_packages ()
 {
     sudo apt-cache -n dumpavail | grep 'Package:' | awk '{print $2 }' > $HOME/.packages-alpha.txt;
