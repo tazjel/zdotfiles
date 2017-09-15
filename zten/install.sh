@@ -12,7 +12,10 @@ apt_clean ()
     sudo apt-get -f install;
 }
 
-
+pip_install ()
+{
+ sudo pip install requests
+}
 # sudo apt-get install key-mon 
 
 install_gnome_tweak_tool ()
