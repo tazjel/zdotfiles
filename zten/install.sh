@@ -180,3 +180,9 @@ install_on_ubuntu ()
         break
     done;
 }
+
+
+
+# How to stream a webcam to a web browser in Ubuntu
+# Reference : https://gist.github.com/endolith/2052778
+#  sudo apt-get install motion
