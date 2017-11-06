@@ -82,6 +82,14 @@ install_powerline_ohmyzsh_theme_powerlevel ()
     echo ZSH_THEME="powerlevel9k/powerlevel9k" ~/.zshrc;
 }
 
+setup_zsh ()
+{
+	sed -i 's/ZSH_THEME="robbyrussell"/ZSH_THEME="bira"/g' ~/.zshrc
+	sed -i 's/plugins=(git)/plugins=(bower,capistrano,Composer,docker,git,node,npm)/g' ~/.zshrc
+	# sed ZSH_THEME="robbyrussell" -> ZSH_THEME="bira"
+	# sed plugins=(git) -> plugins=(bower,capistrano,Composer,docker,git,node,npm)
+}
+
 install_nvim_ranger ()
 {
     echo "install nvim ranger";
