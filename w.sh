@@ -1,6 +1,8 @@
 #!/bin/bash
 # A menu driven shell script sample template 
 ## ----------------------------------
+## Author : Ahmed Bani Alghamdi
+## ----------------------------------
 # Step #1: Define variables
 # ----------------------------------
 [[ ! -z "${BASH_ARGC}${BASH_ARGV}" ]] && ISINCLUDED=yes || ISINCLUDED=no
