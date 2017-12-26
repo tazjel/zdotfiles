@@ -208,7 +208,7 @@ zgit_clone_zdotfiles() {
   git fetch upstream
 }
 
-zgit_clone_zdotfiles() {
+zgit_set_user() {
   git config --global user.name "Ahmed Bani"
   git config --global user.email "tazjel@gmail.com"
 }
