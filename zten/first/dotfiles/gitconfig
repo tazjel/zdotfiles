@@ -1,0 +1,11 @@
+[user]
+	email = xuliuchengxlc@gmail.com
+	name = Liu-Cheng Xu
+[diff]
+	tool = vimdiff
+[merge]
+	tool = vimdiff
+[difftool]
+	prompt = false
+[core]
+	editor = nvim

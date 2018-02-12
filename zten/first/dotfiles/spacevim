@@ -1,0 +1,27 @@
+function! Layers()
+
+    " Default layers, recommended!
+    Layer 'fzf'
+    Layer 'unite'
+    Layer 'better-defaults'
+
+    Layer 'python'
+    Layer 'programming'
+    Layer 'syntax-checking'
+
+endfunction
+
+" You can put your extra plugins here.
+function! UserInit()
+
+    Plug 'morhetz/gruvbox'
+    Plug 'junegunn/seoul256.vim'
+
+endfunction
+
+function! UserConfig()
+
+    autocmd FileType python setlocal completeopt-=preview
+    hi Comment cterm=italic
+
+endfunction

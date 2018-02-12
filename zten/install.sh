@@ -59,6 +59,11 @@ install_essentials_03 ()
     sudo pip install percol;
 }
 
+install_essentials_03 ()
+{
+  git clone --depth 1 https://github.com/junegunn/fzf.git ~/.fzf
+  ~/.fzf/install
+}
 
 install_full_kde ()
 {
