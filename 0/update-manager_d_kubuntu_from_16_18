@@ -1,1 +1,3 @@
+
+sudo apt install update-manager-core
 sudo update-manager -d
