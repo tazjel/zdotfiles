@@ -11,16 +11,6 @@ sudo apt-get install -y \
   git-core \
   curl \
   wget \
-  autoconf \
-  automake \
-  cmake \
-  g++ \
-  libncurses5-dev \
-  libtool \
-  libtool-bin \
-  libunibilium-dev \
-  libunibilium0 \
-  pkg-config \
   python-pip \
   software-properties-common \
   python3-dev \
