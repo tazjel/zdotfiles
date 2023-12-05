@@ -13,6 +13,8 @@ sudo apt-get install -y \
   wget \
   python-pip \
   software-properties-common \
-  python3-dev \
-  python-dev \
   unzip
+ 
+ ## Arabic عربي 
+
+ 
